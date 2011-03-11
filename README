@@ -1,0 +1,15 @@
+git config --global user.name "Giovanni La Torre"
+git config --global user.email giovannilt@gmail.com
+
+mkdir AzzeroCO2
+cd AzzeroCO2
+git init
+
+git remote add origin git@github.com:giovannilt/AzzeroCO2.git
+
+git pull
+
+#git push -u origin master
+
+
+
