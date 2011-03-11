@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="azzeroCO2-war:war">
+    <output-path>$PROJECT_DIR$/azzeroCO2-war/target</output-path>
+    <root id="archive" name="azzeroCO2-war-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="azzeroCO2-war:war exploded" />
+    </root>
+  </artifact>
+</component>

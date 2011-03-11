@@ -1,0 +1,61 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="azzeroCO2-war:war exploded">
+    <output-path>$PROJECT_DIR$/azzeroCO2-war/target/azzeroCO2-war-1.0-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="azzeroCO2-war/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="azzeroCO2-war" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="azzeroCO2-core-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="azzeroCO2-core" />
+          </element>
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:3.5.1-Final" />
+          <element id="library" level="project" name="Maven: antlr:antlr:2.7.6" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:2.1" />
+          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
+          <element id="library" level="project" name="Maven: javax.transaction:jta:1.1" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.5.8" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-annotations:3.5.1-Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-commons-annotations:3.2.0.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.0.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:3.5.1-Final" />
+          <element id="library" level="project" name="Maven: cglib:cglib:2.2" />
+          <element id="library" level="project" name="Maven: asm:asm:3.1" />
+          <element id="library" level="project" name="Maven: javassist:javassist:3.9.0.GA" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-orm:3.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:3.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:3.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-asm:3.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.1.1" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:3.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:3.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:3.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:3.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.16" />
+          <element id="library" level="project" name="Maven: com.google.gwt:gwt-servlet:2.1.0" />
+          <element id="library" level="project" name="Maven: com.google.gwt:gwt-dev:2.1.0" />
+          <element id="library" level="project" name="Maven: com.extjs:gxt:2.2.1" />
+          <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.2.1" />
+          <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.2" />
+          <element id="library" level="project" name="Maven: xerces:xercesImpl:2.0.2" />
+          <element id="library" level="project" name="Maven: c3p0:c3p0:0.9.1.2" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.5.8" />
+          <element id="library" level="project" name="Maven: hsqldb:hsqldb:1.8.0.10" />
+          <element id="library" level="project" name="Maven: httpunit:httpunit:1.6.1" />
+          <element id="library" level="project" name="Maven: xerces:xmlParserAPIs:2.2.1" />
+          <element id="library" level="project" name="Maven: nekohtml:nekohtml:0.9.1" />
+          <element id="library" level="project" name="Maven: rhino:js:1.5R4.1" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.3" />
+          <element id="library" level="project" name="Maven: jtidy:jtidy:4aug2000r7-dev" />
+        </element>
+      </element>
+      <element id="gwt-compiler-output" facet="azzeroCO2-war/gwt/GWT" />
+    </root>
+  </artifact>
+</component>

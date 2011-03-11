@@ -1,0 +1,6 @@
+war/
+target/
+.DS*
+azzeroCO2-war/target/
+azzeroCO2-core/target/
+

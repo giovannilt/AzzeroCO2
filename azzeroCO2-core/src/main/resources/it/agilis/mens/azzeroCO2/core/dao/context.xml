@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userInfoDAO" class="it.agilis.mens.azzeroCO2.core.dao.impl.UserInfoDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="azzeroCO2Manager" class="it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register">
+        <property name="userInfoDAO">
+            <ref local="userInfoDAO"/>
+        </property>
+
+    </bean>
+
+</beans>
