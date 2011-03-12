@@ -25,7 +25,7 @@
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.current_session_context_class">thread</prop>
                 <prop key="hibernate.generate_statistics">true</prop>
-                <prop key="hibernate.default_schema">azzeroCO2</prop>
+                <!--<prop key="hibernate.default_schema">azzeroCO2</prop>-->
 			</props>
 		</property>
 	</bean>

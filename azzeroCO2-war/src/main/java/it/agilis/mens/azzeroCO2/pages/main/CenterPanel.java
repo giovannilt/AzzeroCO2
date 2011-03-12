@@ -1,8 +1,7 @@
 package it.agilis.mens.azzeroCO2.pages.main;
 
+import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.layout.CardLayout;
-import com.google.gwt.user.client.Element;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,15 +15,12 @@ public class CenterPanel extends LayoutContainer {
 
 
     public CenterPanel(){
-
-    }
-
-    protected void onRender(Element target, int index) {
-       final CardLayout layout = new CardLayout();
-       setLayout(layout);
+       ContentPanel content= new ContentPanel();
+       add(content);
     }
 
 
 
-
+    public void setHeading(String puppa) {
+    }
 }

@@ -12,10 +12,10 @@ import com.google.gwt.user.client.Element;
 
 public class ListEventMenu extends LayoutContainer {
 
-    final protected LayoutContainer center;
+    final protected CenterPanel center;
 
 
-    public ListEventMenu(LayoutContainer center) {
+    public ListEventMenu(CenterPanel center) {
         this.center = center;
     }
 
@@ -24,33 +24,19 @@ public class ListEventMenu extends LayoutContainer {
 
         setLayout(new RowLayout(Style.Orientation.VERTICAL));
 
-        Button evento = new Button();
-        evento.setText("EVENTO");
-        evento.setHeight("24%");
-         evento.addSelectionListener(new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent ce) {
-              //  center.setHeading("PUPPA");
-            }
 
-        });
+        Eventi[] eventi = Eventi.values();
+        for (int i = 0; i < eventi.length; i++) {
+            Button b = new Button(eventi[i].toString());
+            b.setHeight("24%");
+            b.addSelectionListener(new SelectionListener<ButtonEvent>() {
+                public void componentSelected(ButtonEvent ce) {
+                     center.setHeading("PUPPA");
+                }
 
-        Button annotDiAttivia = new Button();
-        annotDiAttivia.setText("annotDiAttivia");
-        annotDiAttivia.setHeight("24%");
-
-        Button consumoCarta = new Button();
-        consumoCarta.setHeight("24%");
-        consumoCarta.setText("consumoCarta");
-
-        Button conosciCO2 = new Button();
-        conosciCO2.setText("conosciCO2");
-        conosciCO2.setHeight("24%");
-
-        add(evento, new RowData(1, -1, new Margins(5)));
-        add(annotDiAttivia, new RowData(1, -1, new Margins(5)));
-        add(consumoCarta, new RowData(1, -1, new Margins(5)));
-        add(conosciCO2, new RowData(1, -1, new Margins(5)));
-
+            });
+            add(b, new RowData(1, -1, new Margins(5)));
+        }
 
     }
 }
