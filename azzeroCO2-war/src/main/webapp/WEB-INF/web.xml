@@ -28,7 +28,7 @@
 
     <!--
     TODO: CAPIRE A CAZZO SERVE
-    ???????????-->
+    -->
     <servlet>
         <servlet-name>springGwtRemoteServiceServlet</servlet-name>
         <servlet-class>org.spring4gwt.server.SpringGwtRemoteServiceServlet
@@ -41,7 +41,7 @@
     </servlet-mapping>
     <!--
     TODO: FINE CAPIRE A CAZZO SERVE
-    ???????????-->
+    -->
 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

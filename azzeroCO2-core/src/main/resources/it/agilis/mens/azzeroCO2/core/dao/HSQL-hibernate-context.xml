@@ -13,6 +13,10 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>it.agilis.mens.azzeroCO2.core.entity.UserInfo</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.Preventivo</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.Calcolo</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.TipoDiCalcolo</value>
+
 			</list>
 		</property>
 		<property name="hibernateProperties">
