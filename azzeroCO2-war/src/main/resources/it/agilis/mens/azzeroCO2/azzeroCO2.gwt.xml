@@ -19,9 +19,10 @@
     <source path='client'/>
     <source path='pages'/>
     <source path='shared'/>
+    <source path='core/entity'/>
 
     <inherits name='com.extjs.gxt.ui.GXT'/>
-     <inherits name="com.extjs.gxt.charts.Chart"/>
+    <inherits name="com.extjs.gxt.charts.Chart"/>
     <inherits name="com.google.gwt.requestfactory.RequestFactory"/>
 
 

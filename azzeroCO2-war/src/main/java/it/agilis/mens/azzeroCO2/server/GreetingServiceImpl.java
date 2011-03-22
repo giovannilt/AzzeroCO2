@@ -1,8 +1,8 @@
 package it.agilis.mens.azzeroCO2.server;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import it.agilis.mens.azzeroCO2.client.GreetingService;
 import it.agilis.mens.azzeroCO2.shared.FieldVerifier;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
  * The server side implementation of the RPC service.
@@ -12,6 +12,8 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
         GreetingService {
 
     public String greetServer(String input) throws IllegalArgumentException {
+
+
         // Verify that the input is valid.
         if (!FieldVerifier.isValidName(input)) {
             // If the input is not valid, throw an IllegalArgumentException back to

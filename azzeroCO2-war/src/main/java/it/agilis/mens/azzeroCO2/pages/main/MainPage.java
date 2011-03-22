@@ -13,9 +13,9 @@ import com.extjs.gxt.ui.client.Style.LayoutRegion;
 import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
@@ -23,8 +23,12 @@ import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
+import it.agilis.mens.azzeroCO2.pages.ApolloPage;
+import it.agilis.mens.azzeroCO2.pages.login.LoginDialog;
+import it.agilis.mens.azzeroCO2.pages.login.controller.LoginEvents;
 
-public class MainPage extends LayoutContainer {
+public class MainPage extends ApolloPage {
+
 
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
@@ -45,7 +49,9 @@ public class MainPage extends LayoutContainer {
         login.setText("Login");
         login.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-                loginDialog.show();
+              //  session.getAzzeroCO2Register();
+               // loginDialog.show();
+                Dispatcher.forwardEvent(LoginEvents.showForm);
             }
 
         });
@@ -96,5 +102,6 @@ public class MainPage extends LayoutContainer {
         add(center, centerData);
         // add(east, eastData);
         add(south, southData);
+
     }
 }

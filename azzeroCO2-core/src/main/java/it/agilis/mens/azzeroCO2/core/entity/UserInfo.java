@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  */
 
 @Entity
-public class UserInfo {
+public class UserInfo implements Serializable {
 
     @Id
     @GeneratedValue
@@ -24,6 +25,8 @@ public class UserInfo {
 
     @OneToMany (fetch = FetchType.LAZY)
     private List<Preventivo> preventivi;
+
+    private Profile profile= Profile.Guest;
 
 
     public Long getId() {
@@ -56,5 +59,13 @@ public class UserInfo {
 
     public void setPreventivi(List<Preventivo> preventivi) {
         this.preventivi = preventivi;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile=profile;
+    }
+
+    public Profile getProfile() {
+        return profile;
     }
 }

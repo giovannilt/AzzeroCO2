@@ -15,21 +15,17 @@
 
     <context:component-scan base-package="it.agilis.mens.azzeroCO2"/>
 
-    <bean
-            class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
-
     </bean>
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
 
     <tx:annotation-driven transaction-manager="txManager"/>
 
-
     <bean id="dataSourceJndi" class="org.springframework.jndi.JndiObjectFactoryBean" lazy-init="true">
         <property name="jndiName" value="${azzeroCO2.dataSource.jndiName}"/>
     </bean>
-
 
     <bean id="dataSourceHSQL" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>

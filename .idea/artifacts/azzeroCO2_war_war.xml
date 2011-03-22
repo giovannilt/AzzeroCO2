@@ -3,12 +3,6 @@
     <output-path>$PROJECT_DIR$/azzeroCO2-war/target</output-path>
     <root id="archive" name="azzeroCO2-war-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="azzeroCO2-war:war exploded" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.1" />
-          <element id="library" level="project" name="Maven: log4j:log4j:1.2.14" />
-        </element>
-      </element>
     </root>
   </artifact>
 </component>

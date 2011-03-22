@@ -16,6 +16,16 @@
         <url-pattern>/azzeroCO2/greet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>hustonServlet</servlet-name>
+        <servlet-class>it.agilis.mens.azzeroCO2.server.HustonServiceImpl</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>hustonServlet</servlet-name>
+        <url-pattern>/azzeroCO2/huston</url-pattern>
+    </servlet-mapping>
+
     <!-- Default page to serve -->
     <welcome-file-list>
         <welcome-file>azzeroCO2.html</welcome-file>

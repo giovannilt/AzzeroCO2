@@ -9,6 +9,7 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.pages.events.Eventi;
 
 public class ListEventMenu extends LayoutContainer {
 
@@ -21,21 +22,20 @@ public class ListEventMenu extends LayoutContainer {
 
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
-
         setLayout(new RowLayout(Style.Orientation.VERTICAL));
 
-
-        Eventi[] eventi = Eventi.values();
+        final Eventi[] eventi = Eventi.values();
         for (int i = 0; i < eventi.length; i++) {
+            final int indice=i;
             Button b = new Button(eventi[i].toString());
-            b.setHeight("24%");
+            b.setHeight("19%");
             b.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
-                     center.setHeading("PUPPA");
+                    center.setHeading(eventi[indice].toString());
+                    center.setActiveItem(eventi[indice]);
                 }
-
             });
-            add(b, new RowData(1, -1, new Margins(5)));
+            add(b, new RowData(1, -1, new Margins(6)));
         }
 
     }

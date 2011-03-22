@@ -37,7 +37,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-context:3.0.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.0.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:3.0.4.RELEASE" />
-          <element id="library" level="project" name="Maven: log4j:log4j:1.2.16" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.14" />
           <element id="library" level="project" name="Maven: com.google.gwt:gwt-servlet:2.1.0" />
           <element id="library" level="project" name="Maven: com.google.gwt:gwt-dev:2.1.0" />
           <element id="library" level="project" name="Maven: com.extjs:gxt:2.2.1" />
@@ -53,9 +53,6 @@
           <element id="library" level="project" name="Maven: rhino:js:1.5R4.1" />
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.3" />
           <element id="library" level="project" name="Maven: jtidy:jtidy:4aug2000r7-dev" />
-          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.1" />
-          <element id="library" level="project" name="Maven: log4j:log4j:1.2.14" />
-          <element id="library" level="module" name="Spring4GWT" module-name="azzeroCO2-war" />
         </element>
       </element>
       <element id="gwt-compiler-output" facet="azzeroCO2-war/gwt/GWT" />
