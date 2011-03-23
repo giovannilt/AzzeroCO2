@@ -21,9 +21,11 @@
     <source path='shared'/>
     <source path='core/entity'/>
 
+
     <inherits name='com.extjs.gxt.ui.GXT'/>
     <inherits name="com.extjs.gxt.charts.Chart"/>
     <inherits name="com.google.gwt.requestfactory.RequestFactory"/>
-
+   <!-- <inherits name="it.agilis.mens.azzeroCO2.core.entity.UserInfo"/>
+-->
 
 </module>

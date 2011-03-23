@@ -7,6 +7,7 @@ import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.pages.ApolloPage;
 import it.agilis.mens.azzeroCO2.pages.events.*;
+import it.agilis.mens.azzeroCO2.pages.events.evento.Evento;
 
 /**
  * Created by IntelliJ IDEA.
@@ -34,7 +35,7 @@ public class CenterPanel extends LayoutContainer {
 
         Eventi[] eventi = Eventi.values();
         for (int i = 0; i < eventi.length; i++) {
-            ApolloPage c = create(eventi[i]);
+            LayoutContainer c = create(eventi[i]);
             c.addText(eventi[i].toString());
             c.setSize("100%", "100%");
             content.add(c);
@@ -50,7 +51,7 @@ public class CenterPanel extends LayoutContainer {
         layout.setActiveItem(content.getItem(activeItem.ordinal()));
     }
 
-    private static ApolloPage create(Eventi evento) {
+    private static LayoutContainer create(Eventi evento) {
         switch(evento) {
             case EVENTO: {
                 return new Evento();

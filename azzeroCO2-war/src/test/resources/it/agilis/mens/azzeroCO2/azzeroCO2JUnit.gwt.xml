@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
     <!-- Inherit our applications main module.                      -->
-    <inherits name='it.agilis.mens.azzeroCO2.azzeroCO2-war'/>
+    <inherits name='it.agilis.mens.azzeroCO2.azzeroCO2'/>
 
     <!-- Specify the path to any remote services.                   -->
-    <servlet path="/azzeroCO2/greet" class="it.agilis.mens.azzeroCO2.server.GreetingServiceImpl"/>
+    <!--<servlet path="/azzeroCO2/greet" class="it.agilis.mens.azzeroCO2.server.GreetingServiceImpl"/>-->
 
 </module>

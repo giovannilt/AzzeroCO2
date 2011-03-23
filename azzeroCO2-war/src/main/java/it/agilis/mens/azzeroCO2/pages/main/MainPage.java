@@ -16,6 +16,7 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
@@ -23,16 +24,14 @@ import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
-import it.agilis.mens.azzeroCO2.pages.ApolloPage;
-import it.agilis.mens.azzeroCO2.pages.login.LoginDialog;
 import it.agilis.mens.azzeroCO2.pages.login.controller.LoginEvents;
 
-public class MainPage extends ApolloPage {
+public class MainPage extends LayoutContainer {
 
 
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
-        final LoginDialog loginDialog = new LoginDialog();
+      //  final LoginDialog loginDialog = new LoginDialog();
 
         setSize(1024, 768);
 

@@ -7,8 +7,6 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-
-
     <bean id="azzeroCO2Register" class="it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register">
         <property name="userInfoDAO">
             <ref local="userInfoDAO"/>

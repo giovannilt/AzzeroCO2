@@ -1,10 +1,7 @@
 package it.agilis.mens.azzeroCO2.client;
 
-import it.agilis.mens.azzeroCO2.shared.FieldVerifier;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.junit.client.GWTTestCase;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import it.agilis.mens.azzeroCO2.shared.FieldVerifier;
 
 /**
  * GWT JUnit <b>integration</b> tests must extend GWTTestCase.
@@ -36,7 +33,7 @@ public class GwtTestazzeroCO2 extends GWTTestCase {
      * This test will send a request to the server using the greetServer method in
      * GreetingService and verify the response.
      */
-    public void testGreetingService() {
+    /*public void testGreetingService() {
         // Create the service that we will test.
         GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
         ServiceDefTarget target = (ServiceDefTarget) greetingService;
@@ -64,7 +61,7 @@ public class GwtTestazzeroCO2 extends GWTTestCase {
                 finishTest();
             }
         });
-    }
+    }*/
 
 
 }
