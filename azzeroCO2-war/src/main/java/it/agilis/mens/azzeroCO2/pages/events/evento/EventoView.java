@@ -21,7 +21,7 @@ public class EventoView extends View {
 
     @Override
     protected void initialize() {
-        evento = new Evento();
+      //  evento = new Evento();
     }
 
     @Override

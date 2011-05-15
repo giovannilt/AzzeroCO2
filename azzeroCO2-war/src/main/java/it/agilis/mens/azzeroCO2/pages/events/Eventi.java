@@ -38,6 +38,12 @@ public enum Eventi {
         }
 
     },
+    WEB{
+       @Override
+		public String toString() {
+            return "WEB";
+        }
+    },
     CONOSCI_CO2{
         @Override
 		public String toString() {

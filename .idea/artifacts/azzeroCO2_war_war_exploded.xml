@@ -38,9 +38,9 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.14" />
-          <element id="library" level="project" name="Maven: com.google.gwt:gwt-servlet:2.1.0" />
-          <element id="library" level="project" name="Maven: com.google.gwt:gwt-dev:2.1.0" />
-          <element id="library" level="project" name="Maven: com.extjs:gxt:2.2.1" />
+          <element id="library" level="project" name="Maven: com.google.gwt:gwt-servlet:2.2.0" />
+          <element id="library" level="project" name="Maven: com.google.gwt:gwt-dev:2.2.0" />
+          <element id="library" level="project" name="Maven: com.extjs:gxt:2.2.3" />
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.2.1" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.2" />
           <element id="library" level="project" name="Maven: xerces:xercesImpl:2.0.2" />

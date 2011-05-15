@@ -5,12 +5,18 @@ import com.extjs.gxt.ui.client.core.El;
 import com.extjs.gxt.ui.client.core.XDOM;
 import com.extjs.gxt.ui.client.data.BaseModel;
 import com.extjs.gxt.ui.client.event.*;
+import com.extjs.gxt.ui.client.mvc.AppEvent;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.core.entity.Calcolo;
+import it.agilis.mens.azzeroCO2.pages.events.evento.controller.EventoEvents;
+import it.agilis.mens.azzeroCO2.pages.login.controller.LoginEvents;
+import it.agilis.mens.azzeroCO2.pages.main.CenterPanel;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,6 +34,12 @@ public class Evento extends LayoutContainer {
 
     private VerticalPanel vp;
     private FormData formData;
+    private CenterPanel centerPanel;
+
+    public Evento(CenterPanel centerPanel) {
+        this.centerPanel=centerPanel;
+
+    }
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -59,7 +71,7 @@ public class Evento extends LayoutContainer {
             }
         };
 
-        TextField<String> firstName = new TextField<String>();
+        final TextField<String> firstName = new TextField<String>();
         firstName.setFieldLabel("Name");
         firstName.setAllowBlank(false);
         firstName.addPlugin(plugin);
@@ -174,7 +186,11 @@ public class Evento extends LayoutContainer {
         Button b = new Button("Submit");
         b.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
+                AppEvent event= new AppEvent(LoginEvents.doLogin, new Calcolo());
 
+                event.setData("calcolo1", firstName.getValue());
+
+                Dispatcher.forwardEvent(EventoEvents.doSubmit, event);
             }
         });
         simple.addButton(b);

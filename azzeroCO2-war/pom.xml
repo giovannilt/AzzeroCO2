@@ -99,7 +99,7 @@
             <artifactId>httpunit</artifactId>
             <version>1.6.1</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.jasig.cas.client</groupId>
             <artifactId>cas-client-core</artifactId>
@@ -124,14 +124,13 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
-                <version>2.1.0-1</version>
+                <version>2.2.0</version>
                 <executions>
                     <execution>
                         <goals>
                             <goal>compile</goal>
-                            <goal>test</goal>
-                            <goal>i18n</goal>
                             <goal>generateAsync</goal>
+                            <goal>test</goal>
                         </goals>
                     </execution>
                 </executions>

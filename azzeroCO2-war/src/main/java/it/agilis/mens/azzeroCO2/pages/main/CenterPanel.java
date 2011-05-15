@@ -5,7 +5,6 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.pages.ApolloPage;
 import it.agilis.mens.azzeroCO2.pages.events.*;
 import it.agilis.mens.azzeroCO2.pages.events.evento.Evento;
 
@@ -28,7 +27,9 @@ public class CenterPanel extends LayoutContainer {
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
+
         add(content);
+        content.setHeaderVisible(false);
         content.setButtonAlign(Style.HorizontalAlignment.CENTER);
         content.setLayout(layout);
         layout.setActiveItem(content.getItem(Eventi.MAIN.ordinal()));
@@ -36,7 +37,7 @@ public class CenterPanel extends LayoutContainer {
         Eventi[] eventi = Eventi.values();
         for (int i = 0; i < eventi.length; i++) {
             LayoutContainer c = create(eventi[i]);
-            c.addText(eventi[i].toString());
+            //c.addText(eventi[i].toString());
             c.setSize("100%", "100%");
             content.add(c);
         }
@@ -51,10 +52,10 @@ public class CenterPanel extends LayoutContainer {
         layout.setActiveItem(content.getItem(activeItem.ordinal()));
     }
 
-    private static LayoutContainer create(Eventi evento) {
+    private LayoutContainer create(Eventi evento) {
         switch(evento) {
             case EVENTO: {
-                return new Evento();
+                return new Evento(this);
             }
             case ANNO_DI_ATTIVITA: {
                 return new AnnoDiAttivita();
@@ -66,7 +67,7 @@ public class CenterPanel extends LayoutContainer {
                 return new ConosciCO2();
             }
             default:{
-                return new StartContent();
+                return new StartContent(this);
             }
 
         }

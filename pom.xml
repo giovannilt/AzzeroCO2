@@ -34,8 +34,8 @@
         <maven.compiler.target>1.6</maven.compiler.target>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 
-        <gwtVersion>2.1.0</gwtVersion>
-        <gxt.version>2.2.1</gxt.version>
+        <gwtVersion>2.2.0</gwtVersion>
+        <gxt.version>2.2.3</gxt.version>
 
         <loccount.fileExcludePatterns>log</loccount.fileExcludePatterns>
         <loccount.dirExcludePatterns>**/target/**</loccount.dirExcludePatterns>
