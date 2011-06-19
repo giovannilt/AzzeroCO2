@@ -4,8 +4,9 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
-import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
+import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.pages.events.evento.tabs.EventoItemDettaglio;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,24 +20,32 @@ public class EventoDettaglio extends LayoutContainer {
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
-        setLayout(new CenterLayout());
 
+        HBoxLayout layout = new HBoxLayout();
+        layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
+        setLayout(layout);
 
         ContentPanel panel = new ContentPanel();
         panel.setHeaderVisible(false);
 
         TabPanel eventoTab = new TabPanel();
 
+        // TODO:.... CAPIRE COME CAZZO SI FA A STRETCH COME DIO COMANDA
+        eventoTab.setSize(855, 637);
 
         TabItem dettagli = new TabItem();
-        dettagli.setText("dettagli");
+        dettagli.setText("Dettagli");
         TabItem calcolo = new TabItem();
+        calcolo.setText("Calcolo");
+
         TabItem riepilogo = new TabItem();
+        riepilogo.setText("Riepilogo");
         TabItem acquisto = new TabItem();
+        acquisto.setText("Acquisto");
         TabItem conferma = new TabItem();
+        conferma.setText("Conferma");
 
-
-        eventoTab.add(dettagli);
+        eventoTab.add(new EventoItemDettaglio());
         eventoTab.add(calcolo);
         eventoTab.add(riepilogo);
         eventoTab.add(acquisto);

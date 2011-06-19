@@ -26,10 +26,9 @@ public class Evento extends LayoutContainer {
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
         setLayout(layout);
-        setStyleAttribute("padding", "5px");
+        setStyleAttribute("padding", "1px");
 
-
-        BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 35);
+        BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH,25);
         northData.setCollapsible(false);
         northData.setFloatable(false);
         northData.setHideCollapseTool(false);
@@ -38,7 +37,7 @@ public class Evento extends LayoutContainer {
         add(new EventoNorth(), northData);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
+        centerData.setMargins(new Margins(0,0,0,0));
 
         EventoCenter center = new EventoCenter();
 
