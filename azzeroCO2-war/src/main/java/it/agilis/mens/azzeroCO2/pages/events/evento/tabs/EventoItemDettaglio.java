@@ -6,6 +6,7 @@ import com.extjs.gxt.ui.client.core.XDOM;
 import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
+<<<<<<< HEAD
 import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ComponentPlugin;
 import com.extjs.gxt.ui.client.widget.TabItem;
@@ -14,6 +15,11 @@ import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
+=======
+import com.extjs.gxt.ui.client.widget.*;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
+import com.extjs.gxt.ui.client.widget.form.*;
+>>>>>>> origin/master
 import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.google.gwt.user.client.Element;
 
@@ -32,11 +38,18 @@ public class EventoItemDettaglio extends TabItem {
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
+<<<<<<< HEAD
+=======
+        setText("Dettaglio");
+>>>>>>> origin/master
 
         FormPanel formPanel = new FormPanel();
         formPanel.setHeading("Dettagli Evento");
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         ToolButton clear = new ToolButton("x-tool-refresh");
         ToolButton help = new ToolButton("x-tool-help");
 
@@ -46,7 +59,17 @@ public class EventoItemDettaglio extends TabItem {
 
         add(formPanel);
 
+<<<<<<< HEAD
         formData = new FormData("-20");
+=======
+
+        formData = new FormData("-20");
+        // vp = new VerticalPanel();
+        //  vp.setSpacing(10);
+        //    createForm1();
+
+        //  panel.add(vp);
+>>>>>>> origin/master
 
         ComponentPlugin plugin = new ComponentPlugin() {
             public void init(Component component) {
@@ -93,6 +116,11 @@ public class EventoItemDettaglio extends TabItem {
 
         formPanel.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
+<<<<<<< HEAD
+=======
+
+        // formPanel.add(formPanel);
+>>>>>>> origin/master
     }
 
 }
