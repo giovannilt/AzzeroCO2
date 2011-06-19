@@ -10,41 +10,39 @@ import com.google.gwt.user.client.Element;
 /**
  * Created by IntelliJ IDEA.
  * User: giovannilt
- * Date: 3/15/11
- * Time: 9:01 PM
+ * Date: 6/19/11
+ * Time: 12:09 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Evento extends LayoutContainer {
+public class EventoCenter extends LayoutContainer {
 
-    public Evento() {
-
-    }
 
     @Override
-    protected void onRender(Element parent, int index) {
-        super.onRender(parent, index);
+    protected void onRender(Element target, int index) {
+        super.onRender(target, index);
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
         setLayout(layout);
         setStyleAttribute("padding", "5px");
 
+        //addText("Evento Center");
 
-        BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 35);
-        northData.setCollapsible(false);
-        northData.setFloatable(false);
-        northData.setHideCollapseTool(false);
-        northData.setSplit(false);
-        northData.setMargins(new Margins(0, 0, 0, 0));
-        add(new EventoNorth(), northData);
+        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 100);
+        westData.setCollapsible(false);
+        westData.setFloatable(false);
+        westData.setHideCollapseTool(false);
+        westData.setSplit(false);
+        westData.setMargins(new Margins(0, 0, 0, 0));
+
+        add(new EventoWest(), westData);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
 
-        EventoCenter center = new EventoCenter();
+        EventoBox center = new EventoBox();
 
         add(center, centerData);
 
+
     }
-
-
 }

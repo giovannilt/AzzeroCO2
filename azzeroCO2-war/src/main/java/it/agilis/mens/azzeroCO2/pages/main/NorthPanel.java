@@ -13,6 +13,7 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
+import it.agilis.mens.azzeroCO2.pages.events.startContent.controller.StartEvents;
 import it.agilis.mens.azzeroCO2.pages.login.controller.LoginEvents;
 
 /**
@@ -48,7 +49,15 @@ public class NorthPanel extends LayoutContainer {
 
         });
         c.add(login, layoutData);
-        c.add(new Button("Home"), layoutData);
+        Button home= new Button("Home");
+        home.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                 Dispatcher.forwardEvent(StartEvents.show, ce);
+            }
+
+        });
+
+        c.add(home, layoutData);
         c.add(new Button("Registrati"), layoutData);
 
         HBoxLayoutData layoutData2 = new HBoxLayoutData(new Margins(0));

@@ -7,6 +7,7 @@ import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.pages.events.*;
 import it.agilis.mens.azzeroCO2.pages.events.evento.Evento;
+import it.agilis.mens.azzeroCO2.pages.events.startContent.StartContent;
 
 /**
  * Created by IntelliJ IDEA.
@@ -55,7 +56,7 @@ public class CenterPanel extends LayoutContainer {
     private LayoutContainer create(Eventi evento) {
         switch(evento) {
             case EVENTO: {
-                return new Evento(this);
+                return new Evento();
             }
             case ANNO_DI_ATTIVITA: {
                 return new AnnoDiAttivita();

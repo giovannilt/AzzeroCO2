@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.pages.events;
+package it.agilis.mens.azzeroCO2.pages.events.startContent;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
@@ -11,6 +11,7 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
+import it.agilis.mens.azzeroCO2.pages.events.Eventi;
 import it.agilis.mens.azzeroCO2.pages.main.CenterPanel;
 
 /**
@@ -80,7 +81,7 @@ public class StartContent extends LayoutContainer {
             layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
             HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
-            Button pubblicazione = new Button("Una pubbllicazione");
+            Button pubblicazione = new Button("Una publicazione");
             pubblicazione.setSize(245, 217);
             c.add(pubblicazione, layoutData);
             Button web = new Button("Un sito web");
@@ -132,8 +133,8 @@ public class StartContent extends LayoutContainer {
                 compensazione.setHeading("Che cosa e' la Compensazione?");
                 compensazione.addText("La compensazione e' .. .. .. .. ");
                 Image img = new Image("/imgs/header.png");
-                img.setHeight("50");
-                img.setWidth("50");
+                img.setHeight("200");
+                img.setWidth("200");
                 compensazione.add(img);
                 c.add(compensazione, flex);
             }
