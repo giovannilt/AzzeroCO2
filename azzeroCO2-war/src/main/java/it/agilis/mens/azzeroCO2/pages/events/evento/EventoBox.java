@@ -21,19 +21,24 @@ public class EventoBox extends LayoutContainer {
     protected void onRender(Element target, int index) {
          super.onRender(target, index);
 
-        addText("Evento Box");
-
         final BorderLayout layout = new BorderLayout();
-        layout.setEnableState(false);
         setLayout(layout);
-        setStyleAttribute("padding", "5px");
+        setStyleAttribute("padding", "1px");
 
-        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER, 10);
-        centerData.setMargins(new Margins(0));
+        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        centerData.setMargins(new Margins(0,0,0,0));
 
         EventoDettaglio center = new EventoDettaglio();
 
         add(center, centerData);
+
+
+        BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH,15);
+        southData.setMargins(new Margins(0,0,0,0));
+
+        EventoSouth south = new EventoSouth();
+
+        add(south, southData);
 
     }
 }
