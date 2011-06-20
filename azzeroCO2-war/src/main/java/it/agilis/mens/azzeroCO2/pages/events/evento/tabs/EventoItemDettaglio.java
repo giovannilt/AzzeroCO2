@@ -1,20 +1,27 @@
-package it.agilis.mens.azzeroCO2.pages.events.evento.tabs;
 
-import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.core.El;
-import com.extjs.gxt.ui.client.core.XDOM;
-import com.extjs.gxt.ui.client.event.ComponentEvent;
-import com.extjs.gxt.ui.client.event.Events;
+package it.agilis.mens.azzeroCO2.pages.events.evento.tabs;
+//package com.extjs.gxt.samples.client.examples.forms;
+
+//import com.extjs.gxt.ui.client.widget.TabItem;
+import com.extjs.gxt.ui.client.widget.form.*;
+import com.google.gwt.user.client.Element;
+//import com.extjs.gxt.samples.resources.client.Resources;
+import com.extjs.gxt.ui.client.GXT;
+import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
+import com.extjs.gxt.ui.client.aria.FocusManager;
+import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.Listener;
-import com.extjs.gxt.ui.client.widget.Component;
-import com.extjs.gxt.ui.client.widget.ComponentPlugin;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
-import com.extjs.gxt.ui.client.widget.button.ToolButton;
-import com.extjs.gxt.ui.client.widget.form.DateField;
-import com.extjs.gxt.ui.client.widget.form.FormPanel;
-import com.extjs.gxt.ui.client.widget.form.TextArea;
-import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.TabPanel;
+import com.extjs.gxt.ui.client.widget.VerticalPanel;
+import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.form.FormPanel.LabelAlign;
+import com.extjs.gxt.ui.client.widget.layout.ColumnData;
+import com.extjs.gxt.ui.client.widget.layout.ColumnLayout;
+import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
+import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.google.gwt.user.client.Element;
 
 /**
@@ -25,74 +32,111 @@ import com.google.gwt.user.client.Element;
  * To change this template use File | Settings | File Templates.
  */
 public class EventoItemDettaglio extends TabItem {
-    //  private VerticalPanel vp;
-    private FormData formData;
 
+        private VerticalPanel vp;
 
-    @Override
-    protected void onRender(Element parent, int index) {
+        @Override
+        protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
+        vp = new VerticalPanel();
+        vp.setSpacing(10);
+        createColumnForm();
+        createTabForm();
+        add(vp);
+      }
 
-        FormPanel formPanel = new FormPanel();
-        formPanel.setHeading("Dettagli Evento");
+      private void createTabForm() {
+        FormData formData = new FormData("100%");
+        FormPanel panel = new FormPanel();
+        panel.setBodyStyleName("example-bg");
+        panel.setPadding(0);
+        panel.setFrame(false);
+        panel.setHeaderVisible(false);
+        panel.setBodyBorder(false);
+        panel.setButtonAlign(HorizontalAlignment.CENTER);
+        panel.setLayout(new FitLayout());
+
+        final TabPanel tabs = new TabPanel();
+
+        TabItem evento = new TabItem();
+        //personal.setStyleAttribute("padding", "10px");
+        //personal.setText("Personal Details");
+        //personal.setLayout(new FormLayout());
 
 
-        ToolButton clear = new ToolButton("x-tool-refresh");
-        ToolButton help = new ToolButton("x-tool-help");
 
-        formPanel.getHeader().addTool(help);
-        formPanel.getHeader().addTool(clear);
+        panel.setSize(340, 200);
 
 
-        add(formPanel);
 
-        formData = new FormData("-20");
+        vp.add(panel);
+      }
 
-        ComponentPlugin plugin = new ComponentPlugin() {
-            public void init(Component component) {
-                component.addListener(Events.Render, new Listener<ComponentEvent>() {
-                    public void handleEvent(ComponentEvent be) {
-                        El elem = be.getComponent().el().findParent(".x-form-element", 3);
-                        // should style in external CSS  rather than directly
-                        elem.appendChild(XDOM.create("<div style='color: #615f5f;padding: 1 0 2 0px;'>" + be.getComponent().getData("text") + "</div>"));
-                    }
-                });
-            }
-        };
+      private void createColumnForm() {
+        FormData formData = new FormData("100%");
+        FormPanel panel = new FormPanel();
+        panel.setFrame(true);
 
-        TextField<String> nome = new TextField<String>();
-        nome.setFieldLabel("Nome Evento");
-        nome.setAllowBlank(false);
-        nome.addPlugin(plugin);
-        nome.setData("text", "Digita nome evento");
-        formPanel.add(nome, formData);
+        panel.setHeading("Dettagli Evento");
+        panel.setSize(600, -1);
+        panel.setLabelAlign(LabelAlign.TOP);
+        panel.setButtonAlign(HorizontalAlignment.CENTER);
 
-        DateField da = new DateField();
-        da.setFieldLabel("da");
-        da.addPlugin(plugin);
-        da.setData("text", "Digita Da.");
-        formPanel.add(da, formData);
+        LayoutContainer main = new LayoutContainer();
+        main.setLayout(new ColumnLayout());
 
-        DateField a = new DateField();
-        a.setFieldLabel("a");
-        a.addPlugin(plugin);
-        a.setData("text", "Digita a.");
-        formPanel.add(a, formData);
+        LayoutContainer left = new LayoutContainer();
+        left.setStyleAttribute("paddingRight", "10px");
+        FormLayout layout = new FormLayout();
+        layout.setLabelAlign(LabelAlign.TOP);
+        left.setLayout(layout);
 
-        TextField<String> dove = new TextField<String>();
-        dove.setFieldLabel("Dove");
-        dove.setAllowBlank(false);
-        dove.addPlugin(plugin);
-        dove.setData("text", "Digita Dove.");
-        formPanel.add(dove, formData);
+        TextField<String> nomeEvento = new TextField<String>();
+        nomeEvento.setFieldLabel("Nome dell'evento");
+        left.add(nomeEvento, formData);
+
+
+
+
+        DateField dataInizio = new DateField();
+        dataInizio.setFieldLabel("Data inizio");
+        left.add(dataInizio, formData);
+
 
         TextArea note = new TextArea();
         note.setPreventScrollbars(true);
         note.setFieldLabel("Note");
-        formPanel.add(note, formData);
+        left.add(note, formData);
 
-        formPanel.setButtonAlign(Style.HorizontalAlignment.CENTER);
+        LayoutContainer right = new LayoutContainer();
+        right.setStyleAttribute("paddingLeft", "10px");
+        layout = new FormLayout();
+        layout.setLabelAlign(LabelAlign.TOP);
+        right.setLayout(layout);
+
+
+        TextField<String> dove = new TextField<String>();
+        dove.setFieldLabel("Dove");
+        right.add(dove, formData);
+
+
+        DateField dataFine = new DateField();
+        dataFine.setFieldLabel("Data fine");
+        right.add(dataFine, formData);
+
+
+        Radio radio1 = new Radio();
+        radio1.setBoxLabel("Yes");
+
+
+
+        main.add(left, new ColumnData(.5));
+        main.add(right, new ColumnData(.5));
+
+        panel.add(main, new FormData("100%"));
+
+
+        vp.add(panel);
+      }
 
     }
-
-}
