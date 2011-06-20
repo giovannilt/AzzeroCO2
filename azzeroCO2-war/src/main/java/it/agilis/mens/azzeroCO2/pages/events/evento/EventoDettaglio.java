@@ -6,10 +6,7 @@ import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
-<<<<<<< HEAD
 import it.agilis.mens.azzeroCO2.pages.events.evento.tabs.EventoItemCalcolo;
-=======
->>>>>>> origin/master
 import it.agilis.mens.azzeroCO2.pages.events.evento.tabs.EventoItemDettaglio;
 
 /**
@@ -42,14 +39,6 @@ public class EventoDettaglio extends LayoutContainer {
         // TODO:.... CAPIRE COME CAZZO SI FA A STRETCH COME DIO COMANDA
         eventoTab.setSize(855, 637);
 
-<<<<<<< HEAD
-=======
-        TabItem dettagli = new TabItem();
-        dettagli.setText("Dettagli");
-        TabItem calcolo = new TabItem();
-        calcolo.setText("Calcolo");
-
->>>>>>> origin/master
         TabItem riepilogo = new TabItem();
         riepilogo.setText("Riepilogo");
         TabItem acquisto = new TabItem();
@@ -57,15 +46,11 @@ public class EventoDettaglio extends LayoutContainer {
         TabItem conferma = new TabItem();
         conferma.setText("Conferma");
 
-<<<<<<< HEAD
         TabItem dettaglio= new EventoItemDettaglio();
         dettaglio.setText("Dettaglio");
         eventoTab.add(dettaglio);
         TabItem calcolo = new EventoItemCalcolo();
         calcolo.setText("Calcolo");
-=======
-        eventoTab.add(new EventoItemDettaglio());
->>>>>>> origin/master
         eventoTab.add(calcolo);
 
 
