@@ -53,7 +53,6 @@ public class EventoDettaglio extends LayoutContainer {
         calcolo.setText("Calcolo");
         eventoTab.add(calcolo);
 
-
         eventoTab.add(riepilogo);
         eventoTab.add(acquisto);
         eventoTab.add(conferma);

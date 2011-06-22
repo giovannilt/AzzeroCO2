@@ -2,8 +2,7 @@ package it.agilis.mens.azzeroCO2.pages.login.controller;
 
 import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
-import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
-import it.agilis.mens.azzeroCO2.pages.Apollo;
+import com.extjs.gxt.ui.client.mvc.Controller;
 import it.agilis.mens.azzeroCO2.pages.login.LoginView;
 
 /**
@@ -13,7 +12,7 @@ import it.agilis.mens.azzeroCO2.pages.login.LoginView;
  * Time: 11:29 PM
  * To change this template use File | Settings | File Templates.
  */
-public class LoginController extends Apollo {
+public class LoginController extends Controller {
     private LoginView loginView;
 
     public LoginController() {
@@ -33,11 +32,11 @@ public class LoginController extends Apollo {
             forwardToView(loginView, event);
         } else if (type == LoginEvents.doLogin) {
             // esegue il login
-            UserInfo userInfo = new UserInfo();
+            //UserInfo userInfo = new UserInfo();
 
-            userInfo.setUserName(event.<String>getData("userName"));
-            userInfo.setPassword(event.<String>getData("password"));
-            userInfo = doLogin(userInfo, loginView);
+          //  userInfo.setUserName(event.<String>getData("userName"));
+          //  userInfo.setPassword(event.<String>getData("password"));
+           // userInfo = doLogin(userInfo, loginView);
         }
     }
 

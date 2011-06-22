@@ -7,8 +7,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" scope="singleton" depends-on="">
 		<property name="dataSource">
-			<!--<ref bean="${azzeroCO2.dataSource}" />-->
-            <ref bean="dataSourceHSQL" />
+			<ref bean="${azzeroCO2.dataSource}" />
 		</property>
 		<property name="annotatedClasses">
 			<list>
@@ -21,11 +20,11 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.current_session_context_class">thread</prop>
                 <prop key="hibernate.generate_statistics">true</prop>
-                <!--<prop key="hibernate.default_schema">azzeroCO2</prop>-->
+                <prop key="hibernate.default_schema">azzeroco2</prop>
 			</props>
 		</property>
 	</bean>

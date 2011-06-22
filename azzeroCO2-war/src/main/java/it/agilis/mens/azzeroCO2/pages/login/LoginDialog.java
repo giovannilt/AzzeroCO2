@@ -14,7 +14,6 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
-import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.pages.login.controller.LoginEvents;
 
 
@@ -111,7 +110,7 @@ public class LoginDialog extends Dialog {
         login.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 register.setVisible(false);
-                AppEvent event= new AppEvent(LoginEvents.doLogin, new UserInfo());
+                AppEvent event= new AppEvent(LoginEvents.doLogin, new String());
                 event.setData("userName", userName.getValue());
                 event.setData("password", password.getValue());
                 status.show();

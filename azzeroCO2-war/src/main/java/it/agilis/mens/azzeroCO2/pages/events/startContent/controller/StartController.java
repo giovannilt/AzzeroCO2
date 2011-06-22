@@ -2,7 +2,7 @@ package it.agilis.mens.azzeroCO2.pages.events.startContent.controller;
 
 import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
-import it.agilis.mens.azzeroCO2.pages.Apollo;
+import com.extjs.gxt.ui.client.mvc.Controller;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,7 +11,7 @@ import it.agilis.mens.azzeroCO2.pages.Apollo;
  * Time: 4:40 PM
  * To change this template use File | Settings | File Templates.
  */
-public class StartController  extends Apollo {
+public class StartController  extends Controller {
 
     public StartController() {
         registerEventTypes(StartEvents.show);
