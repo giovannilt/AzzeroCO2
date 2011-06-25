@@ -3,8 +3,8 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
-import it.agilis.mens.azzeroCO2.client.eventi.evento.EventoDettaglioView;
-import it.agilis.mens.azzeroCO2.client.eventi.evento.EventoView;
+import it.agilis.mens.azzeroCO2.client.components.eventi.evento.EventoDettaglioView;
+import it.agilis.mens.azzeroCO2.client.components.eventi.evento.EventoView;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoItemDettaglioView;
 

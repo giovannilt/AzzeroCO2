@@ -3,7 +3,7 @@ package it.agilis.mens.azzeroCO2.client.mvc.views;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
-import it.agilis.mens.azzeroCO2.client.login.LoginDialog;
+import it.agilis.mens.azzeroCO2.client.components.login.LoginDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 
 /**

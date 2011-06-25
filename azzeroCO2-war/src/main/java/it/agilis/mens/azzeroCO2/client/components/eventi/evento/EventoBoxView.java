@@ -1,9 +1,8 @@
-package it.agilis.mens.azzeroCO2.client.mvc.views;
+package it.agilis.mens.azzeroCO2.client.components.eventi.evento;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
-import it.agilis.mens.azzeroCO2.client.components.eventi.evento.tabs.EventoItemDettaglio;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,20 +11,21 @@ import it.agilis.mens.azzeroCO2.client.components.eventi.evento.tabs.EventoItemD
  * Time: 10:09 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoItemDettaglioView extends View {
-    private EventoItemDettaglio dettaglio;
+public class EventoBoxView extends View {
+    private EventoBox box;
 
-    public EventoItemDettaglioView(Controller controller) {
+    public EventoBoxView(Controller controller) {
         super(controller);
     }
 
     @Override
     protected void initialize() {
-        dettaglio = new EventoItemDettaglio();
+        super.initialize();
+        box = new EventoBox();
     }
 
     @Override
     protected void handleEvent(AppEvent event) {
-
-    }
+       //forwardtoView(box, event);
+   }
 }

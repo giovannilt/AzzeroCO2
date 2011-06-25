@@ -8,7 +8,7 @@ import com.extjs.gxt.ui.client.mvc.View;
 import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.google.gwt.user.client.ui.RootPanel;
-import it.agilis.mens.azzeroCO2.client.main.MainPage;
+import it.agilis.mens.azzeroCO2.client.components.main.MainPage;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 
 
