@@ -15,7 +15,7 @@
     <!-- Servlets -->
     <servlet>
         <servlet-name>hustonServlet</servlet-name>
-        <servlet-class>it.agilis.mens.azzeroCO2.server.HustonServiceImpl</servlet-class>
+        <servlet-class>it.agilis.mens.azzeroCO2.server.services.HustonServiceImpl</servlet-class>
     </servlet>
 
     <servlet-mapping>
