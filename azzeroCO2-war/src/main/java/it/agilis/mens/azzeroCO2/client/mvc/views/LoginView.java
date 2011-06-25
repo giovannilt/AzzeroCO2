@@ -23,15 +23,16 @@ public class LoginView extends View {
 
     @Override
     protected void initialize() {
+        super.initialize();
         loginDialog = new LoginDialog();
     }
 
     @Override
     protected void handleEvent(AppEvent event) {
-        if (event.getType() == LoginEvents.showForm) {
+        if (event.getType() == LoginEvents.ShowForm) {
             // mostra la finestra di login
             loginDialog.show();
-        } else if (event.getType() == LoginEvents.hideForm) {
+        } else if (event.getType() == LoginEvents.HideForm) {
             // nscaonde la finestra di login
             loginDialog.hide();
         }

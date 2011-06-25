@@ -10,7 +10,7 @@ import com.extjs.gxt.ui.client.event.EventType;
  * To change this template use File | Settings | File Templates.
  */
 public class LoginEvents {
-    public static final EventType doLogin = new EventType();
-    public static final EventType showForm = new EventType();
-    public static final EventType hideForm = new EventType();
+    public static final EventType DoLogin = new EventType();
+    public static final EventType ShowForm = new EventType();
+    public static final EventType HideForm = new EventType();
 }

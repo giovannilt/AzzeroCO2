@@ -18,8 +18,8 @@ public class LoginController extends Controller {
 
     public LoginController() {
         // registra su quali eventi si deve mettere in ascolto
-        registerEventTypes(LoginEvents.doLogin);
-        registerEventTypes(LoginEvents.showForm);
+        registerEventTypes(LoginEvents.DoLogin);
+        registerEventTypes(LoginEvents.ShowForm);
     }
 
     public void initialize() {
@@ -28,10 +28,10 @@ public class LoginController extends Controller {
 
     public void handleEvent(AppEvent event) {
         EventType type = event.getType();
-        if (type == LoginEvents.showForm) {
+        if (type == LoginEvents.ShowForm) {
             // inoltra l’evento alla view per visualizzare la form di login
             forwardToView(loginView, event);
-        } else if (type == LoginEvents.doLogin) {
+        } else if (type == LoginEvents.DoLogin) {
             // esegue il login
             //UserInfo userInfo = new UserInfo();
 

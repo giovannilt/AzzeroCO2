@@ -13,7 +13,10 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
+
+import javax.xml.ws.Dispatch;
 
 /**
  * Created by IntelliJ IDEA.
@@ -43,7 +46,7 @@ public class NorthPanel extends LayoutContainer {
             public void componentSelected(ButtonEvent ce) {
               //  session.getAzzeroCO2Register();
                // loginDialog.show();
-                Dispatcher.forwardEvent(LoginEvents.showForm);
+                Dispatcher.forwardEvent(LoginEvents.ShowForm);
             }
 
         });
@@ -51,6 +54,7 @@ public class NorthPanel extends LayoutContainer {
         Button home= new Button("Home");
         home.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
+                //Dispatcher.forwardEvent(AzzeroCO2Events.ShowHome);
                 // Dispatcher.forwardEvent(MainPageEvents.mainPage, ce);
             }
 

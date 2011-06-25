@@ -11,6 +11,9 @@ import com.extjs.gxt.ui.client.event.EventType;
  */
 public class AzzeroCO2Events {
     public static final EventType Init = new EventType();
-	public static final EventType Error = new EventType();
-	public static final EventType UIReady = new EventType();
+    public static final EventType Error = new EventType();
+    public static final EventType UIReady = new EventType();
+    public static final EventType NorthPanelReady = new EventType();
+    public static final EventType CentralPanelReady = new EventType();
+    public static final EventType NewsPanelReady = new EventType();
 }

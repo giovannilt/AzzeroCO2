@@ -31,7 +31,6 @@ public class CenterPanel extends LayoutContainer {
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
-
         add(content);
         content.setHeaderVisible(false);
         content.setButtonAlign(Style.HorizontalAlignment.CENTER);
@@ -56,9 +55,6 @@ public class CenterPanel extends LayoutContainer {
         layout.setActiveItem(content.getItem(activeItem.ordinal()));
     }
 
-    public void setMainActive(){
-        layout.setActiveItem(content.getItem(Eventi.MAIN.ordinal()));
-    }
 
     private LayoutContainer create(Eventi evento) {
         switch(evento) {

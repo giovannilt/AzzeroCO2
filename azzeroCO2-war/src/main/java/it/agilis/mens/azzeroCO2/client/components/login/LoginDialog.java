@@ -103,14 +103,14 @@ public class LoginDialog extends Dialog {
         login.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 register.setVisible(false);
-                AppEvent event= new AppEvent(LoginEvents.doLogin, new String());
+                AppEvent event= new AppEvent(LoginEvents.DoLogin, new String());
                 event.setData("userName", userName.getValue());
                 event.setData("password", password.getValue());
                 status.show();
                 getButtonBar().disable();
                 //LoginDialog.this.hide();
 
-                Dispatcher.forwardEvent(LoginEvents.doLogin, event);
+                Dispatcher.forwardEvent(LoginEvents.DoLogin, event);
                 //onSubmit();
             }
         });

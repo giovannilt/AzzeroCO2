@@ -21,6 +21,7 @@ public class EventoItemDettaglioView extends View {
 
     @Override
     protected void initialize() {
+        super.initialize();
         dettaglio = new EventoItemDettaglio();
     }
 
