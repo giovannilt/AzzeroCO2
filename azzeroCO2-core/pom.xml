@@ -22,26 +22,44 @@
     <dependencies>
 
         <!-- hibernate framework -->
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>${org.hibernate.version}</version>
+            <version>3.5.6-Final</version>
+
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-annotations</artifactId>
-            <version>${org.hibernate.version}</version>
+            <version>3.5.6-Final</version>
+
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>3.2.0.Final</version>
+
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>${org.hibernate.version}</version>
+            <version>3.5.6-Final</version>
+
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <version>1.0.0.Final</version>
+
+        </dependency>-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>3.1.0.GA</version>
+
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -55,10 +73,10 @@
         </dependency>
 
         <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.14</version>
-            </dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>

@@ -33,6 +33,7 @@ public class GwtTestazzeroCO2 extends GWTTestCase {
      * This test will send a request to the server using the greetServer method in
      * GreetingService and verify the response.
      */
+
     /*public void testGreetingService() {
         // Create the service that we will test.
         GreetingServiceAsync greetingService = GWT.create(GreetingService.class);

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" scope="singleton" depends-on="">
+		<property name="dataSource">
+			<ref bean="${azzeroCO2.dataSource}" />
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>it.agilis.mens.azzeroCO2.core.entity.UserInfo</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.Preventivo</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.Calcolo</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.TipoDiCalcolo</value>
+
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+                <prop key="hibernate.generate_statistics">true</prop>
+                <prop key="hibernate.default_schema">azzeroco2</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+  		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+</beans>

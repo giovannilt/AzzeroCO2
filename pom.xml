@@ -28,13 +28,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <spring.version>3.0.5.RELEASE</spring.version>
-        <org.hibernate.version>3.5.1-Final</org.hibernate.version>
 
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 
-        <gwtVersion>2.2.0</gwtVersion>
+        <gwtVersion>2.3.0</gwtVersion>
         <gxt.version>2.2.3</gxt.version>
 
         <loccount.fileExcludePatterns>log</loccount.fileExcludePatterns>
@@ -49,15 +48,7 @@
 
     <repositories>
 
-        <repository>
-            <id>central</id>
-            <name>Maven Repository Switchboard</name>
-            <layout>default</layout>
-            <url>http://repo1.maven.org/maven2</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
+        <!--
         <repository>
             <id>central_2</id>
             <name>Maven Repository Switchboard</name>
@@ -71,11 +62,7 @@
             <name>Codehaus repo</name>
             <url>http://repository.codehaus.org/org/codehaus/mojo/</url>
         </repository>
-        <repository>
-            <id>JBOSS</id>
-            <name>JBoss Repository</name>
-            <url>http://repository.jboss.org/maven2/</url>
-        </repository>
+
         <repository>
             <id>Maven</id>
             <name>Maven repository</name>
@@ -85,7 +72,24 @@
             <id>mvnBrowser</id>
             <name>Maven repository</name>
             <url>http://www.mvnbrowser.com/</url>
+        </repository>-->
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+           <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
+        <repository>
+            <id>jboss</id>
+            <name>JBoss Repository</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <layout>default</layout>
+
+        </repository>
+
+
     </repositories>
 
 

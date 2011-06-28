@@ -13,6 +13,22 @@
           <module name="azzeroCO2-war" />
         </modules>
       </facet-type>
+      <facet-type id="Spring">
+        <modules>
+          <module name="azzeroCO2-core">
+            <files>
+              <file url="file://$PROJECT_DIR$/azzeroCO2-core/src/main/resources/it/agilis/mens/azzeroCO2/core/dao/MySql-hibernate-context.xml" />
+              <file url="file://$PROJECT_DIR$/azzeroCO2-core/src/main/resources/it/agilis/mens/azzeroCO2/core/dao/context.xml" />
+            </files>
+          </module>
+          <module name="azzeroCO2-war">
+            <files>
+              <file url="file://$PROJECT_DIR$/azzeroCO2-war/src/main/webapp/WEB-INF/applicationContext.xml" />
+              <file url="file://$PROJECT_DIR$/azzeroCO2-war/target/azzeroCO2-war-1.0-SNAPSHOT 2/WEB-INF/applicationContext.xml" />
+            </files>
+          </module>
+        </modules>
+      </facet-type>
       <facet-type id="web">
         <modules>
           <module name="azzeroCO2-core" />

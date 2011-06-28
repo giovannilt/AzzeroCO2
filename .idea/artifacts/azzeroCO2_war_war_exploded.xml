@@ -11,20 +11,21 @@
           <element id="archive" name="azzeroCO2-core-1.0-SNAPSHOT.jar">
             <element id="module-output" name="azzeroCO2-core" />
           </element>
-          <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:3.5.1-Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:3.5.6-Final" />
           <element id="library" level="project" name="Maven: antlr:antlr:2.7.6" />
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:2.1" />
           <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
           <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
           <element id="library" level="project" name="Maven: javax.transaction:jta:1.1" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.5.8" />
-          <element id="library" level="project" name="Maven: org.hibernate:hibernate-annotations:3.5.1-Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-annotations:3.5.6-Final" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-commons-annotations:3.2.0.Final" />
           <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.0.Final" />
-          <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:3.5.1-Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:3.5.6-Final" />
           <element id="library" level="project" name="Maven: cglib:cglib:2.2" />
           <element id="library" level="project" name="Maven: asm:asm:3.1" />
           <element id="library" level="project" name="Maven: javassist:javassist:3.9.0.GA" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:3.1.0.GA" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:3.0.5.RELEASE" />
@@ -38,8 +39,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.14" />
-          <element id="library" level="project" name="Maven: com.google.gwt:gwt-servlet:2.2.0" />
-          <element id="library" level="project" name="Maven: com.google.gwt:gwt-dev:2.2.0" />
+          <element id="library" level="project" name="Maven: com.google.gwt:gwt-servlet:2.3.0" />
           <element id="library" level="project" name="Maven: com.extjs:gxt:2.2.3" />
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.2.1" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.2" />
