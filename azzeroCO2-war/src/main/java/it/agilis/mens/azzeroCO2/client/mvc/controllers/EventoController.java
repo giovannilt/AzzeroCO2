@@ -1,12 +1,10 @@
 package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
-import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
-import it.agilis.mens.azzeroCO2.client.components.eventi.evento.EventoDettaglioView;
-import it.agilis.mens.azzeroCO2.client.components.eventi.evento.EventoView;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.views.EventoItemDettaglioView;
+import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,39 +15,18 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.EventoItemDettaglioView;
  */
 public class EventoController extends Controller {
 
-    private EventoView eventoView;
-    private EventoItemDettaglioView eventoItemDettaglioView;
-    private EventoDettaglioView eventoDettaglioView;
+    private EventoView eventoView= new EventoView(this);
 
-    public EventoController(){
-        registerEventTypes(EventoEvents.doSubmit);
-        registerEventTypes(EventoEvents.showForm);
-        registerEventTypes(EventoEvents.next);
-        registerEventTypes(EventoEvents.previous);
+    public EventoController() {
+        registerEventTypes(AzzeroCO2Events.Init);
+   	    registerEventTypes(AzzeroCO2Events.Error);
+        registerEventTypes(EventoEvents.Next);
+        registerEventTypes(EventoEvents.Previous);
+
     }
 
-    public void initialize() {
-        super.initialize();
-        eventoView = new EventoView(this);
-        eventoItemDettaglioView= new EventoItemDettaglioView(this);
-        eventoDettaglioView= new EventoDettaglioView(this);
-    }
     @Override
     public void handleEvent(AppEvent event) {
-         EventType type = event.getType();
-        if (type == EventoEvents.showForm) {
-            forwardToView(eventoView, event);
-        } else if (type == EventoEvents.next) {
-            forwardToView(eventoDettaglioView,event);
-        } else if (type == EventoEvents.previous) {
-            forwardToView(eventoDettaglioView,event);
-        } else if (type == EventoEvents.doSubmit) {
-          //  event.getData("calcolo");
-            this.doSubmit();
-        }
-    }
-
-    public void doSubmit() {
-
+        forwardToView(eventoView, event);
     }
 }

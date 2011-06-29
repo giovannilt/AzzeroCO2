@@ -10,9 +10,14 @@ import com.extjs.gxt.ui.client.event.EventType;
  * To change this template use File | Settings | File Templates.
  */
 public class EventoEvents {
-    public static EventType showForm= new EventType();
-    public static EventType hideForm= new EventType();
-    public static EventType doSubmit= new EventType();
-    public static EventType next= new EventType();
-    public static EventType previous= new EventType();
+
+    /*public static final EventType EventoPanelReady= new EventType();
+    public static final EventType Error = new EventType();
+    public static final EventType UIReady = new EventType();
+    public static final EventType NorthPanelReady = new EventType();
+    public static final EventType CentralPanelReady = new EventType();
+    public static final EventType NewsPanelReady = new EventType();*/
+    public static final EventType Next= new EventType();
+    public static final EventType Previous= new EventType();
+
 }

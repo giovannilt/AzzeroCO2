@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.CentralView;
 
 /**
@@ -14,18 +15,21 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.CentralView;
  */
 public class CentralController extends Controller {
 
-    private CentralView centralView;
+    private CentralView centralView = new CentralView(this);
 
 
-    public CentralController(){
+    public CentralController() {
         registerEventTypes(AzzeroCO2Events.Init);
+        registerEventTypes(CentralEvents.EventoPanelReady);
+        registerEventTypes(CentralEvents.ConosciCO2PanelReady);
+        registerEventTypes(CentralEvents.ConsumoCartaPanelReady);
+
+        //   registerEventTypes(CentralEvents.StartContentPanelReady);
+        registerEventTypes(CentralEvents.WebPanelReady);
+
+        registerEventTypes(CentralEvents.ShowPanel);
     }
 
-    public void initialize() {
-        super.initialize();
-        centralView = new CentralView(this);
-
-    }
     @Override
     public void handleEvent(AppEvent event) {
         forwardToView(centralView, event);

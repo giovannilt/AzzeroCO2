@@ -8,7 +8,6 @@ package it.agilis.mens.azzeroCO2.client.components.eventi;
  * To change this template use File | Settings | File Templates.
  */
 
-
 public enum Eventi {
     MAIN{
         @Override

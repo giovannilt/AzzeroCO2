@@ -63,24 +63,6 @@ public class EventoDettaglio extends LayoutContainer {
 
 
     public void next() {
-
         eventoTab.setSelection(calcolo);
-        /*TabItem activeItem = eventoTab.getSelectedItem();
-        List<TabItem> list= eventoTab.getItems();
-        for(TabItem item: list ){
-            if(item.getText().equalsIgnoreCase(activeItem.getText())){
-
-            }
-        }
-        TabItem next =  calcolo;
-        if (next != null) {
-            eventoTab.setSelection(next);
-        } else if (eventoTab.getItemCount() > 0) {
-            eventoTab.setSelection(eventoTab.getItem(0));
-        } */
-
-    }
-
-    public void previus() {
     }
 }

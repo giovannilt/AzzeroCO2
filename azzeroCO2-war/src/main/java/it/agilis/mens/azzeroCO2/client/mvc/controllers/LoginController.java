@@ -14,7 +14,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
  * To change this template use File | Settings | File Templates.
  */
 public class LoginController extends Controller {
-    private LoginView loginView;
+    private LoginView loginView= new LoginView(this);
 
     public LoginController() {
         // registra su quali eventi si deve mettere in ascolto
@@ -22,9 +22,6 @@ public class LoginController extends Controller {
         registerEventTypes(LoginEvents.ShowForm);
     }
 
-    public void initialize() {
-        loginView = new LoginView(this);
-    }
 
     public void handleEvent(AppEvent event) {
         EventType type = event.getType();

@@ -41,7 +41,7 @@ public class EventoItemDettaglio extends TabItem {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
 
-        panel.setHeading("Dettagli Evento");
+        panel.setHeading("Dettagli EventoPanel");
         panel.setSize(600, -1);
         panel.setLabelAlign(LabelAlign.TOP);
         panel.setButtonAlign(HorizontalAlignment.CENTER);

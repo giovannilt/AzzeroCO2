@@ -14,7 +14,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.AzzeroCO2View;
  * To change this template use File | Settings | File Templates.
  */
 public class AzzeroCO2Controller extends Controller {
-    View azzeroCO2View;
+    View azzeroCO2View= new AzzeroCO2View(this);
 
     public AzzeroCO2Controller(){
         registerEventTypes(AzzeroCO2Events.Init);
@@ -30,9 +30,4 @@ public class AzzeroCO2Controller extends Controller {
        forwardToView(azzeroCO2View, event);
     }
 
-    @Override
-    public void initialize(){
-        super.initialize();
-        azzeroCO2View= new AzzeroCO2View(this);
-    }
 }

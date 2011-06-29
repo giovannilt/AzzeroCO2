@@ -21,6 +21,6 @@ public class EventoWest  extends LayoutContainer {
         ContentPanel panel = new ContentPanel();
 
         add(panel);
-    //    addText("Evento west");
+
     }
 }

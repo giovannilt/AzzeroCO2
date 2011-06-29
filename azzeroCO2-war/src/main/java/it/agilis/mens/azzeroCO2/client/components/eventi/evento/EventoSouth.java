@@ -39,7 +39,7 @@ public class EventoSouth extends LayoutContainer {
         left.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(new AppEvent(EventoEvents.previous, ce));
+                Dispatcher.forwardEvent(new AppEvent(EventoEvents.Previous, ce));
             }
         });
         c.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
@@ -52,7 +52,7 @@ public class EventoSouth extends LayoutContainer {
         right.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(new AppEvent(EventoEvents.next, ce));
+                Dispatcher.forwardEvent(new AppEvent(EventoEvents.Next, ce));
             }
         });
 

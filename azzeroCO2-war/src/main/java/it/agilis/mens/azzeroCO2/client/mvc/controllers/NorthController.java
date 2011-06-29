@@ -14,7 +14,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.NorthView;
  */
 public class NorthController extends Controller {
 
-    private NorthView northView;
+    private NorthView northView= new NorthView(this);
 
 
     public NorthController(){
@@ -22,11 +22,6 @@ public class NorthController extends Controller {
 
     }
 
-    public void initialize() {
-        super.initialize();
-        northView = new NorthView(this);
-
-    }
     @Override
     public void handleEvent(AppEvent event) {
        forwardToView(northView, event);
