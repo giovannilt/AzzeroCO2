@@ -1,13 +1,12 @@
 package it.agilis.mens.azzeroCO2.client.components.eventi.evento;
 
-import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.components.eventi.evento.tabs.EventoItemCalcolo;
-import it.agilis.mens.azzeroCO2.client.components.eventi.evento.tabs.EventoItemDettaglio;
+import it.agilis.mens.azzeroCO2.client.forms.EventoFormDettaglio;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,9 +17,11 @@ import it.agilis.mens.azzeroCO2.client.components.eventi.evento.tabs.EventoItemD
  */
 public class EventoDettaglio extends LayoutContainer {
 
-    TabPanel eventoTab = new TabPanel();
-    TabItem calcolo = new EventoItemCalcolo();
-    TabItem dettaglio = new EventoItemDettaglio();
+    private final TabPanel eventoTab = new TabPanel();
+    private final TabItem calcolo = new EventoItemCalcolo();
+    private final TabItem dettaglio = new TabItem();
+
+    private final EventoFormDettaglio formDettaglio= new EventoFormDettaglio();
 
     @Override
     protected void onRender(Element target, int index) {
@@ -30,8 +31,6 @@ public class EventoDettaglio extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
         setLayout(layout);
 
-        ContentPanel panel = new ContentPanel();
-        panel.setHeaderVisible(false);
 
 
         // TODO:.... CAPIRE COME CAZZO SI FA A STRETCH COME DIO COMANDA
@@ -46,6 +45,7 @@ public class EventoDettaglio extends LayoutContainer {
 
 
         dettaglio.setText("Dettaglio");
+        dettaglio.add(formDettaglio);
         eventoTab.add(dettaglio);
 
         calcolo.setText("Calcolo");
@@ -55,8 +55,7 @@ public class EventoDettaglio extends LayoutContainer {
         eventoTab.add(acquisto);
         eventoTab.add(conferma);
 
-        panel.add(eventoTab);
-        add(panel);
+       add(eventoTab);
 
 
     }

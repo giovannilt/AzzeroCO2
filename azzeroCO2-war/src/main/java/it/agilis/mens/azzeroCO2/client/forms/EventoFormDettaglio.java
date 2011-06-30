@@ -1,15 +1,10 @@
-package it.agilis.mens.azzeroCO2.client.components.eventi.evento.tabs;
+package it.agilis.mens.azzeroCO2.client.forms;
 
-import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
-import com.extjs.gxt.ui.client.binding.FormBinding;
-import com.extjs.gxt.ui.client.data.BeanModel;
-import com.extjs.gxt.ui.client.data.BeanModelLookup;
+import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
-import com.extjs.gxt.ui.client.widget.form.FormPanel.LabelAlign;
 import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.ColumnData;
@@ -17,7 +12,6 @@ import com.extjs.gxt.ui.client.widget.layout.ColumnLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.EventoDTO;
 
 /**
  * Created by IntelliJ IDEA.
@@ -26,25 +20,30 @@ import it.agilis.mens.azzeroCO2.shared.model.EventoDTO;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoItemDettaglio extends TabItem {
+public class EventoFormDettaglio extends FormPanel {
 
-    private EventoDTO eventoDTO= new EventoDTO();
+   // private EventoDTO eventoDTO= new EventoDTO();
+
+    public EventoFormDettaglio() {
+		setHeaderVisible(false);
+	}
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
+
+        FormData formData = new FormData("100%");
+
         VerticalPanel vp = new VerticalPanel();
         vp.setSpacing(10);
         add(vp);
 
-        FormData formData = new FormData("100%");
-        FormPanel panel = new FormPanel();
-        panel.setFrame(true);
+       setFrame(true);
 
-        panel.setHeading("Dettagli EventoPanel");
-        panel.setSize(600, -1);
-        panel.setLabelAlign(LabelAlign.TOP);
-        panel.setButtonAlign(HorizontalAlignment.CENTER);
+        setHeading("Dettagli EventoPanel");
+        setSize(600, -1);
+        setLabelAlign(LabelAlign.TOP);
+        setButtonAlign(Style.HorizontalAlignment.CENTER);
 
         LayoutContainer main = new LayoutContainer();
         main.setLayout(new ColumnLayout());
@@ -90,14 +89,16 @@ public class EventoItemDettaglio extends TabItem {
         main.add(left, new ColumnData(.5));
         main.add(right, new ColumnData(.5));
 
-        panel.add(main, new FormData("100%"));
-        vp.add(panel);
+        add(main, formData);
+        vp.add(this);
 
-        FormBinding binding = new FormBinding(panel);
+
+      /*
+       FormBinding binding = new FormBinding(this);
         binding.autoBind();
         BeanModel model = BeanModelLookup.get().getFactory(
         EventoDTO.class).createModel(eventoDTO);
-        binding.bind(model);
+        binding.bind(model);*/
 
     }
 

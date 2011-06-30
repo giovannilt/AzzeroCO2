@@ -17,7 +17,6 @@ public class EventoWest  extends LayoutContainer {
     @Override
     protected void onRender(Element target, int index) {
          super.onRender(target, index);
-
         ContentPanel panel = new ContentPanel();
 
         add(panel);

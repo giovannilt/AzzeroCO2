@@ -10,9 +10,7 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import it.agilis.mens.azzeroCO2.client.components.eventi.evento.EventoBox;
-import it.agilis.mens.azzeroCO2.client.components.eventi.evento.EventoNorth;
-import it.agilis.mens.azzeroCO2.client.components.eventi.evento.EventoWest;
+import it.agilis.mens.azzeroCO2.client.components.eventi.evento.*;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
@@ -26,7 +24,10 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
  */
 public class EventoView extends View {
     private ContentPanel evento = new ContentPanel();
-    private EventoBox center = new EventoBox();
+
+    private EventoDettaglio eventoDettaglio = new EventoDettaglio();
+    private ContentPanel center = new ContentPanel();
+    private EventoSouth south = new EventoSouth();
 
 
     public EventoView(Controller controller) {
@@ -40,6 +41,7 @@ public class EventoView extends View {
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
         } else if (eventType.equals(EventoEvents.Next)) {
+
         } else if (eventType.equals(EventoEvents.Previous)) {
 
         }
@@ -49,6 +51,7 @@ public class EventoView extends View {
     private void onInit(AppEvent event) {
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
+        evento.setHeaderVisible(false);
         evento.setLayout(layout);
         evento.setStyleAttribute("padding", "1px");
 
@@ -71,9 +74,21 @@ public class EventoView extends View {
         evento.add(new EventoWest(), westData);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        {
+            final BorderLayout layout2 = new BorderLayout();
+            center.setLayout(layout2);
+            center.setStyleAttribute("padding", "1px");
 
+            BorderLayoutData center2Data = new BorderLayoutData(Style.LayoutRegion.CENTER);
+            center2Data.setMargins(new Margins(0, 0, 0, 0));
+            center.add(eventoDettaglio, center2Data);
+
+            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 15);
+            southData.setMargins(new Margins(0, 0, 0, 0));
+            center.add(south, southData);
+        }
+        center.setHeaderVisible(false);
         evento.add(center, centerData);
-
 
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.EventoPanelReady,
                 evento));
