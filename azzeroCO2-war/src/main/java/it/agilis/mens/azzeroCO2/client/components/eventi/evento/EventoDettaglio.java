@@ -1,4 +1,6 @@
 package it.agilis.mens.azzeroCO2.client.components.eventi.evento;
+//package com.extjs.gxt.samples.client.examples.forms;
+
 
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
@@ -6,7 +8,10 @@ import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.components.eventi.evento.tabs.EventoItemCalcolo;
-import it.agilis.mens.azzeroCO2.client.forms.EventoFormDettaglio;
+import it.agilis.mens.azzeroCO2.client.forms
+
+import it.agilis.mens.azzeroCO2.client.components.eventi.evento.tabs.EventoEnergia;
+
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,10 +23,9 @@ import it.agilis.mens.azzeroCO2.client.forms.EventoFormDettaglio;
 public class EventoDettaglio extends LayoutContainer {
 
     private final TabPanel eventoTab = new TabPanel();
-    private final TabItem calcolo = new EventoItemCalcolo();
-    private final TabItem dettaglio = new TabItem();
 
     private final EventoFormDettaglio formDettaglio= new EventoFormDettaglio();
+    private final EventoEnergia formEnergia= new EventoEnergia();
 
     @Override
     protected void onRender(Element target, int index) {
@@ -31,29 +35,28 @@ public class EventoDettaglio extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
         setLayout(layout);
 
-
-
         // TODO:.... CAPIRE COME CAZZO SI FA A STRETCH COME DIO COMANDA
         eventoTab.setSize(855, 637);
 
-        TabItem riepilogo = new TabItem();
-        riepilogo.setText("Riepilogo");
-        TabItem acquisto = new TabItem();
-        acquisto.setText("Acquisto");
-        TabItem conferma = new TabItem();
-        conferma.setText("Conferma");
 
 
-        dettaglio.setText("Dettaglio");
+
+        TabItem dettaglio = new TabItem("Dettaglio");
         dettaglio.add(formDettaglio);
         eventoTab.add(dettaglio);
 
-        calcolo.setText("Calcolo");
-        eventoTab.add(calcolo);
 
+
+
+        TabItem riepilogo = new TabItem("Riepilogo");
         eventoTab.add(riepilogo);
+
+        TabItem acquisto = new TabItem("Acquisto");
         eventoTab.add(acquisto);
+
+        TabItem conferma = new TabItem("Conferma");
         eventoTab.add(conferma);
+
 
        add(eventoTab);
 
@@ -61,7 +64,7 @@ public class EventoDettaglio extends LayoutContainer {
     }
 
 
-    public void next() {
-        eventoTab.setSelection(calcolo);
-    }
+  //  public void next() {
+    //    eventoTab.setSelection(calcolo);
+    //}
 }
