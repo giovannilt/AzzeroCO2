@@ -8,7 +8,7 @@ import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.components.eventi.evento.tabs.EventoItemCalcolo;
-import it.agilis.mens.azzeroCO2.client.forms
+import it.agilis.mens.azzeroCO2.client.forms.EventoFormDettaglio;
 
 import it.agilis.mens.azzeroCO2.client.components.eventi.evento.tabs.EventoEnergia;
 
@@ -40,10 +40,18 @@ public class EventoDettaglio extends LayoutContainer {
 
 
 
+        TabItem calcolo = new TabItem("Calcolo");
+        calcolo.add(formEnergia);
+        eventoTab.add(calcolo);
+
+
+
 
         TabItem dettaglio = new TabItem("Dettaglio");
         dettaglio.add(formDettaglio);
         eventoTab.add(dettaglio);
+
+
 
 
 
