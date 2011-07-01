@@ -76,28 +76,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EventoView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/views/EventoView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="60" selection-start="1850" selection-end="1850" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EventoEnergia.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/tabs/EventoEnergia.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="26" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EventoDettaglio.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="EventoDettaglio.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoDettaglio.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="0" selection-start="1306" selection-end="1306" vertical-scroll-proportion="1.0183486">
+            <state line="29" column="33" selection-start="1093" selection-end="1093" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,46 +87,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventoItemCalcolo.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/tabs/EventoItemCalcolo.java">
+      <file leaf-file-name="EventoFormTrasportoPersone.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/forms/EventoFormTrasportoPersone.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="13" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0">
+            <state line="73" column="48" selection-start="2742" selection-end="2742" vertical-scroll-proportion="0.6345476">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventoFormDettaglio.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/forms/EventoFormDettaglio.java">
+      <file leaf-file-name="CategoriePersone.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/shared/model/CategoriePersone.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="60" selection-start="1228" selection-end="1228" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="15" column="42" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventoNorth.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoNorth.java">
+      <file leaf-file-name="EventoDTO.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/shared/model/EventoDTO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="13" selection-start="689" selection-end="689" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EventoSouth.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoSouth.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="67" selection-start="2181" selection-end="2181" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EventoEvents.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/events/EventoEvents.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="42" selection-start="780" selection-end="788" vertical-scroll-proportion="0.0">
+            <state line="14" column="63" selection-start="331" selection-end="371" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -153,16 +119,52 @@
       <file leaf-file-name="AzzeroCO2View.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/views/AzzeroCO2View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="10" selection-start="1708" selection-end="1815" vertical-scroll-proportion="0.0">
+            <state line="66" column="43" selection-start="2340" selection-end="2558" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CentralView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/views/CentralView.java">
+      <file leaf-file-name="EventoFormEnergia.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/forms/EventoFormEnergia.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="51" selection-start="3531" selection-end="3531" vertical-scroll-proportion="0.0">
+            <state line="25" column="43" selection-start="999" selection-end="999" vertical-scroll-proportion="-3.5454545">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HBoxLayoutData.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/widget/layout/HBoxLayoutData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="85" column="14" selection-start="1830" selection-end="1830" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NumberField.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/widget/form/NumberField.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="9" selection-start="1107" selection-end="1107" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Field.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/widget/form/Field.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="808" column="14" selection-start="20639" selection-end="20639" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventoFormDettaglio.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/forms/EventoFormDettaglio.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="13" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -182,12 +184,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/views/AzzeroCO2View.java" />
-        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/consumoCarta/ConsumoCarta.java" />
-        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/consumoCarta/ConsumoCarta.java" />
-        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoCenter.java" />
-        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoWest.java" />
-        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoNorth.java" />
         <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/views/CentralView.java" />
         <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/events/CentralEvents.java" />
         <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/controllers/EventoController.java" />
@@ -195,9 +191,15 @@
         <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoSouth.java" />
         <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/views/EventoView.java" />
         <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/pages/events/evento/tabs/EventoEnergia.java" />
+        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/tabs/EventoItemCalcolo.java" />
         <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/tabs/EventoEnergia.java" />
+        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/forms/EventoEnergia.java" />
         <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/forms/EventoFormDettaglio.java" />
+        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/forms/EventoFormEnergia.java" />
         <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoDettaglio.java" />
+        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/shared/CategoriePersone.java" />
+        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/shared/model/CategoriePersone.java" />
+        <option value="$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/forms/EventoFormTrasportoPersone.java" />
       </list>
     </option>
   </component>
@@ -283,6 +285,288 @@
               <option name="myItemId" value="azzeroCO2-app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.extjs:gxt:2.2.3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt-2.2.3.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.extjs:gxt:2.2.3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt-2.2.3.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.extjs:gxt:2.2.3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt-2.2.3.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.extjs:gxt:2.2.3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt-2.2.3.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.extjs:gxt:2.2.3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt-2.2.3.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.extjs:gxt:2.2.3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt-2.2.3.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.extjs:gxt:2.2.3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt-2.2.3.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="form" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.extjs:gxt:2.2.3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt-2.2.3.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.extjs:gxt:2.2.3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt-2.2.3.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gxt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -345,6 +629,78 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shared" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shared" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -526,6 +882,44 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="azzeroCO2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="forms" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -656,56 +1050,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="azzeroCO2-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="azzeroCO2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="azzeroCO2-war" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="azzeroCO2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eventi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="evento" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane">
@@ -786,11 +1130,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="it.agilis.mens.azzeroCO2.client.forms" />
       <recent name="it.agilis.mens.azzeroCO2.client.mvc.events" />
       <recent name="it.agilis.mens.azzeroCO2.client.mvc.views" />
       <recent name="it.agilis.mens.azzeroCO2.client.mvc.controllers" />
       <recent name="it.agilis.mens.azzeroCO2.client.model" />
-      <recent name="it.agilis.mens.azzeroCO2.pages.main.controller" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/azzeroCO2-core/src/main/resources/it/agilis/mens/azzeroCO2/core/dao" />
@@ -1076,25 +1420,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="22" width="1280" height="1347" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="24" width="1280" height="1347" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.50040686" sideWeight="0.9438265" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33441824" sideWeight="0.9976976" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980412" sideWeight="0.53026426" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23515053" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23515053" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924837" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933232" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33170733" sideWeight="0.49959317" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33170733" sideWeight="0.7648495" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32762837" sideWeight="0.9960894" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1185,105 +1529,122 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/controllers/NorthController.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/widget/form/TriggerField.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/events/AzzeroCO2Events.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/events/CentralEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="1" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/events/LoginEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoWest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="388" selection-end="388" vertical-scroll-proportion="0.14224137">
+        <state line="53" column="42" selection-start="1536" selection-end="1536" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/controllers/EventoController.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/widget/form/TwinTriggerField.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="17" selection-start="569" selection-end="569" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/views/EventoView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="60" selection-start="1850" selection-end="1850" vertical-scroll-proportion="0.0">
+        <state line="45" column="45" selection-start="1114" selection-end="1114" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/tabs/EventoEnergia.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/widget/form/SpinnerField.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="26" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.0">
+        <state line="54" column="44" selection-start="1660" selection-end="1660" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1299510466000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1299510466000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/widget/form/NumberField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="9" selection-start="1107" selection-end="1107" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoNorth.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/widget/layout/HBoxLayoutData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="13" selection-start="689" selection-end="689" vertical-scroll-proportion="0.0">
+        <state line="85" column="14" selection-start="1830" selection-end="1830" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoSouth.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/widget/form/Field.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="67" selection-start="2181" selection-end="2181" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/events/EventoEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="42" selection-start="780" selection-end="788" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/views/AzzeroCO2View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="10" selection-start="1708" selection-end="1815" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/views/CentralView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="51" selection-start="3531" selection-end="3531" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/tabs/EventoItemCalcolo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0">
+        <state line="808" column="14" selection-start="20639" selection-end="20639" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/forms/EventoFormDettaglio.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="60" selection-start="1228" selection-end="1228" vertical-scroll-proportion="0.0">
+        <state line="28" column="13" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/widget/TabItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="13" selection-start="2086" selection-end="2086" vertical-scroll-proportion="-0.10288066">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/forms/EventoFormEnergia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="43" selection-start="999" selection-end="999" vertical-scroll-proportion="-3.5454545">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/components/eventi/evento/EventoDettaglio.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1306" selection-end="1306" vertical-scroll-proportion="1.0183486">
+        <state line="29" column="33" selection-start="1093" selection-end="1093" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/mvc/views/AzzeroCO2View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="43" selection-start="2340" selection-end="2558" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/store/ListStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="145" column="13" selection-start="4651" selection-end="4651" vertical-scroll-proportion="2.5475543">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/extjs/gxt/2.2.3/gxt-2.2.3-sources.jar!/com/extjs/gxt/ui/client/widget/grid/Grid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="307" column="19" selection-start="10054" selection-end="10054" vertical-scroll-proportion="0.3415638">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/shared/model/EventoDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="63" selection-start="331" selection-end="371" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/shared/model/CategoriePersone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="42" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/azzeroCO2-war/src/main/java/it/agilis/mens/azzeroCO2/client/forms/EventoFormTrasportoPersone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="48" selection-start="2742" selection-end="2742" vertical-scroll-proportion="0.6345476">
+          <folding />
         </state>
       </provider>
     </entry>

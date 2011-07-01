@@ -7,8 +7,9 @@ import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.components.eventi.evento.tabs.EventoEnergia;
 import it.agilis.mens.azzeroCO2.client.forms.EventoFormDettaglio;
+import it.agilis.mens.azzeroCO2.client.forms.EventoFormEnergia;
+import it.agilis.mens.azzeroCO2.client.forms.EventoFormTrasportoPersone;
 
 
 /**
@@ -23,7 +24,15 @@ public class EventoDettaglio extends LayoutContainer {
     private final TabPanel eventoTab = new TabPanel();
 
     private final EventoFormDettaglio formDettaglio= new EventoFormDettaglio();
-    private final EventoEnergia formEnergia= new EventoEnergia();
+
+    private final TabPanel calcoloTabs = new TabPanel();
+    private final EventoFormEnergia formEnergia = new EventoFormEnergia();
+    private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone();
+    private final EventoFormEnergia formPernottamenti = new EventoFormEnergia();
+    private final EventoFormEnergia formTrasportoMerci = new EventoFormEnergia();
+    private final EventoFormEnergia formManifestiPiegevoliFogli = new EventoFormEnergia();
+    private final EventoFormEnergia formPubblicazioniRilegati = new EventoFormEnergia();
+
 
     @Override
     protected void onRender(Element target, int index) {
@@ -33,6 +42,7 @@ public class EventoDettaglio extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
         setLayout(layout);
 
+        calcoloTabs.setSize(850,630);
         // TODO:.... CAPIRE COME CAZZO SI FA A STRETCH COME DIO COMANDA
         eventoTab.setSize(855, 637);
 
@@ -41,7 +51,8 @@ public class EventoDettaglio extends LayoutContainer {
         eventoTab.add(dettaglio);
 
         TabItem calcolo = new TabItem("Calcolo");
-        calcolo.add(formEnergia);
+         createCalcoloTabs();
+        calcolo.add(calcoloTabs);
         eventoTab.add(calcolo);
 
         TabItem riepilogo = new TabItem("Riepilogo");
@@ -60,7 +71,13 @@ public class EventoDettaglio extends LayoutContainer {
     }
 
 
-  //  public void next() {
-    //    eventoTab.setSelection(calcolo);
-    //}
+    public void createCalcoloTabs() {
+        formEnergia.setTitle("Energia");
+        calcoloTabs.add(formEnergia);
+        calcoloTabs.add(formTrasportoPersone);
+        calcoloTabs.add(formPernottamenti);
+        calcoloTabs.add(formTrasportoMerci);
+        calcoloTabs.add(formPubblicazioniRilegati);
+        calcoloTabs.add(formManifestiPiegevoliFogli);
+    }
 }
