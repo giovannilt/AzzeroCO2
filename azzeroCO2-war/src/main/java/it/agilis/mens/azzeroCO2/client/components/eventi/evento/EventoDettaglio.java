@@ -40,10 +40,18 @@ public class EventoDettaglio extends LayoutContainer {
 
 
 
+        TabItem calcolo = new TabItem("Calcolo");
+        calcolo.add(formEnergia);
+        eventoTab.add(calcolo);
+
+
+
 
         TabItem dettaglio = new TabItem("Dettaglio");
         dettaglio.add(formDettaglio);
         eventoTab.add(dettaglio);
+
+
 
 
 
