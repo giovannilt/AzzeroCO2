@@ -41,6 +41,20 @@ public class NorthPanel extends LayoutContainer {
 
         HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
+
+        Button home= new Button("Home");
+        home.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                //Dispatcher.forwardEvent(AzzeroCO2Events.ShowHome);
+                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+            }
+
+        });
+
+        c.add(home, layoutData);
+
+
+
         Button login = new Button();
         login.setText("Login");
        // login.setSize("100px","100px");
@@ -53,16 +67,7 @@ public class NorthPanel extends LayoutContainer {
 
         });
         c.add(login, layoutData);
-        Button home= new Button("Home");
-        home.addSelectionListener(new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent ce) {
-                //Dispatcher.forwardEvent(AzzeroCO2Events.ShowHome);
-                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
-            }
 
-        });
-
-        c.add(home, layoutData);
         c.add(new Button("Registrati"), layoutData);
 
         HBoxLayoutData layoutData2 = new HBoxLayoutData(new Margins(0));
