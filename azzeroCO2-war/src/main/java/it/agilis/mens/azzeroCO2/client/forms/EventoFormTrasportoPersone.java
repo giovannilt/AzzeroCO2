@@ -95,7 +95,7 @@ public class EventoFormTrasportoPersone extends TabItem {
             ContentPanel cp = new ContentPanel();
             cp.setHeading("Opzione A: scegli questa opzione per catalogare il numerodi persone totaliche si sono spostate per l'evento ");
             cp.setFrame(true);
-            cp.setSize(299, 98);
+            cp.setSize(299, 100);
             cp.setLayout(new FitLayout());
 
 
@@ -141,7 +141,7 @@ public class EventoFormTrasportoPersone extends TabItem {
             ContentPanel cp = new ContentPanel();
             cp.setHeading("Opzione B: se invece vuoi dettagliare i trasporti per categoria di persone, compila queste categorie: ");
             cp.setFrame(true);
-            cp.setSize(299, 550);
+            cp.setSize(299, 300);
             cp.setLayout(new FitLayout());
 
             final RowEditor<CategoriePersone> re = new RowEditor<CategoriePersone>();
@@ -235,7 +235,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
 
 
-        Image bus = new Image("/imgs/bus.png");
+        Image bus = new Image("/azzeroCO2/imgs/bus.png");
         bus.setAltText("Bus");
         bus.setWidth("10%");
 
@@ -244,7 +244,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
 
 
-        Image automobile = new Image("/imgs/automobile.png");
+        Image automobile = new Image("/azzeroCO2/imgs/automobile.png");
         bus.setAltText("Auto");
         automobile.setWidth("10%");
 
@@ -252,7 +252,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         autoPiu50.setWidth(60);
 
 
-        Image treno = new Image("/imgs/treno.png");
+        Image treno = new Image("/azzeroCO2/imgs/treno.png");
         bus.setAltText("Treno");
         treno.setWidth("10%");
 
@@ -299,7 +299,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
 
 
-        Image bus100 = new Image("/imgs/bus.png");
+        Image bus100 = new Image("/azzeroCO2/imgs/bus.png");
         bus100.setAltText("Bus");
         bus100.setWidth("10%");
 
@@ -308,7 +308,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
 
 
-        Image automobile100 = new Image("/imgs/automobile.png");
+        Image automobile100 = new Image("/azzeroCO2/imgs/automobile.png");
         automobile100.setAltText("Auto");
         automobile100.setWidth("10%");
 
@@ -316,7 +316,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         autoPiu100.setWidth(60);
 
 
-        Image treno100 = new Image("/imgs/treno.png");
+        Image treno100 = new Image("/azzeroCO2/imgs/treno.png");
         treno100.setAltText("Treno");
         treno100.setWidth("10%");
 
@@ -364,7 +364,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
 
 
-        Image bus250 = new Image("/imgs/bus.png");
+        Image bus250 = new Image("/azzeroCO2/imgs/bus.png");
         bus250.setAltText("Bus");
         bus250.setWidth("10%");
 
@@ -373,7 +373,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
 
 
-        Image automobile250 = new Image("/imgs/automobile.png");
+        Image automobile250 = new Image("/azzeroCO2/imgs/automobile.png");
         automobile250.setAltText("Auto");
         automobile250.setWidth("10%");
 
@@ -381,7 +381,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         autoPiu250.setWidth(60);
 
 
-        Image treno250 = new Image("/imgs/treno.png");
+        Image treno250 = new Image("/azzeroCO2/imgs/treno.png");
         treno250.setAltText("Treno");
         treno250.setWidth("10%");
 
@@ -389,7 +389,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         trenoPiu250.setWidth(60);
 
 
-        Image aereo250 = new Image("/imgs/Aereo.png");
+        Image aereo250 = new Image("/azzeroCO2/imgs/Aereo.png");
         aereo250.setAltText("Aereo");
         aereo250.setWidth("10%");
 
@@ -441,7 +441,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
 
 
-        Image bus500 = new Image("/imgs/bus.png");
+        Image bus500 = new Image("/azzeroCO2/imgs/bus.png");
         bus500.setAltText("Bus");
         bus500.setWidth("10%");
 
@@ -450,7 +450,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
 
 
-        Image automobile500 = new Image("/imgs/automobile.png");
+        Image automobile500 = new Image("/azzeroCO2/imgs/automobile.png");
         automobile500.setAltText("Auto");
         automobile500.setWidth("10%");
 
@@ -458,7 +458,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         autoPiu500.setWidth(60);
 
 
-        Image treno500 = new Image("/imgs/treno.png");
+        Image treno500 = new Image("/azzeroCO2/imgs/treno.png");
         treno500.setAltText("Treno");
         treno500.setWidth("10%");
 
@@ -466,7 +466,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         trenoPiu500.setWidth(60);
 
 
-        Image aereo500 = new Image("/imgs/Aereo.png");
+        Image aereo500 = new Image("/azzeroCO2/imgs/Aereo.png");
         aereo500.setAltText("Aereo");
         aereo500.setWidth("10%");
 

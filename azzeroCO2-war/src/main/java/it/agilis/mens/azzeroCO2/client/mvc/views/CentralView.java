@@ -159,20 +159,16 @@ public class CentralView extends View {
                 compensazione.setWidth("242px");
                 compensazione.setHeading("Che cosa e' la Compensazione?");
                 compensazione.addText("La compensazione e' .. .. .. .. ");
-                Image img = new Image("/imgs/header.png");
-                img.setHeight("200");
-                img.setWidth("200");
-                compensazione.add(img);
+
+
                 c.add(compensazione, flex);
             }
             {   // NEWS
                 ContentPanel news = new ContentPanel();
                 news.setHeading("NEWS");
                 news.addText("NEWS .. .. .. .. ");
-                Image img = new Image("/imgs/header.png");
-                img.setHeight("50");
-                img.setWidth("50");
-                news.add(img);
+
+
                 c.add(news, flex);
             }
 
