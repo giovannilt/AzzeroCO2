@@ -100,7 +100,7 @@ public class AzzeroCO2View extends View {
         //viewport.setLayout(layoutCentre);
         viewport.setLayout(new CenterLayout());
 */
-        //BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+       // BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         viewport.setScrollMode(Style.Scroll.AUTO);
         viewport.add(main);
 
