@@ -27,7 +27,8 @@ public class EventoDettaglio extends LayoutContainer {
     private final EventoFormEnergia formEnergia = new EventoFormEnergia();
     private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone();
     private final EventoFormPernottamenti formPernottamenti = new EventoFormPernottamenti();
-    private final EventoFormPubblicazioniRilegate formTrasportoMerci = new EventoFormPubblicazioniRilegate();
+    private final EventoFormTrasportoMerci formTrasportoMerci = new EventoFormTrasportoMerci();
+    private final EventoFormPubblicazioniRilegate formPubblicazioniRilegate = new EventoFormPubblicazioniRilegate();
     private final EventoFormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new EventoFormManifestiPieghevoliFogli();
 
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
@@ -75,6 +76,7 @@ public class EventoDettaglio extends LayoutContainer {
         calcoloTabs.add(formTrasportoPersone);
         calcoloTabs.add(formPernottamenti);
         calcoloTabs.add(formTrasportoMerci);
+        calcoloTabs.add(formPubblicazioniRilegate);
         calcoloTabs.add(formManifestiPiegevoliFogli);
 
     }
