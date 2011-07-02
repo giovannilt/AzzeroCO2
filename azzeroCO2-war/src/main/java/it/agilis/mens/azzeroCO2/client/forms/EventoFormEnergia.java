@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.client.forms;
 
+import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -9,9 +10,7 @@ import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.FormPanel.LabelAlign;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
-import com.extjs.gxt.ui.client.widget.layout.FormData;
-import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
-import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 
 //import com.extjs.gxt.samples.resources.client.Resources;
@@ -32,11 +31,20 @@ public class EventoFormEnergia extends TabItem {
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
+        BorderLayout layout = new BorderLayout();
+        setLayout(layout);
+        layout.setEnableState(false);
+        setStyleAttribute("padding", "0px");
+
         vp = new VerticalPanel();
         vp.setSpacing(10);
         createColumnForm();
 
-        add(vp);
+         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        centerData.setMargins(new Margins(0));
+        add(vp, centerData);
+
+       // add(vp);
     }
 
 
