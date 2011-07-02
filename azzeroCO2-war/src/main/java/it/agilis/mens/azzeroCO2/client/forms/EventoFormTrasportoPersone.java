@@ -52,7 +52,6 @@ public class EventoFormTrasportoPersone extends TabItem {
         west.setHeading("Trasporto Persone");
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 300);
         westData.setMargins(new Margins(0));
-        west.setHeaderVisible(false);
         add(west, westData);
 
         createCentre();
