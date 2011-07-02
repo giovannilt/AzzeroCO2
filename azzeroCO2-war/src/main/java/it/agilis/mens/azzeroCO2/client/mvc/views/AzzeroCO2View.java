@@ -13,6 +13,7 @@ import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.VBoxLayout;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 
@@ -36,6 +37,7 @@ public class AzzeroCO2View extends View {
     protected void handleEvent(AppEvent event) {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
+            prefetchImage (event);
             onInit(event);
         } else if (eventType.equals(AzzeroCO2Events.Error)) {
             onError(event);
@@ -48,6 +50,14 @@ public class AzzeroCO2View extends View {
         } else if (eventType.equals(AzzeroCO2Events.NewsPanelReady)) {
             onNewsPanelReady(event);
         }
+
+    }
+
+    private void prefetchImage(AppEvent event) {
+        Image.prefetch("/azzeroCO2/imgs/bus.png");
+        Image.prefetch("/azzeroCO2/imgs/Aereo.png");
+        Image.prefetch("/azzeroCO2/imgs/treno.png");
+        Image.prefetch("/azzeroCO2/imgs/automobile.png");
 
     }
 
