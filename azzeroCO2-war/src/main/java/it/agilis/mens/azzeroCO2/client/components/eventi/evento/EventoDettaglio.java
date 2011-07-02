@@ -31,6 +31,7 @@ public class EventoDettaglio extends LayoutContainer {
     private final EventoFormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new EventoFormManifestiPieghevoliFogli();
 
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
+    private final EventoFormAcquisto  eventoFormAcquisto  = new EventoFormAcquisto();
 
     @Override
     protected void onRender(Element target, int index) {
@@ -40,7 +41,7 @@ public class EventoDettaglio extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
         setLayout(layout);
 
-        calcoloTabs.setSize(850, 630);
+        calcoloTabs.setSize(855, 632);
         // TODO:.... CAPIRE COME CAZZO SI FA A STRETCH COME DIO COMANDA
         eventoTab.setSize(855, 637);
 
@@ -58,12 +59,13 @@ public class EventoDettaglio extends LayoutContainer {
         eventoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("Acquisto");
+        acquisto.add(eventoFormAcquisto);
         eventoTab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");
         eventoTab.add(conferma);
-        add(eventoTab);
 
+        add(eventoTab);
     }
 
 
