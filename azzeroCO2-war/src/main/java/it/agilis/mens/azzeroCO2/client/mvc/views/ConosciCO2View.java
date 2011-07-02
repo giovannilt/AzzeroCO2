@@ -8,6 +8,7 @@ import com.extjs.gxt.ui.client.mvc.View;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
  * Created by IntelliJ IDEA.
@@ -33,6 +34,7 @@ public class ConosciCO2View extends View {
 
 
     private void onInit(AppEvent event) {
+        conosciCO2.setTitle(Eventi.CONOSCI_CO2.name());
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.ConosciCO2PanelReady,
                 conosciCO2));
     }
