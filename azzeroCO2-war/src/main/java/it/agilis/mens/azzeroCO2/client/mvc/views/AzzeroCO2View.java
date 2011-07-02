@@ -6,11 +6,13 @@ import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
 import com.extjs.gxt.ui.client.util.Margins;
+import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.VBoxLayout;
 import com.google.gwt.user.client.ui.RootPanel;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 
@@ -82,9 +84,16 @@ public class AzzeroCO2View extends View {
         main.setLayout(layout);
         main.setStyleAttribute("padding", "5px");
         main.setAnimCollapse(true);
-        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+
+
+        VBoxLayout layoutCentre = new VBoxLayout();
+        layoutCentre.setPadding(new Padding(5));
+        layoutCentre.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
+        viewport.setLayout(layoutCentre);
+
+        //BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         viewport.setScrollMode(Style.Scroll.AUTO);
-        viewport.add(main, centerData);
+        viewport.add(main);
 
     }
 
