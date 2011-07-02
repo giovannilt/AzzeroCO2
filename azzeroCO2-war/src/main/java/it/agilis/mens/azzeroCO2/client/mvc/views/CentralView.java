@@ -15,7 +15,7 @@ import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.ui.Widget;
-import it.agilis.mens.azzeroCO2.client.components.eventi.Eventi;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 
@@ -41,13 +41,13 @@ public class CentralView extends View {
             onInit(event);
         } else if (eventType.equals(CentralEvents.EventoPanelReady)) {
             onContentReady(event);
-        } else if (eventType.equals(CentralEvents.ConosciCO2PanelReady)) {
-            onContentReady(event);
-        } else if (eventType.equals(CentralEvents.ConsumoCartaPanelReady)) {
-            onContentReady(event);
         } else if (eventType.equals(CentralEvents.UnAnnoDiAttivitaPanelReady)) {
             onContentReady(event);
+        } else if (eventType.equals(CentralEvents.UnaPubblicazioneReady)) {
+            onContentReady(event);
         } else if (eventType.equals(CentralEvents.WebPanelReady)) {
+            onContentReady(event);
+        } else if (eventType.equals(CentralEvents.ConosciCO2PanelReady)) {
             onContentReady(event);
         } else if (eventType.equals(CentralEvents.ShowPanel)) {
             setActiveItem(event.<Eventi>getData());
@@ -59,6 +59,8 @@ public class CentralView extends View {
     }
 
     private void setActiveItem(Eventi evento) {
+
+
         layout.setActiveItem(centralPanel.getItem(evento.ordinal()));
     }
 
@@ -112,6 +114,11 @@ public class CentralView extends View {
             c.setLayout(layout);
             HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
             Button pubblicazione = new Button("Una pubblicazione");
+            pubblicazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
+                public void componentSelected(ButtonEvent ce) {
+                    setActiveItem(Eventi.UNA_PUBBLICAZIONE);
+                }
+            });
             pubblicazione.setSize(245, 217);
             c.add(pubblicazione, layoutData);
             Button web = new Button("Un sito web");

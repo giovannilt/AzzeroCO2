@@ -16,10 +16,10 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
  * Time: 11:40 PM
  * To change this template use File | Settings | File Templates.
  */
-public class UnAnnoDiAttivitaView extends View {
-    private ContentPanel unAnnoDiAttivita = new ContentPanel();
+public class ConosciCO2View extends View {
+    private ContentPanel conosciCO2 = new ContentPanel();
 
-    public UnAnnoDiAttivitaView(Controller controller) {
+    public ConosciCO2View(Controller controller) {
         super(controller);
     }
 
@@ -33,7 +33,7 @@ public class UnAnnoDiAttivitaView extends View {
 
 
     private void onInit(AppEvent event) {
-        Dispatcher.forwardEvent(new AppEvent(CentralEvents.UnAnnoDiAttivitaPanelReady,
-                unAnnoDiAttivita));
+        Dispatcher.forwardEvent(new AppEvent(CentralEvents.ConosciCO2PanelReady,
+                conosciCO2));
     }
 }

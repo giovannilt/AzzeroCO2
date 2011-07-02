@@ -20,11 +20,11 @@ public class CentralController extends Controller {
 
     public CentralController() {
         registerEventTypes(AzzeroCO2Events.Init);
+
         registerEventTypes(CentralEvents.EventoPanelReady);
         registerEventTypes(CentralEvents.ConosciCO2PanelReady);
-        registerEventTypes(CentralEvents.ConsumoCartaPanelReady);
-
-        //   registerEventTypes(CentralEvents.StartContentPanelReady);
+        registerEventTypes(CentralEvents.UnaPubblicazioneReady);
+        registerEventTypes(CentralEvents.UnAnnoDiAttivitaPanelReady);
         registerEventTypes(CentralEvents.WebPanelReady);
 
         registerEventTypes(CentralEvents.ShowPanel);
