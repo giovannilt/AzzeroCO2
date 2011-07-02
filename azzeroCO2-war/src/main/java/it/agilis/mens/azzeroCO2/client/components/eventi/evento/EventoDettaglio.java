@@ -7,9 +7,7 @@ import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.forms.EventoFormDettaglio;
-import it.agilis.mens.azzeroCO2.client.forms.EventoFormEnergia;
-import it.agilis.mens.azzeroCO2.client.forms.EventoFormTrasportoPersone;
+import it.agilis.mens.azzeroCO2.client.forms.*;
 
 
 /**
@@ -23,16 +21,14 @@ public class EventoDettaglio extends LayoutContainer {
 
     private final TabPanel eventoTab = new TabPanel();
 
-    private final EventoFormDettaglio formDettaglio= new EventoFormDettaglio();
+    private final EventoFormDettaglio formDettaglio = new EventoFormDettaglio();
 
     private final TabPanel calcoloTabs = new TabPanel();
     private final EventoFormEnergia formEnergia = new EventoFormEnergia();
     private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone();
-    private final EventoFormEnergia formPernottamenti = new EventoFormEnergia();
-    private final EventoFormEnergia formTrasportoMerci = new EventoFormEnergia();
-    private final EventoFormEnergia formManifestiPiegevoliFogli = new EventoFormEnergia();
-    private final EventoFormEnergia formPubblicazioniRilegati = new EventoFormEnergia();
-
+    private final EventoFormPernottamenti formPernottamenti = new EventoFormPernottamenti();
+    private final EventoFormPubblicazioniRilegate formTrasportoMerci = new EventoFormPubblicazioniRilegate();
+    private final EventoFormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new EventoFormManifestiPieghevoliFogli();
 
     @Override
     protected void onRender(Element target, int index) {
@@ -42,7 +38,7 @@ public class EventoDettaglio extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
         setLayout(layout);
 
-        calcoloTabs.setSize(850,630);
+        calcoloTabs.setSize(850, 630);
         // TODO:.... CAPIRE COME CAZZO SI FA A STRETCH COME DIO COMANDA
         eventoTab.setSize(855, 637);
 
@@ -51,7 +47,7 @@ public class EventoDettaglio extends LayoutContainer {
         eventoTab.add(dettaglio);
 
         TabItem calcolo = new TabItem("Calcolo");
-         createCalcoloTabs();
+        createCalcoloTabs();
         calcolo.add(calcoloTabs);
         eventoTab.add(calcolo);
 
@@ -63,10 +59,7 @@ public class EventoDettaglio extends LayoutContainer {
 
         TabItem conferma = new TabItem("Conferma");
         eventoTab.add(conferma);
-
-
-       add(eventoTab);
-
+        add(eventoTab);
 
     }
 
@@ -77,7 +70,7 @@ public class EventoDettaglio extends LayoutContainer {
         calcoloTabs.add(formTrasportoPersone);
         calcoloTabs.add(formPernottamenti);
         calcoloTabs.add(formTrasportoMerci);
-        calcoloTabs.add(formPubblicazioniRilegati);
         calcoloTabs.add(formManifestiPiegevoliFogli);
+
     }
 }
