@@ -111,7 +111,7 @@ public class CentralView extends View {
             layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
             HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
-            Button pubblicazione = new Button("Una publicazione");
+            Button pubblicazione = new Button("Una pubblicazione");
             pubblicazione.setSize(245, 217);
             c.add(pubblicazione, layoutData);
             Button web = new Button("Un sito web");
