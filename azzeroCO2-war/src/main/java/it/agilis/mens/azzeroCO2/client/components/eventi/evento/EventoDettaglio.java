@@ -30,6 +30,8 @@ public class EventoDettaglio extends LayoutContainer {
     private final EventoFormPubblicazioniRilegate formTrasportoMerci = new EventoFormPubblicazioniRilegate();
     private final EventoFormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new EventoFormManifestiPieghevoliFogli();
 
+    private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
+
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
@@ -52,6 +54,7 @@ public class EventoDettaglio extends LayoutContainer {
         eventoTab.add(calcolo);
 
         TabItem riepilogo = new TabItem("Riepilogo");
+        riepilogo.add(eventoFormRiepilogo);
         eventoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("Acquisto");
