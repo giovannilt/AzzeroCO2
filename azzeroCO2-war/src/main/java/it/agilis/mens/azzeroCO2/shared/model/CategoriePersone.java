@@ -1,10 +1,6 @@
 package it.agilis.mens.azzeroCO2.shared.model;
 
-import com.extjs.gxt.ui.client.data.ModelData;
-
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.Map;
+import com.extjs.gxt.ui.client.data.BaseModelData;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,29 +9,23 @@ import java.util.Map;
  * Time: 1:04 AM
  * To change this template use File | Settings | File Templates.
  */
-public class CategoriePersone  implements Serializable, ModelData {
-    @Override
-    public <X> X get(String property) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+public class CategoriePersone extends BaseModelData {
+
+    public CategoriePersone() {
+
     }
 
-    @Override
-    public Map<String, Object> getProperties() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public CategoriePersone(String name) {
+        setName(name);
     }
 
-    @Override
-    public Collection<String> getPropertyNames() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+
+    public String getName() {
+        return get("name");
     }
 
-    @Override
-    public <X> X remove(String property) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public <X> X set(String property, X value) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public void setName(String name) {
+        set("name", name);
     }
 }
+
