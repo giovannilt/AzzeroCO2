@@ -5,7 +5,6 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
-import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.FormPanel.LabelAlign;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
@@ -24,8 +23,7 @@ import com.google.gwt.user.client.Element;
  */
 public class EventoFormEnergia extends TabItem {
 
-
-    private VerticalPanel vp;
+    FormPanel panel = new FormPanel();
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -36,25 +34,23 @@ public class EventoFormEnergia extends TabItem {
         layout.setEnableState(false);
         setStyleAttribute("padding", "0px");
 
-        vp = new VerticalPanel();
-        vp.setSpacing(10);
+
         createColumnForm();
 
-         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
-        add(vp, centerData);
+        add(panel, centerData);
 
-       // add(vp);
     }
 
 
     private void createColumnForm() {
         FormData formData = new FormData("100%");
-        FormPanel panel = new FormPanel();
+
         panel.setFrame(true);
 
         panel.setHeading("Energia");
-        panel.setSize(600, -1);
+        panel.setHeight(650);
         panel.setLabelAlign(LabelAlign.LEFT);
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
@@ -85,7 +81,7 @@ public class EventoFormEnergia extends TabItem {
         c.add(new LabelField("Kw/h"), flex);
         panel.add(c, new FormData("100%"));
 
-         LayoutContainer c3 = new LayoutContainer();
+        LayoutContainer c3 = new LayoutContainer();
         HBoxLayout layout3 = new HBoxLayout();
         layout3.setPadding(new Padding(10));
         layout3.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
@@ -129,7 +125,6 @@ public class EventoFormEnergia extends TabItem {
         cGasoline.add(new LabelField("Litri"), flex);
 
         panel.add(cGasoline, new FormData("100%"));
-        vp.add(panel);
 
 
     }

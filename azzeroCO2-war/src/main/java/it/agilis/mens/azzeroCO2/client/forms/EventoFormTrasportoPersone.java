@@ -9,9 +9,7 @@ import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
-import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.button.IconButton;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
@@ -49,7 +47,6 @@ public class EventoFormTrasportoPersone extends TabItem {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
         layout.setEnableState(false);
-        setStyleAttribute("padding", "0px");
 
         createWest();
         west.setHeading("Trasporto Persone");
@@ -185,18 +182,14 @@ public class EventoFormTrasportoPersone extends TabItem {
 
     private void createCentre() {
 
-        VerticalPanel vp;
-
-        vp = new VerticalPanel();
-        vp.setSpacing(10);
-        centre.add(vp);
-
         FormData formData = new FormData("100%");
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
         panel.setHeaderVisible(false);
 
-        panel.setSize(530, -1);
+        centre.add(panel);
+
+        panel.setHeight(600);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
@@ -210,9 +203,6 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         panel.add(c2);
 
-
-
-
         //HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         LayoutContainer piu50 = new LayoutContainer();
         HBoxLayout layoutRigaPiu50 = new HBoxLayout();
@@ -225,8 +215,6 @@ public class EventoFormTrasportoPersone extends TabItem {
         panel.add(piu50);
 
 
-
-
         LayoutContainer piu50input = new LayoutContainer();
         HBoxLayout layoutPiu50input = new HBoxLayout();
         layoutPiu50input.setPadding(new Padding(10));
@@ -234,20 +222,18 @@ public class EventoFormTrasportoPersone extends TabItem {
         piu50input.setLayout(layoutPiu50input);
 
 
-
         Image bus = new Image("/azzeroCO2/imgs/bus.png");
 
         bus.setAltText("Bus");
-        bus.setSize("46","46");
+        bus.setSize("46", "46");
 
         NumberField busPiu50 = new NumberField();
         busPiu50.setWidth(60);
 
 
-
         Image automobile = new Image("/azzeroCO2/imgs/automobile.png");
         bus.setAltText("Auto");
-        automobile.setSize("46","46");
+        automobile.setSize("46", "46");
 
         NumberField autoPiu50 = new NumberField();
         autoPiu50.setWidth(60);
@@ -255,7 +241,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         Image treno = new Image("/azzeroCO2/imgs/treno.png");
         bus.setAltText("Treno");
-        treno.setSize("46","46");
+        treno.setSize("46", "46");
 
         NumberField trenoPiu50 = new NumberField();
         trenoPiu50.setWidth(60);
@@ -272,13 +258,6 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         layoutRigaPiu50.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         panel.add(piu50input, new FormData("100%"));
-
-
-
-
-
-
-
 
 
         LayoutContainer piu100 = new LayoutContainer();
@@ -299,19 +278,17 @@ public class EventoFormTrasportoPersone extends TabItem {
         piu100input.setLayout(layoutPiu100input);
 
 
-
         Image bus100 = new Image("/azzeroCO2/imgs/bus.png");
         bus100.setAltText("Bus");
-        bus100.setSize("46","46");
+        bus100.setSize("46", "46");
 
         NumberField busPiu100 = new NumberField();
         busPiu100.setWidth(60);
 
 
-
         Image automobile100 = new Image("/azzeroCO2/imgs/automobile.png");
         automobile100.setAltText("Auto");
-        automobile100.setSize("46","46");
+        automobile100.setSize("46", "46");
 
         NumberField autoPiu100 = new NumberField();
         autoPiu100.setWidth(60);
@@ -319,7 +296,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         Image treno100 = new Image("/azzeroCO2/imgs/treno.png");
         treno100.setAltText("Treno");
-        treno100.setSize("46","46");
+        treno100.setSize("46", "46");
 
         NumberField trenoPiu100 = new NumberField();
         trenoPiu100.setWidth(60);
@@ -335,15 +312,6 @@ public class EventoFormTrasportoPersone extends TabItem {
         piu100input.add(trenoPiu100, flex);
 
         panel.add(piu100input, new FormData("100%"));
-
-
-
-
-
-
-
-
-
 
 
         LayoutContainer piu250 = new LayoutContainer();
@@ -364,19 +332,17 @@ public class EventoFormTrasportoPersone extends TabItem {
         piu250input.setLayout(layoutPiu250input);
 
 
-
         Image bus250 = new Image("/azzeroCO2/imgs/bus.png");
         bus250.setAltText("Bus");
-        bus250.setSize("46","46");
+        bus250.setSize("46", "46");
 
         NumberField busPiu250 = new NumberField();
         busPiu250.setWidth(60);
 
 
-
         Image automobile250 = new Image("/azzeroCO2/imgs/automobile.png");
         automobile250.setAltText("Auto");
-        automobile250.setSize("46","46");
+        automobile250.setSize("46", "46");
 
         NumberField autoPiu250 = new NumberField();
         autoPiu250.setWidth(60);
@@ -384,7 +350,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         Image treno250 = new Image("/azzeroCO2/imgs/treno.png");
         treno250.setAltText("Treno");
-        treno250.setSize("46","46");
+        treno250.setSize("46", "46");
 
         NumberField trenoPiu250 = new NumberField();
         trenoPiu250.setWidth(60);
@@ -392,12 +358,10 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         Image aereo250 = new Image("/azzeroCO2/imgs/Aereo.png");
         aereo250.setAltText("Aereo");
-        aereo250.setSize("46","46");
+        aereo250.setSize("46", "46");
 
         NumberField aereoPiu250 = new NumberField();
         aereoPiu250.setWidth(60);
-
-
 
 
         piu250input.add(bus250);
@@ -414,13 +378,6 @@ public class EventoFormTrasportoPersone extends TabItem {
 
 
         panel.add(piu250input, new FormData("100%"));
-
-
-
-
-
-
-
 
 
         LayoutContainer piu500 = new LayoutContainer();
@@ -441,19 +398,17 @@ public class EventoFormTrasportoPersone extends TabItem {
         piu500input.setLayout(layoutPiu500input);
 
 
-
         Image bus500 = new Image("/azzeroCO2/imgs/bus.png");
         bus500.setAltText("Bus");
-        bus500.setSize("46","46");
+        bus500.setSize("46", "46");
 
         NumberField busPiu500 = new NumberField();
         busPiu500.setWidth(60);
 
 
-
         Image automobile500 = new Image("/azzeroCO2/imgs/automobile.png");
         automobile500.setAltText("Auto");
-        automobile500.setSize("46","46");
+        automobile500.setSize("46", "46");
 
         NumberField autoPiu500 = new NumberField();
         autoPiu500.setWidth(60);
@@ -461,7 +416,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         Image treno500 = new Image("/azzeroCO2/imgs/treno.png");
         treno500.setAltText("Treno");
-        treno500.setSize("46","46");
+        treno500.setSize("46", "46");
 
         NumberField trenoPiu500 = new NumberField();
         trenoPiu500.setWidth(60);
@@ -469,12 +424,10 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         Image aereo500 = new Image("/azzeroCO2/imgs/Aereo.png");
         aereo500.setAltText("Aereo");
-        aereo500.setSize("46","46");
+        aereo500.setSize("46", "46");
 
         NumberField aereoPiu500 = new NumberField();
         aereoPiu500.setWidth(60);
-
-
 
 
         piu500input.add(bus500);
@@ -492,11 +445,6 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         panel.add(piu500input, new FormData("100%"));
 
-
-
-
-
-        vp.add(panel);
 
     }
 }

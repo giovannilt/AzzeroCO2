@@ -1,16 +1,14 @@
 package it.agilis.mens.azzeroCO2.client.forms;
 
+import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
-import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
-import com.extjs.gxt.ui.client.widget.layout.FormData;
-import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
-import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 
 /**
@@ -22,24 +20,26 @@ import com.google.gwt.user.client.Element;
  */
 public class EventoFormPernottamenti extends TabItem {
 
-
-    private VerticalPanel vp;
+    private FormPanel panel = new FormPanel();
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        vp = new VerticalPanel();
-        vp.setSpacing(10);
+        setLayout(new BorderLayout());
+        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        centerData.setMargins(new Margins(0));
+        add(panel, centerData);
+
         createColumnForm();
 
-        add(vp);
+
     }
 
 
     private void createColumnForm() {
         FormData formData = new FormData("100%");
-        FormPanel panel = new FormPanel();
+
         panel.setFrame(true);
 
         panel.setHeading("Pernottamenti");
@@ -63,7 +63,6 @@ public class EventoFormPernottamenti extends TabItem {
         notti.add(numeroNotti, flex);
 
         panel.add(notti, new FormData("100%"));
-        vp.add(panel);
 
 
     }
