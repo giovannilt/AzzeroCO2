@@ -14,7 +14,6 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.layout.*;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.client.components.eventi.Eventi;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
@@ -46,9 +45,11 @@ public class CentralView extends View {
             onContentReady(event);
         } else if (eventType.equals(CentralEvents.ConsumoCartaPanelReady)) {
             onContentReady(event);
+        } else if (eventType.equals(CentralEvents.UnAnnoDiAttivitaPanelReady)) {
+            onContentReady(event);
         } else if (eventType.equals(CentralEvents.WebPanelReady)) {
             onContentReady(event);
-        } else if(eventType.equals(CentralEvents.ShowPanel))   {
+        } else if (eventType.equals(CentralEvents.ShowPanel)) {
             setActiveItem(event.<Eventi>getData());
         }
     }

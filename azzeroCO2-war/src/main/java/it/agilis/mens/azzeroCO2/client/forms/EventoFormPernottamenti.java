@@ -33,7 +33,6 @@ public class EventoFormPernottamenti extends TabItem {
 
         createColumnForm();
 
-
     }
 
 

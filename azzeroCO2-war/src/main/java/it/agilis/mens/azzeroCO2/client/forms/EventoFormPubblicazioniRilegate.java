@@ -9,7 +9,6 @@ import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
-import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
@@ -95,7 +94,7 @@ public class EventoFormPubblicazioniRilegate extends TabItem {
             ContentPanel cp = new ContentPanel();
             cp.setHeading("Si tratta di gruppi di pagine riunite in un volume. Seleziona un tipo di pubblicazione.<br> Puoi inserire piu' di un pubblicazione ed aggiungere altre categorie.");
             cp.setFrame(true);
-            cp.setSize(299, 550);
+            cp.setSize(299, 300);
             cp.setLayout(new FitLayout());
 
             final RowEditor<CategoriePubblicazioni> re = new RowEditor<CategoriePubblicazioni>();
@@ -139,18 +138,13 @@ public class EventoFormPubblicazioniRilegate extends TabItem {
 
     private void createCentre() {
 
-        VerticalPanel vp;
-
-        vp = new VerticalPanel();
-        vp.setSpacing(10);
-        centre.add(vp);
 
         FormData formData = new FormData("100%");
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
         panel.setHeaderVisible(false);
 
-        panel.setSize(530, -1);
+        panel.setHeight(600);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
@@ -354,7 +348,7 @@ public class EventoFormPubblicazioniRilegate extends TabItem {
                 panel.add(c, new FormData("100%"));
             }
         }
-        vp.add(panel);
+        centre.add(panel);
 
     }
 }

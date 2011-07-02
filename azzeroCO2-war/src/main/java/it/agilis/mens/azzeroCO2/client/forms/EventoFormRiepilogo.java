@@ -15,8 +15,6 @@ import it.agilis.mens.azzeroCO2.shared.model.Riepilogo;
 import java.util.ArrayList;
 import java.util.List;
 
-//import com.extjs.gxt.samples.resources.client.Resources;
-
 /**
  * Created by IntelliJ IDEA.
  * User: giovannilt
@@ -27,20 +25,17 @@ import java.util.List;
 public class EventoFormRiepilogo extends TabItem {
 
     ContentPanel centre = new ContentPanel();
-
-
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
-        layout.setEnableState(false);
-        setStyleAttribute("padding", "0px");
 
         createCentre();
         centre.setHeading("Riepilogo");
-        centre.setAutoHeight(true);
+        centre.setHeight(650);
+
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
         add(centre, centerData);
@@ -76,11 +71,9 @@ public class EventoFormRiepilogo extends TabItem {
         AggregationRowConfig<Riepilogo> somma = new AggregationRowConfig<Riepilogo>();
         somma.setHtml("name", "Somma");
 
-        // with renderer
         somma.setSummaryType("kgCO2", SummaryType.SUM);
         somma.setRenderer("kgCO2", new AggregationRenderer<Riepilogo>() {
             public Object render(Number value, int colIndex, Grid<Riepilogo> grid, ListStore<Riepilogo> store) {
-                // you can return html here
                 return number.format(value.doubleValue());
             }
         });
@@ -90,10 +83,9 @@ public class EventoFormRiepilogo extends TabItem {
         somma.setHtml("name", "kgCO2");
 
         Grid<Riepilogo> grid = new Grid<Riepilogo>(store, cm);
-//        grid.setBorders(false);
-      //  grid.setAutoExpandColumn("oggetto");
         grid.setBorders(true);
         grid.setAutoHeight(true);
+
         centre.add(grid);
 
 

@@ -1,33 +1,18 @@
 package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.event.ButtonEvent;
-import com.extjs.gxt.ui.client.event.SelectionListener;
-import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
-import com.extjs.gxt.ui.client.widget.VerticalPanel;
-import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.button.IconButton;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
-import com.extjs.gxt.ui.client.widget.form.TextField;
-import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
-import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
-import it.agilis.mens.azzeroCO2.shared.model.CategoriePersone;
 
-import java.util.ArrayList;
-import java.util.List;
-
-//import com.extjs.gxt.samples.resources.client.Resources;
 
 /**
  * Created by IntelliJ IDEA.
@@ -38,7 +23,7 @@ import java.util.List;
  */
 public class EventoFormTrasportoMerci extends TabItem {
 
-    ContentPanel centre = new ContentPanel();
+      FormPanel panel = new FormPanel();
 
 
     @Override
@@ -47,33 +32,30 @@ public class EventoFormTrasportoMerci extends TabItem {
 
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
-        layout.setEnableState(false);
         setStyleAttribute("padding", "0px");
 
 
         createCentre();
-        centre.setHeading("/ Trasporto merci");
-        centre.getHeader().addTool(new ToolButton("x-tool-help"));
-        centre.getHeader().addTool(new ToolButton("x-tool-close"));
-        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        panel.setHeading("/ Trasporto merci");
+        panel.getHeader().addTool(new ToolButton("x-tool-help"));
+        panel.getHeader().addTool(new ToolButton("x-tool-close"));
+
+         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
-        add(centre, centerData);
+
+        add(panel, centerData);
 
     }
 
 
     private void createCentre() {
 
-        VerticalPanel vp;
 
-        vp = new VerticalPanel();
-        vp.setSpacing(10);
-        centre.add(vp);
+       // centre.add(panel, centerData);
 
         FormData formData = new FormData("100%");
-        FormPanel panel = new FormPanel();
+
         panel.setFrame(true);
-        panel.setHeaderVisible(false);
 
         panel.setSize(530, -1);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
@@ -372,10 +354,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         panel.add(piu500input, new FormData("100%"));
 
 
-
-
-
-        vp.add(panel);
 
     }
 }
