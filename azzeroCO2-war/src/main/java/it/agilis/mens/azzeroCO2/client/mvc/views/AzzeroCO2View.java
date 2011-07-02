@@ -83,6 +83,7 @@ public class AzzeroCO2View extends View {
         main.setStyleAttribute("padding", "5px");
         main.setAnimCollapse(true);
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        viewport.setScrollMode(Style.Scroll.AUTO);
         viewport.add(main, centerData);
 
     }

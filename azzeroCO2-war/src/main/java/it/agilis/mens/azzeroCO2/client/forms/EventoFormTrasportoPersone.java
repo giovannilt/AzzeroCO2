@@ -12,6 +12,7 @@ import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.IconButton;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
@@ -58,6 +59,8 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         createCentre();
         centre.setHeading("/ Tutte le Persone");
+        centre.getHeader().addTool(new ToolButton("x-tool-help"));
+        centre.getHeader().addTool(new ToolButton("x-tool-close"));
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
         add(centre, centerData);
@@ -214,7 +217,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         LayoutContainer piu50 = new LayoutContainer();
         HBoxLayout layoutRigaPiu50 = new HBoxLayout();
         layoutRigaPiu50.setPadding(new Padding(10));
-        layoutRigaPiu50.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        //layoutRigaPiu50.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         piu50.setLayout(layoutRigaPiu50);
 
         piu50.add(new LabelField("Distanza percorsa >50 km"), flex);
@@ -266,6 +269,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         piu50input.add(treno);
         piu50input.add(trenoPiu50, flex);
 
+        layoutRigaPiu50.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         panel.add(piu50input, new FormData("100%"));
 
 
