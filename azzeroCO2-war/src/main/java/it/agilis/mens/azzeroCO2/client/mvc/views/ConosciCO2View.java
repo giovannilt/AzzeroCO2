@@ -17,7 +17,7 @@ import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2West;
 
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.ConosciCO2Events;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 
@@ -46,9 +46,9 @@ public class ConosciCO2View extends View {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
-        } else if (eventType.equals(EventoEvents.Next)) {
+        } else if (eventType.equals(ConosciCO2Events.Next)) {
 
-        } else if (eventType.equals(EventoEvents.Previous)) {
+        } else if (eventType.equals(ConosciCO2Events.Previous)) {
 
         }
     }

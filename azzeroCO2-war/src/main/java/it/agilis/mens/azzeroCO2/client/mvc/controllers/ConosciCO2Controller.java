@@ -3,6 +3,8 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.ConosciCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.ConosciCO2View;
 
 /**
@@ -19,6 +21,8 @@ public class ConosciCO2Controller extends Controller {
     public ConosciCO2Controller() {
         registerEventTypes(AzzeroCO2Events.Init);
    	    registerEventTypes(AzzeroCO2Events.Error);
+        registerEventTypes(ConosciCO2Events.Next);
+        registerEventTypes(ConosciCO2Events.Previous);
 
     }
 
