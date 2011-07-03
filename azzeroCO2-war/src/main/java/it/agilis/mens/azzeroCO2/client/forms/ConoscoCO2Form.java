@@ -30,7 +30,7 @@ public class ConoscoCO2Form extends TabItem {
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
         add(panel, centerData);
-
+            panel.setFrame(true);
         createColumnForm();
 
     }
@@ -42,7 +42,7 @@ public class ConoscoCO2Form extends TabItem {
         //panel.setFrame(true);
 
         panel.setHeading("Kg CO2");
-        panel.setHeight(600);
+        panel.setHeight(650);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
 

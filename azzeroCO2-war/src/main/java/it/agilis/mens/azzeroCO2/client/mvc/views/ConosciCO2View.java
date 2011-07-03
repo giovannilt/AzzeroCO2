@@ -42,14 +42,14 @@ public class ConosciCO2View extends View {
 
 
     @Override
-    protected void handleEvent(AppEvent  event) {
+    protected void handleEvent(AppEvent event) {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
         } else if (eventType.equals(ConosciCO2Events.Next)) {
-
+            conoscoCO2.nextTab(event);
         } else if (eventType.equals(ConosciCO2Events.Previous)) {
-
+            conoscoCO2.previusTab(event);
         }
     }
 

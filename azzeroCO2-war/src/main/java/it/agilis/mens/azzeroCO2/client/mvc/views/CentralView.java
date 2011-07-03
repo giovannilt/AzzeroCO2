@@ -109,7 +109,9 @@ public class CentralView extends View {
 
             unAnno.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
-                    setActiveItem(Eventi.ANNO_DI_ATTIVITA);
+                   // TODO.... DA CAMBIARE
+                   // setActiveItem(Eventi.ANNO_DI_ATTIVITA);
+                   setActiveItem(Eventi.EVENTO);
                 }
             });
             unAnno.setSize(370, 400);

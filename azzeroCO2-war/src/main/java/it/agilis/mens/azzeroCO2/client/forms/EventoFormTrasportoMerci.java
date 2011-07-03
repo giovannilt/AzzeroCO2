@@ -12,6 +12,7 @@ import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
+import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 
 
 /**
@@ -96,7 +97,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
 
 
-        Image bus = new Image("/azzeroCO2/icon/bus.png");
+        Image bus = new Image(AzzeroCO2Resources.INSTANCE.bus());
 
         bus.setAltText("Bus");
         bus.setSize("46","46");
@@ -106,7 +107,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
 
 
-        Image automobile = new Image("/azzeroCO2/icon/automobile.png");
+        Image automobile =new Image(AzzeroCO2Resources.INSTANCE.automobile());
         bus.setAltText("Auto");
         automobile.setSize("46","46");
 
@@ -114,7 +115,7 @@ public class EventoFormTrasportoMerci extends TabItem {
         autoPiu50.setWidth(60);
 
 
-        Image treno = new Image("/azzeroCO2/icon/treno.png");
+        Image treno = new Image(AzzeroCO2Resources.INSTANCE.treno());
         bus.setAltText("Treno");
         treno.setSize("46","46");
 
@@ -161,7 +162,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
 
 
-        Image bus100 = new Image("/azzeroCO2/icon/bus.png");
+        Image bus100 =  new Image(AzzeroCO2Resources.INSTANCE.bus());
         bus100.setAltText("Bus");
         bus100.setSize("46","46");
 
@@ -170,7 +171,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
 
 
-        Image automobile100 = new Image("/azzeroCO2/icon/automobile.png");
+        Image automobile100 = new Image(AzzeroCO2Resources.INSTANCE.automobile());
         automobile100.setAltText("Auto");
         automobile100.setSize("46","46");
 
@@ -178,7 +179,7 @@ public class EventoFormTrasportoMerci extends TabItem {
         autoPiu100.setWidth(60);
 
 
-        Image treno100 = new Image("/azzeroCO2/icon/treno.png");
+        Image treno100 = new Image(AzzeroCO2Resources.INSTANCE.treno());
         treno100.setAltText("Treno");
         treno100.setSize("46","46");
 
@@ -226,7 +227,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
 
 
-        Image bus250 = new Image("/azzeroCO2/icon/bus.png");
+        Image bus250 =new Image(AzzeroCO2Resources.INSTANCE.bus());
         bus250.setAltText("Bus");
         bus250.setSize("46","46");
 
@@ -235,7 +236,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
 
 
-        Image automobile250 = new Image("/azzeroCO2/icon/automobile.png");
+        Image automobile250 = new Image(AzzeroCO2Resources.INSTANCE.automobile());
         automobile250.setAltText("Auto");
         automobile250.setSize("46","46");
 
@@ -243,7 +244,7 @@ public class EventoFormTrasportoMerci extends TabItem {
         autoPiu250.setWidth(60);
 
 
-        Image treno250 = new Image("/azzeroCO2/icon/treno.png");
+        Image treno250 = new Image(AzzeroCO2Resources.INSTANCE.treno());
         treno250.setAltText("Treno");
         treno250.setSize("46","46");
 
@@ -251,7 +252,7 @@ public class EventoFormTrasportoMerci extends TabItem {
         trenoPiu250.setWidth(60);
 
 
-        Image aereo250 = new Image("/azzeroCO2/icon/Aereo.png");
+        Image aereo250 = new Image(AzzeroCO2Resources.INSTANCE.aereo());
         aereo250.setAltText("Aereo");
         aereo250.setSize("46","46");
 
@@ -303,7 +304,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
 
 
-        Image bus500 = new Image("/azzeroCO2/icon/bus.png");
+        Image bus500 = new Image(AzzeroCO2Resources.INSTANCE.bus());
         bus500.setAltText("Bus");
         bus500.setSize("46","46");
 
@@ -312,7 +313,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
 
 
-        Image automobile500 = new Image("/azzeroCO2/icon/automobile.png");
+        Image automobile500 = new Image(AzzeroCO2Resources.INSTANCE.automobile());
         automobile500.setAltText("Auto");
         automobile500.setSize("46","46");
 
@@ -320,7 +321,7 @@ public class EventoFormTrasportoMerci extends TabItem {
         autoPiu500.setWidth(60);
 
 
-        Image treno500 = new Image("/azzeroCO2/icon/treno.png");
+        Image treno500 = new Image(AzzeroCO2Resources.INSTANCE.treno());
         treno500.setAltText("Treno");
         treno500.setSize("46","46");
 
@@ -328,7 +329,7 @@ public class EventoFormTrasportoMerci extends TabItem {
         trenoPiu500.setWidth(60);
 
 
-        Image aereo500 = new Image("/azzeroCO2/icon/Aereo.png");
+        Image aereo500 =new Image(AzzeroCO2Resources.INSTANCE.aereo());
         aereo500.setAltText("Aereo");
         aereo500.setSize("46","46");
 

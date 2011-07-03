@@ -6,11 +6,13 @@ import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
+import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
+import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 
 /**
  * Created by IntelliJ IDEA.
@@ -83,7 +85,7 @@ public class EventoFormConferma extends TabItem {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
                 c.setLayout(layout);
 
-                Image check = new Image("/azzeroCO2/icon/check.png");
+                Image check = new Image(AzzeroCO2Resources.INSTANCE.check());
                 check.setAltText("Bus");
                 check.setSize("40", "40");
                 c.add(check);
@@ -99,7 +101,7 @@ public class EventoFormConferma extends TabItem {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
                 c.setLayout(layout);
 
-                Image check = new Image("/azzeroCO2/icon/check.png");
+                Image check = new Image(AzzeroCO2Resources.INSTANCE.check());
                 check.setAltText("Bus");
                 check.setSize("40", "40");
                 c.add(check);
@@ -130,9 +132,8 @@ public class EventoFormConferma extends TabItem {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
                 c.setLayout(layout);
 
-                Image azzeroCO2Stemp = new Image("/azzeroCO2/icon/azzeroCO2Stemp.png");
-                azzeroCO2Stemp.setAltText("Bus");
-                azzeroCO2Stemp.setSize("100", "100");
+                Image azzeroCO2Stemp = new Image(AzzeroCO2Resources.INSTANCE.azzeroCO2Stemp());
+                azzeroCO2Stemp.setAltText("AzzeroCO2");
 
                 c.add(azzeroCO2Stemp);
 
@@ -145,10 +146,30 @@ public class EventoFormConferma extends TabItem {
 
 
     private void createCentre() {
+        centre.setLayout(new RowLayout(Style.Orientation.VERTICAL));
 
 
+        ContentPanel row = new ContentPanel();
+        row.setHeaderVisible(false);
+        row.setHeight(150);
+        row.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+
+        Text label = new Text("Hai Compensato 2.540 Kg di CO2 pintando 3.745 nuovi alberi!!");
+        label.setBorders(true);
+
+        row.add(new Image(AzzeroCO2Resources.INSTANCE.check()), new RowData(-1, 1, new Margins(4)));
+        row.add(label, new RowData(1, 1, new Margins(4, 0, 4, 0)));
+
+        centre.add(row, new RowData(1, -1, new Margins(4)));
+
+        row = new ContentPanel();
+        row.setHeaderVisible(false);
+        row.setHeight(440);
+        row.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+
+        row.add(new Image(AzzeroCO2Resources.INSTANCE.fotoAlbero()), new RowData(-1, 1, new Margins(4)));
+
+        centre.add(row, new RowData(1, 1, new Margins(4, 0, 4, 0)));
     }
-
-
 }
 

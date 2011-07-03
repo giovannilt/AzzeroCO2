@@ -56,8 +56,6 @@ public class AzzeroCO2View extends View {
         Image.prefetch("/azzeroCO2/icon/Aereo.png");
         Image.prefetch("/azzeroCO2/icon/treno.png");
         Image.prefetch("/azzeroCO2/icon/automobile.png");
-        Image.prefetch("/azzeroCO2/icon/azzeroCO2Stemp.png");
-        Image.prefetch("/azzeroCO2/icon/check.png");
 
     }
 

@@ -13,9 +13,10 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
-import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
  * Created by IntelliJ IDEA.
@@ -71,7 +72,7 @@ public class NorthPanel extends LayoutContainer {
         c.add(new Button("Into"), layoutData2);
         add(c, new FlowData(1));
 
-        Image azzeroCO2Log = new Image("/azzeroCO2/icon/header.png");
+        Image azzeroCO2Log = new Image(AzzeroCO2Resources.INSTANCE.header());
         azzeroCO2Log.setWidth("100%");
         add(azzeroCO2Log, new FlowData(1));
     }
