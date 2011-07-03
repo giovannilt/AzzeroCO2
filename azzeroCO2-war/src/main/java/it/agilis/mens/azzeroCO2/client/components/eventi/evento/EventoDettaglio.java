@@ -67,7 +67,7 @@ public class EventoDettaglio extends LayoutContainer {
 
         TabItem conferma = new TabItem("Conferma");
         conferma.add(eventoFormConferma);
-      //  conferma.setEnabled(false);
+        conferma.setEnabled(false);
         eventoTab.add(conferma);
 
         add(eventoTab);

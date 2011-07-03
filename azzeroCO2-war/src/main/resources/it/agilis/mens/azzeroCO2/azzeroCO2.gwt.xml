@@ -23,4 +23,7 @@
     <inherits name="com.extjs.gxt.charts.Chart"/>
     <inherits name="com.google.gwt.requestfactory.RequestFactory"/>
 
+    <inherits name="com.google.gwt.resources.Resources" />
+
+
 </module>

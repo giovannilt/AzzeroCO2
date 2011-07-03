@@ -15,7 +15,9 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.layout.*;
+import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Widget;
+import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
@@ -51,7 +53,6 @@ public class CentralView extends View {
         } else if (eventType.equals(CentralEvents.ConosciCO2PanelReady)) {
             onContentReady(event);
         } else if (eventType.equals(CentralEvents.ShowPanel)) {
-
             setActiveItem(event.<Eventi>getData());
         }
     }
@@ -61,9 +62,9 @@ public class CentralView extends View {
     }
 
     private void setActiveItem(Eventi evento) {
-        for(Component item : centralPanel.getItems()) {
-           if(item.getTitle().equalsIgnoreCase(evento.name())){
-                 layout.setActiveItem(item);
+        for (Component item : centralPanel.getItems()) {
+            if (item.getTitle().equalsIgnoreCase(evento.name())) {
+                layout.setActiveItem(item);
             }
         }
     }
@@ -91,6 +92,10 @@ public class CentralView extends View {
             c.setLayout(layout);
             HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
             Button unEvento = new Button("Un Evento");
+
+            unEvento.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.evento()));
+            unEvento.setIconAlign(Style.IconAlign.TOP);
+
             unEvento.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     setActiveItem(Eventi.EVENTO);
@@ -99,6 +104,9 @@ public class CentralView extends View {
             unEvento.setSize(370, 400);
             c.add(unEvento, layoutData);
             Button unAnno = new Button("Un Anno Di attivita'");
+            unAnno.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unAnnoDiAttivita()));
+            unAnno.setIconAlign(Style.IconAlign.TOP);
+
             unAnno.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     setActiveItem(Eventi.ANNO_DI_ATTIVITA);
@@ -118,6 +126,8 @@ public class CentralView extends View {
             c.setLayout(layout);
             HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
             Button pubblicazione = new Button("Una pubblicazione");
+            pubblicazione.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unaPubblicazione()));
+            pubblicazione.setIconAlign(Style.IconAlign.TOP);
             pubblicazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     setActiveItem(Eventi.UNA_PUBBLICAZIONE);
@@ -126,6 +136,8 @@ public class CentralView extends View {
             pubblicazione.setSize(245, 217);
             c.add(pubblicazione, layoutData);
             Button web = new Button("Un sito web");
+            web.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unSitoWeb()));
+            web.setIconAlign(Style.IconAlign.TOP);
             web.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     setActiveItem(Eventi.WEB);
@@ -134,6 +146,8 @@ public class CentralView extends View {
             web.setSize(245, 217);
             c.add(web, layoutData);
             Button co2 = new Button("Conosco la CO2");
+            co2.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.conoscoLaCO2()));
+            co2.setIconAlign(Style.IconAlign.TOP);
             co2.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     setActiveItem(Eventi.CONOSCI_CO2);
@@ -186,7 +200,7 @@ public class CentralView extends View {
 
             east.add(c, new FlowData(0));
         }
-         _return.setTitle(Eventi.MAIN.name());
+        _return.setTitle(Eventi.MAIN.name());
         return _return;
     }
 

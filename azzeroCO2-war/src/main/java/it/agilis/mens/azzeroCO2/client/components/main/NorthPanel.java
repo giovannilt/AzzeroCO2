@@ -71,7 +71,7 @@ public class NorthPanel extends LayoutContainer {
         c.add(new Button("Into"), layoutData2);
         add(c, new FlowData(1));
 
-        Image azzeroCO2Log = new Image("/azzeroCO2/imgs/header.png");
+        Image azzeroCO2Log = new Image("/azzeroCO2/icon/header.png");
         azzeroCO2Log.setWidth("100%");
         add(azzeroCO2Log, new FlowData(1));
     }

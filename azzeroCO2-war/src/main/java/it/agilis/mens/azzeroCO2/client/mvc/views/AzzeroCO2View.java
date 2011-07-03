@@ -35,7 +35,7 @@ public class AzzeroCO2View extends View {
     protected void handleEvent(AppEvent event) {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
-            prefetchImage (event);
+            prefetchImage(event);
             onInit(event);
         } else if (eventType.equals(AzzeroCO2Events.Error)) {
             onError(event);
@@ -52,10 +52,12 @@ public class AzzeroCO2View extends View {
     }
 
     private void prefetchImage(AppEvent event) {
-        Image.prefetch("/azzeroCO2/imgs/bus.png");
-        Image.prefetch("/azzeroCO2/imgs/Aereo.png");
-        Image.prefetch("/azzeroCO2/imgs/treno.png");
-        Image.prefetch("/azzeroCO2/imgs/automobile.png");
+        Image.prefetch("/azzeroCO2/icon/bus.png");
+        Image.prefetch("/azzeroCO2/icon/Aereo.png");
+        Image.prefetch("/azzeroCO2/icon/treno.png");
+        Image.prefetch("/azzeroCO2/icon/automobile.png");
+        Image.prefetch("/azzeroCO2/icon/azzeroCO2Stemp.png");
+        Image.prefetch("/azzeroCO2/icon/check.png");
 
     }
 
@@ -94,13 +96,13 @@ public class AzzeroCO2View extends View {
         main.setAnimCollapse(true);
 
 
-       /* VBoxLayout layoutCentre = new VBoxLayout();
-        layoutCentre.setPadding(new Padding(5));
-        layoutCentre.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
-        //viewport.setLayout(layoutCentre);
-        viewport.setLayout(new CenterLayout());
-*/
-       // BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        /* VBoxLayout layoutCentre = new VBoxLayout();
+                layoutCentre.setPadding(new Padding(5));
+                layoutCentre.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
+                //viewport.setLayout(layoutCentre);
+                viewport.setLayout(new CenterLayout());
+        */
+        // BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         viewport.setScrollMode(Style.Scroll.AUTO);
         viewport.add(main);
 

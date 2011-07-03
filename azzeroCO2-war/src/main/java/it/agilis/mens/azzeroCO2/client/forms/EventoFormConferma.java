@@ -62,8 +62,6 @@ public class EventoFormConferma extends TabItem {
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
-        Image.prefetch("/azzeroCO2/imgs/check.png");
-
 
         {  // DESCRIZIONE
             LayoutContainer c = new LayoutContainer();
@@ -85,7 +83,7 @@ public class EventoFormConferma extends TabItem {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
                 c.setLayout(layout);
 
-                Image check = new Image("/azzeroCO2/imgs/check.png");
+                Image check = new Image("/azzeroCO2/icon/check.png");
                 check.setAltText("Bus");
                 check.setSize("40", "40");
                 c.add(check);
@@ -101,7 +99,7 @@ public class EventoFormConferma extends TabItem {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
                 c.setLayout(layout);
 
-                Image check = new Image("/azzeroCO2/imgs/check.png");
+                Image check = new Image("/azzeroCO2/icon/check.png");
                 check.setAltText("Bus");
                 check.setSize("40", "40");
                 c.add(check);
@@ -132,8 +130,7 @@ public class EventoFormConferma extends TabItem {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
                 c.setLayout(layout);
 
-                Image.prefetch("/azzeroCO2/imgs/azzeroCO2Stemp.png");
-                Image azzeroCO2Stemp = new Image("/azzeroCO2/imgs/azzeroCO2Stemp.png");
+                Image azzeroCO2Stemp = new Image("/azzeroCO2/icon/azzeroCO2Stemp.png");
                 azzeroCO2Stemp.setAltText("Bus");
                 azzeroCO2Stemp.setSize("100", "100");
 
