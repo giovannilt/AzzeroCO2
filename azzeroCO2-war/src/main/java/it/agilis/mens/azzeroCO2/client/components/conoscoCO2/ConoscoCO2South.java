@@ -36,6 +36,7 @@ public class ConoscoCO2South extends LayoutContainer {
 
         ToolButton left= new ToolButton("x-tool-left");
 
+
         left.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {

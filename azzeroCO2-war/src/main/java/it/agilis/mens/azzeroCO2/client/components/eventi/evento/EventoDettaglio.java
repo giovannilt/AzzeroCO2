@@ -1,6 +1,4 @@
 package it.agilis.mens.azzeroCO2.client.components.eventi.evento;
-//package com.extjs.gxt.samples.client.examples.forms;
-
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.widget.*;
@@ -33,6 +31,7 @@ public class EventoDettaglio extends LayoutContainer {
 
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
     private final EventoFormAcquisto eventoFormAcquisto = new EventoFormAcquisto();
+    private final EventoFormConferma eventoFormConferma = new EventoFormConferma();
 
     @Override
     protected void onRender(Element target, int index) {
@@ -67,6 +66,7 @@ public class EventoDettaglio extends LayoutContainer {
         eventoTab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");
+        conferma.add(eventoFormConferma);
       //  conferma.setEnabled(false);
         eventoTab.add(conferma);
 
