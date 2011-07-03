@@ -53,17 +53,21 @@ public class EventoDettaglio extends LayoutContainer {
         TabItem calcolo = new TabItem("Calcolo");
         createCalcoloTabs();
         calcolo.add(calcoloCardPanel);
+        calcolo.setEnabled(false);
         eventoTab.add(calcolo);
 
         TabItem riepilogo = new TabItem("Riepilogo");
         riepilogo.add(eventoFormRiepilogo);
+        riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("Acquisto");
         acquisto.add(eventoFormAcquisto);
+        acquisto.setEnabled(false);
         eventoTab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");
+        conferma.setEnabled(false);
         eventoTab.add(conferma);
 
         add(eventoTab);
@@ -76,7 +80,6 @@ public class EventoDettaglio extends LayoutContainer {
         final CardLayout layout = new CardLayout();
         calcoloCardPanel.setLayout(layout);
         calcoloCardPanel.setHeaderVisible(false);
-
 
         formEnergia.setTitle("formEnergia");
         calcoloCardPanel.add(formEnergia);
@@ -92,13 +95,42 @@ public class EventoDettaglio extends LayoutContainer {
         formManifestiPiegevoliFogli.setTitle("formManifestiPiegevoliFogli");
         calcoloCardPanel.add(formManifestiPiegevoliFogli);
 
-
-
-
     }
 
     public void previusTab(AppEvent event) {
-        //To change body of created methods use File | Settings | File Templates.
+        for(int i= eventoTab.getItems().size()-1; i>=0; i--){
+            TabItem item= eventoTab.getItems().get(i);
+
+            if (eventoTab.getSelectedItem().getText().equalsIgnoreCase(item.getText())) {
+                if (item.getText().equalsIgnoreCase("Calcolo")) {
+                    ContentPanel calcolo =(ContentPanel)item.getItem(0);
+                    CardLayout layout =(CardLayout)calcolo.getLayout();
+
+                    for (int j= calcolo.getItems().size()-1; j>=0; j--) {
+                        Component subItem= calcolo.getItems().get(j);
+                        if(layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
+                            if(j > 0 ){
+                                layout.setActiveItem(calcolo.getItem(j-1));
+                                return;
+                            }else{
+                                item.setEnabled(false);
+                                eventoTab.getItems().get(i-1).setEnabled(true);
+                                eventoTab.setSelection(eventoTab.getItems().get(i-1));
+                                return;
+                            }
+                        }
+                    }
+                } else {
+                    if (i > 0 ) {
+                        item.setEnabled(false);
+                        eventoTab.getItems().get(i-1).setEnabled(true);
+                        eventoTab.setSelection(eventoTab.getItems().get(i-1));
+                        return;
+                    }
+                }
+            }
+
+        }
     }
 
     public void nextTab(AppEvent event) {
@@ -116,20 +148,21 @@ public class EventoDettaglio extends LayoutContainer {
                         if(layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
                             if(j< calcolo.getItems().size()){
                                 layout.setActiveItem(calcolo.getItem(j));
-                                break;
+                                return;
                             }else{
+                                item.setEnabled(false);
+                                eventoTab.getItems().get(i).setEnabled(true);
                                 eventoTab.setSelection(eventoTab.getItems().get(i));
                                 return;
                             }
                         }
                     }
-
-                    //   layout.setActiveItem();
-
                 } else {
                     if (i < eventoTab.getItems().size()) {
+                        item.setEnabled(false);
+                        eventoTab.getItems().get(i).setEnabled(true);
                         eventoTab.setSelection(eventoTab.getItems().get(i));
-                        break;
+                        return;
                     }
                 }
             }
