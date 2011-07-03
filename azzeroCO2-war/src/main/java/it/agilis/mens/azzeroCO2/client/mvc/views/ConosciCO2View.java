@@ -11,9 +11,10 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2;
-import it.agilis.mens.azzeroCO2.client.components.eventi.evento.EventoNorth;
-import it.agilis.mens.azzeroCO2.client.components.eventi.evento.EventoSouth;
-import it.agilis.mens.azzeroCO2.client.components.eventi.evento.EventoWest;
+import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2North;
+import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2South;
+import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2West;
+
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
@@ -28,11 +29,11 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
  * To change this template use File | Settings | File Templates.
  */
 public class ConosciCO2View extends View {
-    private ContentPanel evento = new ContentPanel();
+    private ContentPanel conoscoCO2panel = new ContentPanel();
 
     private ConoscoCO2 conoscoCO2 = new ConoscoCO2();
     private ContentPanel center = new ContentPanel();
-    private EventoSouth south = new EventoSouth();
+    private ConoscoCO2South south = new ConoscoCO2South();
 
 
     public ConosciCO2View(Controller controller) {
@@ -56,9 +57,9 @@ public class ConosciCO2View extends View {
     private void onInit(AppEvent event) {
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
-        evento.setHeaderVisible(false);
-        evento.setLayout(layout);
-        evento.setStyleAttribute("padding", "1px");
+        conoscoCO2panel.setHeaderVisible(false);
+        conoscoCO2panel.setLayout(layout);
+        conoscoCO2panel.setStyleAttribute("padding", "1px");
 
         BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 25);
         northData.setCollapsible(false);
@@ -66,7 +67,7 @@ public class ConosciCO2View extends View {
         northData.setHideCollapseTool(false);
         northData.setSplit(false);
         northData.setMargins(new Margins(0, 0, 0, 0));
-        evento.add(new EventoNorth(), northData);
+        conoscoCO2panel.add(new ConoscoCO2North(), northData);
 
 
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 150);
@@ -76,7 +77,7 @@ public class ConosciCO2View extends View {
         westData.setSplit(false);
         westData.setMargins(new Margins(0, 0, 0, 0));
 
-        evento.add(new EventoWest(), westData);
+        conoscoCO2panel.add(new ConoscoCO2West(), westData);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         {
@@ -93,11 +94,11 @@ public class ConosciCO2View extends View {
             center.add(south, southData);
         }
         center.setHeaderVisible(false);
-        evento.add(center, centerData);
+        conoscoCO2panel.add(center, centerData);
 
-        conoscoCO2.setTitle(Eventi.CONOSCI_CO2.name());
+        conoscoCO2panel.setTitle(Eventi.CONOSCI_CO2.name());
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.ConosciCO2PanelReady,
-                conoscoCO2));
+                conoscoCO2panel));
     }
 
 }
