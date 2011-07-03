@@ -42,12 +42,19 @@ public class EventoView extends View {
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
         } else if (eventType.equals(EventoEvents.Next)) {
-
+            onNext(event);
         } else if (eventType.equals(EventoEvents.Previous)) {
-
+            onPrevius(event);
         }
     }
 
+    private void onPrevius(AppEvent event) {
+        eventoDettaglio.previusTab(event);
+    }
+
+    private void onNext(AppEvent event) {
+        eventoDettaglio.nextTab(event);
+    }
 
     private void onInit(AppEvent event) {
         final BorderLayout layout = new BorderLayout();
