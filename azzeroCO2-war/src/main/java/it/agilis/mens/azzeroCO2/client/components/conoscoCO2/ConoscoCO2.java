@@ -1,13 +1,11 @@
 package it.agilis.mens.azzeroCO2.client.components.conoscoCO2;
 
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.TabItem;
-import com.extjs.gxt.ui.client.widget.TabPanel;
+import com.extjs.gxt.ui.client.mvc.AppEvent;
+import com.extjs.gxt.ui.client.widget.*;
+import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.forms.ConoscoCO2Form;
-import it.agilis.mens.azzeroCO2.client.forms.EventoFormAcquisto;
-import it.agilis.mens.azzeroCO2.client.forms.EventoFormRiepilogo;
+import it.agilis.mens.azzeroCO2.client.forms.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,6 +19,9 @@ public class ConoscoCO2 extends LayoutContainer{
     private final TabPanel conoscoCO2Tab = new TabPanel();
 
     private final ConoscoCO2Form conoscoCO2Form = new ConoscoCO2Form();
+
+
+    //private final ContentPanel conoscoCO2Panel = new ContentPanel();
 
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
     private final EventoFormAcquisto  eventoFormAcquisto  = new EventoFormAcquisto();
@@ -58,6 +59,80 @@ public class ConoscoCO2 extends LayoutContainer{
 
     }
 
+
+    public void previusTab(AppEvent event) {
+        for(int i= conoscoCO2Tab.getItems().size()-1; i>=0; i--){
+            TabItem item= conoscoCO2Tab.getItems().get(i);
+
+            if (conoscoCO2Tab.getSelectedItem().getText().equalsIgnoreCase(item.getText())) {
+                if (item.getText().equalsIgnoreCase("Calcolo")) {
+                    ContentPanel calcolo =(ContentPanel)item.getItem(0);
+                    CardLayout layout =(CardLayout)calcolo.getLayout();
+
+                    for (int j= calcolo.getItems().size()-1; j>=0; j--) {
+                        Component subItem= calcolo.getItems().get(j);
+                        if(layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
+                            if(j > 0 ){
+                                layout.setActiveItem(calcolo.getItem(j-1));
+                                return;
+                            }else{
+                                item.setEnabled(false);
+                                conoscoCO2Tab.getItems().get(i-1).setEnabled(true);
+                                conoscoCO2Tab.setSelection(conoscoCO2Tab.getItems().get(i-1));
+                                return;
+                            }
+                        }
+                    }
+                } else {
+                    if (i > 0 ) {
+                        item.setEnabled(false);
+                        conoscoCO2Tab.getItems().get(i-1).setEnabled(true);
+                        conoscoCO2Tab.setSelection(conoscoCO2Tab.getItems().get(i-1));
+                        return;
+                    }
+                }
+            }
+
+        }
+    }
+
+    public void nextTab(AppEvent event) {
+        int i = 0;
+        for (TabItem item : conoscoCO2Tab.getItems()) {
+            i++;
+            if (conoscoCO2Tab.getSelectedItem().getText().equalsIgnoreCase(item.getText())) {
+                if (item.getText().equalsIgnoreCase("Calcolo")) {
+                    ContentPanel calcolo =(ContentPanel)item.getItem(0);
+                    CardLayout layout =(CardLayout)calcolo.getLayout();
+
+                    int j=0;
+                    for (Component subItem : calcolo.getItems()) {
+                        j++;
+                        if(layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
+                            if(j< calcolo.getItems().size()){
+                                layout.setActiveItem(calcolo.getItem(j));
+                                return;
+                            }else{
+                                item.setEnabled(false);
+                                conoscoCO2Tab.getItems().get(i).setEnabled(true);
+                                conoscoCO2Tab.setSelection(conoscoCO2Tab.getItems().get(i));
+                                return;
+                            }
+                        }
+                    }
+                } else {
+                    if (i < conoscoCO2Tab.getItems().size()) {
+                        item.setEnabled(false);
+                        conoscoCO2Tab.getItems().get(i).setEnabled(true);
+                        conoscoCO2Tab.setSelection(conoscoCO2Tab.getItems().get(i));
+                        return;
+                    }
+                }
+            }
+
+        }
+
+    }
 
 
 
