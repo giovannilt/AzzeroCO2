@@ -12,7 +12,8 @@ import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.ConosciCO2Events;
+
 
 /**
  * Created by IntelliJ IDEA.
@@ -39,7 +40,7 @@ public class ConoscoCO2South extends LayoutContainer {
         left.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(new AppEvent(EventoEvents.Previous, ce));
+                Dispatcher.forwardEvent(new AppEvent(ConosciCO2Events.Previous, ce));
             }
         });
         c.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
@@ -52,7 +53,7 @@ public class ConoscoCO2South extends LayoutContainer {
         right.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(new AppEvent(EventoEvents.Next, ce));
+                Dispatcher.forwardEvent(new AppEvent(ConosciCO2Events.Next, ce));
             }
         });
 
