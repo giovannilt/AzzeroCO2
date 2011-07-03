@@ -63,7 +63,7 @@ public class EventoDettaglio extends LayoutContainer {
 
         TabItem acquisto = new TabItem("Acquisto");
         acquisto.add(eventoFormAcquisto);
-     //   acquisto.setEnabled(false);
+        acquisto.setEnabled(false);
         eventoTab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");

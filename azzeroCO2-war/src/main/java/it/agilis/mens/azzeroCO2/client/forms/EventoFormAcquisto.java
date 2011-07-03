@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -11,8 +12,15 @@ import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
+import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
+import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.shared.model.ProgettiDiCompensazione;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -186,7 +194,7 @@ public class EventoFormAcquisto extends TabItem {
                 c.add(label);
 
                 TextField<String> coupon = new TextField<String>();
-                coupon.setWidth(150);
+                coupon.setWidth(170);
 
                 c.add(coupon, flex);
 
@@ -213,13 +221,45 @@ public class EventoFormAcquisto extends TabItem {
         vp.add(panel);
     }
 
-    private void createCentre() {
-        ContentPanel c = new ContentPanel();
-        c.setHeaderVisible(false);
-        c.setHeight("600");
-        //c.setWidth("300");
 
-        centre.add(c);
+    private void createCentre() {
+        final ListStore<ProgettiDiCompensazione> store = new ListStore<ProgettiDiCompensazione>();
+        {  //TODO
+            store.add(new ProgettiDiCompensazione("Biomassa in Valtellina", "UNO", "Euro Per kg/CO2 123"));
+            store.add(new ProgettiDiCompensazione("Forestazione in Italia", "UNO","Euro Per kg/CO2 123"));
+            store.add(new ProgettiDiCompensazione("Eolico in India", "UNO","Euro Per kg/CO2 123"));
+            store.add(new ProgettiDiCompensazione("Biogas da discarica a Chicago", "UNO","Euro Per kg/CO2 123.01"));
+      }
+
+    List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+
+        ColumnConfig column = new ColumnConfig();
+        column.setId("img");
+        column.setWidth(150);
+        configs.add(column);
+
+        column = new ColumnConfig();
+        column.setId("name");
+        column.setWidth(247);
+        configs.add(column);
+
+        column = new ColumnConfig();
+        column.setId("kgCO2");
+        column.setAlignment(Style.HorizontalAlignment.RIGHT);
+        column.setWidth(150);
+        configs.add(column);
+
+        ColumnModel cm = new ColumnModel(configs);
+
+        Grid<ProgettiDiCompensazione> grid = new Grid<ProgettiDiCompensazione>(store, cm);
+        grid.setBorders(true);
+        grid.setHideHeaders(true);
+        grid.setHeight(600);
+        centre.add(grid);
+
+
     }
+
+
 }
 
