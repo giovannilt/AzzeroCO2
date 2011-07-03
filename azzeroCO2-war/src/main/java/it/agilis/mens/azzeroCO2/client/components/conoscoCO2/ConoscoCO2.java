@@ -1,8 +1,10 @@
 package it.agilis.mens.azzeroCO2.client.components.conoscoCO2;
 
+import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
+import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
@@ -21,6 +23,7 @@ public class ConoscoCO2 extends LayoutContainer{
     private final ConoscoCO2Form conoscoCO2Form = new ConoscoCO2Form();
 
 
+    //private final ContentPanel conoscoCO2Panel = new ContentPanel();
 
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
     private final EventoFormAcquisto  eventoFormAcquisto  = new EventoFormAcquisto();
@@ -53,8 +56,15 @@ public class ConoscoCO2 extends LayoutContainer{
         TabItem conferma = new TabItem("Conferma");
         conoscoCO2Tab.add(conferma);
 
+
         add(conoscoCO2Tab);
+
     }
+
+
+
+
+
 
 
 

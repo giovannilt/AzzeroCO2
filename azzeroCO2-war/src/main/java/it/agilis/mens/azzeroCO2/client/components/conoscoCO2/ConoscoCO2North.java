@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.client.components.eventi.evento;
+package it.agilis.mens.azzeroCO2.client.components.conoscoCO2;
 
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
@@ -17,7 +17,7 @@ import com.google.gwt.user.client.Element;
  * Time: 12:06 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoNorth extends LayoutContainer {
+public class ConoscoCO2North extends LayoutContainer {
 
     @Override
     protected void onRender(Element target, int index) {
@@ -29,7 +29,7 @@ public class EventoNorth extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.TOP);
         c.setLayout(layout);
 
-        c.add(new Html("<p style=\"padding:1px;\">Compensa un Evento</p>"));
+        c.add(new Html("<p style=\"padding:1px;\">Compensa una quantità di CO2</p>"));
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         flex.setFlex(1);
