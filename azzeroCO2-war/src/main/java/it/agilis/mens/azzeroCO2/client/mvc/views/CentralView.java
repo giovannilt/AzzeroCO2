@@ -10,14 +10,15 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.mvc.View;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
+import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.ui.Widget;
-import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
  * Created by IntelliJ IDEA.
@@ -50,6 +51,7 @@ public class CentralView extends View {
         } else if (eventType.equals(CentralEvents.ConosciCO2PanelReady)) {
             onContentReady(event);
         } else if (eventType.equals(CentralEvents.ShowPanel)) {
+
             setActiveItem(event.<Eventi>getData());
         }
     }
@@ -59,9 +61,11 @@ public class CentralView extends View {
     }
 
     private void setActiveItem(Eventi evento) {
-
-
-        layout.setActiveItem(centralPanel.getItem(evento.ordinal()));
+        for(Component item : centralPanel.getItems()) {
+           if(item.getTitle().equalsIgnoreCase(evento.name())){
+                 layout.setActiveItem(item);
+            }
+        }
     }
 
     private ContentPanel getStartContent() {
@@ -182,7 +186,7 @@ public class CentralView extends View {
 
             east.add(c, new FlowData(0));
         }
-
+         _return.setTitle(Eventi.MAIN.name());
         return _return;
     }
 
@@ -193,6 +197,7 @@ public class CentralView extends View {
         centralPanel.setLayout(layout);
         layout.setActiveItem(centralPanel.getItem(Eventi.MAIN.ordinal()));
         centralPanel.add(getStartContent());
+
         Dispatcher.forwardEvent(new AppEvent(AzzeroCO2Events.CentralPanelReady,
                 centralPanel));
     }

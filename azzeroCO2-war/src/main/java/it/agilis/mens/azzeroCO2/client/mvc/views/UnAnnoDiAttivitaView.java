@@ -8,6 +8,7 @@ import com.extjs.gxt.ui.client.mvc.View;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
  * Created by IntelliJ IDEA.
@@ -33,6 +34,7 @@ public class UnAnnoDiAttivitaView extends View {
 
 
     private void onInit(AppEvent event) {
+        unAnnoDiAttivita.setTitle(Eventi.ANNO_DI_ATTIVITA.name());
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.UnAnnoDiAttivitaPanelReady,
                 unAnnoDiAttivita));
     }

@@ -14,6 +14,7 @@ import it.agilis.mens.azzeroCO2.client.components.eventi.evento.*;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
  * Created by IntelliJ IDEA.
@@ -90,6 +91,8 @@ public class EventoView extends View {
         center.setHeaderVisible(false);
         evento.add(center, centerData);
 
+
+        evento.setTitle(Eventi.EVENTO.name());
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.EventoPanelReady,
                 evento));
     }
