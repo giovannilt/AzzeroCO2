@@ -10,6 +10,7 @@ import com.extjs.gxt.ui.client.widget.VerticalPanel;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
+import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 
@@ -173,6 +174,41 @@ public class EventoFormAcquisto extends TabItem {
 
                 panel.add(c, new FormData("100%"));
             }
+            { // Coupon
+                LayoutContainer c = new LayoutContainer();
+                HBoxLayout layout = new HBoxLayout();
+                layout.setPadding(new Padding(5));
+                layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+                c.setLayout(layout);
+
+                LabelField label = new LabelField("Hai Un Coupon? ");
+                label.setWidth(100);
+                c.add(label);
+
+                TextField<String> coupon = new TextField<String>();
+                coupon.setWidth(150);
+
+                c.add(coupon, flex);
+
+                panel.add(c, new FormData("100%"));
+            }
+            { // Coupon
+                LayoutContainer c = new LayoutContainer();
+                c.setHeight(295);
+                c.setWidth(290);
+                c.setStyleAttribute("background-color", "#FF9933");
+                HBoxLayout layout = new HBoxLayout();
+                layout.setPadding(new Padding(10));
+                layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+                c.setLayout(layout);
+
+                LabelField label = new LabelField("AzzeroCO2 puo' offrirti <br>consulenza per<br>la riduzione delle emissioni <br>Chiamaci !!");
+                label.setStyleAttribute("font-size", "20px");
+                label.setWidth(300);
+                c.add(label);
+                panel.add(c, new FormData("100%"));
+            }
+
         }
         vp.add(panel);
     }
