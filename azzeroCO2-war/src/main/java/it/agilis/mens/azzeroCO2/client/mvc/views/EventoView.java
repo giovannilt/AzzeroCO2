@@ -43,6 +43,8 @@ public class EventoView extends View {
             onInit(event);
         } else if (eventType.equals(EventoEvents.Next)) {
             onNext(event);
+        } else if (eventType.equals(EventoEvents.ClearPanel)) {
+           eventoDettaglio.clearPanel();
         } else if (eventType.equals(EventoEvents.Previous)) {
             onPrevius(event);
         }

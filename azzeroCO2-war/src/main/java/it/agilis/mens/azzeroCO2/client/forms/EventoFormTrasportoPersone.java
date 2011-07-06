@@ -1,8 +1,10 @@
 package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.event.ButtonEvent;
-import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.binding.FormBinding;
+import com.extjs.gxt.ui.client.data.BeanModel;
+import com.extjs.gxt.ui.client.data.ModelData;
+import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
@@ -21,7 +23,7 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.shared.model.CategoriePersone;
+import it.agilis.mens.azzeroCO2.shared.model.EventoCategoriePersoneDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,8 @@ public class EventoFormTrasportoPersone extends TabItem {
 
     ContentPanel west = new ContentPanel();
     ContentPanel centre = new ContentPanel();
+
+    FormBinding binding;
 
 
     @Override
@@ -67,26 +71,23 @@ public class EventoFormTrasportoPersone extends TabItem {
 
     private void createWest() {
         {
+
+            final ListStore<EventoCategoriePersoneDTO> store = new ListStore<EventoCategoriePersoneDTO>();
+            // TODO
+            {
+                store.add(new EventoCategoriePersoneDTO("tutte le persone"));
+            }
+
+
             List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-            ColumnConfig column = new ColumnConfig();
-            column.setRowHeader(false);
-            column.setId("name");
-
-            //column.setHeader("Common Name");
-            column.setWidth(299);
+            ColumnConfig column = new ColumnConfig("name", "", 299);
 
             TextField<String> text = new TextField<String>();
             text.setAllowBlank(false);
             column.setEditor(new CellEditor(text));
             configs.add(column);
 
-
-            final ListStore<CategoriePersone> store = new ListStore<CategoriePersone>();
-            // TODO
-            {
-                store.add(new CategoriePersone("tutte le persone"));
-            }
 
             ColumnModel cm = new ColumnModel(configs);
 
@@ -97,14 +98,8 @@ public class EventoFormTrasportoPersone extends TabItem {
             cp.setLayout(new FitLayout());
 
 
-            final Grid<CategoriePersone> grid = new Grid<CategoriePersone>(store, cm);
-
-            grid.setAutoExpandColumn("name");
-            grid.setBorders(true);
-            grid.setHideHeaders(true);
-            //   grid.getAriaSupport().setLabelledBy(cp.getHeader().getId() + "-label");
+            final Grid grid = new Grid<EventoCategoriePersoneDTO>(store, cm);
             cp.add(grid);
-
             cp.setButtonAlign(Style.HorizontalAlignment.CENTER);
             west.add(cp);
         }
@@ -125,13 +120,13 @@ public class EventoFormTrasportoPersone extends TabItem {
             configs.add(column);
 
 
-            final ListStore<CategoriePersone> store = new ListStore<CategoriePersone>();
+            final ListStore<EventoCategoriePersoneDTO> store = new ListStore<EventoCategoriePersoneDTO>();
             // TODO
             {
-                store.add(new CategoriePersone("relatori"));
-                store.add(new CategoriePersone("spettatori"));
-                store.add(new CategoriePersone("staff"));
-                store.add(new CategoriePersone("fornitori"));
+                store.add(new EventoCategoriePersoneDTO("relatori"));
+                store.add(new EventoCategoriePersoneDTO("spettatori"));
+                store.add(new EventoCategoriePersoneDTO("staff"));
+                store.add(new EventoCategoriePersoneDTO("fornitori"));
             }
 
             ColumnModel cm = new ColumnModel(configs);
@@ -142,20 +137,33 @@ public class EventoFormTrasportoPersone extends TabItem {
             cp.setSize(299, 300);
             cp.setLayout(new FitLayout());
 
-            final RowEditor<CategoriePersone> re = new RowEditor<CategoriePersone>();
+            final RowEditor<EventoCategoriePersoneDTO> re = new RowEditor<EventoCategoriePersoneDTO>();
             re.getMessages().setSaveText("Salva");
             re.getMessages().setCancelText("Annulla");
 
 
             re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
-            final Grid<CategoriePersone> grid = new Grid<CategoriePersone>(store, cm);
+            final Grid<EventoCategoriePersoneDTO> grid = new Grid<EventoCategoriePersoneDTO>(store, cm);
 
             grid.setAutoExpandColumn("name");
             grid.setBorders(true);
             grid.addPlugin(re);
             grid.setHideHeaders(true);
-            // grid.getAriaSupport().setLabelledBy(cp.getHeader().getId() + "-label");
+            grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
+
+            grid.getSelectionModel().addListener(Events.SelectionChange,
+                    new Listener<SelectionChangedEvent<BeanModel>>() {
+                        public void handleEvent(SelectionChangedEvent<BeanModel> be) {
+                            if (be.getSelection().size() > 0) {
+                                ModelData selectedModel = (ModelData) be.getSelection().get(0);
+                                binding.bind(selectedModel);
+                            } else {
+                                binding.unbind();
+                            }
+                        }
+                    });
+
             cp.add(grid);
 
             ToolBar toolBar = new ToolBar();
@@ -164,7 +172,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
                 @Override
                 public void componentSelected(ButtonEvent ce) {
-                    CategoriePersone cate = new CategoriePersone("custom");
+                    EventoCategoriePersoneDTO cate = new EventoCategoriePersoneDTO("custom");
 
                     re.stopEditing(false);
                     store.insert(cate, 0);
@@ -183,7 +191,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
     private void createCentre() {
 
-        FormData formData = new FormData("100%");
+        //    FormData formData = new FormData("100%");
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
         panel.setHeaderVisible(false);
@@ -446,7 +454,10 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         panel.add(piu500input, new FormData("100%"));
 
+        binding = new FormBinding(panel);
+    }
 
+    public void clear() {
     }
 }
 

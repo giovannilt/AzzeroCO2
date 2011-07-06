@@ -12,7 +12,7 @@ import java.util.Date;
  * Time: 12:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoDTO implements BeanModelTag, Serializable {
+public class EventoDettaglioDTO implements BeanModelTag, Serializable {
 
     private String nome;
     private String dove;

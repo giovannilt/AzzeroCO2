@@ -171,5 +171,8 @@ public class EventoFormConferma extends TabItem {
 
         centre.add(row, new RowData(1, 1, new Margins(4, 0, 4, 0)));
     }
+
+    public void clear() {
+    }
 }
 

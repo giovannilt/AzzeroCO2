@@ -1,6 +1,9 @@
 package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.binding.FormBinding;
+import com.extjs.gxt.ui.client.data.BeanModel;
+import com.extjs.gxt.ui.client.data.BeanModelLookup;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -11,6 +14,7 @@ import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.shared.model.EventoCalcoloDTO;
 
 //import com.extjs.gxt.samples.resources.client.Resources;
 
@@ -23,7 +27,10 @@ import com.google.gwt.user.client.Element;
  */
 public class EventoFormEnergia extends TabItem {
 
-    FormPanel panel = new FormPanel();
+    private FormPanel panel = new FormPanel();
+    private EventoCalcoloDTO eventoCalcoloDTO = new EventoCalcoloDTO();
+    private FormBinding binding = null;
+    private BeanModel model = null;
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -45,8 +52,6 @@ public class EventoFormEnergia extends TabItem {
 
 
     private void createColumnForm() {
-        FormData formData = new FormData("100%");
-
         panel.setFrame(true);
 
         panel.setHeading("Energia");
@@ -99,6 +104,7 @@ public class EventoFormEnergia extends TabItem {
         cGas.setLayout(layoutGas);
 
         NumberField gasMetano = new NumberField();
+        gasMetano.setName("gasMetano");
         gasMetano.setWidth(60);
 
         label = new LabelField("Gas Metano ");
@@ -116,6 +122,7 @@ public class EventoFormEnergia extends TabItem {
         cGasoline.setLayout(layoutGasoline);
 
         NumberField gasolio = new NumberField();
+        gasolio.setName("gasolio");
         gasolio.setWidth(60);
 
         label = new LabelField("Gasolio ");
@@ -126,8 +133,21 @@ public class EventoFormEnergia extends TabItem {
 
         panel.add(cGasoline, new FormData("100%"));
 
+        binding = new FormBinding(panel, true);
+        binding.autoBind();
+        model = BeanModelLookup.get().getFactory(EventoCalcoloDTO.class).createModel(eventoCalcoloDTO);
+        binding.bind(model);
 
     }
 
+    public void clear() {
+        if (model != null) {
+            model = BeanModelLookup.get().getFactory(EventoCalcoloDTO.class).createModel(new EventoCalcoloDTO());
+            binding.bind(model);
+        }
+    }
+    public void setModelObject(EventoCalcoloDTO eventoCalcoloDTO){
+       this.eventoCalcoloDTO =eventoCalcoloDTO;
+    }
 }
 

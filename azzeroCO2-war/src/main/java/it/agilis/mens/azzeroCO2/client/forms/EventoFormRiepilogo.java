@@ -91,6 +91,8 @@ public class EventoFormRiepilogo extends TabItem {
 
     }
 
+    public void clear() {
+    }
 }
 
 

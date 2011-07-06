@@ -6,6 +6,7 @@ import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
+import it.agilis.mens.azzeroCO2.shared.model.EventoDettaglioDTO;
 
 
 /**
@@ -19,7 +20,8 @@ public class EventoDettaglio extends LayoutContainer {
 
     private final TabPanel eventoTab = new TabPanel();
 
-    private final EventoFormDettaglio formDettaglio = new EventoFormDettaglio();
+
+    private EventoFormDettaglio formDettaglio = null;
 
     private final ContentPanel calcoloCardPanel = new ContentPanel();
     private final EventoFormEnergia formEnergia = new EventoFormEnergia();
@@ -46,6 +48,10 @@ public class EventoDettaglio extends LayoutContainer {
         eventoTab.setSize(855, 637);
 
         TabItem dettaglio = new TabItem("Dettaglio");
+        EventoDettaglioDTO eventoDettaglioDTO = new EventoDettaglioDTO();
+        eventoDettaglioDTO.setNome("MA CHI SE NE FREGA");
+        eventoDettaglioDTO.setDove("A casa mia");
+        formDettaglio = new EventoFormDettaglio(eventoDettaglioDTO);
         dettaglio.add(formDettaglio);
         eventoTab.add(dettaglio);
 
@@ -98,33 +104,33 @@ public class EventoDettaglio extends LayoutContainer {
     }
 
     public void previusTab(AppEvent event) {
-        for(int i= eventoTab.getItems().size()-1; i>=0; i--){
-            TabItem item= eventoTab.getItems().get(i);
+        for (int i = eventoTab.getItems().size() - 1; i >= 0; i--) {
+            TabItem item = eventoTab.getItems().get(i);
 
             if (eventoTab.getSelectedItem().getText().equalsIgnoreCase(item.getText())) {
                 if (item.getText().equalsIgnoreCase("Calcolo")) {
-                    ContentPanel calcolo =(ContentPanel)item.getItem(0);
-                    CardLayout layout =(CardLayout)calcolo.getLayout();
+                    ContentPanel calcolo = (ContentPanel) item.getItem(0);
+                    CardLayout layout = (CardLayout) calcolo.getLayout();
 
-                    for (int j= calcolo.getItems().size()-1; j>=0; j--) {
-                        Component subItem= calcolo.getItems().get(j);
-                        if(layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
-                            if(j > 0 ){
-                                layout.setActiveItem(calcolo.getItem(j-1));
+                    for (int j = calcolo.getItems().size() - 1; j >= 0; j--) {
+                        Component subItem = calcolo.getItems().get(j);
+                        if (layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
+                            if (j > 0) {
+                                layout.setActiveItem(calcolo.getItem(j - 1));
                                 return;
-                            }else{
+                            } else {
                                 item.setEnabled(false);
-                                eventoTab.getItems().get(i-1).setEnabled(true);
-                                eventoTab.setSelection(eventoTab.getItems().get(i-1));
+                                eventoTab.getItems().get(i - 1).setEnabled(true);
+                                eventoTab.setSelection(eventoTab.getItems().get(i - 1));
                                 return;
                             }
                         }
                     }
                 } else {
-                    if (i > 0 ) {
+                    if (i > 0) {
                         item.setEnabled(false);
-                        eventoTab.getItems().get(i-1).setEnabled(true);
-                        eventoTab.setSelection(eventoTab.getItems().get(i-1));
+                        eventoTab.getItems().get(i - 1).setEnabled(true);
+                        eventoTab.setSelection(eventoTab.getItems().get(i - 1));
                         return;
                     }
                 }
@@ -139,17 +145,17 @@ public class EventoDettaglio extends LayoutContainer {
             i++;
             if (eventoTab.getSelectedItem().getText().equalsIgnoreCase(item.getText())) {
                 if (item.getText().equalsIgnoreCase("Calcolo")) {
-                    ContentPanel calcolo =(ContentPanel)item.getItem(0);
-                    CardLayout layout =(CardLayout)calcolo.getLayout();
+                    ContentPanel calcolo = (ContentPanel) item.getItem(0);
+                    CardLayout layout = (CardLayout) calcolo.getLayout();
 
-                    int j=0;
+                    int j = 0;
                     for (Component subItem : calcolo.getItems()) {
                         j++;
-                        if(layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
-                            if(j< calcolo.getItems().size()){
+                        if (layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
+                            if (j < calcolo.getItems().size()) {
                                 layout.setActiveItem(calcolo.getItem(j));
                                 return;
-                            }else{
+                            } else {
                                 item.setEnabled(false);
                                 eventoTab.getItems().get(i).setEnabled(true);
                                 eventoTab.setSelection(eventoTab.getItems().get(i));
@@ -159,6 +165,7 @@ public class EventoDettaglio extends LayoutContainer {
                     }
                 } else {
                     if (i < eventoTab.getItems().size()) {
+
                         item.setEnabled(false);
                         eventoTab.getItems().get(i).setEnabled(true);
                         eventoTab.setSelection(eventoTab.getItems().get(i));
@@ -168,6 +175,22 @@ public class EventoDettaglio extends LayoutContainer {
             }
 
         }
+
+    }
+
+    public void clearPanel() {
+
+        formDettaglio.clear();
+        formEnergia.clear();
+        formTrasportoPersone.clear();
+        formPernottamenti.clear();
+        formTrasportoMerci.clear();
+        formPubblicazioniRilegate.clear();
+        formManifestiPiegevoliFogli.clear();
+
+        eventoFormRiepilogo.clear();
+        eventoFormAcquisto.clear();
+        eventoFormConferma.clear();
 
     }
 }

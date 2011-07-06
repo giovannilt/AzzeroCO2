@@ -18,4 +18,5 @@ public class CentralEvents {
     public static final EventType WebPanelReady= new EventType();
 
     public static final EventType ShowPanel= new EventType();
+
 }

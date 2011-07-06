@@ -351,4 +351,7 @@ public class EventoFormPubblicazioniRilegate extends TabItem {
         centre.add(panel);
 
     }
+
+    public void clear() {
+    }
 }

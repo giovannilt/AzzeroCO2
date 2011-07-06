@@ -264,4 +264,7 @@ public class EventoFormManifestiPieghevoliFogli extends TabItem {
         centre.add(panel);
 
     }
+
+    public void clear() {
+    }
 }

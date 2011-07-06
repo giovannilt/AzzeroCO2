@@ -261,5 +261,7 @@ public class EventoFormAcquisto extends TabItem {
     }
 
 
+    public void clear() {
+    }
 }
 

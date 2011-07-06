@@ -22,6 +22,8 @@ public class EventoController extends Controller {
    	    registerEventTypes(AzzeroCO2Events.Error);
         registerEventTypes(EventoEvents.Next);
         registerEventTypes(EventoEvents.Previous);
+        registerEventTypes(EventoEvents.ClearPanel);
+        registerEventTypes(EventoEvents.Save);
 
     }
 

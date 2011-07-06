@@ -1,6 +1,9 @@
 package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.binding.FormBinding;
+import com.extjs.gxt.ui.client.data.BeanModel;
+import com.extjs.gxt.ui.client.data.BeanModelLookup;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -10,6 +13,7 @@ import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.shared.model.EventoCalcoloDTO;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,6 +24,9 @@ import com.google.gwt.user.client.Element;
  */
 public class EventoFormPernottamenti extends TabItem {
 
+    private EventoCalcoloDTO eventoCalcoloDTO = new EventoCalcoloDTO();
+    private FormBinding binding = null;
+    private BeanModel model = null;
     private FormPanel panel = new FormPanel();
 
     @Override
@@ -55,6 +62,7 @@ public class EventoFormPernottamenti extends TabItem {
         notti.setLayout(layoutNotti);
 
         NumberField numeroNotti = new NumberField();
+        numeroNotti.setName("notti");
         numeroNotti.setWidth(60);
 
 
@@ -63,7 +71,21 @@ public class EventoFormPernottamenti extends TabItem {
 
         panel.add(notti, new FormData("100%"));
 
+        binding = new FormBinding(panel, true);
+        binding.autoBind();
+        model = BeanModelLookup.get().getFactory(EventoCalcoloDTO.class).createModel(eventoCalcoloDTO);
+        binding.bind(model);
 
     }
 
+    public void clear() {
+        if (model != null) {
+            model = BeanModelLookup.get().getFactory(EventoCalcoloDTO.class).createModel(new EventoCalcoloDTO());
+            binding.bind(model);
+        }
+    }
+    
+    public void setModelObject(EventoCalcoloDTO eventoCalcoloDTO){
+       this.eventoCalcoloDTO =eventoCalcoloDTO;
+    }
 }
