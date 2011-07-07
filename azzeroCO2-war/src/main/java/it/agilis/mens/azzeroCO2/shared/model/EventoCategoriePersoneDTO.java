@@ -1,6 +1,6 @@
 package it.agilis.mens.azzeroCO2.shared.model;
 
-import com.extjs.gxt.ui.client.data.BeanModel;
+import com.extjs.gxt.ui.client.data.BeanModelTag;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Time: 1:04 AM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoCategoriePersoneDTO extends BeanModel implements Serializable{
+public class EventoCategoriePersoneDTO implements Serializable, BeanModelTag {
 
     private String name;
 

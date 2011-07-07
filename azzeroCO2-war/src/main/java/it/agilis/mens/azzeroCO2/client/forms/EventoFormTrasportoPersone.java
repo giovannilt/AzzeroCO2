@@ -3,6 +3,8 @@ package it.agilis.mens.azzeroCO2.client.forms;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.data.BeanModel;
+import com.extjs.gxt.ui.client.data.BeanModelFactory;
+import com.extjs.gxt.ui.client.data.BeanModelLookup;
 import com.extjs.gxt.ui.client.data.ModelData;
 import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.store.ListStore;
@@ -38,12 +40,19 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class EventoFormTrasportoPersone extends TabItem {
+    private BeanModelFactory beanModelFactory = BeanModelLookup.get().getFactory(EventoCategoriePersoneDTO.class);
 
-    ContentPanel west = new ContentPanel();
-    ContentPanel centre = new ContentPanel();
+    private ContentPanel west = new ContentPanel();
+    private ContentPanel centre = new ContentPanel();
 
-    FormBinding binding;
+    private FormBinding binding;
+    private ListStore<BeanModel> storeTutteLePersone = new ListStore<BeanModel>();
+    private ListStore<BeanModel> storeCustom = new ListStore<BeanModel>();
 
+    public EventoFormTrasportoPersone(ListStore<BeanModel> storeTutteLePersone, ListStore<BeanModel> storeCustom) {
+        this.storeTutteLePersone = storeTutteLePersone;
+        this.storeCustom = storeCustom;
+    }
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -71,23 +80,17 @@ public class EventoFormTrasportoPersone extends TabItem {
 
     private void createWest() {
         {
-
-            final ListStore<EventoCategoriePersoneDTO> store = new ListStore<EventoCategoriePersoneDTO>();
-            // TODO
-            {
-                store.add(new EventoCategoriePersoneDTO("tutte le persone"));
-            }
-
-
             List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-            ColumnConfig column = new ColumnConfig("name", "", 299);
+            ColumnConfig column = new ColumnConfig();
+            column.setId("name");
+            column.setWidth(299);
+            column.setRowHeader(false);
 
             TextField<String> text = new TextField<String>();
             text.setAllowBlank(false);
             column.setEditor(new CellEditor(text));
             configs.add(column);
-
 
             ColumnModel cm = new ColumnModel(configs);
 
@@ -98,9 +101,24 @@ public class EventoFormTrasportoPersone extends TabItem {
             cp.setLayout(new FitLayout());
 
 
-            final Grid grid = new Grid<EventoCategoriePersoneDTO>(store, cm);
+            final Grid grid = new Grid<BeanModel>(storeTutteLePersone, cm);
+            grid.getSelectionModel().addListener(Events.SelectionChange,
+                    new Listener<SelectionChangedEvent<BeanModel>>() {
+                        public void handleEvent(SelectionChangedEvent<BeanModel> be) {
+                            if (be.getSelection().size() > 0) {
+                                ModelData selectedModel = (ModelData) be.getSelection().get(0);
+                                binding.bind(selectedModel);
+                            } else {
+                                binding.unbind();
+                            }
+                        }
+                    });
+            grid.setAutoExpandColumn("name");
+            grid.setBorders(false);
+            grid.setHideHeaders(true);
+            //   grid.getAriaSupport().setLabelledBy(cp.getHeader().getId() + "-label");
             cp.add(grid);
-            cp.setButtonAlign(Style.HorizontalAlignment.CENTER);
+            // cp.setButtonAlign(Style.HorizontalAlignment.CENTER);
             west.add(cp);
         }
 
@@ -110,24 +128,12 @@ public class EventoFormTrasportoPersone extends TabItem {
             ColumnConfig column = new ColumnConfig();
             column.setRowHeader(false);
             column.setId("name");
-
-            //column.setHeader("Common Name");
             column.setWidth(299);
 
             TextField<String> text = new TextField<String>();
             text.setAllowBlank(false);
             column.setEditor(new CellEditor(text));
             configs.add(column);
-
-
-            final ListStore<EventoCategoriePersoneDTO> store = new ListStore<EventoCategoriePersoneDTO>();
-            // TODO
-            {
-                store.add(new EventoCategoriePersoneDTO("relatori"));
-                store.add(new EventoCategoriePersoneDTO("spettatori"));
-                store.add(new EventoCategoriePersoneDTO("staff"));
-                store.add(new EventoCategoriePersoneDTO("fornitori"));
-            }
 
             ColumnModel cm = new ColumnModel(configs);
 
@@ -137,15 +143,12 @@ public class EventoFormTrasportoPersone extends TabItem {
             cp.setSize(299, 300);
             cp.setLayout(new FitLayout());
 
-            final RowEditor<EventoCategoriePersoneDTO> re = new RowEditor<EventoCategoriePersoneDTO>();
+            final RowEditor<BeanModel> re = new RowEditor<BeanModel>();
             re.getMessages().setSaveText("Salva");
             re.getMessages().setCancelText("Annulla");
-
-
             re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
-            final Grid<EventoCategoriePersoneDTO> grid = new Grid<EventoCategoriePersoneDTO>(store, cm);
-
+            final Grid<BeanModel> grid = new Grid<BeanModel>(storeCustom, cm);
             grid.setAutoExpandColumn("name");
             grid.setBorders(true);
             grid.addPlugin(re);
@@ -175,8 +178,8 @@ public class EventoFormTrasportoPersone extends TabItem {
                     EventoCategoriePersoneDTO cate = new EventoCategoriePersoneDTO("custom");
 
                     re.stopEditing(false);
-                    store.insert(cate, 0);
-                    re.startEditing(store.indexOf(cate), true);
+                    storeCustom.insert(beanModelFactory.createModel(cate), 0);
+                    re.startEditing(storeCustom.indexOf(beanModelFactory.createModel(cate)), true);
 
                 }
 
@@ -209,7 +212,6 @@ public class EventoFormTrasportoPersone extends TabItem {
         c2.setLayout(layout2);
 
         c2.add(new LabelField("Inserisci il numero di tratte per distanza percorsa e mezzo di trasporto.<br> Es: due pendolari in treno che partecipano a un evento di 4 giorni = 16 tratte."), flex);
-
         panel.add(c2);
 
         //HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
@@ -458,6 +460,18 @@ public class EventoFormTrasportoPersone extends TabItem {
     }
 
     public void clear() {
+        storeTutteLePersone.remove(0);
+        storeTutteLePersone.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("tutte le persone")));
+
+        for (int i = 0; i < storeCustom.getModels().size(); i++) {
+            storeCustom.remove(i);
+        }
+        storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("relatori")));
+        storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("spettatori")));
+        storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("staff")));
+        storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("fornitori")));
+
+        binding.unbind();
     }
 }
 

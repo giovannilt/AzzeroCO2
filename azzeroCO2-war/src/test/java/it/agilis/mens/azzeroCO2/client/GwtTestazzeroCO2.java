@@ -1,25 +1,22 @@
 package it.agilis.mens.azzeroCO2.client;
 
-import com.google.gwt.junit.client.GWTTestCase;
-import it.agilis.mens.azzeroCO2.shared.FieldVerifier;
-
 /**
  * GWT JUnit <b>integration</b> tests must extend GWTTestCase.
  * Using <code>"GwtTest*"</code> naming pattern exclude them from running with
  * surefire during the test phase.
  */
-public class GwtTestazzeroCO2 extends GWTTestCase {
-
+public class GwtTestazzeroCO2 /*extends GWTTestCase*/ {
+    /*
     /**
      * Must refer to a valid module that sources this class.
-     */
+
     public String getModuleName() {
         return "it.agilis.mens.azzeroCO2.azzeroCO2JUnit";
     }
 
     /**
      * Tests the FieldVerifier.
-     */
+
     public void testFieldVerifier() {
         assertFalse(FieldVerifier.isValidName(null));
         assertFalse(FieldVerifier.isValidName(""));
@@ -62,7 +59,7 @@ public class GwtTestazzeroCO2 extends GWTTestCase {
                 finishTest();
             }
         });
-    }*/
+    }
 
-
+    */
 }

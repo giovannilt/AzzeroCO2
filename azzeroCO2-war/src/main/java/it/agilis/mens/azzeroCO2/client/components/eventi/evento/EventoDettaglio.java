@@ -1,11 +1,16 @@
 package it.agilis.mens.azzeroCO2.client.components.eventi.evento;
 
+import com.extjs.gxt.ui.client.data.BeanModel;
+import com.extjs.gxt.ui.client.data.BeanModelFactory;
+import com.extjs.gxt.ui.client.data.BeanModelLookup;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
+import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
+import it.agilis.mens.azzeroCO2.shared.model.EventoCategoriePersoneDTO;
 import it.agilis.mens.azzeroCO2.shared.model.EventoDettaglioDTO;
 
 
@@ -20,12 +25,16 @@ public class EventoDettaglio extends LayoutContainer {
 
     private final TabPanel eventoTab = new TabPanel();
 
+    private BeanModelFactory beanModelFactory = BeanModelLookup.get().getFactory(EventoCategoriePersoneDTO.class);
+    private ListStore<BeanModel> storeTutteLePersone = new ListStore<BeanModel>();
+    private ListStore<BeanModel> storeCustom = new ListStore<BeanModel>();
+    private EventoDettaglioDTO eventoDettaglioDTO = new EventoDettaglioDTO();
 
     private EventoFormDettaglio formDettaglio = null;
 
     private final ContentPanel calcoloCardPanel = new ContentPanel();
     private final EventoFormEnergia formEnergia = new EventoFormEnergia();
-    private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone();
+    private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone(storeTutteLePersone, storeCustom);
     private final EventoFormPernottamenti formPernottamenti = new EventoFormPernottamenti();
     private final EventoFormTrasportoMerci formTrasportoMerci = new EventoFormTrasportoMerci();
     private final EventoFormPubblicazioniRilegate formPubblicazioniRilegate = new EventoFormPubblicazioniRilegate();
@@ -39,6 +48,15 @@ public class EventoDettaglio extends LayoutContainer {
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
+        {   // TODO
+            storeTutteLePersone.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("tutte le persone")));
+
+            storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("relatori")));
+            storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("spettatori")));
+            storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("staff")));
+            storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("fornitori")));
+        }
+
         HBoxLayout layout = new HBoxLayout();
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
         setLayout(layout);
@@ -48,9 +66,7 @@ public class EventoDettaglio extends LayoutContainer {
         eventoTab.setSize(855, 637);
 
         TabItem dettaglio = new TabItem("Dettaglio");
-        EventoDettaglioDTO eventoDettaglioDTO = new EventoDettaglioDTO();
-        eventoDettaglioDTO.setNome("MA CHI SE NE FREGA");
-        eventoDettaglioDTO.setDove("A casa mia");
+
         formDettaglio = new EventoFormDettaglio(eventoDettaglioDTO);
         dettaglio.add(formDettaglio);
         eventoTab.add(dettaglio);
