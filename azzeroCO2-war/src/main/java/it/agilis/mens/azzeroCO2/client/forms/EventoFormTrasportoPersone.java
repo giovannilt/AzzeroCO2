@@ -46,6 +46,7 @@ public class EventoFormTrasportoPersone extends TabItem {
     private ContentPanel centre = new ContentPanel();
 
     private FormBinding binding;
+    private FormPanel formPanel = new FormPanel();
     private ListStore<BeanModel> storeTutteLePersone = new ListStore<BeanModel>();
     private ListStore<BeanModel> storeCustom = new ListStore<BeanModel>();
 
@@ -62,19 +63,22 @@ public class EventoFormTrasportoPersone extends TabItem {
         setLayout(layout);
         layout.setEnableState(false);
 
-        createWest();
-        west.setHeading("Trasporto Persone");
-        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 300);
-        westData.setMargins(new Margins(0));
-        add(west, westData);
 
         createCentre();
+        binding = new FormBinding(formPanel);
         centre.setHeading("/ Tutte le Persone");
         centre.getHeader().addTool(new ToolButton("x-tool-help"));
         centre.getHeader().addTool(new ToolButton("x-tool-close"));
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
         add(centre, centerData);
+
+        createWest();
+        west.setHeading("Trasporto Persone");
+        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 300);
+        westData.setMargins(new Margins(0));
+        add(west, westData);
+
 
     }
 
@@ -120,6 +124,7 @@ public class EventoFormTrasportoPersone extends TabItem {
             cp.add(grid);
             // cp.setButtonAlign(Style.HorizontalAlignment.CENTER);
             west.add(cp);
+
         }
 
         {
@@ -189,20 +194,21 @@ public class EventoFormTrasportoPersone extends TabItem {
             cp.setBottomComponent(toolBar);
             cp.setButtonAlign(Style.HorizontalAlignment.CENTER);
             west.add(cp);
+            binding.setStore(grid.getStore());
         }
     }
 
     private void createCentre() {
 
         //    FormData formData = new FormData("100%");
-        FormPanel panel = new FormPanel();
-        panel.setFrame(true);
-        panel.setHeaderVisible(false);
 
-        centre.add(panel);
+        formPanel.setFrame(true);
+        formPanel.setHeaderVisible(false);
 
-        panel.setHeight(600);
-        panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
+        centre.add(formPanel);
+
+        formPanel.setHeight(600);
+        formPanel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         LayoutContainer c2 = new LayoutContainer();
@@ -212,7 +218,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         c2.setLayout(layout2);
 
         c2.add(new LabelField("Inserisci il numero di tratte per distanza percorsa e mezzo di trasporto.<br> Es: due pendolari in treno che partecipano a un evento di 4 giorni = 16 tratte."), flex);
-        panel.add(c2);
+        formPanel.add(c2);
 
         //HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         LayoutContainer piu50 = new LayoutContainer();
@@ -223,7 +229,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         piu50.add(new LabelField("Distanza percorsa >50 km"), flex);
 
-        panel.add(piu50);
+        formPanel.add(piu50);
 
 
         LayoutContainer piu50input = new LayoutContainer();
@@ -268,7 +274,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         piu50input.add(trenoPiu50, flex);
 
         layoutRigaPiu50.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
-        panel.add(piu50input, new FormData("100%"));
+        formPanel.add(piu50input, new FormData("100%"));
 
 
         LayoutContainer piu100 = new LayoutContainer();
@@ -279,7 +285,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         piu100.add(new LabelField("Distanza percorsa >100 km"), flex);
 
-        panel.add(piu100);
+        formPanel.add(piu100);
 
 
         LayoutContainer piu100input = new LayoutContainer();
@@ -322,7 +328,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         piu100input.add(treno100);
         piu100input.add(trenoPiu100, flex);
 
-        panel.add(piu100input, new FormData("100%"));
+        formPanel.add(piu100input, new FormData("100%"));
 
 
         LayoutContainer piu250 = new LayoutContainer();
@@ -333,7 +339,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         piu250.add(new LabelField("Distanza percorsa >250 km"), flex);
 
-        panel.add(piu250);
+        formPanel.add(piu250);
 
 
         LayoutContainer piu250input = new LayoutContainer();
@@ -388,7 +394,7 @@ public class EventoFormTrasportoPersone extends TabItem {
         piu250input.add(aereoPiu250, flex);
 
 
-        panel.add(piu250input, new FormData("100%"));
+        formPanel.add(piu250input, new FormData("100%"));
 
 
         LayoutContainer piu500 = new LayoutContainer();
@@ -399,7 +405,7 @@ public class EventoFormTrasportoPersone extends TabItem {
 
         piu500.add(new LabelField("Distanza percorsa >500 km"), flex);
 
-        panel.add(piu500);
+        formPanel.add(piu500);
 
         LayoutContainer piu500input = new LayoutContainer();
         HBoxLayout layoutPiu500input = new HBoxLayout();
@@ -454,9 +460,9 @@ public class EventoFormTrasportoPersone extends TabItem {
         piu500input.add(aereoPiu500, flex);
 
 
-        panel.add(piu500input, new FormData("100%"));
+        formPanel.add(piu500input, new FormData("100%"));
 
-        binding = new FormBinding(panel);
+
     }
 
     public void clear() {

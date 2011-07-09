@@ -15,16 +15,25 @@ public class EventoCategoriePersoneDTO implements Serializable, BeanModelTag {
 
     private String name;
 
-    private Double busPiu50;
-    private Double autoPiu50;
-    private Double trenoPiu50;
-    private Double busPiu100;
-    private Double autoPiu100;
-    private Double trenoPiu100;
-    private Double busPiu250;
-    private Double autoPiu250;
-    private Double trenoPiu250;
-    private Double aereoPiu250;
+    private Boolean isCustom=false;
+
+    private int busPiu50;
+    private int autoPiu50;
+    private int trenoPiu50;
+
+    private int busPiu100;
+    private int autoPiu100;
+    private int trenoPiu100;
+
+    private int busPiu250;
+    private int autoPiu250;
+    private int trenoPiu250;
+    private int aereoPiu250;
+
+    private int busPiu500;
+    private int autoPiu500;
+    private int trenoPiu500;
+    private int aereoPiu500;
 
     public EventoCategoriePersoneDTO(String name) {
         this.name=name;
@@ -38,86 +47,124 @@ public class EventoCategoriePersoneDTO implements Serializable, BeanModelTag {
         this.name = name;
     }
 
-    public Double getBusPiu50() {
+    public int getBusPiu50() {
         return busPiu50;
     }
 
-    public void setBusPiu50(Double busPiu50) {
+    public void setBusPiu50(int busPiu50) {
         this.busPiu50 = busPiu50;
     }
 
-    public Double getAutoPiu50() {
+    public int getAutoPiu50() {
         return autoPiu50;
     }
 
-    public void setAutoPiu50(Double autoPiu50) {
+    public void setAutoPiu50(int autoPiu50) {
         this.autoPiu50 = autoPiu50;
     }
 
-    public Double getTrenoPiu50() {
+    public int getTrenoPiu50() {
         return trenoPiu50;
     }
 
-    public void setTrenoPiu50(Double trenoPiu50) {
+    public void setTrenoPiu50(int trenoPiu50) {
         this.trenoPiu50 = trenoPiu50;
     }
 
-    public Double getBusPiu100() {
+    public int getBusPiu100() {
         return busPiu100;
     }
 
-    public void setBusPiu100(Double busPiu100) {
+    public void setBusPiu100(int busPiu100) {
         this.busPiu100 = busPiu100;
     }
 
-    public Double getAutoPiu100() {
+    public int getAutoPiu100() {
         return autoPiu100;
     }
 
-    public void setAutoPiu100(Double autoPiu100) {
+    public void setAutoPiu100(int autoPiu100) {
         this.autoPiu100 = autoPiu100;
     }
 
-    public Double getTrenoPiu100() {
+    public int getTrenoPiu100() {
         return trenoPiu100;
     }
 
-    public void setTrenoPiu100(Double trenoPiu100) {
+    public void setTrenoPiu100(int trenoPiu100) {
         this.trenoPiu100 = trenoPiu100;
     }
 
-    public Double getBusPiu250() {
+    public int getBusPiu250() {
         return busPiu250;
     }
 
-    public void setBusPiu250(Double busPiu250) {
+    public void setBusPiu250(int busPiu250) {
         this.busPiu250 = busPiu250;
     }
 
-    public Double getAutoPiu250() {
+    public int getAutoPiu250() {
         return autoPiu250;
     }
 
-    public void setAutoPiu250(Double autoPiu250) {
+    public void setAutoPiu250(int autoPiu250) {
         this.autoPiu250 = autoPiu250;
     }
 
-    public Double getTrenoPiu250() {
+    public int getTrenoPiu250() {
         return trenoPiu250;
     }
 
-    public void setTrenoPiu250(Double trenoPiu250) {
+    public void setTrenoPiu250(int trenoPiu250) {
         this.trenoPiu250 = trenoPiu250;
     }
 
-    public Double getAereoPiu250() {
+    public int getAereoPiu250() {
         return aereoPiu250;
     }
 
-    public void setAereoPiu250(Double aereoPiu250) {
+    public void setAereoPiu250(int aereoPiu250) {
         this.aereoPiu250 = aereoPiu250;
     }
 
+    public Boolean getCustom() {
+        return isCustom;
+    }
 
+    public void setCustom(Boolean custom) {
+        isCustom = custom;
+    }
+
+    public int getBusPiu500() {
+        return busPiu500;
+    }
+
+    public void setBusPiu500(int busPiu500) {
+        this.busPiu500 = busPiu500;
+    }
+
+    public int getAutoPiu500() {
+        return autoPiu500;
+    }
+
+    public void setAutoPiu500(int autoPiu500) {
+        this.autoPiu500 = autoPiu500;
+    }
+
+    public int getTrenoPiu500() {
+        return trenoPiu500;
+    }
+
+    public void setTrenoPiu500(int trenoPiu500) {
+        this.trenoPiu500 = trenoPiu500;
+    }
+
+    public int getAereoPiu500() {
+        return aereoPiu500;
+    }
+
+    public void setAereoPiu500(int aereoPiu500) {
+        this.aereoPiu500 = aereoPiu500;
+    }
 }
 

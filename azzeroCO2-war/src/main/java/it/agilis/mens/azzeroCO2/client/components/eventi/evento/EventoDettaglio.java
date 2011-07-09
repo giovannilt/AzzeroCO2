@@ -10,8 +10,8 @@ import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
-import it.agilis.mens.azzeroCO2.shared.model.EventoCategoriePersoneDTO;
 import it.agilis.mens.azzeroCO2.shared.model.EventoDettaglioDTO;
+import it.agilis.mens.azzeroCO2.shared.model.Stock;
 
 
 /**
@@ -25,16 +25,18 @@ public class EventoDettaglio extends LayoutContainer {
 
     private final TabPanel eventoTab = new TabPanel();
 
-    private BeanModelFactory beanModelFactory = BeanModelLookup.get().getFactory(EventoCategoriePersoneDTO.class);
+ //   private BeanModelFactory beanModelFactory = BeanModelLookup.get().getFactory(EventoCategoriePersoneDTO.class);
+    private BeanModelFactory beanModelFactory = BeanModelLookup.get().getFactory(Stock.class);
     private ListStore<BeanModel> storeTutteLePersone = new ListStore<BeanModel>();
-    private ListStore<BeanModel> storeCustom = new ListStore<BeanModel>();
+    private ListStore<Stock> storeCustom = new ListStore<Stock>();
     private EventoDettaglioDTO eventoDettaglioDTO = new EventoDettaglioDTO();
 
     private EventoFormDettaglio formDettaglio = null;
 
     private final ContentPanel calcoloCardPanel = new ContentPanel();
     private final EventoFormEnergia formEnergia = new EventoFormEnergia();
-    private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone(storeTutteLePersone, storeCustom);
+    private final GridStoreBinding formTrasportoPersone = new GridStoreBinding(storeCustom);
+    //private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone(storeTutteLePersone, storeCustom);
     private final EventoFormPernottamenti formPernottamenti = new EventoFormPernottamenti();
     private final EventoFormTrasportoMerci formTrasportoMerci = new EventoFormTrasportoMerci();
     private final EventoFormPubblicazioniRilegate formPubblicazioniRilegate = new EventoFormPubblicazioniRilegate();
@@ -49,12 +51,35 @@ public class EventoDettaglio extends LayoutContainer {
         super.onRender(target, index);
 
         {   // TODO
-            storeTutteLePersone.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("tutte le persone")));
+            /*EventoCategoriePersoneDTO categorie = new EventoCategoriePersoneDTO("tutte le persone");
+            categorie.setCustom(false);
+            categorie.setAereoPiu250(1);
+            storeCustom.add(beanModelFactory.createModel(categorie));
 
-            storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("relatori")));
-            storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("spettatori")));
-            storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("staff")));
-            storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("fornitori")));
+            categorie = new EventoCategoriePersoneDTO("relatori");
+            categorie.setCustom(true);
+            categorie.setAereoPiu250(2);
+            storeCustom.add(beanModelFactory.createModel(categorie));
+
+            categorie = new EventoCategoriePersoneDTO("spettatori");
+            categorie.setCustom(true);
+            categorie.setAereoPiu250(3);
+            storeCustom.add(beanModelFactory.createModel(categorie));
+
+            categorie = new EventoCategoriePersoneDTO("staff");
+            categorie.setCustom(true);
+            categorie.setAereoPiu250(4);
+            storeCustom.add(beanModelFactory.createModel(categorie));
+
+            categorie = new EventoCategoriePersoneDTO("fornitori");
+            categorie.setCustom(true);
+            categorie.setAereoPiu250(5);
+            storeCustom.add(beanModelFactory.createModel(categorie));*/
+
+            Stock categorie = new Stock("1", 100);
+            storeCustom.add(categorie);
+            categorie = new Stock("2", 200);
+            storeCustom.add(categorie);
         }
 
         HBoxLayout layout = new HBoxLayout();
@@ -107,6 +132,7 @@ public class EventoDettaglio extends LayoutContainer {
         calcoloCardPanel.add(formEnergia);
 
         formTrasportoPersone.setTitle("formTrasportoPersone");
+        // calcoloCardPanel.add(formTrasportoPersone);
         calcoloCardPanel.add(formTrasportoPersone);
         formPernottamenti.setTitle("formPernottamenti");
         calcoloCardPanel.add(formPernottamenti);
