@@ -14,7 +14,7 @@ import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.EventoCalcoloDTO;
+import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 
 //import com.extjs.gxt.samples.resources.client.Resources;
 
@@ -28,7 +28,7 @@ import it.agilis.mens.azzeroCO2.shared.model.EventoCalcoloDTO;
 public class EventoFormEnergia extends TabItem {
 
     private FormPanel panel = new FormPanel();
-    private EventoCalcoloDTO eventoCalcoloDTO = new EventoCalcoloDTO();
+    private TrasportoPersoneModel trasportoPersoneModel = new TrasportoPersoneModel();
     private FormBinding binding = null;
     private BeanModel model = null;
 
@@ -135,19 +135,19 @@ public class EventoFormEnergia extends TabItem {
 
         binding = new FormBinding(panel, true);
         binding.autoBind();
-        model = BeanModelLookup.get().getFactory(EventoCalcoloDTO.class).createModel(eventoCalcoloDTO);
-        binding.bind(model);
+      //  model = BeanModelLookup.get().getFactory(TrasportoPersoneModel.class).createModel(eventoCalcoloDTO);
+        binding.bind(trasportoPersoneModel);
 
     }
 
     public void clear() {
         if (model != null) {
-            model = BeanModelLookup.get().getFactory(EventoCalcoloDTO.class).createModel(new EventoCalcoloDTO());
+            model = BeanModelLookup.get().getFactory(TrasportoPersoneModel.class).createModel(new TrasportoPersoneModel());
             binding.bind(model);
         }
     }
-    public void setModelObject(EventoCalcoloDTO eventoCalcoloDTO){
-       this.eventoCalcoloDTO =eventoCalcoloDTO;
+    public void setModelObject(TrasportoPersoneModel trasportoPersoneModel){
+       this.trasportoPersoneModel =trasportoPersoneModel;
     }
 }
 

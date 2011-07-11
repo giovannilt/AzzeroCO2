@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.shared.model;
+package it.agilis.mens.azzeroCO2.shared.model.evento;
 
 import com.extjs.gxt.ui.client.data.BeanModelTag;
 
@@ -12,7 +12,7 @@ import java.util.Date;
  * Time: 12:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoDettaglioDTO implements BeanModelTag, Serializable {
+public class DettaglioModel implements BeanModelTag, Serializable {
 
     private String nome;
     private String dove;

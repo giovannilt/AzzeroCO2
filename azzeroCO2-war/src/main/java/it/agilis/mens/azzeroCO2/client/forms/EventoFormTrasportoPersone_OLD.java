@@ -3,22 +3,31 @@ package it.agilis.mens.azzeroCO2.client.forms;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.data.BeanModel;
-import com.extjs.gxt.ui.client.data.BeanModelLookup;
+import com.extjs.gxt.ui.client.data.ModelData;
+import com.extjs.gxt.ui.client.event.*;
+import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
+import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
+import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
+import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
+//import com.extjs.gxt.samples.resources.client.Resources;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,12 +36,20 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoFormTrasportoMerci extends TabItem {
+public class EventoFormTrasportoPersone_OLD extends TabItem {
 
-    private FormPanel panel = new FormPanel();
-    private TrasportoMerciModel trasportoMerciModel = new TrasportoMerciModel();
-    private FormBinding binding = null;
-    private BeanModel model = null;
+    private ContentPanel west = new ContentPanel();
+    private ContentPanel centre = new ContentPanel();
+
+    private FormBinding binding;
+    private FormPanel formPanel = new FormPanel();
+    private ListStore<BeanModel> storeTutteLePersone = new ListStore<BeanModel>();
+    private ListStore<BeanModel> storeCustom = new ListStore<BeanModel>();
+
+    public EventoFormTrasportoPersone_OLD(ListStore<BeanModel> storeTutteLePersone, ListStore<BeanModel> storeCustom) {
+        this.storeTutteLePersone = storeTutteLePersone;
+        this.storeCustom = storeCustom;
+    }
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -40,32 +57,154 @@ public class EventoFormTrasportoMerci extends TabItem {
 
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
-        setStyleAttribute("padding", "0px");
+        layout.setEnableState(false);
 
 
         createCentre();
-        panel.setHeading("/ Trasporto merci");
-        panel.getHeader().addTool(new ToolButton("x-tool-help"));
-        panel.getHeader().addTool(new ToolButton("x-tool-close"));
-
+        binding = new FormBinding(formPanel);
+        centre.setHeading("/ Tutte le Persone");
+        centre.getHeader().addTool(new ToolButton("x-tool-help"));
+        centre.getHeader().addTool(new ToolButton("x-tool-close"));
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
+        add(centre, centerData);
 
-        add(panel, centerData);
+        createWest();
+        west.setHeading("Trasporto Persone");
+        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 300);
+        westData.setMargins(new Margins(0));
+        add(west, westData);
 
+
+    }
+
+    private void createWest() {
+        {
+            List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+
+            ColumnConfig column = new ColumnConfig();
+            column.setId("name");
+            column.setWidth(299);
+            column.setRowHeader(false);
+
+            TextField<String> text = new TextField<String>();
+            text.setAllowBlank(false);
+            column.setEditor(new CellEditor(text));
+            configs.add(column);
+
+            ColumnModel cm = new ColumnModel(configs);
+
+            ContentPanel cp = new ContentPanel();
+            cp.setHeading("Opzione A: scegli questa opzione per catalogare il numerodi persone totaliche si sono spostate per l'evento ");
+            cp.setFrame(true);
+            cp.setSize(299, 100);
+            cp.setLayout(new FitLayout());
+
+
+            final Grid grid = new Grid<BeanModel>(storeTutteLePersone, cm);
+            grid.getSelectionModel().addListener(Events.SelectionChange,
+                    new Listener<SelectionChangedEvent<BeanModel>>() {
+                        public void handleEvent(SelectionChangedEvent<BeanModel> be) {
+                            if (be.getSelection().size() > 0) {
+                                ModelData selectedModel = (ModelData) be.getSelection().get(0);
+                                binding.bind(selectedModel);
+                            } else {
+                                binding.unbind();
+                            }
+                        }
+                    });
+            grid.setAutoExpandColumn("name");
+            grid.setBorders(false);
+            grid.setHideHeaders(true);
+            //   grid.getAriaSupport().setLabelledBy(cp.getHeader().getId() + "-label");
+            cp.add(grid);
+            // cp.setButtonAlign(Style.HorizontalAlignment.CENTER);
+            west.add(cp);
+
+        }
+
+        {
+            List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+
+            ColumnConfig column = new ColumnConfig();
+            column.setRowHeader(false);
+            column.setId("name");
+            column.setWidth(299);
+
+            TextField<String> text = new TextField<String>();
+            text.setAllowBlank(false);
+            column.setEditor(new CellEditor(text));
+            configs.add(column);
+
+            ColumnModel cm = new ColumnModel(configs);
+
+            ContentPanel cp = new ContentPanel();
+            cp.setHeading("Opzione B: se invece vuoi dettagliare i trasporti per categoria di persone, compila queste categorie: ");
+            cp.setFrame(true);
+            cp.setSize(299, 300);
+            cp.setLayout(new FitLayout());
+
+            final RowEditor<BeanModel> re = new RowEditor<BeanModel>();
+            re.getMessages().setSaveText("Salva");
+            re.getMessages().setCancelText("Annulla");
+            re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
+
+            final Grid<BeanModel> grid = new Grid<BeanModel>(storeCustom, cm);
+            grid.setAutoExpandColumn("name");
+            grid.setBorders(true);
+            grid.addPlugin(re);
+            grid.setHideHeaders(true);
+            grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
+
+            grid.getSelectionModel().addListener(Events.SelectionChange,
+                    new Listener<SelectionChangedEvent<BeanModel>>() {
+                        public void handleEvent(SelectionChangedEvent<BeanModel> be) {
+                            if (be.getSelection().size() > 0) {
+                                ModelData selectedModel = (ModelData) be.getSelection().get(0);
+                                binding.bind(selectedModel);
+                            } else {
+                                binding.unbind();
+                            }
+                        }
+                    });
+
+            cp.add(grid);
+
+            ToolBar toolBar = new ToolBar();
+            Button add = new Button("Aggiungi categoria");
+            add.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+                @Override
+                public void componentSelected(ButtonEvent ce) {
+                   /* EventoCategoriePersoneDTO cate = new EventoCategoriePersoneDTO("custom");
+
+                    re.stopEditing(false);
+                    storeCustom.insert(beanModelFactory.createModel(cate), 0);
+                    re.startEditing(storeCustom.indexOf(beanModelFactory.createModel(cate)), true);
+*/
+                }
+
+            });
+
+            toolBar.add(add);
+            cp.setBottomComponent(toolBar);
+            cp.setButtonAlign(Style.HorizontalAlignment.CENTER);
+            west.add(cp);
+            binding.setStore(grid.getStore());
+        }
     }
 
     private void createCentre() {
 
+        //    FormData formData = new FormData("100%");
 
-        // centre.add(panel, centerData);
+        formPanel.setFrame(true);
+        formPanel.setHeaderVisible(false);
 
-        FormData formData = new FormData("100%");
+        centre.add(formPanel);
 
-        panel.setFrame(true);
-
-        panel.setSize(530, -1);
-        panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
+        formPanel.setHeight(600);
+        formPanel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         LayoutContainer c2 = new LayoutContainer();
@@ -74,10 +213,8 @@ public class EventoFormTrasportoMerci extends TabItem {
         layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c2.setLayout(layout2);
 
-        c2.add(new LabelField("Inserisci il numero di tonnellate di merce per chilometraggio a mezzo di trasporto. Il trasporto viene calcolato su medie di chilometraggio"), flex);
-
-        panel.add(c2);
-
+        c2.add(new LabelField("Inserisci il numero di tratte per distanza percorsa e mezzo di trasporto.<br> Es: due pendolari in treno che partecipano a un evento di 4 giorni = 16 tratte."), flex);
+        formPanel.add(c2);
 
         //HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         LayoutContainer piu50 = new LayoutContainer();
@@ -88,7 +225,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
         piu50.add(new LabelField("Distanza percorsa >50 km"), flex);
 
-        panel.add(piu50);
+        formPanel.add(piu50);
 
 
         LayoutContainer piu50input = new LayoutContainer();
@@ -104,7 +241,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         bus.setSize("46", "46");
 
         NumberField busPiu50 = new NumberField();
-        busPiu50.setName("busPiu50");
         busPiu50.setWidth(60);
 
 
@@ -113,7 +249,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         automobile.setSize("46", "46");
 
         NumberField autoPiu50 = new NumberField();
-        autoPiu50.setName("autoPiu50");
         autoPiu50.setWidth(60);
 
 
@@ -122,7 +257,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         treno.setSize("46", "46");
 
         NumberField trenoPiu50 = new NumberField();
-        trenoPiu50.setName("trenoPiu50");
         trenoPiu50.setWidth(60);
 
 
@@ -136,7 +270,7 @@ public class EventoFormTrasportoMerci extends TabItem {
         piu50input.add(trenoPiu50, flex);
 
         layoutRigaPiu50.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
-        panel.add(piu50input, new FormData("100%"));
+        formPanel.add(piu50input, new FormData("100%"));
 
 
         LayoutContainer piu100 = new LayoutContainer();
@@ -147,7 +281,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
         piu100.add(new LabelField("Distanza percorsa >100 km"), flex);
 
-        panel.add(piu100);
+        formPanel.add(piu100);
 
 
         LayoutContainer piu100input = new LayoutContainer();
@@ -162,7 +296,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         bus100.setSize("46", "46");
 
         NumberField busPiu100 = new NumberField();
-        busPiu100.setName("busPiu100");
         busPiu100.setWidth(60);
 
 
@@ -171,7 +304,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         automobile100.setSize("46", "46");
 
         NumberField autoPiu100 = new NumberField();
-        autoPiu100.setName("autoPiu100");
         autoPiu100.setWidth(60);
 
 
@@ -180,7 +312,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         treno100.setSize("46", "46");
 
         NumberField trenoPiu100 = new NumberField();
-        trenoPiu100.setName("trenoPiu100");
         trenoPiu100.setWidth(60);
 
 
@@ -193,7 +324,7 @@ public class EventoFormTrasportoMerci extends TabItem {
         piu100input.add(treno100);
         piu100input.add(trenoPiu100, flex);
 
-        panel.add(piu100input, new FormData("100%"));
+        formPanel.add(piu100input, new FormData("100%"));
 
 
         LayoutContainer piu250 = new LayoutContainer();
@@ -204,7 +335,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
         piu250.add(new LabelField("Distanza percorsa >250 km"), flex);
 
-        panel.add(piu250);
+        formPanel.add(piu250);
 
 
         LayoutContainer piu250input = new LayoutContainer();
@@ -219,7 +350,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         bus250.setSize("46", "46");
 
         NumberField busPiu250 = new NumberField();
-        busPiu250.setName("busPiu250");
         busPiu250.setWidth(60);
 
 
@@ -228,7 +358,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         automobile250.setSize("46", "46");
 
         NumberField autoPiu250 = new NumberField();
-        autoPiu250.setName("autoPiu250");
         autoPiu250.setWidth(60);
 
 
@@ -237,7 +366,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         treno250.setSize("46", "46");
 
         NumberField trenoPiu250 = new NumberField();
-        trenoPiu250.setName("trenoPiu250");
         trenoPiu250.setWidth(60);
 
 
@@ -246,7 +374,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         aereo250.setSize("46", "46");
 
         NumberField aereoPiu250 = new NumberField();
-        aereoPiu250.setName("aereoPiu250");
         aereoPiu250.setWidth(60);
 
 
@@ -263,7 +390,7 @@ public class EventoFormTrasportoMerci extends TabItem {
         piu250input.add(aereoPiu250, flex);
 
 
-        panel.add(piu250input, new FormData("100%"));
+        formPanel.add(piu250input, new FormData("100%"));
 
 
         LayoutContainer piu500 = new LayoutContainer();
@@ -274,8 +401,7 @@ public class EventoFormTrasportoMerci extends TabItem {
 
         piu500.add(new LabelField("Distanza percorsa >500 km"), flex);
 
-        panel.add(piu500);
-
+        formPanel.add(piu500);
 
         LayoutContainer piu500input = new LayoutContainer();
         HBoxLayout layoutPiu500input = new HBoxLayout();
@@ -300,7 +426,8 @@ public class EventoFormTrasportoMerci extends TabItem {
         autoPiu500.setWidth(60);
 
 
-        Image treno500 = new Image(AzzeroCO2Resources.INSTANCE.treno());
+        Image treno500 =
+                new Image(AzzeroCO2Resources.INSTANCE.treno());
         treno500.setAltText("Treno");
         treno500.setSize("46", "46");
 
@@ -329,25 +456,24 @@ public class EventoFormTrasportoMerci extends TabItem {
         piu500input.add(aereoPiu500, flex);
 
 
-        panel.add(piu500input, new FormData("100%"));
+        formPanel.add(piu500input, new FormData("100%"));
 
-
-        binding = new FormBinding(panel, true);
-        binding.autoBind();
-        model = BeanModelLookup.get().getFactory(TrasportoPersoneModel.class).createModel(trasportoMerciModel);
-        binding.bind(model);
 
     }
 
     public void clear() {
-        if (model != null) {
-            model = BeanModelLookup.get().getFactory(TrasportoPersoneModel.class).createModel(new TrasportoPersoneModel());
-            binding.bind(model);
-        }
-    }
+        /*storeTutteLePersone.remove(0);
+        storeTutteLePersone.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("tutte le persone")));
 
-    public void setModelObject(TrasportoMerciModel trasportoMerciModel) {
-        this.trasportoMerciModel = trasportoMerciModel;
+        for (int i = 0; i < storeCustom.getModels().size(); i++) {
+            storeCustom.remove(i);
+        }
+        storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("relatori")));
+        storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("spettatori")));
+        storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("staff")));
+        storeCustom.add(beanModelFactory.createModel(new EventoCategoriePersoneDTO("fornitori")));
+*/
+        binding.unbind();
     }
 }
 

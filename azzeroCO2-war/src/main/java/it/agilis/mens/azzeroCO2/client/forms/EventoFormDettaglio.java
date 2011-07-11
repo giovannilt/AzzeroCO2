@@ -15,7 +15,7 @@ import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.EventoDettaglioDTO;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -26,11 +26,11 @@ import it.agilis.mens.azzeroCO2.shared.model.EventoDettaglioDTO;
  */
 public class EventoFormDettaglio extends TabItem {
 
-    private EventoDettaglioDTO eventoDettaglioDTO = new EventoDettaglioDTO();
+    private DettaglioModel eventoDettaglioDTO = new DettaglioModel();
     private FormBinding binding = null;
     private BeanModel model = null;
 
-    public EventoFormDettaglio(EventoDettaglioDTO eventoDettaglioDTO) {
+    public EventoFormDettaglio(DettaglioModel eventoDettaglioDTO) {
         this.eventoDettaglioDTO = eventoDettaglioDTO;
     }
 
@@ -108,15 +108,15 @@ public class EventoFormDettaglio extends TabItem {
 
             binding = new FormBinding(panel, true);
             binding.autoBind();
-            model = BeanModelLookup.get().getFactory(EventoDettaglioDTO.class).createModel(eventoDettaglioDTO);
+            model = BeanModelLookup.get().getFactory(DettaglioModel.class).createModel(eventoDettaglioDTO);
             binding.bind(model);
         }
 
     }
 
     public void clear() {
-        eventoDettaglioDTO = new EventoDettaglioDTO();
-        model = BeanModelLookup.get().getFactory(EventoDettaglioDTO.class).createModel(eventoDettaglioDTO);
+        eventoDettaglioDTO = new DettaglioModel();
+        model = BeanModelLookup.get().getFactory(DettaglioModel.class).createModel(eventoDettaglioDTO);
         binding.bind(model);
     }
 }
