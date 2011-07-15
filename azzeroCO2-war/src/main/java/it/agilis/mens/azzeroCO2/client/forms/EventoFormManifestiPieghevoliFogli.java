@@ -16,9 +16,9 @@ import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.CategoriePubblicazioni;
 import it.agilis.mens.azzeroCO2.shared.model.GrammaturaDiCarta;
 import it.agilis.mens.azzeroCO2.shared.model.TipoDiCarta;
+import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,12 +79,12 @@ public class EventoFormManifestiPieghevoliFogli extends TabItem {
             configs.add(column);
 
 
-            final ListStore<CategoriePubblicazioni> store = new ListStore<CategoriePubblicazioni>();
+            final ListStore<PubblicazioniRilegateModel> store = new ListStore<PubblicazioniRilegateModel>();
             // TODO
             {
-                store.add(new CategoriePubblicazioni("manifesto"));
-                store.add(new CategoriePubblicazioni("pieghevole"));
-                store.add(new CategoriePubblicazioni("fogli"));
+                store.add(new PubblicazioniRilegateModel("manifesto"));
+                store.add(new PubblicazioniRilegateModel("pieghevole"));
+                store.add(new PubblicazioniRilegateModel("fogli"));
 
             }
 
@@ -96,14 +96,14 @@ public class EventoFormManifestiPieghevoliFogli extends TabItem {
             cp.setSize(299, 300);
             cp.setLayout(new FitLayout());
 
-            final RowEditor<CategoriePubblicazioni> re = new RowEditor<CategoriePubblicazioni>();
+            final RowEditor<PubblicazioniRilegateModel> re = new RowEditor<PubblicazioniRilegateModel>();
             re.getMessages().setSaveText("Salva");
             re.getMessages().setCancelText("Annulla");
 
 
             re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
-            final Grid<CategoriePubblicazioni> grid = new Grid<CategoriePubblicazioni>(store, cm);
+            final Grid<PubblicazioniRilegateModel> grid = new Grid<PubblicazioniRilegateModel>(store, cm);
 
             grid.setAutoExpandColumn("name");
             grid.setBorders(true);
@@ -118,7 +118,7 @@ public class EventoFormManifestiPieghevoliFogli extends TabItem {
 
                 @Override
                 public void componentSelected(ButtonEvent ce) {
-                    CategoriePubblicazioni cate = new CategoriePubblicazioni("custom");
+                    PubblicazioniRilegateModel cate = new PubblicazioniRilegateModel("custom");
 
                     re.stopEditing(false);
                     store.insert(cate, 0);

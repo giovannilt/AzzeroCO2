@@ -67,12 +67,12 @@
             <id>Maven</id>
             <name>Maven repository</name>
             <url>http://maven.jahia.org/maven2/</url>
-        </repository>
+        </repository> -->
         <repository>
-            <id>mvnBrowser</id>
-            <name>Maven repository</name>
-            <url>http://www.mvnbrowser.com/</url>
-        </repository>-->
+            <id>JasperForge</id>
+            <name>JasperForge</name>
+            <url>http://maven.opennms.org/content/repositories/jasperforge-repo/</url>
+        </repository>
         <repository>
             <id>central</id>
             <name>Maven Repository Switchboard</name>

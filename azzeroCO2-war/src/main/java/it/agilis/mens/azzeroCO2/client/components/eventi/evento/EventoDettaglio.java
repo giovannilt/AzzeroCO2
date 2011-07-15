@@ -175,7 +175,6 @@ public class EventoDettaglio extends LayoutContainer {
                     }
                 }
             }
-
         }
     }
 
