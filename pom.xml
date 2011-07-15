@@ -48,7 +48,7 @@
 
     <repositories>
 
-        <!--
+
         <repository>
             <id>central_2</id>
             <name>Maven Repository Switchboard</name>
@@ -72,7 +72,7 @@
             <id>mvnBrowser</id>
             <name>Maven repository</name>
             <url>http://www.mvnbrowser.com/</url>
-        </repository>-->
+        </repository>
         <repository>
             <id>central</id>
             <name>Maven Repository Switchboard</name>
