@@ -37,7 +37,6 @@ public class EventoDettaglio extends LayoutContainer {
     private final ContentPanel calcoloCardPanel = new ContentPanel();
     private final EventoFormEnergia formEnergia = new EventoFormEnergia();
     private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone(storeCustom);
-    //private final EventoFormTrasportoPersone_OLD formTrasportoPersone = new EventoFormTrasportoPersone_OLD(storeTutteLePersone, storeCustom);
     private final EventoFormPernottamenti formPernottamenti = new EventoFormPernottamenti();
     private final EventoFormTrasportoMerci formTrasportoMerci = new EventoFormTrasportoMerci();
     private final EventoFormPubblicazioniRilegateNEW formPubblicazioniRilegate = new EventoFormPubblicazioniRilegateNEW(storePubblicazioniRilegate);

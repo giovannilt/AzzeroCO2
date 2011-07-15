@@ -9,13 +9,11 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
-import com.extjs.gxt.ui.client.widget.form.FormPanel;
-import com.extjs.gxt.ui.client.widget.form.LabelField;
-import com.extjs.gxt.ui.client.widget.form.NumberField;
-import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
@@ -52,22 +50,61 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
         final Grid<TrasportoPersoneModel> grid = createGrid();
 
+        final FormPanel panel = createForm();
+        panel.setEnabled(false);
+
+        ContentPanel radioContent = new ContentPanel();
+        radioContent.setHeaderVisible(false);
+        radioContent.setFrame(true);
+
+        Radio tutti = new Radio();
+        tutti.addListener(Events.OnClick, new Listener<BaseEvent>() {
+            public void handleEvent(BaseEvent be) {
+                Info.display("Info", "Categoria Tutte le persone Attiva");
+                panel.setHeading("Tutte le Persone");
+                panel.setEnabled(true);
+                grid.setVisible(false);
+            }
+        });
+        tutti.setBoxLabel("Tutte le persone");
+
+
+        Radio personalizzato = new Radio();
+        personalizzato.addListener(Events.OnClick, new Listener<BaseEvent>() {
+            public void handleEvent(BaseEvent be) {
+                Info.display("Info", "Categoria Personalizzate Attiva");
+                panel.setHeading("Aggiungi una Categoria o Personalizza quelle esistenti");
+                panel.setEnabled(false);
+                grid.setVisible(true);
+            }
+        });
+        personalizzato.setBoxLabel("Personalizzato");
+        personalizzato.setValue(true);
+
+        //  tutti.fireEvent(Events.OnClick);
+
+        RadioGroup radioGroup = new RadioGroup();
+        radioGroup.add(tutti);
+        radioGroup.add(personalizzato);
+        radioContent.add(radioGroup);
+
         ContentPanel cpEst = new ContentPanel();
-        cpEst.setHeading("Opzione A: scegli questa opzione per catalogare il numerodi persone totaliche si sono spostate per l'evento");
-        cpEst.setFrame(true);
-        cpEst.setLayout(new RowLayout(Orientation.HORIZONTAL));
-        cpEst.add(grid, new RowData(1, 1));
+        cpEst.setHeading("Categorie");
+
+        cpEst.setLayout(new RowLayout(Orientation.VERTICAL));
+
+        cpEst.add(radioContent, new RowData(1, 0.07, new Margins(0, 0, 0, 0)));
+        cpEst.add(grid, new RowData(1, .93, new Margins(0, 0, 0, 0)));
 
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-        cp.add(cpEst, new RowData(.3, 1));
-
-        final FormPanel panel = createForm();
+        cp.add(cpEst, new RowData(.3, .98, new Margins(0, 0, 0, 0)));
         cp.add(panel, new RowData(.7, 1));
 
         final FormBinding formBindings = new FormBinding(panel, true);
         formBindings.setStore(grid.getStore());
+
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,
@@ -76,15 +113,17 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                         if (be.getSelection().size() > 0) {
                             formBindings.bind(be.getSelection().get(0));
                             panel.setHeading(be.getSelection().get(0).toString());
+                            panel.setEnabled(true);
                         } else {
                             formBindings.unbind();
                         }
                     }
                 });
 
-
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
+
+
     }
 
     private FormPanel createForm() {
