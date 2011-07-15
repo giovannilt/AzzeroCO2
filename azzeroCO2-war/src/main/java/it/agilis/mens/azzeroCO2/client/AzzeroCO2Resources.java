@@ -30,7 +30,7 @@ public interface AzzeroCO2Resources extends ClientBundle {
     ImageResource unSitoWeb();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/Check.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 40, height = 40)
+    @ImageResource.ImageOptions(flipRtl = true)
     ImageResource check();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/AzzeroCO2Stemp.png")
@@ -42,27 +42,23 @@ public interface AzzeroCO2Resources extends ClientBundle {
     ImageResource fotoAlbero();
 
     @Source("it/agilis/mens/azzeroCO2/client/imgs/Aereo.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 46, height = 46)
+    @ImageResource.ImageOptions(flipRtl = true)
     ImageResource aereo();
 
-    @Source("it/agilis/mens/azzeroCO2/client/imgs/automobile.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 46, height = 46)
+    @Source("it/agilis/mens/azzeroCO2/client/imgs/Automobile.png")
+    @ImageResource.ImageOptions(flipRtl = true)
     ImageResource automobile();
 
-    @Source("it/agilis/mens/azzeroCO2/client/imgs/automobile2.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 46, height = 46)
-    ImageResource automobileTonda();
-
-    @Source("it/agilis/mens/azzeroCO2/client/imgs/bus.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 46, height = 46)
+    @Source("it/agilis/mens/azzeroCO2/client/imgs/Bus.png")
+    @ImageResource.ImageOptions(flipRtl = true)
     ImageResource bus();
 
     @Source("it/agilis/mens/azzeroCO2/client/imgs/tir.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 46, height = 46)
+    @ImageResource.ImageOptions(flipRtl = true)
     ImageResource tir();
 
     @Source("it/agilis/mens/azzeroCO2/client/imgs/treno.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 46, height = 46)
+    @ImageResource.ImageOptions(flipRtl = true)
     ImageResource treno();
 
     @Source("it/agilis/mens/azzeroCO2/client/imgs/header.png")
