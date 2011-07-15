@@ -47,15 +47,10 @@
     </dependencyManagement>
 
     <repositories>
-
-        <!--
         <repository>
-            <id>central_2</id>
-            <name>Maven Repository Switchboard</name>
-            <url>http://repo2.maven.org/maven2</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+            <id>HasperForge</id>
+            <name>JasperForce</name>
+            <url>http://maven.opennms.org/content/repositories/jasperforge-repo/</url>
         </repository>
         <repository>
             <id>codehaus-maven-repo</id>
@@ -67,7 +62,7 @@
             <id>Maven</id>
             <name>Maven repository</name>
             <url>http://maven.jahia.org/maven2/</url>
-        </repository> -->
+        </repository>
         <repository>
             <id>JasperForge</id>
             <name>JasperForge</name>
@@ -76,7 +71,7 @@
         <repository>
             <id>central</id>
             <name>Maven Repository Switchboard</name>
-           <url>http://repo1.maven.org/maven2</url>
+            <url>http://repo1.maven.org/maven2</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
