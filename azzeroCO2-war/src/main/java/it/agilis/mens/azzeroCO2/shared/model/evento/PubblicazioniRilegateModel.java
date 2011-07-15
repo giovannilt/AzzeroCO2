@@ -11,10 +11,6 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
  */
 public class PubblicazioniRilegateModel extends BaseModelData {
 
-    public PubblicazioniRilegateModel() {
-
-    }
-
     public PubblicazioniRilegateModel(String categoria) {
         setCategoria(categoria);
     }
