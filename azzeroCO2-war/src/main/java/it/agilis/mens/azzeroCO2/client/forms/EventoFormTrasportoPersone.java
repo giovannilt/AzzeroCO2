@@ -27,7 +27,7 @@ import java.util.List;
 
 public class EventoFormTrasportoPersone extends LayoutContainer {
     private ListStore<TrasportoPersoneModel> storeCustom = new ListStore<TrasportoPersoneModel>();
-    private ToolBar toolBar = new ToolBar();
+    private final ToolBar toolBar = new ToolBar();
 
     public EventoFormTrasportoPersone(ListStore<TrasportoPersoneModel> storeCustom) {
         this.storeCustom = storeCustom;
@@ -49,9 +49,24 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         cp.setLayout(new RowLayout(Orientation.HORIZONTAL));
 
         final Grid<TrasportoPersoneModel> grid = createGrid();
-
-        final FormPanel panel = createForm();
+        final FormPanel panel = createGroupForm();
         panel.setEnabled(false);
+
+        final FormBinding formBindings = new FormBinding(panel, true);
+        formBindings.setStore(grid.getStore());
+
+        final FormPanel panelTutte = createGroupForm();
+        panelTutte.add(panelTutte);
+        panelTutte.setHeading("Tutte le Persone");
+
+        ContentPanel cpCentre = new ContentPanel();
+        cpCentre.setHeaderVisible(false);
+        final CardLayout cardLayout = new CardLayout();
+        cpCentre.setLayout(cardLayout);
+        cpCentre.add(panelTutte);
+        cpCentre.add(panel);
+        grid.setEnabled(false);
+        toolBar.setEnabled(false);
 
         ContentPanel radioContent = new ContentPanel();
         radioContent.setHeaderVisible(false);
@@ -61,12 +76,14 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         tutti.addListener(Events.OnClick, new Listener<BaseEvent>() {
             public void handleEvent(BaseEvent be) {
                 Info.display("Info", "Categoria Tutte le persone Attiva");
-                panel.setHeading("Tutte le Persone");
-                panel.setEnabled(true);
-                grid.setVisible(false);
+                cardLayout.setActiveItem(panelTutte);
+                formBindings.unbind();
+                grid.setEnabled(false);
+                toolBar.setEnabled(false);
             }
         });
         tutti.setBoxLabel("Tutte le persone");
+        tutti.setValue(true);
 
 
         Radio personalizzato = new Radio();
@@ -74,14 +91,13 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             public void handleEvent(BaseEvent be) {
                 Info.display("Info", "Categoria Personalizzate Attiva");
                 panel.setHeading("Aggiungi una Categoria o Personalizza quelle esistenti");
+                cardLayout.setActiveItem(panel);
                 panel.setEnabled(false);
-                grid.setVisible(true);
+                grid.setEnabled(true);
+                toolBar.setEnabled(true);
             }
         });
         personalizzato.setBoxLabel("Personalizzato");
-        personalizzato.setValue(true);
-
-        //  tutti.fireEvent(Events.OnClick);
 
         RadioGroup radioGroup = new RadioGroup();
         radioGroup.add(tutti);
@@ -100,10 +116,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
         cp.add(cpEst, new RowData(.3, .98, new Margins(0, 0, 0, 0)));
-        cp.add(panel, new RowData(.7, 1));
-
-        final FormBinding formBindings = new FormBinding(panel, true);
-        formBindings.setStore(grid.getStore());
+        cp.add(cpCentre, new RowData(.7, 1));
 
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
@@ -126,7 +139,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
     }
 
-    private FormPanel createForm() {
+    private FormPanel createGroupForm() {
 
         FormPanel formPanel = new FormPanel();
         formPanel.setFrame(true);
