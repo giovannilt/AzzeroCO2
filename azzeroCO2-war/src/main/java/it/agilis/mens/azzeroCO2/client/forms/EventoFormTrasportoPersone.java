@@ -71,8 +71,8 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,
-                new Listener<SelectionChangedEvent<BeanModel>>() {
-                    public void handleEvent(SelectionChangedEvent<BeanModel> be) {
+                new Listener<SelectionChangedEvent<TrasportoPersoneModel>>() {
+                    public void handleEvent(SelectionChangedEvent<TrasportoPersoneModel> be) {
                         if (be.getSelection().size() > 0) {
                             formBindings.bind(be.getSelection().get(0));
                             panel.setHeading(be.getSelection().get(0).toString());
@@ -123,6 +123,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
             Image bus = new Image(AzzeroCO2Resources.INSTANCE.bus());
             NumberField busPiu50 = new NumberField();
+            // busPiu50.setFormat(NumberFormat.getFormat("0"));
             busPiu50.setName("busPiu50");
             busPiu50.setWidth(60);
 
@@ -290,17 +291,10 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         ColumnConfig column = new ColumnConfig();
         column.setRowHeader(false);
         column.setId("categoria");
-        column.setWidth(200);
 
         TextField<String> text = new TextField<String>();
         text.setAllowBlank(false);
         column.setEditor(new CellEditor(text));
-        configs.add(column);
-
-        column = new ColumnConfig();
-        column.setRowHeader(false);
-        column.setId("buspiu");
-        column.setWidth(99);
         configs.add(column);
 
         final RowEditor<BeanModel> re = new RowEditor<BeanModel>();

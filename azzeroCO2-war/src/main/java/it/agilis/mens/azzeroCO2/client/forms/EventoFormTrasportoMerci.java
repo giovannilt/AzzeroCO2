@@ -2,12 +2,10 @@ package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
-import com.extjs.gxt.ui.client.data.BeanModel;
-import com.extjs.gxt.ui.client.data.BeanModelLookup;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
@@ -17,7 +15,6 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 
 
 /**
@@ -27,12 +24,10 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoFormTrasportoMerci extends TabItem {
+public class EventoFormTrasportoMerci extends LayoutContainer {
 
-    private FormPanel panel = new FormPanel();
     private TrasportoMerciModel trasportoMerciModel = new TrasportoMerciModel();
     private FormBinding binding = null;
-    private BeanModel model = null;
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -40,31 +35,31 @@ public class EventoFormTrasportoMerci extends TabItem {
 
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
-        setStyleAttribute("padding", "0px");
+
+        ContentPanel cp = new ContentPanel();
+        cp.setFrame(true);
+        cp.setHeaderVisible(false);
+        cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
 
-        createCentre();
+        FormPanel panel = createForm();
         panel.setHeading("/ Trasporto merci");
         panel.getHeader().addTool(new ToolButton("x-tool-help"));
         panel.getHeader().addTool(new ToolButton("x-tool-close"));
 
-        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
+        binding = new FormBinding(panel, true);
+        binding.bind(trasportoMerciModel);
 
-        add(panel, centerData);
+        cp.add(panel, new RowData(1, 1));
+
+        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        add(cp, centerData);
 
     }
 
-    private void createCentre() {
-
-
-        // centre.add(panel, centerData);
-
-        FormData formData = new FormData("100%");
-
+    private FormPanel createForm() {
+        FormPanel panel = new FormPanel();
         panel.setFrame(true);
-
-        panel.setSize(530, -1);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
@@ -77,7 +72,6 @@ public class EventoFormTrasportoMerci extends TabItem {
         c2.add(new LabelField("Inserisci il numero di tonnellate di merce per chilometraggio a mezzo di trasporto. Il trasporto viene calcolato su medie di chilometraggio"), flex);
 
         panel.add(c2);
-
 
         //HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         LayoutContainer piu50 = new LayoutContainer();
@@ -331,19 +325,12 @@ public class EventoFormTrasportoMerci extends TabItem {
 
         panel.add(piu500input, new FormData("100%"));
 
-
-        binding = new FormBinding(panel, true);
-        binding.autoBind();
-        model = BeanModelLookup.get().getFactory(TrasportoPersoneModel.class).createModel(trasportoMerciModel);
-        binding.bind(model);
-
+        return panel;
     }
 
+
     public void clear() {
-        if (model != null) {
-            model = BeanModelLookup.get().getFactory(TrasportoPersoneModel.class).createModel(new TrasportoPersoneModel());
-            binding.bind(model);
-        }
+       binding.clear();
     }
 
     public void setModelObject(TrasportoMerciModel trasportoMerciModel) {

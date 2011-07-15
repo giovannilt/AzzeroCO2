@@ -4,7 +4,6 @@ import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
@@ -18,7 +17,7 @@ import com.google.gwt.user.client.Element;
  * Time: 12:08 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ConoscoCO2Form extends TabItem {
+public class ConoscoCO2Form extends LayoutContainer {
 
     private FormPanel panel = new FormPanel();
 
@@ -38,9 +37,6 @@ public class ConoscoCO2Form extends TabItem {
 
     private void createColumnForm() {
         FormData formData = new FormData("100%");
-
-        //panel.setFrame(true);
-
         panel.setHeading("Kg CO2");
         panel.setHeight(650);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);

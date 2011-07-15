@@ -1,8 +1,7 @@
 package it.agilis.mens.azzeroCO2.shared.model.evento;
 
-import com.extjs.gxt.ui.client.data.BeanModelTag;
+import com.extjs.gxt.ui.client.data.BaseModel;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +11,7 @@ import java.util.Date;
  * Time: 12:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DettaglioModel implements BeanModelTag, Serializable {
+public class DettaglioModel extends BaseModel {
 
     private String nome;
     private String dove;
@@ -21,42 +20,43 @@ public class DettaglioModel implements BeanModelTag, Serializable {
     private String note;
 
     public String getNome() {
-        return nome;
+        return (String) get("nome");
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        set("nome", nome);
     }
 
     public String getDove() {
-        return dove;
+        return (String) get("dove");
     }
 
     public void setDove(String dove) {
-        this.dove = dove;
-    }
-
-    public Date getInizio() {
-        return inizio;
-    }
-
-    public void setInizio(Date inizio) {
-        this.inizio = inizio;
-    }
-
-    public Date getFine() {
-        return fine;
-    }
-
-    public void setFine(Date fine) {
-        this.fine = fine;
+        set("dove", dove);
     }
 
     public String getNote() {
-        return note;
+        return (String) get("note");
     }
 
     public void setNote(String note) {
-        this.note = note;
+        set("note", note);
     }
+
+    public Date getInizio() {
+        return (Date) get("inizio");
+    }
+
+    public void setInizio(Date inizio) {
+        set("inizio", inizio);
+    }
+
+    public Date getFine() {
+        return (Date) get("fine");
+    }
+
+    public void setFine(Date fine) {
+        set("fine", fine);
+    }
+
 }

@@ -21,7 +21,7 @@ import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoFormConferma extends TabItem {
+public class EventoFormConferma extends LayoutContainer {
 
     ContentPanel east = new ContentPanel();
     ContentPanel centre = new ContentPanel();

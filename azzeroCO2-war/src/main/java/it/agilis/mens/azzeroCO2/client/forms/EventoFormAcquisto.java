@@ -29,7 +29,7 @@ import java.util.List;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoFormAcquisto extends TabItem {
+public class EventoFormAcquisto extends LayoutContainer {
 
     ContentPanel east = new ContentPanel();
     ContentPanel centre = new ContentPanel();

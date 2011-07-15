@@ -2,19 +2,17 @@ package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
-import com.extjs.gxt.ui.client.data.BeanModel;
-import com.extjs.gxt.ui.client.data.BeanModelLookup;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.FormPanel.LabelAlign;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
 
 //import com.extjs.gxt.samples.resources.client.Resources;
 
@@ -25,12 +23,10 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoFormEnergia extends TabItem {
+public class EventoFormEnergia extends LayoutContainer {
 
-    private FormPanel panel = new FormPanel();
-    private TrasportoPersoneModel trasportoPersoneModel = new TrasportoPersoneModel();
+    private EnergiaModel energiaModel = new EnergiaModel();
     private FormBinding binding = null;
-    private BeanModel model = null;
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -38,20 +34,25 @@ public class EventoFormEnergia extends TabItem {
 
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
-        layout.setEnableState(false);
-        setStyleAttribute("padding", "0px");
 
+        ContentPanel cp = new ContentPanel();
+        cp.setFrame(true);
+        cp.setHeaderVisible(false);
+        cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        createColumnForm();
+        FormPanel formPanel = createForm();
+        cp.add(formPanel, new RowData(1, 1));
+
+        binding = new FormBinding(formPanel, true);
+        binding.bind(energiaModel);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
-        add(panel, centerData);
-
+        add(cp, centerData);
     }
 
 
-    private void createColumnForm() {
+    private FormPanel createForm() {
+        FormPanel panel = new FormPanel();
         panel.setFrame(true);
 
         panel.setHeading("Energia");
@@ -133,21 +134,15 @@ public class EventoFormEnergia extends TabItem {
 
         panel.add(cGasoline, new FormData("100%"));
 
-        binding = new FormBinding(panel, true);
-        binding.autoBind();
-      //  model = BeanModelLookup.get().getFactory(TrasportoPersoneModel.class).createModel(eventoCalcoloDTO);
-        binding.bind(trasportoPersoneModel);
-
+        return panel;
     }
 
     public void clear() {
-        if (model != null) {
-            model = BeanModelLookup.get().getFactory(TrasportoPersoneModel.class).createModel(new TrasportoPersoneModel());
-            binding.bind(model);
-        }
+        binding.clear();
     }
-    public void setModelObject(TrasportoPersoneModel trasportoPersoneModel){
-       this.trasportoPersoneModel =trasportoPersoneModel;
+
+    public void setModelObject(EnergiaModel energiaModel) {
+        this.energiaModel = energiaModel;
     }
 }
 

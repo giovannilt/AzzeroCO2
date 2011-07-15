@@ -2,18 +2,16 @@ package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
-import com.extjs.gxt.ui.client.data.BeanModel;
-import com.extjs.gxt.ui.client.data.BeanModelLookup;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,36 +20,40 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
  * Time: 12:08 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoFormPernottamenti extends TabItem {
+public class EventoFormPernottamenti extends LayoutContainer {
 
-    private TrasportoPersoneModel eventoCalcoloDTO = new TrasportoPersoneModel();
+    private NottiModel nottiModel = new NottiModel();
     private FormBinding binding = null;
-    private BeanModel model = null;
-    private FormPanel panel = new FormPanel();
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        setLayout(new BorderLayout());
+        BorderLayout layout = new BorderLayout();
+        setLayout(layout);
+
+        ContentPanel cp = new ContentPanel();
+        cp.setFrame(true);
+        cp.setHeaderVisible(false);
+        cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+
+        FormPanel formPanel = createForm();
+        cp.add(formPanel, new RowData(1, 1));
+
+        binding = new FormBinding(formPanel, true);
+        binding.bind(nottiModel);
+
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
-        add(panel, centerData);
-
-        createColumnForm();
-
+        add(cp, centerData);
     }
 
 
-    private void createColumnForm() {
-        FormData formData = new FormData("100%");
-
+    private FormPanel createForm() {
+        FormPanel panel = new FormPanel();
         panel.setFrame(true);
 
         panel.setHeading("Pernottamenti");
-        panel.setSize(600, -1);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
-
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
@@ -71,21 +73,16 @@ public class EventoFormPernottamenti extends TabItem {
 
         panel.add(notti, new FormData("100%"));
 
-        binding = new FormBinding(panel, true);
-        binding.autoBind();
-        model = BeanModelLookup.get().getFactory(TrasportoPersoneModel.class).createModel(eventoCalcoloDTO);
-        binding.bind(model);
+        return panel;
 
     }
 
     public void clear() {
-        if (model != null) {
-            model = BeanModelLookup.get().getFactory(TrasportoPersoneModel.class).createModel(new TrasportoPersoneModel());
-            binding.bind(model);
-        }
+        binding.clear();
+
     }
-    
-    public void setModelObject(TrasportoPersoneModel eventoCalcoloDTO){
-       this.eventoCalcoloDTO =eventoCalcoloDTO;
+
+    public void setModelObject(NottiModel nottiModel) {
+        this.nottiModel = nottiModel;
     }
 }

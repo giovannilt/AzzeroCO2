@@ -1,13 +1,17 @@
 package it.agilis.mens.azzeroCO2.client.components.eventi.evento;
 
+import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.*;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 
 
@@ -25,6 +29,7 @@ public class EventoDettaglio extends LayoutContainer {
  //   private BeanModelFactory beanModelFactory = BeanModelLookup.get().getFactory(EventoCategoriePersoneDTO.class);
 //    private ListStore<BeanModel> storeTutteLePersone = new ListStore<BeanModel>();
     private ListStore<TrasportoPersoneModel> storeCustom = new ListStore<TrasportoPersoneModel>();
+    private ListStore<PubblicazioniRilegateModel> storePubblicazioniRilegate= new ListStore<PubblicazioniRilegateModel>();
     private DettaglioModel dettaglioModel = new DettaglioModel();
 
     private EventoFormDettaglio formDettaglio = null;
@@ -35,7 +40,7 @@ public class EventoDettaglio extends LayoutContainer {
     //private final EventoFormTrasportoPersone_OLD formTrasportoPersone = new EventoFormTrasportoPersone_OLD(storeTutteLePersone, storeCustom);
     private final EventoFormPernottamenti formPernottamenti = new EventoFormPernottamenti();
     private final EventoFormTrasportoMerci formTrasportoMerci = new EventoFormTrasportoMerci();
-    private final EventoFormPubblicazioniRilegate formPubblicazioniRilegate = new EventoFormPubblicazioniRilegate();
+    private final EventoFormPubblicazioniRilegateNEW formPubblicazioniRilegate = new EventoFormPubblicazioniRilegateNEW(storePubblicazioniRilegate);
     private final EventoFormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new EventoFormManifestiPieghevoliFogli();
 
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
@@ -46,38 +51,16 @@ public class EventoDettaglio extends LayoutContainer {
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-        {   // TODO
-            /*EventoCategoriePersoneDTO categorie = new EventoCategoriePersoneDTO("tutte le persone");
-            categorie.setCustom(false);
-            categorie.setAereoPiu250(1);
-            storeCustom.add(beanModelFactory.createModel(categorie));
-
-            categorie = new EventoCategoriePersoneDTO("relatori");
-            categorie.setCustom(true);
-            categorie.setAereoPiu250(2);
-            storeCustom.add(beanModelFactory.createModel(categorie));
-
-            categorie = new EventoCategoriePersoneDTO("spettatori");
-            categorie.setCustom(true);
-            categorie.setAereoPiu250(3);
-            storeCustom.add(beanModelFactory.createModel(categorie));
-
-            categorie = new EventoCategoriePersoneDTO("staff");
-            categorie.setCustom(true);
-            categorie.setAereoPiu250(4);
-            storeCustom.add(beanModelFactory.createModel(categorie));
-
-            categorie = new EventoCategoriePersoneDTO("fornitori");
-            categorie.setCustom(true);
-            categorie.setAereoPiu250(5);
-            storeCustom.add(beanModelFactory.createModel(categorie));*/
-
+        {
             TrasportoPersoneModel categorie = new TrasportoPersoneModel();
             categorie.setCategoria("Tutte le persone");
             storeCustom.add(categorie);
             categorie = new TrasportoPersoneModel();
             categorie.setCategoria("Relatori");
             storeCustom.add(categorie);
+
+            storePubblicazioniRilegate.add(new PubblicazioniRilegateModel("Catalogo"));
+            storePubblicazioniRilegate.add(new PubblicazioniRilegateModel("Bilancio"));
         }
 
         HBoxLayout layout = new HBoxLayout();
@@ -89,9 +72,11 @@ public class EventoDettaglio extends LayoutContainer {
         eventoTab.setSize(855, 637);
 
         TabItem dettaglio = new TabItem("Dettaglio");
-
+         dettaglio.setLayout(new BorderLayout());
         formDettaglio = new EventoFormDettaglio(dettaglioModel);
-        dettaglio.add(formDettaglio);
+        //formDettaglio.setSize(855,637);
+        dettaglio.add(formDettaglio, new BorderLayoutData(Style.LayoutRegion.CENTER));
+
         eventoTab.add(dettaglio);
 
         TabItem calcolo = new TabItem("Calcolo");

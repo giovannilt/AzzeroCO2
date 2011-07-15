@@ -8,7 +8,6 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
@@ -16,7 +15,7 @@ import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.CategoriePubblicazioni;
+import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.GrammaturaDiCarta;
 import it.agilis.mens.azzeroCO2.shared.model.TipoDiCarta;
 
@@ -30,7 +29,7 @@ import java.util.List;
  * Time: 12:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoFormPubblicazioniRilegate extends TabItem {
+public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
     ContentPanel west = new ContentPanel();
     ContentPanel centre = new ContentPanel();
@@ -80,13 +79,13 @@ public class EventoFormPubblicazioniRilegate extends TabItem {
             configs.add(column);
 
 
-            final ListStore<CategoriePubblicazioni> store = new ListStore<CategoriePubblicazioni>();
+            final ListStore<PubblicazioniRilegateModel> store = new ListStore<PubblicazioniRilegateModel>();
             // TODO
             {
-                store.add(new CategoriePubblicazioni("catalogo"));
-                store.add(new CategoriePubblicazioni("bilancio"));
-                store.add(new CategoriePubblicazioni("report"));
-                store.add(new CategoriePubblicazioni("libro"));
+                store.add(new PubblicazioniRilegateModel("catalogo"));
+                store.add(new PubblicazioniRilegateModel("bilancio"));
+                store.add(new PubblicazioniRilegateModel("report"));
+                store.add(new PubblicazioniRilegateModel("libro"));
             }
 
             ColumnModel cm = new ColumnModel(configs);
@@ -97,14 +96,14 @@ public class EventoFormPubblicazioniRilegate extends TabItem {
             cp.setSize(299, 300);
             cp.setLayout(new FitLayout());
 
-            final RowEditor<CategoriePubblicazioni> re = new RowEditor<CategoriePubblicazioni>();
+            final RowEditor<PubblicazioniRilegateModel> re = new RowEditor<PubblicazioniRilegateModel>();
             re.getMessages().setSaveText("Salva");
             re.getMessages().setCancelText("Annulla");
 
 
             re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
-            final Grid<CategoriePubblicazioni> grid = new Grid<CategoriePubblicazioni>(store, cm);
+            final Grid<PubblicazioniRilegateModel> grid = new Grid<PubblicazioniRilegateModel>(store, cm);
 
             grid.setAutoExpandColumn("name");
             grid.setBorders(true);
@@ -119,7 +118,7 @@ public class EventoFormPubblicazioniRilegate extends TabItem {
 
                 @Override
                 public void componentSelected(ButtonEvent ce) {
-                    CategoriePubblicazioni cate = new CategoriePubblicazioni("custom");
+                    PubblicazioniRilegateModel cate = new PubblicazioniRilegateModel("custom");
 
                     re.stopEditing(false);
                     store.insert(cate, 0);
