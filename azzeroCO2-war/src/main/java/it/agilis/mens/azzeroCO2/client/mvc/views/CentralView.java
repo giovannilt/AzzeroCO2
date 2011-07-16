@@ -101,7 +101,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.EVENTO);
                 }
             });
-            unEvento.setSize(370, 400);
+            unEvento.setSize(361, 336);
             c.add(unEvento, layoutData);
             Button unAnno = new Button("Un Anno Di attivita'");
             unAnno.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unAnnoDiAttivita()));
@@ -114,7 +114,7 @@ public class CentralView extends View {
                    setActiveItem(Eventi.EVENTO);
                 }
             });
-            unAnno.setSize(370, 400);
+            unAnno.setSize(361, 336);
             c.add(unAnno, layoutData);
             center.add(c, new FlowData(1));
         }
@@ -135,7 +135,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.UNA_PUBBLICAZIONE);
                 }
             });
-            pubblicazione.setSize(245, 217);
+            pubblicazione.setSize(243, 240);
             c.add(pubblicazione, layoutData);
             Button web = new Button("Un sito web");
             web.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unSitoWeb()));
@@ -145,7 +145,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.WEB);
                 }
             });
-            web.setSize(245, 217);
+            web.setSize(243, 240);
             c.add(web, layoutData);
             Button co2 = new Button("Conosco la CO2");
             co2.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.conoscoLaCO2()));
@@ -155,7 +155,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.CONOSCI_CO2);
                 }
             });
-            co2.setSize(245, 217);
+            co2.setSize(243, 240);
             c.add(co2, layoutData);
             center.add(c, new FlowData(1));
         }
