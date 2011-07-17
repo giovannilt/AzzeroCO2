@@ -4,6 +4,7 @@ import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.AzzeroCO2View;
 
 /**
@@ -22,7 +23,7 @@ public class AzzeroCO2Controller extends Controller {
 		registerEventTypes(AzzeroCO2Events.UIReady);
 		registerEventTypes(AzzeroCO2Events.NorthPanelReady);
 		registerEventTypes(AzzeroCO2Events.CentralPanelReady);
-		registerEventTypes(AzzeroCO2Events.NewsPanelReady);
+       registerEventTypes(AzzeroCO2Events.NewsPanelReady);
     }
 
     @Override

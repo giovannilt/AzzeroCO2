@@ -43,6 +43,18 @@ public enum Eventi {
             return "WEB";
         }
     },
+
+
+    AMMINISTRAZIONE{
+       @Override
+		public String toString() {
+            return "Amministrazione calcolatore";
+        }
+    },
+
+
+
+
     CONOSCI_CO2{
         @Override
 		public String toString() {

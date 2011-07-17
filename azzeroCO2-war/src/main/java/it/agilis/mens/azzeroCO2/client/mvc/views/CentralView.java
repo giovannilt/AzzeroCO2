@@ -52,6 +52,8 @@ public class CentralView extends View {
             onContentReady(event);
         } else if (eventType.equals(CentralEvents.ConosciCO2PanelReady)) {
             onContentReady(event);
+        } else if (eventType.equals(CentralEvents.AmministrazioneReady)) {
+            onContentReady(event);
         } else if (eventType.equals(CentralEvents.ShowPanel)) {
             setActiveItem(event.<Eventi>getData());
         }

@@ -26,6 +26,7 @@ public class CentralController extends Controller {
         registerEventTypes(CentralEvents.UnaPubblicazioneReady);
         registerEventTypes(CentralEvents.UnAnnoDiAttivitaPanelReady);
         registerEventTypes(CentralEvents.WebPanelReady);
+        registerEventTypes(CentralEvents.AmministrazioneReady);
 
         registerEventTypes(CentralEvents.ShowPanel);
     }
