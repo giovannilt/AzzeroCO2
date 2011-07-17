@@ -52,7 +52,7 @@ public class EventoDettaglio extends LayoutContainer {
 
         {
             TrasportoPersoneModel categorie = new TrasportoPersoneModel();
-            categorie.setCategoria("Tutte le persone");
+            categorie.setCategoria("Staff");
             storeCustom.add(categorie);
             categorie = new TrasportoPersoneModel();
             categorie.setCategoria("Relatori");
