@@ -14,10 +14,8 @@ import it.agilis.mens.azzeroCO2.client.components.amministrazione.Amministrazion
 import it.agilis.mens.azzeroCO2.client.components.amministrazione.AmministrazioneNorth;
 import it.agilis.mens.azzeroCO2.client.components.amministrazione.AmministrazioneSouth;
 import it.agilis.mens.azzeroCO2.client.components.amministrazione.AmministrazioneWest;
-
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.ConosciCO2Events;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 
@@ -55,7 +53,6 @@ public class AmministrazioneView extends View {
         amministrazionePanel.setHeaderVisible(false);
         amministrazionePanel.setLayout(layout);
         amministrazionePanel.setStyleAttribute("padding", "1px");
-        amministrazionePanel.setTitle(Eventi.AMMINISTRAZIONE.name());
 
         BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 25);
         northData.setCollapsible(false);
@@ -93,8 +90,7 @@ public class AmministrazioneView extends View {
         amministrazionePanel.add(center, centerData);
 
         amministrazionePanel.setTitle(Eventi.AMMINISTRAZIONE.name());
-        Dispatcher.forwardEvent(new AppEvent(CentralEvents.AmministrazioneReady,
-                amministrazionePanel));
+        Dispatcher.forwardEvent(new AppEvent(CentralEvents.AmministrazioneReady, amministrazionePanel));
     }
 
 }

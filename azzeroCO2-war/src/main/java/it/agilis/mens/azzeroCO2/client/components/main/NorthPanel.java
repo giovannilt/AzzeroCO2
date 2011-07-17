@@ -14,7 +14,6 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
@@ -39,64 +38,39 @@ public class NorthPanel extends LayoutContainer {
         c.setLayout(layout);
 
         HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
-
-
         Button home= new Button("Home");
         home.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-                //Dispatcher.forwardEvent(AzzeroCO2Events.ShowHome);
-                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+               Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
             }
-
         });
 
         c.add(home, layoutData);
 
-
-
         Button login = new Button();
         login.setText("Login");
-       // login.setSize("100px","100px");
         login.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-              //  session.getAzzeroCO2Register();
-               // loginDialog.show();
                 Dispatcher.forwardEvent(LoginEvents.ShowForm);
             }
-
         });
         c.add(login, layoutData);
-
         c.add(new Button("Registrati"), layoutData);
 
-        //HBoxLayoutData layoutData2 = new HBoxLayoutData(new Margins(0));
-        //c.add(new Button("Into"), layoutData2);
-        add(c, new FlowData(1));
 
-
-
-
-
-        Button amministrazione= new Button("Amministrazione");
-        home.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        Button amministrazione= new Button();
+        amministrazione.setText("Amministrazione");
+        amministrazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-                //Dispatcher.forwardEvent(AzzeroCO2Events.ShowHome);
                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.AMMINISTRAZIONE);
             }
-
         });
-
         c.add(amministrazione, layoutData);
 
-
-
-
+         add(c, new FlowData(1));
 
         Image azzeroCO2Log = new Image(AzzeroCO2Resources.INSTANCE.header());
-
-        azzeroCO2Log.setWidth("100%");
         add(azzeroCO2Log, layoutData);
-        //add(azzeroCO2Log, new FlowData(1));
     }
 
 }

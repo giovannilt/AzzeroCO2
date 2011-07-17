@@ -62,6 +62,6 @@ public interface AzzeroCO2Resources extends ClientBundle {
     ImageResource treno();
 
     @Source("it/agilis/mens/azzeroCO2/client/imgs/header.png")
-    @ImageResource.ImageOptions(flipRtl = true)
+    @ImageResource.ImageOptions(flipRtl = true, width = 1000, height = 60)
     ImageResource header();
 }
