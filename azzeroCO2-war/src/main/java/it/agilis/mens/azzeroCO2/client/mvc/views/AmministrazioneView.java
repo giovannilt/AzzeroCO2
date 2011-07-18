@@ -12,8 +12,6 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import it.agilis.mens.azzeroCO2.client.components.amministrazione.Amministrazione;
 import it.agilis.mens.azzeroCO2.client.components.amministrazione.AmministrazioneNorth;
-import it.agilis.mens.azzeroCO2.client.components.amministrazione.AmministrazioneSouth;
-import it.agilis.mens.azzeroCO2.client.components.amministrazione.AmministrazioneWest;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
@@ -31,8 +29,6 @@ public class AmministrazioneView extends View {
 
     private Amministrazione amministrazione = new Amministrazione();
     private ContentPanel center = new ContentPanel();
-    private AmministrazioneSouth south = new AmministrazioneSouth();
-
 
     public AmministrazioneView(Controller controller) {
         super(controller);
@@ -52,7 +48,6 @@ public class AmministrazioneView extends View {
         layout.setEnableState(false);
         amministrazionePanel.setHeaderVisible(false);
         amministrazionePanel.setLayout(layout);
-        amministrazionePanel.setStyleAttribute("padding", "1px");
 
         BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 25);
         northData.setCollapsible(false);
@@ -62,29 +57,14 @@ public class AmministrazioneView extends View {
         northData.setMargins(new Margins(0, 0, 0, 0));
         amministrazionePanel.add(new AmministrazioneNorth(), northData);
 
-
-        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 150);
-        westData.setCollapsible(false);
-        westData.setFloatable(false);
-        westData.setHideCollapseTool(false);
-        westData.setSplit(false);
-        westData.setMargins(new Margins(0, 0, 0, 0));
-
-        amministrazionePanel.add(new AmministrazioneWest(), westData);
-
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         {
             final BorderLayout layout2 = new BorderLayout();
             center.setLayout(layout2);
-            center.setStyleAttribute("padding", "1px");
-
             BorderLayoutData center2Data = new BorderLayoutData(Style.LayoutRegion.CENTER);
             center2Data.setMargins(new Margins(0, 0, 0, 0));
             center.add(amministrazione, center2Data);
 
-            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 15);
-            southData.setMargins(new Margins(0, 0, 0, 0));
-            center.add(south, southData);
         }
         center.setHeaderVisible(false);
         amministrazionePanel.add(center, centerData);

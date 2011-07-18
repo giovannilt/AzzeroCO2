@@ -58,13 +58,9 @@ public class AmministrazioneNorth extends LayoutContainer {
             @Override
             public void componentSelected(IconButtonEvent ce) {
                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
-                Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
             }
         });
-
-
         c.add(close, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
-
         add(c);
     }
 
