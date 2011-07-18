@@ -14,8 +14,6 @@ import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
 
-//import com.extjs.gxt.samples.resources.client.Resources;
-
 /**
  * Created by IntelliJ IDEA.
  * User: giovannilt
@@ -56,7 +54,6 @@ public class EventoFormEnergia extends LayoutContainer {
         panel.setFrame(true);
 
         panel.setHeading("Energia");
-        panel.setHeight(650);
         panel.setLabelAlign(LabelAlign.LEFT);
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
@@ -96,7 +93,6 @@ public class EventoFormEnergia extends LayoutContainer {
         c3.add(new LabelField("Non riempire in caso di energia da fonti rinnovabili."), flex);
 
         panel.add(c3);
-
 
         LayoutContainer cGas = new LayoutContainer();
         HBoxLayout layoutGas = new HBoxLayout();

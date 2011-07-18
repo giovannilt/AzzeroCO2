@@ -56,7 +56,6 @@ public class EventoFormPernottamenti extends LayoutContainer {
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
-
         LayoutContainer notti = new LayoutContainer();
         HBoxLayout layoutNotti = new HBoxLayout();
         layoutNotti.setPadding(new Padding(10));
@@ -66,20 +65,15 @@ public class EventoFormPernottamenti extends LayoutContainer {
         NumberField numeroNotti = new NumberField();
         numeroNotti.setName("notti");
         numeroNotti.setWidth(60);
-
-
         notti.add(new LabelField("notti"), flex);
         notti.add(numeroNotti, flex);
 
         panel.add(notti, new FormData("100%"));
-
         return panel;
-
     }
 
     public void clear() {
         binding.clear();
-
     }
 
     public void setModelObject(NottiModel nottiModel) {
