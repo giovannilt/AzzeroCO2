@@ -8,6 +8,7 @@ import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
+import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -15,6 +16,7 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.grid.*;
+import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
@@ -340,6 +342,44 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         TextField<String> text = new TextField<String>();
         text.setAllowBlank(false);
         column.setEditor(new CellEditor(text));
+      column.setWidth(50);
+        configs.add(column);
+
+        column = new ColumnConfig();
+        column.setRowHeader(false);
+        column.setId("Cancella");
+        column.setRenderer(new GridCellRenderer<TrasportoPersoneModel>() {
+            private boolean init;
+            public Object render(final TrasportoPersoneModel model, String property, ColumnData config, final int rowIndex,
+                                 final int colIndex, ListStore<TrasportoPersoneModel> store, Grid<TrasportoPersoneModel> grid) {
+                if (!init) {
+                    init = true;
+                    grid.addListener(Events.ColumnResize, new Listener<GridEvent<TrasportoPersoneModel>>() {
+
+                        public void handleEvent(GridEvent<TrasportoPersoneModel> be) {
+                            for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
+                                if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
+                                        && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
+                                    ((BoxComponent) be.getGrid().getView().getWidget(i, be.getColIndex())).setWidth(be.getWidth() - 10);
+                                }
+                            }
+                        }
+                    });
+                }
+
+                ToolButton b = new ToolButton("x-tool-close", new SelectionListener<IconButtonEvent>() {
+                    @Override
+                    public void componentSelected(IconButtonEvent ce) {
+                        Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
+                    }
+                });
+               // b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
+                b.setToolTip("Elimina Categoria");
+
+                return b;
+            }
+        });
+        column.setWidth(50);
         configs.add(column);
 
         final RowEditor<BeanModel> re = new RowEditor<BeanModel>();
