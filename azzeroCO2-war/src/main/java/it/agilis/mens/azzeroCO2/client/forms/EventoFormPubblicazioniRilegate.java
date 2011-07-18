@@ -1,23 +1,22 @@
 package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.event.ButtonEvent;
-import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.binding.FormBinding;
+import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.GrammaturaDiCarta;
 import it.agilis.mens.azzeroCO2.shared.model.TipoDiCarta;
+import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +29,14 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class EventoFormPubblicazioniRilegate extends LayoutContainer {
+    private ListStore<PubblicazioniRilegateModel> storeCustom;
+    private ToolBar toolBar = new ToolBar();
 
-    ContentPanel west = new ContentPanel();
-    ContentPanel centre = new ContentPanel();
+    public EventoFormPubblicazioniRilegate(ListStore<PubblicazioniRilegateModel> storeCustom) {
+        this.storeCustom = storeCustom;
+    }
 
-
+    @SuppressWarnings("rawtypes")
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
@@ -42,108 +44,57 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
         layout.setEnableState(false);
-        setStyleAttribute("padding", "0px");
 
-        createWest();
-        west.setHeading("Pubblicazioni rilegate");
-        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 300);
-        westData.setMargins(new Margins(0));
-        add(west, westData);
+        ContentPanel cp = new ContentPanel();
+        cp.setFrame(true);
+        cp.setHeaderVisible(false);
+        cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        createCentre();
-        centre.setHeading("/ catalogo");
+        final Grid<PubblicazioniRilegateModel> grid = createGrid();
 
-        centre.getHeader().addTool(new ToolButton("x-tool-help"));
-        centre.getHeader().addTool(new ToolButton("x-tool-close"));
+        ContentPanel textContent = new ContentPanel();
+        textContent.setHeaderVisible(false);
+        textContent.setFrame(true);
+        textContent.addText("Si tratta di gruppi di pagineriunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br>Puoi inserire piu' di una pubblicazione e aggiungere altre categorie.");
+
+        ContentPanel cpEst = new ContentPanel();
+        cpEst.setFrame(false);
+        cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
+        cpEst.add(textContent, new RowData(1, .25, new Margins(0, 0, 0, 0)));
+        cpEst.add(grid, new RowData(1, .75, new Margins(0, 0, 0, 0)));
+        cpEst.setBottomComponent(toolBar);
+        cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
+
+        cp.add(cpEst, new RowData(.3, .98));
+
+        final FormPanel panel = createForm();
+        cp.add(panel, new RowData(.7, 1));
+
+        final FormBinding formBindings = new FormBinding(panel, true);
+        formBindings.setStore(grid.getStore());
+
+        grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
+        grid.getSelectionModel().addListener(Events.SelectionChange,
+                new Listener<SelectionChangedEvent<PubblicazioniRilegateModel>>() {
+                    public void handleEvent(SelectionChangedEvent<PubblicazioniRilegateModel> be) {
+                        if (be.getSelection().size() > 0) {
+                            formBindings.bind(be.getSelection().get(0));
+                            panel.setHeading(be.getSelection().get(0).getCategoria());
+                        } else {
+                            formBindings.unbind();
+                        }
+                    }
+                });
+
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
-        add(centre, centerData);
-
+        add(cp, centerData);
     }
 
-    private void createWest() {
-        {
-            List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
-
-            ColumnConfig column = new ColumnConfig();
-            column.setRowHeader(false);
-            column.setId("name");
-
-            //column.setHeader("Common Name");
-            column.setWidth(299);
-
-            TextField<String> text = new TextField<String>();
-            text.setAllowBlank(false);
-            column.setEditor(new CellEditor(text));
-            configs.add(column);
-
-
-            final ListStore<PubblicazioniRilegateModel> store = new ListStore<PubblicazioniRilegateModel>();
-            // TODO
-            {
-                store.add(new PubblicazioniRilegateModel("catalogo"));
-                store.add(new PubblicazioniRilegateModel("bilancio"));
-                store.add(new PubblicazioniRilegateModel("report"));
-                store.add(new PubblicazioniRilegateModel("libro"));
-            }
-
-            ColumnModel cm = new ColumnModel(configs);
-
-            ContentPanel cp = new ContentPanel();
-            cp.setHeading("Si tratta di gruppi di pagine riunite in un volume. Seleziona un tipo di pubblicazione.<br> Puoi inserire piu' di un pubblicazione ed aggiungere altre categorie.");
-            cp.setFrame(true);
-            cp.setSize(299, 300);
-            cp.setLayout(new FitLayout());
-
-            final RowEditor<PubblicazioniRilegateModel> re = new RowEditor<PubblicazioniRilegateModel>();
-            re.getMessages().setSaveText("Salva");
-            re.getMessages().setCancelText("Annulla");
-
-
-            re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
-
-            final Grid<PubblicazioniRilegateModel> grid = new Grid<PubblicazioniRilegateModel>(store, cm);
-
-            grid.setAutoExpandColumn("name");
-            grid.setBorders(true);
-            grid.addPlugin(re);
-            grid.setHideHeaders(true);
-            // grid.getAriaSupport().setLabelledBy(cp.getHeader().getId() + "-label");
-            cp.add(grid);
-
-            ToolBar toolBar = new ToolBar();
-            Button add = new Button("Aggiungi categoria");
-            add.addSelectionListener(new SelectionListener<ButtonEvent>() {
-
-                @Override
-                public void componentSelected(ButtonEvent ce) {
-                    PubblicazioniRilegateModel cate = new PubblicazioniRilegateModel("custom");
-
-                    re.stopEditing(false);
-                    store.insert(cate, 0);
-                    re.startEditing(store.indexOf(cate), true);
-
-                }
-
-            });
-
-            toolBar.add(add);
-            cp.setBottomComponent(toolBar);
-            cp.setButtonAlign(Style.HorizontalAlignment.CENTER);
-            west.add(cp);
-        }
-    }
-
-    private void createCentre() {
-
-
-        FormData formData = new FormData("100%");
+    private FormPanel createForm() {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
-        panel.setHeaderVisible(false);
 
-        panel.setHeight(600);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
@@ -154,7 +105,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
             layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
             c2.setLayout(layout2);
 
-            c2.add(new LabelField("Inserisci il numero di tratte per distanza percorsa e mezzo di trasporto.<br> Es: due pendolari in treno che partecipano a un evento di 4 giorni = 16 tratte."), flex);
+            c2.add(new LabelField("Definisci le caratteristiche della pubblicazione."), flex);
 
             panel.add(c2);
         }
@@ -347,8 +298,48 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 panel.add(c, new FormData("100%"));
             }
         }
-        centre.add(panel);
 
+        return panel;
+    }
+
+    private Grid<PubblicazioniRilegateModel> createGrid() {
+        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+
+        ColumnConfig column = new ColumnConfig();
+        column.setRowHeader(false);
+        column.setId("categoria");
+
+        TextField<String> text = new TextField<String>();
+        text.setAllowBlank(false);
+        column.setEditor(new CellEditor(text));
+        configs.add(column);
+
+        final RowEditor<PubblicazioniRilegateModel> re = new RowEditor<PubblicazioniRilegateModel>();
+        re.getMessages().setSaveText("Salva");
+        re.getMessages().setCancelText("Annulla");
+        re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
+
+        final ColumnModel cm = new ColumnModel(configs);
+        final Grid<PubblicazioniRilegateModel> grid = new Grid<PubblicazioniRilegateModel>(storeCustom, cm);
+
+        grid.setAutoExpandColumn("categoria");
+        grid.setBorders(true);
+        grid.addPlugin(re);
+        grid.setHideHeaders(true);
+
+        Button add = new Button("Aggiungi categoria");
+        add.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                PubblicazioniRilegateModel cate = new PubblicazioniRilegateModel("Nuova Categoria");
+                re.stopEditing(false);
+                storeCustom.insert(cate, 0);
+                re.startEditing(storeCustom.indexOf(cate), true);
+            }
+        });
+        toolBar.add(add);
+        return grid;
     }
 
     public void clear() {
