@@ -1,23 +1,23 @@
 package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.binding.FormBinding;
-import com.extjs.gxt.ui.client.event.*;
+import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.GrammaturaDiCarta;
 import it.agilis.mens.azzeroCO2.shared.model.TipoDiCarta;
-import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,15 +29,12 @@ import java.util.List;
  * Time: 12:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
-    private ListStore<ManifestiPieghevoliFogliModel> storeCustom;
-    private ToolBar toolBar = new ToolBar();
+public class EventoFormManifestiPieghevoliFogliOLD extends LayoutContainer {
 
-    public EventoFormManifestiPieghevoliFogli(ListStore<ManifestiPieghevoliFogliModel> storeCustom) {
-        this.storeCustom = storeCustom;
-    }
+    ContentPanel west = new ContentPanel();
+    ContentPanel centre = new ContentPanel();
 
-    @SuppressWarnings("rawtypes")
+
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
@@ -46,52 +43,103 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         setLayout(layout);
         layout.setEnableState(false);
 
-        ContentPanel cp = new ContentPanel();
-        cp.setFrame(true);
-        cp.setHeaderVisible(false);
-        cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+        createWest();
+        west.setHeading("Manifesti, pieghevoli, fogli");
+        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 300);
+        westData.setMargins(new Margins(0));
+        add(west, westData);
 
-        final Grid<ManifestiPieghevoliFogliModel> grid = createGrid();
+        createCentre();
+        centre.setHeading("/ manifesto");
 
-        ContentPanel textContent = new ContentPanel();
-        textContent.setHeaderVisible(false);
-        textContent.setFrame(true);
-        textContent.addText("XXXXX");
-        ContentPanel cpEst = new ContentPanel();
-        cpEst.setFrame(false);
-        cpEst.setHeading("Manifesti, pieghevoli, fogli");
-        cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
+        centre.getHeader().addTool(new ToolButton("x-tool-help"));
+        centre.getHeader().addTool(new ToolButton("x-tool-close"));
 
-        cpEst.add(textContent, new RowData(1, .25, new Margins(0, 0, 0, 0)));
-        cpEst.add(grid, new RowData(1, .75, new Margins(0, 0, 0, 0)));
-        cpEst.setBottomComponent(toolBar);
-        cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
-
-        cp.add(cpEst, new RowData(.3, .98));
-        final FormPanel panel = createForm();
-        cp.add(panel, new RowData(.7, 1));
-        final FormBinding formBindings = new FormBinding(panel, true);
-        formBindings.setStore(grid.getStore());
-        grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
-        grid.getSelectionModel().addListener(Events.SelectionChange,
-                new Listener<SelectionChangedEvent<PubblicazioniRilegateModel>>() {
-                    public void handleEvent(SelectionChangedEvent<PubblicazioniRilegateModel> be) {
-                        if (be.getSelection().size() > 0) {
-                            formBindings.bind(be.getSelection().get(0));
-                            panel.setHeading(be.getSelection().get(0).getCategoria());
-                        } else {
-                            formBindings.unbind();
-                        }
-                    }
-                });
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        add(cp, centerData);
+        centerData.setMargins(new Margins(0));
+        add(centre, centerData);
+
     }
 
-    private FormPanel createForm() {
-         FormPanel panel = new FormPanel();
-        panel.setFrame(true);
+    private void createWest() {
+        {
+            List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
+            ColumnConfig column = new ColumnConfig();
+            column.setRowHeader(false);
+            column.setId("name");
+
+            //column.setHeader("Common Name");
+            column.setWidth(299);
+
+            TextField<String> text = new TextField<String>();
+            text.setAllowBlank(false);
+            column.setEditor(new CellEditor(text));
+            configs.add(column);
+
+
+            final ListStore<PubblicazioniRilegateModel> store = new ListStore<PubblicazioniRilegateModel>();
+            // TODO
+            {
+                store.add(new PubblicazioniRilegateModel("manifesto"));
+                store.add(new PubblicazioniRilegateModel("pieghevole"));
+                store.add(new PubblicazioniRilegateModel("fogli"));
+
+            }
+
+            ColumnModel cm = new ColumnModel(configs);
+
+            ContentPanel cp = new ContentPanel();
+            cp.setHeading("Puoi definire piu' di un formato.");
+            cp.setFrame(true);
+            cp.setSize(299, 300);
+            cp.setLayout(new FitLayout());
+
+            final RowEditor<PubblicazioniRilegateModel> re = new RowEditor<PubblicazioniRilegateModel>();
+            re.getMessages().setSaveText("Salva");
+            re.getMessages().setCancelText("Annulla");
+
+
+            re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
+
+            final Grid<PubblicazioniRilegateModel> grid = new Grid<PubblicazioniRilegateModel>(store, cm);
+
+            grid.setAutoExpandColumn("name");
+            grid.setBorders(true);
+            grid.addPlugin(re);
+            grid.setHideHeaders(true);
+            // grid.getAriaSupport().setLabelledBy(cp.getHeader().getId() + "-label");
+            cp.add(grid);
+
+            ToolBar toolBar = new ToolBar();
+            Button add = new Button("Aggiungi categoria");
+            add.addSelectionListener(new SelectionListener<ButtonEvent>() {
+
+                @Override
+                public void componentSelected(ButtonEvent ce) {
+                    PubblicazioniRilegateModel cate = new PubblicazioniRilegateModel("custom");
+
+                    re.stopEditing(false);
+                    store.insert(cate, 0);
+                    re.startEditing(store.indexOf(cate), true);
+
+                }
+
+            });
+
+            toolBar.add(add);
+            cp.setBottomComponent(toolBar);
+            cp.setButtonAlign(Style.HorizontalAlignment.CENTER);
+            west.add(cp);
+        }
+    }
+
+    private void createCentre() {
+        FormPanel panel = new FormPanel();
+        panel.setFrame(true);
+        panel.setHeaderVisible(false);
+
+        panel.setHeight(650);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
@@ -210,47 +258,9 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 panel.add(c, new FormData("100%"));
             }
         }
-        return panel;
-    }
 
-    private Grid<ManifestiPieghevoliFogliModel> createGrid() {
-        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+        centre.add(panel);
 
-        ColumnConfig column = new ColumnConfig();
-        column.setRowHeader(false);
-        column.setId("categoria");
-
-        TextField<String> text = new TextField<String>();
-        text.setAllowBlank(false);
-        column.setEditor(new CellEditor(text));
-        configs.add(column);
-
-        final RowEditor<PubblicazioniRilegateModel> re = new RowEditor<PubblicazioniRilegateModel>();
-        re.getMessages().setSaveText("Salva");
-        re.getMessages().setCancelText("Annulla");
-        re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
-
-        final ColumnModel cm = new ColumnModel(configs);
-        final Grid<ManifestiPieghevoliFogliModel> grid = new Grid<ManifestiPieghevoliFogliModel>(storeCustom, cm);
-
-        grid.setAutoExpandColumn("categoria");
-        grid.setBorders(true);
-        grid.addPlugin(re);
-        grid.setHideHeaders(true);
-
-        Button add = new Button("Aggiungi categoria");
-        add.addSelectionListener(new SelectionListener<ButtonEvent>() {
-
-            @Override
-            public void componentSelected(ButtonEvent ce) {
-                ManifestiPieghevoliFogliModel cate = new ManifestiPieghevoliFogliModel("Nuova Categoria");
-                re.stopEditing(false);
-                storeCustom.insert(cate, 0);
-                re.startEditing(storeCustom.indexOf(cate), true);
-            }
-        });
-        toolBar.add(add);
-        return grid;
     }
 
     public void clear() {

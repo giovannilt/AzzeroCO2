@@ -11,6 +11,7 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 
@@ -30,6 +31,7 @@ public class EventoDettaglio extends LayoutContainer {
 //    private ListStore<BeanModel> storeTutteLePersone = new ListStore<BeanModel>();
     private ListStore<TrasportoPersoneModel> storeCustom = new ListStore<TrasportoPersoneModel>();
     private ListStore<PubblicazioniRilegateModel> storePubblicazioniRilegate= new ListStore<PubblicazioniRilegateModel>();
+    private ListStore<ManifestiPieghevoliFogliModel> storeManifestiPieghevoliFogliModel= new ListStore<ManifestiPieghevoliFogliModel>();
     private DettaglioModel dettaglioModel = new DettaglioModel();
 
     private EventoFormDettaglio formDettaglio = null;
@@ -40,7 +42,7 @@ public class EventoDettaglio extends LayoutContainer {
     private final EventoFormPernottamenti formPernottamenti = new EventoFormPernottamenti();
     private final EventoFormTrasportoMerci formTrasportoMerci = new EventoFormTrasportoMerci();
     private final EventoFormPubblicazioniRilegate formPubblicazioniRilegate = new EventoFormPubblicazioniRilegate(storePubblicazioniRilegate);
-    private final EventoFormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new EventoFormManifestiPieghevoliFogli();
+    private final EventoFormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new EventoFormManifestiPieghevoliFogli(storeManifestiPieghevoliFogliModel);
 
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
     private final EventoFormAcquisto eventoFormAcquisto = new EventoFormAcquisto();

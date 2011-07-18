@@ -55,10 +55,11 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         ContentPanel textContent = new ContentPanel();
         textContent.setHeaderVisible(false);
         textContent.setFrame(true);
-        textContent.addText("Si tratta di gruppi di pagineriunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br>Puoi inserire piu' di una pubblicazione e aggiungere altre categorie.");
+        textContent.addText("Si tratta di gruppi di pagine riunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br>Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie.");
 
         ContentPanel cpEst = new ContentPanel();
         cpEst.setFrame(false);
+        cpEst.setHeading("Pubblicazioni Rilegate");
         cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         cpEst.add(textContent, new RowData(1, .25, new Margins(0, 0, 0, 0)));
         cpEst.add(grid, new RowData(1, .75, new Margins(0, 0, 0, 0)));
@@ -66,13 +67,10 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
         cp.add(cpEst, new RowData(.3, .98));
-
         final FormPanel panel = createForm();
         cp.add(panel, new RowData(.7, 1));
-
         final FormBinding formBindings = new FormBinding(panel, true);
         formBindings.setStore(grid.getStore());
-
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,
                 new Listener<SelectionChangedEvent<PubblicazioniRilegateModel>>() {
@@ -85,8 +83,6 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                         }
                     }
                 });
-
-
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
     }
