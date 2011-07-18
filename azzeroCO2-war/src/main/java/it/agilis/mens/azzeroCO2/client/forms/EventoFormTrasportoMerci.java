@@ -42,7 +42,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
         FormPanel panel = createForm();
-        panel.setHeading("/ Trasporto merci");
+        panel.setHeading("Trasporto merci");
         panel.getHeader().addTool(new ToolButton("x-tool-help"));
         panel.getHeader().addTool(new ToolButton("x-tool-close"));
 

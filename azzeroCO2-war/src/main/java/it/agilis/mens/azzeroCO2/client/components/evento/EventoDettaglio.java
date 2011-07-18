@@ -39,7 +39,7 @@ public class EventoDettaglio extends LayoutContainer {
     private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone(storeCustom);
     private final EventoFormPernottamenti formPernottamenti = new EventoFormPernottamenti();
     private final EventoFormTrasportoMerci formTrasportoMerci = new EventoFormTrasportoMerci();
-    private final EventoFormPubblicazioniRilegateNEW formPubblicazioniRilegate = new EventoFormPubblicazioniRilegateNEW(storePubblicazioniRilegate);
+    private final EventoFormPubblicazioniRilegate formPubblicazioniRilegate = new EventoFormPubblicazioniRilegate(storePubblicazioniRilegate);
     private final EventoFormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new EventoFormManifestiPieghevoliFogli();
 
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();

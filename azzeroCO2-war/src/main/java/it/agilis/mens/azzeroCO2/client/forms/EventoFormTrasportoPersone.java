@@ -85,7 +85,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         tutti.setBoxLabel("Tutte le persone");
         tutti.setValue(true);
 
-
         Radio personalizzato = new Radio();
         personalizzato.addListener(Events.OnClick, new Listener<BaseEvent>() {
             public void handleEvent(BaseEvent be) {
@@ -108,16 +107,13 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         cpEst.setHeading("Categorie");
 
         cpEst.setLayout(new RowLayout(Orientation.VERTICAL));
-
         cpEst.add(radioContent, new RowData(1, 0.07, new Margins(0, 0, 0, 0)));
         cpEst.add(grid, new RowData(1, .93, new Margins(0, 0, 0, 0)));
-
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
         cp.add(cpEst, new RowData(.3, .98, new Margins(0, 0, 0, 0)));
         cp.add(cpCentre, new RowData(.7, 1));
-
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,
@@ -135,8 +131,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
-
-
     }
 
     private FormPanel createGroupForm() {
@@ -147,7 +141,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         formPanel.getHeader().addTool(new ToolButton("x-tool-close"));
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
-
         {
             LayoutContainer cl = new LayoutContainer();
             HBoxLayout layout = new HBoxLayout();
