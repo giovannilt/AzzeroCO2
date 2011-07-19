@@ -13,6 +13,7 @@ import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.Ordine;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,11 +42,11 @@ public class Ordini extends LayoutContainer {
         ContentPanel centre = new ContentPanel();
         final ListStore<Ordine> store = new ListStore<Ordine>();
         {  //TODO
-            store.add(new Ordine(null, "Mario Rossi", "Foresta amazzonica", 10.0, 100.0));
-            store.add(new Ordine(null, "Giulio Cesare", "Eolico in Calabria", 10.0, 30.0));
-            store.add(new Ordine(null, "Pippo Baudo", "Macchia mediterranea", 10.0, 45.0));
-            store.add(new Ordine(null, "Bart Simpson", "Alberi nel deserto", 1.4, 130.0));
-            store.add(new Ordine(null, "Johnny Beavo", "Solare a Joppolo", 10.0, 87.0));
+            store.add(new Ordine(new Date(), "Mario Rossi", "Foresta amazzonica", 10.0, 100.0));
+            store.add(new Ordine(new Date(), "Giulio Cesare", "Eolico in Calabria", 10.0, 30.0));
+            store.add(new Ordine(new Date(), "Pippo Baudo", "Macchia mediterranea", 10.0, 45.0));
+            store.add(new Ordine(new Date(), "Bart Simpson", "Alberi nel deserto", 1.4, 130.0));
+            store.add(new Ordine(new Date(), "Johnny Beavo", "Solare a Joppolo", 10.0, 87.0));
         }
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
@@ -58,7 +59,7 @@ public class Ordini extends LayoutContainer {
         column = new ColumnConfig("cliente", "Cliente", 300);
         configs.add(column);
 
-        column = new ColumnConfig("progetto", "ProgettoDiCompensazione", 200);
+        column = new ColumnConfig("programma", "ProgettoDiCompensazione", 200);
         configs.add(column);
 
         column = new ColumnConfig("kgco2", "KG CO2", 100);
@@ -66,7 +67,7 @@ public class Ordini extends LayoutContainer {
         configs.add(column);
 
 
-        column = new ColumnConfig("Importo", "Importo ", 100);
+        column = new ColumnConfig("importo", "Importo ", 100);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
         configs.add(column);
 

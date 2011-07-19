@@ -27,7 +27,7 @@ public class Ordine extends BaseModelData {
     }
 
 
-    public String getData() {
+    public Date getData() {
         return get("data");
     }
 

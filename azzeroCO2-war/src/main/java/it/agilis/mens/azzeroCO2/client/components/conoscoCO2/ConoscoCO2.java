@@ -7,9 +7,9 @@ import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.ConoscoCO2Form;
-import it.agilis.mens.azzeroCO2.client.forms.EventoFormAcquisto;
-import it.agilis.mens.azzeroCO2.client.forms.EventoFormConferma;
-import it.agilis.mens.azzeroCO2.client.forms.EventoFormRiepilogo;
+import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormAcquisto;
+import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormConferma;
+import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormRiepilogo;
 
 /**
  * Created by IntelliJ IDEA.
