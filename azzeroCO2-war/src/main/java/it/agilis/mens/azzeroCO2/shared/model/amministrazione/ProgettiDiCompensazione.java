@@ -12,27 +12,28 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
 public class ProgettiDiCompensazione extends BaseModelData {
 
 
-    public ProgettiDiCompensazione(String name, String type, Double kgCO2, String attivo) {
+    public ProgettiDiCompensazione(String type, String name, Double kgCO2, String attivo) {
         setName(name);
-        setKgCO2(kgCO2);
         setType(type);
-        setType(attivo);
+        setKgCO2(kgCO2);
+        setAttivo(attivo);
     }
+
+
+
+
     public String getType() {
         return get("type");
     }
 
-    public void setType(String type) {
+
+    public void setType(String type){
         set("type", type);
     }
 
-    public Double getKgCO2() {
-        return get("kgCO2");
-    }
 
-    public void setKgCO2(Double kgCO2) {
-        set("kgCO2", kgCO2);
-    }
+
+
 
     public String getName() {
         return get("name");
@@ -42,13 +43,29 @@ public class ProgettiDiCompensazione extends BaseModelData {
         set("name", name);
     }
 
+
+
+
+
+    public Double getKgCO2() {
+        return get("kgCO2");
+    }
+
+    public void setKgCO2(Double kgCO2) {
+        set("kgCO2",kgCO2);
+    }
+
+
     public String getAttivo() {
         return get("attivo");
     }
 
-    public void setAttivo(String attivo) {
-        set("attivo", attivo);
+
+
+    public void setAttivo(String attivo){
+        set("attivo",attivo);
     }
+
 
 
 }

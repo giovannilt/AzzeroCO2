@@ -23,6 +23,7 @@ public class Coupon extends BaseModelData {
         setCodice(codice);
         setDescrizione(descrizione);
         setTipo(tipo);
+        setValore(valore);
         setDataInizio(dataInizio);
         setDataFine(dataFine);
         setAttivo(attivo);

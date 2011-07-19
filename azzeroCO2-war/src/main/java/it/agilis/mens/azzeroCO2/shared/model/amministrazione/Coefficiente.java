@@ -29,7 +29,7 @@ public class Coefficiente extends BaseModelData {
     }
 
     public void setCoefficiente(String coefficiente) {
-        set("coeffiiente", coefficiente);
+        set("coefficiente", coefficiente);
     }
 
     public String getTipologia() {
@@ -45,7 +45,7 @@ public class Coefficiente extends BaseModelData {
     }
 
     public void setKgCO2(Double valore) {
-        set("kgCO2", valore);
+        set("valore", valore);
     }
 
 

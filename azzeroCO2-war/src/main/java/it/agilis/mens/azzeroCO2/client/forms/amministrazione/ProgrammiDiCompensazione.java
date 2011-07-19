@@ -55,9 +55,11 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
 
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("neme", "Progetto di compensazione", 300);
+        ColumnConfig column = new ColumnConfig("type", "Tipo progetto", 300);
         configs.add(column);
 
+        column =new ColumnConfig("name", "Progetto",200);
+        configs.add(column);
         column = new ColumnConfig("kgCO2", "Prezzo kg/CO2", 100);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
         configs.add(column);
