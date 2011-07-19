@@ -2,12 +2,9 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
-import com.extjs.gxt.ui.client.mvc.View;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
-import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.AmministrazioneView;
-import it.agilis.mens.azzeroCO2.client.mvc.views.AzzeroCO2View;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,18 +14,16 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.AzzeroCO2View;
  * To change this template use File | Settings | File Templates.
  */
 public class AmministrazioneController extends Controller {
-    View amministrazioneView= new AmministrazioneView(this);
+    AmministrazioneView amministrazioneView = new AmministrazioneView(this);
 
-    public AmministrazioneController(){
+    public AmministrazioneController() {
         registerEventTypes(AzzeroCO2Events.Init);
-   	    registerEventTypes(AmministrazioneEvents.Error);
-
-
+        registerEventTypes(AmministrazioneEvents.Error);
     }
 
     @Override
     public void handleEvent(AppEvent event) {
-       forwardToView(amministrazioneView, event);
+        forwardToView(amministrazioneView, event);
     }
 
 }

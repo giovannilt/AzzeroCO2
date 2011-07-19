@@ -4,10 +4,7 @@ import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.*;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.extjs.gxt.ui.client.widget.layout.CardLayout;
-import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
+import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
@@ -27,16 +24,15 @@ public class EventoDettaglio extends LayoutContainer {
 
     private final TabPanel eventoTab = new TabPanel();
 
- //   private BeanModelFactory beanModelFactory = BeanModelLookup.get().getFactory(EventoCategoriePersoneDTO.class);
+    //   private BeanModelFactory beanModelFactory = BeanModelLookup.get().getFactory(EventoCategoriePersoneDTO.class);
 //    private ListStore<BeanModel> storeTutteLePersone = new ListStore<BeanModel>();
     private ListStore<TrasportoPersoneModel> storeCustom = new ListStore<TrasportoPersoneModel>();
-    private ListStore<PubblicazioniRilegateModel> storePubblicazioniRilegate= new ListStore<PubblicazioniRilegateModel>();
-    private ListStore<ManifestiPieghevoliFogliModel> storeManifestiPieghevoliFogliModel= new ListStore<ManifestiPieghevoliFogliModel>();
+    private ListStore<PubblicazioniRilegateModel> storePubblicazioniRilegate = new ListStore<PubblicazioniRilegateModel>();
+    private ListStore<ManifestiPieghevoliFogliModel> storeManifestiPieghevoliFogliModel = new ListStore<ManifestiPieghevoliFogliModel>();
     private DettaglioModel dettaglioModel = new DettaglioModel();
 
     private EventoFormDettaglio formDettaglio = null;
 
-    private final ContentPanel calcoloCardPanel = new ContentPanel();
     private final EventoFormEnergia formEnergia = new EventoFormEnergia();
     private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone(storeCustom);
     private final EventoFormPernottamenti formPernottamenti = new EventoFormPernottamenti();
@@ -53,6 +49,7 @@ public class EventoDettaglio extends LayoutContainer {
         super.onRender(target, index);
 
         {
+            // TODO
             TrasportoPersoneModel categorie = new TrasportoPersoneModel();
             categorie.setCategoria("Staff");
             storeCustom.add(categorie);
@@ -64,69 +61,61 @@ public class EventoDettaglio extends LayoutContainer {
             storePubblicazioniRilegate.add(new PubblicazioniRilegateModel("Bilancio"));
         }
 
-        HBoxLayout layout = new HBoxLayout();
-        layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
-        setLayout(layout);
-
-        calcoloCardPanel.setSize(855, 632);
-        // TODO:.... CAPIRE COME CAZZO SI FA A STRETCH COME DIO COMANDA
-        eventoTab.setSize(855, 637);
+        setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
         TabItem dettaglio = new TabItem("Dettaglio");
-         dettaglio.setLayout(new BorderLayout());
+        dettaglio.setLayout(new BorderLayout());
         formDettaglio = new EventoFormDettaglio(dettaglioModel);
-        //formDettaglio.setSize(855,637);
         dettaglio.add(formDettaglio, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         eventoTab.add(dettaglio);
 
         TabItem calcolo = new TabItem("Calcolo");
         createCalcoloTabs();
-        calcolo.add(calcoloCardPanel);
+        calcolo.add(createCalcoloTabs(), new BorderLayoutData(Style.LayoutRegion.CENTER));
         calcolo.setEnabled(false);
         eventoTab.add(calcolo);
 
         TabItem riepilogo = new TabItem("Riepilogo");
-        riepilogo.add(eventoFormRiepilogo);
+        riepilogo.add(eventoFormRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
         riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("Acquisto");
-        acquisto.add(eventoFormAcquisto);
+        acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         eventoTab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");
-        conferma.add(eventoFormConferma);
+        conferma.add(eventoFormConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
         conferma.setEnabled(false);
         eventoTab.add(conferma);
 
-        add(eventoTab);
+        add(eventoTab, new RowData(1, 1));
     }
 
 
-    public void createCalcoloTabs() {
-        formEnergia.setTitle("Energia");
-
+    public ContentPanel createCalcoloTabs() {
+        ContentPanel calcoloCardPanel = new ContentPanel();
+        calcoloCardPanel.setHeight(620);
         final CardLayout layout = new CardLayout();
         calcoloCardPanel.setLayout(layout);
         calcoloCardPanel.setHeaderVisible(false);
 
         formEnergia.setTitle("formEnergia");
-        calcoloCardPanel.add(formEnergia);
-
+        calcoloCardPanel.add(formEnergia, new BorderLayoutData(Style.LayoutRegion.CENTER));
         formTrasportoPersone.setTitle("formTrasportoPersone");
-        // calcoloCardPanel.add(formTrasportoPersone);
-        calcoloCardPanel.add(formTrasportoPersone);
+        calcoloCardPanel.add(formTrasportoPersone, new BorderLayoutData(Style.LayoutRegion.CENTER));
         formPernottamenti.setTitle("formPernottamenti");
-        calcoloCardPanel.add(formPernottamenti);
+        calcoloCardPanel.add(formPernottamenti, new BorderLayoutData(Style.LayoutRegion.CENTER));
         formTrasportoMerci.setTitle("formTrasportoMerci");
-        calcoloCardPanel.add(formTrasportoMerci);
+        calcoloCardPanel.add(formTrasportoMerci, new BorderLayoutData(Style.LayoutRegion.CENTER));
         formPubblicazioniRilegate.setTitle("formPubblicazioniRilegate");
-        calcoloCardPanel.add(formPubblicazioniRilegate);
+        calcoloCardPanel.add(formPubblicazioniRilegate, new BorderLayoutData(Style.LayoutRegion.CENTER));
         formManifestiPiegevoliFogli.setTitle("formManifestiPiegevoliFogli");
-        calcoloCardPanel.add(formManifestiPiegevoliFogli);
+        calcoloCardPanel.add(formManifestiPiegevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
+        return calcoloCardPanel;
     }
 
     public void previusTab(AppEvent event) {

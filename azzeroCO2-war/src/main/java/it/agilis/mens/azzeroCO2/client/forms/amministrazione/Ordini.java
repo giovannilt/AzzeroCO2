@@ -2,12 +2,11 @@ package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.store.ListStore;
-import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.grid.*;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.RowData;
+import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.Ordine;
@@ -24,23 +23,14 @@ import java.util.List;
  */
 public class Ordini extends LayoutContainer {
 
-
-
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
-
-        BorderLayout layout = new BorderLayout();
-        setLayout(layout);
-
+        setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         ContentPanel centre = createCentre();
         centre.setHeading("Ordini");
-        //  centre.setHeight(650);
-
-        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
-        add(centre, centerData);
-
+        centre.setFrame(true);
+        add(centre, new RowData(1, 1));
     }
 
     private ContentPanel createCentre() {

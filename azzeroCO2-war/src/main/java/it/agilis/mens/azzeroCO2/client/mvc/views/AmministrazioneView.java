@@ -26,9 +26,7 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
  */
 public class AmministrazioneView extends View {
     private ContentPanel amministrazionePanel = new ContentPanel();
-
     private Amministrazione amministrazione = new Amministrazione();
-    private ContentPanel center = new ContentPanel();
 
     public AmministrazioneView(Controller controller) {
         super(controller);
@@ -58,16 +56,7 @@ public class AmministrazioneView extends View {
         amministrazionePanel.add(new AmministrazioneNorth(), northData);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        {
-            final BorderLayout layout2 = new BorderLayout();
-            center.setLayout(layout2);
-            BorderLayoutData center2Data = new BorderLayoutData(Style.LayoutRegion.CENTER);
-            center2Data.setMargins(new Margins(0, 0, 0, 0));
-            center.add(amministrazione, center2Data);
-
-        }
-        center.setHeaderVisible(false);
-        amministrazionePanel.add(center, centerData);
+        amministrazionePanel.add(amministrazione, centerData);
 
         amministrazionePanel.setTitle(Eventi.AMMINISTRAZIONE.name());
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.AmministrazioneReady, amministrazionePanel));

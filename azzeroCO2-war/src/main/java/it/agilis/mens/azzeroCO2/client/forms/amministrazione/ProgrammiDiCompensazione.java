@@ -25,9 +25,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class ProgrammiDiCompensazione extends LayoutContainer {
-
-    ContentPanel centre = new ContentPanel();
-
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);

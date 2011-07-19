@@ -25,7 +25,6 @@ import java.util.List;
  */
 public class Coupon extends LayoutContainer {
 
-
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
