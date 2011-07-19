@@ -342,7 +342,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         TextField<String> text = new TextField<String>();
         text.setAllowBlank(false);
         column.setEditor(new CellEditor(text));
-      column.setWidth(50);
+        column.setWidth(50);
         configs.add(column);
 
         column = new ColumnConfig();
@@ -350,12 +350,12 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         column.setId("Cancella");
         column.setRenderer(new GridCellRenderer<TrasportoPersoneModel>() {
             private boolean init;
+
             public Object render(final TrasportoPersoneModel model, String property, ColumnData config, final int rowIndex,
                                  final int colIndex, ListStore<TrasportoPersoneModel> store, Grid<TrasportoPersoneModel> grid) {
                 if (!init) {
                     init = true;
                     grid.addListener(Events.ColumnResize, new Listener<GridEvent<TrasportoPersoneModel>>() {
-
                         public void handleEvent(GridEvent<TrasportoPersoneModel> be) {
                             for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
                                 if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
@@ -371,9 +371,10 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
                         Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
+                        storeCustom.remove(model);
                     }
                 });
-               // b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
+                // b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
                 b.setToolTip("Elimina Categoria");
 
                 return b;
