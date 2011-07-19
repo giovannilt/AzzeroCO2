@@ -36,7 +36,7 @@ public class Amministrazione extends LayoutContainer {
         couponTab.add(coupon);
         amministrazioneTab.add(couponTab);
 
-        TabItem coefficientiTab = new TabItem("Coefficienti calcolo");
+        TabItem coefficientiTab = new TabItem("Coefficienti di calcolo");
         coefficientiTab.add(coefficienti);
         amministrazioneTab.add(coefficientiTab);
 

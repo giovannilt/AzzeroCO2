@@ -1,12 +1,20 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
+import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
+import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,7 +25,7 @@ import com.google.gwt.user.client.Element;
  */
 public class Coupon extends LayoutContainer {
 
-    ContentPanel centre = new ContentPanel();
+
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
@@ -25,7 +33,7 @@ public class Coupon extends LayoutContainer {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-        createCentre();
+         ContentPanel centre =createCentre();
         centre.setHeading("Coupon");
       //  centre.setHeight(650);
 
@@ -35,8 +43,57 @@ public class Coupon extends LayoutContainer {
 
     }
 
-    private void createCentre() {
+    private ContentPanel createCentre() {
+        ContentPanel centre = new ContentPanel();
+        final ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>();
+        {  //TODO
+            store.add(new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon("765489000", "Sconto 10% sig. Rossi", "%",10.0,null,null,null));
+            store.add(new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon("98UUGB765", "Sconto 250 euro a Cesare", "%",250.0,null,null,null));
+            //store.add(new Coupon("Manifesti, pieghevoli, fogli / programma", "Energia Elettrica XX <br> Gasolio YY", 10.0));
+        }
 
+        final NumberFormat number = NumberFormat.getFormat("0.00");
+
+        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+
+        ColumnConfig column = new ColumnConfig("codice", "Codice", 100);
+        configs.add(column);
+
+        column = new ColumnConfig("descrizione", "Descrizione", 200);
+        configs.add(column);
+
+        column = new ColumnConfig("tipo", "Tipo", 70);
+        configs.add(column);
+
+
+        column = new ColumnConfig("valore", "Valore", 100);
+        column.setAlignment(Style.HorizontalAlignment.RIGHT);
+        configs.add(column);
+
+        column = new ColumnConfig("dataInizio", "Inizio validità", 100);
+        configs.add(column);
+
+        column = new ColumnConfig("dataFine", "Fine Validità", 100);
+        configs.add(column);
+
+        column = new ColumnConfig("attivo", "Attivo", 70);
+        configs.add(column);
+
+
+
+        ColumnModel cm = new ColumnModel(configs);
+
+
+
+
+
+
+        Grid<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> grid = new Grid<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>(store, cm);
+        grid.setBorders(true);
+        grid.setAutoHeight(true);
+
+        centre.add(grid);
+         return centre;
 
     }
 
