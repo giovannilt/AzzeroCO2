@@ -69,8 +69,6 @@ public class Coefficienti extends LayoutContainer {
 
         ColumnModel cm = new ColumnModel(configs);
 
-
-
         Grid<Coefficiente> grid = new Grid<Coefficiente>(store, cm);
         grid.setBorders(true);
         grid.setAutoHeight(true);

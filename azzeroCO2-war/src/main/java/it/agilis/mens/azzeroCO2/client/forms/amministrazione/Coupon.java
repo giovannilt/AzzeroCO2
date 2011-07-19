@@ -69,10 +69,10 @@ public class Coupon extends LayoutContainer {
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
         configs.add(column);
 
-        column = new ColumnConfig("dataInizio", "Inizio validità", 100);
+        column = new ColumnConfig("dataInizio", "Inizio validita'", 100);
         configs.add(column);
 
-        column = new ColumnConfig("dataFine", "Fine Validità", 100);
+        column = new ColumnConfig("dataFine", "Fine Validitï¿½", 100);
         configs.add(column);
 
         column = new ColumnConfig("attivo", "Attivo", 70);
