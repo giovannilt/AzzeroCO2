@@ -30,6 +30,8 @@ import java.util.List;
 public class EventoFormTrasportoPersone extends LayoutContainer {
     private ListStore<TrasportoPersoneModel> storeCustom = new ListStore<TrasportoPersoneModel>();
     private final ToolBar toolBar = new ToolBar();
+    private final FormPanel panel = createGroupForm();
+    private final FormBinding formBindings = new FormBinding(panel, true);
 
     public EventoFormTrasportoPersone(ListStore<TrasportoPersoneModel> storeCustom) {
         this.storeCustom = storeCustom;
@@ -51,10 +53,10 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         cp.setLayout(new RowLayout(Orientation.HORIZONTAL));
 
         final Grid<TrasportoPersoneModel> grid = createGrid();
-        final FormPanel panel = createGroupForm();
+
         panel.setEnabled(false);
 
-        final FormBinding formBindings = new FormBinding(panel, true);
+
         formBindings.setStore(grid.getStore());
 
         final FormPanel panelTutte = createGroupForm();
@@ -371,6 +373,8 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
                         Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
+                        formBindings.unbind();
+                        panel.setHeading("Aggiungi una Categoria o Personalizza quelle esistenti");
                         storeCustom.remove(model);
                     }
                 });
