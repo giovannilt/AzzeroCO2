@@ -66,8 +66,7 @@ public class Ordini extends LayoutContainer {
         column.setAlignment((Style.HorizontalAlignment.RIGHT));
         configs.add(column);
 
-
-        column = new ColumnConfig("importo", "Importo ", 100);
+        column = new ColumnConfig("Importo", "Importo ", 100);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
         configs.add(column);
 
