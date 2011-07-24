@@ -1,19 +1,25 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.data.ModelData;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
-import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
-import com.extjs.gxt.ui.client.widget.grid.Grid;
+import com.extjs.gxt.ui.client.widget.form.NumberField;
+import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.grid.*;
+import com.extjs.gxt.ui.client.widget.grid.CellEditor;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coefficiente;
+import com.extjs.gxt.ui.client.widget.grid.CellEditor;
+import com.extjs.gxt.ui.client.widget.grid.RowEditor;
 
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +30,7 @@ import java.util.List;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
+@SuppressWarnings({"ALL"})
 public class Coefficienti extends LayoutContainer {
     @Override
     protected void onRender(Element parent, int index) {
@@ -53,24 +60,35 @@ public class Coefficienti extends LayoutContainer {
             store.add(new Coefficiente("Tratta, aereo 500km", "Trasporto persone", 0.24));
         }
 
-        final NumberFormat number = NumberFormat.getFormat("0.00");
 
-        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+       final NumberFormat number = NumberFormat.getFormat("0.00");
 
-        ColumnConfig column = new ColumnConfig("coefficiente", "Coefficiente", 300);
-        configs.add(column);
+       List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        column = new ColumnConfig("tipologia", "Tipologia", 445);
+
+
+       ColumnConfig column = new ColumnConfig("tipologia","Tipologia",300);
+       configs.add(column);
+
+
+        column = new ColumnConfig("coefficiente", "Coefficiente", 445);
         configs.add(column);
 
         column = new ColumnConfig("valore", "Valore", 100);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
+        column.setEditor(new CellEditor(new NumberField()));
         configs.add(column);
+
+       final RowEditor<Coefficiente> re = new RowEditor<Coefficiente>();
+        re.getMessages().setSaveText("Salva");
+        re.getMessages().setCancelText("Annulla");
+        re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
         ColumnModel cm = new ColumnModel(configs);
 
         Grid<Coefficiente> grid = new Grid<Coefficiente>(store, cm);
         grid.setBorders(true);
+        grid.addPlugin(re);
         grid.setAutoHeight(true);
 
         centre.add(grid);

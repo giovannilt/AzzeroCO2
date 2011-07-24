@@ -11,6 +11,9 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
  */
 public class ProgettiDiCompensazione extends BaseModelData {
 
+    public ProgettiDiCompensazione(){
+
+    }
 
     public ProgettiDiCompensazione(String type, String name, Double kgCO2, String attivo) {
         setName(name);
