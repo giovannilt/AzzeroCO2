@@ -8,9 +8,11 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.*;
+import com.extjs.gxt.ui.client.widget.grid.CellEditor;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
@@ -18,6 +20,8 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettiDiCompensazione;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +38,7 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
     protected ProgettiDiCompensazione createProgetto() {
         ProgettiDiCompensazione progetto = new ProgettiDiCompensazione();
         progetto.setName("Nuovo progetto");
-        progetto.setAttivo("Si");
+        progetto.setAttivo(false);
         progetto.setType("Tipo");
         progetto.setKgCO2(0.00);
         return progetto;
@@ -65,9 +69,9 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
         ContentPanel centre = new ContentPanel();
         final ListStore<ProgettiDiCompensazione> store = new ListStore<ProgettiDiCompensazione>();
         {  //TODO
-            store.add(new ProgettiDiCompensazione("Eolico a Vigata", "Enargia", 10.0, "Si"));
-            store.add(new ProgettiDiCompensazione("Foresta a Fela", "Vegetazione", 15.0, "Si"));
-            store.add(new ProgettiDiCompensazione("Solare a Montelusa", "Energia", 20.0, "No"));
+            store.add(new ProgettiDiCompensazione("Eolico a Vigata", "Enargia", 10.0, true));
+            store.add(new ProgettiDiCompensazione("Foresta a Fela", "Vegetazione", 15.0, true));
+            store.add(new ProgettiDiCompensazione("Solare a Montelusa", "Energia", 20.0, false));
         }
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
@@ -89,10 +93,10 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
         column.setEditor(new CellEditor(new NumberField()));
         configs.add(column);
 
-        column = new ColumnConfig("attivo", "Attivo", 100);
-        TextField<String> textAttivo=new TextField<String>();
-        column.setEditor(new CellEditor(textAttivo));
-        configs.add(column);
+        CheckColumnConfig columnCh = new CheckColumnConfig("attivo", "Attivo", 55);
+        CellEditor checkBoxEditor = new CellEditor(new CheckBox());
+        columnCh.setEditor(checkBoxEditor);
+        configs.add(columnCh);
 
         final RowEditor<ProgettiDiCompensazione> re = new RowEditor<ProgettiDiCompensazione>();
         re.getMessages().setSaveText("Salva");
@@ -115,7 +119,7 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
         add.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ProgettiDiCompensazione prog = new ProgettiDiCompensazione("Codice","Nuovo progetto",0.00,"Si");
+                ProgettiDiCompensazione prog = new ProgettiDiCompensazione("Codice","Nuovo progetto",0.00,true);
                 re.stopEditing(false);
                 store.insert(createProgetto(),0);
                 re.startEditing(store.indexOf(prog),true);

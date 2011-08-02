@@ -224,10 +224,10 @@ public class EventoFormAcquisto extends LayoutContainer {
     private void createCentre() {
         final ListStore<ProgettiDiCompensazione> store = new ListStore<ProgettiDiCompensazione>();
         {  //TODO
-            store.add(new ProgettiDiCompensazione("Biomassa in Valtellina", "UNO", 123.0,"Si"));
-            store.add(new ProgettiDiCompensazione("Forestazione in Italia", "UNO",123.0,"Si"));
-            store.add(new ProgettiDiCompensazione("Eolico in India", "UNO",123.0,"Si"));
-            store.add(new ProgettiDiCompensazione("Biogas da discarica a Chicago", "UNO",120.0,"Si"));
+            store.add(new ProgettiDiCompensazione("Biomassa in Valtellina", "UNO", 123.0,true));
+            store.add(new ProgettiDiCompensazione("Forestazione in Italia", "UNO",123.0,true));
+            store.add(new ProgettiDiCompensazione("Eolico in India", "UNO",123.0,true));
+            store.add(new ProgettiDiCompensazione("Biogas da discarica a Chicago", "UNO",120.0,true));
       }
 
     List<ColumnConfig> configs = new ArrayList<ColumnConfig>();

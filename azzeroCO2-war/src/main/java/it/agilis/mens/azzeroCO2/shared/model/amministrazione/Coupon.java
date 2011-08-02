@@ -19,7 +19,7 @@ public class Coupon extends BaseModelData {
 
     }
 
-    public Coupon(String codice, String descrizione,String tipo, Double valore, Date dataInizio, Date dataFine, String attivo) {
+    public Coupon(String codice, String descrizione,String tipo, Double valore, Date dataInizio, Date dataFine, Boolean attivo) {
         setCodice(codice);
         setDescrizione(descrizione);
         setTipo(tipo);
@@ -82,11 +82,11 @@ public class Coupon extends BaseModelData {
     }
 
 
-    public String getAttivo() {
+    public Boolean getAttivo() {
         return get("attivo");
     }
 
-    public void setAttivo(String attivo) {
+    public void setAttivo(Boolean attivo) {
         set("attivo", attivo);
     }
 

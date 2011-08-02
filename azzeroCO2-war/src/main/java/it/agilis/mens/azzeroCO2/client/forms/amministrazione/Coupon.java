@@ -11,9 +11,7 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.form.DateField;
-import com.extjs.gxt.ui.client.widget.form.NumberField;
-import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
@@ -44,16 +42,23 @@ public class Coupon extends LayoutContainer {
     coupon.setValore(0.00);
     coupon.setCodice("Codice");
     coupon.setDescrizione("nuovo coupon");
-    coupon.setAttivo("Attivo");
+    coupon.setAttivo(true);
     coupon.setDataInizio(null);
     coupon.setDataFine(null);
-    coupon.setAttivo("Si");
+    coupon.setAttivo(true);
     return coupon;
   }
 
 
 
+
+
+
+
+
     @Override
+
+
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
@@ -68,13 +73,16 @@ public class Coupon extends LayoutContainer {
         centerData.setMargins(new Margins(0));
         add(centre, centerData);
 
+
+
+
     }
 
     private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
         final ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>();
         {  //TODO
-            store.add(new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon("765489000", "Sconto 10% sig. Rossi", "%",10.0,new Date() ,new Date(),"Si"));
+            store.add(new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon("765489000", "Sconto 10% sig. Rossi", "%",10.0,new Date() ,new Date(),true));
             store.add(new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon("98UUGB765", "Sconto 250 euro a Cesare", "%",250.0,null,null,null));
             //store.add(new Coupon("Manifesti, pieghevoli, fogli / programma", "Energia Elettrica XX <br> Gasolio YY", 10.0));
         }
@@ -93,9 +101,43 @@ public class Coupon extends LayoutContainer {
         column.setEditor(new CellEditor (textDescr));
         configs.add(column);
 
+
+
+
+
+        final SimpleComboBox<String> combo= new SimpleComboBox<String>();
+        combo.setForceSelection(true);
+        combo.setTriggerAction(ComboBox.TriggerAction.ALL);
+        combo.add("%");
+        combo.add("€");
+        combo.add("Omaggio");
+
+        CellEditor editorCombo= new CellEditor(combo){
+          @Override
+          public Object preProcessValue(Object value) {
+            if (value == null) {
+              return value;
+            }
+            return combo.findModel(value.toString());
+          }
+
+          @Override
+          public Object postProcessValue(Object value) {
+            if (value == null) {
+              return value;
+            }
+            return ((it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon) value).get("tipo");
+          }
+        };
+
+
+
+
+
+
         column = new ColumnConfig("tipo", "Tipo", 70);
         TextField<String> textTipo = new TextField<String>();
-        column.setEditor(new CellEditor(textTipo));
+        column.setEditor(editorCombo);
         configs.add(column);
 
 
@@ -118,10 +160,10 @@ public class Coupon extends LayoutContainer {
         column.setEditor(new CellEditor(dateEndld));
         configs.add(column);
 
-        column = new ColumnConfig("attivo", "Attivo", 70);
-        TextField<String> textAttivo=new TextField<String>();
-        column.setEditor(new CellEditor(textAttivo));
-        configs.add(column);
+        CheckColumnConfig columnCh = new CheckColumnConfig("attivo", "Attivo", 55);
+        CheckBox chAttivo=new CheckBox();
+        columnCh.setEditor(new CellEditor(chAttivo));
+        configs.add(columnCh);
 
         final RowEditor<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> re = new RowEditor<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>();
         re.getMessages().setSaveText("Salva");
@@ -148,7 +190,7 @@ public class Coupon extends LayoutContainer {
         add.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon coup = new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon("Codice","Nuovo coupon","",0.00,new Date(),new Date(),"");
+                it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon coup = new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon("Codice","Nuovo coupon","",0.00,new Date(),new Date(),false);
                 re.stopEditing(false);
                 store.insert(createCoupon(),0);
                 re.startEditing(store.indexOf(coup),true);

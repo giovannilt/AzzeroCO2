@@ -1,6 +1,10 @@
 package it.agilis.mens.azzeroCO2.shared.model.amministrazione;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
+import com.google.gwt.user.client.ui.CheckBox;
+import com.sun.tools.javac.comp.Check;
+
+import java.awt.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,7 +19,7 @@ public class ProgettiDiCompensazione extends BaseModelData {
 
     }
 
-    public ProgettiDiCompensazione(String type, String name, Double kgCO2, String attivo) {
+    public ProgettiDiCompensazione(String type, String name, Double kgCO2, Boolean attivo) {
         setName(name);
         setType(type);
         setKgCO2(kgCO2);
@@ -59,13 +63,13 @@ public class ProgettiDiCompensazione extends BaseModelData {
     }
 
 
-    public String getAttivo() {
+    public Boolean getAttivo() {
         return get("attivo");
     }
 
 
 
-    public void setAttivo(String attivo){
+    public void setAttivo(Boolean attivo){
         set("attivo",attivo);
     }
 
