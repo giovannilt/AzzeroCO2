@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.data.*;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -8,6 +9,7 @@ import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.Ordine;
@@ -49,6 +51,28 @@ public class Ordini extends LayoutContainer {
             store.add(new Ordine(new Date(), "Johnny Beavo", "Solare a Joppolo", 10.0, 87.0));
         }
 
+
+
+
+
+// add paging support for a local collection of models
+        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon.class);
+
+        // loader
+        PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
+        loader.setRemoteSort(true);
+
+        //ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>(loader);
+
+        final PagingToolBar toolBar = new PagingToolBar(10);
+        toolBar.bind(loader);
+
+        loader.load(0, 10);
+
+
+
+
+
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
@@ -89,7 +113,7 @@ public class Ordini extends LayoutContainer {
         Grid<Ordine> grid = new Grid<Ordine>(store, cm);
         grid.setBorders(true);
         grid.setAutoHeight(true);
-
+        centre.setBottomComponent(toolBar);
         centre.add(grid);
 
         return centre;

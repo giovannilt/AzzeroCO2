@@ -2,7 +2,7 @@ package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.apple.laf.AquaButtonBorder;
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.data.DataField;
+import com.extjs.gxt.ui.client.data.*;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
@@ -15,6 +15,7 @@ import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
@@ -49,13 +50,6 @@ public class Coupon extends LayoutContainer {
     return coupon;
   }
 
-
-
-
-
-
-
-
     @Override
 
 
@@ -87,6 +81,26 @@ public class Coupon extends LayoutContainer {
             //store.add(new Coupon("Manifesti, pieghevoli, fogli / programma", "Energia Elettrica XX <br> Gasolio YY", 10.0));
         }
 
+
+
+
+       // add paging support for a local collection of models
+        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon.class);
+
+        // loader
+        PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
+        loader.setRemoteSort(true);
+
+        //ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>(loader);
+
+        final PagingToolBar toolBar = new PagingToolBar(10);
+        toolBar.bind(loader);
+
+        loader.load(0, 10);
+
+
+
+
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
@@ -106,7 +120,7 @@ public class Coupon extends LayoutContainer {
 
 
         final SimpleComboBox<String> combo= new SimpleComboBox<String>();
-        combo.setForceSelection(true);
+        //combo.setForceSelection(true);
         combo.setTriggerAction(ComboBox.TriggerAction.ALL);
         combo.add("%");
         combo.add("€");
@@ -126,7 +140,7 @@ public class Coupon extends LayoutContainer {
             if (value == null) {
               return value;
             }
-            return ((it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon) value).get("tipo");
+            return ((ModelData) value).get("value");
           }
         };
 
@@ -138,6 +152,7 @@ public class Coupon extends LayoutContainer {
         column = new ColumnConfig("tipo", "Tipo", 70);
         TextField<String> textTipo = new TextField<String>();
         column.setEditor(editorCombo);
+        //column.setEditor(new CellEditor(new TextField()));
         configs.add(column);
 
 
@@ -175,10 +190,6 @@ public class Coupon extends LayoutContainer {
         ColumnModel cm = new ColumnModel(configs);
 
 
-
-
-
-
         final Grid<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> grid = new Grid<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>(store, cm);
         grid.setBorders(true);
         grid.setAutoHeight(true);
@@ -187,6 +198,9 @@ public class Coupon extends LayoutContainer {
 
         ToolBar toolbar = new ToolBar();
         Button add = new Button("Aggiungi coupon");
+
+
+
         add.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -200,33 +214,27 @@ public class Coupon extends LayoutContainer {
 
             }
         });
+
+
+
+
         centre.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
 
+        grid.getAriaSupport().setDescribedBy(toolBar.getId() + "-display");
+        centre.setBottomComponent(toolBar);
+
 
         toolbar.add(add);
-        centre.setBottomComponent(toolbar);
+
+        centre.setTopComponent(toolbar);
+
 
 
 
 
 
         return centre;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

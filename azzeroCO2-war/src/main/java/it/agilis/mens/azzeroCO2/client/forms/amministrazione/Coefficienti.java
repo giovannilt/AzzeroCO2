@@ -1,7 +1,7 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.data.ModelData;
+import com.extjs.gxt.ui.client.data.*;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -12,6 +12,7 @@ import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.grid.CellEditor;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coefficiente;
@@ -51,7 +52,32 @@ public class Coefficienti extends LayoutContainer {
 
    private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
-        final ListStore<Coefficiente> store = new ListStore<Coefficiente>();
+
+
+
+
+       // add paging support for a local collection of models
+    PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(Coefficiente.class);
+
+    // loader
+    PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
+    loader.setRemoteSort(true);
+
+    ListStore<Coefficiente> store = new ListStore<Coefficiente>(loader);
+
+    final PagingToolBar toolBar = new PagingToolBar(10);
+    toolBar.bind(loader);
+
+    loader.load(0, 10);
+
+
+
+
+
+
+
+
+       //final ListStore<Coefficiente> store = new ListStore<Coefficiente>();
         {  //TODO
             store.add(new Coefficiente("Gasolio", "Energia", 0.034));
             store.add(new Coefficiente("Gas", "Energia", 0.015));
@@ -90,6 +116,9 @@ public class Coefficienti extends LayoutContainer {
         grid.setBorders(true);
         grid.addPlugin(re);
         grid.setAutoHeight(true);
+
+       centre.setBottomComponent(toolBar);
+
 
         centre.add(grid);
 

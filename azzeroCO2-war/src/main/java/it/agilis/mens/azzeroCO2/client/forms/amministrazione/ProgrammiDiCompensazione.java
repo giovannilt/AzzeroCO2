@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.data.*;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
@@ -15,6 +16,7 @@ import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.grid.CellEditor;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
@@ -73,6 +75,26 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
             store.add(new ProgettiDiCompensazione("Foresta a Fela", "Vegetazione", 15.0, true));
             store.add(new ProgettiDiCompensazione("Solare a Montelusa", "Energia", 20.0, false));
         }
+
+
+
+        // add paging support for a local collection of models
+        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon.class);
+
+        // loader
+        PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
+        loader.setRemoteSort(true);
+
+        //ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>(loader);
+
+        final PagingToolBar toolBar = new PagingToolBar(10);
+        toolBar.bind(loader);
+
+        loader.load(0, 10);
+
+
+
+
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
@@ -134,7 +156,8 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
 
 
         toolbar.add(add);
-        centre.setBottomComponent(toolbar);
+        centre.setTopComponent(toolbar);
+        centre.setBottomComponent(toolBar);
 
 
 
