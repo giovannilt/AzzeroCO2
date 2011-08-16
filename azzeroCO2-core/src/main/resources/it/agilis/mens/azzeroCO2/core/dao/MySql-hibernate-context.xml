@@ -15,7 +15,7 @@
                 <value>it.agilis.mens.azzeroCO2.core.entity.Preventivo</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.Calcolo</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.TipoDiCalcolo</value>
-
+                <value>it.agilis.mens.azzeroCO2.core.entity.Ordine</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

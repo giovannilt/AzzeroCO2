@@ -12,6 +12,7 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.services.OrdineService;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.Ordine;
 
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class Ordini extends LayoutContainer {
+
+    OrdineService ordine;
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -42,7 +45,12 @@ public class Ordini extends LayoutContainer {
 
     private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
+       List<Ordine> ordini= ordine.getOrdini();
+
+
         final ListStore<Ordine> store = new ListStore<Ordine>();
+
+        store.add(ordini);
         {  //TODO
             store.add(new Ordine(new Date(), "Mario Rossi", "Foresta amazzonica", 10.0, 100.0));
             store.add(new Ordine(new Date(), "Giulio Cesare", "Eolico in Calabria", 10.0, 30.0));
@@ -62,14 +70,15 @@ public class Ordini extends LayoutContainer {
         PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
         loader.setRemoteSort(true);
 
-        //ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>(loader);
+        //ListStore<Ordine> store = new ListStore<Ordine>(loader);
 
-        final PagingToolBar toolBar = new PagingToolBar(10);
+        final PagingToolBar toolBar = new PagingToolBar(2);
         toolBar.bind(loader);
+
 
         loader.load(0, 10);
 
-
+        //add(toolBar);
 
 
 
