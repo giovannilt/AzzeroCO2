@@ -8,4 +8,6 @@ package it.agilis.mens.azzeroCO2.client.services;
  * To change this template use File | Settings | File Templates.
  */
 public class AzzeroCO2Constants {
+    public static final String ORDINE_STORE = "ordineStore";
+    public static final String ORDINE_SERVICE = "ordineService";
 }

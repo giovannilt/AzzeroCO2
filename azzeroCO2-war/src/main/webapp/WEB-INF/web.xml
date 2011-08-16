@@ -17,10 +17,18 @@
         <servlet-name>hustonServlet</servlet-name>
         <servlet-class>it.agilis.mens.azzeroCO2.server.services.HustonServiceImpl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrdineService</servlet-name>
+        <servlet-class>it.agilis.mens.azzeroCO2.server.services.OrdineServiceImpl</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>hustonServlet</servlet-name>
         <url-pattern>/azzeroCO2/huston</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrdineService</servlet-name>
+        <url-pattern>/azzeroCO2/ordine-service</url-pattern>
     </servlet-mapping>
 
 

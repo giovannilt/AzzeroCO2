@@ -28,6 +28,16 @@ public class UserInfo implements Serializable {
 
     private Profile profile= Profile.Guest;
 
+    @OneToMany (fetch= FetchType.LAZY)
+    private List<Ordine> ordini;
+
+    public List<Ordine> getOrdini() {
+        return ordini;
+    }
+
+    public void setOrdini(List<Ordine> ordini) {
+        this.ordini = ordini;
+    }
 
     public Long getId() {
         return id;
