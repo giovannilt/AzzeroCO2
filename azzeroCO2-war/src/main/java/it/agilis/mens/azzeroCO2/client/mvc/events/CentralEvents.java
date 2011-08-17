@@ -14,6 +14,7 @@ public class CentralEvents {
 
     public static final EventType EventoPanelReady= new EventType();
     public static final EventType ConosciCO2PanelReady= new EventType();
+    public static final EventType SitoWebPanelReady= new EventType();
     public static final EventType UnaPubblicazioneReady= new EventType();
     public static final EventType UnAnnoDiAttivitaPanelReady= new EventType();
     public static final EventType AmministrazioneReady=new EventType();

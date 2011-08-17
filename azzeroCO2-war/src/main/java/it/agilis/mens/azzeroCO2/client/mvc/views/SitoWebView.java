@@ -10,14 +10,17 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2;
+import it.agilis.mens.azzeroCO2.client.components.SitoWeb.SitoWeb;
+import it.agilis.mens.azzeroCO2.client.components.SitoWeb.SitoWebNorth;
+import it.agilis.mens.azzeroCO2.client.components.SitoWeb.SitoWebSouth;
+import it.agilis.mens.azzeroCO2.client.components.SitoWeb.SitoWebWest;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2North;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2South;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2West;
-
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.ConosciCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 
@@ -29,11 +32,11 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
  * To change this template use File | Settings | File Templates.
  */
 public class SitoWebView extends View {
-    private ContentPanel conoscoCO2panel = new ContentPanel();
+    private ContentPanel sitoWebpanel = new ContentPanel();
 
-    private ConoscoCO2 conoscoCO2 = new ConoscoCO2();
+    private SitoWeb sitoWeb = new SitoWeb();
     private ContentPanel center = new ContentPanel();
-    private ConoscoCO2South south = new ConoscoCO2South();
+    private SitoWebSouth south = new SitoWebSouth();
 
 
     public SitoWebView(Controller controller) {
@@ -46,10 +49,10 @@ public class SitoWebView extends View {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
-        } else if (eventType.equals(ConosciCO2Events.Next)) {
-            conoscoCO2.nextTab(event);
-        } else if (eventType.equals(ConosciCO2Events.Previous)) {
-            conoscoCO2.previusTab(event);
+        } else if (eventType.equals(SitoWebEvents.Next)) {
+            sitoWeb.nextTab(event);
+        } else if (eventType.equals(SitoWebEvents.Previous)) {
+            sitoWeb.previusTab(event);
         }
     }
 
@@ -57,9 +60,9 @@ public class SitoWebView extends View {
     private void onInit(AppEvent event) {
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
-        conoscoCO2panel.setHeaderVisible(false);
-        conoscoCO2panel.setLayout(layout);
-        conoscoCO2panel.setStyleAttribute("padding", "1px");
+        sitoWebpanel.setHeaderVisible(false);
+        sitoWebpanel.setLayout(layout);
+        sitoWebpanel.setStyleAttribute("padding", "1px");
 
         BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 25);
         northData.setCollapsible(false);
@@ -67,7 +70,7 @@ public class SitoWebView extends View {
         northData.setHideCollapseTool(false);
         northData.setSplit(false);
         northData.setMargins(new Margins(0, 0, 0, 0));
-        conoscoCO2panel.add(new ConoscoCO2North(), northData);
+        sitoWebpanel.add(new SitoWebNorth(), northData);
 
 
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 150);
@@ -77,7 +80,7 @@ public class SitoWebView extends View {
         westData.setSplit(false);
         westData.setMargins(new Margins(0, 0, 0, 0));
 
-        conoscoCO2panel.add(new ConoscoCO2West(), westData);
+        sitoWebpanel.add(new SitoWebWest(), westData);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         {
@@ -87,18 +90,18 @@ public class SitoWebView extends View {
 
             BorderLayoutData center2Data = new BorderLayoutData(Style.LayoutRegion.CENTER);
             center2Data.setMargins(new Margins(0, 0, 0, 0));
-            center.add(conoscoCO2, center2Data);
+            center.add(sitoWeb, center2Data);
 
             BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 15);
             southData.setMargins(new Margins(0, 0, 0, 0));
             center.add(south, southData);
         }
         center.setHeaderVisible(false);
-        conoscoCO2panel.add(center, centerData);
+        sitoWebpanel.add(center, centerData);
 
-        conoscoCO2panel.setTitle(Eventi.CONOSCI_CO2.name());
-        Dispatcher.forwardEvent(new AppEvent(CentralEvents.ConosciCO2PanelReady,
-                conoscoCO2panel));
+        sitoWebpanel.setTitle(Eventi.WEB.name());
+        Dispatcher.forwardEvent(new AppEvent(CentralEvents.SitoWebPanelReady,
+                sitoWebpanel));
     }
 
 }

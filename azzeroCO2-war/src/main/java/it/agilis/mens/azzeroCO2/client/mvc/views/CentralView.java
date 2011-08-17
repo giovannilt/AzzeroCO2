@@ -52,6 +52,10 @@ public class CentralView extends View {
             onContentReady(event);
         } else if (eventType.equals(CentralEvents.ConosciCO2PanelReady)) {
             onContentReady(event);
+
+        } else if (eventType.equals(CentralEvents.SitoWebPanelReady)) {
+            onContentReady(event);
+
         } else if (eventType.equals(CentralEvents.AmministrazioneReady)) {
             onContentReady(event);
         } else if (eventType.equals(CentralEvents.ShowPanel)) {
@@ -139,6 +143,8 @@ public class CentralView extends View {
             });
             pubblicazione.setSize(243, 240);
             c.add(pubblicazione, layoutData);
+
+
             Button web = new Button("Un sito web");
             web.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unSitoWeb()));
             web.setIconAlign(Style.IconAlign.TOP);
@@ -149,6 +155,10 @@ public class CentralView extends View {
             });
             web.setSize(243, 240);
             c.add(web, layoutData);
+
+
+
+
             Button co2 = new Button("Conosco la CO2");
             co2.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.conoscoLaCO2()));
             co2.setIconAlign(Style.IconAlign.TOP);

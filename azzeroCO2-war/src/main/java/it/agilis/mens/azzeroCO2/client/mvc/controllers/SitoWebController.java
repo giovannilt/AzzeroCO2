@@ -4,7 +4,9 @@ import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.ConosciCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.ConosciCO2View;
+import it.agilis.mens.azzeroCO2.client.mvc.views.SitoWebView;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,18 +17,18 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.ConosciCO2View;
  */
 public class SitoWebController extends Controller {
 
-    private ConosciCO2View conosciCO2View= new ConosciCO2View(this);
+    private SitoWebView sitoWebView= new SitoWebView(this);
 
     public SitoWebController() {
         registerEventTypes(AzzeroCO2Events.Init);
    	    registerEventTypes(AzzeroCO2Events.Error);
-        registerEventTypes(ConosciCO2Events.Next);
-        registerEventTypes(ConosciCO2Events.Previous);
+        registerEventTypes(SitoWebEvents.Next);
+        registerEventTypes(SitoWebEvents.Previous);
 
     }
 
     @Override
     public void handleEvent(AppEvent event) {
-        forwardToView(conosciCO2View, event);
+        forwardToView(sitoWebView, event);
     }
 }

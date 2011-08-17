@@ -94,6 +94,7 @@
     <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.3" level="project" />
     <orderEntry type="library" name="Maven: jtidy:jtidy:4aug2000r7-dev" level="project" />
     <orderEntry type="library" name="Maven: org.jasig.cas.client:cas-client-core:3.2.0" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.17" level="project" />
   </component>
 </module>
 

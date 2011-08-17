@@ -29,7 +29,7 @@ public class SitoWebNorth extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.TOP);
         c.setLayout(layout);
 
-        c.add(new Html("<p style=\"padding:1px;\">Compensa una quantità di CO2</p>"));
+        c.add(new Html("<p style=\"padding:1px;\">Compensa un sito web</p>"));
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         flex.setFlex(1);
