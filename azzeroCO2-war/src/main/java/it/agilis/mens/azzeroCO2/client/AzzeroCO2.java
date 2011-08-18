@@ -7,6 +7,7 @@ import com.google.gwt.core.client.GWT;
 import it.agilis.mens.azzeroCO2.client.mvc.controllers.*;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
+import it.agilis.mens.azzeroCO2.client.services.HustonService;
 import it.agilis.mens.azzeroCO2.client.services.OrdineService;
 
 
@@ -14,6 +15,7 @@ public class AzzeroCO2 implements EntryPoint {
 
     public void onModuleLoad() {
         Registry.register(AzzeroCO2Constants.ORDINE_STORE, GWT.<Object>create(OrdineService.class));
+        Registry.register(AzzeroCO2Constants.HUSTON_SERVICE, GWT.<Object>create(HustonService.class));
 
         Dispatcher dispatcher = Dispatcher.get();
 

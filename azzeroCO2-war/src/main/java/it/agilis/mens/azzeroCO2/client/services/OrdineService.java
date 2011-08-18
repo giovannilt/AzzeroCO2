@@ -2,7 +2,7 @@ package it.agilis.mens.azzeroCO2.client.services;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.Ordine;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import java.util.List;
  */
 @RemoteServiceRelativePath("ordine-service")
 public interface OrdineService extends RemoteService{
-    Ordine createNewOrdine();
+    OrdineModel createNewOrdine();
 
-    List<Ordine> getOrdini();
+    List<OrdineModel> getOrdini();
 
 }

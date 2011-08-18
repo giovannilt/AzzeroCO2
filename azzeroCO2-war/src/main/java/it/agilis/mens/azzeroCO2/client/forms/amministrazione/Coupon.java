@@ -1,14 +1,15 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
-import com.apple.laf.AquaButtonBorder;
+import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.data.*;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
-import com.extjs.gxt.ui.client.util.DateWrapper;
+import com.extjs.gxt.ui.client.store.Record;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.*;
@@ -20,7 +21,10 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import com.extjs.gxt.ui.client.widget.form.NumberField;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
+import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,70 +39,53 @@ import java.util.List;
  */
 public class Coupon extends LayoutContainer {
 
-
-
-
-    protected it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon createCoupon() {
-    it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon coupon = new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon();
-    coupon.setValore(0.00);
-    coupon.setCodice("Codice");
-    coupon.setDescrizione("nuovo coupon");
-    coupon.setAttivo(true);
-    coupon.setDataInizio(null);
-    coupon.setDataFine(null);
-    coupon.setAttivo(true);
-    return coupon;
-  }
+    /*   protected CouponModel createCoupon() {
+        CouponModel couponModel = new CouponModel();
+        couponModel.setValore(0.00);
+        couponModel.setCodice("Codice");
+        couponModel.setDescrizione("nuovo couponModel");
+        couponModel.setAttivo(true);
+        couponModel.setDataInizio(null);
+        couponModel.setDataFine(null);
+        couponModel.setAttivo(true);
+        return couponModel;
+    }*/
 
     @Override
-
-
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-         ContentPanel centre =createCentre();
-        centre.setHeading("Coupon");
-      //  centre.setHeight(650);
+        ContentPanel centre = createCentre();
+        centre.setHeading("CouponModel");
+        //  centre.setHeight(650);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
         add(centre, centerData);
 
 
-
-
     }
 
     private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
-        final ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>();
-        {  //TODO
-            store.add(new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon("765489000", "Sconto 10% sig. Rossi", "%",10.0,new Date() ,new Date(),true));
-            store.add(new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon("98UUGB765", "Sconto 250 euro a Cesare", "%",250.0,null,null,null));
-            //store.add(new Coupon("Manifesti, pieghevoli, fogli / programma", "Energia Elettrica XX <br> Gasolio YY", 10.0));
-        }
+        final ListStore<CouponModel> store = new ListStore<CouponModel>();
 
-
-
-
-       // add paging support for a local collection of models
-        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon.class);
+        // add paging support for a local collection of models
+        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
 
         // loader
         PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
         loader.setRemoteSort(true);
 
-        //ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>(loader);
+        //ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel>(loader);
 
         final PagingToolBar toolBar = new PagingToolBar(10);
         toolBar.bind(loader);
 
         loader.load(0, 10);
-
-
 
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
@@ -107,46 +94,39 @@ public class Coupon extends LayoutContainer {
 
         ColumnConfig column = new ColumnConfig("codice", "Codice", 100);
         TextField<String> textCodice = new TextField<String>();
-        column.setEditor(new CellEditor (textCodice));
+        column.setEditor(new CellEditor(textCodice));
         configs.add(column);
 
         column = new ColumnConfig("descrizione", "Descrizione", 200);
         TextField<String> textDescr = new TextField<String>();
-        column.setEditor(new CellEditor (textDescr));
+        column.setEditor(new CellEditor(textDescr));
         configs.add(column);
 
 
-
-
-
-        final SimpleComboBox<String> combo= new SimpleComboBox<String>();
+        final SimpleComboBox<String> combo = new SimpleComboBox<String>();
         //combo.setForceSelection(true);
         combo.setTriggerAction(ComboBox.TriggerAction.ALL);
         combo.add("%");
         combo.add("€");
         combo.add("Omaggio");
 
-        CellEditor editorCombo= new CellEditor(combo){
-          @Override
-          public Object preProcessValue(Object value) {
-            if (value == null) {
-              return value;
+        CellEditor editorCombo = new CellEditor(combo) {
+            @Override
+            public Object preProcessValue(Object value) {
+                if (value == null) {
+                    return value;
+                }
+                return combo.findModel(value.toString());
             }
-            return combo.findModel(value.toString());
-          }
 
-          @Override
-          public Object postProcessValue(Object value) {
-            if (value == null) {
-              return value;
+            @Override
+            public Object postProcessValue(Object value) {
+                if (value == null) {
+                    return value;
+                }
+                return ((ModelData) value).get("value");
             }
-            return ((ModelData) value).get("value");
-          }
         };
-
-
-
-
 
 
         column = new ColumnConfig("tipo", "Tipo", 70);
@@ -176,21 +156,18 @@ public class Coupon extends LayoutContainer {
         configs.add(column);
 
         CheckColumnConfig columnCh = new CheckColumnConfig("attivo", "Attivo", 55);
-        CheckBox chAttivo=new CheckBox();
+        CheckBox chAttivo = new CheckBox();
         columnCh.setEditor(new CellEditor(chAttivo));
         configs.add(columnCh);
 
-        final RowEditor<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> re = new RowEditor<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>();
+        final RowEditor<CouponModel> re = new RowEditor<CouponModel>();
         re.getMessages().setSaveText("Salva");
         re.getMessages().setCancelText("Annulla");
         re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
 
-
         ColumnModel cm = new ColumnModel(configs);
-
-
-        final Grid<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> grid = new Grid<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>(store, cm);
+        final Grid<CouponModel> grid = new Grid<CouponModel>(store, cm);
         grid.setBorders(true);
         grid.setAutoHeight(true);
         grid.addPlugin(re);
@@ -198,46 +175,48 @@ public class Coupon extends LayoutContainer {
 
         ToolBar toolbar = new ToolBar();
         Button add = new Button("Aggiungi coupon");
-
-
-
         add.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon coup = new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon("Codice","Nuovo coupon","",0.00,new Date(),new Date(),false);
+                CouponModel coup = new CouponModel("Codice", "Nuovo Coupon", "", 0.00, new Date(), new Date(), false);
                 re.stopEditing(false);
-                store.insert(createCoupon(),0);
-                re.startEditing(store.indexOf(coup),true);
+                store.insert(coup, 0);
+                re.startEditing(store.indexOf(coup), true);
+            }
+        });
 
+        Button saveButton = new Button("Save coupons");
+        saveButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                List<CouponModel> coupons = new ArrayList<CouponModel>();
+                for (Record r : store.getModifiedRecords()) {
+                    coupons.add((CouponModel) r.getModel());
+                }
+                HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
 
+                AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
+                    public void onFailure(Throwable caught) {
+                    }
 
-
+                    @Override
+                    public void onSuccess(Boolean result) {
+                          Info.display("Info", "Coupons Salvati");
+                    }
+                };
+                hustonService.saveCoupons(coupons, aCallback);
             }
         });
 
 
-
-
         centre.setButtonAlign(Style.HorizontalAlignment.CENTER);
-
-
         grid.getAriaSupport().setDescribedBy(toolBar.getId() + "-display");
         centre.setBottomComponent(toolBar);
-
-
         toolbar.add(add);
-
+        toolbar.add(saveButton);
         centre.setTopComponent(toolbar);
 
-
-
-
-
-
         return centre;
-
-
-
 
     }
 

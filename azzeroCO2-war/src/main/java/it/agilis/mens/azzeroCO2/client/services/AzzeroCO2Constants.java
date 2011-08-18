@@ -10,4 +10,6 @@ package it.agilis.mens.azzeroCO2.client.services;
 public class AzzeroCO2Constants {
     public static final String ORDINE_STORE = "ordineStore";
     public static final String ORDINE_SERVICE = "ordineService";
+
+    public static final String HUSTON_SERVICE = "huston";
 }

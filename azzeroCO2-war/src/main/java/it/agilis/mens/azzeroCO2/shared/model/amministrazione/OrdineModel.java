@@ -28,9 +28,6 @@ public class OrdineModel extends BaseModelData {
     }
 
 
-
-
-
     public Date getData() {
         return get("data");
     }

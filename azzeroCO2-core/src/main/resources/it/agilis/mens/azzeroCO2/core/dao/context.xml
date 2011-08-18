@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	                       http://www.springframework.org/schema/context
+	                       http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<context:annotation-config />
+    <context:spring-configured/>
 
     <bean id="userInfoDAO" class="it.agilis.mens.azzeroCO2.core.dao.impl.UserInfoDAO">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -10,13 +17,17 @@
     <bean id="ordineDAO" class="it.agilis.mens.azzeroCO2.core.dao.impl.OrdineDAO">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="couponDAO" class="it.agilis.mens.azzeroCO2.core.dao.impl.CouponDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
     <bean id="azzeroCO2Register" class="it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register">
         <property name="userInfoDAO">
             <ref local="userInfoDAO"/>
         </property>
-
-
+        <property name="couponDAO">
+            <ref local="couponDAO"/>
+        </property>
         <property name="ordineDAO">
             <ref local="ordineDAO"/>
         </property>

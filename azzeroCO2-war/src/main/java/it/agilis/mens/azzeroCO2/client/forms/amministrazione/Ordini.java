@@ -13,7 +13,8 @@ import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.services.OrdineService;
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.Ordine;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,32 +46,28 @@ public class Ordini extends LayoutContainer {
 
     private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
-       List<Ordine> ordini= ordine.getOrdini();
+        //  List<OrdineModel> ordini= ordine.getOrdini();
 
+        final ListStore<OrdineModel> store = new ListStore<OrdineModel>();
 
-        final ListStore<Ordine> store = new ListStore<Ordine>();
-
-        store.add(ordini);
+        //  store.add(ordini);
         {  //TODO
-            store.add(new Ordine(new Date(), "Mario Rossi", "Foresta amazzonica", 10.0, 100.0));
-            store.add(new Ordine(new Date(), "Giulio Cesare", "Eolico in Calabria", 10.0, 30.0));
-            store.add(new Ordine(new Date(), "Pippo Baudo", "Macchia mediterranea", 10.0, 45.0));
-            store.add(new Ordine(new Date(), "Bart Simpson", "Alberi nel deserto", 1.4, 130.0));
-            store.add(new Ordine(new Date(), "Johnny Beavo", "Solare a Joppolo", 10.0, 87.0));
+            store.add(new OrdineModel(new Date(), "Mario Rossi", "Foresta amazzonica", 10.0, 100.0));
+            store.add(new OrdineModel(new Date(), "Giulio Cesare", "Eolico in Calabria", 10.0, 30.0));
+            store.add(new OrdineModel(new Date(), "Pippo Baudo", "Macchia mediterranea", 10.0, 45.0));
+            store.add(new OrdineModel(new Date(), "Bart Simpson", "Alberi nel deserto", 1.4, 130.0));
+            store.add(new OrdineModel(new Date(), "Johnny Beavo", "Solare a Joppolo", 10.0, 87.0));
         }
 
 
-
-
-
 // add paging support for a local collection of models
-        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon.class);
+        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
 
         // loader
         PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
         loader.setRemoteSort(true);
 
-        //ListStore<Ordine> store = new ListStore<Ordine>(loader);
+        //ListStore<OrdineModel> store = new ListStore<OrdineModel>(loader);
 
         final PagingToolBar toolBar = new PagingToolBar(2);
         toolBar.bind(loader);
@@ -81,12 +78,11 @@ public class Ordini extends LayoutContainer {
         //add(toolBar);
 
 
-
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("data", "Data Ordine", 100);
+        ColumnConfig column = new ColumnConfig("data", "Data OrdineModel", 100);
         configs.add(column);
 
         column = new ColumnConfig("cliente", "Cliente", 300);
@@ -105,21 +101,21 @@ public class Ordini extends LayoutContainer {
 
         ColumnModel cm = new ColumnModel(configs);
 
-        AggregationRowConfig<Ordine> somma = new AggregationRowConfig<Ordine>();
+        AggregationRowConfig<OrdineModel> somma = new AggregationRowConfig<OrdineModel>();
         somma.setHtml("name", "Totale");
 
         somma.setSummaryType("kgCO2", SummaryType.SUM);
-        somma.setRenderer("kgCO2", new AggregationRenderer<Ordine>() {
-            public Object render(Number value, int colIndex, Grid<Ordine> grid, ListStore<Ordine> store) {
+        somma.setRenderer("kgCO2", new AggregationRenderer<OrdineModel>() {
+            public Object render(Number value, int colIndex, Grid<OrdineModel> grid, ListStore<OrdineModel> store) {
                 return number.format(value.doubleValue());
             }
         });
         cm.addAggregationRow(somma);
 
-        somma = new AggregationRowConfig<Ordine>();
+        somma = new AggregationRowConfig<OrdineModel>();
         somma.setHtml("name", "kgCO2");
 
-        Grid<Ordine> grid = new Grid<Ordine>(store, cm);
+        Grid<OrdineModel> grid = new Grid<OrdineModel>(store, cm);
         grid.setBorders(true);
         grid.setAutoHeight(true);
         centre.setBottomComponent(toolBar);

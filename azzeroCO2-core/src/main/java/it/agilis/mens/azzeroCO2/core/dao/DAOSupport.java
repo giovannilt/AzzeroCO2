@@ -82,7 +82,7 @@ public class DAOSupport extends HibernateDaoSupport {
         });
     }
 
-    protected void saveObject(final Object entity, final String username) throws Exception {
+    protected void saveObject(final Object entity) throws Exception {
         runAndLogException(new MyRunnable() {
             public Object run(final HibernateTemplate hibernateTemplate)
                     throws Exception {
@@ -90,7 +90,6 @@ public class DAOSupport extends HibernateDaoSupport {
 
                 hibernateTemplate.saveOrUpdate(entity);
 
-                logger.info(username + ": saving " + entity.getClass() + " " + entity.toString());
                 return null;
             }
         });

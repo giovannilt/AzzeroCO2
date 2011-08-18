@@ -47,7 +47,7 @@ public class AmministrazioneNorth extends LayoutContainer {
             @Override
             public void componentSelected(IconButtonEvent ce) {
                 Dispatcher.forwardEvent(EventoEvents.Save, "Save");
-                Info.display("Info", "Evento salvato");
+                Info.display("Info", "Amministrazione salvata");
             }
         });
         c.add(save, new HBoxLayoutData(new Margins(0, 5, 0, 0)));

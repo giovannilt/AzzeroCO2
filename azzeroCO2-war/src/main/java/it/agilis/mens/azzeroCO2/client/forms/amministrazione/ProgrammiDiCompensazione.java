@@ -13,19 +13,16 @@ import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.*;
-import com.extjs.gxt.ui.client.widget.grid.CellEditor;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettiDiCompensazione;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,9 +42,6 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
         progetto.setKgCO2(0.00);
         return progetto;
     }
-
-
-
 
 
     @Override
@@ -77,23 +71,19 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
         }
 
 
-
         // add paging support for a local collection of models
-        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon.class);
+        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
 
         // loader
         PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
         loader.setRemoteSort(true);
 
-        //ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Coupon>(loader);
+        //ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel>(loader);
 
         final PagingToolBar toolBar = new PagingToolBar(10);
         toolBar.bind(loader);
 
         loader.load(0, 10);
-
-
-
 
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
@@ -105,8 +95,8 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
         column.setEditor(new CellEditor(textTipoProg));
         configs.add(column);
 
-        column =new ColumnConfig("name", "Progetto",200);
-        TextField<String> textProg =new TextField<String>();
+        column = new ColumnConfig("name", "Progetto", 200);
+        TextField<String> textProg = new TextField<String>();
         column.setEditor(new CellEditor(textProg));
         configs.add(column);
 
@@ -141,12 +131,10 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
         add.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ProgettiDiCompensazione prog = new ProgettiDiCompensazione("Codice","Nuovo progetto",0.00,true);
+                ProgettiDiCompensazione prog = new ProgettiDiCompensazione("Codice", "Nuovo progetto", 0.00, true);
                 re.stopEditing(false);
-                store.insert(createProgetto(),0);
-                re.startEditing(store.indexOf(prog),true);
-
-
+                store.insert(createProgetto(), 0);
+                re.startEditing(store.indexOf(prog), true);
 
 
             }
@@ -154,17 +142,9 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
         centre.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
 
-
         toolbar.add(add);
         centre.setTopComponent(toolbar);
         centre.setBottomComponent(toolBar);
-
-
-
-
-
-
-
 
 
         return centre;

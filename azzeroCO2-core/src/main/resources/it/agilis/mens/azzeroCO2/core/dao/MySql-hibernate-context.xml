@@ -16,6 +16,7 @@
                 <value>it.agilis.mens.azzeroCO2.core.entity.Calcolo</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.TipoDiCalcolo</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.Ordine</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.Coupon</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

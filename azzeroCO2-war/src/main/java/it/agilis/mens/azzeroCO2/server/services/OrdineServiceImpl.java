@@ -3,8 +3,8 @@ package it.agilis.mens.azzeroCO2.server.services;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import it.agilis.mens.azzeroCO2.client.services.OrdineService;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
-import it.agilis.mens.azzeroCO2.shared.Utils;
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.Ordine;
+import it.agilis.mens.azzeroCO2.server.utils.Utils;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -31,18 +31,16 @@ public class OrdineServiceImpl extends RemoteServiceServlet implements OrdineSer
     }
 
     @Override
-    public List<Ordine> getOrdini(){
+    public List<OrdineModel> getOrdini(){
        return Utils.getOrdini(azzeroCO2Register.getOrdini());
     }
 
     @Override
-    public Ordine createNewOrdine(){
+    public OrdineModel createNewOrdine(){
         UUID uuid =UUID.randomUUID();
-        // TODO    return new Ordine(uuid.toString());
+        // TODO    return new OrdineModel(uuid.toString());
 
-
-
-        return new Ordine(); // da sistemare
+        return new OrdineModel(); // da sistemare
 
     }
 }

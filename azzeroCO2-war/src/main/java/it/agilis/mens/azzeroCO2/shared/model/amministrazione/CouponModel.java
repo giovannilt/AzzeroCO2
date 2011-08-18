@@ -2,9 +2,7 @@ package it.agilis.mens.azzeroCO2.shared.model.amministrazione;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
 
-
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,6 +27,13 @@ public class CouponModel extends BaseModelData {
         setAttivo(attivo);
     }
 
+
+    public Long getId(){
+        return get("id");
+    }
+    public void setId(Long id){
+        set("id", id);
+    }
 
     public String getCodice() {
         return get("codice");

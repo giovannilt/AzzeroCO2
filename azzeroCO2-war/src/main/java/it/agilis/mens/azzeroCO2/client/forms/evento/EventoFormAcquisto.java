@@ -181,14 +181,14 @@ public class EventoFormAcquisto extends LayoutContainer {
 
                 panel.add(c, new FormData("100%"));
             }
-            { // Coupon
+            { // CouponModel
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
                 layout.setPadding(new Padding(5));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                LabelField label = new LabelField("Hai Un Coupon? ");
+                LabelField label = new LabelField("Hai Un CouponModel? ");
                 label.setWidth(100);
                 c.add(label);
 
@@ -199,7 +199,7 @@ public class EventoFormAcquisto extends LayoutContainer {
 
                 panel.add(c, new FormData("100%"));
             }
-            { // Coupon
+            { // CouponModel
                 LayoutContainer c = new LayoutContainer();
                 c.setHeight(295);
                 c.setWidth(290);
