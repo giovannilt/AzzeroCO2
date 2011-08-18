@@ -23,6 +23,7 @@ public class CentralController extends Controller {
 
         registerEventTypes(CentralEvents.EventoPanelReady);
         registerEventTypes(CentralEvents.ConosciCO2PanelReady);
+        registerEventTypes(CentralEvents.SitoWebPanelReady);
         registerEventTypes(CentralEvents.UnaPubblicazioneReady);
         registerEventTypes(CentralEvents.UnAnnoDiAttivitaPanelReady);
         registerEventTypes(CentralEvents.WebPanelReady);

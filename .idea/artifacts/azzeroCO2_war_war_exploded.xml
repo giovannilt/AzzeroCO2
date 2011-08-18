@@ -54,6 +54,7 @@
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.3" />
           <element id="library" level="project" name="Maven: jtidy:jtidy:4aug2000r7-dev" />
           <element id="library" level="project" name="Maven: org.jasig.cas.client:cas-client-core:3.2.0" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.17" />
         </element>
       </element>
       <element id="gwt-compiler-output" facet="azzeroCO2-war/gwt/GWT" />
