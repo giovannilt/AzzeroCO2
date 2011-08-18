@@ -11,13 +11,13 @@ import java.util.Date;
  * Time: 2:30 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Ordine extends BaseModelData {
+public class OrdineModel extends BaseModelData {
 
-    public Ordine() {
+    public OrdineModel() {
 
     }
 
-    public Ordine(Date data, String cliente, String programma, Double kgco2, Double importo) {
+    public OrdineModel(Date data, String cliente, String programma, Double kgco2, Double importo) {
 
 
         setData(data);

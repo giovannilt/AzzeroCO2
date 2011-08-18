@@ -13,13 +13,13 @@ import java.util.List;
  * Time: 2:30 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Coupon extends BaseModelData {
+public class CouponModel extends BaseModelData {
 
-    public Coupon() {
+    public CouponModel() {
 
     }
 
-    public Coupon(String codice, String descrizione,String tipo, Double valore, Date dataInizio, Date dataFine, Boolean attivo) {
+    public CouponModel(String codice, String descrizione, String tipo, Double valore, Date dataInizio, Date dataFine, Boolean attivo) {
         setCodice(codice);
         setDescrizione(descrizione);
         setTipo(tipo);

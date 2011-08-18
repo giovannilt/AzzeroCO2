@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.shared;
+package it.agilis.mens.azzeroCO2.server.utils;
 
 /**
  * Created by IntelliJ IDEA.
@@ -8,7 +8,7 @@ package it.agilis.mens.azzeroCO2.shared;
  * To change this template use File | Settings | File Templates.
  */
 
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.Ordine;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +16,13 @@ import java.util.List;
 public class Utils {
 
 
-    public static List<Ordine> getOrdini(List<it.agilis.mens.azzeroCO2.core.entity.Ordine> ordini){
-        List<it.agilis.mens.azzeroCO2.shared.model.amministrazione.Ordine> ordiniModel= new ArrayList<Ordine>();
+    public static List<OrdineModel> getOrdini(List<it.agilis.mens.azzeroCO2.core.entity.Ordine> ordini){
+        List<OrdineModel> ordiniModel= new ArrayList<OrdineModel>();
 
                            // TODO FOR
 
         for(it.agilis.mens.azzeroCO2.core.entity.Ordine ordine: ordini){
-           it.agilis.mens.azzeroCO2.shared.model.amministrazione.Ordine o= new it.agilis.mens.azzeroCO2.shared.model.amministrazione.Ordine();
+           OrdineModel o= new OrdineModel();
             o.setCliente(ordine.getUtente().getUserName());
 
             ordiniModel.add(o);
