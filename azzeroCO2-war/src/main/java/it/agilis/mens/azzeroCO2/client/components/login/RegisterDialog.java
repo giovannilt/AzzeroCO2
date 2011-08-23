@@ -157,12 +157,17 @@ public class RegisterDialog extends Dialog {
                 email.setFieldLabel("Email");
                 email.setName("Email");
                 email.addKeyListener(keyListener);
-                add(email);
+                email.setRegex("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
+                email.getMessages().setRegexText("Email errata");
+         add(email);
 
 
                 setFocusWidget(userName);
 
     }
+
+
+
 
     @Override
     protected void createButtons() {
