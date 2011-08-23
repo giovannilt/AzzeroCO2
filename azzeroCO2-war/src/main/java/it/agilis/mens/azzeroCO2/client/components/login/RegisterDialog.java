@@ -8,6 +8,7 @@ import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
+import com.sun.tools.jdi.StringReferenceImpl;
 
 /**
  * Created by IntelliJ IDEA.
@@ -63,6 +64,8 @@ public class RegisterDialog extends Dialog {
                 userName.setMinLength(4);
                 userName.setFieldLabel("Username");
                 userName.setName("userName");
+                userName.setMinLength(6);
+
                 userName.addKeyListener(keyListener);
                 add(userName);
 
