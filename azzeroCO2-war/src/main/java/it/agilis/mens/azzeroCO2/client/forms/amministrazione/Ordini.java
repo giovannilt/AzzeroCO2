@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class Ordini extends LayoutContainer {
 
-    OrdineService ordine;
+    private OrdineService ordine;
 
     @Override
     protected void onRender(Element parent, int index) {

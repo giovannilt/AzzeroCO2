@@ -14,11 +14,11 @@ import java.util.List;
  * Time: 8:39 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CouponDAO  extends DAOSupport implements ICouponDAO{
+public class CouponDAO extends DAOSupport implements ICouponDAO {
     @Override
     public List<Coupon> getListOfCoupon() {
-          DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Coupon.class, "coupon");
-        return (List<Coupon>) getList(detachedCriteria, true);
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Coupon.class, "coupon");
+        return  (List<Coupon>) getList(detachedCriteria, true);
     }
 
     @Override

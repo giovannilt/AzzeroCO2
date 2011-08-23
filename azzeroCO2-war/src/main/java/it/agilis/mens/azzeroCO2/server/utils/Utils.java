@@ -47,7 +47,7 @@ public class Utils {
             cm.setDescrizione(c.getDescrizione());
             cm.setTipo(c.getTipo());
             cm.setValore(c.getValore());
-
+            coupons.add(cm);
         }
         return coupons;  //To change body of created methods use File | Settings | File Templates.
     }
