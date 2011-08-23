@@ -3,8 +3,8 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
-import it.agilis.mens.azzeroCO2.client.mvc.views.LoginView;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.views.LoginView;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,12 +14,13 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
  * To change this template use File | Settings | File Templates.
  */
 public class LoginController extends Controller {
-    private LoginView loginView= new LoginView(this);
+    private LoginView loginView = new LoginView(this);
 
     public LoginController() {
         // registra su quali eventi si deve mettere in ascolto
         registerEventTypes(LoginEvents.DoLogin);
         registerEventTypes(LoginEvents.ShowForm);
+        registerEventTypes(LoginEvents.HideForm);
     }
 
 
@@ -32,10 +33,11 @@ public class LoginController extends Controller {
             // esegue il login
             //UserInfo userInfo = new UserInfo();
 
-          //  userInfo.setUserName(event.<String>getData("userName"));
-          //  userInfo.setPassword(event.<String>getData("password"));
-           // userInfo = doLogin(userInfo, loginView);
+            //  userInfo.setUserName(event.<String>getData("userName"));
+            //  userInfo.setPassword(event.<String>getData("password"));
+            // userInfo = doLogin(userInfo, loginView);
         }
+        forwardToView(loginView, event);
     }
 
 }

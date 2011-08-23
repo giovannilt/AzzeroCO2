@@ -20,8 +20,9 @@ public class UserInfo implements Serializable {
     private Long id;
 
     private String userName;
-
     private String password;
+
+
 
     @OneToMany (fetch = FetchType.LAZY)
     private List<Preventivo> preventivi;
