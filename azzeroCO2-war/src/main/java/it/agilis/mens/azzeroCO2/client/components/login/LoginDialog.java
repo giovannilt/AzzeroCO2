@@ -116,6 +116,12 @@ public class LoginDialog extends Dialog {
         });
 
         register= new Button("Registra");
+        register.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+
+
+            }
+        });
 
 
         addButton(reset);
