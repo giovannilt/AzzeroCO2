@@ -51,10 +51,6 @@ public enum Eventi {
             return "Amministrazione calcolatore";
         }
     },
-
-
-
-
     CONOSCI_CO2{
         @Override
 		public String toString() {

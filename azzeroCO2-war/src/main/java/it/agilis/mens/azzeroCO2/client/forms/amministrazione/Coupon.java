@@ -39,18 +39,6 @@ import java.util.List;
  */
 public class Coupon extends LayoutContainer {
 
-    /*   protected CouponModel createCoupon() {
-        CouponModel couponModel = new CouponModel();
-        couponModel.setValore(0.00);
-        couponModel.setCodice("Codice");
-        couponModel.setDescrizione("nuovo couponModel");
-        couponModel.setAttivo(true);
-        couponModel.setDataInizio(null);
-        couponModel.setDataFine(null);
-        couponModel.setAttivo(true);
-        return couponModel;
-    }*/
-
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);

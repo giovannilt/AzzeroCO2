@@ -15,6 +15,7 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.RegisterEvents;
 
 
 /**
@@ -116,6 +117,12 @@ public class LoginDialog extends Dialog {
         });
 
         register= new Button("Registra");
+        register.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                Dispatcher.forwardEvent(LoginEvents.HideForm, ce);
+                Dispatcher.forwardEvent(RegisterEvents.ShowForm, ce);
+            }
+        });
 
 
         addButton(reset);
