@@ -26,7 +26,7 @@ public class RegisterDialog extends Dialog {
         setButtonAlign(Style.HorizontalAlignment.LEFT);
         setButtons("");
         setIcon(IconHelper.createStyle("user"));
-        setHeading("Login");
+        setHeading("Registrati");
         setModal(true);
         setBodyBorder(true);
         setBodyStyle("padding: 8px;background: none");

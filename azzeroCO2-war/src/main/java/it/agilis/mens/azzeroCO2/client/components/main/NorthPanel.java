@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.RegisterEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
@@ -38,10 +39,10 @@ public class NorthPanel extends LayoutContainer {
         c.setLayout(layout);
 
         HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
-        Button home= new Button("Home");
+        Button home = new Button("Home");
         home.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-               Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
             }
         });
 
@@ -55,10 +56,16 @@ public class NorthPanel extends LayoutContainer {
             }
         });
         c.add(login, layoutData);
-        c.add(new Button("Registrati"), layoutData);
+        Button registrati = new Button("Registrati");
+        registrati.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                Dispatcher.forwardEvent(LoginEvents.HideForm, ce);
+                Dispatcher.forwardEvent(RegisterEvents.ShowForm, ce);
+            }
+        });
+        c.add(registrati, layoutData);
 
-
-        Button amministrazione= new Button();
+        Button amministrazione = new Button();
         amministrazione.setText("Amministrazione");
         amministrazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
@@ -67,7 +74,7 @@ public class NorthPanel extends LayoutContainer {
         });
         c.add(amministrazione, layoutData);
 
-         add(c, new FlowData(1));
+        add(c, new FlowData(1));
 
         Image azzeroCO2Log = new Image(AzzeroCO2Resources.INSTANCE.header());
         add(azzeroCO2Log, layoutData);
