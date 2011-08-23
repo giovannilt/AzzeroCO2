@@ -35,7 +35,7 @@ public class RegisterDialog extends Dialog {
     protected Button reset;
 
 
-     public RegisterDialog() {
+    public RegisterDialog() {
 
         FormLayout layout = new FormLayout();
         layout.setLabelWidth(90);
@@ -59,114 +59,112 @@ public class RegisterDialog extends Dialog {
 
         };
 
-                userName = new TextField<String>();
-                userName.setMinLength(4);
-                userName.setFieldLabel("Username");
-                userName.setName("userName");
-                userName.addKeyListener(keyListener);
-                add(userName);
+        userName = new TextField<String>();
+        userName.setMinLength(4);
+        userName.setFieldLabel("Username");
+        userName.setName("userName");
+        userName.addKeyListener(keyListener);
+        add(userName);
 
-                password = new TextField<String>();
-                password.setMinLength(4);
-                password.setPassword(true);
-                password.setFieldLabel("Password");
-                password.setName("password");
-                password.addKeyListener(keyListener);
-                add(password);
+        password = new TextField<String>();
+        password.setMinLength(4);
+        password.setPassword(true);
+        password.setFieldLabel("Password");
+        password.setName("password");
+        password.addKeyListener(keyListener);
+        add(password);
 
-                nome = new TextField<String>();
-                nome.setMinLength(2);
-                nome.setFieldLabel("Nome");
-                nome.setName("Nome");
-                nome.addKeyListener(keyListener);
-                add(nome);
+        nome = new TextField<String>();
+        nome.setMinLength(2);
+        nome.setFieldLabel("Nome");
+        nome.setName("Nome");
+        nome.addKeyListener(keyListener);
+        add(nome);
 
-                cognome = new TextField<String>();
-                cognome.setMinLength(2);
-                cognome.setFieldLabel("Cognome");
-                cognome.setName("Cognome");
-                cognome.addKeyListener(keyListener);
-                add(cognome);
+        cognome = new TextField<String>();
+        cognome.setMinLength(2);
+        cognome.setFieldLabel("Cognome");
+        cognome.setName("Cognome");
+        cognome.addKeyListener(keyListener);
+        add(cognome);
 
-                ragioneSoc = new TextField<String>();
-                ragioneSoc.setMinLength(2);
-                ragioneSoc.setFieldLabel("Rag. sociale");
-                ragioneSoc.setName("Rag. sociale");
-                ragioneSoc.addKeyListener(keyListener);
-                add(ragioneSoc);
+        ragioneSoc = new TextField<String>();
+        ragioneSoc.setMinLength(2);
+        ragioneSoc.setFieldLabel("Rag. sociale");
+        ragioneSoc.setName("Rag. sociale");
+        ragioneSoc.addKeyListener(keyListener);
+        add(ragioneSoc);
 
-                indirizzo = new TextField<String>();
-                indirizzo.setMinLength(2);
-                indirizzo.setFieldLabel("Indirizzo");
-                indirizzo.setName("Indirizzo");
-                indirizzo.addKeyListener(keyListener);
-                add(indirizzo);
-
-
-                citta = new TextField<String>();
-                citta.setMinLength(2);
-                citta.setFieldLabel("Città");
-                citta.setName("Città");
-                citta.addKeyListener(keyListener);
-                add(citta);
-
-                provincia = new TextField<String>();
-                provincia.setMinLength(2);
-                provincia.setFieldLabel("Provincia");
-                provincia.setName("Provincia");
-                provincia.addKeyListener(keyListener);
-                add(provincia);
-
-                cap = new TextField<String>();
-                cap.setMinLength(2);
-                cap.setFieldLabel("CAP");
-                cap.setName("CAP");
-                cap.addKeyListener(keyListener);
-                add(cap);
-
-                partitaIvaCF = new TextField<String>();
-                partitaIvaCF.setMinLength(2);
-                partitaIvaCF.setFieldLabel("P.Iva/CF");
-                partitaIvaCF.setName("P.Iva/CF");
-                partitaIvaCF.addKeyListener(keyListener);
-                add(partitaIvaCF);
-
-                telefono = new TextField<String>();
-                telefono.setMinLength(2);
-                telefono.setFieldLabel("Telefono");
-                telefono.setName("Telefono");
-                telefono.addKeyListener(keyListener);
-                add(telefono);
-
-                fax = new TextField<String>();
-                fax.setMinLength(2);
-                fax.setFieldLabel("Fax");
-                fax.setName("Fax");
-                fax.addKeyListener(keyListener);
-                add(fax);
-
-                cellulare = new TextField<String>();
-                cellulare.setMinLength(2);
-                cellulare.setFieldLabel("Cellulare");
-                cellulare.setName("Cellulare");
-                cellulare.addKeyListener(keyListener);
-                add(cellulare);
-
-                email = new TextField<String>();
-                email.setMinLength(2);
-                email.setFieldLabel("Email");
-                email.setName("Email");
-                email.addKeyListener(keyListener);
-                email.setRegex("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
-                email.getMessages().setRegexText("Email errata");
-         add(email);
+        indirizzo = new TextField<String>();
+        indirizzo.setMinLength(2);
+        indirizzo.setFieldLabel("Indirizzo");
+        indirizzo.setName("Indirizzo");
+        indirizzo.addKeyListener(keyListener);
+        add(indirizzo);
 
 
-                setFocusWidget(userName);
+        citta = new TextField<String>();
+        citta.setMinLength(2);
+        citta.setFieldLabel("Città");
+        citta.setName("Città");
+        citta.addKeyListener(keyListener);
+        add(citta);
+
+        provincia = new TextField<String>();
+        provincia.setMinLength(2);
+        provincia.setFieldLabel("Provincia");
+        provincia.setName("Provincia");
+        provincia.addKeyListener(keyListener);
+        add(provincia);
+
+        cap = new TextField<String>();
+        cap.setMinLength(2);
+        cap.setFieldLabel("CAP");
+        cap.setName("CAP");
+        cap.addKeyListener(keyListener);
+        add(cap);
+
+        partitaIvaCF = new TextField<String>();
+        partitaIvaCF.setMinLength(2);
+        partitaIvaCF.setFieldLabel("P.Iva/CF");
+        partitaIvaCF.setName("P.Iva/CF");
+        partitaIvaCF.addKeyListener(keyListener);
+        add(partitaIvaCF);
+
+        telefono = new TextField<String>();
+        telefono.setMinLength(2);
+        telefono.setFieldLabel("Telefono");
+        telefono.setName("Telefono");
+        telefono.addKeyListener(keyListener);
+        add(telefono);
+
+        fax = new TextField<String>();
+        fax.setMinLength(2);
+        fax.setFieldLabel("Fax");
+        fax.setName("Fax");
+        fax.addKeyListener(keyListener);
+        add(fax);
+
+        cellulare = new TextField<String>();
+        cellulare.setMinLength(2);
+        cellulare.setFieldLabel("Cellulare");
+        cellulare.setName("Cellulare");
+        cellulare.addKeyListener(keyListener);
+        add(cellulare);
+
+        email = new TextField<String>();
+        email.setMinLength(2);
+        email.setFieldLabel("Email");
+        email.setName("Email");
+        email.addKeyListener(keyListener);
+        email.setRegex("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,4}$");
+        email.getMessages().setRegexText("Email errata");
+        add(email);
+
+
+        setFocusWidget(userName);
 
     }
-
-
 
 
     @Override

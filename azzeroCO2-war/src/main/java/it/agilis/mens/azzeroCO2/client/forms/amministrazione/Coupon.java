@@ -39,6 +39,12 @@ import java.util.List;
  */
 public class Coupon extends LayoutContainer {
 
+    private  ListStore<CouponModel> store = new ListStore<CouponModel>();
+
+    public Coupon(ListStore<CouponModel> store) {
+        this.store=store;
+    }
+
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
@@ -46,7 +52,7 @@ public class Coupon extends LayoutContainer {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-        ContentPanel centre = createCentre();
+        ContentPanel centre = createCentre(store);
         centre.setHeading("CouponModel");
         //  centre.setHeight(650);
 
@@ -57,9 +63,9 @@ public class Coupon extends LayoutContainer {
 
     }
 
-    private ContentPanel createCentre() {
+    private ContentPanel createCentre( final ListStore<CouponModel> store ) {
         ContentPanel centre = new ContentPanel();
-        final ListStore<CouponModel> store = new ListStore<CouponModel>();
+
 
         // add paging support for a local collection of models
         PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
