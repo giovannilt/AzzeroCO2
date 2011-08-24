@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.client.services;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.RegistrazioneModel;
 
 import java.util.List;
 
@@ -16,5 +17,7 @@ public interface HustonService extends RemoteService {
     void saveCoupon(CouponModel coupon) throws IllegalArgumentException;
 
     Boolean saveCoupons(List<CouponModel> modifiedRecords) throws IllegalArgumentException;
+
+    Boolean createNewUser(RegistrazioneModel registrazioneModeli) throws IllegalArgumentException;
 
 }

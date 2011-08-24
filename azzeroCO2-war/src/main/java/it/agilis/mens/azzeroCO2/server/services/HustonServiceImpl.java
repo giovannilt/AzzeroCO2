@@ -6,6 +6,7 @@ import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.RegistrazioneModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -29,14 +30,14 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
 
     @Override
-	public void init(ServletConfig config) throws ServletException {
-		super.init(config);
-		WebApplicationContext ctx = WebApplicationContextUtils
-				.getRequiredWebApplicationContext(config.getServletContext());
-		AutowireCapableBeanFactory beanFactory = ctx
-				.getAutowireCapableBeanFactory();
-		beanFactory.autowireBean(this);
-	}
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        WebApplicationContext ctx = WebApplicationContextUtils
+                .getRequiredWebApplicationContext(config.getServletContext());
+        AutowireCapableBeanFactory beanFactory = ctx
+                .getAutowireCapableBeanFactory();
+        beanFactory.autowireBean(this);
+    }
 
     @Autowired
     @Qualifier("azzeroCO2Register")
@@ -59,9 +60,13 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
     @Override
     public List<CouponModel> getListOfCoupon() throws IllegalArgumentException {
-        return Utils.getListOfCoupon(azzeroCO2Register.getListofCoupon());
+        try {
+            return Utils.getListOfCoupon(azzeroCO2Register.getListofCoupon());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-
 
     @Override
     public Boolean saveCoupons(List<CouponModel> modifiedRecords) throws IllegalArgumentException {
@@ -71,6 +76,17 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
                 coupons.add(Utils.getCoupon(r));
             }
             azzeroCO2Register.saveCoupons(coupons);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean createNewUser(RegistrazioneModel registrazioneModel) throws IllegalArgumentException {
+        try {
+            azzeroCO2Register.saveUserInfo(Utils.getUserInfo(registrazioneModel));
         } catch (Exception e) {
             e.printStackTrace();
             return false;

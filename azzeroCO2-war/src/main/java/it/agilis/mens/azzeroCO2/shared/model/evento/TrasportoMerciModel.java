@@ -11,23 +11,6 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  */
 public class TrasportoMerciModel extends BaseModel {
 
-    private String categoria;
-
-    private int busPiu50;
-    private int autoPiu50;
-    private int trenoPiu50;
-    private int busPiu100;
-    private int autoPiu100;
-    private int trenoPiu100;
-    private int busPiu250;
-    private int autoPiu250;
-    private int trenoPiu250;
-    private int aereoPiu250;
-    private int busPiu500;
-    private int autoPiu500;
-    private int trenoPiu500;
-    private int aereoPiu500;
-
     public int getAereoPiu250() {
         return (Integer) get("aereoPiu250");
     }

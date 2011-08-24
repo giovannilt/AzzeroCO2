@@ -21,8 +21,18 @@ public class UserInfo implements Serializable {
 
     private String userName;
     private String password;
-
-
+    private String nome;
+    private String cognome;
+    private String ragSociale;
+    private String indirizzo;
+    private String citta;
+    private String provincia;
+    private String cap;
+    private String pIvaCF;
+    private String telefono;
+    private String fax;
+    private String cellulare;
+    private String email;
 
     @OneToMany (fetch = FetchType.LAZY)
     private List<Preventivo> preventivi;
@@ -31,7 +41,6 @@ public class UserInfo implements Serializable {
 
     @OneToMany (fetch= FetchType.LAZY)
     private List<Ordine> ordini;
-
     public List<Ordine> getOrdini() {
         return ordini;
     }
@@ -78,5 +87,101 @@ public class UserInfo implements Serializable {
 
     public Profile getProfile() {
         return profile;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public void setRagSociale(String ragSociale) {
+        this.ragSociale = ragSociale;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+
+    public void setCitta(String citta) {
+        this.citta = citta;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
+    public void setCap(String cap) {
+        this.cap = cap;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public void setCellulare(String cellulare) {
+        this.cellulare = cellulare;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public String getRagSociale() {
+        return ragSociale;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public String getCitta() {
+        return citta;
+    }
+
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public String getCap() {
+        return cap;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public String getCellulare() {
+        return cellulare;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPIvaCF() {
+        return pIvaCF;
+    }
+
+    public void setPIvaCF(String pIvaCF) {
+        this.pIvaCF = pIvaCF;
     }
 }

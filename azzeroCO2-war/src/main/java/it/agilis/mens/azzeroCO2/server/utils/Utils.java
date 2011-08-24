@@ -9,8 +9,10 @@ package it.agilis.mens.azzeroCO2.server.utils;
  */
 
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
+import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.RegistrazioneModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,5 +65,24 @@ public class Utils {
         coupon.setTipo(couponModel.getTipo());
         coupon.setValore(couponModel.getValore());
         return coupon;
+    }
+
+    public static UserInfo getUserInfo(RegistrazioneModel registrazioneModel) {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setPassword(registrazioneModel.getPassword());
+        userInfo.setUserName(registrazioneModel.getUserName());
+        userInfo.setNome(registrazioneModel.getNome());
+        userInfo.setCognome(registrazioneModel.getCognome());
+        userInfo.setRagSociale(registrazioneModel.getRagioneSoc());
+        userInfo.setIndirizzo(registrazioneModel.getIndirizzo());
+        userInfo.setCitta(registrazioneModel.getCitta());
+        userInfo.setProvincia(registrazioneModel.getProvincia());
+        userInfo.setCap(registrazioneModel.getCap());
+        userInfo.setPIvaCF(registrazioneModel.getPartitaIvaCF());
+        userInfo.setTelefono(registrazioneModel.getTelefono());
+        userInfo.setFax(registrazioneModel.getFax());
+        userInfo.setCellulare(registrazioneModel.getCellulare());
+        userInfo.setEmail(registrazioneModel.getEmail());
+        return  userInfo;
     }
 }

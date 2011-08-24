@@ -32,7 +32,12 @@ public class OrdineServiceImpl extends RemoteServiceServlet implements OrdineSer
 
     @Override
     public List<OrdineModel> getOrdini(){
-       return Utils.getOrdini(azzeroCO2Register.getOrdini());
+        try {
+            return Utils.getOrdini(azzeroCO2Register.getOrdini());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
