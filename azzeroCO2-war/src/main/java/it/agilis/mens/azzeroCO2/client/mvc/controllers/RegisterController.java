@@ -30,7 +30,7 @@ public class RegisterController extends Controller {
 
 
     public void handleEvent(AppEvent event) {
-        if (event.equals(RegisterEvents.DoRegistration)) {
+        if (event.getType().equals(RegisterEvents.DoRegistration)) {
             AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore nella creazione dell'utente");
