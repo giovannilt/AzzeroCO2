@@ -51,7 +51,7 @@ public class RegisterDialog extends Dialog {
 
 
 
-    public RegisterDialog() {
+     public RegisterDialog() {
 
         FormLayout layout = new FormLayout();
         layout.setLabelWidth(90);
@@ -74,6 +74,9 @@ public class RegisterDialog extends Dialog {
             }
 
         };
+
+
+
 
          userName = new TextField<String>();
          userName.setMinLength(4);
@@ -200,6 +203,18 @@ public class RegisterDialog extends Dialog {
          //email.getMessages().setRegexText("Email errata");
          add(reemail);
 
+    protected void validate() {
+        conferma.setEnabled(
+                hasValue(userName)
+                        && hasValue(password)
+                        && hasValue(partitaIvaCF)
+                        && hasValue(reemail)
+                        && hasValue(repassword)
+                        && hasValue(citta)
+                        && hasValue(email)
+                        && hasValue(cap)
+                        //TODO && email.getValue()==reemail.getValue()
+                        //&& (hasValue(telefono.toString())|| hasValue(cellulare))
 
          setFocusWidget(userName);
      }
