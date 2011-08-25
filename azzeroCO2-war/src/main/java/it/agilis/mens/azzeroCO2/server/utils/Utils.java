@@ -12,7 +12,7 @@ import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
-import it.agilis.mens.azzeroCO2.shared.model.registrazione.RegistrazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,7 @@ public class Utils {
         return coupon;
     }
 
-    public static UserInfo getUserInfo(RegistrazioneModel registrazioneModel) {
+    public static UserInfo getUserInfo(UserInfoModel registrazioneModel) {
         UserInfo userInfo = new UserInfo();
         userInfo.setPassword(registrazioneModel.getPassword());
         userInfo.setUserName(registrazioneModel.getUserName());

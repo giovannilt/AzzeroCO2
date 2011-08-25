@@ -11,4 +11,7 @@ import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
  */
 public interface IUserInfoDAO {
     void save(UserInfo userInfo) throws Exception;
+
+    UserInfo findUserInfo(String userName);
+
 }

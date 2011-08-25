@@ -80,4 +80,8 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     public void saveUserInfo(UserInfo userInfo) throws Exception {
         userInfoDAO.save(userInfo);
     }
+
+    public UserInfo getUserInfo(String userName) {
+        return userInfoDAO.findUserInfo(userName);
+    }
 }

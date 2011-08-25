@@ -11,7 +11,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.RegisterEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.RegisterView;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
-import it.agilis.mens.azzeroCO2.shared.model.registrazione.RegistrazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -40,12 +40,18 @@ public class RegisterController extends Controller {
 
                 @Override
                 public void onSuccess(Boolean result) {
-                    Info.display("Info", "Utente Creato con sucesso");
-                     Dispatcher.forwardEvent(RegisterEvents.HideForm);
-                     Dispatcher.forwardEvent(LoginEvents.ShowLogOut);
+                    if (result) {
+                        Dispatcher.forwardEvent(RegisterEvents.HideForm);
+                        Dispatcher.forwardEvent(LoginEvents.ShowLogOut);
+                        Info.display("Info", "Utente Creato con sucesso");
+                        view.hideStatus();
+                    } else {
+                        Info.display("Error", "Username gia' registrato.");
+                        view.hideStatus();
+                    }
                 }
             };
-            hustonService.createNewUser((RegistrazioneModel) event.getData(), aCallback);
+            hustonService.createNewUser((UserInfoModel) event.getData(), aCallback);
         } else {
             forwardToView(view, event);
         }

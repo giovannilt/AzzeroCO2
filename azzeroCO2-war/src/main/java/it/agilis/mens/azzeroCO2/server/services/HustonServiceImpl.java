@@ -3,10 +3,11 @@ package it.agilis.mens.azzeroCO2.server.services;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import it.agilis.mens.azzeroCO2.client.services.HustonService;
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
+import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
-import it.agilis.mens.azzeroCO2.shared.model.registrazione.RegistrazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -84,9 +85,13 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public Boolean createNewUser(RegistrazioneModel registrazioneModel) throws IllegalArgumentException {
+    public Boolean createNewUser(UserInfoModel userInfoModel) throws IllegalArgumentException {
         try {
-            azzeroCO2Register.saveUserInfo(Utils.getUserInfo(registrazioneModel));
+            UserInfo ui= azzeroCO2Register.getUserInfo(userInfoModel.getUserName());
+            if(ui!=null){
+               return false;
+            }
+            azzeroCO2Register.saveUserInfo(Utils.getUserInfo(userInfoModel));
         } catch (Exception e) {
             e.printStackTrace();
             return false;

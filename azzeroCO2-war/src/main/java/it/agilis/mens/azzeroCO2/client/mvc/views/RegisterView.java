@@ -34,4 +34,8 @@ public class RegisterView extends View {
             registerDialog.hide();
         }
     }
+
+    public void hideStatus() {
+        registerDialog.hideStatus();
+    }
 }

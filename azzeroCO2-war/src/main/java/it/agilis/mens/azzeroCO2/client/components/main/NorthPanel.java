@@ -67,6 +67,7 @@ public class NorthPanel extends LayoutContainer {
             }
         });
         c.add(logOut, layoutData);
+        logOut.setVisible(false);
 
         registrati = new Button("Registrati");
         registrati.addSelectionListener(new SelectionListener<ButtonEvent>() {

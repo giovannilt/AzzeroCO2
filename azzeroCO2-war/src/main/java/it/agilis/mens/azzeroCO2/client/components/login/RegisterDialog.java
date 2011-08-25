@@ -6,7 +6,6 @@ import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.KeyListener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
-import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.widget.Dialog;
@@ -17,7 +16,7 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import it.agilis.mens.azzeroCO2.client.mvc.events.RegisterEvents;
-import it.agilis.mens.azzeroCO2.shared.model.registrazione.RegistrazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -49,7 +48,7 @@ public class RegisterDialog extends Dialog {
     protected Status status;
 
     private FormBinding binding;
-    private RegistrazioneModel registrazioneModel = new RegistrazioneModel();
+    private UserInfoModel registrazioneModel = new UserInfoModel();
 
 
     public RegisterDialog() {
@@ -148,7 +147,7 @@ public class RegisterDialog extends Dialog {
         indirizzo.getMessages().setMinLengthText("Indirizzo troppo breve");
 
         indirizzo.setFieldLabel("Indirizzo");
-        indirizzo.setName("Indirizzo");
+        indirizzo.setName("indirizzo");
         indirizzo.addKeyListener(keyListener);
         formPanel.add(indirizzo);
 
@@ -158,7 +157,7 @@ public class RegisterDialog extends Dialog {
         citta.getMessages().setMinLengthText("Nome città troppo breve");
 
         citta.setFieldLabel("Città");
-        citta.setName("Città");
+        citta.setName("citta");
         citta.addKeyListener(keyListener);
         formPanel.add(citta);
 
@@ -168,7 +167,7 @@ public class RegisterDialog extends Dialog {
         provincia.getMessages().setMaxLengthText("Inserisci la sigla della provincia");
 
         provincia.setFieldLabel("Provincia");
-        provincia.setName("Provincia");
+        provincia.setName("provincia");
         provincia.addKeyListener(keyListener);
         formPanel.add(provincia);
 
@@ -179,17 +178,16 @@ public class RegisterDialog extends Dialog {
         cap.setRegex("[0-9]+");
         cap.getMessages().setRegexText("Inserisci 5 cifre");
         cap.setFieldLabel("CAP");
-        cap.setName("CAP");
+        cap.setName("cap");
         cap.addKeyListener(keyListener);
         formPanel.add(cap);
 
         partitaIvaCF = new TextField<String>();
         partitaIvaCF.setMinLength(11);
         partitaIvaCF.setMaxLength(17);
+        partitaIvaCF.setName("partitaIvaCF");
         partitaIvaCF.getMessages().setMinLengthText("La partita iva deve essere lunga 11 cifre e il codice fiscale 17 caratteri");
-
         partitaIvaCF.setFieldLabel("P.Iva/CF");
-        partitaIvaCF.setName("P.Iva/CF");
         partitaIvaCF.addKeyListener(keyListener);
         formPanel.add(partitaIvaCF);
 
@@ -288,8 +286,11 @@ public class RegisterDialog extends Dialog {
         conferma.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 status.show();
-      //          getButtonBar().disable();
-                Dispatcher.forwardEvent(RegisterEvents.DoRegistration, new AppEvent(RegisterEvents.DoRegistration, binding.getModel()));
+                getButtonBar().disable();
+
+                if (binding != null) {
+                    Dispatcher.forwardEvent(RegisterEvents.DoRegistration, binding.getModel());
+                }
 
             }
         });
@@ -305,22 +306,26 @@ public class RegisterDialog extends Dialog {
 
     protected void validate() {
         conferma.setEnabled(
-               hasValue(userName)
-            && hasValue(password)
-            && hasValue(partitaIvaCF)
-            && hasValue(reemail)
-            && hasValue(repassword)
-            && hasValue(citta)
-            && hasValue(email)
-            && hasValue(cap)
-            && hasValue(indirizzo)
-            && hasValue(provincia)
-            && ((hasValue(nome) && hasValue(cognome))|| hasValue(ragioneSoc))
-            && email.getValue().equals(reemail.getValue())
-            && password.getValue().equals(repassword.getValue())
+                hasValue(userName)
+                        && hasValue(password)
+                        && hasValue(partitaIvaCF)
+                        && hasValue(reemail)
+                        && hasValue(repassword)
+                        && hasValue(citta)
+                        && hasValue(email)
+                        && hasValue(cap)
+                        && hasValue(indirizzo)
+                        && hasValue(provincia)
+                        && ((hasValue(nome) && hasValue(cognome)) || hasValue(ragioneSoc))
+                        && email.getValue().equals(reemail.getValue())
+                        && password.getValue().equals(repassword.getValue())
         );
 
 
     }
 
+    public void hideStatus(){
+        status.hide();
+        getButtonBar().enable();
+    }
 }
