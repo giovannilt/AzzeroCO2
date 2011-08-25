@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.NorthView;
 
 /**
@@ -19,6 +20,7 @@ public class NorthController extends Controller {
 
     public NorthController(){
         registerEventTypes(AzzeroCO2Events.Init);
+        registerEventTypes(LoginEvents.ShowLogOut);
 
     }
 

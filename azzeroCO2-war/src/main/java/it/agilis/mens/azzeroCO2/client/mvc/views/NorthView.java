@@ -7,6 +7,7 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.mvc.View;
 import it.agilis.mens.azzeroCO2.client.components.main.NorthPanel;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,6 +28,8 @@ public class NorthView extends View {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
+        }else if(eventType.equals(LoginEvents.ShowLogOut)){
+            northPanel.showLogout();
         }
     }
 

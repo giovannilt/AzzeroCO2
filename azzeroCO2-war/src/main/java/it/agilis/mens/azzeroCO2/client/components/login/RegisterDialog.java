@@ -166,7 +166,6 @@ public class RegisterDialog extends Dialog {
         provincia.setMinLength(2);
         provincia.setMaxLength(2);
         provincia.getMessages().setMaxLengthText("Inserisci la sigla della provincia");
-        provincia.getMessages().setMinLengthText("Inserisci la sigla della provincia");
 
         provincia.setFieldLabel("Provincia");
         provincia.setName("Provincia");
@@ -177,7 +176,6 @@ public class RegisterDialog extends Dialog {
         cap.setMinLength(5);
         cap.setMaxLength(5);
         cap.getMessages().setMinLengthText("Il CAP deve essere di 5 cifre");
-        cap.getMessages().setMaxLengthText("Il CAP deve essere di 5 cifre");
         cap.setRegex("[0-9]+");
         cap.getMessages().setRegexText("Inserisci 5 cifre");
         cap.setFieldLabel("CAP");
@@ -189,7 +187,6 @@ public class RegisterDialog extends Dialog {
         partitaIvaCF.setMinLength(11);
         partitaIvaCF.setMaxLength(17);
         partitaIvaCF.getMessages().setMinLengthText("La partita iva deve essere lunga 11 cifre e il codice fiscale 17 caratteri");
-        partitaIvaCF.getMessages().setMaxLengthText("La partita iva deve essere lunga 11 cifre e il codice fiscale 17 caratteri");
 
         partitaIvaCF.setFieldLabel("P.Iva/CF");
         partitaIvaCF.setName("P.Iva/CF");

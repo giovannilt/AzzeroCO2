@@ -27,6 +27,10 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
  * To change this template use File | Settings | File Templates.
  */
 public class NorthPanel extends LayoutContainer {
+    private Button registrati = new Button();
+    private Button amministrazione = new Button();
+    private Button login = new Button();
+    private Button logOut = new Button();
 
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
@@ -47,8 +51,6 @@ public class NorthPanel extends LayoutContainer {
         });
 
         c.add(home, layoutData);
-
-        Button login = new Button();
         login.setText("Login");
         login.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
@@ -56,7 +58,17 @@ public class NorthPanel extends LayoutContainer {
             }
         });
         c.add(login, layoutData);
-        Button registrati = new Button("Registrati");
+
+        logOut.setText("LogOut");
+        logOut.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                showLogin();
+                Dispatcher.forwardEvent(LoginEvents.LogOut);
+            }
+        });
+        c.add(logOut, layoutData);
+
+        registrati = new Button("Registrati");
         registrati.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 Dispatcher.forwardEvent(LoginEvents.HideForm, ce);
@@ -65,7 +77,7 @@ public class NorthPanel extends LayoutContainer {
         });
         c.add(registrati, layoutData);
 
-        Button amministrazione = new Button();
+
         amministrazione.setText("Amministrazione");
         amministrazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
@@ -80,4 +92,14 @@ public class NorthPanel extends LayoutContainer {
         add(azzeroCO2Log, layoutData);
     }
 
+    public void showLogout() {
+        login.setVisible(false);
+        logOut.setVisible(true);
+    }
+
+    public void showLogin() {
+        // TODO eliminare la sessione
+        login.setVisible(true);
+        logOut.setVisible(false);
+    }
 }
