@@ -9,7 +9,7 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  * Time: 9:28 PM
  * To change this template use File | Settings | File Templates.
  */
-public class RegistrazioneModel extends BaseModel {
+public class UserInfoModel extends BaseModel {
 
 
     public String getUserName() {
