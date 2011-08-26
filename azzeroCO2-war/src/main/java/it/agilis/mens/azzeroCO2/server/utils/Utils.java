@@ -85,4 +85,8 @@ public class Utils {
         userInfo.setEmail(registrazioneModel.getEmail());
         return  userInfo;
     }
+
+    public static UserInfoModel getUserInfoModel(UserInfo userInfo) {
+        return null;  //To change body of created methods use File | Settings | File Templates.
+    }
 }

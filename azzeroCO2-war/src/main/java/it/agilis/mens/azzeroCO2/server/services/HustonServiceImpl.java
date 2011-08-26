@@ -109,4 +109,8 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
 
+    @Override
+    public UserInfoModel getUserInfo(String userInfo){
+        return Utils.getUserInfoModel(azzeroCO2Register.getUserInfo(userInfo));
+    }
 }

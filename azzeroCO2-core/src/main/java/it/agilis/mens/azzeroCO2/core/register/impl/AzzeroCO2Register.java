@@ -81,6 +81,7 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         userInfoDAO.save(userInfo);
     }
 
+
     public UserInfo getUserInfo(String userName) {
         return userInfoDAO.findUserInfo(userName);
     }

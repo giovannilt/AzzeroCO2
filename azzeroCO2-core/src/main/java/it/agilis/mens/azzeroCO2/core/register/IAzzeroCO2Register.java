@@ -24,5 +24,7 @@ public interface IAzzeroCO2Register {
     List<Ordine> getOrdini() throws Exception;
 
     List<Coupon> getListofCoupon() throws Exception;
+
+    UserInfo getUserInfo(String userInfo) throws Exception;
 }
 

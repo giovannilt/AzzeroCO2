@@ -20,4 +20,6 @@ public interface HustonService extends RemoteService {
 
     Boolean createNewUser(UserInfoModel registrazioneModeli) throws IllegalArgumentException;
 
+    UserInfoModel getUserInfo(String userInfo) throws IllegalArgumentException;
+
 }

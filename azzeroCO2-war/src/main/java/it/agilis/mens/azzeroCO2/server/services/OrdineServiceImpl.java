@@ -48,4 +48,7 @@ public class OrdineServiceImpl extends RemoteServiceServlet implements OrdineSer
         return new OrdineModel(); // da sistemare
 
     }
+
+
+
 }
