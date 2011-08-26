@@ -30,46 +30,36 @@ public class NorthPanel extends LayoutContainer {
     private Button registrati = new Button();
     private Button amministrazione = new Button();
     private Button login = new Button();
-    private Button logOut = new Button();
+    private Boolean islogedIn = false;
+    private LayoutContainer c = new LayoutContainer();
+    private HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-        LayoutContainer c = new LayoutContainer();
+
         HBoxLayout layout = new HBoxLayout();
         layout.setPadding(new Padding(1));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         layout.setPack(BoxLayout.BoxLayoutPack.END);
         c.setLayout(layout);
 
-        HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
+
+        amministrazione.setText("Impostazioni");
+        amministrazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.AMMINISTRAZIONE);
+            }
+        });
+        c.add(amministrazione, layoutData);
+
         Button home = new Button("Home");
         home.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
             }
         });
-
-        c.add(home, layoutData);
-        login.setText("Login");
-        login.addSelectionListener(new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(LoginEvents.ShowForm);
-            }
-        });
-        c.add(login, layoutData);
-
-        logOut.setText("LogOut");
-        logOut.addSelectionListener(new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent ce) {
-                showLogin();
-                Dispatcher.forwardEvent(LoginEvents.LogOut);
-            }
-        });
-        c.add(logOut, layoutData);
-        logOut.setVisible(false);
-
-        registrati = new Button("Registrati");
+         registrati = new Button("Registrati");
         registrati.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 Dispatcher.forwardEvent(LoginEvents.HideForm, ce);
@@ -78,14 +68,22 @@ public class NorthPanel extends LayoutContainer {
         });
         c.add(registrati, layoutData);
 
-
-        amministrazione.setText("Amministrazione");
-        amministrazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
+        c.add(home, layoutData);
+        login.setText("Login");
+        login.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.AMMINISTRAZIONE);
+                if (!islogedIn) {
+                    Dispatcher.forwardEvent(LoginEvents.ShowForm);
+                } else {
+                    showLogin();
+                    //Dispatcher.forwardEvent(LoginEvents.LogOut);
+                }
             }
         });
-        c.add(amministrazione, layoutData);
+        c.add(login, layoutData);
+
+
+
 
         add(c, new FlowData(1));
 
@@ -94,13 +92,15 @@ public class NorthPanel extends LayoutContainer {
     }
 
     public void showLogout() {
-        login.setVisible(false);
-        logOut.setVisible(true);
+        login.setText("LogOut");
+        islogedIn = false;
+        //registrati.setVisible(false);
+        c.remove(registrati);
     }
 
     public void showLogin() {
-        // TODO eliminare la sessione
-        login.setVisible(true);
-        logOut.setVisible(false);
+        login.setText("LogIn");
+        islogedIn = true;
+        c.add(registrati, layoutData);
     }
 }
