@@ -1,10 +1,10 @@
 package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
-import com.extjs.gxt.ui.client.mvc.Controller;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,22 +13,27 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
  * Time: 10:09 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoController extends Controller {
+public class EventoController extends BaseController {
 
-    private EventoView eventoView= new EventoView(this);
+    private EventoView eventoView = new EventoView(this);
 
     public EventoController() {
         registerEventTypes(AzzeroCO2Events.Init);
-   	    registerEventTypes(AzzeroCO2Events.Error);
+        registerEventTypes(AzzeroCO2Events.Error);
         registerEventTypes(EventoEvents.Next);
         registerEventTypes(EventoEvents.Previous);
         registerEventTypes(EventoEvents.ClearPanel);
         registerEventTypes(EventoEvents.Save);
+                registerEventTypes(AzzeroCO2Events.LoggedIn);
 
     }
 
     @Override
     public void handleEvent(AppEvent event) {
-        forwardToView(eventoView, event);
+        if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
+            setUserInfoModel((UserInfoModel) event.getData());
+        } else {
+            forwardToView(eventoView, event);
+        }
     }
 }

@@ -45,7 +45,7 @@ public class ConoscoCO2 extends LayoutContainer {
         conoscoCO2Tab.add(conoscoCO2);
 
 
-        TabItem riepilogo = new TabItem("Riepilogo");
+        TabItem riepilogo = new TabItem("RiepilogoModel");
         riepilogo.setEnabled(false);
         riepilogo.add(eventoFormRiepilogo);
         conoscoCO2Tab.add(riepilogo);

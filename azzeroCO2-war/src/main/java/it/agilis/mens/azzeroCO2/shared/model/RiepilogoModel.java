@@ -9,13 +9,13 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
  * Time: 2:30 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Riepilogo extends BaseModelData {
+public class RiepilogoModel extends BaseModelData {
 
-    public Riepilogo() {
+    public RiepilogoModel() {
 
     }
 
-    public Riepilogo(String oggetto, String dettagli, Double kgCO2) {
+    public RiepilogoModel(String oggetto, String dettagli, Double kgCO2) {
         setOggetto(oggetto);
         setDettagli(dettagli);
         setKgCO2(kgCO2);

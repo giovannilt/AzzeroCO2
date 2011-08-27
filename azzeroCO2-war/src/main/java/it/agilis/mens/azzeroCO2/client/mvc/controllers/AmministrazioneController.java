@@ -1,10 +1,10 @@
 package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
-import com.extjs.gxt.ui.client.mvc.Controller;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.views.AmministrazioneView;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,17 +13,23 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.AmministrazioneView;
  * Time: 8:44 PM
  * To change this template use File | Settings | File Templates.
  */
-public class AmministrazioneController extends Controller {
+public class AmministrazioneController extends BaseController {
     AmministrazioneView amministrazioneView = new AmministrazioneView(this);
 
     public AmministrazioneController() {
         registerEventTypes(AzzeroCO2Events.Init);
+        registerEventTypes(AzzeroCO2Events.LoggedIn);
         registerEventTypes(AmministrazioneEvents.Error);
     }
 
     @Override
     public void handleEvent(AppEvent event) {
-        forwardToView(amministrazioneView, event);
+        if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
+            setUserInfoModel((UserInfoModel) event.getData());
+        } else {
+            forwardToView(amministrazioneView, event);
+        }
     }
+
 
 }

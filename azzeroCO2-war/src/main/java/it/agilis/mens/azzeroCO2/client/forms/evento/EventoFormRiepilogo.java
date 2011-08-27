@@ -5,13 +5,14 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.RowData;
+import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.Riepilogo;
+import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,9 @@ import java.util.List;
  */
 public class EventoFormRiepilogo extends LayoutContainer {
 
-    ContentPanel centre = new ContentPanel();
+    private final ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
+    private Grid<RiepilogoModel> grid;
+
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
@@ -33,34 +36,38 @@ public class EventoFormRiepilogo extends LayoutContainer {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-        createCentre();
-        centre.setHeading("Riepilogo");
-        centre.setHeight(650);
+
+        ContentPanel cp = new ContentPanel();
+        cp.setFrame(true);
+        cp.setHeading("Riepilogo");
+        cp.setLayout(new RowLayout(Style.Orientation.VERTICAL));
+        grid = createGrid();
+        cp.add(grid, new RowData(1, 1, new Margins(0, 0, 0, 0)));
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
-        add(centre, centerData);
+        centerData.setMargins(new Margins(0, 0, 0, 0));
+        add(cp, centerData);
 
     }
 
-    private void createCentre() {
-        final ListStore<Riepilogo> store = new ListStore<Riepilogo>();
+    private Grid<RiepilogoModel> createGrid() {
+
         {  //TODO
-            store.add(new Riepilogo("Energia", "Energia Elettrica XX <br> Gasolio YY", 10.0));
-            store.add(new Riepilogo("Trasporto Persone/ relatori", "Energia Elettrica XX <br> Gasolio YY", 10.0));
-            store.add(new Riepilogo("Trasporto Persone", "Energia Elettrica XX <br> Gasolio YY", 10.0));
-            store.add(new Riepilogo("Pubblicazione rilegate", "Energia Elettrica XX <br> Gasolio YY", 1.4));
-            store.add(new Riepilogo("Manifesti, pieghevoli, fogli / programma", "Energia Elettrica XX <br> Gasolio YY", 10.0));
+            store.add(new RiepilogoModel("Energia", "Energia Elettrica XX <br> Gasolio YY", 10.0));
+            store.add(new RiepilogoModel("Trasporto Persone/ relatori", "Energia Elettrica XX <br> Gasolio YY", 10.0));
+            store.add(new RiepilogoModel("Trasporto Persone", "Energia Elettrica XX <br> Gasolio YY", 10.0));
+            store.add(new RiepilogoModel("Pubblicazione rilegate", "Energia Elettrica XX <br> Gasolio YY", 1.4));
+            store.add(new RiepilogoModel("Manifesti, pieghevoli, fogli / programma", "Energia Elettrica XX <br> Gasolio YY", 10.0));
         }
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 300);
+        ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 290);
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 445);
+        column = new ColumnConfig("dettagli", "Dettagli", 440);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 100);
@@ -69,26 +76,26 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
         ColumnModel cm = new ColumnModel(configs);
 
-        AggregationRowConfig<Riepilogo> somma = new AggregationRowConfig<Riepilogo>();
+        AggregationRowConfig<RiepilogoModel> somma = new AggregationRowConfig<RiepilogoModel>();
         somma.setHtml("name", "Somma");
 
         somma.setSummaryType("kgCO2", SummaryType.SUM);
-        somma.setRenderer("kgCO2", new AggregationRenderer<Riepilogo>() {
-            public Object render(Number value, int colIndex, Grid<Riepilogo> grid, ListStore<Riepilogo> store) {
+        somma.setRenderer("kgCO2", new AggregationRenderer<RiepilogoModel>() {
+            public Object render(Number value, int colIndex, Grid<RiepilogoModel> grid, ListStore<RiepilogoModel> store) {
                 return number.format(value.doubleValue());
             }
         });
         cm.addAggregationRow(somma);
 
-        somma = new AggregationRowConfig<Riepilogo>();
+        somma = new AggregationRowConfig<RiepilogoModel>();
         somma.setHtml("name", "kgCO2");
 
-        Grid<Riepilogo> grid = new Grid<Riepilogo>(store, cm);
+        Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
         grid.setAutoHeight(true);
 
-        centre.add(grid);
 
+        return grid;
 
     }
 

@@ -41,6 +41,7 @@ public class UserInfo implements Serializable {
 
     @OneToMany (fetch= FetchType.LAZY)
     private List<Ordine> ordini;
+
     public List<Ordine> getOrdini() {
         return ordini;
     }

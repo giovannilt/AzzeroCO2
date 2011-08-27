@@ -46,7 +46,7 @@ public class SitoWeb extends LayoutContainer {
         sitoWebTab.add(sitoWeb);
 
 
-        TabItem riepilogo = new TabItem("Riepilogo");
+        TabItem riepilogo = new TabItem("RiepilogoModel");
         riepilogo.setEnabled(false);
         riepilogo.add(eventoFormRiepilogo);
         sitoWebTab.add(riepilogo);

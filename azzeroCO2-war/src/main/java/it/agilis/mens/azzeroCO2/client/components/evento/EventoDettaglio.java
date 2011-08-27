@@ -76,7 +76,7 @@ public class EventoDettaglio extends LayoutContainer {
         calcolo.setEnabled(false);
         eventoTab.add(calcolo);
 
-        TabItem riepilogo = new TabItem("Riepilogo");
+        TabItem riepilogo = new TabItem("RiepilogoModel");
         riepilogo.add(eventoFormRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
         riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);

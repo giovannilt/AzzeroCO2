@@ -1,9 +1,9 @@
 package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
-import com.extjs.gxt.ui.client.mvc.Controller;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.views.UnAnnoDiAttivitaView;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,18 +12,23 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.UnAnnoDiAttivitaView;
  * Time: 11:39 PM
  * To change this template use File | Settings | File Templates.
  */
-public class UnAnnoDiAttivitaController extends Controller {
+public class UnAnnoDiAttivitaController extends BaseController {
 
-    private UnAnnoDiAttivitaView unAnnoDiAttivitaView= new UnAnnoDiAttivitaView(this);
+    private UnAnnoDiAttivitaView unAnnoDiAttivitaView = new UnAnnoDiAttivitaView(this);
 
     public UnAnnoDiAttivitaController() {
         registerEventTypes(AzzeroCO2Events.Init);
-   	    registerEventTypes(AzzeroCO2Events.Error);
+        registerEventTypes(AzzeroCO2Events.Error);
+        registerEventTypes(AzzeroCO2Events.LoggedIn);
 
     }
 
-    @Override
+     @Override
     public void handleEvent(AppEvent event) {
-        forwardToView(unAnnoDiAttivitaView, event);
+        if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
+            setUserInfoModel((UserInfoModel) event.getData());
+        } else {
+            forwardToView(unAnnoDiAttivitaView, event);
+        }
     }
 }
