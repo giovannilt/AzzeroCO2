@@ -45,13 +45,7 @@ public class NorthPanel extends LayoutContainer {
         c.setLayout(layout);
 
 
-        amministrazione.setText("Impostazioni");
-        amministrazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.AMMINISTRAZIONE);
-            }
-        });
-        c.add(amministrazione, layoutData);
+
 
         Button home = new Button("Home");
         home.addSelectionListener(new SelectionListener<ButtonEvent>() {
@@ -59,7 +53,9 @@ public class NorthPanel extends LayoutContainer {
                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
             }
         });
-         registrati = new Button("Registrati");
+        c.add(home, layoutData);
+
+        registrati = new Button("Registrati");
         registrati.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 Dispatcher.forwardEvent(LoginEvents.HideForm, ce);
@@ -68,7 +64,7 @@ public class NorthPanel extends LayoutContainer {
         });
         c.add(registrati, layoutData);
 
-        c.add(home, layoutData);
+
         login.setText("Login");
         login.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
@@ -81,6 +77,15 @@ public class NorthPanel extends LayoutContainer {
             }
         });
         c.add(login, layoutData);
+
+
+        amministrazione.setText("Impostazioni");
+        amministrazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.AMMINISTRAZIONE);
+            }
+        });
+        c.add(amministrazione, layoutData);
 
 
 
