@@ -44,9 +44,11 @@ public class EventoView extends View {
         } else if (eventType.equals(EventoEvents.Next)) {
             onNext(event);
         } else if (eventType.equals(EventoEvents.ClearPanel)) {
-           eventoDettaglio.clearPanel();
+            eventoDettaglio.clearPanel();
         } else if (eventType.equals(EventoEvents.Previous)) {
             onPrevius(event);
+        } else if (eventType.equals(EventoEvents.Riepilogo)) {
+            eventoDettaglio.riepilogo();
         }
     }
 
@@ -105,4 +107,6 @@ public class EventoView extends View {
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.EventoPanelReady,
                 evento));
     }
+
+
 }

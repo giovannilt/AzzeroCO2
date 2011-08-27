@@ -29,12 +29,10 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class EventoFormPubblicazioniRilegate extends LayoutContainer {
-    private ListStore<PubblicazioniRilegateModel> storeCustom;
+    private ListStore<PubblicazioniRilegateModel> pubblicazioniRilegateModel = new ListStore<PubblicazioniRilegateModel>();
     private ToolBar toolBar = new ToolBar();
 
-    public EventoFormPubblicazioniRilegate(ListStore<PubblicazioniRilegateModel> storeCustom) {
-        this.storeCustom = storeCustom;
-    }
+
 
     @SuppressWarnings("rawtypes")
     @Override
@@ -316,7 +314,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
         final ColumnModel cm = new ColumnModel(configs);
-        final Grid<PubblicazioniRilegateModel> grid = new Grid<PubblicazioniRilegateModel>(storeCustom, cm);
+        final Grid<PubblicazioniRilegateModel> grid = new Grid<PubblicazioniRilegateModel>(pubblicazioniRilegateModel, cm);
 
         grid.setAutoExpandColumn("categoria");
         grid.setBorders(true);
@@ -330,8 +328,8 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
             public void componentSelected(ButtonEvent ce) {
                 PubblicazioniRilegateModel cate = new PubblicazioniRilegateModel("Nuova Categoria");
                 re.stopEditing(false);
-                storeCustom.insert(cate, 0);
-                re.startEditing(storeCustom.indexOf(cate), true);
+                pubblicazioniRilegateModel.insert(cate, 0);
+                re.startEditing(pubblicazioniRilegateModel.indexOf(cate), true);
             }
         });
         toolBar.add(add);
@@ -339,5 +337,13 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
     }
 
     public void clear() {
+    }
+
+    public ListStore<PubblicazioniRilegateModel> getPubblicazioniRilegateModel() {
+        return pubblicazioniRilegateModel;
+    }
+
+    public void setPubblicazioniRilegateModel(ListStore<PubblicazioniRilegateModel> pubblicazioniRilegateModel) {
+        this.pubblicazioniRilegateModel = pubblicazioniRilegateModel;
     }
 }

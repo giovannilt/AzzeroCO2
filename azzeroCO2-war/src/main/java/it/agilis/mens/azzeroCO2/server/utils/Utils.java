@@ -9,6 +9,7 @@ package it.agilis.mens.azzeroCO2.server.utils;
  */
 
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
+import it.agilis.mens.azzeroCO2.core.entity.Ordine;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
@@ -25,7 +26,7 @@ public class Utils {
 
         // TODO FOR
 
-        for (it.agilis.mens.azzeroCO2.core.entity.Ordine ordine : ordini) {
+        for (Ordine ordine : ordini) {
             OrdineModel o = new OrdineModel();
             o.setCliente(ordine.getUtente().getUserName());
 
@@ -105,4 +106,6 @@ public class Utils {
 
         return userInfoModel;  //To change body of created methods use File | Settings | File Templates.
     }
+
+
 }

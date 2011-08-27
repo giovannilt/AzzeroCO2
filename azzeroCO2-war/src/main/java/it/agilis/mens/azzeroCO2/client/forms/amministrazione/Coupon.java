@@ -74,7 +74,6 @@ public class Coupon extends LayoutContainer {
         PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
         loader.setRemoteSort(true);
 
-        //ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel>(loader);
 
         final PagingToolBar toolBar = new PagingToolBar(10);
         toolBar.bind(loader);

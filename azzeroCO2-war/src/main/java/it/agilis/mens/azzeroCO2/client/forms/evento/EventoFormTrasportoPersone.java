@@ -28,14 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventoFormTrasportoPersone extends LayoutContainer {
-    private ListStore<TrasportoPersoneModel> storeCustom = new ListStore<TrasportoPersoneModel>();
+    private ListStore<TrasportoPersoneModel> trasportoPersoneModel = new ListStore<TrasportoPersoneModel>();
     private final ToolBar toolBar = new ToolBar();
     private final FormPanel panel = createGroupForm();
     private final FormBinding formBindings = new FormBinding(panel, true);
 
-    public EventoFormTrasportoPersone(ListStore<TrasportoPersoneModel> storeCustom) {
-        this.storeCustom = storeCustom;
-        this.storeCustom.setMonitorChanges(true);
+    public EventoFormTrasportoPersone() {
+        this.trasportoPersoneModel.setMonitorChanges(true);
     }
 
     @SuppressWarnings("rawtypes")
@@ -375,7 +374,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                         Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
                         formBindings.unbind();
                         panel.setHeading("Aggiungi una Categoria o Personalizza quelle esistenti");
-                        storeCustom.remove(model);
+                        trasportoPersoneModel.remove(model);
                     }
                 });
                 // b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
@@ -393,7 +392,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
         final ColumnModel cm = new ColumnModel(configs);
-        final Grid<TrasportoPersoneModel> grid = new Grid<TrasportoPersoneModel>(storeCustom, cm);
+        final Grid<TrasportoPersoneModel> grid = new Grid<TrasportoPersoneModel>(trasportoPersoneModel, cm);
 
         grid.setAutoExpandColumn("categoria");
         grid.setBorders(true);
@@ -409,8 +408,8 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                 TrasportoPersoneModel cate = new TrasportoPersoneModel();
                 cate.setCategoria("Nuova Categoria");
                 re.stopEditing(false);
-                storeCustom.insert(cate, 0);
-                re.startEditing(storeCustom.indexOf(cate), true);
+                trasportoPersoneModel.insert(cate, 0);
+                re.startEditing(trasportoPersoneModel.indexOf(cate), true);
             }
 
         });
@@ -422,6 +421,14 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
     public void clear() {
 
+    }
+
+    public ListStore<TrasportoPersoneModel> getTrasportoPersoneModel() {
+        return trasportoPersoneModel;
+    }
+
+    public void setTrasportoPersoneModel(ListStore<TrasportoPersoneModel> trasportoPersoneModel) {
+        this.trasportoPersoneModel = trasportoPersoneModel;
     }
 }
 

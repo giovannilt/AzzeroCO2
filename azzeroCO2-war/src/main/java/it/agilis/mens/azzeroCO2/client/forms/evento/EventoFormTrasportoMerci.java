@@ -251,8 +251,13 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         binding.clear();
     }
 
-    public void setModelObject(TrasportoMerciModel trasportoMerciModel) {
+    public TrasportoMerciModel getTrasportoMerciModel() {
+        return trasportoMerciModel;
+    }
+
+    public void setTrasportoMerciModel(TrasportoMerciModel trasportoMerciModel) {
         this.trasportoMerciModel = trasportoMerciModel;
     }
+
 }
 

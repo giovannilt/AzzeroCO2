@@ -2,15 +2,14 @@ package it.agilis.mens.azzeroCO2.client.components.evento;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
-import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.evento.*;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 
 
 /**
@@ -24,21 +23,15 @@ public class EventoDettaglio extends LayoutContainer {
 
     private final TabPanel eventoTab = new TabPanel();
 
-    //   private BeanModelFactory beanModelFactory = BeanModelLookup.get().getFactory(EventoCategoriePersoneDTO.class);
-//    private ListStore<BeanModel> storeTutteLePersone = new ListStore<BeanModel>();
-    private ListStore<TrasportoPersoneModel> storeCustom = new ListStore<TrasportoPersoneModel>();
-    private ListStore<PubblicazioniRilegateModel> storePubblicazioniRilegate = new ListStore<PubblicazioniRilegateModel>();
-    private ListStore<ManifestiPieghevoliFogliModel> storeManifestiPieghevoliFogliModel = new ListStore<ManifestiPieghevoliFogliModel>();
-    private DettaglioModel dettaglioModel = new DettaglioModel();
 
-    private EventoFormDettaglio formDettaglio = null;
+    private EventoFormDettaglio formDettaglio = new EventoFormDettaglio();
 
     private final EventoFormEnergia formEnergia = new EventoFormEnergia();
-    private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone(storeCustom);
+    private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone();
     private final EventoFormPernottamenti formPernottamenti = new EventoFormPernottamenti();
     private final EventoFormTrasportoMerci formTrasportoMerci = new EventoFormTrasportoMerci();
-    private final EventoFormPubblicazioniRilegate formPubblicazioniRilegate = new EventoFormPubblicazioniRilegate(storePubblicazioniRilegate);
-    private final EventoFormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new EventoFormManifestiPieghevoliFogli(storeManifestiPieghevoliFogliModel);
+    private final EventoFormPubblicazioniRilegate formPubblicazioniRilegate = new EventoFormPubblicazioniRilegate();
+    private final EventoFormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new EventoFormManifestiPieghevoliFogli();
 
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
     private final EventoFormAcquisto eventoFormAcquisto = new EventoFormAcquisto();
@@ -48,24 +41,10 @@ public class EventoDettaglio extends LayoutContainer {
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-        {
-            // TODO
-            TrasportoPersoneModel categorie = new TrasportoPersoneModel();
-            categorie.setCategoria("Staff");
-            storeCustom.add(categorie);
-            categorie = new TrasportoPersoneModel();
-            categorie.setCategoria("Relatori");
-            storeCustom.add(categorie);
-
-            storePubblicazioniRilegate.add(new PubblicazioniRilegateModel("Catalogo"));
-            storePubblicazioniRilegate.add(new PubblicazioniRilegateModel("Bilancio"));
-        }
-
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
         TabItem dettaglio = new TabItem("Dettaglio");
         dettaglio.setLayout(new BorderLayout());
-        formDettaglio = new EventoFormDettaglio(dettaglioModel);
         dettaglio.add(formDettaglio, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         eventoTab.add(dettaglio);
@@ -142,10 +121,15 @@ public class EventoDettaglio extends LayoutContainer {
                         }
                     }
                 } else {
+
+
                     if (i > 0) {
                         item.setEnabled(false);
                         eventoTab.getItems().get(i - 1).setEnabled(true);
                         eventoTab.setSelection(eventoTab.getItems().get(i - 1));
+                        if (eventoTab.getItems().get(i - 1).getText().equalsIgnoreCase("Riepilogo")) {
+                            Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+                        }
                         return;
                     }
                 }
@@ -174,13 +158,15 @@ public class EventoDettaglio extends LayoutContainer {
                                 item.setEnabled(false);
                                 eventoTab.getItems().get(i).setEnabled(true);
                                 eventoTab.setSelection(eventoTab.getItems().get(i));
+                                if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
+                                    Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+                                }
                                 return;
                             }
                         }
                     }
                 } else {
                     if (i < eventoTab.getItems().size()) {
-
                         item.setEnabled(false);
                         eventoTab.getItems().get(i).setEnabled(true);
                         eventoTab.setSelection(eventoTab.getItems().get(i));
@@ -207,5 +193,17 @@ public class EventoDettaglio extends LayoutContainer {
         eventoFormAcquisto.clear();
         eventoFormConferma.clear();
 
+    }
+
+    public DettaglioModel riepilogo() {
+        DettaglioModel eventoModel = formDettaglio.getDettaglioModel();
+        eventoModel.setEnergiaModel(formEnergia.getEnergiaModel());
+        eventoModel.setTrasportoPersoneModel(formTrasportoPersone.getTrasportoPersoneModel().getModels());
+        eventoModel.setNottiModel(formPernottamenti.getNottiModel());
+        eventoModel.setTrasportoMerciModel(formTrasportoMerci.getTrasportoMerciModel());
+        eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel().getModels());
+        eventoModel.setManifestiPieghevoliFogliModel(formManifestiPiegevoliFogli.getManifestiPieghevoliFogliModel().getModels());
+        eventoFormRiepilogo.setStore(CalcoliHelper.geListOfRiepilogoModel(eventoModel));
+        return eventoModel;
     }
 }

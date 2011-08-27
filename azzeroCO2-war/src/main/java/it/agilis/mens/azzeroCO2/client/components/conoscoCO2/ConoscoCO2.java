@@ -36,7 +36,6 @@ public class ConoscoCO2 extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
         setLayout(layout);
 
-
         // TODO:.... CAPIRE COME CAZZO SI FA A STRETCH COME DIO COMANDA
         conoscoCO2Tab.setSize(855, 637);
 

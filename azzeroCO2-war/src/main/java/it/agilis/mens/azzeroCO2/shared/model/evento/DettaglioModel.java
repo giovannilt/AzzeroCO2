@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.shared.model.evento;
 import com.extjs.gxt.ui.client.data.BaseModel;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,11 +14,13 @@ import java.util.Date;
  */
 public class DettaglioModel extends BaseModel {
 
-    private String nome;
-    private String dove;
-    private Date inizio;
-    private Date fine;
-    private String note;
+    private EnergiaModel energiaModel;
+    private List<TrasportoPersoneModel> trasportoPersoneModel;
+    private NottiModel nottiModel;
+    private TrasportoMerciModel trasportoMerciModel;
+    private List<PubblicazioniRilegateModel> pubblicazioniRilegateModel;
+    private List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel;
+
 
     public String getNome() {
         return (String) get("nome");
@@ -59,4 +62,51 @@ public class DettaglioModel extends BaseModel {
         set("fine", fine);
     }
 
+    public void setEnergiaModel(EnergiaModel energiaModel) {
+        this.energiaModel = energiaModel;
+    }
+
+    public List<TrasportoPersoneModel> getTrasportoPersoneModel() {
+        return trasportoPersoneModel;
+    }
+
+    public void setTrasportoPersoneModel(List<TrasportoPersoneModel> trasportoPersoneModel) {
+        this.trasportoPersoneModel = trasportoPersoneModel;
+    }
+
+    public NottiModel getNottiModel() {
+        return nottiModel;
+    }
+
+    public void setNottiModel(NottiModel nottiModel) {
+        this.nottiModel = nottiModel;
+    }
+
+    public TrasportoMerciModel getTrasportoMerciModel() {
+        return trasportoMerciModel;
+    }
+
+    public void setTrasportoMerciModel(TrasportoMerciModel trasportoMerciModel) {
+        this.trasportoMerciModel = trasportoMerciModel;
+    }
+
+    public List<PubblicazioniRilegateModel> getPubblicazioniRilegateModel() {
+        return pubblicazioniRilegateModel;
+    }
+
+    public void setPubblicazioniRilegateModel(List<PubblicazioniRilegateModel> pubblicazioniRilegateModel) {
+        this.pubblicazioniRilegateModel = pubblicazioniRilegateModel;
+    }
+
+    public List<ManifestiPieghevoliFogliModel> getManifestiPieghevoliFogliModel() {
+        return manifestiPieghevoliFogliModel;
+    }
+
+    public void setManifestiPieghevoliFogliModel(List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel) {
+        this.manifestiPieghevoliFogliModel = manifestiPieghevoliFogliModel;
+    }
+
+    public EnergiaModel getEnergiaModel() {
+        return energiaModel;
+    }
 }

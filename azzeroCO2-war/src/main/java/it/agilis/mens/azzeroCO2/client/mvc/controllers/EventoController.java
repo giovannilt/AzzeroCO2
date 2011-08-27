@@ -24,7 +24,8 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.Previous);
         registerEventTypes(EventoEvents.ClearPanel);
         registerEventTypes(EventoEvents.Save);
-                registerEventTypes(AzzeroCO2Events.LoggedIn);
+        registerEventTypes(AzzeroCO2Events.LoggedIn);
+        registerEventTypes(EventoEvents.Riepilogo);
 
     }
 

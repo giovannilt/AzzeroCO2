@@ -53,8 +53,6 @@ public class Amministrazione extends LayoutContainer {
 
         };
 
-
-
         final ListStore<UserInfoModel> storeUser = new ListStore<UserInfoModel>();
         AsyncCallback<List<UserInfoModel>> bCallback = new AsyncCallback<List<UserInfoModel>>() {
             public void onFailure(Throwable caught) {
@@ -66,16 +64,6 @@ public class Amministrazione extends LayoutContainer {
             }
 
         };
-
-
-
-
-
-
-
-
-
-
 
         hustonService.getListOfCoupon(aCallback);
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));

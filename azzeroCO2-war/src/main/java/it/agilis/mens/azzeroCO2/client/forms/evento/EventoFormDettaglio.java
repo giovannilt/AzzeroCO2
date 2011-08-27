@@ -24,10 +24,6 @@ public class EventoFormDettaglio extends LayoutContainer {
     private DettaglioModel dettaglioModel = new DettaglioModel();
     private FormBinding binding = null;
 
-    public EventoFormDettaglio(DettaglioModel dettaglioModel) {
-        this.dettaglioModel = dettaglioModel;
-    }
-
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
@@ -108,5 +104,13 @@ public class EventoFormDettaglio extends LayoutContainer {
 
     public void clear() {
         binding.unbind();
+    }
+
+    public DettaglioModel getDettaglioModel() {
+        return dettaglioModel;
+    }
+
+    public void setDettaglioModel(DettaglioModel dettaglioModel) {
+        this.dettaglioModel = dettaglioModel;
     }
 }

@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class EventoFormRiepilogo extends LayoutContainer {
 
-    private final ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
+    private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -48,6 +48,8 @@ public class EventoFormRiepilogo extends LayoutContainer {
         cp.add(cpEst, new RowData(1, 1));
 
         cp.setHeading("Riepilogo");
+
+        // TODO MIGLIORARE
         cp.setHeight(650);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
@@ -93,6 +95,14 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
         return grid;
 
+    }
+
+    public ListStore<RiepilogoModel> getStore() {
+        return store;
+    }
+
+    public void setStore(ListStore<RiepilogoModel> store) {
+        this.store = store;
     }
 
     public void clear() {

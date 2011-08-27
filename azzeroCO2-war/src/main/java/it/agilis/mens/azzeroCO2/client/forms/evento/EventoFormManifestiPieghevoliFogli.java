@@ -30,12 +30,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
-    private ListStore<ManifestiPieghevoliFogliModel> storeCustom;
+    private ListStore<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel =new ListStore<ManifestiPieghevoliFogliModel>();
     private ToolBar toolBar = new ToolBar();
-
-    public EventoFormManifestiPieghevoliFogli(ListStore<ManifestiPieghevoliFogliModel> storeCustom) {
-        this.storeCustom = storeCustom;
-    }
 
     @SuppressWarnings("rawtypes")
     @Override
@@ -231,7 +227,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
         final ColumnModel cm = new ColumnModel(configs);
-        final Grid<ManifestiPieghevoliFogliModel> grid = new Grid<ManifestiPieghevoliFogliModel>(storeCustom, cm);
+        final Grid<ManifestiPieghevoliFogliModel> grid = new Grid<ManifestiPieghevoliFogliModel>(manifestiPieghevoliFogliModel, cm);
 
         grid.setAutoExpandColumn("categoria");
         grid.setBorders(true);
@@ -245,8 +241,8 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
             public void componentSelected(ButtonEvent ce) {
                 ManifestiPieghevoliFogliModel cate = new ManifestiPieghevoliFogliModel("Nuova Categoria");
                 re.stopEditing(false);
-                storeCustom.insert(cate, 0);
-                re.startEditing(storeCustom.indexOf(cate), true);
+                manifestiPieghevoliFogliModel.insert(cate, 0);
+                re.startEditing(manifestiPieghevoliFogliModel.indexOf(cate), true);
             }
         });
         toolBar.add(add);
@@ -254,5 +250,13 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     }
 
     public void clear() {
+    }
+
+    public ListStore<ManifestiPieghevoliFogliModel> getManifestiPieghevoliFogliModel() {
+        return manifestiPieghevoliFogliModel;
+    }
+
+    public void setManifestiPieghevoliFogliModel(ListStore<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel) {
+        this.manifestiPieghevoliFogliModel = manifestiPieghevoliFogliModel;
     }
 }

@@ -239,7 +239,7 @@ public class EventoFormAcquisto extends LayoutContainer {
 
         column = new ColumnConfig();
         column.setId("name");
-        column.setWidth(247);
+        column.setWidth(245);
         configs.add(column);
 
         column = new ColumnConfig();

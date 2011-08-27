@@ -21,5 +21,6 @@ public class EventoEvents {
     public static final EventType Save = new EventType();
     public static final EventType Next = new EventType();
     public static final EventType Previous = new EventType();
+    public static final EventType Riepilogo = new EventType();
 
 }
