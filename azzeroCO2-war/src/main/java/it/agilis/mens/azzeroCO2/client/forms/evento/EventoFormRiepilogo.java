@@ -8,8 +8,6 @@ import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.extjs.gxt.ui.client.widget.layout.RowData;
-import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -26,8 +24,8 @@ import java.util.List;
  */
 public class EventoFormRiepilogo extends LayoutContainer {
 
+    private ContentPanel centre = new ContentPanel();
     private final ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
-    private Grid<RiepilogoModel> grid;
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -36,38 +34,26 @@ public class EventoFormRiepilogo extends LayoutContainer {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-
-        ContentPanel cp = new ContentPanel();
-        cp.setFrame(true);
-        cp.setHeading("Riepilogo");
-        cp.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-        grid = createGrid();
-        cp.add(grid, new RowData(1, 1, new Margins(0, 0, 0, 0)));
+        createCentre();
+        centre.setHeading("RiepilogoModel");
+        centre.setHeight(650);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0, 0, 0, 0));
-        add(cp, centerData);
+        centerData.setMargins(new Margins(0));
+        add(centre, centerData);
 
     }
 
     private Grid<RiepilogoModel> createGrid() {
 
-        {  //TODO
-            store.add(new RiepilogoModel("Energia", "Energia Elettrica XX <br> Gasolio YY", 10.0));
-            store.add(new RiepilogoModel("Trasporto Persone/ relatori", "Energia Elettrica XX <br> Gasolio YY", 10.0));
-            store.add(new RiepilogoModel("Trasporto Persone", "Energia Elettrica XX <br> Gasolio YY", 10.0));
-            store.add(new RiepilogoModel("Pubblicazione rilegate", "Energia Elettrica XX <br> Gasolio YY", 1.4));
-            store.add(new RiepilogoModel("Manifesti, pieghevoli, fogli / programma", "Energia Elettrica XX <br> Gasolio YY", 10.0));
-        }
-
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 290);
+        ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 300);
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 440);
+        column = new ColumnConfig("dettagli", "Dettagli", 445);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 100);
@@ -94,6 +80,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
         grid.setBorders(true);
         grid.setAutoHeight(true);
 
+        centre.add(grid);
 
         return grid;
 
