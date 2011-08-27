@@ -7,6 +7,7 @@ import it.agilis.mens.azzeroCO2.server.utils.Utils;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,6 +49,7 @@ public class OrdineServiceImpl extends RemoteServiceServlet implements OrdineSer
         return new OrdineModel(); // da sistemare
 
     }
+
 
 
 

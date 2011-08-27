@@ -16,6 +16,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,5 +116,18 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
         }
         return null;
 
+    }
+
+    @Override
+    public void disconnectUser() throws IllegalArgumentException {
+        HttpServletRequest req = this.getThreadLocalRequest();
+        if (req!=null && req.isRequestedSessionIdValid()) {
+            req.getSession(false).invalidate();
+            try {
+                this.doPost(req, this.getThreadLocalResponse());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

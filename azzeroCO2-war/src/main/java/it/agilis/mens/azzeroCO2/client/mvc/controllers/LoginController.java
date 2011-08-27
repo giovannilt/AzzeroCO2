@@ -29,6 +29,8 @@ public class LoginController extends Controller {
         registerEventTypes(LoginEvents.DoLogin);
         registerEventTypes(LoginEvents.ShowForm);
         registerEventTypes(LoginEvents.HideForm);
+        registerEventTypes(LoginEvents.LogOut);
+
     }
 
 
@@ -52,7 +54,6 @@ public class LoginController extends Controller {
                             Info.display("Info", "Benventuo " + result.getNome());
                             loginView.hide();
                             Dispatcher.forwardEvent(LoginEvents.ShowLogOut);
-
                         } else {
                             Info.display("Error", "Username o password errati.");
                         }
@@ -61,6 +62,23 @@ public class LoginController extends Controller {
                 hustonService.getUserInfo(event.<String>getData("userName"), event.<String>getData("password"), aCallback);
 
             }
+        } else if (type == LoginEvents.LogOut) {
+
+                AsyncCallback aCallback = new AsyncCallback() {
+                    public void onFailure(Throwable caught) {
+                        Info.display("Error", "Errore impossibile connettersi al server");
+                    }
+
+                    @Override
+                    public void onSuccess(Object result) {
+                        Info.display("LOGOUT", "LOGOUT");
+                    }
+
+
+                };
+                hustonService.disconnectUser(aCallback);
+
+
         } else {
             forwardToView(loginView, event);
         }

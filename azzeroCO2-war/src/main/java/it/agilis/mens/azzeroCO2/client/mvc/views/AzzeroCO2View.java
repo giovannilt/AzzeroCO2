@@ -11,8 +11,10 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 
 
 /**
@@ -45,7 +47,7 @@ public class AzzeroCO2View extends View {
             onCentralPanelReady(event);
         } else if (eventType.equals(AzzeroCO2Events.NewsPanelReady)) {
             onNewsPanelReady(event);
-        }
+         }
 
     }
 

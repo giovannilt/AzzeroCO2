@@ -14,4 +14,5 @@ public class LoginEvents {
     public static final EventType ShowForm = new EventType();
     public static final EventType HideForm = new EventType();
     public static final EventType ShowLogOut = new EventType();
+    public static final EventType LogOut = new EventType();
 }

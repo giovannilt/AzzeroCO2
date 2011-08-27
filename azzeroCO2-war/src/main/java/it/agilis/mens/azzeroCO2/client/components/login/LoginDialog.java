@@ -101,27 +101,21 @@ public class LoginDialog extends Dialog {
         login.disable();
         login.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-             //   register.setVisible(false);
-                AppEvent event= new AppEvent(LoginEvents.DoLogin);
+                //   register.setVisible(false);
+                AppEvent event = new AppEvent(LoginEvents.DoLogin);
                 event.setData("userName", userName.getValue());
                 event.setData("password", password.getValue());
                 status.show();
-              //  getButtonBar().disable();
-
                 Dispatcher.forwardEvent(event);
+                userName.reset();
+                password.reset();
+                userName.focus();
 
             }
         });
-
         addButton(reset);
         addButton(login);
-
-
     }
-
-
-
-
 
 
     protected boolean hasValue(TextField<String> field) {

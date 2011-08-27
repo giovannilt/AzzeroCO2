@@ -11,7 +11,9 @@ import com.extjs.gxt.ui.client.widget.layout.BoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowData;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
@@ -59,7 +61,7 @@ public class NorthPanel extends LayoutContainer {
                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
             }
         });
-         registrati = new Button("Registrati");
+        registrati = new Button("Registrati");
         registrati.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 Dispatcher.forwardEvent(LoginEvents.HideForm, ce);
@@ -75,15 +77,14 @@ public class NorthPanel extends LayoutContainer {
                 if (!islogedIn) {
                     Dispatcher.forwardEvent(LoginEvents.ShowForm);
                 } else {
+                    Dispatcher.forwardEvent(LoginEvents.LogOut);
                     showLogin();
-                    //Dispatcher.forwardEvent(LoginEvents.LogOut);
+                    Window.open(GWT.getModuleBaseURL(), "_self", "");
+
                 }
             }
         });
         c.add(login, layoutData);
-
-
-
 
         add(c, new FlowData(1));
 
@@ -93,14 +94,14 @@ public class NorthPanel extends LayoutContainer {
 
     public void showLogout() {
         login.setText("LogOut");
-        islogedIn = false;
+        islogedIn = true;
         //registrati.setVisible(false);
         c.remove(registrati);
     }
 
     public void showLogin() {
         login.setText("LogIn");
-        islogedIn = true;
+        islogedIn = false;
         c.add(registrati, layoutData);
     }
 }
