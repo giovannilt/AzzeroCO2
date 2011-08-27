@@ -14,10 +14,10 @@ import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.GrammaturaDiCarta;
-import it.agilis.mens.azzeroCO2.shared.model.TipoDiCarta;
+import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +30,10 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
-    private ListStore<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel =new ListStore<ManifestiPieghevoliFogliModel>();
+    private ListStore<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel = new ListStore<ManifestiPieghevoliFogliModel>();
     private ToolBar toolBar = new ToolBar();
+    private ListStore<TipoDiCartaModel> tipoDiCartaModelListStore = new ListStore<TipoDiCartaModel>();
+    private ListStore<GrammaturaModel> grammaturaModelListStore = new ListStore<GrammaturaModel>();
 
     @SuppressWarnings("rawtypes")
     @Override
@@ -85,7 +87,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     }
 
     private FormPanel createForm() {
-         FormPanel panel = new FormPanel();
+        FormPanel panel = new FormPanel();
         panel.setFrame(true);
 
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
@@ -124,7 +126,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 larghezza.setWidth(60);
                 larghezza.setName("largezza");
 
-                 c.add(larghezza, flex);
+                c.add(larghezza, flex);
                 c.add(new LabelField("largezza (cm)"), flex);
 
                 panel.add(c, new FormData("100%"));
@@ -138,17 +140,12 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                ListStore<TipoDiCarta> store = new ListStore<TipoDiCarta>();
-                { //TODO
-                    store.add(new TipoDiCarta("TIPO1"));
-                    store.add(new TipoDiCarta("TIPO2"));
-
-                }
-
-                ComboBox<TipoDiCarta> tipoDiCarta = new ComboBox<TipoDiCarta>();
-                tipoDiCarta.setDisplayField("dipoDiCarta");
+                ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
+                tipoDiCarta.setEmptyText("TipoDiCarta");
+                tipoDiCarta.setToolTip("TipoDiCarta");
+                tipoDiCarta.setDisplayField("parametro");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
-                tipoDiCarta.setStore(store);
+                tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
                 LabelField label = new LabelField("Materiale ");
                 label.setWidth(100);
@@ -164,16 +161,12 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                ListStore<GrammaturaDiCarta> store = new ListStore<GrammaturaDiCarta>();
-                { //TODO
-                    store.add(new GrammaturaDiCarta("TIPO1"));
-                    store.add(new GrammaturaDiCarta("TIPO2"));
-                }
-
-                ComboBox<GrammaturaDiCarta> grammaturaDiCarta = new ComboBox<GrammaturaDiCarta>();
-                grammaturaDiCarta.setDisplayField("dipoDiCarta");
+                ComboBox<GrammaturaModel> grammaturaDiCarta = new ComboBox<GrammaturaModel>();
+                grammaturaDiCarta.setEmptyText("Grammatura");
+                grammaturaDiCarta.setToolTip("Grammatura");
+                grammaturaDiCarta.setDisplayField("grammatura");
                 grammaturaDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
-                grammaturaDiCarta.setStore(store);
+                grammaturaDiCarta.setStore(grammaturaModelListStore);
                 c.add(grammaturaDiCarta, flex);
 
                 LabelField label = new LabelField("");
@@ -201,7 +194,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(tiratura, flex);
-                c.add(new LabelField("copie"), flex);
+                c.add(new LabelField("Copie"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -259,4 +252,13 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     public void setManifestiPieghevoliFogliModel(ListStore<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel) {
         this.manifestiPieghevoliFogliModel = manifestiPieghevoliFogliModel;
     }
+
+    public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {
+        tipoDiCartaModelListStore.add(tipoDiCarta);
+    }
+
+    public void setGrammaturaModelList(List<GrammaturaModel> grammaturaModel) {
+        grammaturaModelListStore.add(grammaturaModel);
+    }
+
 }

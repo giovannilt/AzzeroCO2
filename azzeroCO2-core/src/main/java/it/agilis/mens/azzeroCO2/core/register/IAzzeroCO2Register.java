@@ -1,8 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.register;
 
-import it.agilis.mens.azzeroCO2.core.entity.Coupon;
-import it.agilis.mens.azzeroCO2.core.entity.Ordine;
-import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
+import it.agilis.mens.azzeroCO2.core.entity.*;
 
 import java.util.List;
 
@@ -23,8 +21,14 @@ public interface IAzzeroCO2Register {
 
     List<Ordine> getOrdini() throws Exception;
 
-    List<Coupon> getListofCoupon() throws Exception;
+    List<Coupon> getListOfCoupon() throws Exception;
 
     UserInfo getUserInfo(String userInfo) throws Exception;
+
+    List<Grammatura> getGrammatura( ) throws Exception;
+
+    List<TipoDiCarta> getTipoDiCarta() throws Exception;
+
+
 }
 

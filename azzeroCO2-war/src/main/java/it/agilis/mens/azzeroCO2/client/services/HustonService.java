@@ -3,9 +3,10 @@ package it.agilis.mens.azzeroCO2.client.services;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RemoteServiceRelativePath("huston")
@@ -22,5 +23,11 @@ public interface HustonService extends RemoteService {
     UserInfoModel getUserInfo(String userInfo, String password) throws IllegalArgumentException;
 
 
+    List<GrammaturaModel> getGrammatura() throws IllegalArgumentException;
+    List<TipoDiCartaModel> getTipoDiCarta() throws IllegalArgumentException;
+
+
+
+     // TODO mmm Migliorare la gestione dello USER
      void disconnectUser()  throws IllegalArgumentException;
 }

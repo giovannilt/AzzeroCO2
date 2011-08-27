@@ -1,11 +1,7 @@
 package it.agilis.mens.azzeroCO2.core.register.impl;
 
-import it.agilis.mens.azzeroCO2.core.dao.ICouponDAO;
-import it.agilis.mens.azzeroCO2.core.dao.IOrdineDAO;
-import it.agilis.mens.azzeroCO2.core.dao.IUserInfoDAO;
-import it.agilis.mens.azzeroCO2.core.entity.Coupon;
-import it.agilis.mens.azzeroCO2.core.entity.Ordine;
-import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
+import it.agilis.mens.azzeroCO2.core.dao.*;
+import it.agilis.mens.azzeroCO2.core.entity.*;
 import it.agilis.mens.azzeroCO2.core.register.IAzzeroCO2Register;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,6 +22,26 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     private IOrdineDAO ordineDAO;
     @Autowired
     private ICouponDAO couponDAO;
+    @Autowired
+    private ITipoDiCartaDAO tipoDiCartaDAO;
+    @Autowired
+    private IGrammaturaDAO grammaturaDAO;
+
+    public IGrammaturaDAO getGrammaturaDAO() {
+        return grammaturaDAO;
+    }
+
+    public void setGrammaturaDAO(IGrammaturaDAO grammaturaDAO) {
+        this.grammaturaDAO = grammaturaDAO;
+    }
+
+    public ITipoDiCartaDAO getTipoDiCartaDAO() {
+        return tipoDiCartaDAO;
+    }
+
+    public void setTipoDiCartaDAO(ITipoDiCartaDAO tipoDiCartaDAO) {
+        this.tipoDiCartaDAO = tipoDiCartaDAO;
+    }
 
     public void setUserInfoDAO(IUserInfoDAO userInfoDAO) {
         this.userInfoDAO = userInfoDAO;
@@ -59,7 +75,7 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         return ordineDAO.getListOfOrdini();
     }
     @Override
-    public List<Coupon> getListofCoupon() throws Exception{
+    public List<Coupon> getListOfCoupon() throws Exception{
         return couponDAO.getListOfCoupon();
     }
 
@@ -84,5 +100,15 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
 
     public UserInfo getUserInfo(String userName) {
         return userInfoDAO.findUserInfo(userName);
+    }
+
+    @Override
+    public List<Grammatura> getGrammatura() throws Exception {
+        return grammaturaDAO.getGrammatura();
+    }
+
+    @Override
+    public List<TipoDiCarta> getTipoDiCarta() throws Exception {
+        return tipoDiCartaDAO.getTipoDiCarta();
     }
 }

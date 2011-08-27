@@ -15,6 +15,10 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,7 +33,6 @@ public class EventoView extends View {
     private EventoDettaglio eventoDettaglio = new EventoDettaglio();
     private ContentPanel center = new ContentPanel();
     private EventoSouth south = new EventoSouth();
-
 
     public EventoView(Controller controller) {
         super(controller);
@@ -102,11 +105,17 @@ public class EventoView extends View {
         center.setHeaderVisible(false);
         evento.add(center, centerData);
 
-
         evento.setTitle(Eventi.EVENTO.name());
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.EventoPanelReady,
                 evento));
     }
 
 
+    public void setGrammatura(List<GrammaturaModel> grammaturaModels) {
+        eventoDettaglio.setGrammatura(grammaturaModels);
+    }
+
+    public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
+        eventoDettaglio.setTipoDiCarta( tipoDiCartaModels);
+    }
 }

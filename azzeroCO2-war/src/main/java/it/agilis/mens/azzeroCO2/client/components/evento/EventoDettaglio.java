@@ -10,6 +10,10 @@ import it.agilis.mens.azzeroCO2.client.forms.evento.*;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+
+import java.util.List;
 
 
 /**
@@ -205,5 +209,15 @@ public class EventoDettaglio extends LayoutContainer {
         eventoModel.setManifestiPieghevoliFogliModel(formManifestiPiegevoliFogli.getManifestiPieghevoliFogliModel().getModels());
         eventoFormRiepilogo.setStore(CalcoliHelper.geListOfRiepilogoModel(eventoModel));
         return eventoModel;
+    }
+
+    public void setGrammatura(List<GrammaturaModel> grammaturaModels) {
+        formPubblicazioniRilegate.setGrammaturaModelList(grammaturaModels);
+        formManifestiPiegevoliFogli.setGrammaturaModelList(grammaturaModels);
+    }
+
+    public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
+        formPubblicazioniRilegate.setTipoDiCartaModel(tipoDiCartaModels);
+        formManifestiPiegevoliFogli.setTipoDiCartaModel(tipoDiCartaModels);
     }
 }

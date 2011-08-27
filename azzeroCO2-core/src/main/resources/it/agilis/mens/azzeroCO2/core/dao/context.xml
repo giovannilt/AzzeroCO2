@@ -18,6 +18,12 @@
     <bean id="couponDAO" class="it.agilis.mens.azzeroCO2.core.dao.impl.CouponDAO">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="tipoDiCartaDAO" class="it.agilis.mens.azzeroCO2.core.dao.impl.TipoDiCartaDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="grammaturaDAO" class="it.agilis.mens.azzeroCO2.core.dao.impl.GrammaturaDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
     <bean id="azzeroCO2Register" class="it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register">
         <property name="userInfoDAO">
@@ -28,6 +34,12 @@
         </property>
         <property name="ordineDAO">
             <ref local="ordineDAO"/>
+        </property>
+        <property name="tipoDiCartaDAO">
+            <ref local="tipoDiCartaDAO"/>
+        </property>
+         <property name="grammaturaDAO">
+            <ref local="grammaturaDAO"/>
         </property>
     </bean>
 

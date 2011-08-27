@@ -7,6 +7,8 @@ import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -56,7 +58,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     @Override
     public List<CouponModel> getListOfCoupon() throws IllegalArgumentException {
         try {
-            return Utils.getListOfCoupon(azzeroCO2Register.getListofCoupon());
+            return Utils.getListOfCoupon(azzeroCO2Register.getListOfCoupon());
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -119,9 +121,29 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
+    public List<GrammaturaModel> getGrammatura() throws IllegalArgumentException {
+        try {
+            return Utils.getGrammatura(azzeroCO2Register.getGrammatura());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<TipoDiCartaModel> getTipoDiCarta() throws IllegalArgumentException {
+        try {
+            return Utils.getTipoDiCarta(azzeroCO2Register.getTipoDiCarta());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public void disconnectUser() throws IllegalArgumentException {
         HttpServletRequest req = this.getThreadLocalRequest();
-        if (req!=null && req.isRequestedSessionIdValid()) {
+        if (req != null && req.isRequestedSessionIdValid()) {
             req.getSession(false).invalidate();
             try {
                 this.doPost(req, this.getThreadLocalResponse());

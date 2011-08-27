@@ -14,9 +14,9 @@ import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.GrammaturaDiCarta;
-import it.agilis.mens.azzeroCO2.shared.model.TipoDiCarta;
+import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,8 @@ import java.util.List;
 public class EventoFormPubblicazioniRilegate extends LayoutContainer {
     private ListStore<PubblicazioniRilegateModel> pubblicazioniRilegateModel = new ListStore<PubblicazioniRilegateModel>();
     private ToolBar toolBar = new ToolBar();
-
+    private ListStore<TipoDiCartaModel> tipoDiCartaModelListStore = new ListStore<TipoDiCartaModel>();
+    private ListStore<GrammaturaModel> grammaturaModelListStore = new ListStore<GrammaturaModel>();
 
 
     @SuppressWarnings("rawtypes")
@@ -151,17 +152,13 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                ListStore<TipoDiCarta> store = new ListStore<TipoDiCarta>();
-                { //TODO
-                    store.add(new TipoDiCarta("TIPO1"));
-                    store.add(new TipoDiCarta("TIPO2"));
 
-                }
-
-                ComboBox<TipoDiCarta> tipoDiCarta = new ComboBox<TipoDiCarta>();
-                tipoDiCarta.setDisplayField("dipoDiCarta");
+                ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
+                tipoDiCarta.setEmptyText("TipoDiCarta");
+                tipoDiCarta.setToolTip("TipoDiCarta");
+                tipoDiCarta.setDisplayField("parametro");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
-                tipoDiCarta.setStore(store);
+                tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
                 LabelField label = new LabelField("Materiale ");
                 label.setWidth(100);
@@ -177,16 +174,12 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                ListStore<GrammaturaDiCarta> store = new ListStore<GrammaturaDiCarta>();
-                { //TODO
-                    store.add(new GrammaturaDiCarta("TIPO1"));
-                    store.add(new GrammaturaDiCarta("TIPO2"));
-                }
-
-                ComboBox<GrammaturaDiCarta> grammaturaDiCarta = new ComboBox<GrammaturaDiCarta>();
-                grammaturaDiCarta.setDisplayField("dipoDiCarta");
+                ComboBox<GrammaturaModel> grammaturaDiCarta = new ComboBox<GrammaturaModel>();
+                grammaturaDiCarta.setEmptyText("Grammatura");
+                grammaturaDiCarta.setToolTip("Grammatura");
+                grammaturaDiCarta.setDisplayField("grammatura");
                 grammaturaDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
-                grammaturaDiCarta.setStore(store);
+                grammaturaDiCarta.setStore(grammaturaModelListStore);
                 c.add(grammaturaDiCarta, flex);
 
                 LabelField label = new LabelField("");
@@ -246,17 +239,13 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                ListStore<TipoDiCarta> store = new ListStore<TipoDiCarta>();
-                { //TODO
-                    store.add(new TipoDiCarta("TIPO1"));
-                    store.add(new TipoDiCarta("TIPO2"));
 
-                }
-
-                ComboBox<TipoDiCarta> tipoDiCarta = new ComboBox<TipoDiCarta>();
-                tipoDiCarta.setDisplayField("dipoDiCarta");
+                ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
+                tipoDiCarta.setEmptyText("TipoDiCarta");
+                 tipoDiCarta.setToolTip("TipoDiCarta");
+                tipoDiCarta.setDisplayField("parametro");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
-                tipoDiCarta.setStore(store);
+                tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
                 LabelField label = new LabelField("Materiale ");
                 label.setWidth(100);
@@ -272,16 +261,13 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                ListStore<GrammaturaDiCarta> store = new ListStore<GrammaturaDiCarta>();
-                { //TODO
-                    store.add(new GrammaturaDiCarta("TIPO1"));
-                    store.add(new GrammaturaDiCarta("TIPO2"));
-                }
 
-                ComboBox<GrammaturaDiCarta> grammaturaDiCarta = new ComboBox<GrammaturaDiCarta>();
-                grammaturaDiCarta.setDisplayField("dipoDiCarta");
+                ComboBox<GrammaturaModel> grammaturaDiCarta = new ComboBox<GrammaturaModel>();
+                grammaturaDiCarta.setEmptyText("Grammatura");
+                grammaturaDiCarta.setToolTip("Grammatura");
+                grammaturaDiCarta.setDisplayField("grammatura");
                 grammaturaDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
-                grammaturaDiCarta.setStore(store);
+                grammaturaDiCarta.setStore(grammaturaModelListStore);
                 c.add(grammaturaDiCarta, flex);
 
                 LabelField label = new LabelField("");
@@ -345,5 +331,14 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
     public void setPubblicazioniRilegateModel(ListStore<PubblicazioniRilegateModel> pubblicazioniRilegateModel) {
         this.pubblicazioniRilegateModel = pubblicazioniRilegateModel;
+    }
+
+
+    public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {
+        tipoDiCartaModelListStore.add(tipoDiCarta);
+    }
+
+    public void setGrammaturaModelList(List<GrammaturaModel> grammaturaModel) {
+        grammaturaModelListStore.add(grammaturaModel);
     }
 }

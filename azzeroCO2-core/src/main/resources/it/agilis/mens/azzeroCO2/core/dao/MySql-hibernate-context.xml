@@ -17,6 +17,10 @@
                 <value>it.agilis.mens.azzeroCO2.core.entity.TipoDiCalcolo</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.Ordine</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.Coupon</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.Coefficienti</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.Grammatura</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.Pubblicazione</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.TipoDiCarta</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
