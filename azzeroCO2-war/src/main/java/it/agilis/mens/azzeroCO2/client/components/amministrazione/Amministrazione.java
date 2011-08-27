@@ -11,13 +11,11 @@ import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.client.forms.amministrazione.Coefficienti;
-import it.agilis.mens.azzeroCO2.client.forms.amministrazione.Coupon;
-import it.agilis.mens.azzeroCO2.client.forms.amministrazione.Ordini;
-import it.agilis.mens.azzeroCO2.client.forms.amministrazione.ProgrammiDiCompensazione;
+import it.agilis.mens.azzeroCO2.client.forms.amministrazione.*;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.List;
 
@@ -54,6 +52,31 @@ public class Amministrazione extends LayoutContainer {
             }
 
         };
+
+
+
+        final ListStore<UserInfoModel> storeUser = new ListStore<UserInfoModel>();
+        AsyncCallback<List<UserInfoModel>> bCallback = new AsyncCallback<List<UserInfoModel>>() {
+            public void onFailure(Throwable caught) {
+                Info.display("Error", "Problemi Di Connessione al SERVER di AzzeroCO2");
+            }
+            @Override
+            public void onSuccess(List<UserInfoModel> result) {
+                storeUser.add(result);
+            }
+
+        };
+
+
+
+
+
+
+
+
+
+
+
         hustonService.getListOfCoupon(aCallback);
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
@@ -72,6 +95,12 @@ public class Amministrazione extends LayoutContainer {
         TabItem programmiTab = new TabItem("Programmi compensazione");
         programmiTab.add(programmi);
         amministrazioneTab.add(programmiTab);
+
+
+        TabItem userTab = new TabItem("Profilo utente");
+        userTab.add(new UserInfo(storeUser));
+        amministrazioneTab.add(userTab);
+
 
         add(amministrazioneTab, new RowData(1, 1));
     }

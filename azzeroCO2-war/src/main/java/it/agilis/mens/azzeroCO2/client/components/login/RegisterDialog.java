@@ -66,7 +66,7 @@ public class RegisterDialog extends Dialog {
         setModal(true);
         setBodyBorder(true);
         setBodyStyle("padding: 8px;background: none");
-        setWidth(400);
+        setWidth(600);
         setResizable(false);
         add(formPanel);
     }
