@@ -2,12 +2,13 @@ package it.agilis.mens.azzeroCO2.client.forms.evento;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.store.ListStore;
-import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.RowData;
+import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -24,7 +25,6 @@ import java.util.List;
  */
 public class EventoFormRiepilogo extends LayoutContainer {
 
-    private ContentPanel centre = new ContentPanel();
     private final ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
 
     @Override
@@ -34,13 +34,24 @@ public class EventoFormRiepilogo extends LayoutContainer {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-        createCentre();
-        centre.setHeading("RiepilogoModel");
-        centre.setHeight(650);
+        ContentPanel cp = new ContentPanel();
+        cp.setFrame(true);
+        cp.setHeaderVisible(false);
+        cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+
+        ContentPanel cpEst = new ContentPanel();
+        cpEst.setFrame(false);
+        cpEst.setHeaderVisible(false);
+        cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
+        cpEst.add(createGrid(), new RowData(1, 1));
+
+        cp.add(cpEst, new RowData(1, 1));
+
+        cp.setHeading("Riepilogo");
+        cp.setHeight(650);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
-        add(centre, centerData);
+        add(cp, centerData);
 
     }
 
@@ -79,8 +90,6 @@ public class EventoFormRiepilogo extends LayoutContainer {
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
         grid.setAutoHeight(true);
-
-        centre.add(grid);
 
         return grid;
 

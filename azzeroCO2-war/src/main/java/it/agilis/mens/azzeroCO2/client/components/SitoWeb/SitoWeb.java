@@ -6,7 +6,6 @@ import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.forms.ConoscoCO2Form;
 import it.agilis.mens.azzeroCO2.client.forms.SitoWebForm;
 import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormAcquisto;
 import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormConferma;
