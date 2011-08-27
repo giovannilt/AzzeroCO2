@@ -53,13 +53,6 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public String logIn(String userInfo) throws IllegalArgumentException {
-
-        //    userInfo.setProfile(Profile.Administrator);
-        return userInfo;
-    }
-
-    @Override
     public List<CouponModel> getListOfCoupon() throws IllegalArgumentException {
         try {
             return Utils.getListOfCoupon(azzeroCO2Register.getListofCoupon());
@@ -87,9 +80,9 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     @Override
     public Boolean createNewUser(UserInfoModel userInfoModel) throws IllegalArgumentException {
         try {
-            UserInfo ui= azzeroCO2Register.getUserInfo(userInfoModel.getUserName());
-            if(ui!=null){
-               return false;
+            UserInfo ui = azzeroCO2Register.getUserInfo(userInfoModel.getUserName());
+            if (ui != null) {
+                return false;
             }
             azzeroCO2Register.saveUserInfo(Utils.getUserInfo(userInfoModel));
         } catch (Exception e) {
@@ -110,7 +103,17 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
 
     @Override
-    public UserInfoModel getUserInfo(String userInfo){
-        return Utils.getUserInfoModel(azzeroCO2Register.getUserInfo(userInfo));
+    public UserInfoModel getUserInfo(String userName, String password) throws IllegalArgumentException {
+
+        UserInfoModel userInfoModel = Utils.getUserInfoModel(azzeroCO2Register.getUserInfo(userName));
+
+        if (userInfoModel != null &&
+                userInfoModel.getPassword().contentEquals(password)) {
+
+            return userInfoModel;
+
+        }
+        return null;
+
     }
 }

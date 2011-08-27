@@ -87,6 +87,22 @@ public class Utils {
     }
 
     public static UserInfoModel getUserInfoModel(UserInfo userInfo) {
-        return null;  //To change body of created methods use File | Settings | File Templates.
+        UserInfoModel userInfoModel= new UserInfoModel();
+        userInfoModel.setUserName(userInfo.getUserName());
+        userInfoModel.setCap(userInfo.getCap());
+        userInfoModel.setCellulare(userInfo.getCellulare());
+        userInfoModel.setCitta(userInfo.getCitta());
+        userInfoModel.setCognome(userInfo.getCognome());
+        userInfoModel.setEmail(userInfo.getEmail());
+        userInfoModel.setFax(userInfo.getFax());
+        userInfoModel.setIndirizzo(userInfo.getIndirizzo());
+        userInfoModel.setNome(userInfo.getNome());
+        userInfoModel.setPartitaIvaCF(userInfo.getPIvaCF());
+        userInfoModel.setPassword(userInfo.getPassword());
+        userInfoModel.setTelefono(userInfo.getTelefono());
+        userInfoModel.setRagioneSoc(userInfo.getRagSociale());
+        userInfoModel.setId(userInfo.getId());
+
+        return userInfoModel;  //To change body of created methods use File | Settings | File Templates.
     }
 }

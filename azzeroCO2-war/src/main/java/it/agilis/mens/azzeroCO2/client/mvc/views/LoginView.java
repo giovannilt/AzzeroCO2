@@ -37,4 +37,8 @@ public class LoginView extends View {
             loginDialog.hide();
         }
     }
+
+    public void hide() {
+         loginDialog.hide();
+    }
 }

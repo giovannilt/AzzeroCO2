@@ -15,7 +15,6 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.RegisterEvents;
 
 
 /**
@@ -31,7 +30,6 @@ public class LoginDialog extends Dialog {
     protected TextField<String> password;
     protected Button reset;
     protected Button login;
-    protected Button register;
     protected Status status;
 
     public LoginDialog() {
@@ -103,49 +101,25 @@ public class LoginDialog extends Dialog {
         login.disable();
         login.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-                register.setVisible(false);
-                AppEvent event= new AppEvent(LoginEvents.DoLogin, new String());
+             //   register.setVisible(false);
+                AppEvent event= new AppEvent(LoginEvents.DoLogin);
                 event.setData("userName", userName.getValue());
                 event.setData("password", password.getValue());
                 status.show();
-                getButtonBar().disable();
-                //LoginDialog.this.hide();
+              //  getButtonBar().disable();
 
-                Dispatcher.forwardEvent(LoginEvents.DoLogin, event);
-                //onSubmit();
+                Dispatcher.forwardEvent(event);
+
             }
         });
-
-        register= new Button("Registra");
-        register.addSelectionListener(new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(LoginEvents.HideForm, ce);
-                Dispatcher.forwardEvent(RegisterEvents.ShowForm, ce);
-            }
-        });
-
 
         addButton(reset);
         addButton(login);
-        addButton(register);
+
 
     }
 
-    protected void onSubmit() {
 
-        // Dispatcher.forwardEvent(LoginEvents.hideForm);
-
-       // logIn()
-        /*Timer t = new Timer() {
-
-            @Override
-            public void run() {
-                LoginDialog.this.hide();
-            }
-
-        };
-        t.schedule(2000);*/
-    }
 
 
 

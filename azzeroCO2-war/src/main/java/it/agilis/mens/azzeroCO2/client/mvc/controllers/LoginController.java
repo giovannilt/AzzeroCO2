@@ -1,10 +1,17 @@
 package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
+import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
+import com.extjs.gxt.ui.client.widget.Info;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.LoginView;
+import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
+import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,6 +22,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.LoginView;
  */
 public class LoginController extends Controller {
     private LoginView loginView = new LoginView(this);
+    private HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
 
     public LoginController() {
         // registra su quali eventi si deve mettere in ascolto
@@ -30,14 +38,32 @@ public class LoginController extends Controller {
             // inoltra l’evento alla view per visualizzare la form di login
             forwardToView(loginView, event);
         } else if (type == LoginEvents.DoLogin) {
-            // esegue il login
-            //UserInfo userInfo = new UserInfo();
+            if (event.<String>getData("userName") != null && event.<String>getData("userName").length() > 0 &&
+                    event.<String>getData("password") != null && event.<String>getData("password").length() > 0) {
 
-            //  userInfo.setUserName(event.<String>getData("userName"));
-            //  userInfo.setPassword(event.<String>getData("password"));
-            // userInfo = doLogin(userInfo, loginView);
+                AsyncCallback<UserInfoModel> aCallback = new AsyncCallback<UserInfoModel>() {
+                    public void onFailure(Throwable caught) {
+                        Info.display("Error", "Errore impossibile connettersi al server");
+                    }
+
+                    @Override
+                    public void onSuccess(UserInfoModel result) {
+                        if (result != null) {
+                            Info.display("Info", "Benventuo " + result.getNome());
+                            loginView.hide();
+                            Dispatcher.forwardEvent(LoginEvents.ShowLogOut);
+
+                        } else {
+                            Info.display("Error", "Username o password errati.");
+                        }
+                    }
+                };
+                hustonService.getUserInfo(event.<String>getData("userName"), event.<String>getData("password"), aCallback);
+
+            }
+        } else {
+            forwardToView(loginView, event);
         }
-        forwardToView(loginView, event);
     }
 
 }

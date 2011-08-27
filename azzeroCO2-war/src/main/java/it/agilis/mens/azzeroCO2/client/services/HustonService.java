@@ -9,8 +9,6 @@ import java.util.List;
 
 @RemoteServiceRelativePath("huston")
 public interface HustonService extends RemoteService {
-    // UserInfo logIn(UserInfo userInfo) throws IllegalArgumentException;
-    String logIn(String userInfo) throws IllegalArgumentException;
 
     List<CouponModel> getListOfCoupon() throws IllegalArgumentException;
 
@@ -20,6 +18,6 @@ public interface HustonService extends RemoteService {
 
     Boolean createNewUser(UserInfoModel registrazioneModeli) throws IllegalArgumentException;
 
-    UserInfoModel getUserInfo(String userInfo) throws IllegalArgumentException;
+    UserInfoModel getUserInfo(String userInfo, String password) throws IllegalArgumentException;
 
 }

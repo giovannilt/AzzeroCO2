@@ -17,7 +17,7 @@ public class UserInfoCriteria implements Serializable, SelectionCriteria {
     private String userName;
 
     public DetachedCriteria getDetachedCriteria() {
-        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserInfo.class, "USERINFO");
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserInfo.class, "UserInfo");
         if(userName!=null && userName.length()>0){
         	detachedCriteria.add(Restrictions.eq("userName", getUserName()).ignoreCase());
         }

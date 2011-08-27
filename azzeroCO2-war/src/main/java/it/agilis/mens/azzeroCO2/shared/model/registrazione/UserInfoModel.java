@@ -140,5 +140,11 @@ public class UserInfoModel extends BaseModel {
         set("partitaIvaCF", partitaIvaCF);
     }
 
-    
+
+    public void setId(Long id) {
+          set("id", id);
+    }
+    public Long getId(){
+        return (Long) get("id");
+    }
 }
