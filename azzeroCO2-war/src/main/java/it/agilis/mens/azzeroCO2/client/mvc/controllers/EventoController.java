@@ -38,7 +38,7 @@ public class EventoController extends BaseController {
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(AzzeroCO2Events.Init)) {
-            AsyncCallback<List<GrammaturaModel>> aCallback = new AsyncCallback<List<GrammaturaModel>>() {
+            /*AsyncCallback<List<GrammaturaModel>> aCallback = new AsyncCallback<List<GrammaturaModel>>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
                 }
@@ -49,8 +49,9 @@ public class EventoController extends BaseController {
                         eventoView.setGrammatura(result);
                     }
                 }
-            };
-            getHustonService().getGrammatura(aCallback);
+            };*/
+
+            //getHustonService().getGrammatura(aCallback);
               AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
@@ -63,6 +64,7 @@ public class EventoController extends BaseController {
                     }
                 }
             };
+
             getHustonService().getTipoDiCarta(tipoDiCartaCallBack);
             forwardToView(eventoView, event);
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {

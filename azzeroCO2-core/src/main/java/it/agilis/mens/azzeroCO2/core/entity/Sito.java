@@ -1,8 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,6 +16,9 @@ public class Sito {
     @GeneratedValue
     private Long id;
 
+
+    @OneToOne
+    private Ordine ordine;
 
     private Integer utenti;
 

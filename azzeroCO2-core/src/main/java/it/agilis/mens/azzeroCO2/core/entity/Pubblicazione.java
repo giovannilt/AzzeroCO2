@@ -1,9 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -34,6 +31,9 @@ public class Pubblicazione {
 
     @OneToMany
     private List<TipoDiCarta> tipoDiCartaCopertina;
+
+    @ManyToOne
+    private Ordine ordine;
 
 
     public Long getId() {

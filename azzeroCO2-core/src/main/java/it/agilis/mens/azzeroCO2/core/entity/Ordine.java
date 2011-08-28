@@ -37,7 +37,14 @@ public class Ordine {
     private UserInfo utente;
 
     @OneToMany
+    private List<ProgettoCompensazione> progettoCompensaziones;
+
+
+    @OneToMany
     private List<Pubblicazione> pubblicazioni;
+
+    @OneToMany
+    private List<TrasportoPersone> trasportoPersone;
 
     @ManyToOne
     private ProgettoCompensazione progettoComp;

@@ -1,8 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 /**
@@ -19,6 +17,10 @@ public class ProgettoCompensazione {
     @Id
     @GeneratedValue
     private Long id;
+
+    @OneToMany
+    private Ordine ordine;
+
 
     private String nome;
     private Long  prezzo;

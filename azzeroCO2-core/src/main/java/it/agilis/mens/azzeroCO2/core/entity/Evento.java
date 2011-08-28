@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.core.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 /**
@@ -30,6 +31,9 @@ public class Evento {
     private Integer energiaElettrica;
     private Integer gasolio;
     private Integer gas;
+
+    @OneToOne
+    private Ordine ordine;
 
 
     public Long getId() {

@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.core.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 /**
@@ -17,6 +18,11 @@ public class Coupon {
 
     @Id
     @GeneratedValue
+
+
+    @OneToOne
+    private Ordine ordine;
+
     private Long id;
 
     private String codice;
