@@ -2,6 +2,7 @@ package it.agilis.mens.azzeroCO2.core.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -17,7 +18,6 @@ public class Ordine {
     @Id
     @GeneratedValue
     private Long id;
-
 
     private Date dataOrdine;
     private Boolean editable;
@@ -36,9 +36,8 @@ public class Ordine {
     @ManyToOne
     private UserInfo utente;
 
-    @ManyToOne
-    private Pubblicazione pubblicazioni;
-
+    @OneToMany
+    private List<Pubblicazione> pubblicazioni;
 
     @ManyToOne
     private ProgettoCompensazione progettoComp;
@@ -124,11 +123,4 @@ public class Ordine {
         this.valoreCompensazione = valoreCompensazione;
     }
 
-    public Pubblicazione getPubblicazioni() {
-        return pubblicazioni;
-    }
-
-    public void setPubblicazioni(Pubblicazione pubblicazioni) {
-        this.pubblicazioni = pubblicazioni;
-    }
 }
