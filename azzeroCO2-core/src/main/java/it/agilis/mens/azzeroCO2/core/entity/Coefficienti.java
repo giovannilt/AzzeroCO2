@@ -13,16 +13,15 @@ import javax.persistence.Id;
  */
 @Entity
 public class Coefficienti {
-
-
     @Id
     @GeneratedValue
     private Long id;
 
-
     private String nome;
     private String tipologia;
     private Double valore;
+
+    private String codice;
 
 
     public Long getId() {
@@ -32,6 +31,7 @@ public class Coefficienti {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getNome() {
         return nome;
@@ -55,5 +55,13 @@ public class Coefficienti {
 
     public void setValore(Double valore) {
         this.valore = valore;
+    }
+
+    public String getCodice() {
+        return codice;
+    }
+
+    public void setCodice(String codice) {
+        this.codice = codice;
     }
 }
