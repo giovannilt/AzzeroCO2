@@ -19,8 +19,6 @@ public class Calcolo {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    private Preventivo preventivo;
 
     @ManyToOne
     private TipoDiCalcolo tipoDiCalcolo;
@@ -34,13 +32,7 @@ public class Calcolo {
         this.id = id;
     }
 
-    public Preventivo getPreventivo() {
-        return preventivo;
-    }
 
-    public void setPreventivo(Preventivo preventivo) {
-        this.preventivo = preventivo;
-    }
 
     public TipoDiCalcolo getTipoDiCalcolo() {
         return tipoDiCalcolo;

@@ -3,7 +3,6 @@ package it.agilis.mens.azzeroCO2.core.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
 
 
 /**
@@ -14,6 +13,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 
+@Entity
 public class ProgettoCompensazione {
 
     @Id
@@ -24,7 +24,6 @@ public class ProgettoCompensazione {
     private Long  prezzoProgetto;
     private String img;
     private Boolean attivoProgetto;
-
 
 
     public Long getId() {
@@ -59,10 +58,11 @@ public class ProgettoCompensazione {
         this.attivoProgetto = attivoProgetto;
     }
 
+    public String getImg() {
+        return img;
+    }
 
-
-
-
-
-
+    public void setImg(String img) {
+        this.img = img;
+    }
 }

@@ -37,7 +37,7 @@ public class Ordine {
     private UserInfo utente;
 
     @ManyToOne
-    private Pubblicazioni pubblicazioni;
+    private Pubblicazione pubblicazioni;
 
 
     @ManyToOne
@@ -100,13 +100,35 @@ public class Ordine {
         this.sito = sito;
     }
 
-    public Pubblicazioni getPubblicazioni() {
+    public Boolean getEditable() {
+        return editable;
+    }
+
+    public void setEditable(Boolean editable) {
+        this.editable = editable;
+    }
+
+    public Long getKgCo2() {
+        return kgCo2;
+    }
+
+    public void setKgCo2(Long kgCo2) {
+        this.kgCo2 = kgCo2;
+    }
+
+    public Long getValoreCompensazione() {
+        return valoreCompensazione;
+    }
+
+    public void setValoreCompensazione(Long valoreCompensazione) {
+        this.valoreCompensazione = valoreCompensazione;
+    }
+
+    public Pubblicazione getPubblicazioni() {
         return pubblicazioni;
     }
 
-    public void setPubblicazioni(Pubblicazioni pubblicazioni) {
+    public void setPubblicazioni(Pubblicazione pubblicazioni) {
         this.pubblicazioni = pubblicazioni;
     }
-
-
 }

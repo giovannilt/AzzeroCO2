@@ -39,6 +39,14 @@ public class Pubblicazione {
     private String tipo;
 
 
+    private String categoria;
+    private String tipoCarta;
+    private Integer pagine;
+    private Double larghezza;
+    private Boolean copertina;
+
+
+
     public Long getId() {
         return id;
     }

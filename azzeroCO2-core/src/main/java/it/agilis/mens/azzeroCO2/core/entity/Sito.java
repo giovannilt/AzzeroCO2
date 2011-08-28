@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -10,9 +11,10 @@ import javax.persistence.Id;
  * Time: 12:30
  * To change this template use File | Settings | File Templates.
  */
+@Entity
 public class Sito {
 
-@Id
+    @Id
     @GeneratedValue
     private Long id;
 
@@ -35,8 +37,6 @@ public class Sito {
     public void setUtenti(Integer utenti) {
         this.utenti = utenti;
     }
-
-
 
 
 }

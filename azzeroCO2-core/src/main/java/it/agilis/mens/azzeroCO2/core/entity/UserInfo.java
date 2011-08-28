@@ -34,8 +34,6 @@ public class UserInfo implements Serializable {
     private String cellulare;
     private String email;
 
-    @OneToMany (fetch = FetchType.LAZY)
-    private List<Preventivo> preventivi;
 
     private Profile profile= Profile.Guest;
 
@@ -72,14 +70,6 @@ public class UserInfo implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Preventivo> getPreventivi() {
-        return preventivi;
-    }
-
-    public void setPreventivi(List<Preventivo> preventivi) {
-        this.preventivi = preventivi;
     }
 
     public void setProfile(Profile profile) {
