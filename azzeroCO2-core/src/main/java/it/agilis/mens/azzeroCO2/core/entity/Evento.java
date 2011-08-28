@@ -20,10 +20,16 @@ public class Evento {
     private Long id;
 
     private String nome;
+    private String anno;
     private String dove;
     private Date inizio;
     private Date fine;
     private String note;
+
+    private Integer pernottamenti;
+    private Integer energiaElettrica;
+    private Integer gasolio;
+    private Integer gas;
 
 
     public Long getId() {
@@ -73,4 +79,38 @@ public class Evento {
     public void setNote(String note) {
         this.note = note;
     }
+
+
+    public Integer getPernottamenti() {
+        return pernottamenti;
+    }
+
+    public void setPernottamenti(Integer pernottamenti) {
+        this.pernottamenti = pernottamenti;
+    }
+
+    public Integer getEnergiaElettrica() {
+        return energiaElettrica;
+    }
+
+    public void setEnergiaElettrica(Integer energiaElettrica) {
+        this.energiaElettrica = energiaElettrica;
+    }
+
+    public Integer getGasolio() {
+        return gasolio;
+    }
+
+    public void setGasolio(Integer gasolio) {
+        this.gasolio = gasolio;
+    }
+
+    public Integer getGas() {
+        return gas;
+    }
+
+    public void setGas(Integer gas) {
+        this.gas = gas;
+    }
+
 }
