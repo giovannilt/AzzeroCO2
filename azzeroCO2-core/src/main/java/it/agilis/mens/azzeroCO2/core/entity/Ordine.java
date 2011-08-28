@@ -1,9 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 
@@ -23,9 +20,28 @@ public class Ordine {
 
 
     private Date dataOrdine;
+    private Boolean editable;
+    private Long kgCo2;
+    private Long valoreCompensazione;
+
+    @OneToOne
+    private Coupon coupon;
+
+    @OneToOne
+    private Sito sito;
+
+    @OneToOne
+    private Evento evento;
 
     @ManyToOne
     private UserInfo utente;
+
+    @ManyToOne
+    private Pubblicazioni pubblicazioni;
+
+
+    @ManyToOne
+    private ProgettoCompensazione progettoComp;
 
 
     public Long getId() {
@@ -51,4 +67,46 @@ public class Ordine {
     public void setUtente(UserInfo utente) {
         this.utente = utente;
     }
+
+    public ProgettoCompensazione getProgettoComp() {
+        return progettoComp;
+    }
+
+    public void setProgettoComp(ProgettoCompensazione progettoComp) {
+        this.progettoComp = progettoComp;
+    }
+
+    public Coupon getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(Coupon copon) {
+        this.coupon = coupon;
+    }
+
+    public Evento getEvento() {
+        return evento;
+    }
+
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+    }
+
+    public Sito getSito() {
+        return sito;
+    }
+
+    public void setSito(Sito sito) {
+        this.sito = sito;
+    }
+
+    public Pubblicazioni getPubblicazioni() {
+        return pubblicazioni;
+    }
+
+    public void setPubblicazioni(Pubblicazioni pubblicazioni) {
+        this.pubblicazioni = pubblicazioni;
+    }
+
+
 }
