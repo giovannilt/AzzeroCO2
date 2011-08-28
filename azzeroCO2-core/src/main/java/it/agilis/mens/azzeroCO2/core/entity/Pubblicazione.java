@@ -21,30 +21,19 @@ public class Pubblicazione {
     private Long id;
 
     private Double altezza;
+    private String categoria;
+    private Long pagine;
+    private Double larghezza;
+    private Boolean copertina;
+    private Double grammatura;
+    private Double grammaturaCopertina;
+    private Long tiratura;
 
     @OneToMany
     private List<TipoDiCarta> tipoDiCarta;
 
     @OneToMany
-    private List<Grammatura> grammatura;
-
-    private Long tiratura;
-
-    @OneToMany
     private List<TipoDiCarta> tipoDiCartaCopertina;
-
-    @OneToMany
-    private List<Grammatura> grammaturaCopertina;
-
-    private String tipo;
-
-
-    private String categoria;
-    private String tipoCarta;
-    private Integer pagine;
-    private Double larghezza;
-    private Boolean copertina;
-
 
 
     public Long getId() {
@@ -63,6 +52,14 @@ public class Pubblicazione {
         this.altezza = altezza;
     }
 
+    public Double getLarghezza() {
+        return larghezza;
+    }
+
+    public void setLarghezza(Double larghezza) {
+        this.larghezza = larghezza;
+    }
+
     public List<TipoDiCarta> getTipoDiCarta() {
         return tipoDiCarta;
     }
@@ -71,13 +68,24 @@ public class Pubblicazione {
         this.tipoDiCarta = tipoDiCarta;
     }
 
-    public List<Grammatura> getGrammatura() {
+
+    public Double getGrammatura() {
+        return grammatura;
+    }
+
+    public void setGrammatura(Double grammatura) {
+        this.grammatura = grammatura;
+    }
+
+
+    /*public List<Grammatura> getGrammatura() {
         return grammatura;
     }
 
     public void setGrammatura(List<Grammatura> grammatura) {
         this.grammatura = grammatura;
     }
+    */
 
     public Long getTiratura() {
         return tiratura;
@@ -85,6 +93,15 @@ public class Pubblicazione {
 
     public void setTiratura(Long tiratura) {
         this.tiratura = tiratura;
+    }
+
+
+    public Long getPagine() {
+        return pagine;
+    }
+
+    public void setPagige(Long pagine) {
+        this.pagine = pagine;
     }
 
     public List<TipoDiCarta> getTipoDiCartaCopertina() {
@@ -95,19 +112,38 @@ public class Pubblicazione {
         this.tipoDiCartaCopertina = tipoDiCartaCopertina;
     }
 
-    public List<Grammatura> getGrammaturaCopertina() {
+    /*public List<Grammatura> getGrammaturaCopertina() {
         return grammaturaCopertina;
     }
 
     public void setGrammaturaCopertina(List<Grammatura> grammaturaCopertina) {
         this.grammaturaCopertina = grammaturaCopertina;
     }
+    */
 
-    public String getTipo() {
-        return tipo;
+    public Double getGrammaturaCopertina() {
+        return grammaturaCopertina;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setGrammaturaCopertina(Double grammaturaCopertina) {
+        this.grammaturaCopertina = grammaturaCopertina;
     }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setCopertina(Boolean copertina) {
+        this.copertina = copertina;
+    }
+    public Boolean getCopertina() {
+        return copertina;
+    }
+
+
+
 }

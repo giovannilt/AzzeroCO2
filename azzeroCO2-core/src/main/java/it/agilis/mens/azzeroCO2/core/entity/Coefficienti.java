@@ -19,7 +19,9 @@ public class Coefficienti {
 
     private String nome;
     private String tipologia;
+    private String udm;
     private Double valore;
+    private String note;
 
     private String codice;
 
@@ -63,5 +65,21 @@ public class Coefficienti {
 
     public void setCodice(String codice) {
         this.codice = codice;
+    }
+
+    public String getUdm() {
+        return udm;
+    }
+
+    public void setUdm(String udm) {
+        this.udm = udm;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

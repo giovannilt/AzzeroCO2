@@ -23,7 +23,7 @@ public interface HustonService extends RemoteService {
     UserInfoModel getUserInfo(String userInfo, String password) throws IllegalArgumentException;
 
 
-    List<GrammaturaModel> getGrammatura() throws IllegalArgumentException;
+    //List<GrammaturaModel> getGrammatura() throws IllegalArgumentException;
     List<TipoDiCartaModel> getTipoDiCarta() throws IllegalArgumentException;
 
 

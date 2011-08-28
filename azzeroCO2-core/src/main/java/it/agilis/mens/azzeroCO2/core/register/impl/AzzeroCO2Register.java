@@ -24,7 +24,7 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     private ICouponDAO couponDAO;
     @Autowired
     private ITipoDiCartaDAO tipoDiCartaDAO;
-    @Autowired
+    /*@Autowired
     private IGrammaturaDAO grammaturaDAO;
 
     public IGrammaturaDAO getGrammaturaDAO() {
@@ -34,6 +34,7 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     public void setGrammaturaDAO(IGrammaturaDAO grammaturaDAO) {
         this.grammaturaDAO = grammaturaDAO;
     }
+    */
 
     public ITipoDiCartaDAO getTipoDiCartaDAO() {
         return tipoDiCartaDAO;
@@ -102,13 +103,14 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         return userInfoDAO.findUserInfo(userName);
     }
 
-    @Override
+    /*@Override
     public List<Grammatura> getGrammatura() throws Exception {
         return grammaturaDAO.getGrammatura();
     }
-
+    */
     @Override
     public List<TipoDiCarta> getTipoDiCarta() throws Exception {
         return tipoDiCartaDAO.getTipoDiCarta();
     }
+
 }

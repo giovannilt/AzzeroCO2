@@ -25,7 +25,7 @@ public interface IAzzeroCO2Register {
 
     UserInfo getUserInfo(String userInfo) throws Exception;
 
-    List<Grammatura> getGrammatura( ) throws Exception;
+    //List<Grammatura> getGrammatura( ) throws Exception;
 
     List<TipoDiCarta> getTipoDiCarta() throws Exception;
 

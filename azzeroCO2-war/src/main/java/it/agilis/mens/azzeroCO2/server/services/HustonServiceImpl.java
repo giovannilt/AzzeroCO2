@@ -7,7 +7,7 @@ import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
+//import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +120,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
     }
 
-    @Override
+    /*@Override
     public List<GrammaturaModel> getGrammatura() throws IllegalArgumentException {
         try {
             return Utils.getGrammatura(azzeroCO2Register.getGrammatura());
@@ -128,7 +128,8 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
             e.printStackTrace();
             return null;
         }
-    }
+    }    */
+
 
     @Override
     public List<TipoDiCartaModel> getTipoDiCarta() throws IllegalArgumentException {

@@ -108,7 +108,7 @@ public class Utils {
     }
 
 
-    public static List<GrammaturaModel> getGrammatura(List<Grammatura> grammatura) {
+    /*public static List<GrammaturaModel> getGrammatura(List<Grammatura> grammatura) {
 
         List<GrammaturaModel> _return= new ArrayList<GrammaturaModel>();
         for(Grammatura g: grammatura){
@@ -119,6 +119,7 @@ public class Utils {
         }
         return _return;
     }
+    */
 
      public static List<TipoDiCartaModel> getTipoDiCarta(List<TipoDiCarta> tipoDiCarta) {
 

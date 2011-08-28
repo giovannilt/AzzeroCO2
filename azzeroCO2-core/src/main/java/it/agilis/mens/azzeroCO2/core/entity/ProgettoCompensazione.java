@@ -20,10 +20,10 @@ public class ProgettoCompensazione {
     @GeneratedValue
     private Long id;
 
-    private String nomeProgetto;
-    private Long  prezzoProgetto;
+    private String nome;
+    private Long  prezzo;
     private String img;
-    private Boolean attivoProgetto;
+    private Boolean attivo;
 
 
     public Long getId() {
@@ -35,27 +35,27 @@ public class ProgettoCompensazione {
     }
 
     public String getNomeProgetto() {
-        return nomeProgetto;
+        return nome;
     }
 
-    public void setNomeProgetto(String nomeProgetto) {
-        this.nomeProgetto = nomeProgetto;
+    public void setNomeProgetto(String nome) {
+        this.nome = nome;
     }
 
-    public Long getPrezzoProgetto() {
-        return prezzoProgetto;
+    public Long getPrezzo() {
+        return prezzo;
     }
 
-    public void setprezzoProgetto(Long prezzoProgetto) {
-        this.prezzoProgetto = prezzoProgetto;
+    public void setprezzoProgetto(Long prezzo) {
+        this.prezzo = prezzo;
     }
 
-    public Boolean getAttivoProgetto() {
-        return attivoProgetto;
+    public Boolean getAttivo() {
+        return attivo;
     }
 
-    public void setAttivoProgetto(Boolean attivoProgetto) {
-        this.attivoProgetto = attivoProgetto;
+    public void setAttivo(Boolean attivo) {
+        this.attivo = attivo;
     }
 
     public String getImg() {
