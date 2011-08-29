@@ -19,11 +19,6 @@ public class Ordine {
     @GeneratedValue
     private Long id;
 
-    private Date dataOrdine;
-    private Boolean editable;
-    private Long kgCo2;
-    private Long valoreCompensazione;
-
     @OneToOne
     private Coupon coupon;
 
@@ -39,7 +34,6 @@ public class Ordine {
     @OneToMany
     private List<ProgettoCompensazione> progettoCompensaziones;
 
-
     @OneToMany
     private List<Pubblicazione> pubblicazioni;
 
@@ -49,6 +43,10 @@ public class Ordine {
     @ManyToOne
     private ProgettoCompensazione progettoComp;
 
+    private Date dataOrdine;
+    private Boolean editable;
+    private Long kgCo2;
+    private Long valoreCompensazione;
 
     public Long getId() {
         return id;
@@ -58,36 +56,20 @@ public class Ordine {
         this.id = id;
     }
 
-    public Date getDataOrdine() {
-        return dataOrdine;
-    }
-
-    public void setDataOrdine(Date dataOrdine) {
-        this.dataOrdine = dataOrdine;
-    }
-
-    public UserInfo getUtente() {
-        return utente;
-    }
-
-    public void setUtente(UserInfo utente) {
-        this.utente = utente;
-    }
-
-    public ProgettoCompensazione getProgettoComp() {
-        return progettoComp;
-    }
-
-    public void setProgettoComp(ProgettoCompensazione progettoComp) {
-        this.progettoComp = progettoComp;
-    }
-
     public Coupon getCoupon() {
         return coupon;
     }
 
-    public void setCoupon(Coupon copon) {
+    public void setCoupon(Coupon coupon) {
         this.coupon = coupon;
+    }
+
+    public Sito getSito() {
+        return sito;
+    }
+
+    public void setSito(Sito sito) {
+        this.sito = sito;
     }
 
     public Evento getEvento() {
@@ -98,12 +80,52 @@ public class Ordine {
         this.evento = evento;
     }
 
-    public Sito getSito() {
-        return sito;
+    public UserInfo getUtente() {
+        return utente;
     }
 
-    public void setSito(Sito sito) {
-        this.sito = sito;
+    public void setUtente(UserInfo utente) {
+        this.utente = utente;
+    }
+
+    public List<ProgettoCompensazione> getProgettoCompensaziones() {
+        return progettoCompensaziones;
+    }
+
+    public void setProgettoCompensaziones(List<ProgettoCompensazione> progettoCompensaziones) {
+        this.progettoCompensaziones = progettoCompensaziones;
+    }
+
+    public List<Pubblicazione> getPubblicazioni() {
+        return pubblicazioni;
+    }
+
+    public void setPubblicazioni(List<Pubblicazione> pubblicazioni) {
+        this.pubblicazioni = pubblicazioni;
+    }
+
+    public List<TrasportoPersone> getTrasportoPersone() {
+        return trasportoPersone;
+    }
+
+    public void setTrasportoPersone(List<TrasportoPersone> trasportoPersone) {
+        this.trasportoPersone = trasportoPersone;
+    }
+
+    public ProgettoCompensazione getProgettoComp() {
+        return progettoComp;
+    }
+
+    public void setProgettoComp(ProgettoCompensazione progettoComp) {
+        this.progettoComp = progettoComp;
+    }
+
+    public Date getDataOrdine() {
+        return dataOrdine;
+    }
+
+    public void setDataOrdine(Date dataOrdine) {
+        this.dataOrdine = dataOrdine;
     }
 
     public Boolean getEditable() {
@@ -129,5 +151,7 @@ public class Ordine {
     public void setValoreCompensazione(Long valoreCompensazione) {
         this.valoreCompensazione = valoreCompensazione;
     }
-
 }
+
+
+

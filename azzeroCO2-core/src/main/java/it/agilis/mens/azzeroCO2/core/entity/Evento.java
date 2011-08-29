@@ -35,7 +35,6 @@ public class Evento {
     @OneToOne
     private Ordine ordine;
 
-
     public Long getId() {
         return id;
     }
@@ -50,6 +49,14 @@ public class Evento {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getAnno() {
+        return anno;
+    }
+
+    public void setAnno(String anno) {
+        this.anno = anno;
     }
 
     public String getDove() {
@@ -84,7 +91,6 @@ public class Evento {
         this.note = note;
     }
 
-
     public Integer getPernottamenti() {
         return pernottamenti;
     }
@@ -117,4 +123,11 @@ public class Evento {
         this.gas = gas;
     }
 
+    public Ordine getOrdine() {
+        return ordine;
+    }
+
+    public void setOrdine(Ordine ordine) {
+        this.ordine = ordine;
+    }
 }

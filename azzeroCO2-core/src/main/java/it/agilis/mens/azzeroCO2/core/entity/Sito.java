@@ -16,7 +16,6 @@ public class Sito {
     @GeneratedValue
     private Long id;
 
-
     @OneToOne
     private Ordine ordine;
 

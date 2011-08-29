@@ -1,6 +1,10 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 
 /**
@@ -19,14 +23,12 @@ public class ProgettoCompensazione {
     private Long id;
 
     @OneToMany
-    private Ordine ordine;
-
+    private List<Ordine> ordine;
 
     private String nome;
     private Long  prezzo;
     private String img;
     private Boolean attivo;
-
 
     public Long getId() {
         return id;
@@ -36,11 +38,19 @@ public class ProgettoCompensazione {
         this.id = id;
     }
 
-    public String getNomeProgetto() {
+    public List<Ordine> getOrdine() {
+        return ordine;
+    }
+
+    public void setOrdine(List<Ordine> ordine) {
+        this.ordine = ordine;
+    }
+
+    public String getNome() {
         return nome;
     }
 
-    public void setNomeProgetto(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -48,16 +58,8 @@ public class ProgettoCompensazione {
         return prezzo;
     }
 
-    public void setprezzoProgetto(Long prezzo) {
+    public void setPrezzo(Long prezzo) {
         this.prezzo = prezzo;
-    }
-
-    public Boolean getAttivo() {
-        return attivo;
-    }
-
-    public void setAttivo(Boolean attivo) {
-        this.attivo = attivo;
     }
 
     public String getImg() {
@@ -66,5 +68,13 @@ public class ProgettoCompensazione {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public Boolean getAttivo() {
+        return attivo;
+    }
+
+    public void setAttivo(Boolean attivo) {
+        this.attivo = attivo;
     }
 }

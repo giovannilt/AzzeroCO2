@@ -18,12 +18,10 @@ public class Coupon {
 
     @Id
     @GeneratedValue
-
+    private Long id;
 
     @OneToOne
     private Ordine ordine;
-
-    private Long id;
 
     private String codice;
 
