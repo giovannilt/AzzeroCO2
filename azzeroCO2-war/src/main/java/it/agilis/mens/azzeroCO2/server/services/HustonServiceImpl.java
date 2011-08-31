@@ -122,17 +122,6 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
     }
 
-    /*@Override
-    public List<GrammaturaModel> getGrammatura() throws IllegalArgumentException {
-        try {
-            return Utils.getGrammatura(azzeroCO2Register.getGrammatura());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }    */
-
-
     @Override
     public List<TipoDiCartaModel> getTipoDiCarta() throws IllegalArgumentException {
         try {
@@ -158,6 +147,11 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
     @Override
     public Map<String, CoefficientiDTO> getCoefficienti() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+       try {
+            return Utils.getCoefficienti(azzeroCO2Register.getCoefficienti());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

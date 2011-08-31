@@ -8,10 +8,8 @@ package it.agilis.mens.azzeroCO2.server.utils;
  * To change this template use File | Settings | File Templates.
  */
 
-import it.agilis.mens.azzeroCO2.core.entity.Coupon;
-import it.agilis.mens.azzeroCO2.core.entity.Ordine;
-import it.agilis.mens.azzeroCO2.core.entity.TipoDiCarta;
-import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
+import it.agilis.mens.azzeroCO2.core.entity.*;
+import it.agilis.mens.azzeroCO2.shared.dto.CoefficientiDTO;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
@@ -19,6 +17,7 @@ import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Utils {
 
@@ -119,5 +118,9 @@ public class Utils {
             _return.add(model);
         }
         return _return;
+    }
+
+    public static Map<String, CoefficientiDTO> getCoefficienti(List<Coefficienti> coefficienti) {
+        return null;  //To change body of created methods use File | Settings | File Templates.
     }
 }

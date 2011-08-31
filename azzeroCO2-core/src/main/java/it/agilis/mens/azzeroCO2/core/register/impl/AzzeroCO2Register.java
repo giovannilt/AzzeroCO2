@@ -24,17 +24,16 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     private ICouponDAO couponDAO;
     @Autowired
     private ITipoDiCartaDAO tipoDiCartaDAO;
-    /*@Autowired
-    private IGrammaturaDAO grammaturaDAO;
+    @Autowired
+    private ICoefficienteDAO coefficienteDAO;
 
-    public IGrammaturaDAO getGrammaturaDAO() {
-        return grammaturaDAO;
+    public ICoefficienteDAO getCoefficienteDAO() {
+        return coefficienteDAO;
     }
 
-    public void setGrammaturaDAO(IGrammaturaDAO grammaturaDAO) {
-        this.grammaturaDAO = grammaturaDAO;
+    public void setCoefficienteDAO(ICoefficienteDAO coefficienteDAO) {
+        this.coefficienteDAO = coefficienteDAO;
     }
-    */
 
     public ITipoDiCartaDAO getTipoDiCartaDAO() {
         return tipoDiCartaDAO;
@@ -113,4 +112,7 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         return tipoDiCartaDAO.getTipoDiCarta();
     }
 
+    public List<Coefficienti> getCoefficienti() {
+        return coefficienteDAO.getListOfCoefficienti();
+    }
 }
