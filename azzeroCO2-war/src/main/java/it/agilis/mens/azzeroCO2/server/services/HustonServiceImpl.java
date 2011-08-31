@@ -6,6 +6,7 @@ import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
+import it.agilis.mens.azzeroCO2.shared.dto.CoefficientiDTO;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 //import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
@@ -21,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -152,5 +154,10 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public Map<String, CoefficientiDTO> getCoefficienti() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -8,10 +8,12 @@ package it.agilis.mens.azzeroCO2.server.utils;
  * To change this template use File | Settings | File Templates.
  */
 
-import it.agilis.mens.azzeroCO2.core.entity.*;
+import it.agilis.mens.azzeroCO2.core.entity.Coupon;
+import it.agilis.mens.azzeroCO2.core.entity.Ordine;
+import it.agilis.mens.azzeroCO2.core.entity.TipoDiCarta;
+import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
@@ -84,11 +86,11 @@ public class Utils {
         userInfo.setFax(registrazioneModel.getFax());
         userInfo.setCellulare(registrazioneModel.getCellulare());
         userInfo.setEmail(registrazioneModel.getEmail());
-        return  userInfo;
+        return userInfo;
     }
 
     public static UserInfoModel getUserInfoModel(UserInfo userInfo) {
-        UserInfoModel userInfoModel= new UserInfoModel();
+        UserInfoModel userInfoModel = new UserInfoModel();
         userInfoModel.setUserName(userInfo.getUserName());
         userInfoModel.setCap(userInfo.getCap());
         userInfoModel.setCellulare(userInfo.getCellulare());
@@ -107,25 +109,11 @@ public class Utils {
         return userInfoModel;  //To change body of created methods use File | Settings | File Templates.
     }
 
+    public static List<TipoDiCartaModel> getTipoDiCarta(List<TipoDiCarta> tipoDiCarta) {
 
-    /*public static List<GrammaturaModel> getGrammatura(List<Grammatura> grammatura) {
-
-        List<GrammaturaModel> _return= new ArrayList<GrammaturaModel>();
-        for(Grammatura g: grammatura){
-            GrammaturaModel model= new GrammaturaModel();
-            model.setId(g.getId());
-            model.setGrammatura(g.getGrammatura());
-            _return.add(model);
-        }
-        return _return;
-    }
-    */
-
-     public static List<TipoDiCartaModel> getTipoDiCarta(List<TipoDiCarta> tipoDiCarta) {
-
-        List<TipoDiCartaModel> _return= new ArrayList<TipoDiCartaModel>();
-        for(TipoDiCarta t: tipoDiCarta){
-            TipoDiCartaModel model= new TipoDiCartaModel();
+        List<TipoDiCartaModel> _return = new ArrayList<TipoDiCartaModel>();
+        for (TipoDiCarta t : tipoDiCarta) {
+            TipoDiCartaModel model = new TipoDiCartaModel();
             model.setId(t.getId());
             model.setParametro(t.getParametro());
             _return.add(model);
