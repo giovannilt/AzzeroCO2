@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.shared.dto.CoefficientiDTO;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +28,17 @@ public class CalcoliHelper {
         if (coefficienti == null) {
             getCoefficienti();
         }
-
-
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
 
-        store.add(getEnergia());
+        //Caloclo ENERGIA
+        store.add(getEnergia(eventoModel.getEnergiaModel()));
+
 
         return store;
 
     }
 
-    private static RiepilogoModel getEnergia() {
+    private static RiepilogoModel getEnergia(EnergiaModel energiaModel) {
         RiepilogoModel energia = new RiepilogoModel();
 
         // eventoModel.getEnergiaModel().
