@@ -7,6 +7,7 @@ import it.agilis.mens.azzeroCO2.shared.dto.CoefficientiDTO;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +32,17 @@ public class CalcoliHelper {
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
 
         //Caloclo ENERGIA
+        if (getEnergia(eventoModel.getEnergiaModel()) == null){
+            return null;
+        } else {
         store.add(getEnergia(eventoModel.getEnergiaModel()));
+        }
 
-
+        if (getNotti(eventoModel.getNottiModel()) == null){
+            return null;
+        } else {
+        store.add(getNotti(eventoModel.getNottiModel()));
+        }
         return store;
 
     }
@@ -41,21 +50,67 @@ public class CalcoliHelper {
     private static RiepilogoModel getEnergia(EnergiaModel energiaModel) {
         RiepilogoModel energia = new RiepilogoModel();
 
+        energia.setOggetto("Energia");
+
+                String energiaDett = "Energia elettrica"+ " " +  energiaModel.getEnergiaElettrica()+" kw/h"+
+                        "Gas"+ " " +  energiaModel.getGasMetano()+" m3"+
+                        "Gasolio"+ " " +  energiaModel.getGasolio()+" lt";
+        energia.setDettagli(energiaDett);
+
+
         CoefficientiDTO coefficientiEnergiaElettricaDTO = coefficienti.get("energiaElettrica");
         CoefficientiDTO coefficientiEnergiaGASDTO = coefficienti.get("energiaGas");
         CoefficientiDTO coefficientiEnergiaGasolioDTO = coefficienti.get("energiaGasolio");
 
-        // TODO Fare il puro CALCOLO
+
 
         Double co2 = energiaModel.getEnergiaElettrica() * coefficientiEnergiaElettricaDTO.getValore();
         co2 += energiaModel.getGasMetano() * coefficientiEnergiaGASDTO.getValore();
         co2 += energiaModel.getGasolio() * coefficientiEnergiaGasolioDTO.getValore();
         energia.setKgCO2(co2);
 
-        energia.setDettagli("BLA BLA");
-        energia.setOggetto("BLABLA");
-        return energia;
+
+        if(co2==0){
+            return null;
+        }
+        else{
+            return energia;
+        }
     }
+
+
+
+    private static RiepilogoModel getNotti(NottiModel nottiModel) {
+        RiepilogoModel notti = new RiepilogoModel();
+
+        notti.setOggetto("Pernottamenti");
+
+                String energiaDett = "Pernottamenti"+ " " +  nottiModel.getNotti()+" notti";
+        notti.setDettagli(energiaDett);
+
+
+        CoefficientiDTO coefficientiNottiDTO = coefficienti.get("notti");
+
+
+
+        Double co2 = nottiModel.getNotti() * coefficientiNottiDTO.getValore();
+        notti.setKgCO2(co2);
+
+
+        if(co2==0){
+            return null;
+        }
+        else{
+            return notti;
+        }
+    }
+
+
+
+
+
+
+
 
     private static void getCoefficienti() {
         AsyncCallback<Map<String, CoefficientiDTO>> aCallback = new AsyncCallback<Map<String, CoefficientiDTO>>() {
