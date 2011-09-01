@@ -207,7 +207,7 @@ public class EventoDettaglio extends LayoutContainer {
         eventoModel.setTrasportoMerciModel(formTrasportoMerci.getTrasportoMerciModel());
         eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel().getModels());
         eventoModel.setManifestiPieghevoliFogliModel(formManifestiPiegevoliFogli.getManifestiPieghevoliFogliModel().getModels());
-        eventoFormRiepilogo.setStore(CalcoliHelper.geListOfRiepilogoModel(eventoModel));
+        eventoFormRiepilogo.getStore().add(CalcoliHelper.geListOfRiepilogoModel(eventoModel));
         return eventoModel;
     }
 

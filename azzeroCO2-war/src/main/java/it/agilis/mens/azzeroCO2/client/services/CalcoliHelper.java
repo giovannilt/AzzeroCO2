@@ -1,13 +1,14 @@
 package it.agilis.mens.azzeroCO2.client.services;
 
 import com.extjs.gxt.ui.client.Registry;
-import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.shared.dto.CoefficientiDTO;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,26 +23,26 @@ public class CalcoliHelper {
     private static HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
     private static Map<String, CoefficientiDTO> coefficienti = null;
 
-    public static ListStore<RiepilogoModel> geListOfRiepilogoModel(DettaglioModel eventoModel) {
-        if(coefficienti==null){
+    public static List<RiepilogoModel> geListOfRiepilogoModel(DettaglioModel eventoModel) {
+        if (coefficienti == null) {
             getCoefficienti();
         }
 
 
-        ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
+        List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
 
-        eventoModel.getEnergiaModel();
+        store.add(getEnergia());
 
         return store;
 
     }
 
-    private   CoefficientiDTO getEnergia(){
-        CoefficientiDTO energia= new CoefficientiDTO();
+    private static RiepilogoModel getEnergia() {
+        RiepilogoModel energia = new RiepilogoModel();
 
-   // eventoModel.getEnergiaModel().
-        CoefficientiDTO coefficientiEnergiaDTO=coefficienti.get("energia");
-       // TODO Fare il puro CALCOLO
+        // eventoModel.getEnergiaModel().
+        CoefficientiDTO coefficientiEnergiaDTO = coefficienti.get("energia");
+        // TODO Fare il puro CALCOLO
 
         coefficientiEnergiaDTO.getCodice();
 
