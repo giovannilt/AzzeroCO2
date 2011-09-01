@@ -103,7 +103,13 @@ public class CalcoliHelper {
 
              //TODO....
              _rm.setOggetto("Trasporto Persone / " +tpm.getCategoria());
-             _rm.setDettagli("STI CAZZI");
+             _rm.setDettagli("Distanza 50 kn:  "+" Bus"+  tpm.getBusPiu50()+ " tratte "+
+                     "Auto "+ tpm.getAutoPiu50()+ " tratte "+
+                     "Treno "+ tpm.getTrenoPiu50()+ " tratte"+
+                     "Autobus 50 kn  "+ tpm.getBusPiu50()+ " tratte"
+
+
+             );
 
 
 
