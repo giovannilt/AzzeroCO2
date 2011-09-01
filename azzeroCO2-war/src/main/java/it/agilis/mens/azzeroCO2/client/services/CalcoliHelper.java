@@ -41,13 +41,19 @@ public class CalcoliHelper {
     private static RiepilogoModel getEnergia(EnergiaModel energiaModel) {
         RiepilogoModel energia = new RiepilogoModel();
 
-        // eventoModel.getEnergiaModel().
-        CoefficientiDTO coefficientiEnergiaDTO = coefficienti.get("energia");
+        CoefficientiDTO coefficientiEnergiaElettricaDTO = coefficienti.get("energiaElettrica");
+        CoefficientiDTO coefficientiEnergiaGASDTO = coefficienti.get("energiaGas");
+        CoefficientiDTO coefficientiEnergiaGasolioDTO = coefficienti.get("energiaGasolio");
+
         // TODO Fare il puro CALCOLO
 
-        coefficientiEnergiaDTO.getCodice();
+        Double co2 = energiaModel.getEnergiaElettrica() * coefficientiEnergiaElettricaDTO.getValore();
+        co2 += energiaModel.getGasMetano() * coefficientiEnergiaGASDTO.getValore();
+        co2 += energiaModel.getGasolio() * coefficientiEnergiaGasolioDTO.getValore();
+        energia.setKgCO2(co2);
 
-
+        energia.setDettagli("BLA BLA");
+        energia.setOggetto("BLABLA");
         return energia;
     }
 
