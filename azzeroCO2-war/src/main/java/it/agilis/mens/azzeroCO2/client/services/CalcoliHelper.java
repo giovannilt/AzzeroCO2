@@ -27,6 +27,9 @@ public class CalcoliHelper {
             getCoefficienti();
         }
 
+       // eventoModel.getEnergiaModel().
+        CoefficientiDTO energia=coefficienti.get("energia");
+
         ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
 
         eventoModel.getEnergiaModel();
