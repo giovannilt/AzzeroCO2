@@ -120,7 +120,7 @@ public class Utils {
         return _return;
     }
 
-    public static Map<String, CoefficientiDTO> getCoefficienti(List<Coefficienti> coefficienti) {
+    public static Map<String, CoefficientiDTO> getCoefficienti(List<Coefficiente> coefficienti) {
         return null;  //To change body of created methods use File | Settings | File Templates.
     }
 }

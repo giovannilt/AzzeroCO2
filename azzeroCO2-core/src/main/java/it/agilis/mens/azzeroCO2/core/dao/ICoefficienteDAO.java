@@ -1,7 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.dao;
 
-import it.agilis.mens.azzeroCO2.core.entity.Coefficienti;
-import it.agilis.mens.azzeroCO2.core.entity.Coupon;
+import it.agilis.mens.azzeroCO2.core.entity.Coefficiente;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface ICoefficienteDAO {
-    List<Coefficienti> getListOfCoefficienti();
+    List<Coefficiente> getListOfCoefficienti();
 
-    void save(Coupon coupon) throws Exception;
+    void save(Coefficiente coefficiente) throws Exception;
 }

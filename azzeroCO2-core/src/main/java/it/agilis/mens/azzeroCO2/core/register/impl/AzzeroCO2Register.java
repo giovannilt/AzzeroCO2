@@ -93,6 +93,16 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     }
 
     @Override
+    public void saveCoefficiente(Coefficiente coefficiente) throws Exception {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void saveCoefficienti(List<Coefficiente> coefficienti) throws Exception {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
     public void saveUserInfo(UserInfo userInfo) throws Exception {
         userInfoDAO.save(userInfo);
     }
@@ -112,7 +122,7 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         return tipoDiCartaDAO.getTipoDiCarta();
     }
 
-    public List<Coefficienti> getCoefficienti() {
+    public List<Coefficiente> getCoefficienti() {
         return coefficienteDAO.getListOfCoefficienti();
     }
 }

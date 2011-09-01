@@ -2,8 +2,7 @@ package it.agilis.mens.azzeroCO2.core.dao.impl;
 
 import it.agilis.mens.azzeroCO2.core.dao.DAOSupport;
 import it.agilis.mens.azzeroCO2.core.dao.ICoefficienteDAO;
-import it.agilis.mens.azzeroCO2.core.entity.Coefficienti;
-import it.agilis.mens.azzeroCO2.core.entity.Coupon;
+import it.agilis.mens.azzeroCO2.core.entity.Coefficiente;
 import org.hibernate.criterion.DetachedCriteria;
 
 import java.util.List;
@@ -17,14 +16,13 @@ import java.util.List;
  */
 public class CoefficienteDAO extends DAOSupport implements ICoefficienteDAO {
     @Override
-    public List<Coefficienti> getListOfCoefficienti() {
-        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Coefficienti.class, "coefficienti");
-        return  (List<Coefficienti>) getList(detachedCriteria, true);
+    public List<Coefficiente> getListOfCoefficienti() {
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Coefficiente.class, "coefficienti");
+        return  (List<Coefficiente>) getList(detachedCriteria, true);
     }
 
     @Override
-    public void save(Coupon coupon) throws Exception {
-
-        saveObject(coupon);
+    public void save(Coefficiente coefficiente) throws Exception {
+        saveObject(coefficiente);
     }
 }

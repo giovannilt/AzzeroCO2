@@ -12,7 +12,7 @@ import javax.persistence.Id;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-public class Coefficienti {
+public class Coefficiente {
     @Id
     @GeneratedValue
     private Long id;

@@ -17,6 +17,10 @@ public interface IAzzeroCO2Register {
 
     void saveCoupons(List<Coupon> coupons) throws Exception;
 
+    void saveCoefficiente(Coefficiente coefficiente) throws Exception;
+
+    void saveCoefficienti(List<Coefficiente> coefficienti) throws Exception;
+
     void saveUserInfo(UserInfo userInfo) throws Exception;
 
     List<Ordine> getOrdini() throws Exception;

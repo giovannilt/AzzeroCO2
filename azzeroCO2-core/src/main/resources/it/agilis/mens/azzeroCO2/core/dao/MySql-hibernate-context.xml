@@ -20,7 +20,7 @@
                 <value>it.agilis.mens.azzeroCO2.core.entity.Ordine</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.Evento</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.Coupon</value>
-                <value>it.agilis.mens.azzeroCO2.core.entity.Coefficienti</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.Coefficiente</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
