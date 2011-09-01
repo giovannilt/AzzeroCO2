@@ -1,15 +1,14 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
-import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.data.*;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Record;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.*;
@@ -21,9 +20,7 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
-import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 
 import java.util.ArrayList;
@@ -39,10 +36,10 @@ import java.util.List;
  */
 public class Coupon extends LayoutContainer {
 
-    private  ListStore<CouponModel> store = new ListStore<CouponModel>();
+    private ListStore<CouponModel> store = new ListStore<CouponModel>();
 
     public Coupon(ListStore<CouponModel> store) {
-        this.store=store;
+        this.store = store;
     }
 
     @Override
@@ -63,7 +60,7 @@ public class Coupon extends LayoutContainer {
 
     }
 
-    private ContentPanel createCentre( final ListStore<CouponModel> store ) {
+    private ContentPanel createCentre(final ListStore<CouponModel> store) {
         ContentPanel centre = new ContentPanel();
 
 
@@ -182,22 +179,12 @@ public class Coupon extends LayoutContainer {
         saveButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                List<CouponModel> coupons = new ArrayList<CouponModel>();
+                List<Coupon> coupons = new ArrayList<Coupon>();
                 for (Record r : store.getModifiedRecords()) {
-                    coupons.add((CouponModel) r.getModel());
+                    coupons.add((Coupon) r.getModel());
                 }
-                HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
+                Dispatcher.forwardEvent(AmministrazioneEvents.SaveCoupons, coupons);
 
-                AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
-                    public void onFailure(Throwable caught) {
-                    }
-
-                    @Override
-                    public void onSuccess(Boolean result) {
-                          Info.display("Info", "Coupons Salvati");
-                    }
-                };
-                hustonService.saveCoupons(coupons, aCallback);
             }
         });
 

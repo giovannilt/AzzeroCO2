@@ -12,4 +12,8 @@ import com.extjs.gxt.ui.client.event.EventType;
 public class AmministrazioneEvents {
     public static final EventType Init = new EventType();
     public static final EventType Error = new EventType();
+    public static final EventType SaveCoupons = new EventType();
+    public static final EventType SaveCoefficienti = new EventType();
+
+
 }

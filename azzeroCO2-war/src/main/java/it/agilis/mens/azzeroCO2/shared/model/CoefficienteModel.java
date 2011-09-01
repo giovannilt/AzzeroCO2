@@ -8,8 +8,6 @@ package it.agilis.mens.azzeroCO2.shared.model;
  * To change this template use File | Settings | File Templates.
  */
 public class CoefficienteModel {
-    //TODO
-
 
     private Long id;
 
