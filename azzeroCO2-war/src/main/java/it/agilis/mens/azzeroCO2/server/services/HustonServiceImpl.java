@@ -6,7 +6,7 @@ import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
-import it.agilis.mens.azzeroCO2.shared.dto.CoefficientiDTO;
+import it.agilis.mens.azzeroCO2.shared.model.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 //import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
@@ -146,7 +146,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public Map<String, CoefficientiDTO> getCoefficienti() {
+    public Map<String, CoefficienteModel> getCoefficienti() {
        try {
             return Utils.getCoefficienti(azzeroCO2Register.getCoefficienti());
         } catch (Exception e) {

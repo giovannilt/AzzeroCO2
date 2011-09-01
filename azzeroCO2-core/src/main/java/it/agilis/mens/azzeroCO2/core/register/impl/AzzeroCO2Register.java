@@ -94,12 +94,14 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
 
     @Override
     public void saveCoefficiente(Coefficiente coefficiente) throws Exception {
-        //To change body of implemented methods use File | Settings | File Templates.
+        coefficienteDAO.save(coefficiente);
     }
 
     @Override
     public void saveCoefficienti(List<Coefficiente> coefficienti) throws Exception {
-        //To change body of implemented methods use File | Settings | File Templates.
+        for(Coefficiente c: coefficienti){
+            coefficienteDAO.save(c);
+        }
     }
 
     @Override

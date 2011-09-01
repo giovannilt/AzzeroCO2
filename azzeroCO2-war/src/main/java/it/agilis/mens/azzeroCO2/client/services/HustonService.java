@@ -2,7 +2,7 @@ package it.agilis.mens.azzeroCO2.client.services;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import it.agilis.mens.azzeroCO2.shared.dto.CoefficientiDTO;
+import it.agilis.mens.azzeroCO2.shared.model.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -23,8 +23,6 @@ public interface HustonService extends RemoteService {
 
     UserInfoModel getUserInfo(String userInfo, String password) throws IllegalArgumentException;
 
-
-    //List<GrammaturaModel> getGrammatura() throws IllegalArgumentException;
     List<TipoDiCartaModel> getTipoDiCarta() throws IllegalArgumentException;
 
 
@@ -32,5 +30,5 @@ public interface HustonService extends RemoteService {
     // TODO mmm Migliorare la gestione dello USER
     void disconnectUser() throws IllegalArgumentException;
 
-    Map<String, CoefficientiDTO> getCoefficienti();
+    Map<String, CoefficienteModel> getCoefficienti();
 }

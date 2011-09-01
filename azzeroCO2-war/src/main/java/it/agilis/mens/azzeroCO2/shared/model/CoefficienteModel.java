@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.shared.dto;
+package it.agilis.mens.azzeroCO2.shared.model;
 
 /**
  * Created by IntelliJ IDEA.
@@ -7,7 +7,7 @@ package it.agilis.mens.azzeroCO2.shared.dto;
  * Time: 7:14 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CoefficientiDTO {
+public class CoefficienteModel {
     //TODO
 
 

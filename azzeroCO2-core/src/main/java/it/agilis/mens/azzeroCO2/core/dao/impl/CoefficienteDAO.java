@@ -17,7 +17,7 @@ import java.util.List;
 public class CoefficienteDAO extends DAOSupport implements ICoefficienteDAO {
     @Override
     public List<Coefficiente> getListOfCoefficienti() {
-        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Coefficiente.class, "coefficienti");
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Coefficiente.class, "coefficiente");
         return  (List<Coefficiente>) getList(detachedCriteria, true);
     }
 

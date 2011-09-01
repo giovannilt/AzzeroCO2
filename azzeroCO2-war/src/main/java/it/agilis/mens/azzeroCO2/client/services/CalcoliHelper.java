@@ -3,7 +3,7 @@ package it.agilis.mens.azzeroCO2.client.services;
 import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.shared.dto.CoefficientiDTO;
+import it.agilis.mens.azzeroCO2.shared.model.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
@@ -24,7 +24,7 @@ import java.util.Map;
 public class CalcoliHelper {
 
     private static HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
-    private static Map<String, CoefficientiDTO> coefficienti = null;
+    private static Map<String, CoefficienteModel> coefficienti = null;
 
     public static List<RiepilogoModel> geListOfRiepilogoModel(DettaglioModel eventoModel) {
         if (coefficienti == null) {
@@ -62,13 +62,13 @@ public class CalcoliHelper {
                 "Gasolio" + " " + energiaModel.getGasolio() + " lt";
         energia.setDettagli(energiaDett);
 
-        CoefficientiDTO coefficientiEnergiaElettricaDTO = coefficienti.get("energiaElettrica");
-        CoefficientiDTO coefficientiEnergiaGASDTO = coefficienti.get("energiaGas");
-        CoefficientiDTO coefficientiEnergiaGasolioDTO = coefficienti.get("energiaGasolio");
+        CoefficienteModel coefficienteModelEnergia = coefficienti.get("energiaElettrica");
+        CoefficienteModel coefficientiEnergiaGAS= coefficienti.get("energiaGas");
+        CoefficienteModel coefficienteModelGasolio = coefficienti.get("energiaGasolio");
 
-        Double co2 = energiaModel.getEnergiaElettrica() * coefficientiEnergiaElettricaDTO.getValore();
-        co2 += energiaModel.getGasMetano() * coefficientiEnergiaGASDTO.getValore();
-        co2 += energiaModel.getGasolio() * coefficientiEnergiaGasolioDTO.getValore();
+        Double co2 = energiaModel.getEnergiaElettrica() * coefficienteModelEnergia.getValore();
+        co2 += energiaModel.getGasMetano() * coefficientiEnergiaGAS.getValore();
+        co2 += energiaModel.getGasolio() * coefficienteModelGasolio.getValore();
         energia.setKgCO2(co2);
 
         if (co2 == 0) {
@@ -85,8 +85,8 @@ public class CalcoliHelper {
         notti.setOggetto("Pernottamenti");
         String energiaDett = "Pernottamenti" + " " + nottiModel.getNotti() + " notti";
         notti.setDettagli(energiaDett);
-        CoefficientiDTO coefficientiNottiDTO = coefficienti.get("notti");
-        Double co2 = nottiModel.getNotti() * coefficientiNottiDTO.getValore();
+        CoefficienteModel coefficienteModel = coefficienti.get("notti");
+        Double co2 = nottiModel.getNotti() * coefficienteModel.getValore();
         notti.setKgCO2(co2);
 
         if (co2 == 0) {
@@ -114,13 +114,13 @@ public class CalcoliHelper {
     }
 
     private static void getCoefficienti() {
-        AsyncCallback<Map<String, CoefficientiDTO>> aCallback = new AsyncCallback<Map<String, CoefficientiDTO>>() {
+        AsyncCallback<Map<String, CoefficienteModel>> aCallback = new AsyncCallback<Map<String, CoefficienteModel>>() {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Errore impossibile connettersi al server");
             }
 
             @Override
-            public void onSuccess(Map<String, CoefficientiDTO> result) {
+            public void onSuccess(Map<String, CoefficienteModel> result) {
                 if (result != null) {
                     coefficienti = result;
                 } else {

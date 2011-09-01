@@ -9,7 +9,7 @@ package it.agilis.mens.azzeroCO2.server.utils;
  */
 
 import it.agilis.mens.azzeroCO2.core.entity.*;
-import it.agilis.mens.azzeroCO2.shared.dto.CoefficientiDTO;
+import it.agilis.mens.azzeroCO2.shared.model.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
@@ -120,7 +120,7 @@ public class Utils {
         return _return;
     }
 
-    public static Map<String, CoefficientiDTO> getCoefficienti(List<Coefficiente> coefficienti) {
+    public static Map<String, CoefficienteModel> getCoefficienti(List<Coefficiente> coefficienti) {
         return null;  //To change body of created methods use File | Settings | File Templates.
     }
 }
