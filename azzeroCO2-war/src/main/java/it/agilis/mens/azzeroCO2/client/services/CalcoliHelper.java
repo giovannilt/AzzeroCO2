@@ -8,6 +8,7 @@ import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +33,21 @@ public class CalcoliHelper {
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
 
         //Caloclo ENERGIA
-        if (getEnergia(eventoModel.getEnergiaModel()) == null){
+        RiepilogoModel model = getEnergia(eventoModel.getEnergiaModel());
+        if (model == null) {
             return null;
         } else {
-        store.add(getEnergia(eventoModel.getEnergiaModel()));
+            store.add(model);
         }
 
-        if (getNotti(eventoModel.getNottiModel()) == null){
+        model = getNotti(eventoModel.getNottiModel());
+        if (model == null) {
             return null;
         } else {
-        store.add(getNotti(eventoModel.getNottiModel()));
+            store.add(model);
         }
+        store.addAll(getTrasportoPersone(eventoModel.getTrasportoPersoneModel()));
+
         return store;
 
     }
@@ -52,65 +57,61 @@ public class CalcoliHelper {
 
         energia.setOggetto("Energia");
 
-                String energiaDett = "Energia elettrica"+ " " +  energiaModel.getEnergiaElettrica()+" kw/h"+
-                        "Gas"+ " " +  energiaModel.getGasMetano()+" m3"+
-                        "Gasolio"+ " " +  energiaModel.getGasolio()+" lt";
+        String energiaDett = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h" +
+                "Gas" + " " + energiaModel.getGasMetano() + " m3" +
+                "Gasolio" + " " + energiaModel.getGasolio() + " lt";
         energia.setDettagli(energiaDett);
-
 
         CoefficientiDTO coefficientiEnergiaElettricaDTO = coefficienti.get("energiaElettrica");
         CoefficientiDTO coefficientiEnergiaGASDTO = coefficienti.get("energiaGas");
         CoefficientiDTO coefficientiEnergiaGasolioDTO = coefficienti.get("energiaGasolio");
-
-
 
         Double co2 = energiaModel.getEnergiaElettrica() * coefficientiEnergiaElettricaDTO.getValore();
         co2 += energiaModel.getGasMetano() * coefficientiEnergiaGASDTO.getValore();
         co2 += energiaModel.getGasolio() * coefficientiEnergiaGasolioDTO.getValore();
         energia.setKgCO2(co2);
 
-
-        if(co2==0){
+        if (co2 == 0) {
             return null;
-        }
-        else{
+        } else {
             return energia;
         }
     }
-
 
 
     private static RiepilogoModel getNotti(NottiModel nottiModel) {
         RiepilogoModel notti = new RiepilogoModel();
 
         notti.setOggetto("Pernottamenti");
-
-                String energiaDett = "Pernottamenti"+ " " +  nottiModel.getNotti()+" notti";
+        String energiaDett = "Pernottamenti" + " " + nottiModel.getNotti() + " notti";
         notti.setDettagli(energiaDett);
-
-
         CoefficientiDTO coefficientiNottiDTO = coefficienti.get("notti");
-
-
-
         Double co2 = nottiModel.getNotti() * coefficientiNottiDTO.getValore();
         notti.setKgCO2(co2);
 
-
-        if(co2==0){
+        if (co2 == 0) {
             return null;
-        }
-        else{
+        } else {
             return notti;
         }
     }
 
+    private static List<RiepilogoModel> getTrasportoPersone(List<TrasportoPersoneModel> trasportoPersoneModels) {
+        List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
+        for (TrasportoPersoneModel tpm : trasportoPersoneModels) {
+            RiepilogoModel _rm = new RiepilogoModel();
+
+             //TODO....
+             _rm.setOggetto("Trasporto Persone / " +tpm.getCategoria());
+             _rm.setDettagli("STI CAZZI");
 
 
 
+            _return.add(_rm);
+        }
 
-
-
+        return _return;
+    }
 
     private static void getCoefficienti() {
         AsyncCallback<Map<String, CoefficientiDTO>> aCallback = new AsyncCallback<Map<String, CoefficientiDTO>>() {
