@@ -17,6 +17,8 @@ public class PubblicazioniRilegateModel extends BaseModel {
     private int numeroDiPagine;
     private String tipoDiCarta;
     private double grammatura;
+    private String tipoDiCartaCopertina;
+    private double grammaturaCopertina;
 
 
     public PubblicazioniRilegateModel() {
@@ -60,19 +62,19 @@ public class PubblicazioniRilegateModel extends BaseModel {
         set("numeroDiPagine", numeroDiPagine);
     }
 
-    public int getTaratura() {
+    public int getTiratura() {
         return (Integer) get("taratura");
     }
 
-    public void setTaratura(int taratura) {
+    public void setTiratura(int taratura) {
         set("taratura", taratura);
     }
 
-    public int getTipoDiCarta() {
-        return (Integer) get("tipoDiCarta");
+    public String getTipoDiCarta() {
+        return (String) get("tipoDiCarta");
     }
 
-    public void setTipoDiCarta(int tipoDiCarta) {
+    public void setTipoDiCarta(String tipoDiCarta) {
         set("tipoDiCarta", tipoDiCarta);
     }
 
@@ -82,6 +84,24 @@ public class PubblicazioniRilegateModel extends BaseModel {
 
     public void setGrammatura(double grammatura) {
         set("grammatura", grammatura);
+    }
+
+
+
+    public String getTipoDiCartaCopertina() {
+    return (String) get("tipoDiCartaCopertina");
+    }
+
+    public void setTipoDiCartaCopertina(String tipoDiCartaCopertina) {
+        set("tipoDiCartaCoprtina", tipoDiCartaCopertina);
+    }
+
+    public double getGrammaturaCopertina() {
+        return (Double) get("grammaturaCopertina");
+    }
+
+    public void setGrammaturaCopertina(double grammaturaCopertina) {
+        set("grammaturaCopertina", grammaturaCopertina);
     }
 
 

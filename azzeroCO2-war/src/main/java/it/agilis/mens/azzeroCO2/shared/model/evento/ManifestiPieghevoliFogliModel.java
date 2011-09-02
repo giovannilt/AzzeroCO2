@@ -13,7 +13,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
 
     private double altezza;
     private double larghezza;
-    private int taratura;
+    private int tiratura;
     private int numeroDiPagine;
     private String tipoDiCarta;
     private double grammatura;
@@ -60,19 +60,19 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
         set("numeroDiPagine", numeroDiPagine);
     }
 
-    public int getTaratura() {
-        return (Integer) get("taratura");
+    public int getTiratura() {
+        return (Integer) get("tiratura");
     }
 
-    public void setTaratura(int taratura) {
-        set("taratura", taratura);
+    public void setTiratura(int tiratura) {
+        set("tiratura", tiratura);
     }
 
-    public int getTipoDiCarta() {
-        return (Integer) get("tipoDiCarta");
+    public String getTipoDiCarta() {
+        return (String) get("tipoDiCarta");
     }
 
-    public void setTipoDiCarta(int tipoDiCarta) {
+    public void setTipoDiCarta(String  tipoDiCarta) {
         set("tipoDiCarta", tipoDiCarta);
     }
 

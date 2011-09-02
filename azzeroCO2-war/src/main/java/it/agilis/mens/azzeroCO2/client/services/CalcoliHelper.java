@@ -5,10 +5,7 @@ import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.shared.model.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -208,6 +205,169 @@ public class CalcoliHelper {
 
         return _return;
     }
+
+
+
+
+
+
+
+
+    private static List<RiepilogoModel> getPubblRil(List<PubblicazioniRilegateModel> pubblRilModel) {
+        List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
+
+
+        for (PubblicazioniRilegateModel prm : pubblRilModel) {
+            RiepilogoModel _rm = new RiepilogoModel();
+
+
+            _rm.setOggetto("Pubblicazioni rilegate / " +prm.getCategoria());
+
+            String formato;
+            String materiale;
+            String pagine;
+            String tiratura;
+            String copertina;
+
+            String pubblRilDett;
+
+
+            formato="Dimensioni " +  prm.getLarghezza() + "x"+prm.getAltezza()+"\n";
+            materiale=prm.getTipoDiCarta()+" "+prm.getGrammatura()+" gr";
+            pagine="Numero di pagine: "+prm.getNumeroDiPagine();
+            tiratura= "Tiratura "+prm.getTiratura();
+
+            pubblRilDett=formato+"\n"+materiale+"\n"+pagine+"\n"+tiratura;
+
+
+
+
+            _rm.setDettagli(pubblRilDett);
+
+
+
+
+            CoefficienteModel coefficienteModelPUBRIS = coefficienti.get("PUBRIS");
+            CoefficienteModel coefficienteModelPUBRIC= coefficienti.get("PUBRIC");
+            CoefficienteModel coefficienteModelPUBNOP = coefficienti.get("PUBNOP");
+            CoefficienteModel coefficienteModelPUBPAT = coefficienti.get("PUBPAT");
+            CoefficienteModel coefficienteModelPUBGIO = coefficienti.get("PUBGIO");
+            CoefficienteModel coefficienteModelPUBRIV = coefficienti.get("PUBRIV");
+            Double coeffCarta;
+            Double coeffCartaCop;
+
+
+            if (prm.getTipoDiCarta().toLowerCase().equals( "carta riciclata sbiancata")) { coeffCarta=coefficienteModelPUBRIS.getValore();}
+            else if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata")) { coeffCarta=coefficienteModelPUBRIC.getValore();}
+            else if (prm.getTipoDiCarta().toLowerCase().equals("carta non patinata")) {coeffCarta=coefficienteModelPUBNOP.getValore();}
+            else if (prm.getTipoDiCarta().toLowerCase().equals("carta patinata")) {coeffCarta=coefficienteModelPUBPAT.getValore();}
+            else if (prm.getTipoDiCarta().toLowerCase().equals( "carta giornale")) { coeffCarta=coefficienteModelPUBGIO.getValore();}
+            else if (prm.getTipoDiCarta().toLowerCase().equals("carta rivista")) {coeffCarta=coefficienteModelPUBRIV.getValore();}
+            else {coeffCarta=0.0;}
+
+
+
+
+            if (prm.getTipoDiCartaCopertina().toLowerCase().equals( "carta riciclata sbiancata")) { coeffCartaCop=coefficienteModelPUBRIS.getValore();}
+            else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta riciclata")) { coeffCartaCop=coefficienteModelPUBRIC.getValore();}
+            else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta non patinata")) {coeffCartaCop=coefficienteModelPUBNOP.getValore();}
+            else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta patinata")) {coeffCartaCop=coefficienteModelPUBPAT.getValore();}
+            else if (prm.getTipoDiCartaCopertina().toLowerCase().equals( "carta giornale")) { coeffCartaCop=coefficienteModelPUBGIO.getValore();}
+            else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta rivista")) {coeffCartaCop=coefficienteModelPUBRIV.getValore();}
+            else {coeffCartaCop=0.0;}
+
+
+
+
+            Double co2 = prm.getAltezza()/100 * prm.getLarghezza()/100* prm.getNumeroDiPagine()*prm.getTiratura()*prm.getGrammatura()  *coeffCarta;
+
+            co2 += prm.getAltezza()/100*prm.getLarghezza()/100*2*prm.getTiratura()*prm.getGrammaturaCopertina()*coeffCartaCop;
+
+            _rm.setKgCO2(co2);
+
+            if (co2>0) {_return.add(_rm);} else{return  null;}
+        }
+        return _return;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    private static List<RiepilogoModel> getPubblNonRil(List<ManifestiPieghevoliFogliModel> pubblNonRilModel) {
+        List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
+
+
+        for (ManifestiPieghevoliFogliModel prm : pubblNonRilModel) {
+            RiepilogoModel _rm = new RiepilogoModel();
+
+
+            _rm.setOggetto("Manifesti, pieghevoli, fogli / " +prm.getCategoria());
+
+            String formato;
+            String materiale;
+            String pagine;
+            String tiratura;
+
+
+            String pubblNonRilDett;
+
+
+            formato="Dimensioni " +  prm.getLarghezza() + "x"+prm.getAltezza()+"\n";
+            materiale=prm.getTipoDiCarta()+" "+prm.getGrammatura()+" gr";
+            pagine="Numero di pagine: "+prm.getNumeroDiPagine();
+            tiratura= "Tiratura "+prm.getTiratura();
+
+            pubblNonRilDett=formato+"\n"+materiale+"\n"+pagine+"\n"+tiratura;
+
+
+
+
+            _rm.setDettagli(pubblNonRilDett);
+
+
+
+
+            CoefficienteModel coefficienteModelPUBRIS = coefficienti.get("PUBRIS");
+            CoefficienteModel coefficienteModelPUBRIC= coefficienti.get("PUBRIC");
+            CoefficienteModel coefficienteModelPUBNOP = coefficienti.get("PUBNOP");
+            CoefficienteModel coefficienteModelPUBPAT = coefficienti.get("PUBPAT");
+            CoefficienteModel coefficienteModelPUBGIO = coefficienti.get("PUBGIO");
+            CoefficienteModel coefficienteModelPUBRIV = coefficienti.get("PUBRIV");
+            Double coeffCarta;
+
+
+            if (prm.getTipoDiCarta().toLowerCase().equals( "carta riciclata sbiancata")) { coeffCarta=coefficienteModelPUBRIS.getValore();}
+            else if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata")) { coeffCarta=coefficienteModelPUBRIC.getValore();}
+            else if (prm.getTipoDiCarta().toLowerCase().equals("carta non patinata")) {coeffCarta=coefficienteModelPUBNOP.getValore();}
+            else if (prm.getTipoDiCarta().toLowerCase().equals("carta patinata")) {coeffCarta=coefficienteModelPUBPAT.getValore();}
+            else if (prm.getTipoDiCarta().toLowerCase().equals( "carta giornale")) { coeffCarta=coefficienteModelPUBGIO.getValore();}
+            else if (prm.getTipoDiCarta().toLowerCase().equals("carta rivista")) {coeffCarta=coefficienteModelPUBRIV.getValore();}
+            else {coeffCarta=0.0;}
+
+
+            Double co2 = prm.getAltezza()/100 * prm.getLarghezza()/100* prm.getNumeroDiPagine()*prm.getTiratura()*prm.getGrammatura()  *coeffCarta;
+
+
+            _rm.setKgCO2(co2);
+
+            if (co2>0) {_return.add(_rm);} else{return  null;}
+        }
+        return _return;
+    }
+
+
+
+
+
+
 
     private static void getCoefficienti() {
         AsyncCallback<Map<String, CoefficienteModel>> aCallback = new AsyncCallback<Map<String, CoefficienteModel>>() {
