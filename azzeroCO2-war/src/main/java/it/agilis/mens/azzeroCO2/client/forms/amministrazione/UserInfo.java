@@ -1,39 +1,20 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
-import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
-import com.extjs.gxt.ui.client.data.*;
-import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.KeyListener;
-import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
-import com.extjs.gxt.ui.client.store.Record;
-import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.form.*;
-import com.extjs.gxt.ui.client.widget.grid.*;
+import com.extjs.gxt.ui.client.widget.form.FormPanel;
+import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.extjs.gxt.ui.client.widget.layout.FormLayout;
-import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
-import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
-import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -44,11 +25,10 @@ import java.util.List;
  */
 
 
-
-public class UserInfo extends LayoutContainer{
+public class UserInfo extends LayoutContainer {
     private FormBinding binding;
 
-protected TextField<String> userName;
+    protected TextField<String> userName;
     protected TextField<String> password;
     protected TextField<String> repassword;
     protected TextField<String> nome;
@@ -66,20 +46,11 @@ protected TextField<String> userName;
     protected TextField<String> partitaIvaCF;
 
 
-
-
     private ListStore<UserInfoModel> store = new ListStore<UserInfoModel>();
 
     public UserInfo(ListStore<UserInfoModel> store) {
-        this.store=store;
+        this.store = store;
     }
-
-
-
-
-
-
-
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -88,26 +59,23 @@ protected TextField<String> userName;
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-        ContentPanel centre = createCentre(store);
+
+        ContentPanel centre = createForm(store);
         centre.setHeading("CouponModel");
-        //  centre.setHeight(650);
+        centre.setHeight(637);
+        centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
         add(centre, centerData);
 
-
     }
 
-
-
-
-       private FormPanel createForm() {
+    private FormPanel createForm(ListStore<UserInfoModel> store) {
         FormPanel formPanel = new FormPanel();
         formPanel.setHeaderVisible(false);
 
         formPanel.setButtonAlign(Style.HorizontalAlignment.LEFT);
-
 
         KeyListener keyListener = new KeyListener() {
             public void componentKeyUp(ComponentEvent event) {
@@ -271,7 +239,6 @@ protected TextField<String> userName;
         formPanel.add(reemail);
 
 
-
         return formPanel;
     }
 
@@ -301,113 +268,6 @@ protected TextField<String> userName;
 
 
     }
-
-
-
-
-    private ContentPanel createCentre( final ListStore<UserInfoModel> store ) {
-        ContentPanel centre = new ContentPanel();
-
-
-        // add paging support for a local collection of models
-        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(UserInfoModel.class);
-
-        // loader
-        PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
-        loader.setRemoteSort(true);
-
-        //ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel>(loader);
-
-        final PagingToolBar toolBar = new PagingToolBar(10);
-        toolBar.bind(loader);
-
-        loader.load(0, 10);
-
-
-        final NumberFormat number = NumberFormat.getFormat("0.00");
-
-        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
-
-        ColumnConfig column = new ColumnConfig("username", "Username", 100);
-        TextField<String> textUsername = new TextField<String>();
-        column.setEditor(new CellEditor(textUsername));
-        configs.add(column);
-
-        column = new ColumnConfig("password", "Password", 200);
-        TextField<String> textPass = new TextField<String>();
-        column.setEditor(new CellEditor(textPass));
-        configs.add(column);
-
-
-
-
-
-
-
-        //final RowEditor<UserInfoModel> re = new RowEditor<UserInfoModel>();
-        //re.getMessages().setSaveText("Salva");
-        //re.getMessages().setCancelText("Annulla");
-
-
-        FormPanel formPanel = createForm();
-        binding = new FormBinding(formPanel, true);
-        //TODO binding.bind(store);
-
-        FormLayout layout = new FormLayout();
-        layout.setLabelWidth(150);
-        layout.setDefaultWidth(155);
-        setLayout(layout);
-
-        setWidth(400);
-
-        add(formPanel);
-
-
-
-
-
-
-
-
-
-
-
-
-        //Button saveButton = new Button("Modifica profilo");
-    /*    saveButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
-            @Override
-            public void componentSelected(ButtonEvent ce) {
-                List<UserInfoModel> coupons = new ArrayList<UserInfoModel>();
-                for (Record r : store.getModifiedRecords()) {
-                    coupons.add((UserInfoModel) r.getModel());
-                }
-                HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
-
-                AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
-                    public void onFailure(Throwable caught) {
-                    }
-
-                    @Override
-                    public void onSuccess(Boolean result) {
-                          Info.display("Info", "Coupons Salvati");
-                    }
-                };
-                //hustonService.getUserInfo();
-            }
-        }
-
-      */
-    //);
-
-
-        //centre.setButtonAlign(Style.HorizontalAlignment.CENTER);
-        //grid.getAriaSupport().setDescribedBy(toolBar.getId() + "-display");
-
-        return centre;
-
-    }
-
-
 
 
 

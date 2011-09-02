@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.register;
 
+import it.agilis.mens.azzeroCO2.core.criteria.OrdineCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface IAzzeroCO2Register {
 
     void saveUserInfo(UserInfo userInfo) throws Exception;
 
-    List<Ordine> getOrdini() throws Exception;
+    List<Ordine> getOrdini(OrdineCriteria ordineCriteria) throws Exception;
 
     List<Coupon> getListOfCoupon() throws Exception;
 

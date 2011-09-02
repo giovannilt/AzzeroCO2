@@ -3,7 +3,7 @@ package it.agilis.mens.azzeroCO2.client.services;
 import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.shared.model.CoefficienteModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 
@@ -38,7 +38,6 @@ public class CalcoliHelper {
         }
 
 
-
         model = getNotti(eventoModel.getNottiModel());
         if (model == null) {
             return null;
@@ -48,17 +47,9 @@ public class CalcoliHelper {
         store.addAll(getTrasportoPersone(eventoModel.getTrasportoPersoneModel()));
 
 
-
-
-
-
-
         return store;
 
     }
-
-
-
 
 
     private static RiepilogoModel getEnergia(EnergiaModel energiaModel) {
@@ -68,18 +59,30 @@ public class CalcoliHelper {
         String energia1;
         String energia2;
         String energia3;
-        if(energiaModel.getEnergiaElettrica()>0) { energia1="Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h"+"\n";} else { energia1="";}
-        if(energiaModel.getEnergiaElettrica()>0) { energia2="Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h"+"\n";} else { energia2="";}
-        if(energiaModel.getEnergiaElettrica()>0) { energia3="Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h"+"\n";} else { energia3="";}
+        if (energiaModel.getEnergiaElettrica() > 0) {
+            energia1 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h" + "\n";
+        } else {
+            energia1 = "";
+        }
+        if (energiaModel.getEnergiaElettrica() > 0) {
+            energia2 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h" + "\n";
+        } else {
+            energia2 = "";
+        }
+        if (energiaModel.getEnergiaElettrica() > 0) {
+            energia3 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h" + "\n";
+        } else {
+            energia3 = "";
+        }
 
 
-        String energiaDett = energia1+energia2+energia3;
+        String energiaDett = energia1 + energia2 + energia3;
         //        +"Gas" + " " + energiaModel.getGasMetano() + " m3" +
         //        "Gasolio" + " " + energiaModel.getGasolio() + " lt";
         //energia.setDettagli(energiaDett);
 
         CoefficienteModel coefficienteModelEnergia = coefficienti.get("energiaElettrica");
-        CoefficienteModel coefficientiEnergiaGAS= coefficienti.get("energiaGas");
+        CoefficienteModel coefficientiEnergiaGAS =   coefficienti.get("energiaGas");
         CoefficienteModel coefficienteModelGasolio = coefficienti.get("energiaGasolio");
 
         Double co2 = energiaModel.getEnergiaElettrica() * coefficienteModelEnergia.getValore();
@@ -113,8 +116,6 @@ public class CalcoliHelper {
     }
 
 
-
-
     private static List<RiepilogoModel> getTrasportoPersone(List<TrasportoPersoneModel> trasportoPersoneModels) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
 
@@ -123,7 +124,7 @@ public class CalcoliHelper {
             RiepilogoModel _rm = new RiepilogoModel();
 
 
-            _rm.setOggetto("Trasporto Persone / " +tpm.getCategoria());
+            _rm.setOggetto("Trasporto Persone / " + tpm.getCategoria());
             String tp50Bus;
             String tp50Auto;
             String tp50Treno;
@@ -146,71 +147,143 @@ public class CalcoliHelper {
             String tp500Aereo;
             String tp500;
 
-            if(tpm.getBusPiu50()>0) { tp50Bus="Bus " +  tpm.getBusPiu50() + " tratte"+"\n";} else { tp50Bus="";}
-            if(tpm.getAutoPiu50()>0) { tp50Auto="Auto " +  tpm.getAutoPiu50() + " tratte"+"\n";} else { tp50Auto="";}
-            if(tpm.getTrenoPiu50()>0) { tp50Treno="Treno " +  tpm.getTrenoPiu50() + " tratte"+"\n";} else { tp50Treno="";}
-            if(tpm.getBusPiu50()+tpm.getAutoPiu50()+tpm.getTrenoPiu50()>0) {tp50="Distanza 50 km:"+"\n"+tp50Bus+tp50Auto+tp50Treno;;} else{tp50="";}
+            if (tpm.getBusPiu50() > 0) {
+                tp50Bus = "Bus " + tpm.getBusPiu50() + " tratte" + "\n";
+            } else {
+                tp50Bus = "";
+            }
+            if (tpm.getAutoPiu50() > 0) {
+                tp50Auto = "Auto " + tpm.getAutoPiu50() + " tratte" + "\n";
+            } else {
+                tp50Auto = "";
+            }
+            if (tpm.getTrenoPiu50() > 0) {
+                tp50Treno = "Treno " + tpm.getTrenoPiu50() + " tratte" + "\n";
+            } else {
+                tp50Treno = "";
+            }
+            if (tpm.getBusPiu50() + tpm.getAutoPiu50() + tpm.getTrenoPiu50() > 0) {
+                tp50 = "Distanza 50 km:" + "\n" + tp50Bus + tp50Auto + tp50Treno;
+                ;
+            } else {
+                tp50 = "";
+            }
 
-            if(tpm.getBusPiu100()>0) { tp100Bus="Bus " +  tpm.getBusPiu100() + " tratte"+"\n";} else { tp100Bus="";}
-            if(tpm.getAutoPiu100()>0) { tp100Auto="Auto " +  tpm.getAutoPiu100() + " tratte"+"\n";} else { tp100Auto="";}
-            if(tpm.getTrenoPiu100()>0) { tp100Treno="Treno " +  tpm.getTrenoPiu100() + " tratte"+"\n";} else { tp100Treno="";}
-            if(tpm.getBusPiu100()+tpm.getAutoPiu100()+tpm.getTrenoPiu100()>0) {tp100="Distanza 100 km:"+"\n"+tp100Bus+tp100Auto+tp100Treno;;} else{tp100="";}
+            if (tpm.getBusPiu100() > 0) {
+                tp100Bus = "Bus " + tpm.getBusPiu100() + " tratte" + "\n";
+            } else {
+                tp100Bus = "";
+            }
+            if (tpm.getAutoPiu100() > 0) {
+                tp100Auto = "Auto " + tpm.getAutoPiu100() + " tratte" + "\n";
+            } else {
+                tp100Auto = "";
+            }
+            if (tpm.getTrenoPiu100() > 0) {
+                tp100Treno = "Treno " + tpm.getTrenoPiu100() + " tratte" + "\n";
+            } else {
+                tp100Treno = "";
+            }
+            if (tpm.getBusPiu100() + tpm.getAutoPiu100() + tpm.getTrenoPiu100() > 0) {
+                tp100 = "Distanza 100 km:" + "\n" + tp100Bus + tp100Auto + tp100Treno;
+                ;
+            } else {
+                tp100 = "";
+            }
 
-            if(tpm.getBusPiu250()>0) { tp250Bus="Bus " +  tpm.getBusPiu250() + " tratte"+"\n";} else { tp250Bus="";}
-            if(tpm.getAutoPiu250()>0) { tp250Auto="Auto " +  tpm.getAutoPiu250() + " tratte"+"\n";} else { tp250Auto="";}
-            if(tpm.getTrenoPiu250()>0) { tp250Treno="Treno " +  tpm.getTrenoPiu250() + " tratte"+"\n";} else { tp250Treno="";}
-            if(tpm.getAereoPiu250()>0) { tp250Aereo="Aereo " +  tpm.getAereoPiu250() + " tratte"+"\n";} else { tp250Aereo="";}
-            if(tpm.getBusPiu250()+tpm.getAutoPiu250()+tpm.getTrenoPiu250()+tpm.getAereoPiu250()>0) {tp250="Distanza 250 km:"+"\n"+tp250Bus+tp250Auto+tp250Treno+tp250Aereo;;} else{tp250="";}
+            if (tpm.getBusPiu250() > 0) {
+                tp250Bus = "Bus " + tpm.getBusPiu250() + " tratte" + "\n";
+            } else {
+                tp250Bus = "";
+            }
+            if (tpm.getAutoPiu250() > 0) {
+                tp250Auto = "Auto " + tpm.getAutoPiu250() + " tratte" + "\n";
+            } else {
+                tp250Auto = "";
+            }
+            if (tpm.getTrenoPiu250() > 0) {
+                tp250Treno = "Treno " + tpm.getTrenoPiu250() + " tratte" + "\n";
+            } else {
+                tp250Treno = "";
+            }
+            if (tpm.getAereoPiu250() > 0) {
+                tp250Aereo = "Aereo " + tpm.getAereoPiu250() + " tratte" + "\n";
+            } else {
+                tp250Aereo = "";
+            }
+            if (tpm.getBusPiu250() + tpm.getAutoPiu250() + tpm.getTrenoPiu250() + tpm.getAereoPiu250() > 0) {
+                tp250 = "Distanza 250 km:" + "\n" + tp250Bus + tp250Auto + tp250Treno + tp250Aereo;
+                ;
+            } else {
+                tp250 = "";
+            }
 
-            if(tpm.getBusPiu500()>0) { tp500Bus="Bus " +  tpm.getBusPiu500() + " tratte"+"\n";} else { tp500Bus="";}
-            if(tpm.getAutoPiu500()>0) { tp500Auto="Auto " +  tpm.getAutoPiu500() + " tratte"+"\n";} else { tp500Auto="";}
-            if(tpm.getTrenoPiu500()>0) { tp500Treno="Treno " +  tpm.getTrenoPiu500() + " tratte"+"\n";} else { tp500Treno="";}
-            if(tpm.getAereoPiu500()>0) { tp500Aereo="Aereo " +  tpm.getAereoPiu500() + " tratte"+"\n";} else { tp500Aereo="";}
-            if(tpm.getBusPiu500()+tpm.getAutoPiu500()+tpm.getTrenoPiu500()+tpm.getAereoPiu500()>0) {tp500="Distanza 500 km:"+"\n"+tp500Bus+tp500Auto+tp500Treno+tp500Aereo;;} else{tp500="";}
+            if (tpm.getBusPiu500() > 0) {
+                tp500Bus = "Bus " + tpm.getBusPiu500() + " tratte" + "\n";
+            } else {
+                tp500Bus = "";
+            }
+            if (tpm.getAutoPiu500() > 0) {
+                tp500Auto = "Auto " + tpm.getAutoPiu500() + " tratte" + "\n";
+            } else {
+                tp500Auto = "";
+            }
+            if (tpm.getTrenoPiu500() > 0) {
+                tp500Treno = "Treno " + tpm.getTrenoPiu500() + " tratte" + "\n";
+            } else {
+                tp500Treno = "";
+            }
+            if (tpm.getAereoPiu500() > 0) {
+                tp500Aereo = "Aereo " + tpm.getAereoPiu500() + " tratte" + "\n";
+            } else {
+                tp500Aereo = "";
+            }
+            if (tpm.getBusPiu500() + tpm.getAutoPiu500() + tpm.getTrenoPiu500() + tpm.getAereoPiu500() > 0) {
+                tp500 = "Distanza 500 km:" + "\n" + tp500Bus + tp500Auto + tp500Treno + tp500Aereo;
+                ;
+            } else {
+                tp500 = "";
+            }
 
 
-            _rm.setDettagli(tp50+tp100+tp250+tp500);
-
-
+            _rm.setDettagli(tp50 + tp100 + tp250 + tp500);
 
 
             CoefficienteModel coefficienteModelTPBUS = coefficienti.get("tpbus");
-            CoefficienteModel coefficienteModelTPAUTO= coefficienti.get("tpauto");
+            CoefficienteModel coefficienteModelTPAUTO = coefficienti.get("tpauto");
             CoefficienteModel coefficienteModelTPTRENO = coefficienti.get("tptreno");
             CoefficienteModel coefficienteModelTPAEREO = coefficienti.get("tpaereo");
 
-            Double co2 = tpm.getBusPiu50() * coefficienteModelTPBUS.getValore()*50;
-            co2 += tpm.getBusPiu100() * coefficienteModelTPBUS.getValore()*100;
-            co2 += tpm.getBusPiu250() * coefficienteModelTPBUS.getValore()*250;
-            co2 += tpm.getBusPiu500() * coefficienteModelTPBUS.getValore()*500;
+            Double co2 = tpm.getBusPiu50() * coefficienteModelTPBUS.getValore() * 50;
+            co2 += tpm.getBusPiu100() * coefficienteModelTPBUS.getValore() * 100;
+            co2 += tpm.getBusPiu250() * coefficienteModelTPBUS.getValore() * 250;
+            co2 += tpm.getBusPiu500() * coefficienteModelTPBUS.getValore() * 500;
 
-            co2 += tpm.getAutoPiu50() * coefficienteModelTPAUTO.getValore()*50;
-            co2 += tpm.getAutoPiu100() * coefficienteModelTPAUTO.getValore()*100;
-            co2 += tpm.getAutoPiu250() * coefficienteModelTPAUTO.getValore()*250;
-            co2 += tpm.getAutoPiu500() * coefficienteModelTPAUTO.getValore()*500;
+            co2 += tpm.getAutoPiu50() * coefficienteModelTPAUTO.getValore() * 50;
+            co2 += tpm.getAutoPiu100() * coefficienteModelTPAUTO.getValore() * 100;
+            co2 += tpm.getAutoPiu250() * coefficienteModelTPAUTO.getValore() * 250;
+            co2 += tpm.getAutoPiu500() * coefficienteModelTPAUTO.getValore() * 500;
 
-            co2 += tpm.getTrenoPiu50() * coefficienteModelTPTRENO.getValore()*50;
-            co2 += tpm.getTrenoPiu100() * coefficienteModelTPTRENO.getValore()*100;
-            co2 += tpm.getTrenoPiu250() * coefficienteModelTPTRENO.getValore()*250;
-            co2 += tpm.getTrenoPiu500() * coefficienteModelTPTRENO.getValore()*500;
+            co2 += tpm.getTrenoPiu50() * coefficienteModelTPTRENO.getValore() * 50;
+            co2 += tpm.getTrenoPiu100() * coefficienteModelTPTRENO.getValore() * 100;
+            co2 += tpm.getTrenoPiu250() * coefficienteModelTPTRENO.getValore() * 250;
+            co2 += tpm.getTrenoPiu500() * coefficienteModelTPTRENO.getValore() * 500;
 
-            co2 += tpm.getAereoPiu250() * coefficienteModelTPAEREO.getValore()*250;
-            co2 += tpm.getAereoPiu500() * coefficienteModelTPAEREO.getValore()*500;
+            co2 += tpm.getAereoPiu250() * coefficienteModelTPAEREO.getValore() * 250;
+            co2 += tpm.getAereoPiu500() * coefficienteModelTPAEREO.getValore() * 500;
 
 
             _rm.setKgCO2(co2);
 
-            if (co2>0) {_return.add(_rm);} else{return  null;}
+            if (co2 > 0) {
+                _return.add(_rm);
+            } else {
+                return null;
+            }
         }
 
         return _return;
     }
-
-
-
-
-
-
 
 
     private static List<RiepilogoModel> getPubblRil(List<PubblicazioniRilegateModel> pubblRilModel) {
@@ -221,7 +294,7 @@ public class CalcoliHelper {
             RiepilogoModel _rm = new RiepilogoModel();
 
 
-            _rm.setOggetto("Pubblicazioni rilegate / " +prm.getCategoria());
+            _rm.setOggetto("Pubblicazioni rilegate / " + prm.getCategoria());
 
             String formato;
             String materiale;
@@ -232,23 +305,19 @@ public class CalcoliHelper {
             String pubblRilDett;
 
 
-            formato="Dimensioni " +  prm.getLarghezza() + "x"+prm.getAltezza()+"\n";
-            materiale=prm.getTipoDiCarta()+" "+prm.getGrammatura()+" gr";
-            pagine="Numero di pagine: "+prm.getNumeroDiPagine();
-            tiratura= "Tiratura "+prm.getTiratura();
+            formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "\n";
+            materiale = prm.getTipoDiCarta() + " " + prm.getGrammatura() + " gr";
+            pagine = "Numero di pagine: " + prm.getNumeroDiPagine();
+            tiratura = "Tiratura " + prm.getTiratura();
 
-            pubblRilDett=formato+"\n"+materiale+"\n"+pagine+"\n"+tiratura;
-
-
+            pubblRilDett = formato + "\n" + materiale + "\n" + pagine + "\n" + tiratura;
 
 
             _rm.setDettagli(pubblRilDett);
 
 
-
-
             CoefficienteModel coefficienteModelPUBRIS = coefficienti.get("PUBRIS");
-            CoefficienteModel coefficienteModelPUBRIC= coefficienti.get("PUBRIC");
+            CoefficienteModel coefficienteModelPUBRIC = coefficienti.get("PUBRIC");
             CoefficienteModel coefficienteModelPUBNOP = coefficienti.get("PUBNOP");
             CoefficienteModel coefficienteModelPUBPAT = coefficienti.get("PUBPAT");
             CoefficienteModel coefficienteModelPUBGIO = coefficienti.get("PUBGIO");
@@ -257,48 +326,54 @@ public class CalcoliHelper {
             Double coeffCartaCop;
 
 
-            if (prm.getTipoDiCarta().toLowerCase().equals( "carta riciclata sbiancata")) { coeffCarta=coefficienteModelPUBRIS.getValore();}
-            else if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata")) { coeffCarta=coefficienteModelPUBRIC.getValore();}
-            else if (prm.getTipoDiCarta().toLowerCase().equals("carta non patinata")) {coeffCarta=coefficienteModelPUBNOP.getValore();}
-            else if (prm.getTipoDiCarta().toLowerCase().equals("carta patinata")) {coeffCarta=coefficienteModelPUBPAT.getValore();}
-            else if (prm.getTipoDiCarta().toLowerCase().equals( "carta giornale")) { coeffCarta=coefficienteModelPUBGIO.getValore();}
-            else if (prm.getTipoDiCarta().toLowerCase().equals("carta rivista")) {coeffCarta=coefficienteModelPUBRIV.getValore();}
-            else {coeffCarta=0.0;}
+            if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata sbiancata")) {
+                coeffCarta = coefficienteModelPUBRIS.getValore();
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata")) {
+                coeffCarta = coefficienteModelPUBRIC.getValore();
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta non patinata")) {
+                coeffCarta = coefficienteModelPUBNOP.getValore();
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta patinata")) {
+                coeffCarta = coefficienteModelPUBPAT.getValore();
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta giornale")) {
+                coeffCarta = coefficienteModelPUBGIO.getValore();
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta rivista")) {
+                coeffCarta = coefficienteModelPUBRIV.getValore();
+            } else {
+                coeffCarta = 0.0;
+            }
 
 
+            if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta riciclata sbiancata")) {
+                coeffCartaCop = coefficienteModelPUBRIS.getValore();
+            } else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta riciclata")) {
+                coeffCartaCop = coefficienteModelPUBRIC.getValore();
+            } else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta non patinata")) {
+                coeffCartaCop = coefficienteModelPUBNOP.getValore();
+            } else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta patinata")) {
+                coeffCartaCop = coefficienteModelPUBPAT.getValore();
+            } else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta giornale")) {
+                coeffCartaCop = coefficienteModelPUBGIO.getValore();
+            } else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta rivista")) {
+                coeffCartaCop = coefficienteModelPUBRIV.getValore();
+            } else {
+                coeffCartaCop = 0.0;
+            }
 
 
-            if (prm.getTipoDiCartaCopertina().toLowerCase().equals( "carta riciclata sbiancata")) { coeffCartaCop=coefficienteModelPUBRIS.getValore();}
-            else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta riciclata")) { coeffCartaCop=coefficienteModelPUBRIC.getValore();}
-            else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta non patinata")) {coeffCartaCop=coefficienteModelPUBNOP.getValore();}
-            else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta patinata")) {coeffCartaCop=coefficienteModelPUBPAT.getValore();}
-            else if (prm.getTipoDiCartaCopertina().toLowerCase().equals( "carta giornale")) { coeffCartaCop=coefficienteModelPUBGIO.getValore();}
-            else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta rivista")) {coeffCartaCop=coefficienteModelPUBRIV.getValore();}
-            else {coeffCartaCop=0.0;}
+            Double co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100 * prm.getNumeroDiPagine() * prm.getTiratura() * prm.getGrammatura() * coeffCarta;
 
-
-
-
-            Double co2 = prm.getAltezza()/100 * prm.getLarghezza()/100* prm.getNumeroDiPagine()*prm.getTiratura()*prm.getGrammatura()  *coeffCarta;
-
-            co2 += prm.getAltezza()/100*prm.getLarghezza()/100*2*prm.getTiratura()*prm.getGrammaturaCopertina()*coeffCartaCop;
+            co2 += prm.getAltezza() / 100 * prm.getLarghezza() / 100 * 2 * prm.getTiratura() * prm.getGrammaturaCopertina() * coeffCartaCop;
 
             _rm.setKgCO2(co2);
 
-            if (co2>0) {_return.add(_rm);} else{return  null;}
+            if (co2 > 0) {
+                _return.add(_rm);
+            } else {
+                return null;
+            }
         }
         return _return;
     }
-
-
-
-
-
-
-
-
-
-
 
 
     private static List<RiepilogoModel> getPubblNonRil(List<ManifestiPieghevoliFogliModel> pubblNonRilModel) {
@@ -309,7 +384,7 @@ public class CalcoliHelper {
             RiepilogoModel _rm = new RiepilogoModel();
 
 
-            _rm.setOggetto("Manifesti, pieghevoli, fogli / " +prm.getCategoria());
+            _rm.setOggetto("Manifesti, pieghevoli, fogli / " + prm.getCategoria());
 
             String formato;
             String materiale;
@@ -320,23 +395,19 @@ public class CalcoliHelper {
             String pubblNonRilDett;
 
 
-            formato="Dimensioni " +  prm.getLarghezza() + "x"+prm.getAltezza()+"\n";
-            materiale=prm.getTipoDiCarta()+" "+prm.getGrammatura()+" gr";
-            pagine="Numero di pagine: "+prm.getNumeroDiPagine();
-            tiratura= "Tiratura "+prm.getTiratura();
+            formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "\n";
+            materiale = prm.getTipoDiCarta() + " " + prm.getGrammatura() + " gr";
+            pagine = "Numero di pagine: " + prm.getNumeroDiPagine();
+            tiratura = "Tiratura " + prm.getTiratura();
 
-            pubblNonRilDett=formato+"\n"+materiale+"\n"+pagine+"\n"+tiratura;
-
-
+            pubblNonRilDett = formato + "\n" + materiale + "\n" + pagine + "\n" + tiratura;
 
 
             _rm.setDettagli(pubblNonRilDett);
 
 
-
-
             CoefficienteModel coefficienteModelPUBRIS = coefficienti.get("PUBRIS");
-            CoefficienteModel coefficienteModelPUBRIC= coefficienti.get("PUBRIC");
+            CoefficienteModel coefficienteModelPUBRIC = coefficienti.get("PUBRIC");
             CoefficienteModel coefficienteModelPUBNOP = coefficienti.get("PUBNOP");
             CoefficienteModel coefficienteModelPUBPAT = coefficienti.get("PUBPAT");
             CoefficienteModel coefficienteModelPUBGIO = coefficienti.get("PUBGIO");
@@ -344,29 +415,36 @@ public class CalcoliHelper {
             Double coeffCarta;
 
 
-            if (prm.getTipoDiCarta().toLowerCase().equals( "carta riciclata sbiancata")) { coeffCarta=coefficienteModelPUBRIS.getValore();}
-            else if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata")) { coeffCarta=coefficienteModelPUBRIC.getValore();}
-            else if (prm.getTipoDiCarta().toLowerCase().equals("carta non patinata")) {coeffCarta=coefficienteModelPUBNOP.getValore();}
-            else if (prm.getTipoDiCarta().toLowerCase().equals("carta patinata")) {coeffCarta=coefficienteModelPUBPAT.getValore();}
-            else if (prm.getTipoDiCarta().toLowerCase().equals( "carta giornale")) { coeffCarta=coefficienteModelPUBGIO.getValore();}
-            else if (prm.getTipoDiCarta().toLowerCase().equals("carta rivista")) {coeffCarta=coefficienteModelPUBRIV.getValore();}
-            else {coeffCarta=0.0;}
+            if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata sbiancata")) {
+                coeffCarta = coefficienteModelPUBRIS.getValore();
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata")) {
+                coeffCarta = coefficienteModelPUBRIC.getValore();
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta non patinata")) {
+                coeffCarta = coefficienteModelPUBNOP.getValore();
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta patinata")) {
+                coeffCarta = coefficienteModelPUBPAT.getValore();
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta giornale")) {
+                coeffCarta = coefficienteModelPUBGIO.getValore();
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta rivista")) {
+                coeffCarta = coefficienteModelPUBRIV.getValore();
+            } else {
+                coeffCarta = 0.0;
+            }
 
 
-            Double co2 = prm.getAltezza()/100 * prm.getLarghezza()/100* prm.getNumeroDiPagine()*prm.getTiratura()*prm.getGrammatura()  *coeffCarta;
+            Double co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100 * prm.getNumeroDiPagine() * prm.getTiratura() * prm.getGrammatura() * coeffCarta;
 
 
             _rm.setKgCO2(co2);
 
-            if (co2>0) {_return.add(_rm);} else{return  null;}
+            if (co2 > 0) {
+                _return.add(_rm);
+            } else {
+                return null;
+            }
         }
         return _return;
     }
-
-
-
-
-
 
 
     private static void getCoefficienti() {

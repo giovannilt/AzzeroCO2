@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.register.impl;
 
+import it.agilis.mens.azzeroCO2.core.criteria.OrdineCriteria;
 import it.agilis.mens.azzeroCO2.core.dao.*;
 import it.agilis.mens.azzeroCO2.core.entity.*;
 import it.agilis.mens.azzeroCO2.core.register.IAzzeroCO2Register;
@@ -26,6 +27,16 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     private ITipoDiCartaDAO tipoDiCartaDAO;
     @Autowired
     private ICoefficienteDAO coefficienteDAO;
+    @Autowired
+    private IProgettoCompesnazioneDAO progettoCompensazioneDAO;
+
+    public IProgettoCompesnazioneDAO getProgettoCompensazioneDAO() {
+        return progettoCompensazioneDAO;
+    }
+
+    public void setProgettoCompensazioneDAO(IProgettoCompesnazioneDAO progettoCompensazioneDAO) {
+        this.progettoCompensazioneDAO = progettoCompensazioneDAO;
+    }
 
     public ICoefficienteDAO getCoefficienteDAO() {
         return coefficienteDAO;
@@ -71,8 +82,8 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
 
 
     @Override
-    public List<Ordine> getOrdini()throws Exception {
-        return ordineDAO.getListOfOrdini();
+    public List<Ordine> getOrdini(OrdineCriteria ordineCriteria)throws Exception {
+        return ordineDAO.getListOfOrdini(ordineCriteria);
     }
     @Override
     public List<Coupon> getListOfCoupon() throws Exception{
@@ -109,7 +120,6 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         userInfoDAO.save(userInfo);
     }
 
-
     public UserInfo getUserInfo(String userName) {
         return userInfoDAO.findUserInfo(userName);
     }
@@ -126,5 +136,9 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
 
     public List<Coefficiente> getCoefficienti() {
         return coefficienteDAO.getListOfCoefficienti();
+    }
+
+    public List<ProgettoCompensazione> getListOfProgettoDiCompensazione() {
+        return progettoCompensazioneDAO.getListOfProgettoDiCompensazione();
     }
 }

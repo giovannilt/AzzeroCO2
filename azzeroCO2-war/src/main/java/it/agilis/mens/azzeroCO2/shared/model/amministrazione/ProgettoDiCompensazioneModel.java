@@ -10,13 +10,15 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
  * Time: 6:16 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ProgettiDiCompensazione extends BaseModelData {
+public class ProgettoDiCompensazioneModel extends BaseModelData {
 
-    public ProgettiDiCompensazione() {
+    public ProgettoDiCompensazioneModel() {
 
     }
 
-    public ProgettiDiCompensazione(String type, String name, Double kgCO2, Boolean attivo) {
+    // TODO
+
+    public ProgettoDiCompensazioneModel(String type, String name, Double kgCO2, Boolean attivo) {
         setName(name);
         setType(type);
         setKgCO2(kgCO2);

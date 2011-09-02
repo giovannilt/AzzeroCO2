@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.dao.impl;
 
+import it.agilis.mens.azzeroCO2.core.criteria.OrdineCriteria;
 import it.agilis.mens.azzeroCO2.core.dao.DAOSupport;
 import it.agilis.mens.azzeroCO2.core.dao.IOrdineDAO;
 import it.agilis.mens.azzeroCO2.core.entity.Ordine;
@@ -16,8 +17,9 @@ import java.util.List;
  */
 public class OrdineDAO extends DAOSupport implements IOrdineDAO  {
 
-    public List<Ordine> getListOfOrdini(){
+    public List<Ordine> getListOfOrdini(OrdineCriteria ordineCriteria){
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Ordine.class, "ordine");
+
         return (List<Ordine>) getList(detachedCriteria, true);
 
     }

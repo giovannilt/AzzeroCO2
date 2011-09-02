@@ -17,20 +17,11 @@
         <servlet-name>hustonServlet</servlet-name>
         <servlet-class>it.agilis.mens.azzeroCO2.server.services.HustonServiceImpl</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>OrdineService</servlet-name>
-        <servlet-class>it.agilis.mens.azzeroCO2.server.services.OrdineServiceImpl</servlet-class>
-    </servlet>
 
     <servlet-mapping>
         <servlet-name>hustonServlet</servlet-name>
         <url-pattern>/azzeroCO2/huston</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>OrdineService</servlet-name>
-        <url-pattern>/azzeroCO2/ordine-service</url-pattern>
-    </servlet-mapping>
-
 
     <session-config>
         <session-timeout>120</session-timeout>
@@ -68,15 +59,15 @@
     TODO: FINE CAPIRE A CAZZO SERVE
     -->
     <context-param>
-		<param-name>log4jConfigLocation</param-name>
-		<param-value>/WEB-INF/log4j.xml</param-value>
-	</context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>/WEB-INF/log4j.xml</param-value>
+    </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <listener>
-		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>WEB-INF/applicationContext.xml

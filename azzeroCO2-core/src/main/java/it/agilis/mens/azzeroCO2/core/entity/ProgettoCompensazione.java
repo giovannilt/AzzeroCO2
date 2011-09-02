@@ -29,6 +29,7 @@ public class ProgettoCompensazione {
     private Long  prezzo;
     private String img;
     private Boolean attivo;
+    private double kgCo2;
 
     public Long getId() {
         return id;
@@ -76,5 +77,13 @@ public class ProgettoCompensazione {
 
     public void setAttivo(Boolean attivo) {
         this.attivo = attivo;
+    }
+
+    public double getKgCo2() {
+        return kgCo2;
+    }
+
+    public void setKgCo2(double kgCo2) {
+        this.kgCo2 = kgCo2;
     }
 }

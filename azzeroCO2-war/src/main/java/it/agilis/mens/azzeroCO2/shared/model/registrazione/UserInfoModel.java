@@ -140,6 +140,13 @@ public class UserInfoModel extends BaseModel {
         set("partitaIvaCF", partitaIvaCF);
     }
 
+    public String getProfilo() {
+         return (String) get("profilo");
+    }
+
+    public void setProfilo(String profilo) {
+        set("profilo", profilo);
+    }
 
     public void setId(Long id) {
           set("id", id);
