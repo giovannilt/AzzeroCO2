@@ -6,9 +6,9 @@ import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
-import it.agilis.mens.azzeroCO2.shared.model.CoefficienteModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
-//import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+//import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -68,6 +70,16 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
+    public List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione() throws IllegalArgumentException {
+         try {
+            return Utils.getListOfProgettoDiCompensazione(azzeroCO2Register.getListOfProgettoDiCompensazione());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public Boolean saveCoupons(List<CouponModel> modifiedRecords) throws IllegalArgumentException {
         try {
             List<Coupon> coupons = new ArrayList<Coupon>();
@@ -75,6 +87,17 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
                 coupons.add(Utils.getCoupon(r));
             }
             azzeroCO2Register.saveCoupons(coupons);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean saveCoefficienti(List<CoefficienteModel> coefficienteModels) {
+        try {
+            azzeroCO2Register.saveCoefficienti(Utils.getCoefficienti(coefficienteModels));
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -147,11 +170,13 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
     @Override
     public Map<String, CoefficienteModel> getCoefficienti() {
-       try {
-            return Utils.getCoefficienti(azzeroCO2Register.getCoefficienti());
+        try {
+            return Utils.getCoefficientiModel(azzeroCO2Register.getCoefficienti());
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
+
 }

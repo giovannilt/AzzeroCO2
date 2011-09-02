@@ -38,10 +38,6 @@ public class Coupon extends LayoutContainer {
 
     private ListStore<CouponModel> store = new ListStore<CouponModel>();
 
-    public Coupon(ListStore<CouponModel> store) {
-        this.store = store;
-    }
-
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
@@ -51,7 +47,8 @@ public class Coupon extends LayoutContainer {
 
         ContentPanel centre = createCentre(store);
         centre.setHeading("CouponModel");
-        //  centre.setHeight(650);
+           centre.setHeight(637);
+        centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -63,8 +60,6 @@ public class Coupon extends LayoutContainer {
     private ContentPanel createCentre(final ListStore<CouponModel> store) {
         ContentPanel centre = new ContentPanel();
 
-
-        // add paging support for a local collection of models
         PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
 
         // loader
@@ -188,7 +183,6 @@ public class Coupon extends LayoutContainer {
             }
         });
 
-
         centre.setButtonAlign(Style.HorizontalAlignment.CENTER);
         grid.getAriaSupport().setDescribedBy(toolBar.getId() + "-display");
         centre.setBottomComponent(toolBar);
@@ -200,6 +194,11 @@ public class Coupon extends LayoutContainer {
 
     }
 
+
+    public void setCouponInStore(List<CouponModel> couponModels){
+        store.removeAll();
+        store.add(couponModels);
+    }
     public void clear() {
     }
 }

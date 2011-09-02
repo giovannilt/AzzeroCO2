@@ -12,12 +12,10 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.services.OrdineService;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,8 +27,6 @@ import java.util.List;
  */
 public class Ordini extends LayoutContainer {
 
-    private OrdineService ordine;
-
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
@@ -38,6 +34,8 @@ public class Ordini extends LayoutContainer {
         setLayout(new BorderLayout());
         ContentPanel centre = createCentre();
         centre.setHeading("Ordini");
+        centre.setFrame(true);
+        centre.setHeight(637);
         centre.setFrame(true);
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -50,17 +48,6 @@ public class Ordini extends LayoutContainer {
 
         final ListStore<OrdineModel> store = new ListStore<OrdineModel>();
 
-        //  store.add(ordini);
-        {  //TODO
-            store.add(new OrdineModel(new Date(), "Mario Rossi", "Foresta amazzonica", 10.0, 100.0));
-            store.add(new OrdineModel(new Date(), "Giulio Cesare", "Eolico in Calabria", 10.0, 30.0));
-            store.add(new OrdineModel(new Date(), "Pippo Baudo", "Macchia mediterranea", 10.0, 45.0));
-            store.add(new OrdineModel(new Date(), "Bart Simpson", "Alberi nel deserto", 1.4, 130.0));
-            store.add(new OrdineModel(new Date(), "Johnny Beavo", "Solare a Joppolo", 10.0, 87.0));
-        }
-
-
-// add paging support for a local collection of models
         PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
 
         // loader
@@ -74,8 +61,6 @@ public class Ordini extends LayoutContainer {
 
 
         loader.load(0, 10);
-
-        //add(toolBar);
 
 
         final NumberFormat number = NumberFormat.getFormat("0.00");

@@ -14,6 +14,7 @@ public class AmministrazioneEvents {
     public static final EventType Error = new EventType();
     public static final EventType SaveCoupons = new EventType();
     public static final EventType SaveCoefficienti = new EventType();
-
+    public static final EventType ShowAmministrazione = new EventType();
+    public static final EventType SaveProgrammiDiCompensazione = new EventType();
 
 }

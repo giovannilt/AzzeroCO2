@@ -9,13 +9,15 @@ package it.agilis.mens.azzeroCO2.server.utils;
  */
 
 import it.agilis.mens.azzeroCO2.core.entity.*;
-import it.agilis.mens.azzeroCO2.shared.model.CoefficienteModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +27,7 @@ public class Utils {
     public static List<OrdineModel> getOrdini(List<it.agilis.mens.azzeroCO2.core.entity.Ordine> ordini) {
         List<OrdineModel> ordiniModel = new ArrayList<OrdineModel>();
 
-        // TODO FOR
+        // TODO .....
 
         for (Ordine ordine : ordini) {
             OrdineModel o = new OrdineModel();
@@ -120,7 +122,51 @@ public class Utils {
         return _return;
     }
 
-    public static Map<String, CoefficienteModel> getCoefficienti(List<Coefficiente> coefficienti) {
-        return null;  //To change body of created methods use File | Settings | File Templates.
+    public static Map<String, CoefficienteModel> getCoefficientiModel(List<Coefficiente> coefficienti) {
+        Map<String, CoefficienteModel> _return = new HashMap<String, CoefficienteModel>();
+        for (Coefficiente c : coefficienti) {
+            CoefficienteModel cm = new CoefficienteModel();
+            cm.setCodice(c.getCodice());
+            cm.setId(c.getId());
+            cm.setNome(c.getNome());
+            cm.setNote(c.getNote());
+            cm.setTipologia(c.getTipologia());
+            cm.setUdm(c.getUdm());
+            cm.setValore(c.getValore());
+            _return.put(c.getNome(), cm);
+        }
+        return _return;
+    }
+
+    public static List<Coefficiente> getCoefficienti(List<CoefficienteModel> coefficienti) {
+        List<Coefficiente> _return = new ArrayList<Coefficiente>();
+        for (CoefficienteModel cm : coefficienti) {
+            Coefficiente c = new Coefficiente();
+            c.setCodice(cm.getCodice());
+            c.setId(cm.getId());
+            c.setNome(cm.getNome());
+            c.setNote(cm.getNote());
+            c.setTipologia(cm.getTipologia());
+            c.setUdm(cm.getUdm());
+            c.setValore(cm.getValore());
+
+            _return.add(c);
+        }
+        return _return;
+    }
+
+
+    public static List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione(List<ProgettoCompensazione> listOfProgettoDiCompensazione) {
+        List<ProgettoDiCompensazioneModel> _return = new ArrayList<ProgettoDiCompensazioneModel>();
+        for(ProgettoCompensazione pc:listOfProgettoDiCompensazione) {
+             ProgettoDiCompensazioneModel pcm= new ProgettoDiCompensazioneModel();
+            pcm.setAttivo(pc.getAttivo());
+            pcm.setKgCO2(pc.getKgCo2());
+            pcm.setName(pc.getNome());
+            // TODO....
+            _return.add(pcm);
+        }
+        return _return;
+
     }
 }

@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.dao;
 
+import it.agilis.mens.azzeroCO2.core.criteria.OrdineCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.Ordine;
 
 import java.util.List;
@@ -13,5 +14,5 @@ import java.util.List;
  */
 public interface IOrdineDAO {
 
-    List<Ordine> getListOfOrdini();
+    List<Ordine> getListOfOrdini(OrdineCriteria ordineCriteria);
 }

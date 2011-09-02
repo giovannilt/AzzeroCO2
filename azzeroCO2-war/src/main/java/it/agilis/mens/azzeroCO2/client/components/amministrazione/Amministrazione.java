@@ -14,10 +14,14 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.forms.amministrazione.*;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,8 +33,11 @@ import java.util.List;
 public class Amministrazione extends LayoutContainer {
 
     private final TabPanel amministrazioneTab = new TabPanel();
-    private final Coefficienti coefficienti = new Coefficienti();
-    private final ProgrammiDiCompensazione programmi = new ProgrammiDiCompensazione();
+
+    private final Coefficienti coefficentiForm = new Coefficienti();
+    private final ProgettiDiCompensazione progettiDiCompensazioneForm = new ProgettiDiCompensazione();
+    private final Coupon couponForm = new Coupon();
+
     private HustonServiceAsync hustonService;
 
     public Amministrazione() {
@@ -46,6 +53,7 @@ public class Amministrazione extends LayoutContainer {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Problemi Di Connessione al SERVER di AzzeroCO2");
             }
+
             @Override
             public void onSuccess(List<CouponModel> result) {
                 store.add(result);
@@ -58,6 +66,7 @@ public class Amministrazione extends LayoutContainer {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Problemi Di Connessione al SERVER di AzzeroCO2");
             }
+
             @Override
             public void onSuccess(List<UserInfoModel> result) {
                 storeUser.add(result);
@@ -73,15 +82,15 @@ public class Amministrazione extends LayoutContainer {
         amministrazioneTab.add(ordiniTab);
 
         TabItem couponTab = new TabItem("Coupon");
-        couponTab.add(new Coupon(store));
+        couponTab.add(couponForm);
         amministrazioneTab.add(couponTab);
 
         TabItem coefficientiTab = new TabItem("Coefficienti di calcolo");
-        coefficientiTab.add(coefficienti);
+        coefficientiTab.add(coefficentiForm);
         amministrazioneTab.add(coefficientiTab);
 
         TabItem programmiTab = new TabItem("Programmi compensazione");
-        programmiTab.add(programmi);
+        programmiTab.add(progettiDiCompensazioneForm);
         amministrazioneTab.add(programmiTab);
 
 
@@ -91,5 +100,18 @@ public class Amministrazione extends LayoutContainer {
 
 
         add(amministrazioneTab, new RowData(1, 1));
+    }
+
+    public void setCoefficienti(Map<String, CoefficienteModel> coefficienti) {
+        List coefficientiList= new ArrayList<CoefficienteModel>();
+        coefficientiList.addAll(coefficienti.values());
+        coefficentiForm.setCoefficentiInStore(coefficientiList);
+    }
+    public void setCoupon(List<CouponModel> coupon) {
+        couponForm.setCouponInStore(coupon);
+    }
+
+    public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneModels) {
+        progettiDiCompensazioneForm.setProgettiDicompensazioneInStore(progettiDiCompensazioneModels);
     }
 }

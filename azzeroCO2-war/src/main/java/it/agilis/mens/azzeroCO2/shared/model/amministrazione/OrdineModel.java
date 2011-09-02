@@ -18,8 +18,6 @@ public class OrdineModel extends BaseModelData {
     }
 
     public OrdineModel(Date data, String cliente, String programma, Double kgco2, Double importo) {
-
-
         setData(data);
         setCliente(cliente);
         setProgramma(programma);
@@ -49,7 +47,6 @@ public class OrdineModel extends BaseModelData {
     }
 
 
-
     public void setProgramma(String programma) {
         set("programma", programma);
     }
@@ -71,9 +68,6 @@ public class OrdineModel extends BaseModelData {
     public void setImporto(Double importo) {
         set("importo", importo);
     }
-
-
-
 
 
 }

@@ -16,7 +16,7 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettiDiCompensazione;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -222,12 +222,12 @@ public class EventoFormAcquisto extends LayoutContainer {
 
 
     private void createCentre() {
-        final ListStore<ProgettiDiCompensazione> store = new ListStore<ProgettiDiCompensazione>();
+        final ListStore<ProgettoDiCompensazioneModel> store = new ListStore<ProgettoDiCompensazioneModel>();
         {  //TODO
-            store.add(new ProgettiDiCompensazione("Biomassa in Valtellina", "UNO", 123.0,true));
-            store.add(new ProgettiDiCompensazione("Forestazione in Italia", "UNO",123.0,true));
-            store.add(new ProgettiDiCompensazione("Eolico in India", "UNO",123.0,true));
-            store.add(new ProgettiDiCompensazione("Biogas da discarica a Chicago", "UNO",120.0,true));
+            store.add(new ProgettoDiCompensazioneModel("Biomassa in Valtellina", "UNO", 123.0,true));
+            store.add(new ProgettoDiCompensazioneModel("Forestazione in Italia", "UNO",123.0,true));
+            store.add(new ProgettoDiCompensazioneModel("Eolico in India", "UNO",123.0,true));
+            store.add(new ProgettoDiCompensazioneModel("Biogas da discarica a Chicago", "UNO",120.0,true));
       }
 
     List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
@@ -250,7 +250,7 @@ public class EventoFormAcquisto extends LayoutContainer {
 
         ColumnModel cm = new ColumnModel(configs);
 
-        Grid<ProgettiDiCompensazione> grid = new Grid<ProgettiDiCompensazione>(store, cm);
+        Grid<ProgettoDiCompensazioneModel> grid = new Grid<ProgettoDiCompensazioneModel>(store, cm);
         grid.setBorders(true);
         grid.setHideHeaders(true);
         grid.setHeight(600);

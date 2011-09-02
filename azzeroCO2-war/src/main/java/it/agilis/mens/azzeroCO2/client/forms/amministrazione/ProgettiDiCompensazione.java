@@ -19,8 +19,7 @@ import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettiDiCompensazione;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +31,13 @@ import java.util.List;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ProgrammiDiCompensazione extends LayoutContainer {
+public class ProgettiDiCompensazione extends LayoutContainer {
 
-    protected ProgettiDiCompensazione createProgetto() {
-        ProgettiDiCompensazione progetto = new ProgettiDiCompensazione();
+    final ListStore<ProgettoDiCompensazioneModel> store = new ListStore<ProgettoDiCompensazioneModel>();
+
+
+    protected ProgettoDiCompensazioneModel createProgetto() {
+        ProgettoDiCompensazioneModel progetto = new ProgettoDiCompensazioneModel();
         progetto.setName("Nuovo progetto");
         progetto.setAttivo(false);
         progetto.setType("Tipo");
@@ -53,7 +55,8 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
 
         ContentPanel centre = createCentre();
         centre.setHeading("Programmi Di Compensazione");
-        //  centre.setHeight(650);
+        centre.setHeight(637);
+        centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -63,22 +66,13 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
 
     private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
-        final ListStore<ProgettiDiCompensazione> store = new ListStore<ProgettiDiCompensazione>();
-        {  //TODO
-            store.add(new ProgettiDiCompensazione("Eolico a Vigata", "Enargia", 10.0, true));
-            store.add(new ProgettiDiCompensazione("Foresta a Fela", "Vegetazione", 15.0, true));
-            store.add(new ProgettiDiCompensazione("Solare a Montelusa", "Energia", 20.0, false));
-        }
-
 
         // add paging support for a local collection of models
-        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
+        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(ProgettoDiCompensazioneModel.class);
 
         // loader
         PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
         loader.setRemoteSort(true);
-
-        //ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel> store = new ListStore<it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel>(loader);
 
         final PagingToolBar toolBar = new PagingToolBar(10);
         toolBar.bind(loader);
@@ -110,7 +104,7 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
         columnCh.setEditor(checkBoxEditor);
         configs.add(columnCh);
 
-        final RowEditor<ProgettiDiCompensazione> re = new RowEditor<ProgettiDiCompensazione>();
+        final RowEditor<ProgettoDiCompensazioneModel> re = new RowEditor<ProgettoDiCompensazioneModel>();
         re.getMessages().setSaveText("Salva");
         re.getMessages().setCancelText("Annulla");
         re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
@@ -119,7 +113,7 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
         ColumnModel cm = new ColumnModel(configs);
 
 
-        Grid<ProgettiDiCompensazione> grid = new Grid<ProgettiDiCompensazione>(store, cm);
+        Grid<ProgettoDiCompensazioneModel> grid = new Grid<ProgettoDiCompensazioneModel>(store, cm);
         grid.setBorders(true);
         grid.setAutoHeight(true);
         grid.addPlugin(re);
@@ -131,7 +125,7 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
         add.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ProgettiDiCompensazione prog = new ProgettiDiCompensazione("Codice", "Nuovo progetto", 0.00, true);
+                ProgettoDiCompensazioneModel prog = new ProgettoDiCompensazioneModel("Codice", "Nuovo progetto", 0.00, true);
                 re.stopEditing(false);
                 store.insert(createProgetto(), 0);
                 re.startEditing(store.indexOf(prog), true);
@@ -148,6 +142,10 @@ public class ProgrammiDiCompensazione extends LayoutContainer {
 
 
         return centre;
+    }
+
+     public void setProgettiDicompensazioneInStore(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneModels) {
+        store.add(progettiDiCompensazioneModels);
     }
 
     public void clear() {

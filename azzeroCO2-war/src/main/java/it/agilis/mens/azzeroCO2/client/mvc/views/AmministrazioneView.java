@@ -15,6 +15,12 @@ import it.agilis.mens.azzeroCO2.client.components.amministrazione.Amministrazion
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -62,4 +68,14 @@ public class AmministrazioneView extends View {
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.AmministrazioneReady, amministrazionePanel));
     }
 
+    public void setCoefficienti(Map<String, CoefficienteModel> coefficienti) {
+       amministrazione.setCoefficienti(coefficienti);
+    }
+    public void setCoupon(List<CouponModel> coupon) {
+       amministrazione.setCoupon(coupon);
+    }
+
+    public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> coupon) {
+       amministrazione.setProgettiDiCompensazione(coupon);
+    }
 }
