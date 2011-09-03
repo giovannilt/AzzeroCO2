@@ -116,7 +116,7 @@ INSERT INTO Coefficiente
 INSERT INTO Coefficiente
     (id,codice,nome,note,tipologia,udm,valore)
     VALUES
-    (18,'PUBRIC','carta riciclata','','Pubblicazioni','kg',0.82919);
+    (19,'PUBRIC','carta riciclata','','Pubblicazioni','kg',0.82919);
 
 
 
@@ -125,7 +125,7 @@ INSERT INTO Coefficiente
 INSERT INTO Coefficiente
     (id,codice,nome,note,tipologia,udm,valore)
     VALUES
-    (19,'PUBNOP','carta non patinata','','Pubblicazioni','kg',0.85221);
+    (20,'PUBNOP','carta non patinata','','Pubblicazioni','kg',0.85221);
 
 
 
@@ -134,7 +134,7 @@ INSERT INTO Coefficiente
 INSERT INTO Coefficiente
     (id,codice,nome,note,tipologia,udm,valore)
     VALUES
-    (20,'PUBPAT','carta patinata','','Pubblicazioni','kg',1.1282);
+    (21,'PUBPAT','carta patinata','','Pubblicazioni','kg',1.1282);
 
 
 
@@ -143,7 +143,7 @@ INSERT INTO Coefficiente
 INSERT INTO Coefficiente
     (id,codice,nome,note,tipologia,udm,valore)
     VALUES
-    (21,'PUBGIO','carta giornale','','Pubblicazioni','kg',0.8477);
+    (22,'PUBGIO','carta giornale','','Pubblicazioni','kg',0.8477);
 
 
 
@@ -152,7 +152,7 @@ INSERT INTO Coefficiente
 INSERT INTO Coefficiente
     (id,codice,nome,note,tipologia,udm,valore)
     VALUES
-    (22,'PUBRIV','carta riviste','','Pubblicazioni','kg',1.0732);
+    (23,'PUBRIV','carta riviste','','Pubblicazioni','kg',1.0732);
 
 
 
@@ -161,4 +161,4 @@ INSERT INTO Coefficiente
 INSERT INTO Coefficiente
     (id,codice,nome,note,tipologia,udm,valore)
     VALUES
-    (23,'SITUTE','Sito','','Sito','utenti',0,2);
+    (24,'SITUTE','Sito','','Sito','utenti',0.2);
