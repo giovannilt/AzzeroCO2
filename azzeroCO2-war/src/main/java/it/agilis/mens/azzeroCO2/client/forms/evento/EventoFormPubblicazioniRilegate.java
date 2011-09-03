@@ -158,6 +158,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
                 tipoDiCarta.setEmptyText("TipoDiCarta");
                 tipoDiCarta.setToolTip("TipoDiCarta");
+                 tipoDiCarta.setWidth(200);
                 tipoDiCarta.setDisplayField("nome");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
                 tipoDiCarta.setName("tipoDiCarta");
@@ -243,6 +244,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
                 tipoDiCarta.setEmptyText("TipoDiCarta");
                 tipoDiCarta.setToolTip("TipoDiCarta");
+                tipoDiCarta.setWidth(200);
                 tipoDiCarta.setDisplayField("nome");
                 tipoDiCarta.setName("tipoDiCartaCopertina");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);

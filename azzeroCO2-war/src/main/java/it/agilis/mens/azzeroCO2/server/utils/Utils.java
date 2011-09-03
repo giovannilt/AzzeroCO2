@@ -99,6 +99,7 @@ public class Utils {
             TipoDiCartaModel model = new TipoDiCartaModel();
             model.setId(t.getId());
             model.setParametro(t.getParametro());
+            model.setNome(t.getNome());
             _return.add(model);
         }
         return _return;
