@@ -53,11 +53,11 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getRagioneSoc() {
-         return (String) get("ragioneSoc");
+         return (String) get("ragioneSociale");
     }
 
-    public void setRagioneSoc(String ragioneSoc) {
-        set("ragioneSoc", ragioneSoc);
+    public void setRagioneSoc(String ragioneSociale) {
+        set("ragioneSociale", ragioneSociale);
     }
 
     public String getIndirizzo() {
@@ -133,19 +133,19 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getPartitaIvaCF() {
-         return (String) get("partitaIvaCF");
+         return (String) get("pivaCF");
     }
 
-    public void setPartitaIvaCF(String partitaIvaCF) {
-        set("partitaIvaCF", partitaIvaCF);
+    public void setPartitaIvaCF(String pivaCF) {
+        set("pivaCF", pivaCF);
     }
 
     public String getProfilo() {
-         return (String) get("profilo");
+         return (String) get("profile");
     }
 
-    public void setProfilo(String profilo) {
-        set("profilo", profilo);
+    public void setProfilo(String profile) {
+        set("profilo", profile);
     }
 
     public void setId(Long id) {
