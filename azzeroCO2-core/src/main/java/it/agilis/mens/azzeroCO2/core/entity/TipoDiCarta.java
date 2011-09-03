@@ -16,7 +16,7 @@ public class TipoDiCarta {
     @Id
     @GeneratedValue
     private Long id;
-
+    private String nome;
     private Double parametro;
 
     public Long getId() {
@@ -33,5 +33,13 @@ public class TipoDiCarta {
 
     public void setParametro(Double parametro) {
         this.parametro = parametro;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

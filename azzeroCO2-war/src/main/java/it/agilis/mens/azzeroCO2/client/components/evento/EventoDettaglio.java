@@ -26,8 +26,6 @@ import java.util.List;
 public class EventoDettaglio extends LayoutContainer {
 
     private final TabPanel eventoTab = new TabPanel();
-
-
     private EventoFormDettaglio formDettaglio = new EventoFormDettaglio();
 
     private final EventoFormEnergia formEnergia = new EventoFormEnergia();
@@ -180,7 +178,6 @@ public class EventoDettaglio extends LayoutContainer {
     }
 
     public void clearPanel() {
-
         formDettaglio.clear();
         formEnergia.clear();
         formTrasportoPersone.clear();
