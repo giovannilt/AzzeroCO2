@@ -162,4 +162,19 @@ public class Utils {
         return _return;
 
     }
+
+    public static List<ProgettoCompensazione> getProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensaziones) {
+        List<ProgettoCompensazione> _return = new ArrayList<ProgettoCompensazione>();
+        for (ProgettoDiCompensazioneModel pdcm : progettiDiCompensaziones) {
+            ProgettoCompensazione pdc = new ProgettoCompensazione();
+
+            pdc.setAttivo(pdcm.getAttivo());
+            pdc.setId(pdcm.getId());
+            pdc.setKgCo2(pdcm.getKgCO2());
+             //TODO....,
+            _return.add(pdc);
+        }
+        return _return;
+
+    }
 }

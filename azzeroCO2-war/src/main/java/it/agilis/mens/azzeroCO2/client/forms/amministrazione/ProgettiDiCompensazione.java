@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -17,6 +18,7 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 
 import java.util.ArrayList;
@@ -52,7 +54,8 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         setLayout(layout);
 
         ContentPanel centre = createCentre();
-        centre.setHeading("Programmi Di Compensazione");
+        centre.setHeaderVisible(false);
+        //   centre.setHeading("Programmi Di Compensazione");
         centre.setHeight(637);
         centre.setFrame(true);
 
@@ -65,18 +68,18 @@ public class ProgettiDiCompensazione extends LayoutContainer {
     private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
 
-    /*    // add paging support for a local collection of models
-        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(ProgettoDiCompensazioneModel.class);
+        /*    // add paging support for a local collection of models
+                PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(ProgettoDiCompensazioneModel.class);
 
-        // loader
-        PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
-        loader.setRemoteSort(true);
+                // loader
+                PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
+                loader.setRemoteSort(true);
 
-        final PagingToolBar toolBar = new PagingToolBar(10);
-        toolBar.bind(loader);
+                final PagingToolBar toolBar = new PagingToolBar(10);
+                toolBar.bind(loader);
 
-        loader.load(0, 10);
-*/
+                loader.load(0, 10);
+        */
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
@@ -127,17 +130,30 @@ public class ProgettiDiCompensazione extends LayoutContainer {
                 re.startEditing(store.indexOf(prog), true);
             }
         });
+
+        Button saveButton = new Button("Salva");
+        saveButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                /*List<CouponModel> coupons = new ArrayList<CouponModel>();
+                for (Record r : store.getModifiedRecords()) {
+                    coupons.add((CouponModel) r.getModel());
+                }*/
+                Dispatcher.forwardEvent(AmministrazioneEvents.SaveProgrammiDiCompensazione, store.getModels());
+
+            }
+        });
         centre.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
         toolbar.add(add);
+        toolbar.add(saveButton);
         centre.setTopComponent(toolbar);
-       // centre.setBottomComponent(toolBar);
 
         return centre;
     }
 
-     public void setProgettiDicompensazioneInStore(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneModels) {
-          store.removeAll();
+    public void setProgettiDicompensazioneInStore(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneModels) {
+        store.removeAll();
         store.add(progettiDiCompensazioneModels);
     }
 

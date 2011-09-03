@@ -37,7 +37,7 @@ public class Coefficienti extends LayoutContainer {
         setLayout(layout);
 
         ContentPanel centre = createCentre();
-        centre.setHeading("Coefficiente");
+      centre.setHeaderVisible(false);
         centre.setHeight(637);
         centre.setFrame(true);
 

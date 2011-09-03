@@ -64,4 +64,10 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
     }
 
 
+    public Long getId() {
+        return get("id");
+    }
+    public void setId(Long id){
+        set("id", id) ;
+    }
 }

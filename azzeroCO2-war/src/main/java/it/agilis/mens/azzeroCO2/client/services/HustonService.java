@@ -33,10 +33,13 @@ public interface HustonService extends RemoteService {
     void disconnectUser() throws IllegalArgumentException;
 
     Map<String, CoefficienteModel> getCoefficienti() throws IllegalArgumentException;
+
     List<CouponModel> getListOfCoupon() throws IllegalArgumentException;
+
     List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione() throws IllegalArgumentException;
 
-
     List<OrdineModel> getListOfOrdini(UserInfoModel userInfoModel);
+
+    Boolean saveProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensaziones);
 }
 

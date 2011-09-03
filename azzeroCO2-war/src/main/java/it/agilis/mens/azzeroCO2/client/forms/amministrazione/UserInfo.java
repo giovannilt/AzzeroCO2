@@ -51,7 +51,8 @@ public class UserInfo extends LayoutContainer {
         setLayout(layout);
 
         ContentPanel centre = createForm();
-        centre.setHeading("CouponModel");
+        //    centre.setHeading("CouponModel");
+        centre.setHeaderVisible(false);
         centre.setHeight(637);
         centre.setFrame(true);
 

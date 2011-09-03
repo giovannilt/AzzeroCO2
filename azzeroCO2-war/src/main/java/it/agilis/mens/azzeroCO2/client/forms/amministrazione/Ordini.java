@@ -32,7 +32,8 @@ public class Ordini extends LayoutContainer {
 
         setLayout(new BorderLayout());
         ContentPanel centre = createCentre();
-        centre.setHeading("Ordini");
+      //  centre.setHeading("Ordini");
+       centre.setHeaderVisible(false);
         centre.setFrame(true);
         centre.setHeight(637);
         centre.setFrame(true);

@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.server.services;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import it.agilis.mens.azzeroCO2.client.forms.amministrazione.ProgettiDiCompensazione;
 import it.agilis.mens.azzeroCO2.client.services.HustonService;
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
@@ -109,6 +110,17 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     public Boolean saveCoefficienti(List<CoefficienteModel> coefficienteModels) {
         try {
             azzeroCO2Register.saveCoefficienti(Utils.getCoefficienti(coefficienteModels));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+     @Override
+    public Boolean saveProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensaziones) {
+        try {
+            azzeroCO2Register.saveProgettiCompensazione(Utils.getProgettiDiCompensazione(progettiDiCompensaziones));
         } catch (Exception e) {
             e.printStackTrace();
             return false;

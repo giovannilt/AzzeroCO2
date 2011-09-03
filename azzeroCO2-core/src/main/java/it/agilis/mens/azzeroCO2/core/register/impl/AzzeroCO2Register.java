@@ -80,13 +80,13 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     }
 
 
-
     @Override
-    public List<Ordine> getOrdini(OrdineCriteria ordineCriteria)throws Exception {
+    public List<Ordine> getOrdini(OrdineCriteria ordineCriteria) throws Exception {
         return ordineDAO.getListOfOrdini(ordineCriteria);
     }
+
     @Override
-    public List<Coupon> getListOfCoupon() throws Exception{
+    public List<Coupon> getListOfCoupon() throws Exception {
         return couponDAO.getListOfCoupon();
     }
 
@@ -110,7 +110,7 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
 
     @Override
     public void saveCoefficienti(List<Coefficiente> coefficienti) throws Exception {
-        for(Coefficiente c: coefficienti){
+        for (Coefficiente c : coefficienti) {
             coefficienteDAO.save(c);
         }
     }
@@ -143,8 +143,14 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     }
 
     public List<Ordine> getListOfOrdini(UserInfo userInfo) {
-        OrdineCriteria ordineCriteria= new OrdineCriteria();
+        OrdineCriteria ordineCriteria = new OrdineCriteria();
         ordineCriteria.setUserInfo(userInfo);
         return ordineDAO.getListOfOrdini(ordineCriteria);
+    }
+
+    public void saveProgettiCompensazione(List<ProgettoCompensazione> progettiDiCompensazione) throws Exception {
+        for (ProgettoCompensazione p : progettiDiCompensazione) {
+            progettoCompensazioneDAO.save(p);
+        }
     }
 }
