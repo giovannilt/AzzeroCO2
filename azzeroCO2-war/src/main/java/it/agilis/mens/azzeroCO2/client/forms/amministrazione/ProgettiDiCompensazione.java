@@ -1,7 +1,6 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.data.*;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.store.ListStore;
@@ -15,7 +14,6 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
@@ -67,7 +65,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
     private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
 
-        // add paging support for a local collection of models
+    /*    // add paging support for a local collection of models
         PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(ProgettoDiCompensazioneModel.class);
 
         // loader
@@ -78,7 +76,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         toolBar.bind(loader);
 
         loader.load(0, 10);
-
+*/
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
@@ -109,9 +107,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         re.getMessages().setCancelText("Annulla");
         re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
-
         ColumnModel cm = new ColumnModel(configs);
-
 
         Grid<ProgettoDiCompensazioneModel> grid = new Grid<ProgettoDiCompensazioneModel>(store, cm);
         grid.setBorders(true);
@@ -129,17 +125,13 @@ public class ProgettiDiCompensazione extends LayoutContainer {
                 re.stopEditing(false);
                 store.insert(createProgetto(), 0);
                 re.startEditing(store.indexOf(prog), true);
-
-
             }
         });
         centre.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-
         toolbar.add(add);
         centre.setTopComponent(toolbar);
-        centre.setBottomComponent(toolBar);
-
+       // centre.setBottomComponent(toolBar);
 
         return centre;
     }

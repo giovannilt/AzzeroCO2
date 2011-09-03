@@ -47,7 +47,6 @@ public class AmministrazioneController extends BaseController {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
                 }
-
                 @Override
                 public void onSuccess(Boolean result) {
                     Info.display("Info", "Coefficienti Salvati");
@@ -61,7 +60,6 @@ public class AmministrazioneController extends BaseController {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
                 }
-
                 @Override
                 public void onSuccess(Boolean result) {
                     Info.display("Info", "Coupons Salvati");
@@ -69,14 +67,13 @@ public class AmministrazioneController extends BaseController {
             };
             hustonService.saveCoupons(coupons, aCallback);
         } else if (event.getType().equals(AmministrazioneEvents.ShowAmministrazione)) {
-            if (getUserInfoModel().getProfilo().equalsIgnoreCase("Administrator")) {
+            //if (getUserInfoModel().getProfilo().equalsIgnoreCase("Administrator")) {
                 getCoefficienti();
                 getCoupons();
                 getProgettiDiCompensazione();
-
-            }
+         //   }
             getOrdini();
-            amministrazioneView.setUserInfo();
+            amministrazioneView.setUserInfo(getUserInfoModel());
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
         } else {

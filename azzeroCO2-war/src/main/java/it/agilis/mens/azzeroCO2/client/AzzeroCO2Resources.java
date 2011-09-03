@@ -53,9 +53,21 @@ public interface AzzeroCO2Resources extends ClientBundle {
     @ImageResource.ImageOptions(flipRtl = true)
     ImageResource bus();
 
-    @Source("it/agilis/mens/azzeroCO2/client/imgs/tir.png")
+    @Source("it/agilis/mens/azzeroCO2/client/imgs/Tir.png")
     @ImageResource.ImageOptions(flipRtl = true)
     ImageResource tir();
+
+    @Source("it/agilis/mens/azzeroCO2/client/imgs/Furgone.png")
+    @ImageResource.ImageOptions(flipRtl = true)
+    ImageResource furgone();
+
+    @Source("it/agilis/mens/azzeroCO2/client/imgs/Moto.png")
+    @ImageResource.ImageOptions(flipRtl = true)
+    ImageResource moto();
+
+    @Source("it/agilis/mens/azzeroCO2/client/imgs/Nave.png")
+    @ImageResource.ImageOptions(flipRtl = true)
+    ImageResource nave();
 
     @Source("it/agilis/mens/azzeroCO2/client/imgs/treno.png")
     @ImageResource.ImageOptions(flipRtl = true)

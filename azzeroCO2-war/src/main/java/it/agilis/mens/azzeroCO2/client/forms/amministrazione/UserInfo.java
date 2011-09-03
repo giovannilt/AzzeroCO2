@@ -42,9 +42,6 @@ public class UserInfo extends LayoutContainer {
     protected TextField<String> reemail;
     protected TextField<String> partitaIvaCF;
 
-    public UserInfo() {
-
-    }
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -52,7 +49,6 @@ public class UserInfo extends LayoutContainer {
 
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
-
 
         ContentPanel centre = createForm();
         centre.setHeading("CouponModel");
@@ -75,12 +71,12 @@ public class UserInfo extends LayoutContainer {
             public void componentKeyUp(ComponentEvent event) {
                 validate();
             }
-
         };
 
         userName = new TextField<String>();
         userName.setFieldLabel("Username");
         userName.setName("userName");
+        userName.setEnabled(false);
         userName.setMinLength(6);
         userName.getMessages().setMinLengthText("la username deve essere di almeno 6 caratteri");
 
@@ -96,7 +92,6 @@ public class UserInfo extends LayoutContainer {
         password.addKeyListener(keyListener);
         formPanel.add(password);
 
-
         repassword = new TextField<String>();
         repassword.setMinLength(6);
         repassword.getMessages().setMinLengthText("Ripeti la password");
@@ -105,7 +100,6 @@ public class UserInfo extends LayoutContainer {
         repassword.setName("repassword");
         repassword.addKeyListener(keyListener);
         formPanel.add(repassword);
-
 
         nome = new TextField<String>();
         nome.setMinLength(2);
@@ -142,7 +136,6 @@ public class UserInfo extends LayoutContainer {
         indirizzo.setName("indirizzo");
         indirizzo.addKeyListener(keyListener);
         formPanel.add(indirizzo);
-
 
         citta = new TextField<String>();
         citta.setMinLength(2);
@@ -222,7 +215,6 @@ public class UserInfo extends LayoutContainer {
         email.getMessages().setRegexText("Email errata");
         formPanel.add(email);
 
-
         reemail = new TextField<String>();
         reemail.setMinLength(2);
         reemail.setFieldLabel("Ripeti email");
@@ -232,7 +224,6 @@ public class UserInfo extends LayoutContainer {
         reemail.getMessages().setRegexText("Ripeti emil");
         formPanel.add(reemail);
 
-
         return formPanel;
     }
 
@@ -240,7 +231,6 @@ public class UserInfo extends LayoutContainer {
     protected boolean hasValue(TextField<String> field) {
         return field.getValue() != null && field.getValue().length() > 0;
     }
-
 
     protected void validate() {
         Button saveButton = new Button("Modifica profilo");
@@ -262,8 +252,6 @@ public class UserInfo extends LayoutContainer {
 
 
     }
-
-
 
 
     public void clear() {

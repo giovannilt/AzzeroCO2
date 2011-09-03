@@ -16,6 +16,7 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.RegisterEvents;
@@ -50,7 +51,9 @@ public class NorthPanel extends LayoutContainer {
         amministrazione.setText("Impostazioni");
         amministrazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
+                Dispatcher.forwardEvent(AmministrazioneEvents.ShowAmministrazione);
                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.AMMINISTRAZIONE);
+
             }
         });
         c.add(amministrazione, layoutData);

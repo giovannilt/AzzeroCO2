@@ -1,12 +1,11 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.data.*;
+import com.extjs.gxt.ui.client.data.ModelData;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
-import com.extjs.gxt.ui.client.store.Record;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -15,7 +14,6 @@ import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
@@ -60,7 +58,7 @@ public class Coupon extends LayoutContainer {
     private ContentPanel createCentre(final ListStore<CouponModel> store) {
         ContentPanel centre = new ContentPanel();
 
-        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
+      /*  PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
 
         // loader
         PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
@@ -71,7 +69,7 @@ public class Coupon extends LayoutContainer {
         toolBar.bind(loader);
 
         loader.load(0, 10);
-
+*/
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
@@ -170,23 +168,23 @@ public class Coupon extends LayoutContainer {
             }
         });
 
-        Button saveButton = new Button("Save coupons");
+        Button saveButton = new Button("Salva Coupons");
         saveButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                List<Coupon> coupons = new ArrayList<Coupon>();
+                /*List<CouponModel> coupons = new ArrayList<CouponModel>();
                 for (Record r : store.getModifiedRecords()) {
-                    coupons.add((Coupon) r.getModel());
-                }
-                Dispatcher.forwardEvent(AmministrazioneEvents.SaveCoupons, coupons);
+                    coupons.add((CouponModel) r.getModel());
+                }*/
+                Dispatcher.forwardEvent(AmministrazioneEvents.SaveCoupons, store.getModels());
 
             }
         });
 
         centre.setButtonAlign(Style.HorizontalAlignment.CENTER);
-        grid.getAriaSupport().setDescribedBy(toolBar.getId() + "-display");
+      /*  grid.getAriaSupport().setDescribedBy(toolBar.getId() + "-display");
         centre.setBottomComponent(toolBar);
-        toolbar.add(add);
+      */  toolbar.add(add);
         toolbar.add(saveButton);
         centre.setTopComponent(toolbar);
 

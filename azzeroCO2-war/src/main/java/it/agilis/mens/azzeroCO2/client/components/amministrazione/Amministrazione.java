@@ -1,19 +1,13 @@
 package it.agilis.mens.azzeroCO2.client.components.amministrazione;
 
-import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.store.ListStore;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.forms.amministrazione.*;
-import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
-import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
@@ -39,12 +33,7 @@ public class Amministrazione extends LayoutContainer {
     private final ProgettiDiCompensazione progettiDiCompensazioneForm = new ProgettiDiCompensazione();
     private final Coupon couponForm = new Coupon();
     private final Ordini ordiniForm = new Ordini();
-                private final UserInfo userInfoForm= new UserInfo();
-    private HustonServiceAsync hustonService;
-
-    public Amministrazione() {
-        hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
-    }
+    private final UserInfo userInfoForm= new UserInfo();
 
     @Override
     protected void onRender(Element target, int index) {
