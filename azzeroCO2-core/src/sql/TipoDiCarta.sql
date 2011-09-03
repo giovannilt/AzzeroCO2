@@ -28,18 +28,16 @@ INTO
     VALUES
     (4,'PUBPAT','Carta patinata') ;
 
-
-
-
+INSERT
 INTO
     TipoDiCarta
     (id,parametro,nome)
     VALUES
     (5,'PUBGIO','Carta da giornale') ;
 
-
+INSERT
 INTO
     TipoDiCarta
     (id,parametro,nome)
     VALUES
-    (6,PUBRIV,'Carta da rivista') ;
+    (6,'PUBRIV','Carta da rivista') ;
