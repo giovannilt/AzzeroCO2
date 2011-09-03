@@ -26,6 +26,8 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
     }
 
 
+
+
     public Double getPrezzo() {
         return get("prezzo");
     }
