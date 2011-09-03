@@ -223,14 +223,7 @@ public class EventoFormAcquisto extends LayoutContainer {
 
     private void createCentre() {
         final ListStore<ProgettoDiCompensazioneModel> store = new ListStore<ProgettoDiCompensazioneModel>();
-        {  //TODO
-            store.add(new ProgettoDiCompensazioneModel("Biomassa in Valtellina", 10.0,true, 123.0));
-            store.add(new ProgettoDiCompensazioneModel("Forestazione in Italia", 18.5,true,123.0));
-            store.add(new ProgettoDiCompensazioneModel("Eolico in India", 19.4,true,123.0));
-            store.add(new ProgettoDiCompensazioneModel("Biogas da discarica a Chicago", 13.9,true,120.0));
-      }
-
-    List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
+        List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
         ColumnConfig column = new ColumnConfig();
         column.setId("img");

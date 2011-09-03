@@ -12,21 +12,6 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
  */
 public class ProgettoDiCompensazioneModel extends BaseModelData {
 
-    public ProgettoDiCompensazioneModel() {
-
-    }
-
-    // TODO
-
-    public ProgettoDiCompensazioneModel(String nome, Double prezzo, Boolean attivo, Double kgCO2) {
-        setName(nome);
-        setPrezzo(prezzo);
-        setKgCO2(kgCO2);
-        setAttivo(attivo);
-    }
-
-
-
 
     public Double getPrezzo() {
         return get("prezzo");

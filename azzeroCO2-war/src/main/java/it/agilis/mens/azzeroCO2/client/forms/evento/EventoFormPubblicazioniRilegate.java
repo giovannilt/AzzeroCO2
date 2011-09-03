@@ -218,15 +218,15 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                NumberField taratura = new NumberField();
-                taratura.setWidth(60);
-                taratura.setName("taratura");
+                NumberField tiratura = new NumberField();
+                tiratura.setWidth(60);
+                tiratura.setName("tiratura");
 
                 LabelField label = new LabelField("");
                 label.setWidth(100);
                 c.add(label);
-                c.add(taratura, flex);
-                c.add(new LabelField("taratura"), flex);
+                c.add(tiratura, flex);
+                c.add(new LabelField("tiratura"), flex);
 
                 panel.add(c, new FormData("100%"));
             }

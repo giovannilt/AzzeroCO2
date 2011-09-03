@@ -13,7 +13,7 @@ public class PubblicazioniRilegateModel extends BaseModel {
 
     private double altezza;
     private double larghezza;
-    private int taratura;
+    private int tiratura;
     private int numeroDiPagine;
     private String tipoDiCarta;
     private double grammatura;
@@ -63,11 +63,11 @@ public class PubblicazioniRilegateModel extends BaseModel {
     }
 
     public int getTiratura() {
-        return (Integer) get("taratura");
+        return (Integer) get("tiratura");
     }
 
-    public void setTiratura(int taratura) {
-        set("taratura", taratura);
+    public void setTiratura(int tiratura) {
+        set("tiratura", tiratura);
     }
 
     public String getTipoDiCarta() {

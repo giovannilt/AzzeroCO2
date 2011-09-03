@@ -124,10 +124,9 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         add.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ProgettoDiCompensazioneModel prog = new ProgettoDiCompensazioneModel("Progetto", 0.0, true, 0.0);
                 re.stopEditing(false);
                 store.insert(createProgetto(), 0);
-                re.startEditing(store.indexOf(prog), true);
+                re.startEditing(0, true);
             }
         });
 
