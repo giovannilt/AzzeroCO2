@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.client.components.sitoWeb_;
+package it.agilis.mens.azzeroCO2.client.components.sitoWeb;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
