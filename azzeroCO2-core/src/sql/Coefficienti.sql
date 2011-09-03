@@ -14,7 +14,7 @@ INSERT INTO Coefficiente
     (3,'ENEGSL','Gasolio','','Energia','lt',3.449);
 
 INSERT INTO Coefficiente
-    (4,codice,nome,note,tipologia,udm,valore)
+    (id,codice,nome,note,tipologia,udm,valore)
     VALUES
     (5,'TRPMOT','Moto','','Trasporto persone','km',0.12);
 
@@ -116,7 +116,7 @@ INSERT INTO Coefficiente
 INSERT INTO Coefficiente
     (id,codice,nome,note,tipologia,udm,valore)
     VALUES
-    (18,'PUBRIC','carta riciclata','','kg',0.82919);
+    (18,'PUBRIC','carta riciclata','','Pubblicazioni','kg',0.82919);
 
 
 
