@@ -45,8 +45,8 @@ public class Ordine {
 
     private Date dataOrdine;
     private Boolean editable;
-    private Long kgCo2;
-    private Long valoreCompensazione;
+    private Double kgCo2;
+    private Double valoreCompensazione;
 
     public Long getId() {
         return id;
@@ -136,19 +136,19 @@ public class Ordine {
         this.editable = editable;
     }
 
-    public Long getKgCo2() {
+    public Double getKgCo2() {
         return kgCo2;
     }
 
-    public void setKgCo2(Long kgCo2) {
+    public void setKgCo2(Double kgCo2) {
         this.kgCo2 = kgCo2;
     }
 
-    public Long getValoreCompensazione() {
+    public Double getValoreCompensazione() {
         return valoreCompensazione;
     }
 
-    public void setValoreCompensazione(Long valoreCompensazione) {
+    public void setValoreCompensazione(Double valoreCompensazione) {
         this.valoreCompensazione = valoreCompensazione;
     }
 }

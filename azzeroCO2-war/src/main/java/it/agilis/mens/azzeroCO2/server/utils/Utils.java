@@ -143,10 +143,11 @@ public class Utils {
         List<ProgettoDiCompensazioneModel> _return = new ArrayList<ProgettoDiCompensazioneModel>();
         for (ProgettoCompensazione pc : listOfProgettoDiCompensazione) {
             ProgettoDiCompensazioneModel pcm = new ProgettoDiCompensazioneModel();
+            pcm.setId(pc.getId());
             pcm.setAttivo(pc.getAttivo());
             pcm.setKgCO2(pc.getKgCo2());
             pcm.setName(pc.getNome());
-            // TODO....
+            pcm.setPrezzo(pc.getPrezzo());
             _return.add(pcm);
         }
         return _return;
@@ -157,7 +158,13 @@ public class Utils {
         List<OrdineModel> _return = new ArrayList<OrdineModel>();
         for (Ordine o : listOfOrdini) {
             OrdineModel om = new OrdineModel();
-            // TODO....
+            om.setId(o.getId());
+            om.setData(o.getDataOrdine());
+            //TODO om.setCliente(o.getUtente());
+            om.setProgramma(o.getProgettoComp());
+            om.setKgco2(o.getKgCo2());
+            om.setImporto(o.getValoreCompensazione());
+
             _return.add(om);
         }
         return _return;
@@ -172,7 +179,9 @@ public class Utils {
             pdc.setAttivo(pdcm.getAttivo());
             pdc.setId(pdcm.getId());
             pdc.setKgCo2(pdcm.getKgCO2());
-             //TODO....,
+            pdc.setNome(pdcm.getName());
+            pdc.setPrezzo(pdcm.getPrezzo());
+
             _return.add(pdc);
         }
         return _return;

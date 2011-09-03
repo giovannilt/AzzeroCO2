@@ -1,6 +1,8 @@
 package it.agilis.mens.azzeroCO2.shared.model.amministrazione;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
+import it.agilis.mens.azzeroCO2.client.forms.amministrazione.UserInfo;
+import it.agilis.mens.azzeroCO2.core.entity.ProgettoCompensazione;
 
 import java.util.Date;
 
@@ -17,7 +19,7 @@ public class OrdineModel extends BaseModelData {
 
     }
 
-    public OrdineModel(Date data, String cliente, String programma, Double kgco2, Double importo) {
+    public OrdineModel(Date data, UserInfo cliente, ProgettoCompensazione programma, Double kgco2, Double importo) {
         setData(data);
         setCliente(cliente);
         setProgramma(programma);
@@ -26,28 +28,40 @@ public class OrdineModel extends BaseModelData {
     }
 
 
+
+
     public Date getData() {
         return get("data");
     }
+
+    public Long getId() {
+        return get("id");
+    }
+    public void setId(Long id){
+        set("id", id) ;
+    }
+
+
+
 
     public void setData(Date data) {
         set("data", data);
     }
 
-    public String getCliente() {
+    public UserInfo getCliente() {
         return get("cliente");
     }
 
-    public void setCliente(String cliente) {
+    public void setCliente(UserInfo cliente) {
         set("cliente", cliente);
     }
 
-    public String getProgramma() {
+    public ProgettoCompensazione getProgramma() {
         return get("programma");
     }
 
 
-    public void setProgramma(String programma) {
+    public void setProgramma(ProgettoCompensazione programma) {
         set("programma", programma);
     }
 
