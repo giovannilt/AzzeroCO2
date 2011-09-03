@@ -24,7 +24,6 @@ import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
  * To change this template use File | Settings | File Templates.
  */
 
-
 public class UserInfo extends LayoutContainer {
     private FormBinding binding;
 

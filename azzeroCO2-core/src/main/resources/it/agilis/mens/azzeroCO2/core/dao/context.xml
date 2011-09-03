@@ -24,7 +24,9 @@
     <bean id="coefficienteDAO" class="it.agilis.mens.azzeroCO2.core.dao.impl.CoefficienteDAO">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-
+    <bean id="progettoCompensazioneDAO" class="it.agilis.mens.azzeroCO2.core.dao.impl.ProgettoCompesnazioneDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
     <bean id="azzeroCO2Register" class="it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register">
         <property name="userInfoDAO">
@@ -42,6 +44,9 @@
 
         <property name="coefficienteDAO">
             <ref local="coefficienteDAO"/>
+        </property>
+        <property name="progettoCompensazioneDAO">
+            <ref local="progettoCompensazioneDAO"/>
         </property>
     </bean>
 
