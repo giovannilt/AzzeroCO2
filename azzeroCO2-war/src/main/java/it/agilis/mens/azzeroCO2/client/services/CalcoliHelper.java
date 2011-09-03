@@ -73,13 +73,10 @@ public class CalcoliHelper {
 
 
         String energiaDett = energia1 + energia2 + energia3;
-        //        +"Gas" + " " + energiaModel.getGasMetano() + " m3" +
-        //        "Gasolio" + " " + energiaModel.getGasolio() + " lt";
-        //energia.setDettagli(energiaDett);
 
-        CoefficienteModel coefficienteModelEnergia = coefficienti.get("energiaElettrica");
-        CoefficienteModel coefficientiEnergiaGAS =   coefficienti.get("energiaGas");
-        CoefficienteModel coefficienteModelGasolio = coefficienti.get("energiaGasolio");
+        CoefficienteModel coefficienteModelEnergia = coefficienti.get("ENEELE");
+        CoefficienteModel coefficientiEnergiaGAS =   coefficienti.get("ENEGAS");
+        CoefficienteModel coefficienteModelGasolio = coefficienti.get("ENEGSL");
 
         Double co2 = energiaModel.getEnergiaElettrica() * coefficienteModelEnergia.getValore();
         co2 += energiaModel.getGasMetano() * coefficientiEnergiaGAS.getValore();
@@ -100,7 +97,7 @@ public class CalcoliHelper {
         notti.setOggetto("Pernottamenti");
         String energiaDett = "Pernottamenti" + " " + nottiModel.getNotti() + " notti";
         notti.setDettagli(energiaDett);
-        CoefficienteModel coefficienteModel = coefficienti.get("notti");
+        CoefficienteModel coefficienteModel = coefficienti.get("PERNOT");
         Double co2 = nottiModel.getNotti() * coefficienteModel.getValore();
         notti.setKgCO2(co2);
 
@@ -245,10 +242,10 @@ public class CalcoliHelper {
             _rm.setDettagli(tp50 + tp100 + tp250 + tp500);
 
 
-            CoefficienteModel coefficienteModelTPBUS = coefficienti.get("tpbus");
-            CoefficienteModel coefficienteModelTPAUTO = coefficienti.get("tpauto");
-            CoefficienteModel coefficienteModelTPTRENO = coefficienti.get("tptreno");
-            CoefficienteModel coefficienteModelTPAEREO = coefficienti.get("tpaereo");
+            CoefficienteModel coefficienteModelTPBUS = coefficienti.get("TRPBUS");
+            CoefficienteModel coefficienteModelTPAUTO = coefficienti.get("TRPAUT");
+            CoefficienteModel coefficienteModelTPTRENO = coefficienti.get("TRPTRE");
+            CoefficienteModel coefficienteModelTPAEREO = coefficienti.get("TRPAER");
 
             Double co2 = tpm.getBusPiu50() * coefficienteModelTPBUS.getValore() * 50;
             co2 += tpm.getBusPiu100() * coefficienteModelTPBUS.getValore() * 100;
@@ -322,7 +319,7 @@ public class CalcoliHelper {
             Double coeffCartaCop;
 
 
-            if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata sbiancata")) {
+            if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata sbiancata ")) {
                 coeffCarta = coefficienteModelPUBRIS.getValore();
             } else if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata")) {
                 coeffCarta = coefficienteModelPUBRIC.getValore();
@@ -330,16 +327,16 @@ public class CalcoliHelper {
                 coeffCarta = coefficienteModelPUBNOP.getValore();
             } else if (prm.getTipoDiCarta().toLowerCase().equals("carta patinata")) {
                 coeffCarta = coefficienteModelPUBPAT.getValore();
-            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta giornale")) {
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta da giornale")) {
                 coeffCarta = coefficienteModelPUBGIO.getValore();
-            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta rivista")) {
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta per riviste")) {
                 coeffCarta = coefficienteModelPUBRIV.getValore();
             } else {
                 coeffCarta = 0.0;
             }
 
 
-            if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta riciclata sbiancata")) {
+            if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta riciclata sbiancata ")) {
                 coeffCartaCop = coefficienteModelPUBRIS.getValore();
             } else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta riciclata")) {
                 coeffCartaCop = coefficienteModelPUBRIC.getValore();
@@ -347,9 +344,9 @@ public class CalcoliHelper {
                 coeffCartaCop = coefficienteModelPUBNOP.getValore();
             } else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta patinata")) {
                 coeffCartaCop = coefficienteModelPUBPAT.getValore();
-            } else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta giornale")) {
+            } else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta da giornale")) {
                 coeffCartaCop = coefficienteModelPUBGIO.getValore();
-            } else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta rivista")) {
+            } else if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta per riviste")) {
                 coeffCartaCop = coefficienteModelPUBRIV.getValore();
             } else {
                 coeffCartaCop = 0.0;
@@ -411,7 +408,7 @@ public class CalcoliHelper {
             Double coeffCarta;
 
 
-            if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata sbiancata")) {
+            if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata sbiancata ")) {
                 coeffCarta = coefficienteModelPUBRIS.getValore();
             } else if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata")) {
                 coeffCarta = coefficienteModelPUBRIC.getValore();
@@ -419,9 +416,9 @@ public class CalcoliHelper {
                 coeffCarta = coefficienteModelPUBNOP.getValore();
             } else if (prm.getTipoDiCarta().toLowerCase().equals("carta patinata")) {
                 coeffCarta = coefficienteModelPUBPAT.getValore();
-            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta giornale")) {
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta da giornale")) {
                 coeffCarta = coefficienteModelPUBGIO.getValore();
-            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta rivista")) {
+            } else if (prm.getTipoDiCarta().toLowerCase().equals("carta per riviste")) {
                 coeffCarta = coefficienteModelPUBRIV.getValore();
             } else {
                 coeffCarta = 0.0;
