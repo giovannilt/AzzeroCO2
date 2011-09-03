@@ -40,7 +40,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         ProgettoDiCompensazioneModel progetto = new ProgettoDiCompensazioneModel();
         progetto.setName("Nuovo progetto");
         progetto.setAttivo(false);
-        progetto.setType("Tipo");
+        progetto.setPrezzo(17.6);
         progetto.setKgCO2(0.00);
         return progetto;
     }
@@ -124,7 +124,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         add.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ProgettoDiCompensazioneModel prog = new ProgettoDiCompensazioneModel("Codice", "Nuovo progetto", 0.00, true);
+                ProgettoDiCompensazioneModel prog = new ProgettoDiCompensazioneModel("Progetto", 0.0, true, 0.0);
                 re.stopEditing(false);
                 store.insert(createProgetto(), 0);
                 re.startEditing(store.indexOf(prog), true);

@@ -18,30 +18,30 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
 
     // TODO
 
-    public ProgettoDiCompensazioneModel(String type, String name, Double kgCO2, Boolean attivo) {
-        setName(name);
-        setType(type);
+    public ProgettoDiCompensazioneModel(String nome, Double prezzo, Boolean attivo, Double kgCO2) {
+        setName(nome);
+        setPrezzo(prezzo);
         setKgCO2(kgCO2);
         setAttivo(attivo);
     }
 
 
-    public String getType() {
-        return get("type");
+    public Double getPrezzo() {
+        return get("prezzo");
     }
 
 
-    public void setType(String type) {
-        set("type", type);
+    public void setPrezzo(Double prezzo) {
+        set("prezzo", prezzo);
     }
 
 
     public String getName() {
-        return get("name");
+        return get("nome");
     }
 
-    public void setName(String name) {
-        set("name", name);
+    public void setName(String nome) {
+        set("nome", nome);
     }
 
 
