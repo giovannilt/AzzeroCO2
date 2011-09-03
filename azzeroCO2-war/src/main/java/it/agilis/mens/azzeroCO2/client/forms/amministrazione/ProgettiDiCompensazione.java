@@ -145,6 +145,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
     }
 
      public void setProgettiDicompensazioneInStore(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneModels) {
+          store.removeAll();
         store.add(progettiDiCompensazioneModels);
     }
 

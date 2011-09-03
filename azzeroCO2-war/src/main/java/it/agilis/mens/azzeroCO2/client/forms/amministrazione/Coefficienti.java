@@ -106,6 +106,7 @@ public class Coefficienti extends LayoutContainer {
     }
 
     public void setCoefficentiInStore(List<CoefficienteModel> coefficienteModels) {
+         store.removeAll();
         store.add(coefficienteModels);
     }
 }

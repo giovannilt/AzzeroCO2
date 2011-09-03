@@ -1,7 +1,6 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.data.*;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -9,10 +8,8 @@ import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.extjs.gxt.ui.client.widget.toolbar.PagingToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 
 import java.util.ArrayList;
@@ -26,6 +23,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class Ordini extends LayoutContainer {
+
+    private final ListStore<OrdineModel> store = new ListStore<OrdineModel>();
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -44,24 +43,19 @@ public class Ordini extends LayoutContainer {
 
     private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
-        //  List<OrdineModel> ordini= ordine.getOrdini();
 
-        final ListStore<OrdineModel> store = new ListStore<OrdineModel>();
+        /*    PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
 
-        PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
+                // loader
+                PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
+                loader.setRemoteSort(true);
 
-        // loader
-        PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
-        loader.setRemoteSort(true);
-
-        //ListStore<OrdineModel> store = new ListStore<OrdineModel>(loader);
-
-        final PagingToolBar toolBar = new PagingToolBar(2);
-        toolBar.bind(loader);
+                final PagingToolBar toolBar = new PagingToolBar(2);
+                toolBar.bind(loader);
 
 
-        loader.load(0, 10);
-
+                loader.load(0, 10);
+        */
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
@@ -103,10 +97,15 @@ public class Ordini extends LayoutContainer {
         Grid<OrdineModel> grid = new Grid<OrdineModel>(store, cm);
         grid.setBorders(true);
         grid.setAutoHeight(true);
-        centre.setBottomComponent(toolBar);
+        //    centre.setBottomComponent(toolBar);
         centre.add(grid);
 
         return centre;
+    }
+
+    public void setOrdiniInStore(List<OrdineModel> ordiniModels) {
+        store.removeAll();
+        store.add(ordiniModels);
     }
 
 

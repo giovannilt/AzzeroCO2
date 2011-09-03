@@ -16,6 +16,7 @@ import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
@@ -37,7 +38,8 @@ public class Amministrazione extends LayoutContainer {
     private final Coefficienti coefficentiForm = new Coefficienti();
     private final ProgettiDiCompensazione progettiDiCompensazioneForm = new ProgettiDiCompensazione();
     private final Coupon couponForm = new Coupon();
-
+    private final Ordini ordiniForm = new Ordini();
+                private final UserInfo userInfoForm= new UserInfo();
     private HustonServiceAsync hustonService;
 
     public Amministrazione() {
@@ -47,38 +49,11 @@ public class Amministrazione extends LayoutContainer {
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
-        HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
-        final ListStore<CouponModel> store = new ListStore<CouponModel>();
-        AsyncCallback<List<CouponModel>> aCallback = new AsyncCallback<List<CouponModel>>() {
-            public void onFailure(Throwable caught) {
-                Info.display("Error", "Problemi Di Connessione al SERVER di AzzeroCO2");
-            }
 
-            @Override
-            public void onSuccess(List<CouponModel> result) {
-                store.add(result);
-            }
-
-        };
-
-        final ListStore<UserInfoModel> storeUser = new ListStore<UserInfoModel>();
-        AsyncCallback<List<UserInfoModel>> bCallback = new AsyncCallback<List<UserInfoModel>>() {
-            public void onFailure(Throwable caught) {
-                Info.display("Error", "Problemi Di Connessione al SERVER di AzzeroCO2");
-            }
-
-            @Override
-            public void onSuccess(List<UserInfoModel> result) {
-                storeUser.add(result);
-            }
-
-        };
-
-        hustonService.getListOfCoupon(aCallback);
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
         TabItem ordiniTab = new TabItem("Ordini");
-        ordiniTab.add(new Ordini());
+        ordiniTab.add(ordiniForm);
         amministrazioneTab.add(ordiniTab);
 
         TabItem couponTab = new TabItem("Coupon");
@@ -95,7 +70,7 @@ public class Amministrazione extends LayoutContainer {
 
 
         TabItem userTab = new TabItem("Profilo utente");
-        userTab.add(new UserInfo(storeUser));
+        userTab.add(userInfoForm);
         amministrazioneTab.add(userTab);
 
 
@@ -113,5 +88,13 @@ public class Amministrazione extends LayoutContainer {
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneModels) {
         progettiDiCompensazioneForm.setProgettiDicompensazioneInStore(progettiDiCompensazioneModels);
+    }
+
+    public void setOrdini(List<OrdineModel> ordini) {
+        ordiniForm.setOrdiniInStore(ordini);
+    }
+
+    public void setUserInfo(UserInfoModel userInfoModel) {
+        //To change body of created methods use File | Settings | File Templates.
     }
 }

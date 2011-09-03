@@ -17,7 +17,9 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.List;
 import java.util.Map;
@@ -75,7 +77,15 @@ public class AmministrazioneView extends View {
        amministrazione.setCoupon(coupon);
     }
 
-    public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> coupon) {
-       amministrazione.setProgettiDiCompensazione(coupon);
+    public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazione) {
+       amministrazione.setProgettiDiCompensazione(progettiDiCompensazione);
+    }
+
+    public void setOrdini(List<OrdineModel> ordini) {
+        amministrazione.setOrdini(ordini);
+    }
+
+    public void setUserInfo(UserInfoModel userInfoModel) {
+        amministrazione.setUserInfo(userInfoModel);
     }
 }

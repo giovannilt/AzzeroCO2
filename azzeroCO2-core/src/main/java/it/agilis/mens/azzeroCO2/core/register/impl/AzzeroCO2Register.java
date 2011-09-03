@@ -141,4 +141,10 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     public List<ProgettoCompensazione> getListOfProgettoDiCompensazione() {
         return progettoCompensazioneDAO.getListOfProgettoDiCompensazione();
     }
+
+    public List<Ordine> getListOfOrdini(UserInfo userInfo) {
+        OrdineCriteria ordineCriteria= new OrdineCriteria();
+        ordineCriteria.setUserInfo(userInfo);
+        return ordineDAO.getListOfOrdini(ordineCriteria);
+    }
 }

@@ -23,24 +23,6 @@ import java.util.Map;
 
 public class Utils {
 
-
-    public static List<OrdineModel> getOrdini(List<it.agilis.mens.azzeroCO2.core.entity.Ordine> ordini) {
-        List<OrdineModel> ordiniModel = new ArrayList<OrdineModel>();
-
-        // TODO .....
-
-        for (Ordine ordine : ordini) {
-            OrdineModel o = new OrdineModel();
-            o.setCliente(ordine.getUtente().getUserName());
-
-            ordiniModel.add(o);
-        }
-
-
-        return ordiniModel;
-
-    }
-
     public static List<CouponModel> getListOfCoupon(List<Coupon> listOfCoupon) {
         List<CouponModel> coupons = new ArrayList<CouponModel>();
         for (Coupon c : listOfCoupon) {
@@ -158,13 +140,24 @@ public class Utils {
 
     public static List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione(List<ProgettoCompensazione> listOfProgettoDiCompensazione) {
         List<ProgettoDiCompensazioneModel> _return = new ArrayList<ProgettoDiCompensazioneModel>();
-        for(ProgettoCompensazione pc:listOfProgettoDiCompensazione) {
-             ProgettoDiCompensazioneModel pcm= new ProgettoDiCompensazioneModel();
+        for (ProgettoCompensazione pc : listOfProgettoDiCompensazione) {
+            ProgettoDiCompensazioneModel pcm = new ProgettoDiCompensazioneModel();
             pcm.setAttivo(pc.getAttivo());
             pcm.setKgCO2(pc.getKgCo2());
             pcm.setName(pc.getNome());
             // TODO....
             _return.add(pcm);
+        }
+        return _return;
+
+    }
+
+    public static List<OrdineModel> getListOfOrdini(List<Ordine> listOfOrdini) {
+        List<OrdineModel> _return = new ArrayList<OrdineModel>();
+        for (Ordine o : listOfOrdini) {
+            OrdineModel om = new OrdineModel();
+            // TODO....
+            _return.add(om);
         }
         return _return;
 

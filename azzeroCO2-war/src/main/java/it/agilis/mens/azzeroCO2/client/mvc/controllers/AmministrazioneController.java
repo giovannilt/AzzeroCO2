@@ -11,6 +11,7 @@ import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
@@ -74,13 +75,30 @@ public class AmministrazioneController extends BaseController {
                 getProgettiDiCompensazione();
 
             }
-
-
+            getOrdini();
+            amministrazioneView.setUserInfo();
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
         } else {
             forwardToView(amministrazioneView, event);
         }
+    }
+
+
+    // SETTANO
+    private void getOrdini() {
+        HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
+        AsyncCallback<List<OrdineModel>> aCallback = new AsyncCallback<List<OrdineModel>>() {
+            public void onFailure(Throwable caught) {
+                Info.display("Error", "Errore impossibile connettersi al server");
+            }
+
+            @Override
+            public void onSuccess(List<OrdineModel> result) {
+                amministrazioneView.setOrdini(result);
+            }
+        };
+        hustonService.getListOfOrdini(getUserInfoModel(), aCallback);
     }
 
     private void getCoefficienti() {
@@ -114,7 +132,7 @@ public class AmministrazioneController extends BaseController {
     }
 
     public void getProgettiDiCompensazione() {
-         HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
+        HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
         AsyncCallback<List<ProgettoDiCompensazioneModel>> aCallback = new AsyncCallback<List<ProgettoDiCompensazioneModel>>() {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Errore impossibile connettersi al server");

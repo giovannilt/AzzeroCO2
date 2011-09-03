@@ -4,7 +4,6 @@ import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.KeyListener;
-import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -14,7 +13,6 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -44,11 +42,8 @@ public class UserInfo extends LayoutContainer {
     protected TextField<String> reemail;
     protected TextField<String> partitaIvaCF;
 
+    public UserInfo() {
 
-    private ListStore<UserInfoModel> store = new ListStore<UserInfoModel>();
-
-    public UserInfo(ListStore<UserInfoModel> store) {
-        this.store = store;
     }
 
     @Override
@@ -59,7 +54,7 @@ public class UserInfo extends LayoutContainer {
         setLayout(layout);
 
 
-        ContentPanel centre = createForm(store);
+        ContentPanel centre = createForm();
         centre.setHeading("CouponModel");
         centre.setHeight(637);
         centre.setFrame(true);
@@ -70,7 +65,7 @@ public class UserInfo extends LayoutContainer {
 
     }
 
-    private FormPanel createForm(ListStore<UserInfoModel> store) {
+    private FormPanel createForm() {
         FormPanel formPanel = new FormPanel();
         formPanel.setHeaderVisible(false);
 
