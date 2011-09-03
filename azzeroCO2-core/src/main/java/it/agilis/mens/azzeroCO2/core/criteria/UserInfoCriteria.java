@@ -24,8 +24,6 @@ public class UserInfoCriteria implements Serializable, SelectionCriteria {
         return  detachedCriteria;
     }
 
-
-
     public void setUsername(String userName) {
         this.userName=userName;
     }
