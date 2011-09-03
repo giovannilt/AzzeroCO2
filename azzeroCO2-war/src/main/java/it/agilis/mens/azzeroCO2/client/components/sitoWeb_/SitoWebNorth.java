@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.client.components.sitoWeb;
+package it.agilis.mens.azzeroCO2.client.components.sitoWeb_;
 
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
