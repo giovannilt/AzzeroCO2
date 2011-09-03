@@ -125,15 +125,13 @@ public class EventoDettaglio extends LayoutContainer {
                         }
                     }
                 } else {
-
-
                     if (i > 0) {
                         item.setEnabled(false);
                         eventoTab.getItems().get(i - 1).setEnabled(true);
-                        eventoTab.setSelection(eventoTab.getItems().get(i - 1));
                         if (eventoTab.getItems().get(i - 1).getText().equalsIgnoreCase("Riepilogo")) {
                             Dispatcher.forwardEvent(EventoEvents.Riepilogo);
                         }
+                        eventoTab.setSelection(eventoTab.getItems().get(i - 1));
                         return;
                     }
                 }
@@ -161,10 +159,10 @@ public class EventoDettaglio extends LayoutContainer {
                             } else {
                                 item.setEnabled(false);
                                 eventoTab.getItems().get(i).setEnabled(true);
-                                eventoTab.setSelection(eventoTab.getItems().get(i));
                                 if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
                                     Dispatcher.forwardEvent(EventoEvents.Riepilogo);
                                 }
+                                eventoTab.setSelection(eventoTab.getItems().get(i));
                                 return;
                             }
                         }
@@ -178,9 +176,7 @@ public class EventoDettaglio extends LayoutContainer {
                     }
                 }
             }
-
         }
-
     }
 
     public void clearPanel() {

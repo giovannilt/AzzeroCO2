@@ -108,6 +108,7 @@ public class EventoView extends View {
         evento.setTitle(Eventi.EVENTO.name());
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.EventoPanelReady,
                 evento));
+
     }
 
 
@@ -116,6 +117,10 @@ public class EventoView extends View {
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
-        eventoDettaglio.setTipoDiCarta( tipoDiCartaModels);
+        eventoDettaglio.setTipoDiCarta(tipoDiCartaModels);
+    }
+
+    public void riepilogo() {
+        eventoDettaglio.riepilogo();
     }
 }

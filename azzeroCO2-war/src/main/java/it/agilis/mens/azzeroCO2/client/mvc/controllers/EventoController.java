@@ -6,7 +6,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
-import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
@@ -38,20 +37,6 @@ public class EventoController extends BaseController {
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(AzzeroCO2Events.Init)) {
-            /*AsyncCallback<List<GrammaturaModel>> aCallback = new AsyncCallback<List<GrammaturaModel>>() {
-                public void onFailure(Throwable caught) {
-                    Info.display("Error", "Errore impossibile connettersi al server");
-                }
-
-                @Override
-                public void onSuccess(List<GrammaturaModel> result) {
-                    if (result != null) {
-                        eventoView.setGrammatura(result);
-                    }
-                }
-            };*/
-
-            //getHustonService().getGrammatura(aCallback);
               AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
@@ -67,6 +52,9 @@ public class EventoController extends BaseController {
 
             getHustonService().getTipoDiCarta(tipoDiCartaCallBack);
             forwardToView(eventoView, event);
+        } else if (event.getType().equals(EventoEvents.Riepilogo)) {
+           eventoView.riepilogo();
+
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
         } else {

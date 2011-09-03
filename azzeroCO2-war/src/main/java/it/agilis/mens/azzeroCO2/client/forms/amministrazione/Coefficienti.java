@@ -2,16 +2,22 @@ package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.data.PagingModelMemoryProxy;
+import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 
 import java.util.ArrayList;
@@ -37,7 +43,7 @@ public class Coefficienti extends LayoutContainer {
         setLayout(layout);
 
         ContentPanel centre = createCentre();
-      centre.setHeaderVisible(false);
+        centre.setHeaderVisible(false);
         centre.setHeight(637);
         centre.setFrame(true);
 
@@ -49,32 +55,22 @@ public class Coefficienti extends LayoutContainer {
 
     private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
-
-
         // add paging support for a local collection of models
         PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CoefficienteModel.class);
 
-      /*  // loader
-        PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
-        loader.setRemoteSort(true);
-
-
-        final PagingToolBar toolBar = new PagingToolBar(10);
-        toolBar.bind(loader);
-
-        loader.load(0, 10);
-*/
-
+        /*  // loader
+                PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
+                loader.setRemoteSort(true);
+                final PagingToolBar toolBar = new PagingToolBar(10);
+                toolBar.bind(loader);
+                loader.load(0, 10);
+        */
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
-
-
         ColumnConfig column = new ColumnConfig("tipologia", "Tipologia", 300);
         configs.add(column);
-
-
-        column = new ColumnConfig("coefficiente", "Coefficiente", 445);
+        column = new ColumnConfig("nome", "Coefficiente", 445);
         configs.add(column);
 
         column = new ColumnConfig("valore", "Valore", 100);
@@ -94,11 +90,25 @@ public class Coefficienti extends LayoutContainer {
         grid.addPlugin(re);
         grid.setAutoHeight(true);
 
-      //  centre.setBottomComponent(toolBar);
 
+        Button saveButton = new Button("Salva");
+        saveButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent ce) {
+                /*List<CouponModel> coupons = new ArrayList<CouponModel>();
+                for (Record r : store.getModifiedRecords()) {
+                    coupons.add((CouponModel) r.getModel());
+                }*/
+                Dispatcher.forwardEvent(AmministrazioneEvents.SaveCoupons, store.getModels());
 
+            }
+        });
+
+        //  centre.setBottomComponent(toolBar);
+        ToolBar toolbar = new ToolBar();
+        toolbar.add(saveButton);
+        centre.setTopComponent(toolbar);
         centre.add(grid);
-
         return centre;
     }
 
@@ -106,7 +116,7 @@ public class Coefficienti extends LayoutContainer {
     }
 
     public void setCoefficentiInStore(List<CoefficienteModel> coefficienteModels) {
-         store.removeAll();
+        store.removeAll();
         store.add(coefficienteModels);
     }
 }

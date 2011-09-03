@@ -36,8 +36,6 @@ public class CalcoliHelper {
         } else {
             store.add(model);
         }
-
-
         model = getNotti(eventoModel.getNottiModel());
         if (model == null) {
             return null;
@@ -46,11 +44,9 @@ public class CalcoliHelper {
         }
         store.addAll(getTrasportoPersone(eventoModel.getTrasportoPersoneModel()));
 
-
         return store;
 
     }
-
 
     private static RiepilogoModel getEnergia(EnergiaModel energiaModel) {
         RiepilogoModel energia = new RiepilogoModel();
