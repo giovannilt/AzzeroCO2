@@ -6,15 +6,18 @@ import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
+import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.grid.*;
+import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
@@ -32,7 +35,8 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
     private ListStore<PubblicazioniRilegateModel> pubblicazioniRilegateModel = new ListStore<PubblicazioniRilegateModel>();
     private ToolBar toolBar = new ToolBar();
     private ListStore<TipoDiCartaModel> tipoDiCartaModelListStore = new ListStore<TipoDiCartaModel>();
-    private ListStore<GrammaturaModel> grammaturaModelListStore = new ListStore<GrammaturaModel>();
+     private final FormPanel panel = createGroupForm();
+    private final FormBinding formBindings = new FormBinding(panel, true);
 
 
     @SuppressWarnings("rawtypes")
@@ -66,9 +70,8 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
         cp.add(cpEst, new RowData(.3, .98));
-        final FormPanel panel = createForm();
         cp.add(panel, new RowData(.7, 1));
-        final FormBinding formBindings = new FormBinding(panel, true);
+
         formBindings.setStore(grid.getStore());
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,
@@ -86,7 +89,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         add(cp, centerData);
     }
 
-    private FormPanel createForm() {
+    private FormPanel createGroupForm() {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
 
@@ -114,13 +117,13 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
                 NumberField altezza = new NumberField();
                 altezza.setWidth(60);
-                altezza.setName("dimensioni");
+                altezza.setName("altezza");
 
                 LabelField label = new LabelField("Dimensioni ");
                 label.setWidth(100);
                 c.add(label);
                 c.add(altezza, flex);
-                c.add(new LabelField("altezza (cm)"), flex);
+                c.add(new LabelField("Altezza (cm)"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -139,7 +142,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(larghezza, flex);
-                c.add(new LabelField("larghezza (cm)"), flex);
+                c.add(new LabelField("Larghezza (cm)"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -152,12 +155,12 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-
                 ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
                 tipoDiCarta.setEmptyText("TipoDiCarta");
                 tipoDiCarta.setToolTip("TipoDiCarta");
-                tipoDiCarta.setDisplayField("parametro");
+                tipoDiCarta.setDisplayField("nome");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
+                tipoDiCarta.setName("tipoDiCarta");
                 tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
                 LabelField label = new LabelField("Materiale ");
@@ -174,19 +177,16 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                ComboBox<GrammaturaModel> grammaturaDiCarta = new ComboBox<GrammaturaModel>();
-                grammaturaDiCarta.setEmptyText("Grammatura");
-                grammaturaDiCarta.setToolTip("Grammatura");
-                grammaturaDiCarta.setDisplayField("grammatura");
-                grammaturaDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
-                grammaturaDiCarta.setStore(grammaturaModelListStore);
-                c.add(grammaturaDiCarta, flex);
+                NumberField grammatura = new NumberField();
+                grammatura.setWidth(60);
+                grammatura.setName("grammatura");
 
                 LabelField label = new LabelField("");
                 label.setWidth(100);
-
                 c.add(label);
-                c.add(grammaturaDiCarta);
+                c.add(grammatura, flex);
+                c.add(new LabelField("Grammatura"), flex);
+
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -207,7 +207,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(numeroDiPagine, flex);
-                c.add(new LabelField("numero di pagine"), flex);
+                c.add(new LabelField("Numero di Pagine"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -226,7 +226,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(tiratura, flex);
-                c.add(new LabelField("tiratura"), flex);
+                c.add(new LabelField("Tiratura"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -242,12 +242,13 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
                 ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
                 tipoDiCarta.setEmptyText("TipoDiCarta");
-                 tipoDiCarta.setToolTip("TipoDiCarta");
-                tipoDiCarta.setDisplayField("parametro");
+                tipoDiCarta.setToolTip("TipoDiCarta");
+                tipoDiCarta.setDisplayField("nome");
+                tipoDiCarta.setName("tipoDiCartaCopertina");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
                 tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
-                LabelField label = new LabelField("Materiale ");
+                LabelField label = new LabelField("Materiale Copertina");
                 label.setWidth(100);
                 c.add(label);
                 c.add(tipoDiCarta, flex);
@@ -261,20 +262,16 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-
-                ComboBox<GrammaturaModel> grammaturaDiCarta = new ComboBox<GrammaturaModel>();
-                grammaturaDiCarta.setEmptyText("Grammatura");
-                grammaturaDiCarta.setToolTip("Grammatura");
-                grammaturaDiCarta.setDisplayField("grammatura");
-                grammaturaDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
-                grammaturaDiCarta.setStore(grammaturaModelListStore);
-                c.add(grammaturaDiCarta, flex);
+                NumberField grammatura = new NumberField();
+                grammatura.setWidth(60);
+                grammatura.setName("grammaturaCopertina");
 
                 LabelField label = new LabelField("");
                 label.setWidth(100);
-
                 c.add(label);
-                c.add(grammaturaDiCarta);
+                c.add(grammatura, flex);
+                c.add(new LabelField("Grammatura Copertina"), flex);
+
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -283,6 +280,11 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
     }
 
     private Grid<PubblicazioniRilegateModel> createGrid() {
+
+        PubblicazioniRilegateModel catalogo= new PubblicazioniRilegateModel();
+        catalogo.setCategoria("Catalogo");
+        pubblicazioniRilegateModel.add(catalogo);
+
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
         ColumnConfig column = new ColumnConfig();
@@ -293,6 +295,46 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         text.setAllowBlank(false);
         column.setEditor(new CellEditor(text));
         configs.add(column);
+
+        column = new ColumnConfig();
+        column.setRowHeader(false);
+        column.setId("Cancella");
+        column.setRenderer(new GridCellRenderer<PubblicazioniRilegateModel>() {
+            private boolean init;
+
+            public Object render(final PubblicazioniRilegateModel model, String property, ColumnData config, final int rowIndex,
+                                 final int colIndex, ListStore<PubblicazioniRilegateModel> store, Grid<PubblicazioniRilegateModel> grid) {
+                if (!init) {
+                    init = true;
+                    grid.addListener(Events.ColumnResize, new Listener<GridEvent<PubblicazioniRilegateModel>>() {
+                        public void handleEvent(GridEvent<PubblicazioniRilegateModel> be) {
+                            for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
+                                if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
+                                        && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
+                                    ((BoxComponent) be.getGrid().getView().getWidget(i, be.getColIndex())).setWidth(be.getWidth() - 10);
+                                }
+                            }
+                        }
+                    });
+                }
+                ToolButton b = new ToolButton("x-tool-close", new SelectionListener<IconButtonEvent>() {
+                    @Override
+                    public void componentSelected(IconButtonEvent ce) {
+                        Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
+                        formBindings.unbind();
+                        panel.setHeading("Aggiungi una Categoria o Personalizza quelle esistenti");
+                        pubblicazioniRilegateModel.remove(model);
+                    }
+                });
+                // b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
+                b.setToolTip("Elimina Categoria");
+
+                return b;
+            }
+        });
+        column.setWidth(50);
+        configs.add(column);
+
 
         final RowEditor<PubblicazioniRilegateModel> re = new RowEditor<PubblicazioniRilegateModel>();
         re.getMessages().setSaveText("Salva");
@@ -309,7 +351,6 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
         Button add = new Button("Aggiungi categoria");
         add.addSelectionListener(new SelectionListener<ButtonEvent>() {
-
             @Override
             public void componentSelected(ButtonEvent ce) {
                 PubblicazioniRilegateModel cate = new PubblicazioniRilegateModel("Nuova Categoria");
@@ -319,6 +360,9 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
             }
         });
         toolBar.add(add);
+
+        grid.getSelectionModel().select(0,true);
+
         return grid;
     }
 
@@ -336,9 +380,5 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
     public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {
         tipoDiCartaModelListStore.add(tipoDiCarta);
-    }
-
-    public void setGrammaturaModelList(List<GrammaturaModel> grammaturaModel) {
-        grammaturaModelListStore.add(grammaturaModel);
     }
 }

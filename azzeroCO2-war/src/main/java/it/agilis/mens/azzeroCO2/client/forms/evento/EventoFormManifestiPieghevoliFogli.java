@@ -14,7 +14,6 @@ import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
@@ -33,7 +32,6 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     private ListStore<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel = new ListStore<ManifestiPieghevoliFogliModel>();
     private ToolBar toolBar = new ToolBar();
     private ListStore<TipoDiCartaModel> tipoDiCartaModelListStore = new ListStore<TipoDiCartaModel>();
-    private ListStore<GrammaturaModel> grammaturaModelListStore = new ListStore<GrammaturaModel>();
 
     @SuppressWarnings("rawtypes")
     @Override
@@ -161,19 +159,16 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                ComboBox<GrammaturaModel> grammaturaDiCarta = new ComboBox<GrammaturaModel>();
-                grammaturaDiCarta.setEmptyText("Grammatura");
-                grammaturaDiCarta.setToolTip("Grammatura");
-                grammaturaDiCarta.setDisplayField("grammatura");
-                grammaturaDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
-                grammaturaDiCarta.setStore(grammaturaModelListStore);
-                c.add(grammaturaDiCarta, flex);
+                NumberField grammatura = new NumberField();
+                grammatura.setWidth(60);
+                grammatura.setName("grammatura");
 
                 LabelField label = new LabelField("");
                 label.setWidth(100);
-
                 c.add(label);
-                c.add(grammaturaDiCarta);
+                c.add(grammatura, flex);
+                c.add(new LabelField("Grammatura"), flex);
+
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -257,8 +252,5 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         tipoDiCartaModelListStore.add(tipoDiCarta);
     }
 
-    public void setGrammaturaModelList(List<GrammaturaModel> grammaturaModel) {
-        grammaturaModelListStore.add(grammaturaModel);
-    }
 
 }

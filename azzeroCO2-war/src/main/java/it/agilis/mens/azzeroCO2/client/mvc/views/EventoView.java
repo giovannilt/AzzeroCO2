@@ -10,12 +10,14 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import it.agilis.mens.azzeroCO2.client.components.evento.*;
+import it.agilis.mens.azzeroCO2.client.components.evento.EventoDettaglio;
+import it.agilis.mens.azzeroCO2.client.components.evento.EventoNorth;
+import it.agilis.mens.azzeroCO2.client.components.evento.EventoSouth;
+import it.agilis.mens.azzeroCO2.client.components.evento.EventoWest;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
-import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
 import java.util.List;
@@ -109,11 +111,6 @@ public class EventoView extends View {
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.EventoPanelReady,
                 evento));
 
-    }
-
-
-    public void setGrammatura(List<GrammaturaModel> grammaturaModels) {
-        eventoDettaglio.setGrammatura(grammaturaModels);
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
