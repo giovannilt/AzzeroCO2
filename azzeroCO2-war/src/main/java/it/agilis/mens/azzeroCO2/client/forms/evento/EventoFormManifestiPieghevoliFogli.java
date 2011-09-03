@@ -149,6 +149,9 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 tipoDiCarta.setEmptyText("TipoDiCarta");
                 tipoDiCarta.setToolTip("TipoDiCarta");
                 tipoDiCarta.setDisplayField("parametro");
+                tipoDiCarta.setWidth(200);
+                tipoDiCarta.setDisplayField("nome");
+                tipoDiCarta.setName("tipoDiCarta");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
                 tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
