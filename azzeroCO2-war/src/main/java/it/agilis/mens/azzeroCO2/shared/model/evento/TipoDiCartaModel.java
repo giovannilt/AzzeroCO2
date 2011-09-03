@@ -20,12 +20,21 @@ public class TipoDiCartaModel extends BaseModelData {
     }
 
 
-    public Double getParametro() {
+    public String getParametro() {
         return get("parametro");
     }
 
-    public void setParametro(Double parametro) {
+    public void setParametro(String parametro) {
         set("parametro", parametro);
+    }
+
+
+    public String getNome() {
+        return get("parametro");
+    }
+
+    public void setNome(String nome) {
+        set("nome", nome);
     }
 }
 

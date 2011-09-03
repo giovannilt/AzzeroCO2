@@ -362,6 +362,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         toolBar.add(add);
 
         grid.getSelectionModel().select(0,true);
+        formBindings.bind(catalogo);
 
         return grid;
     }
