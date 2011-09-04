@@ -142,13 +142,7 @@ public class Utils {
     public static List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione(List<ProgettoCompensazione> listOfProgettoDiCompensazione) {
         List<ProgettoDiCompensazioneModel> _return = new ArrayList<ProgettoDiCompensazioneModel>();
         for (ProgettoCompensazione pc : listOfProgettoDiCompensazione) {
-            ProgettoDiCompensazioneModel pcm = new ProgettoDiCompensazioneModel();
-            pcm.setId(pc.getId());
-            pcm.setAttivo(pc.getAttivo());
-            pcm.setKgCO2(pc.getKgCo2());
-            pcm.setName(pc.getNome());
-            pcm.setPrezzo(pc.getPrezzo());
-            _return.add(pcm);
+            _return.add(getProgettoDiCompensazioneModel(pc));
         }
         return _return;
 
@@ -161,13 +155,24 @@ public class Utils {
             om.setId(o.getId());
             om.setData(o.getDataOrdine());
             //TODO om.setCliente(o.getUtente());
-            om.setProgramma(o.getProgettoComp());
+            om.setProgettoDiCompensazione(getProgettoDiCompensazioneModel(o.getProgettoComp()));
             om.setKgco2(o.getKgCo2());
             om.setImporto(o.getValoreCompensazione());
 
             _return.add(om);
         }
         return _return;
+
+    }
+
+    private static ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel(ProgettoCompensazione pc) {
+        ProgettoDiCompensazioneModel pcm = new ProgettoDiCompensazioneModel();
+        pcm.setId(pc.getId());
+        pcm.setAttivo(pc.getAttivo());
+        pcm.setKgCO2(pc.getKgCo2());
+        pcm.setName(pc.getNome());
+        pcm.setPrezzo(pc.getPrezzo());
+        return pcm;
 
     }
 
