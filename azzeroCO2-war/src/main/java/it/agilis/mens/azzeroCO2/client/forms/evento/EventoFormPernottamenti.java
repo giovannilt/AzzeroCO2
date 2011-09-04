@@ -65,6 +65,8 @@ public class EventoFormPernottamenti extends LayoutContainer {
         NumberField numeroNotti = new NumberField();
         numeroNotti.setName("notti");
         numeroNotti.setWidth(60);
+        numeroNotti.setPropertyEditorType(Integer.class);
+
         notti.add(new LabelField("notti"), flex);
         notti.add(numeroNotti, flex);
 
