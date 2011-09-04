@@ -76,6 +76,7 @@ public class EventoFormEnergia extends LayoutContainer {
         NumberField energiaElettrica = new NumberField();
         energiaElettrica.setWidth(60);
         energiaElettrica.setName("energiaElettrica");
+        energiaElettrica.setPropertyEditorType(Integer.class);
 
         LabelField label = new LabelField("Energia Elettrica ");
         label.setWidth(100);
@@ -103,6 +104,7 @@ public class EventoFormEnergia extends LayoutContainer {
         NumberField gasMetano = new NumberField();
         gasMetano.setName("gasMetano");
         gasMetano.setWidth(60);
+        gasMetano.setPropertyEditorType(Integer.class);
 
         label = new LabelField("Gas Metano ");
         label.setWidth(100);
@@ -121,12 +123,14 @@ public class EventoFormEnergia extends LayoutContainer {
         NumberField gasolio = new NumberField();
         gasolio.setName("gasolio");
         gasolio.setWidth(60);
+        gasolio.setPropertyEditorType(Integer.class);
 
         label = new LabelField("Gasolio ");
         label.setWidth(100);
         cGasoline.add(label);
         cGasoline.add(gasolio, flex);
         cGasoline.add(new LabelField("Litri"), flex);
+
 
         panel.add(cGasoline, new FormData("100%"));
 

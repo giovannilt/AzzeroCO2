@@ -194,6 +194,9 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 NumberField tiratura = new NumberField();
                 tiratura.setWidth(60);
                 tiratura.setName("tiratura");
+                tiratura.setRegex("[0-9]+");
+                tiratura.getMessages().setRegexText("Inserisci un numero intero");
+                tiratura.setPropertyEditorType(Integer.class);
 
                 LabelField label = new LabelField("Tiratura ");
                 label.setWidth(100);
