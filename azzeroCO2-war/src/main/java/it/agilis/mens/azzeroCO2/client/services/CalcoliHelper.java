@@ -53,10 +53,10 @@ public class CalcoliHelper {
             energia1 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h </br>";
         }
         if (energiaModel.getGasMetano() > 0) {
-            energia2 = "Energia Gas" + " " + energiaModel.getEnergiaElettrica() + " kw/h  </br>";
+            energia2 = "Gas" + " " + energiaModel.getEnergiaElettrica() + " kw/h  </br>";
         }
         if (energiaModel.getGasolio() > 0) {
-            energia3 = "Energia Gasolio" + " " + energiaModel.getEnergiaElettrica() + " kw/h </br>";
+            energia3 = "Gasolio" + " " + energiaModel.getEnergiaElettrica() + " kw/h </br>";
         }
 
         energia.setDettagli(energia1 + energia2 + energia3);
@@ -80,7 +80,7 @@ public class CalcoliHelper {
         RiepilogoModel notti = new RiepilogoModel();
 
         notti.setOggetto("Pernottamenti");
-        String energiaDett = "Pernottamenti" + " " + nottiModel.getNotti() + " notti";
+        String energiaDett = nottiModel.getNotti() + " notti";
         notti.setDettagli(energiaDett);
         CoefficienteModel coefficienteModel = coefficienti.get("PERNOT");
         Double co2 = -1.0;
