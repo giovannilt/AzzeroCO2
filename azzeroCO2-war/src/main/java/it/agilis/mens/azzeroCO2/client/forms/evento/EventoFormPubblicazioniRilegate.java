@@ -158,7 +158,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
                 tipoDiCarta.setEmptyText("TipoDiCarta");
                 tipoDiCarta.setToolTip("TipoDiCarta");
-                 tipoDiCarta.setWidth(200);
+                tipoDiCarta.setWidth(200);
                 tipoDiCarta.setDisplayField("nome");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
                 tipoDiCarta.setName("tipoDiCarta");
@@ -355,7 +355,8 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         add.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                PubblicazioniRilegateModel cate = new PubblicazioniRilegateModel("Nuova Categoria");
+                PubblicazioniRilegateModel cate = new PubblicazioniRilegateModel();
+                cate.setCategoria("Nuova Categoria");
                 re.stopEditing(false);
                 pubblicazioniRilegateModel.insert(cate, 0);
                 re.startEditing(pubblicazioniRilegateModel.indexOf(cate), true);

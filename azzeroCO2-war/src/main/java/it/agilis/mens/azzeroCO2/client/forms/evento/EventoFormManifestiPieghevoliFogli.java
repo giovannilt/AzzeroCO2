@@ -125,14 +125,14 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(altezza, flex);
-                c.add(new LabelField("altezza (cm)"), flex);
+                c.add(new LabelField("Altezza (cm)"), flex);
 
                 NumberField larghezza = new NumberField();
                 larghezza.setWidth(60);
-                larghezza.setName("largezza");
+                larghezza.setName("larghezza");
 
                 c.add(larghezza, flex);
-                c.add(new LabelField("largezza (cm)"), flex);
+                c.add(new LabelField("Larghezza (cm)"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -283,7 +283,8 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
 
             @Override
             public void componentSelected(ButtonEvent ce) {
-                ManifestiPieghevoliFogliModel cate = new ManifestiPieghevoliFogliModel("Nuova Categoria");
+                ManifestiPieghevoliFogliModel cate = new ManifestiPieghevoliFogliModel();
+                cate.setCategoria("NuovaCategoria");
                 re.stopEditing(false);
                 manifestiPieghevoliFogliModel.insert(cate, 0);
                 re.startEditing(manifestiPieghevoliFogliModel.indexOf(cate), true);

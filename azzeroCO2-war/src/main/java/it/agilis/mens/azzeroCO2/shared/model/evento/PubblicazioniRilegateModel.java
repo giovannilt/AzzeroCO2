@@ -11,25 +11,6 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  */
 public class PubblicazioniRilegateModel extends BaseModel {
 
-    private double altezza;
-    private double larghezza;
-    private int tiratura;
-    private int numeroDiPagine;
-    private String tipoDiCarta;
-    private double grammatura;
-    private String tipoDiCartaCopertina;
-    private double grammaturaCopertina;
-
-
-    public PubblicazioniRilegateModel() {
-
-    }
-
-    public PubblicazioniRilegateModel(String categoria) {
-        setCategoria(categoria);
-    }
-
-
     public String getCategoria() {
         return get("categoria");
     }
@@ -38,72 +19,68 @@ public class PubblicazioniRilegateModel extends BaseModel {
         set("categoria", categoria);
     }
 
-    public double getAltezza() {
+    public Double getAltezza() {
         return (Double) get("altezza");
     }
 
-    public void setAltezza(double altezza) {
+    public void setAltezza(Double altezza) {
         set("altezza", altezza);
     }
 
-    public double getLarghezza() {
+    public Double getLarghezza() {
         return (Double) get("larghezza");
     }
 
-    public void setLarghezza(double larghezza) {
+    public void setLarghezza(Double larghezza) {
         set("larghezza", larghezza);
     }
 
-    public int getNumeroDiPagine() {
-        return (Integer) get("numeroDiPagine");
+    public Double getNumeroDiPagine() {
+        return get("numeroDiPagine");
     }
 
-    public void setNumeroDiPagine(int numeroDiPagine) {
+    public void setNumeroDiPagine(Double numeroDiPagine) {
         set("numeroDiPagine", numeroDiPagine);
     }
 
-    public int getTiratura() {
-        return (Integer) get("tiratura");
+    public Double getTiratura() {
+        return get("tiratura");
     }
 
-    public void setTiratura(int tiratura) {
+    public void setTiratura(Double tiratura) {
         set("tiratura", tiratura);
     }
 
-    public String getTipoDiCarta() {
-        return (String) get("tipoDiCarta");
+    public TipoDiCartaModel getTipoDiCarta() {
+        return get("tipoDiCarta");
     }
 
-    public void setTipoDiCarta(String tipoDiCarta) {
+    public void setTipoDiCarta(TipoDiCartaModel tipoDiCarta) {
         set("tipoDiCarta", tipoDiCarta);
     }
 
-    public double getGrammatura() {
+    public Double getGrammatura() {
         return (Double) get("grammatura");
     }
 
-    public void setGrammatura(double grammatura) {
+    public void setGrammatura(Double grammatura) {
         set("grammatura", grammatura);
     }
 
-
-
-    public String getTipoDiCartaCopertina() {
-    return (String) get("tipoDiCartaCopertina");
+    public TipoDiCartaModel getTipoDiCartaCopertina() {
+        return (TipoDiCartaModel) get("tipoDiCartaCopertina");
     }
 
-    public void setTipoDiCartaCopertina(String tipoDiCartaCopertina) {
+    public void setTipoDiCartaCopertina(TipoDiCartaModel tipoDiCartaCopertina) {
         set("tipoDiCartaCoprtina", tipoDiCartaCopertina);
     }
 
-    public double getGrammaturaCopertina() {
+    public Double getGrammaturaCopertina() {
         return (Double) get("grammaturaCopertina");
     }
 
-    public void setGrammaturaCopertina(double grammaturaCopertina) {
+    public void setGrammaturaCopertina(Double grammaturaCopertina) {
         set("grammaturaCopertina", grammaturaCopertina);
     }
-
-
 }
 

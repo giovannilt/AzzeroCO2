@@ -11,23 +11,6 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  */
 public class ManifestiPieghevoliFogliModel extends BaseModel {
 
-    private double altezza;
-    private double larghezza;
-    private int tiratura;
-    private int numeroDiPagine;
-    private String tipoDiCarta;
-    private double grammatura;
-
-
-    public ManifestiPieghevoliFogliModel() {
-
-    }
-
-    public ManifestiPieghevoliFogliModel(String categoria) {
-        setCategoria(categoria);
-    }
-
-
     public String getCategoria() {
         return get("categoria");
     }
@@ -36,48 +19,48 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
         set("categoria", categoria);
     }
 
-    public double getAltezza() {
-        return (Double) get("altezza");
+    public Double getAltezza() {
+        return get("altezza");
     }
 
-    public void setAltezza(double altezza) {
+    public void setAltezza(Double altezza) {
         set("altezza", altezza);
     }
 
-    public double getLarghezza() {
-        return (Double) get("larghezza");
+    public Double getLarghezza() {
+        return get("larghezza");
     }
 
-    public void setLarghezza(double larghezza) {
+    public void setLarghezza(Double larghezza) {
         set("larghezza", larghezza);
     }
 
-    public int getNumeroDiPagine() {
-        return (Integer) get("numeroDiPagine");
+    public Integer getNumeroDiPagine() {
+        return get("numeroDiPagine");
     }
 
-    public void setNumeroDiPagine(int numeroDiPagine) {
+    public void setNumeroDiPagine(Integer numeroDiPagine) {
         set("numeroDiPagine", numeroDiPagine);
     }
 
-    public int getTiratura() {
-        return (Integer) get("tiratura");
+    public Double getTiratura() {
+        return get("tiratura");
     }
 
-    public void setTiratura(int tiratura) {
+    public void setTiratura(Double tiratura) {
         set("tiratura", tiratura);
     }
 
-    public String getTipoDiCarta() {
-        return (String) get("tipoDiCarta");
+    public TipoDiCartaModel getTipoDiCarta() {
+        return get("tipoDiCarta");
     }
 
-    public void setTipoDiCarta(String  tipoDiCarta) {
+    public void setTipoDiCarta(TipoDiCartaModel tipoDiCarta) {
         set("tipoDiCarta", tipoDiCarta);
     }
 
-    public double getGrammatura() {
-        return (Double) get("grammatura");
+    public Double getGrammatura() {
+        return get("grammatura");
     }
 
     public void setGrammatura(double grammatura) {
