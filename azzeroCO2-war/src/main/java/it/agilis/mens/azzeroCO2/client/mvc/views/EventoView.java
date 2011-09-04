@@ -17,10 +17,13 @@ import it.agilis.mens.azzeroCO2.client.components.evento.EventoWest;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -117,7 +120,7 @@ public class EventoView extends View {
         eventoDettaglio.setTipoDiCarta(tipoDiCartaModels);
     }
 
-    public void riepilogo() {
-        eventoDettaglio.riepilogo();
+    public void riepilogo(Map<String, CoefficienteModel> coefficienti) {
+        eventoDettaglio.setEventoRiepilogoInStore(CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti));
     }
 }

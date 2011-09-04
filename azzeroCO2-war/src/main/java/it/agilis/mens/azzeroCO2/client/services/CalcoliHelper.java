@@ -23,23 +23,17 @@ public class CalcoliHelper {
     private static HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
     private static Map<String, CoefficienteModel> coefficienti = null;
 
-    public static List<RiepilogoModel> geListOfRiepilogoModel(DettaglioModel eventoModel) {
-        if (coefficienti == null) {
-            getCoefficienti();
-        }
+    public static List<RiepilogoModel> geListOfRiepilogoModel(DettaglioModel eventoModel, Map<String, CoefficienteModel> c) {
+        coefficienti = c;
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
 
         //Caloclo ENERGIA
         RiepilogoModel model = getEnergia(eventoModel.getEnergiaModel());
-        if (model == null) {
-            return null;
-        } else {
+        if (model != null) {
             store.add(model);
         }
         model = getNotti(eventoModel.getNottiModel());
-        if (model == null) {
-            return null;
-        } else {
+        if (model != null) {
             store.add(model);
         }
         store.addAll(getTrasportoPersone(eventoModel.getTrasportoPersoneModel()));
@@ -52,30 +46,23 @@ public class CalcoliHelper {
         RiepilogoModel energia = new RiepilogoModel();
 
         energia.setOggetto("Energia");
-        String energia1;
-        String energia2;
-        String energia3;
+        String energia1 = "";
+        String energia2 = "";
+        String energia3 = "";
         if (energiaModel.getEnergiaElettrica() > 0) {
-            energia1 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h" + "\n";
-        } else {
-            energia1 = "";
+            energia1 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h </br>";
         }
-        if (energiaModel.getEnergiaElettrica() > 0) {
-            energia2 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h" + "\n";
-        } else {
-            energia2 = "";
+        if (energiaModel.getGasMetano() > 0) {
+            energia2 = "Energia Gas" + " " + energiaModel.getEnergiaElettrica() + " kw/h  </br>";
         }
-        if (energiaModel.getEnergiaElettrica() > 0) {
-            energia3 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h" + "\n";
-        } else {
-            energia3 = "";
+        if (energiaModel.getGasolio() > 0) {
+            energia3 = "Energia Gasolio" + " " + energiaModel.getEnergiaElettrica() + " kw/h </br>";
         }
 
-
-        String energiaDett = energia1 + energia2 + energia3;
+        energia.setDettagli(energia1 + energia2 + energia3);
 
         CoefficienteModel coefficienteModelEnergia = coefficienti.get("ENEELE");
-        CoefficienteModel coefficientiEnergiaGAS =   coefficienti.get("ENEGAS");
+        CoefficienteModel coefficientiEnergiaGAS = coefficienti.get("ENEGAS");
         CoefficienteModel coefficienteModelGasolio = coefficienti.get("ENEGSL");
 
         Double co2 = energiaModel.getEnergiaElettrica() * coefficienteModelEnergia.getValore();
@@ -85,11 +72,9 @@ public class CalcoliHelper {
 
         if (co2 > 0) {
             return energia;
-        } else {
-            return null;
         }
+        return null;
     }
-
 
     private static RiepilogoModel getNotti(NottiModel nottiModel) {
         RiepilogoModel notti = new RiepilogoModel();
@@ -98,25 +83,23 @@ public class CalcoliHelper {
         String energiaDett = "Pernottamenti" + " " + nottiModel.getNotti() + " notti";
         notti.setDettagli(energiaDett);
         CoefficienteModel coefficienteModel = coefficienti.get("PERNOT");
-        Double co2 = nottiModel.getNotti() * coefficienteModel.getValore();
-        notti.setKgCO2(co2);
+        Double co2 = -1.0;
+        if (nottiModel.getNotti() > 0) {
+            co2 = nottiModel.getNotti() * coefficienteModel.getValore();
+            notti.setKgCO2(co2);
+        }
 
         if (co2 > 0) {
             return notti;
-        } else {
-            return null;
         }
+        return null;
     }
 
 
     private static List<RiepilogoModel> getTrasportoPersone(List<TrasportoPersoneModel> trasportoPersoneModels) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
-
-
         for (TrasportoPersoneModel tpm : trasportoPersoneModels) {
             RiepilogoModel _rm = new RiepilogoModel();
-
-
             _rm.setOggetto("Trasporto Persone / " + tpm.getCategoria());
             String tp50Bus;
             String tp50Auto;
@@ -270,11 +253,8 @@ public class CalcoliHelper {
 
             if (co2 > 0) {
                 _return.add(_rm);
-            } else {
-                return null;
             }
         }
-
         return _return;
     }
 

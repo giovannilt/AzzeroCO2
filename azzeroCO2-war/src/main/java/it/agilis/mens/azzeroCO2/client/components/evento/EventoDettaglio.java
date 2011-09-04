@@ -8,7 +8,7 @@ import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.evento.*;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
-import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
+import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
@@ -199,7 +199,6 @@ public class EventoDettaglio extends LayoutContainer {
         eventoModel.setTrasportoMerciModel(formTrasportoMerci.getTrasportoMerciModel());
         eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel().getModels());
         eventoModel.setManifestiPieghevoliFogliModel(formManifestiPiegevoliFogli.getManifestiPieghevoliFogliModel().getModels());
-        eventoFormRiepilogo.getStore().add(CalcoliHelper.geListOfRiepilogoModel(eventoModel));
         return eventoModel;
     }
 
@@ -207,5 +206,9 @@ public class EventoDettaglio extends LayoutContainer {
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
         formPubblicazioniRilegate.setTipoDiCartaModel(tipoDiCartaModels);
         formManifestiPiegevoliFogli.setTipoDiCartaModel(tipoDiCartaModels);
+    }
+
+    public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
+        eventoFormRiepilogo.getStore().add(eventoRiepilogoModels);
     }
 }

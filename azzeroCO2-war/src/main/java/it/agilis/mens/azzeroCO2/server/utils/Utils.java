@@ -116,7 +116,7 @@ public class Utils {
             cm.setTipologia(c.getTipologia());
             cm.setUdm(c.getUdm());
             cm.setValore(c.getValore());
-            _return.put(c.getNome(), cm);
+            _return.put(c.getCodice(), cm);
         }
         return _return;
     }

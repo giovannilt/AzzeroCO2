@@ -22,5 +22,6 @@ public class EventoEvents {
     public static final EventType Next = new EventType();
     public static final EventType Previous = new EventType();
     public static final EventType Riepilogo = new EventType();
+    public static final EventType CaricaCoefficienti = new EventType();
 
 }

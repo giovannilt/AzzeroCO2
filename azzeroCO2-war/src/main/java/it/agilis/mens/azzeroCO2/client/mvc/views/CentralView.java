@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
@@ -104,6 +105,7 @@ public class CentralView extends View {
 
             unEvento.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
+                    Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
                     setActiveItem(Eventi.EVENTO);
                 }
             });
@@ -117,6 +119,7 @@ public class CentralView extends View {
                 public void componentSelected(ButtonEvent ce) {
                    // TODO.... DA CAMBIARE
                    // setActiveItem(Eventi.ANNO_DI_ATTIVITA);
+                   Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
                    setActiveItem(Eventi.EVENTO);
                 }
             });
@@ -138,6 +141,7 @@ public class CentralView extends View {
             pubblicazione.setIconAlign(Style.IconAlign.TOP);
             pubblicazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
+                    Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
                     setActiveItem(Eventi.UNA_PUBBLICAZIONE);
                 }
             });
@@ -150,6 +154,7 @@ public class CentralView extends View {
             web.setIconAlign(Style.IconAlign.TOP);
             web.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
+                    Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
                     setActiveItem(Eventi.WEB);
                 }
             });
@@ -164,6 +169,7 @@ public class CentralView extends View {
             co2.setIconAlign(Style.IconAlign.TOP);
             co2.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
+                    Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
                     setActiveItem(Eventi.CONOSCI_CO2);
                 }
             });

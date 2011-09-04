@@ -19,23 +19,23 @@ public class EnergiaModel extends BaseModel {
         set("energiaElettrica", energiaElettrica);
     }
 
-    public int getEnergiaElettrica() {
-        return (Integer) get("energiaElettrica");
+    public Double getEnergiaElettrica() {
+        return (Double) get("energiaElettrica");
     }
 
     public void setGasMetano(int gasMetano) {
         set("gasMetano", gasMetano);
     }
 
-    public int getGasMetano() {
-        return (Integer) get("gasMetano");
+    public Double getGasMetano() {
+        return (Double) get("gasMetano");
     }
 
     public void setGasolio(int gasolio) {
         set("gasolio", gasolio);
     }
 
-    public int getGasolio() {
-        return (Integer) get("gasolio");
+    public Double getGasolio() {
+        return (Double) get("gasolio");
     }
 }

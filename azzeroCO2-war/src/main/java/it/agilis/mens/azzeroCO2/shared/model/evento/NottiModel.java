@@ -12,11 +12,11 @@ import com.extjs.gxt.ui.client.data.BaseModel;
 public class NottiModel extends BaseModel {
     private Integer notti;
 
-    public void setNotti(int notti) {
+    public void setNotti(Double notti) {
         set("notti", notti);
     }
 
-    public int getNotti() {
-        return (Integer) get("notti");
+    public Double getNotti() {
+        return (Double) get("notti");
     }
 }

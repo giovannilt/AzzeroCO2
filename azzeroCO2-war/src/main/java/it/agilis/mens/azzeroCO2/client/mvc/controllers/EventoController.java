@@ -31,13 +31,14 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.Save);
         registerEventTypes(AzzeroCO2Events.LoggedIn);
         registerEventTypes(EventoEvents.Riepilogo);
+        registerEventTypes(EventoEvents.CaricaCoefficienti);
 
     }
 
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(AzzeroCO2Events.Init)) {
-              AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
+            AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
                 }
@@ -53,12 +54,21 @@ public class EventoController extends BaseController {
             getHustonService().getTipoDiCarta(tipoDiCartaCallBack);
             forwardToView(eventoView, event);
         } else if (event.getType().equals(EventoEvents.Riepilogo)) {
-           eventoView.riepilogo();
 
+
+            if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
+                Info.display("Error", "Errore impossibile recuperare i coefficenti dal server");
+            } else {
+                eventoView.riepilogo(getCoefficientiMAP());
+            }
+        } else if (event.getType().equals(EventoEvents.CaricaCoefficienti)) {
+            setCoefficienti();
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
         } else {
             forwardToView(eventoView, event);
         }
     }
+
+
 }
