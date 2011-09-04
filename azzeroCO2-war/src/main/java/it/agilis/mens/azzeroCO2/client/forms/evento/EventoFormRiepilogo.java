@@ -60,13 +60,12 @@ public class EventoFormRiepilogo extends LayoutContainer {
     private Grid<RiepilogoModel> createGrid() {
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
-
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
         ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 300);
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 445);
+        column = new ColumnConfig("dettagli", "Dettagli", 430);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 100);
@@ -77,7 +76,6 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
         AggregationRowConfig<RiepilogoModel> somma = new AggregationRowConfig<RiepilogoModel>();
         somma.setHtml("name", "Somma");
-
         somma.setSummaryType("kgCO2", SummaryType.SUM);
         somma.setRenderer("kgCO2", new AggregationRenderer<RiepilogoModel>() {
             public Object render(Number value, int colIndex, Grid<RiepilogoModel> grid, ListStore<RiepilogoModel> store) {
@@ -94,7 +92,6 @@ public class EventoFormRiepilogo extends LayoutContainer {
         grid.setAutoHeight(true);
 
         return grid;
-
     }
 
     public ListStore<RiepilogoModel> getStore() {
