@@ -125,9 +125,9 @@ public class EventoDettaglio extends LayoutContainer {
                     if (i > 0) {
                         item.setEnabled(false);
                         eventoTab.getItems().get(i - 1).setEnabled(true);
-                        if (eventoTab.getItems().get(i - 1).getText().equalsIgnoreCase("Riepilogo")) {
+                        /* if (eventoTab.getItems().get(i - 1).getText().equalsIgnoreCase("Riepilogo")) {
                             Dispatcher.forwardEvent(EventoEvents.Riepilogo);
-                        }
+                        }*/
                         eventoTab.setSelection(eventoTab.getItems().get(i - 1));
                         return;
                     }
@@ -209,6 +209,11 @@ public class EventoDettaglio extends LayoutContainer {
     }
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
+        if (eventoFormRiepilogo.getStore() != null) {
+            for (RiepilogoModel rm : eventoFormRiepilogo.getStore().getModels()) {
+                eventoFormRiepilogo.getStore().remove(rm);
+            }
+        }
         eventoFormRiepilogo.getStore().add(eventoRiepilogoModels);
     }
 }

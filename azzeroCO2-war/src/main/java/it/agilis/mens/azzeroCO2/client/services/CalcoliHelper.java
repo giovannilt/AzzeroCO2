@@ -1,10 +1,8 @@
 package it.agilis.mens.azzeroCO2.client.services;
 
 import com.extjs.gxt.ui.client.Registry;
-import com.extjs.gxt.ui.client.widget.Info;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 
 import java.util.ArrayList;
@@ -28,18 +26,23 @@ public class CalcoliHelper {
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
 
         //Caloclo ENERGIA
-        RiepilogoModel model = getEnergia(eventoModel.getEnergiaModel());
-        if (model != null) {
-            store.add(model);
+        RiepilogoModel model = null;
+        if (eventoModel != null && eventoModel.getEnergiaModel() != null) {
+            model = getEnergia(eventoModel.getEnergiaModel());
+            if (model != null) {
+                store.add(model);
+            }
         }
-        model = getNotti(eventoModel.getNottiModel());
-        if (model != null) {
-            store.add(model);
+        if (eventoModel != null && eventoModel.getNottiModel() != null) {
+            model = getNotti(eventoModel.getNottiModel());
+            if (model != null) {
+                store.add(model);
+            }
         }
-        store.addAll(getTrasportoPersone(eventoModel.getTrasportoPersoneModel()));
-
+        //  store.addAll(getTrasportoPersone(eventoModel.getTrasportoPersoneModel()));
+        // store.addAll(getPubblNonRil(eventoModel.getManifestiPieghevoliFogliModel()));
+        // store.addAll(getPubblRil(eventoModel.getPubblicazioniRilegateModel()));
         return store;
-
     }
 
     private static RiepilogoModel getEnergia(EnergiaModel energiaModel) {
@@ -49,28 +52,28 @@ public class CalcoliHelper {
         String energia1 = "";
         String energia2 = "";
         String energia3 = "";
+
+        CoefficienteModel coefficienteModelEnergia = coefficienti.get("ENEELE");
+        CoefficienteModel coefficientiEnergiaGAS   = coefficienti.get("ENEGAS");
+        CoefficienteModel coefficienteModelGasolio = coefficienti.get("ENEGSL");
+
+        double co2 = 0;
         if (energiaModel.getEnergiaElettrica() > 0) {
             energia1 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h </br>";
+            co2 = energiaModel.getEnergiaElettrica() * coefficienteModelEnergia.getValore();
         }
         if (energiaModel.getGasMetano() > 0) {
             energia2 = "Gas" + " " + energiaModel.getEnergiaElettrica() + " metri cubi  </br>";
+            co2 += energiaModel.getGasMetano() * coefficientiEnergiaGAS.getValore();
         }
         if (energiaModel.getGasolio() > 0) {
             energia3 = "Gasolio" + " " + energiaModel.getEnergiaElettrica() + " litri </br>";
+            co2 += energiaModel.getGasolio() * coefficienteModelGasolio.getValore();
         }
-
         energia.setDettagli(energia1 + energia2 + energia3);
 
-        CoefficienteModel coefficienteModelEnergia = coefficienti.get("ENEELE");
-        CoefficienteModel coefficientiEnergiaGAS = coefficienti.get("ENEGAS");
-        CoefficienteModel coefficienteModelGasolio = coefficienti.get("ENEGSL");
-
-        Double co2 = energiaModel.getEnergiaElettrica() * coefficienteModelEnergia.getValore();
-        co2 += energiaModel.getGasMetano() * coefficientiEnergiaGAS.getValore();
-        co2 += energiaModel.getGasolio() * coefficienteModelGasolio.getValore();
-        energia.setKgCO2(co2);
-
         if (co2 > 0) {
+            energia.setKgCO2(co2);
             return energia;
         }
         return null;
@@ -262,32 +265,24 @@ public class CalcoliHelper {
     private static List<RiepilogoModel> getPubblRil(List<PubblicazioniRilegateModel> pubblRilModel) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
 
-
         for (PubblicazioniRilegateModel prm : pubblRilModel) {
             RiepilogoModel _rm = new RiepilogoModel();
-
-
             _rm.setOggetto("Pubblicazioni rilegate / " + prm.getCategoria());
-
             String formato;
             String materiale;
             String pagine;
             String tiratura;
             String copertina;
-
             String pubblRilDett;
 
-
-            formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() ;
+            formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza();
             materiale = prm.getTipoDiCarta() + " " + prm.getGrammatura() + " gr";
             pagine = "Numero di pagine: " + prm.getNumeroDiPagine();
             tiratura = "Tiratura " + prm.getTiratura();
 
             pubblRilDett = formato + "</br>" + materiale + "</br>" + pagine + "</br>" + tiratura;
 
-
             _rm.setDettagli(pubblRilDett);
-
 
             CoefficienteModel coefficienteModelPUBRIS = coefficienti.get("PUBRIS");
             CoefficienteModel coefficienteModelPUBRIC = coefficienti.get("PUBRIC");
@@ -297,7 +292,6 @@ public class CalcoliHelper {
             CoefficienteModel coefficienteModelPUBRIV = coefficienti.get("PUBRIV");
             Double coeffCarta;
             Double coeffCartaCop;
-
 
             if (prm.getTipoDiCarta().toLowerCase().equals("carta riciclata sbiancata ")) {
                 coeffCarta = coefficienteModelPUBRIS.getValore();
@@ -314,7 +308,6 @@ public class CalcoliHelper {
             } else {
                 coeffCarta = 0.0;
             }
-
 
             if (prm.getTipoDiCartaCopertina().toLowerCase().equals("carta riciclata sbiancata ")) {
                 coeffCartaCop = coefficienteModelPUBRIS.getValore();
@@ -332,17 +325,12 @@ public class CalcoliHelper {
                 coeffCartaCop = 0.0;
             }
 
-
             Double co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100 * prm.getNumeroDiPagine() * prm.getTiratura() * prm.getGrammatura() * coeffCarta;
-
             co2 += prm.getAltezza() / 100 * prm.getLarghezza() / 100 * 2 * prm.getTiratura() * prm.getGrammaturaCopertina() * coeffCartaCop;
-
             _rm.setKgCO2(co2);
 
             if (co2 > 0) {
                 _return.add(_rm);
-            } else {
-                return null;
             }
         }
         return _return;
@@ -355,29 +343,21 @@ public class CalcoliHelper {
 
         for (ManifestiPieghevoliFogliModel prm : pubblNonRilModel) {
             RiepilogoModel _rm = new RiepilogoModel();
-
-
             _rm.setOggetto("Manifesti, pieghevoli, fogli / " + prm.getCategoria());
-
             String formato;
             String materiale;
             String pagine;
             String tiratura;
 
-
             String pubblNonRilDett;
 
-
-            formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() ;
+            formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza();
             materiale = prm.getTipoDiCarta() + " " + prm.getGrammatura() + " gr";
             pagine = "Numero di pagine: " + prm.getNumeroDiPagine();
             tiratura = "Tiratura " + prm.getTiratura();
 
             pubblNonRilDett = formato + "</br>" + materiale + "</br>" + pagine + "</br>" + tiratura;
-
-
             _rm.setDettagli(pubblNonRilDett);
-
 
             CoefficienteModel coefficienteModelPUBRIS = coefficienti.get("PUBRIS");
             CoefficienteModel coefficienteModelPUBRIC = coefficienti.get("PUBRIC");
@@ -403,39 +383,13 @@ public class CalcoliHelper {
             } else {
                 coeffCarta = 0.0;
             }
-
-
             Double co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100 * prm.getNumeroDiPagine() * prm.getTiratura() * prm.getGrammatura() * coeffCarta;
-
-
             _rm.setKgCO2(co2);
 
             if (co2 > 0) {
                 _return.add(_rm);
-            } else {
-                return null;
             }
         }
         return _return;
-    }
-
-
-    private static void getCoefficienti() {
-        AsyncCallback<Map<String, CoefficienteModel>> aCallback = new AsyncCallback<Map<String, CoefficienteModel>>() {
-            public void onFailure(Throwable caught) {
-                Info.display("Error", "Errore impossibile connettersi al server");
-            }
-
-            @Override
-            public void onSuccess(Map<String, CoefficienteModel> result) {
-                if (result != null) {
-                    coefficienti = result;
-                } else {
-                    Info.display("Error", "Errore impossibile connettersi al server");
-                }
-            }
-        };
-        hustonService.getCoefficienti(aCallback);
-
     }
 }
