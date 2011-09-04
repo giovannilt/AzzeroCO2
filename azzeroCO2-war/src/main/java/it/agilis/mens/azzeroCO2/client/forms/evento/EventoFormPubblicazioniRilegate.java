@@ -203,6 +203,9 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 NumberField numeroDiPagine = new NumberField();
                 numeroDiPagine.setWidth(60);
                 numeroDiPagine.setName("quantita");
+                numeroDiPagine.setRegex("[0-9]+");
+                numeroDiPagine.getMessages().setRegexText("Inserisci un numero intero");
+                numeroDiPagine.setPropertyEditorType(Integer.class);
 
                 LabelField label = new LabelField("Quantita' ");
                 label.setWidth(100);
@@ -222,6 +225,9 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 NumberField tiratura = new NumberField();
                 tiratura.setWidth(60);
                 tiratura.setName("tiratura");
+                tiratura.setRegex("[0-9]+");
+                tiratura.getMessages().setRegexText("Inserisci un numero intero");
+                tiratura.setPropertyEditorType(Integer.class);
 
                 LabelField label = new LabelField("");
                 label.setWidth(100);

@@ -63,6 +63,8 @@ public class EventoFormPernottamenti extends LayoutContainer {
         notti.setLayout(layoutNotti);
 
         NumberField numeroNotti = new NumberField();
+        numeroNotti.setRegex("[0-9]+");
+        numeroNotti.getMessages().setRegexText("Inserisci un numero intero");
         numeroNotti.setName("notti");
         numeroNotti.setWidth(60);
         numeroNotti.setPropertyEditorType(Integer.class);
