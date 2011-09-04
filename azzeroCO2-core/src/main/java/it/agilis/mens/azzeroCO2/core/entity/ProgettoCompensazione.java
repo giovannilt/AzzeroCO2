@@ -26,7 +26,7 @@ public class ProgettoCompensazione {
     private List<Ordine> ordine;
 
     private String nome;
-    private Long  prezzo;
+    private Double  prezzo;
     private String img;
     private Boolean attivo;
     private double kgCo2;
@@ -55,11 +55,11 @@ public class ProgettoCompensazione {
         this.nome = nome;
     }
 
-    public Long getPrezzo() {
+    public Double getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(Long prezzo) {
+    public void setPrezzo(Double prezzo) {
         this.prezzo = prezzo;
     }
 
