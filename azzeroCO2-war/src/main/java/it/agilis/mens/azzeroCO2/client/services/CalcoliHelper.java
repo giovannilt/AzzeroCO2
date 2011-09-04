@@ -53,10 +53,10 @@ public class CalcoliHelper {
             energia1 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h </br>";
         }
         if (energiaModel.getGasMetano() > 0) {
-            energia2 = "Gas" + " " + energiaModel.getEnergiaElettrica() + " kw/h  </br>";
+            energia2 = "Gas" + " " + energiaModel.getEnergiaElettrica() + " metri cubi  </br>";
         }
         if (energiaModel.getGasolio() > 0) {
-            energia3 = "Gasolio" + " " + energiaModel.getEnergiaElettrica() + " kw/h </br>";
+            energia3 = "Gasolio" + " " + energiaModel.getEnergiaElettrica() + " litri </br>";
         }
 
         energia.setDettagli(energia1 + energia2 + energia3);
@@ -124,17 +124,17 @@ public class CalcoliHelper {
             String tp500;
 
             if (tpm.getBusPiu50() > 0) {
-                tp50Bus = "Bus " + tpm.getBusPiu50() + " tratte" + "\n";
+                tp50Bus = "Bus " + tpm.getBusPiu50() + " tratte </br>";
             } else {
                 tp50Bus = "";
             }
             if (tpm.getAutoPiu50() > 0) {
-                tp50Auto = "Auto " + tpm.getAutoPiu50() + " tratte" + "\n";
+                tp50Auto = "Auto " + tpm.getAutoPiu50() + " tratte </br>";
             } else {
                 tp50Auto = "";
             }
             if (tpm.getTrenoPiu50() > 0) {
-                tp50Treno = "Treno " + tpm.getTrenoPiu50() + " tratte" + "\n";
+                tp50Treno = "Treno " + tpm.getTrenoPiu50() + " tratte </br>";
             } else {
                 tp50Treno = "";
             }
@@ -146,17 +146,17 @@ public class CalcoliHelper {
             }
 
             if (tpm.getBusPiu100() > 0) {
-                tp100Bus = "Bus " + tpm.getBusPiu100() + " tratte" + "\n";
+                tp100Bus = "Bus " + tpm.getBusPiu100() + " tratte </br>";
             } else {
                 tp100Bus = "";
             }
             if (tpm.getAutoPiu100() > 0) {
-                tp100Auto = "Auto " + tpm.getAutoPiu100() + " tratte" + "\n";
+                tp100Auto = "Auto " + tpm.getAutoPiu100() + " tratte </br>";
             } else {
                 tp100Auto = "";
             }
             if (tpm.getTrenoPiu100() > 0) {
-                tp100Treno = "Treno " + tpm.getTrenoPiu100() + " tratte" + "\n";
+                tp100Treno = "Treno " + tpm.getTrenoPiu100() + " tratte </br>";
             } else {
                 tp100Treno = "";
             }
@@ -168,22 +168,22 @@ public class CalcoliHelper {
             }
 
             if (tpm.getBusPiu250() > 0) {
-                tp250Bus = "Bus " + tpm.getBusPiu250() + " tratte" + "\n";
+                tp250Bus = "Bus " + tpm.getBusPiu250() + " tratte </br>";
             } else {
                 tp250Bus = "";
             }
             if (tpm.getAutoPiu250() > 0) {
-                tp250Auto = "Auto " + tpm.getAutoPiu250() + " tratte" + "\n";
+                tp250Auto = "Auto " + tpm.getAutoPiu250() + " tratte </br>";
             } else {
                 tp250Auto = "";
             }
             if (tpm.getTrenoPiu250() > 0) {
-                tp250Treno = "Treno " + tpm.getTrenoPiu250() + " tratte" + "\n";
+                tp250Treno = "Treno " + tpm.getTrenoPiu250() + " tratte </br>";
             } else {
                 tp250Treno = "";
             }
             if (tpm.getAereoPiu250() > 0) {
-                tp250Aereo = "Aereo " + tpm.getAereoPiu250() + " tratte" + "\n";
+                tp250Aereo = "Aereo " + tpm.getAereoPiu250() + " tratte </br>";
             } else {
                 tp250Aereo = "";
             }
@@ -195,22 +195,22 @@ public class CalcoliHelper {
             }
 
             if (tpm.getBusPiu500() > 0) {
-                tp500Bus = "Bus " + tpm.getBusPiu500() + " tratte" + "\n";
+                tp500Bus = "Bus " + tpm.getBusPiu500() + " tratte </br>";
             } else {
                 tp500Bus = "";
             }
             if (tpm.getAutoPiu500() > 0) {
-                tp500Auto = "Auto " + tpm.getAutoPiu500() + " tratte" + "\n";
+                tp500Auto = "Auto " + tpm.getAutoPiu500() + " tratte </br>";
             } else {
                 tp500Auto = "";
             }
             if (tpm.getTrenoPiu500() > 0) {
-                tp500Treno = "Treno " + tpm.getTrenoPiu500() + " tratte" + "\n";
+                tp500Treno = "Treno " + tpm.getTrenoPiu500() + " tratte </br>";
             } else {
                 tp500Treno = "";
             }
             if (tpm.getAereoPiu500() > 0) {
-                tp500Aereo = "Aereo " + tpm.getAereoPiu500() + " tratte" + "\n";
+                tp500Aereo = "Aereo " + tpm.getAereoPiu500() + " tratte </br>";
             } else {
                 tp500Aereo = "";
             }
@@ -278,12 +278,12 @@ public class CalcoliHelper {
             String pubblRilDett;
 
 
-            formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "\n";
+            formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() ;
             materiale = prm.getTipoDiCarta() + " " + prm.getGrammatura() + " gr";
             pagine = "Numero di pagine: " + prm.getNumeroDiPagine();
             tiratura = "Tiratura " + prm.getTiratura();
 
-            pubblRilDett = formato + "\n" + materiale + "\n" + pagine + "\n" + tiratura;
+            pubblRilDett = formato + "</br>" + materiale + "</br>" + pagine + "</br>" + tiratura;
 
 
             _rm.setDettagli(pubblRilDett);
@@ -368,12 +368,12 @@ public class CalcoliHelper {
             String pubblNonRilDett;
 
 
-            formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "\n";
+            formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() ;
             materiale = prm.getTipoDiCarta() + " " + prm.getGrammatura() + " gr";
             pagine = "Numero di pagine: " + prm.getNumeroDiPagine();
             tiratura = "Tiratura " + prm.getTiratura();
 
-            pubblNonRilDett = formato + "\n" + materiale + "\n" + pagine + "\n" + tiratura;
+            pubblNonRilDett = formato + "</br>" + materiale + "</br>" + pagine + "</br>" + tiratura;
 
 
             _rm.setDettagli(pubblNonRilDett);
