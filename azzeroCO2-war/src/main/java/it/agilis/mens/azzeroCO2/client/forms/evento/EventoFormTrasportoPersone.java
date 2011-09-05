@@ -147,7 +147,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         {
             LayoutContainer cl = new LayoutContainer();
             HBoxLayout layout = new HBoxLayout();
-            layout.setPadding(new Padding(10));
+            layout.setPadding(new Padding(5));
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             cl.setLayout(layout);
 
@@ -157,7 +157,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         {
             LayoutContainer piu50 = new LayoutContainer();
             HBoxLayout layoutRigaPiu50 = new HBoxLayout();
-            layoutRigaPiu50.setPadding(new Padding(10));
+            layoutRigaPiu50.setPadding(new Padding(7));
             piu50.setLayout(layoutRigaPiu50);
 
             piu50.add(new LabelField("Distanza percorsa: provinciale"), flex);
@@ -165,7 +165,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
             LayoutContainer piu50input = new LayoutContainer();
             HBoxLayout layoutPiu50input = new HBoxLayout();
-            layoutPiu50input.setPadding(new Padding(10));
+            layoutPiu50input.setPadding(new Padding(7));
             layoutPiu50input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu50input.setLayout(layoutPiu50input);
 
@@ -220,7 +220,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         {
             LayoutContainer piu100 = new LayoutContainer();
             HBoxLayout layoutRigaPiu100 = new HBoxLayout();
-            layoutRigaPiu100.setPadding(new Padding(10));
+            layoutRigaPiu100.setPadding(new Padding(7));
             layoutRigaPiu100.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu100.setLayout(layoutRigaPiu100);
             piu100.add(new LabelField("Distanza percorsa: regionale"), flex);
@@ -228,7 +228,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
             LayoutContainer piu100input = new LayoutContainer();
             HBoxLayout layoutPiu100input = new HBoxLayout();
-            layoutPiu100input.setPadding(new Padding(10));
+            layoutPiu100input.setPadding(new Padding(7));
             layoutPiu100input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu100input.setLayout(layoutPiu100input);
 
@@ -287,7 +287,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         {
             LayoutContainer piu250 = new LayoutContainer();
             HBoxLayout layoutRigaPiu250 = new HBoxLayout();
-            layoutRigaPiu250.setPadding(new Padding(10));
+            layoutRigaPiu250.setPadding(new Padding(7));
             layoutRigaPiu250.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu250.setLayout(layoutRigaPiu250);
             piu250.add(new LabelField("Distanza percorsa: nazionale"), flex);
@@ -295,7 +295,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             formPanel.add(piu250);
             LayoutContainer piu250input = new LayoutContainer();
             HBoxLayout layoutPiu250input = new HBoxLayout();
-            layoutPiu250input.setPadding(new Padding(10));
+            layoutPiu250input.setPadding(new Padding(7));
             layoutPiu250input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu250input.setLayout(layoutPiu250input);
 
@@ -345,7 +345,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         {
             LayoutContainer piu500 = new LayoutContainer();
             HBoxLayout layoutRigaPiu500 = new HBoxLayout();
-            layoutRigaPiu500.setPadding(new Padding(10));
+            layoutRigaPiu500.setPadding(new Padding(7));
             layoutRigaPiu500.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu500.setLayout(layoutRigaPiu500);
 
@@ -354,7 +354,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
             LayoutContainer piu500input = new LayoutContainer();
             HBoxLayout layoutPiu500input = new HBoxLayout();
-            layoutPiu500input.setPadding(new Padding(10));
+            layoutPiu500input.setPadding(new Padding(7));
             layoutPiu500input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu500input.setLayout(layoutPiu500input);
 
@@ -404,7 +404,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         {
             LayoutContainer piu500 = new LayoutContainer();
             HBoxLayout layoutRigaPiu500 = new HBoxLayout();
-            layoutRigaPiu500.setPadding(new Padding(10));
+            layoutRigaPiu500.setPadding(new Padding(7));
             layoutRigaPiu500.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu500.setLayout(layoutRigaPiu500);
 
@@ -413,7 +413,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
             LayoutContainer piu500input = new LayoutContainer();
             HBoxLayout layoutPiu500input = new HBoxLayout();
-            layoutPiu500input.setPadding(new Padding(10));
+            layoutPiu500input.setPadding(new Padding(7));
             layoutPiu500input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu500input.setLayout(layoutPiu500input);
 
@@ -459,9 +459,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             piu500input.add(aereoPiu500, flex);
             formPanel.add(piu500input);
         }
-
-
-
         return formPanel;
     }
 
