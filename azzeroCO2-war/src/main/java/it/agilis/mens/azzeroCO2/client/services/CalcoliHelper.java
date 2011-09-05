@@ -105,84 +105,114 @@ public class CalcoliHelper {
         for (TrasportoPersoneModel tpm : trasportoPersoneModels) {
             RiepilogoModel _rm = new RiepilogoModel();
             _rm.setOggetto("Trasporto Persone / " + tpm.getCategoria());
-            String tp50Bus = "";
-            String tp50Auto = "";
-            String tp50Treno = "";
-            String tp50 = "";
+            String tp60Bus = "";
+            String tp60Auto = "";
+            String tp60Treno = "";
+            String tp60Moto = "";
+            String tp60 = "";
 
-            String tp100Bus = "";
-            String tp100Auto = "";
-            String tp100Treno = "";
-            String tp100 = "";
+            String tp300Bus = "";
+            String tp300Auto = "";
+            String tp300Treno = "";
+            String tp300Moto = "";
+            String tp300 = "";
 
-            String tp250Bus = "";
-            String tp250Auto = "";
-            String tp250Treno = "";
-            String tp250Aereo = "";
-            String tp250 = "";
+            String tp1000Bus = "";
+            String tp1000Auto = "";
+            String tp1000Treno = "";
+            String tp1000Aereo = "";
+            String tp1000 = "";
 
-            String tp500Bus = "";
-            String tp500Auto = "";
-            String tp500Treno = "";
-            String tp500Aereo = "";
-            String tp500 = "";
+            String tp3000Bus = "";
+            String tp3000Auto = "";
+            String tp3000Treno = "";
+            String tp3000Aereo = "";
+            String tp3000 = "";
 
-            if (tpm.getBusPiu50() > 0) {
-                tp50Bus = "Bus " + tpm.getBusPiu50() + " tratte </br>";
-            }
-            if (tpm.getAutoPiu50() > 0) {
-                tp50Auto = "Auto " + tpm.getAutoPiu50() + " tratte </br>";
-            }
-            if (tpm.getTrenoPiu50() > 0) {
-                tp50Treno = "Treno " + tpm.getTrenoPiu50() + " tratte </br>";
-            }
-            if (tpm.getBusPiu50() + tpm.getAutoPiu50() + tpm.getTrenoPiu50() > 0) {
-                tp50 = "Distanza 50 km:</br>" + tp50Bus + tp50Auto + tp50Treno;
-            }
+            String tp9000Bus = "";
+            String tp9000Auto = "";
+            String tp9000Treno = "";
+            String tp9000Aereo = "";
+            String tp9000 = "";
 
-            if (tpm.getBusPiu100() > 0) {
-                tp100Bus = "Bus " + tpm.getBusPiu100() + " tratte </br>";
+            if (tpm.getBusKm60() > 0) {
+                tp60Bus = "Bus " + tpm.getBusKm60() + " tratte </br>";
             }
-            if (tpm.getAutoPiu100() > 0) {
-                tp100Auto = "Auto " + tpm.getAutoPiu100() + " tratte </br>";
+            if (tpm.getAutoKm60() > 0) {
+                tp60Auto = "Auto " + tpm.getAutoKm60() + " tratte </br>";
             }
-            if (tpm.getTrenoPiu100() > 0) {
-                tp100Treno = "Treno " + tpm.getTrenoPiu100() + " tratte </br>";
+            if (tpm.getTrenoKm60() > 0) {
+                tp60Treno = "Treno " + tpm.getTrenoKm60() + " tratte </br>";
             }
-            if (tpm.getBusPiu100() + tpm.getAutoPiu100() + tpm.getTrenoPiu100() > 0) {
-                tp100 = "Distanza 100 km:</br>" + tp100Bus + tp100Auto + tp100Treno;
+            if (tpm.getMotoKm60() > 0) {
+                tp60Moto = "Moto " + tpm.getMotoKm60() + " tratte </br>";
+            }
+            if (tpm.getBusKm60() + tpm.getAutoKm60() + tpm.getTrenoKm60() > 0) {
+                tp60 = "Distanza Provinciale:</br>" + tp60Bus + tp60Auto + tp60Treno + tp60Moto;
             }
 
-            if (tpm.getBusPiu250() > 0) {
-                tp250Bus = "Bus " + tpm.getBusPiu250() + " tratte </br>";
+            if (tpm.getBusKm300() > 0) {
+                tp300Bus = "Bus " + tpm.getBusKm300() + " tratte </br>";
             }
-            if (tpm.getAutoPiu250() > 0) {
-                tp250Auto = "Auto " + tpm.getAutoPiu250() + " tratte </br>";
+            if (tpm.getAutoKm300() > 0) {
+                tp300Auto = "Auto " + tpm.getAutoKm300() + " tratte </br>";
             }
-            if (tpm.getTrenoPiu250() > 0) {
-                tp250Treno = "Treno " + tpm.getTrenoPiu250() + " tratte </br>";
+            if (tpm.getTrenoKm300() > 0) {
+                tp300Treno = "Treno " + tpm.getTrenoKm300() + " tratte </br>";
             }
-            if (tpm.getAereoPiu250() > 0) {
-                tp250Aereo = "Aereo " + tpm.getAereoPiu250() + " tratte </br>";
+            if (tpm.getMotoKm300() > 0) {
+                tp300Moto = "Moto " + tpm.getMotoKm300() + " tratte </br>";
             }
-            if (tpm.getBusPiu250() + tpm.getAutoPiu250() + tpm.getTrenoPiu250() + tpm.getAereoPiu250() > 0) {
-                tp250 = "Distanza 250 km:</br>" + tp250Bus + tp250Auto + tp250Treno + tp250Aereo;
+            if (tpm.getBusKm300() + tpm.getAutoKm300() + tpm.getTrenoKm300() > 0) {
+                tp300 = "Distanza Regionale:</br>" + tp300Bus + tp300Auto + tp300Treno + tp300Moto;
             }
 
-            if (tpm.getBusPiu500() > 0) {
-                tp500Bus = "Bus " + tpm.getBusPiu500() + " tratte </br>";
+            if (tpm.getBusKm1000() > 0) {
+                tp1000Bus = "Bus " + tpm.getBusKm1000() + " tratte </br>";
             }
-            if (tpm.getAutoPiu500() > 0) {
-                tp500Auto = "Auto " + tpm.getAutoPiu500() + " tratte </br>";
+            if (tpm.getAutoKm1000() > 0) {
+                tp1000Auto = "Auto " + tpm.getAutoKm1000() + " tratte </br>";
             }
-            if (tpm.getTrenoPiu500() > 0) {
-                tp500Treno = "Treno " + tpm.getTrenoPiu500() + " tratte </br>";
+            if (tpm.getTrenoKm1000() > 0) {
+                tp1000Treno = "Treno " + tpm.getTrenoKm1000() + " tratte </br>";
             }
-            if (tpm.getAereoPiu500() > 0) {
-                tp500Aereo = "Aereo " + tpm.getAereoPiu500() + " tratte </br>";
+            if (tpm.getAereoKm1000() > 0) {
+                tp1000Aereo = "Aereo " + tpm.getAereoKm1000() + " tratte </br>";
             }
-            if (tpm.getBusPiu500() + tpm.getAutoPiu500() + tpm.getTrenoPiu500() + tpm.getAereoPiu500() > 0) {
-                tp500 = "Distanza 500 km:</br>" + tp500Bus + tp500Auto + tp500Treno + tp500Aereo;
+            if (tpm.getBusKm1000() + tpm.getAutoKm1000() + tpm.getTrenoKm1000() + tpm.getAereoKm1000() > 0) {
+                tp1000 = "Distanza Nazionale:</br>" + tp1000Bus + tp1000Auto + tp1000Treno + tp1000Aereo;
+            }
+
+            if (tpm.getBusKm3000() > 0) {
+                tp3000Bus = "Bus " + tpm.getBusKm3000() + " tratte </br>";
+            }
+            if (tpm.getAutoKm300() > 0) {
+                tp3000Auto = "Auto " + tpm.getAutoKm3000() + " tratte </br>";
+            }
+            if (tpm.getTrenoKm300() > 0) {
+                tp3000Treno = "Treno " + tpm.getTrenoKm3000() + " tratte </br>";
+            }
+            if (tpm.getMotoKm300() > 0) {
+                tp3000Aereo = "Moto " + tpm.getAereoKm3000() + " tratte </br>";
+            }
+            if (tpm.getBusKm3000() + tpm.getAutoKm3000() + tpm.getTrenoKm3000() > 0) {
+                tp3000 = "Distanza Regionale:</br>" + tp3000Bus + tp3000Auto + tp3000Treno + tp3000Aereo;
+            }
+
+            if (tpm.getBusKm9000() > 0) {
+                tp9000Bus = "Bus " + tpm.getBusKm9000() + " tratte </br>";
+            }
+            if (tpm.getAutoKm9000() > 0) {
+                tp9000Auto = "Auto " + tpm.getAutoKm9000() + " tratte </br>";
+            }
+            if (tpm.getTrenoKm9000() > 0) {
+                tp9000Treno = "Treno " + tpm.getTrenoKm9000() + " tratte </br>";
+            }
+            if (tpm.getAereoKm9000() > 0) {
+                tp9000Aereo = "Aereo " + tpm.getAereoKm9000() + " tratte </br>";
+            }
+            if (tpm.getBusKm9000() + tpm.getAutoKm9000() + tpm.getTrenoKm9000() + tpm.getAereoKm9000() > 0) {
+                tp9000 = "Distanza europea:</br>" + tp9000Bus + tp9000Auto + tp9000Treno + tp9000Aereo;
             }
 
 
@@ -190,27 +220,37 @@ public class CalcoliHelper {
             CoefficienteModel coefficienteModelTPAUTO = coefficienti.get("TRPAUT");
             CoefficienteModel coefficienteModelTPTRENO = coefficienti.get("TRPTRE");
             CoefficienteModel coefficienteModelTPAEREO = coefficienti.get("TRPAER");
+            CoefficienteModel coefficienteModelTPAEREE = coefficienti.get("TRPAER");
+            CoefficienteModel coefficienteModelTPAERMOT = coefficienti.get("TRPMOT");
 
-            Double co2 = tpm.getBusPiu50() * coefficienteModelTPBUS.getValore() * 50;
-            co2 += tpm.getBusPiu100() * coefficienteModelTPBUS.getValore() * 100;
-            co2 += tpm.getBusPiu250() * coefficienteModelTPBUS.getValore() * 250;
-            co2 += tpm.getBusPiu500() * coefficienteModelTPBUS.getValore() * 500;
+            Double co2 = tpm.getBusKm60() * coefficienteModelTPBUS.getValore() * 60;
+            co2 += tpm.getBusKm300() * coefficienteModelTPBUS.getValore() * 300;
+            co2 += tpm.getBusKm1000() * coefficienteModelTPBUS.getValore() * 1000;
+            co2 += tpm.getBusKm3000() * coefficienteModelTPBUS.getValore() * 3000;
+            co2 += tpm.getBusKm9000() * coefficienteModelTPBUS.getValore() * 9000;
 
-            co2 += tpm.getAutoPiu50() * coefficienteModelTPAUTO.getValore() * 50;
-            co2 += tpm.getAutoPiu100() * coefficienteModelTPAUTO.getValore() * 100;
-            co2 += tpm.getAutoPiu250() * coefficienteModelTPAUTO.getValore() * 250;
-            co2 += tpm.getAutoPiu500() * coefficienteModelTPAUTO.getValore() * 500;
+            co2 += tpm.getAutoKm60() * coefficienteModelTPAUTO.getValore() * 60;
+            co2 += tpm.getAutoKm300() * coefficienteModelTPAUTO.getValore() * 300;
+            co2 += tpm.getAutoKm1000() * coefficienteModelTPAUTO.getValore() * 1000;
+            co2 += tpm.getAutoKm3000() * coefficienteModelTPAUTO.getValore() * 3000;
+            co2 += tpm.getAutoKm9000() * coefficienteModelTPAUTO.getValore() * 9000;
 
-            co2 += tpm.getTrenoPiu50() * coefficienteModelTPTRENO.getValore() * 50;
-            co2 += tpm.getTrenoPiu100() * coefficienteModelTPTRENO.getValore() * 100;
-            co2 += tpm.getTrenoPiu250() * coefficienteModelTPTRENO.getValore() * 250;
-            co2 += tpm.getTrenoPiu500() * coefficienteModelTPTRENO.getValore() * 500;
+            co2 += tpm.getTrenoKm60() * coefficienteModelTPTRENO.getValore() * 60;
+            co2 += tpm.getTrenoKm300() * coefficienteModelTPTRENO.getValore() * 300;
+            co2 += tpm.getTrenoKm1000() * coefficienteModelTPTRENO.getValore() * 1000;
+            co2 += tpm.getTrenoKm3000() * coefficienteModelTPTRENO.getValore() * 3000;
+            co2 += tpm.getTrenoKm9000() * coefficienteModelTPTRENO.getValore() * 9000;
 
-            co2 += tpm.getAereoPiu250() * coefficienteModelTPAEREO.getValore() * 250;
-            co2 += tpm.getAereoPiu500() * coefficienteModelTPAEREO.getValore() * 500;
+
+            co2 += tpm.getMotoKm60() * coefficienteModelTPAERMOT.getValore() * 60;
+            co2 += tpm.getMotoKm300() * coefficienteModelTPAERMOT.getValore() * 300;
+
+            co2 += tpm.getAereoKm1000() * coefficienteModelTPAEREO.getValore() * 1000;
+            co2 += tpm.getAereoKm3000() * coefficienteModelTPAEREO.getValore() * 3000;
+            co2 += tpm.getAereoKm9000() * coefficienteModelTPAEREE.getValore() * 9000;
 
             if (co2 > 0) {
-                 _rm.setDettagli(tp50 +"</br>"+ tp100 +"</br>"+ tp250 +"</br>"+ tp500);
+                _rm.setDettagli(tp60 + "</br>" + tp300 + "</br>" + tp1000 + "</br>" + tp3000 + "</br>" + tp9000);
                 _rm.setKgCO2(co2);
                 _return.add(_rm);
             }

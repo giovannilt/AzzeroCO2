@@ -11,134 +11,146 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  */
 public class TrasportoPersoneModel extends BaseModel {
 
-    private String categoria;
-
-    private int busPiu50;
-    private int autoPiu50;
-    private int trenoPiu50;
-    private int busPiu100;
-    private int autoPiu100;
-    private int trenoPiu100;
-    private int busPiu250;
-    private int autoPiu250;
-    private int trenoPiu250;
-    private int aereoPiu250;
-    private int busPiu500;
-    private int autoPiu500;
-    private int trenoPiu500;
-    private int aereoPiu500;
-
-    public int getAereoPiu250() {
-        return (Integer) get("aereoPiu250");
+    public int getAereoKm9000() {
+        return (Integer) get("aereoKm9000");
     }
 
-    public void setAereoPiu250(int aereoPiu250) {
-        set("aereoPiu250", aereoPiu250);
+    public void setAereoKm9000(int aereoKm9000) {
+        set("aereoKm9000", aereoKm9000);
     }
 
-    public int getAereoPiu500() {
-        return (Integer) get("aereoPiu500");
+    public int getAereoKm3000() {
+        return (Integer) get("aereoKm3000");
     }
 
-    public void setAereoPiu500(int aereoPiu500) {
-        set("aereoPiu500", aereoPiu500);
+    public void setAereoKm1500(int aereoKm3000) {
+        set("aereoKm3000", aereoKm3000);
     }
 
-    public int getTrenoPiu50() {
-        return (Integer) get("trenoPiu50");
+    public int getAereoKm1000() {
+        return (Integer) get("aereoKm1000");
     }
 
-    public void setTrenoPiu50(int trenoPiu50) {
-        set("trenoPiu50", trenoPiu50);
+    public void setAereoKm1000(int aereoKm1000) {
+        set("aereoKm1000", aereoKm1000);
     }
 
-    public int getTrenoPiu100() {
-        return (Integer) get("trenoPiu100");
+    public int getAutoKm9000() {
+        return (Integer) get("autoKm9000");
     }
 
-    public void setTrenoPiu100(int trenoPiu100) {
-        set("trenoPiu100", trenoPiu100);
+    public void setAutoKm9000(int autoKm9000) {
+        set("autoKm9000", autoKm9000);
     }
 
-    public int getTrenoPiu250() {
-        return (Integer) get("trenoPiu250");
+    public int getAutoKm3000() {
+        return (Integer) get("autoKm3000");
     }
 
-    public void setTrenoPiu250(int trenoPiu250) {
-        set("trenoPiu250", trenoPiu250);
+    public void setAutoKm1500(int autoKm3000) {
+        set("autoKm3000", autoKm3000);
     }
 
-    public int getTrenoPiu500() {
-        return (Integer) get("trenoPiu500");
+    public int getAutoKm1000() {
+        return (Integer) get("autoKm1000");
     }
 
-    public void setTrenoPiu500(int trenoPiu500) {
-        set("trenoPiu500", trenoPiu500);
+    public void setAutoKm1000(int autoKm1000) {
+        set("autoKm1000", autoKm1000);
+    }
+     public int getAutoKm300() {
+        return (Integer) get("autoKm300");
     }
 
-    public int getAutoPiu50() {
-        return (Integer) get("autoPiu50");
+    public void setAutoKm300(int autoKm300) {
+        set("autoKm300", autoKm300);
+    }
+     public int getAutoKm60() {
+        return (Integer) get("autoKm60");
     }
 
-    public void setAutoPiu50(int autoPiu50) {
-        set("autoPiu50", autoPiu50);
+    public void setAutoKm60(int autoKm60) {
+        set("autoKm60", autoKm60);
     }
 
-    public int getAutoPiu100() {
-        return (Integer) get("autoPiu100");
+    public int getBusKm9000() {
+        return (Integer) get("busKm9000");
     }
 
-    public void setAutoPiu100(int autoPiu100) {
-        set("autoPiu100", autoPiu100);
+    public void setBusKm9000(int busKm9000) {
+        set("busKm9000", busKm9000);
     }
 
-    public int getAutoPiu250() {
-        return (Integer) get("autoPiu250");
+    public int getBusKm3000() {
+        return (Integer) get("busKm3000");
     }
 
-    public void setAutoPiu250(int autoPiu250) {
-        set("autoPiu250", autoPiu250);
+    public void setBusKm3000(int busKm3000) {
+        set("busKm3000", busKm3000);
     }
 
-    public int getAutoPiu500() {
-        return (Integer) get("autoPiu500");
+    public int getBusKm1000() {
+        return (Integer) get("busKm1000");
     }
 
-    public void setAutoPiu500(int autoPiu500) {
-        set("autoPiu500", autoPiu500);
+    public void setBusKm1000(int busKm1000) {
+        set("busKm1000", busKm1000);
     }
 
-    public int getBusPiu50() {
-        return (Integer) get("busPiu50");
+    public int getBusKm300() {
+        return (Integer) get("busKm300");
     }
 
-    public void setBusPiu50(int busPiu50) {
-        set("busPiu50", busPiu50);
+    public void setBusKm300(int busKm300) {
+        set("busKm300", busKm300);
+    }
+    public int getBusKm60() {
+        return (Integer) get("busKm60");
     }
 
-    public int getBusPiu100() {
-        return (Integer) get("busPiu100");
+    public void setBusKm60(int busKm60) {
+        set("busKm60", busKm60);
+    }
+    public int getTrenoKm9000() {
+        return (Integer) get("trenoKm9000");
     }
 
-    public void setBusPiu100(int busPiu100) {
-        set("busPiu100", busPiu100);
+    public void setTrenoKm9000(int trenoKm9000) {
+        set("trenoKm9000", trenoKm9000);
     }
 
-    public int getBusPiu250() {
-        return (Integer) get("busPiu250");
+    public int getTrenoKm3000() {
+        return (Integer) get("trenoKm3000");
     }
 
-    public void setBusPiu250(int busPiu250) {
-        set("busPiu250", busPiu250);
+    public void setTrenoKm1500(int trenoKm3000) {
+        set("trenoKm3000", trenoKm3000);
     }
 
-    public int getBusPiu500() {
-        return (Integer) get("busPiu500");
+    public int getTrenoKm1000() {
+        return (Integer) get("trenoKm1000");
     }
 
-    public void setBusPiu500(int busPiu500) {
-        set("busPiu500", busPiu500);
+    public void setTrenoKm1000(int trenoKm1000) {
+        set("trenoKm1000", trenoKm1000);
     }
+
+    public int getTrenoKm300() {
+        return (Integer) get("trenoKm300");
+    }
+
+    public void setTrenoKm300(int trenoKm300) {
+        set("trenoKm300", trenoKm300);
+    }
+
+    public int getTrenoKm60() {
+        return (Integer) get("trenoKm60");
+    }
+
+    public void setTrenoKm60(int trenoKm60) {
+        set("trenoKm60", trenoKm60);
+    }
+
 
     public void setCategoria(String categoria) {
         set("categoria", categoria);
@@ -147,7 +159,23 @@ public class TrasportoPersoneModel extends BaseModel {
     public String getCategoria() {
         return (String) get("categoria");
     }
+
     public String toString() {
         return (String) get("categoria");
+    }
+
+      public int getMotoKm300() {
+        return (Integer) get("motoKm300");
+    }
+
+    public void setMotoKm300(int motoKm300) {
+        set("AutoKm300", motoKm300);
+    }
+     public int getMotoKm60() {
+        return (Integer) get("MotoKm60");
+    }
+
+    public void setMotoKm60(int motoKm60) {
+        set("motoKm60", motoKm60);
     }
 }
