@@ -160,7 +160,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             layoutRigaPiu50.setPadding(new Padding(10));
             piu50.setLayout(layoutRigaPiu50);
 
-            piu50.add(new LabelField("Distanza percorsa >50 km"), flex);
+            piu50.add(new LabelField("Distanza percorsa: provinciale"), flex);
             formPanel.add(piu50);
 
             LayoutContainer piu50input = new LayoutContainer();
@@ -196,12 +196,23 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             trenoPiu50.setPropertyEditorType(Integer.class);
 
 
+            Image moto = new Image(AzzeroCO2Resources.INSTANCE.moto());
+            NumberField motoPiu50 = new NumberField();
+            motoPiu50.setName("motoPiu50");
+            motoPiu50.setWidth(60);
+            motoPiu50.setRegex("[0-9]+");
+            motoPiu50.getMessages().setRegexText("Inserisci un numero intero");
+            motoPiu50.setPropertyEditorType(Integer.class);
+
             piu50input.add(bus);
             piu50input.add(busPiu50, flex);
             piu50input.add(automobile);
             piu50input.add(autoPiu50, flex);
             piu50input.add(treno);
             piu50input.add(trenoPiu50, flex);
+            piu50input.add(moto);
+            piu50input.add(motoPiu50, flex);
+
 
             layoutRigaPiu50.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             formPanel.add(piu50input);
@@ -212,7 +223,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             layoutRigaPiu100.setPadding(new Padding(10));
             layoutRigaPiu100.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu100.setLayout(layoutRigaPiu100);
-            piu100.add(new LabelField("Distanza percorsa >100 km"), flex);
+            piu100.add(new LabelField("Distanza percorsa: regionale"), flex);
             formPanel.add(piu100);
 
             LayoutContainer piu100input = new LayoutContainer();
@@ -222,6 +233,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             piu100input.setLayout(layoutPiu100input);
 
             Image bus100 = new Image(AzzeroCO2Resources.INSTANCE.bus());
+            Image moto100 = new Image(AzzeroCO2Resources.INSTANCE.moto());
             NumberField busPiu100 = new NumberField();
             busPiu100.setName("busPiu100");
             busPiu100.setWidth(60);
@@ -251,6 +263,13 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             trenoPiu100.setPropertyEditorType(Integer.class);
 
 
+            NumberField motoPiu100 = new NumberField();
+            trenoPiu100.setName("motoPiu100");
+            motoPiu100.setWidth(60);
+            motoPiu100.setRegex("[0-9]+");
+            motoPiu100.getMessages().setRegexText("Inserisci un numero intero");
+            motoPiu100.setPropertyEditorType(Integer.class);
+
 
             piu100input.add(bus100);
             piu100input.add(busPiu100, flex);
@@ -259,6 +278,9 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             piu100input.add(autoPiu100, flex);
             piu100input.add(treno100);
             piu100input.add(trenoPiu100, flex);
+            piu100input.add(moto100);
+            piu100input.add(motoPiu100, flex);
+
 
             formPanel.add(piu100input, new FormData("100%"));
         }
@@ -268,7 +290,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             layoutRigaPiu250.setPadding(new Padding(10));
             layoutRigaPiu250.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu250.setLayout(layoutRigaPiu250);
-            piu250.add(new LabelField("Distanza percorsa >250 km"), flex);
+            piu250.add(new LabelField("Distanza percorsa: nazionale"), flex);
 
             formPanel.add(piu250);
             LayoutContainer piu250input = new LayoutContainer();
@@ -327,7 +349,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             layoutRigaPiu500.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             piu500.setLayout(layoutRigaPiu500);
 
-            piu500.add(new LabelField("Distanza percorsa >500 km"), flex);
+            piu500.add(new LabelField("Distanza percorsa: europea"), flex);
             formPanel.add(piu500);
 
             LayoutContainer piu500input = new LayoutContainer();
@@ -378,6 +400,67 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             piu500input.add(aereoPiu500, flex);
             formPanel.add(piu500input);
         }
+
+        {
+            LayoutContainer piu500 = new LayoutContainer();
+            HBoxLayout layoutRigaPiu500 = new HBoxLayout();
+            layoutRigaPiu500.setPadding(new Padding(10));
+            layoutRigaPiu500.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+            piu500.setLayout(layoutRigaPiu500);
+
+            piu500.add(new LabelField("Distanza percorsa: extra europea"), flex);
+            formPanel.add(piu500);
+
+            LayoutContainer piu500input = new LayoutContainer();
+            HBoxLayout layoutPiu500input = new HBoxLayout();
+            layoutPiu500input.setPadding(new Padding(10));
+            layoutPiu500input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+            piu500input.setLayout(layoutPiu500input);
+
+            Image bus500 = new Image(AzzeroCO2Resources.INSTANCE.bus());
+            NumberField busPiu500 = new NumberField();
+            busPiu500.setName("busPiu500");
+            busPiu500.setWidth(60);
+            busPiu500.setRegex("[0-9]+");
+            busPiu500.getMessages().setRegexText("Inserisci un numero intero");
+            busPiu500.setPropertyEditorType(Integer.class);
+
+            Image automobile500 = new Image(AzzeroCO2Resources.INSTANCE.automobile());
+            NumberField autoPiu500 = new NumberField();
+            autoPiu500.setName("autoPiu500");
+            autoPiu500.setWidth(60);
+            autoPiu500.setRegex("[0-9]+");
+            autoPiu500.getMessages().setRegexText("Inserisci un numero intero");
+            autoPiu500.setPropertyEditorType(Integer.class);
+
+            Image treno500 = new Image(AzzeroCO2Resources.INSTANCE.treno());
+            NumberField trenoPiu500 = new NumberField();
+            trenoPiu500.setName("trenoPiu500");
+            trenoPiu500.setWidth(60);
+            trenoPiu500.setRegex("[0-9]+");
+            trenoPiu500.getMessages().setRegexText("Inserisci un numero intero");
+            trenoPiu500.setPropertyEditorType(Integer.class);
+
+            Image aereo500 = new Image(AzzeroCO2Resources.INSTANCE.aereo());
+            NumberField aereoPiu500 = new NumberField();
+            aereoPiu500.setName("aereoPiu500");
+            aereoPiu500.setWidth(60);
+            aereoPiu500.setRegex("[0-9]+");
+            aereoPiu500.getMessages().setRegexText("Inserisci un numero intero");
+            aereoPiu500.setPropertyEditorType(Integer.class);
+
+            piu500input.add(bus500);
+            piu500input.add(busPiu500, flex);
+            piu500input.add(automobile500);
+            piu500input.add(autoPiu500, flex);
+            piu500input.add(treno500);
+            piu500input.add(trenoPiu500, flex);
+            piu500input.add(aereo500);
+            piu500input.add(aereoPiu500, flex);
+            formPanel.add(piu500input);
+        }
+
+
 
         return formPanel;
     }
