@@ -16,7 +16,6 @@ import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -38,9 +37,9 @@ public class ProgettiDiCompensazione extends LayoutContainer {
 
     protected ProgettoDiCompensazioneModel createProgetto() {
         ProgettoDiCompensazioneModel progetto = new ProgettoDiCompensazioneModel();
-        progetto.setName("Nuovo progetto");
+        progetto.setNome("Nuovo Progetto");
         progetto.setAttivo(false);
-        progetto.setPrezzo(17.6);
+        progetto.setPrezzo(0.00);
         progetto.setKgCO2(0.00);
         return progetto;
     }
@@ -81,21 +80,18 @@ public class ProgettiDiCompensazione extends LayoutContainer {
                 loader.load(0, 10);
         */
 
-        final NumberFormat number = NumberFormat.getFormat("0.00");
-
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("type", "Tipo progetto", 300);
-        TextField<String> textTipoProg = new TextField<String>();
-        column.setEditor(new CellEditor(textTipoProg));
+        ColumnConfig column = new ColumnConfig("nome", "Progetto", 200);
+        column.setEditor(new CellEditor(new TextField<String>()));
         configs.add(column);
 
-        column = new ColumnConfig("name", "Progetto", 200);
-        TextField<String> textProg = new TextField<String>();
-        column.setEditor(new CellEditor(textProg));
+        column = new ColumnConfig("kgCO2", "Kg CO2", 300);
+         column.setAlignment(Style.HorizontalAlignment.RIGHT);
+        column.setEditor(new CellEditor(new NumberField()));
         configs.add(column);
 
-        column = new ColumnConfig("kgCO2", "Prezzo kg/CO2", 100);
+        column = new ColumnConfig("prezzo", "Prezzo kg/CO2", 100);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
         column.setEditor(new CellEditor(new NumberField()));
         configs.add(column);
@@ -116,11 +112,12 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         grid.setBorders(true);
         grid.setAutoHeight(true);
         grid.addPlugin(re);
+        grid.setHeight(600);
 
         centre.add(grid);
 
         ToolBar toolbar = new ToolBar();
-        Button add = new Button("Aggiungi progetto");
+        Button add = new Button("Nuovo Progetto");
         add.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {

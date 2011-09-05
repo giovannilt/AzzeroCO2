@@ -379,12 +379,13 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
     public void clear() {
     }
 
-    public ListStore<PubblicazioniRilegateModel> getPubblicazioniRilegateModel() {
-        return pubblicazioniRilegateModel;
+    public List<PubblicazioniRilegateModel> getPubblicazioniRilegateModel() {
+        return pubblicazioniRilegateModel.getModels();
     }
 
-    public void setPubblicazioniRilegateModel(ListStore<PubblicazioniRilegateModel> pubblicazioniRilegateModel) {
-        this.pubblicazioniRilegateModel = pubblicazioniRilegateModel;
+    public void setPubblicazioniRilegateModel(List<PubblicazioniRilegateModel> pubblicazioniRilegateModel) {
+        this.pubblicazioniRilegateModel.removeAll(); // TODO CHECK
+        this.pubblicazioniRilegateModel.add(pubblicazioniRilegateModel);
     }
 
 

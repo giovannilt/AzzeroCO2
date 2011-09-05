@@ -303,12 +303,13 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     public void clear() {
     }
 
-    public ListStore<ManifestiPieghevoliFogliModel> getManifestiPieghevoliFogliModel() {
-        return manifestiPieghevoliFogliModel;
+    public List<ManifestiPieghevoliFogliModel> getManifestiPieghevoliFogliModel() {
+        return manifestiPieghevoliFogliModel.getModels();
     }
 
-    public void setManifestiPieghevoliFogliModel(ListStore<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel) {
-        this.manifestiPieghevoliFogliModel = manifestiPieghevoliFogliModel;
+    public void setManifestiPieghevoliFogliModel(List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel) {
+        this.manifestiPieghevoliFogliModel.removeAll(); // TODO check
+        this.manifestiPieghevoliFogliModel.add(manifestiPieghevoliFogliModel);
     }
 
     public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {

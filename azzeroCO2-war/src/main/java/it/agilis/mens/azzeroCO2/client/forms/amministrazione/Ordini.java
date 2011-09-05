@@ -98,6 +98,7 @@ public class Ordini extends LayoutContainer {
         Grid<OrdineModel> grid = new Grid<OrdineModel>(store, cm);
         grid.setBorders(true);
         grid.setAutoHeight(true);
+        grid.setHeight(600);
         //    centre.setBottomComponent(toolBar);
         centre.add(grid);
 

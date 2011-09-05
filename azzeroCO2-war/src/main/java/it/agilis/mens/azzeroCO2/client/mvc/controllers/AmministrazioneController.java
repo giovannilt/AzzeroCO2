@@ -53,6 +53,20 @@ public class AmministrazioneController extends BaseController {
                 }
             };
             hustonService.saveCoefficienti(coefficienteModels, aCallback);
+        } else if (event.getType().equals(AmministrazioneEvents.SaveProgrammiDiCompensazione)) {
+             List<ProgettoDiCompensazioneModel> progettoDiCompensazioneModels = event.getData();
+            HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
+            AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
+                public void onFailure(Throwable caught) {
+                    Info.display("Error", "Errore impossibile connettersi al server");
+                }
+                @Override
+                public void onSuccess(Boolean result) {
+                    Info.display("Info", "ProgettiDiCompensazione Salvati");
+                }
+            };
+            hustonService.saveProgettiDiCompensazione(progettoDiCompensazioneModels, aCallback);
+
         } else if (event.getType().equals(AmministrazioneEvents.SaveCoupons)) {
             List<CouponModel> coupons = event.getData();
             HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);

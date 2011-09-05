@@ -53,10 +53,8 @@ public class CentralView extends View {
             onContentReady(event);
         } else if (eventType.equals(CentralEvents.ConosciCO2PanelReady)) {
             onContentReady(event);
-
         } else if (eventType.equals(CentralEvents.SitoWebPanelReady)) {
             onContentReady(event);
-
         } else if (eventType.equals(CentralEvents.AmministrazioneReady)) {
             onContentReady(event);
         } else if (eventType.equals(CentralEvents.ShowPanel)) {
@@ -106,6 +104,7 @@ public class CentralView extends View {
             unEvento.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
+                    Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.EVENTO);
                 }
             });
@@ -117,10 +116,10 @@ public class CentralView extends View {
 
             unAnno.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
-                   // TODO.... DA CAMBIARE
-                   // setActiveItem(Eventi.ANNO_DI_ATTIVITA);
-                   Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
-                   setActiveItem(Eventi.EVENTO);
+                    Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
+                    Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
+                    setActiveItem(Eventi.ANNO_DI_ATTIVITA);
+                    // setActiveItem(Eventi.EVENTO);
                 }
             });
             unAnno.setSize(361, 336);
@@ -142,6 +141,7 @@ public class CentralView extends View {
             pubblicazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
+                    Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.UNA_PUBBLICAZIONE);
                 }
             });
@@ -155,13 +155,12 @@ public class CentralView extends View {
             web.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
+                    Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.WEB);
                 }
             });
             web.setSize(243, 240);
             c.add(web, layoutData);
-
-
 
 
             Button co2 = new Button("Conosco la CO2");
@@ -170,6 +169,7 @@ public class CentralView extends View {
             co2.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
+                    Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.CONOSCI_CO2);
                 }
             });

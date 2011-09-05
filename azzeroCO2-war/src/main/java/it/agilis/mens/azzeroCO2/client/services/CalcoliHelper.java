@@ -218,7 +218,6 @@ public class CalcoliHelper {
         return _return;
     }
 
-
     private static List<RiepilogoModel> getPubblRil(List<PubblicazioniRilegateModel> pubblRilModel) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
 
@@ -275,7 +274,6 @@ public class CalcoliHelper {
         }
         return _return;
     }
-
 
     private static List<RiepilogoModel> getPubblNonRil(List<ManifestiPieghevoliFogliModel> pubblNonRilModel) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();

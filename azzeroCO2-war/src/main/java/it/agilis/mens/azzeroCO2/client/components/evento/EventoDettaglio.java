@@ -9,6 +9,7 @@ import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.evento.*;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
@@ -125,9 +126,7 @@ public class EventoDettaglio extends LayoutContainer {
                     if (i > 0) {
                         item.setEnabled(false);
                         eventoTab.getItems().get(i - 1).setEnabled(true);
-                        /* if (eventoTab.getItems().get(i - 1).getText().equalsIgnoreCase("Riepilogo")) {
-                            Dispatcher.forwardEvent(EventoEvents.Riepilogo);
-                        }*/
+
                         eventoTab.setSelection(eventoTab.getItems().get(i - 1));
                         return;
                     }
@@ -169,6 +168,9 @@ public class EventoDettaglio extends LayoutContainer {
                         item.setEnabled(false);
                         eventoTab.getItems().get(i).setEnabled(true);
                         eventoTab.setSelection(eventoTab.getItems().get(i));
+                        if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
+                            Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
+                        }
                         return;
                     }
                 }
@@ -194,14 +196,23 @@ public class EventoDettaglio extends LayoutContainer {
     public DettaglioModel riepilogo() {
         DettaglioModel eventoModel = formDettaglio.getDettaglioModel();
         eventoModel.setEnergiaModel(formEnergia.getEnergiaModel());
-        eventoModel.setTrasportoPersoneModel(formTrasportoPersone.getTrasportoPersoneModel().getModels());
+        eventoModel.setTrasportoPersoneModel(formTrasportoPersone.getTrasportoPersoneModel());
         eventoModel.setNottiModel(formPernottamenti.getNottiModel());
         eventoModel.setTrasportoMerciModel(formTrasportoMerci.getTrasportoMerciModel());
-        eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel().getModels());
-        eventoModel.setManifestiPieghevoliFogliModel(formManifestiPiegevoliFogli.getManifestiPieghevoliFogliModel().getModels());
+        eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
+        eventoModel.setManifestiPieghevoliFogliModel(formManifestiPiegevoliFogli.getManifestiPieghevoliFogliModel());
         return eventoModel;
     }
 
+    public void restore(DettaglioModel eventoModel) {
+        formDettaglio.setDettaglioModel(eventoModel);
+        formEnergia.setEnergiaModel(eventoModel.getEnergiaModel());
+        formTrasportoPersone.setTrasportoPersoneModel(eventoModel.getTrasportoPersoneModel());
+        formPernottamenti.setNottiModel(eventoModel.getNottiModel());
+        formTrasportoMerci.setTrasportoMerciModel(eventoModel.getTrasportoMerciModel());
+        formPubblicazioniRilegate.setPubblicazioniRilegateModel(eventoModel.getPubblicazioniRilegateModel());
+        formManifestiPiegevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
+    }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
         formPubblicazioniRilegate.setTipoDiCartaModel(tipoDiCartaModels);
@@ -215,5 +226,9 @@ public class EventoDettaglio extends LayoutContainer {
             }
         }
         eventoFormRiepilogo.getStore().add(eventoRiepilogoModels);
+    }
+
+    public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
+        eventoFormAcquisto.setInStore(progettiDiCompensazioneList);
     }
 }

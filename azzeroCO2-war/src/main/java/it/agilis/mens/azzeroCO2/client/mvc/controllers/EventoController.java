@@ -32,6 +32,7 @@ public class EventoController extends BaseController {
         registerEventTypes(AzzeroCO2Events.LoggedIn);
         registerEventTypes(EventoEvents.Riepilogo);
         registerEventTypes(EventoEvents.CaricaCoefficienti);
+        registerEventTypes(EventoEvents.CaricaProgettiDiCompensazione);
 
     }
 
@@ -54,13 +55,16 @@ public class EventoController extends BaseController {
             getHustonService().getTipoDiCarta(tipoDiCartaCallBack);
             forwardToView(eventoView, event);
         } else if (event.getType().equals(EventoEvents.Riepilogo)) {
-
-
             if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
                 Info.display("Error", "Errore impossibile recuperare i coefficenti dal server");
             } else {
                 eventoView.riepilogo(getCoefficientiMAP());
             }
+        } else if (event.getType().equals(EventoEvents.CaricaProgettiDiCompensazione)) {
+            if (getProgettiDiCompensazioneList().size()==0) {
+                setProgettiDiCompensazione();
+            }
+            eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
         } else if (event.getType().equals(EventoEvents.CaricaCoefficienti)) {
             setCoefficienti();
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {

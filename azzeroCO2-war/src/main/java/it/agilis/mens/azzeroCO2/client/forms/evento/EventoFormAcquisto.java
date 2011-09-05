@@ -30,9 +30,9 @@ import java.util.List;
  */
 public class EventoFormAcquisto extends LayoutContainer {
 
-    ContentPanel east = new ContentPanel();
-    ContentPanel centre = new ContentPanel();
-
+    private ContentPanel east = new ContentPanel();
+    private ContentPanel centre = new ContentPanel();
+    private ListStore<ProgettoDiCompensazioneModel> store = new ListStore<ProgettoDiCompensazioneModel>();
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -52,8 +52,10 @@ public class EventoFormAcquisto extends LayoutContainer {
         east.setAutoHeight(true);
         add(east, westData);
 
-        createCentre();
+        centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+        centre.add(createGrid(), new RowData(1, 1));
         centre.setHeading("Progetti Di Compensazione");
+        centre.setHeight(650);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -221,24 +223,18 @@ public class EventoFormAcquisto extends LayoutContainer {
     }
 
 
-    private void createCentre() {
-        final ListStore<ProgettoDiCompensazioneModel> store = new ListStore<ProgettoDiCompensazioneModel>();
+    private Grid<ProgettoDiCompensazioneModel> createGrid() {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig();
-        column.setId("img");
-        column.setWidth(150);
+        ColumnConfig column = new ColumnConfig("nome", "Progetto", 245);
         configs.add(column);
 
-        column = new ColumnConfig();
-        column.setId("name");
-        column.setWidth(245);
-        configs.add(column);
-
-        column = new ColumnConfig();
-        column.setId("kgCO2");
+        column = new ColumnConfig("kgCO2", "KgCO2", 150);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
-        column.setWidth(150);
+        configs.add(column);
+
+        column = new ColumnConfig("prezzo", "Euro", 150);
+        column.setAlignment(Style.HorizontalAlignment.RIGHT);
         configs.add(column);
 
         ColumnModel cm = new ColumnModel(configs);
@@ -247,11 +243,15 @@ public class EventoFormAcquisto extends LayoutContainer {
         grid.setBorders(true);
         grid.setHideHeaders(true);
         grid.setHeight(600);
-        centre.add(grid);
 
+        return grid;
 
     }
 
+    public void setInStore(List<ProgettoDiCompensazioneModel> progettoDiCompensazioneModel) {
+        this.store.removeAll();
+        this.store.add(progettoDiCompensazioneModel);
+    }
 
     public void clear() {
     }

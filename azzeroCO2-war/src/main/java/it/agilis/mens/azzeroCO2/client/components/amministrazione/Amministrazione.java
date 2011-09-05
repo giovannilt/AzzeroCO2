@@ -49,16 +49,16 @@ public class Amministrazione extends LayoutContainer {
         couponTab.add(couponForm);
         amministrazioneTab.add(couponTab);
 
-        TabItem coefficientiTab = new TabItem("Coefficienti di calcolo");
+        TabItem coefficientiTab = new TabItem("Coefficienti Di Calcolo");
         coefficientiTab.add(coefficentiForm);
         amministrazioneTab.add(coefficientiTab);
 
-        TabItem programmiTab = new TabItem("Programmi compensazione");
+        TabItem programmiTab = new TabItem("Progetti Di Compensazione");
         programmiTab.add(progettiDiCompensazioneForm);
         amministrazioneTab.add(programmiTab);
 
 
-        TabItem userTab = new TabItem("Profilo utente");
+        TabItem userTab = new TabItem("Utente");
         userTab.add(userInfoForm);
         amministrazioneTab.add(userTab);
 

@@ -89,6 +89,7 @@ public class Coefficienti extends LayoutContainer {
         grid.setBorders(true);
         grid.addPlugin(re);
         grid.setAutoHeight(true);
+        grid.setHeight(600);
 
 
         Button saveButton = new Button("Salva");

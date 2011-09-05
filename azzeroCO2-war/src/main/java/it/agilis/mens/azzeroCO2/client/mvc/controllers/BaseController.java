@@ -7,9 +7,12 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,6 +27,7 @@ public abstract class BaseController extends Controller {
     private HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
     private UserInfoModel userInfoModel;
     private Map<String, CoefficienteModel> coefficientiMAP = new HashMap<String, CoefficienteModel>();
+    private List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList = new ArrayList<ProgettoDiCompensazioneModel>();
 
     public UserInfoModel getUserInfoModel() {
         return userInfoModel;
@@ -41,20 +45,31 @@ public abstract class BaseController extends Controller {
         this.hustonService = hustonService;
     }
 
-
     public void setCoefficienti() {
-        HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
         AsyncCallback<Map<String, CoefficienteModel>> aCallback = new AsyncCallback<Map<String, CoefficienteModel>>() {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Errore impossibile connettersi al server");
             }
-
             @Override
             public void onSuccess(Map<String, CoefficienteModel> result) {
+                coefficientiMAP.clear();
                 coefficientiMAP.putAll(result);
             }
         };
         hustonService.getCoefficienti(aCallback);
+    }
+    public void setProgettiDiCompensazione(){
+        AsyncCallback<List<ProgettoDiCompensazioneModel>> aCallback = new AsyncCallback<List<ProgettoDiCompensazioneModel>>() {
+            public void onFailure(Throwable caught) {
+                Info.display("Error", "Errore impossibile connettersi al server");
+            }
+            @Override
+            public void onSuccess(List<ProgettoDiCompensazioneModel> result) {
+                progettiDiCompensazioneList.clear();
+                progettiDiCompensazioneList.addAll(result);
+            }
+        };
+        hustonService.getListOfProgettoDiCompensazione(aCallback);
     }
 
     public Map<String, CoefficienteModel> getCoefficientiMAP() {
@@ -63,5 +78,13 @@ public abstract class BaseController extends Controller {
 
     public void setCoefficientiMAP(Map<String, CoefficienteModel> coefficientiMAP) {
         this.coefficientiMAP = coefficientiMAP;
+    }
+
+    public List<ProgettoDiCompensazioneModel> getProgettiDiCompensazioneList() {
+        return progettiDiCompensazioneList;
+    }
+
+    public void setProgettiDiCompensazioneList(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
+        this.progettiDiCompensazioneList = progettiDiCompensazioneList;
     }
 }

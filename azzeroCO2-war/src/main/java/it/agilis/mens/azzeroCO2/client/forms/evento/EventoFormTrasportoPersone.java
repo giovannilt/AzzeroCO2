@@ -472,12 +472,13 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
     }
 
-    public ListStore<TrasportoPersoneModel> getTrasportoPersoneModel() {
-        return trasportoPersoneModel;
+    public List<TrasportoPersoneModel> getTrasportoPersoneModel() {
+        return trasportoPersoneModel.getModels();
     }
 
-    public void setTrasportoPersoneModel(ListStore<TrasportoPersoneModel> trasportoPersoneModel) {
-        this.trasportoPersoneModel = trasportoPersoneModel;
+    public void setTrasportoPersoneModel(List<TrasportoPersoneModel> trasportoPersoneModel) {
+        this.trasportoPersoneModel.removeAll(); // TODO CHECK
+        this.trasportoPersoneModel.add(trasportoPersoneModel);
     }
 }
 

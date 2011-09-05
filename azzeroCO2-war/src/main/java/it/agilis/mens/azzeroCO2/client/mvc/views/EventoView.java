@@ -21,6 +21,7 @@ import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
 import java.util.List;
@@ -126,5 +127,9 @@ public class EventoView extends View {
         List<RiepilogoModel> list= CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti);
 
         eventoDettaglio.setEventoRiepilogoInStore(list);
+    }
+
+    public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
+        eventoDettaglio.setProgettiDiCompensazione(progettiDiCompensazioneList);
     }
 }

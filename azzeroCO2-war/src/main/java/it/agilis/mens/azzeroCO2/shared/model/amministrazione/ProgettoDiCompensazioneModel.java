@@ -23,11 +23,11 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
     }
 
 
-    public String getName() {
+    public String getNome() {
         return get("nome");
     }
 
-    public void setName(String nome) {
+    public void setNome(String nome) {
         set("nome", nome);
     }
 
