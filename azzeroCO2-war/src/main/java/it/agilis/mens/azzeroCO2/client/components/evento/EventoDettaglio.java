@@ -209,7 +209,6 @@ public class EventoDettaglio extends LayoutContainer {
         eventoFormRiepilogo.clear();
         eventoFormAcquisto.clear();
         eventoFormConferma.clear();
-
     }
 
     public DettaglioModel riepilogo() {
