@@ -91,7 +91,7 @@ public class CentralView extends View {
         {  // Primo Rigo "EVENTI"
             LayoutContainer c = new LayoutContainer();
             HBoxLayout layout = new HBoxLayout();
-            layout.setPadding(new Padding(5));
+            layout.setPadding(new Padding(6));
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
@@ -108,7 +108,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.EVENTO);
                 }
             });
-            unEvento.setSize(361, 336);
+            unEvento.setSize(366, 336);
             c.add(unEvento, layoutData);
             Button unAnno = new Button("Un Anno Di attivita'");
             unAnno.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unAnnoDiAttivita()));
@@ -121,7 +121,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.ANNO_DI_ATTIVITA);
                 }
             });
-            unAnno.setSize(361, 336);
+            unAnno.setSize(366, 336);
             c.add(unAnno, layoutData);
             center.add(c, new FlowData(1));
         }
@@ -129,7 +129,7 @@ public class CentralView extends View {
         {  // Secondo Rigo "EVENTI"
             LayoutContainer c = new LayoutContainer();
             HBoxLayout layout = new HBoxLayout();
-            layout.setPadding(new Padding(5));
+            layout.setPadding(new Padding(6));
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
@@ -194,7 +194,6 @@ public class CentralView extends View {
             layout.setPadding(new Padding(0));
             layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.STRETCHMAX);
 
-
             c.setLayout(layout);
 
             VBoxLayoutData flex = new VBoxLayoutData(new Margins(0, 0, 0, 0));
@@ -212,8 +211,6 @@ public class CentralView extends View {
                 ContentPanel news = new ContentPanel();
                 news.setHeading("NEWS");
                 news.addText("NEWS .. .. .. .. ");
-
-
                 c.add(news, flex);
             }
 

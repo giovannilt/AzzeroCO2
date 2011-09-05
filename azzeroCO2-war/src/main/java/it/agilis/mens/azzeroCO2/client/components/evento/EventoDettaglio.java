@@ -78,22 +78,22 @@ public class EventoDettaglio extends LayoutContainer {
 
     public ContentPanel createCalcoloTabs() {
         ContentPanel calcoloCardPanel = new ContentPanel();
-        calcoloCardPanel.setHeight(620);
+        calcoloCardPanel.setHeight(515);
         final CardLayout layout = new CardLayout();
         calcoloCardPanel.setLayout(layout);
         calcoloCardPanel.setHeaderVisible(false);
 
-        formEnergia.setTitle("formEnergia");
+        formEnergia.setTitle("Energia");
         calcoloCardPanel.add(formEnergia, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        formTrasportoPersone.setTitle("formTrasportoPersone");
+        formTrasportoPersone.setTitle("TrasportoPersone");
         calcoloCardPanel.add(formTrasportoPersone, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        formPernottamenti.setTitle("formPernottamenti");
+        formPernottamenti.setTitle("Pernottamenti");
         calcoloCardPanel.add(formPernottamenti, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        formTrasportoMerci.setTitle("formTrasportoMerci");
+        formTrasportoMerci.setTitle("TrasportoMerci");
         calcoloCardPanel.add(formTrasportoMerci, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        formPubblicazioniRilegate.setTitle("formPubblicazioniRilegate");
+        formPubblicazioniRilegate.setTitle("PubblicazioniRilegate");
         calcoloCardPanel.add(formPubblicazioniRilegate, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        formManifestiPiegevoliFogli.setTitle("formManifestiPiegevoliFogli");
+        formManifestiPiegevoliFogli.setTitle("ManifestiPiegevoliFogli");
         calcoloCardPanel.add(formManifestiPiegevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         return calcoloCardPanel;
@@ -113,11 +113,15 @@ public class EventoDettaglio extends LayoutContainer {
                         if (layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
                             if (j > 0) {
                                 layout.setActiveItem(calcolo.getItem(j - 1));
+                                Dispatcher.forwardEvent(EventoEvents.PreviousText, calcolo.getItem(j - 1).getTitle());
+                                Dispatcher.forwardEvent(EventoEvents.NextText, calcolo.getItem(j).getTitle());
                                 return;
                             } else {
                                 item.setEnabled(false);
                                 eventoTab.getItems().get(i - 1).setEnabled(true);
                                 eventoTab.setSelection(eventoTab.getItems().get(i - 1));
+                                Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 1).getText());
+                                Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i).getTitle());
                                 return;
                             }
                         }
@@ -126,8 +130,9 @@ public class EventoDettaglio extends LayoutContainer {
                     if (i > 0) {
                         item.setEnabled(false);
                         eventoTab.getItems().get(i - 1).setEnabled(true);
-
                         eventoTab.setSelection(eventoTab.getItems().get(i - 1));
+                        Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 1).getText());
+                        Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i).getText());
                         return;
                     }
                 }
@@ -151,6 +156,8 @@ public class EventoDettaglio extends LayoutContainer {
                         if (layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
                             if (j < calcolo.getItems().size()) {
                                 layout.setActiveItem(calcolo.getItem(j));
+                                Dispatcher.forwardEvent(EventoEvents.NextText, calcolo.getItem(j + 1).getTitle());
+                                Dispatcher.forwardEvent(EventoEvents.PreviousText, calcolo.getItem(j - 1).getTitle());
                                 return;
                             } else {
                                 item.setEnabled(false);
@@ -159,6 +166,12 @@ public class EventoDettaglio extends LayoutContainer {
                                     Dispatcher.forwardEvent(EventoEvents.Riepilogo);
                                 }
                                 eventoTab.setSelection(eventoTab.getItems().get(i));
+                                if (item.getText().equalsIgnoreCase("Calcolo")) {
+                                    Dispatcher.forwardEvent(EventoEvents.NextText, "Trasporto Persone");
+                                } else {
+                                    Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i).getText());
+                                }
+                                Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 1).getText());
                                 return;
                             }
                         }
@@ -170,8 +183,13 @@ public class EventoDettaglio extends LayoutContainer {
                         eventoTab.setSelection(eventoTab.getItems().get(i));
                         if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                             Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
-
                         }
+                        if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Calcolo")) {
+                            Dispatcher.forwardEvent(EventoEvents.NextText, "Trasporto Persone");
+                        } else {
+                            Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i).getText());
+                        }
+                        Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 1).getText());
                         return;
                     }
                 }

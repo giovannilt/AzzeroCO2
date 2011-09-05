@@ -33,6 +33,9 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.Riepilogo);
         registerEventTypes(EventoEvents.CaricaCoefficienti);
         registerEventTypes(EventoEvents.CaricaProgettiDiCompensazione);
+        registerEventTypes(EventoEvents.PreviousText);
+        registerEventTypes(EventoEvents.NextText);
+
 
     }
 

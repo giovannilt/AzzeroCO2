@@ -45,7 +45,6 @@ public class EventoView extends View {
         super(controller);
     }
 
-
     @Override
     protected void handleEvent(AppEvent event) {
         EventType eventType = event.getType();
@@ -59,6 +58,10 @@ public class EventoView extends View {
             onPrevius(event);
         } else if (eventType.equals(EventoEvents.Riepilogo)) {
             eventoDettaglio.riepilogo();
+        } else if (event.getType().equals(EventoEvents.PreviousText)) {
+            south.setTextLeft(event.<String>getData());
+        } else if (event.getType().equals(EventoEvents.NextText)) {
+            south.setTextRigth(event.<String>getData());
         }
     }
 
@@ -105,7 +108,7 @@ public class EventoView extends View {
             center2Data.setMargins(new Margins(0, 0, 0, 0));
             center.add(eventoDettaglio, center2Data);
 
-            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 15);
+            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 50);
             southData.setMargins(new Margins(0, 0, 0, 0));
             center.add(south, southData);
         }
@@ -123,7 +126,7 @@ public class EventoView extends View {
     }
 
     public void riepilogo(Map<String, CoefficienteModel> coefficienti) {
-        List<RiepilogoModel> list= CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti);
+        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti);
         eventoDettaglio.setEventoRiepilogoInStore(list);
 
     }

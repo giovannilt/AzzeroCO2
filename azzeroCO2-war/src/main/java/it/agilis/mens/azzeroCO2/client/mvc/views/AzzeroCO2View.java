@@ -11,10 +11,8 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
-import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 
 
 /**
@@ -76,13 +74,13 @@ public class AzzeroCO2View extends View {
 
     private void onInit(AppEvent event) {
 
-        main.setSize(1024, 800);
+        main.setSize(1024, 745);
         main.setHeaderVisible(false);
 
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
         main.setLayout(layout);
-        main.setStyleAttribute("padding", "5px");
+        main.setStyleAttribute("padding", "10px");
         main.setAnimCollapse(true);
 
 

@@ -39,7 +39,6 @@ public class EventoFormAcquisto extends LayoutContainer {
     private ContentPanel centre = new ContentPanel();
     private ListStore<ProgettoDiCompensazioneModel> store = new ListStore<ProgettoDiCompensazioneModel>();
     private FormBinding binding = null;
-    private DettaglioModel riepilogo;
 
 
     private double totaleKC02 = 0;
@@ -65,7 +64,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         binding.setStore(grid.getStore());
 
         VerticalPanel vp = new VerticalPanel();
-        vp.setHeight(600);
+        vp.setHeight(510);
         vp.add(form);
         east.add(vp);
 
@@ -96,7 +95,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         centre.add(grid, new RowData(1, 1));
         centre.setHeading("Progetti Di Compensazione");
-        centre.setHeight(650);
+        centre.setHeight(515);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -108,7 +107,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
         panel.setHeaderVisible(false);
-        panel.setSize(530, -1);
+        panel.setSize(300, -1);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 2, 0, 0));
         {
@@ -140,7 +139,7 @@ public class EventoFormAcquisto extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
                 LabelField label = new LabelField("Kg/CO2");
-                label.setWidth(180);
+                label.setWidth(190);
                 c.add(label);
                 c.add(kcO2Evento, flex);
 
@@ -216,13 +215,13 @@ public class EventoFormAcquisto extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 TextField<String> coupon = new TextField<String>();
-                coupon.setWidth(170);
+                coupon.setWidth(150);
                 c.add(coupon, flex);
                 panel.add(c, new FormData("100%"));
             }
             {
                 LayoutContainer c = new LayoutContainer();
-                c.setHeight(295);
+                c.setHeight(300);
                 c.setWidth(290);
                 c.setStyleAttribute("background-color", "#FF9933");
                 HBoxLayout layout = new HBoxLayout();
@@ -247,11 +246,11 @@ public class EventoFormAcquisto extends LayoutContainer {
         ColumnConfig column = new ColumnConfig("nome", "Progetto", 245);
         configs.add(column);
 
-        column = new ColumnConfig("kgCO2", "KgCO2", 150);
+        column = new ColumnConfig("kgCO2", "KgCO2", 120);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
         configs.add(column);
 
-        column = new ColumnConfig("prezzo", "Euro", 150);
+        column = new ColumnConfig("prezzo", "Euro", 120);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
         configs.add(column);
 
@@ -260,7 +259,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         Grid<ProgettoDiCompensazioneModel> grid = new Grid<ProgettoDiCompensazioneModel>(store, cm);
         grid.setBorders(true);
         grid.setHideHeaders(true);
-        grid.setHeight(600);
+        grid.setHeight(515);
 
         return grid;
     }

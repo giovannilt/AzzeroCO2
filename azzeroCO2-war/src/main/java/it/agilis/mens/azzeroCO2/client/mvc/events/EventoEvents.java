@@ -20,7 +20,9 @@ public class EventoEvents {
     public static final EventType ClearPanel = new EventType();
     public static final EventType Save = new EventType();
     public static final EventType Next = new EventType();
+    public static final EventType NextText = new EventType();
     public static final EventType Previous = new EventType();
+    public static final EventType PreviousText = new EventType();
     public static final EventType Riepilogo = new EventType();
     public static final EventType CaricaCoefficienti = new EventType();
     public static final EventType CaricaProgettiDiCompensazione = new EventType();

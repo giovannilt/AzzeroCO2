@@ -12,9 +12,6 @@ import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -55,13 +52,11 @@ public class EventoFormConferma extends LayoutContainer {
     }
 
     private void createEast() {
-
-        FormData formData = new FormData("100%");
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
         panel.setHeaderVisible(false);
 
-        panel.setHeight(600);
+        panel.setHeight(510);
         panel.setWidth(300);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
@@ -89,7 +84,7 @@ public class EventoFormConferma extends LayoutContainer {
 
                 Image check = new Image(AzzeroCO2Resources.INSTANCE.check());
                 check.setAltText("Bus");
-                check.setSize("40", "40");
+                check.setSize("100", "100");
                 c.add(check);
                 LabelField label = new LabelField("Attestato di Compensazione.");
                 label.setWidth(300);
@@ -105,7 +100,7 @@ public class EventoFormConferma extends LayoutContainer {
 
                 Image check = new Image(AzzeroCO2Resources.INSTANCE.check());
                 check.setAltText("Bus");
-                check.setSize("40", "40");
+                check.setSize("100", "100");
                 c.add(check);
                 LabelField label = new LabelField("Scheda Forestazione Italiana.");
                 label.setWidth(300);
@@ -166,7 +161,7 @@ public class EventoFormConferma extends LayoutContainer {
 
         row = new ContentPanel();
         row.setHeaderVisible(false);
-        row.setHeight(440);
+        row.setHeight(400);
         row.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
         row.add(new Image(AzzeroCO2Resources.INSTANCE.fotoAlbero()), new RowData(-1, 1, new Margins(4)));
