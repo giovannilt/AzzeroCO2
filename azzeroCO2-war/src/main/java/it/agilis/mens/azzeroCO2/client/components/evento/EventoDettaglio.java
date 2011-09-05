@@ -170,6 +170,7 @@ public class EventoDettaglio extends LayoutContainer {
                         eventoTab.setSelection(eventoTab.getItems().get(i));
                         if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                             Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
+
                         }
                         return;
                     }
@@ -226,6 +227,7 @@ public class EventoDettaglio extends LayoutContainer {
             }
         }
         eventoFormRiepilogo.getStore().add(eventoRiepilogoModels);
+        eventoFormAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo());
     }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {

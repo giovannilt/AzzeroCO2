@@ -123,10 +123,9 @@ public class EventoView extends View {
     }
 
     public void riepilogo(Map<String, CoefficienteModel> coefficienti) {
-
         List<RiepilogoModel> list= CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti);
-
         eventoDettaglio.setEventoRiepilogoInStore(list);
+
     }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {

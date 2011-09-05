@@ -119,7 +119,6 @@ public class CentralView extends View {
                     Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
                     Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.ANNO_DI_ATTIVITA);
-                    // setActiveItem(Eventi.EVENTO);
                 }
             });
             unAnno.setSize(361, 336);
