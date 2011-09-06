@@ -13,6 +13,8 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensaz
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -38,6 +40,8 @@ public class EventoDettaglio extends LayoutContainer {
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
     private final EventoFormAcquisto eventoFormAcquisto = new EventoFormAcquisto();
     private final EventoFormConferma eventoFormConferma = new EventoFormConferma();
+    private static int posizioniLabel = 1;
+    private List<List<String>> posizioniText= new ArrayList<List<String>>();
 
     @Override
     protected void onRender(Element target, int index) {
@@ -73,6 +77,17 @@ public class EventoDettaglio extends LayoutContainer {
         eventoTab.add(conferma);
 
         add(eventoTab, new RowData(1, 1));
+
+        posizioniText.add( Arrays.asList("","Energia"));      //DETTAGLIO
+        posizioniText.add( Arrays.asList("Dettagli","Trasporto Persone"));   // ENERGIA
+        posizioniText.add( Arrays.asList("Energia","Pernottamenti"));         // TRASPORTO PERSONE
+        posizioniText.add( Arrays.asList("Trasporto Persone","Trasporto Merci"));     // Pernottamenti
+        posizioniText.add( Arrays.asList("Pernottamenti","Pubblicazioni rilegate"));   // Trasporto Merci
+        posizioniText.add( Arrays.asList("Trasporto Merci","Manifesti Piegevoli e Fogli"));      // Pubblicazioni rilegate
+        posizioniText.add( Arrays.asList("Pubblicazioni rilegate","Riepilogo"));      //Manifesti Piegevoli e Fogli
+        posizioniText.add( Arrays.asList("Manifesti Piegevoli e Fogli","Acquisto"));       // RIEPILOGO
+        posizioniText.add( Arrays.asList("Riepilogo","Conferma"));                // ACQUISTO
+        posizioniText.add( Arrays.asList("Acquisto",""));                // CONFERMA
     }
 
 
@@ -113,12 +128,9 @@ public class EventoDettaglio extends LayoutContainer {
                         if (layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
                             if (j > 0) {
                                 layout.setActiveItem(calcolo.getItem(j - 1));
-                                if(calcolo.getItem(j - 2).getTitle().equalsIgnoreCase("Energia")){
-                                   Dispatcher.forwardEvent(EventoEvents.PreviousText, "Dettaglio");
-                                } else{
-                                Dispatcher.forwardEvent(EventoEvents.PreviousText, calcolo.getItem(j - 2).getTitle());
-                                }
-                                Dispatcher.forwardEvent(EventoEvents.NextText, calcolo.getItem(j).getTitle());
+                                posizioniLabel--;
+                                Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+                                Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                                 return;
                             }
                         }
@@ -128,16 +140,9 @@ public class EventoDettaglio extends LayoutContainer {
                     item.setEnabled(false);
                     eventoTab.getItems().get(i - 1).setEnabled(true);
                     eventoTab.setSelection(eventoTab.getItems().get(i - 1));
-                    if ((i - 2) >= 0) {
-                        if (eventoTab.getItems().get(i - 1).getText().equalsIgnoreCase("Calcolo")) {
-                            Dispatcher.forwardEvent(EventoEvents.PreviousText, "Manifesti Piegevoli Fogli");
-                        } else {
-                            Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 2).getText());
-                        }
-                    }else{
-                       Dispatcher.forwardEvent(EventoEvents.PreviousText, "Energia");
-                    }
-                    Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i).getText());
+                    posizioniLabel--;
+                    Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+                    Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return;
                 }
             }
@@ -159,12 +164,9 @@ public class EventoDettaglio extends LayoutContainer {
                         if (layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
                             if (j < calcolo.getItems().size()) {
                                 layout.setActiveItem(calcolo.getItem(j));
-                                if (calcolo.getItem(j).getTitle().equalsIgnoreCase("Manifesti Piegevoli Fogli")) {
-                                    Dispatcher.forwardEvent(EventoEvents.NextText, "Riepilogo");
-                                } else {
-                                    Dispatcher.forwardEvent(EventoEvents.NextText, calcolo.getItem(j + 1).getTitle());
-                                }
-                                Dispatcher.forwardEvent(EventoEvents.PreviousText, calcolo.getItem(j - 1).getTitle());
+                                posizioniLabel++;
+                                Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+                                Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                                 return;
                             }
                         }
@@ -177,16 +179,9 @@ public class EventoDettaglio extends LayoutContainer {
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     }
-                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Calcolo")) {
-                        Dispatcher.forwardEvent(EventoEvents.NextText, "Trasporto Persone");
-                    } else {
-                        if ((i + 1) >= eventoTab.getItems().size()) {
-                            Dispatcher.forwardEvent(EventoEvents.NextText, "");
-                        } else {
-                            Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i + 1).getText());
-                        }
-                    }
-                    Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 1).getText());
+                    posizioniLabel++;
+                    Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+                    Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return;
                 }
 

@@ -15,6 +15,8 @@
 
     <context:component-scan base-package="it.agilis.mens.azzeroCO2"/>
 
+    <context:property-placeholder location="classpath:*.properties" />
+
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
     </bean>
@@ -40,16 +42,15 @@
     </bean>
 
     <bean name="gitRepositoryInformation" class="it.agilis.mens.azzeroCO2.server.GitRepositoryState">
-      <!--  <property name="branch" value="${git.branch}"/>
+        <property name="branch" value="${git.branch}"/>
         <property name="commitId" value="${git.commit.id}"/>
-        <property name="commitIdAbbrev" value="${commit.id.abbrev}"/>
         <property name="commitTime" value="${git.commit.time}"/>
         <property name="buildUserName" value="${git.build.user.name}"/>
         <property name="buildUserEmail" value="${git.build.user.email}"/>
         <property name="commitMessageFull" value="${git.commit.message.full}"/>
         <property name="commitMessageShort" value="${git.commit.message.short}"/>
         <property name="commitUserName" value="${git.commit.user.name}"/>
-        <property name="commitUserEmail" value="${git.commit.user.email}"/>-->
+        <property name="commitUserEmail" value="${git.commit.user.email}"/>
     </bean>
 
     <!-- <bean
