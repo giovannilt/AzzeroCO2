@@ -1,5 +1,7 @@
 package it.agilis.mens.azzeroCO2.server;
 
+import org.codehaus.jackson.annotate.JsonWriteNullProperties;
+
 /**
  * Created by IntelliJ IDEA.
  * User: giovannilt
@@ -7,6 +9,7 @@ package it.agilis.mens.azzeroCO2.server;
  * Time: 10:31 AM
  * To change this template use File | Settings | File Templates.
  */
+@JsonWriteNullProperties(true)
 public class GitRepositoryState {
     String branch;                  // =${git.branch}
     String commitId;                // =${git.commit.id}
