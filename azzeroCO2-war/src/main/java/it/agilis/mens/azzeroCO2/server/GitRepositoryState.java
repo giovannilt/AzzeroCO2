@@ -16,8 +16,8 @@ public class GitRepositoryState {
     String buildTime;               // =${git.build.time}
     String commitUserName;          // =${git.commit.user.name}
     String commitUserEmail;         // =${git.commit.user.email}
-    String commitMessageFull;       // =${git.commit.message.full}
-    String commitMessageShort;      // =${git.commit.message.short}
+/*    String commitMessageFull;       // =${git.commit.message.full}
+    String commitMessageShort;      // =${git.commit.message.short}*/
     String commitTime;              // =${git.commit.time}
 
     public GitRepositoryState() {
@@ -77,22 +77,6 @@ public class GitRepositoryState {
 
     public void setCommitUserEmail(String commitUserEmail) {
         this.commitUserEmail = commitUserEmail;
-    }
-
-    public String getCommitMessageFull() {
-        return commitMessageFull;
-    }
-
-    public void setCommitMessageFull(String commitMessageFull) {
-        this.commitMessageFull = commitMessageFull;
-    }
-
-    public String getCommitMessageShort() {
-        return commitMessageShort;
-    }
-
-    public void setCommitMessageShort(String commitMessageShort) {
-        this.commitMessageShort = commitMessageShort;
     }
 
     public String getCommitTime() {

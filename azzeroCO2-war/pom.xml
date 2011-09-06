@@ -183,10 +183,6 @@
                     <dateFormat>dd.MM.yyyy '@' HH:mm:ss z</dateFormat>
                     <verbose>true</verbose>
                     <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
-                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
-
-                    <!-- The path for the to be generated properties file, it's relative to ${project.basedir} -->
-                    <generateGitPropertiesFilename>${project.basedir}/src/main/resources/git.properties</generateGitPropertiesFilename>
                 </configuration>
             </plugin>
             <!-- END OF GIT COMMIT ID PLUGIN CONFIGURATION -->
