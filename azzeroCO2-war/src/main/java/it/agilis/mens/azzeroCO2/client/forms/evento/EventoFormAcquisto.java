@@ -64,7 +64,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         binding.setStore(grid.getStore());
 
         VerticalPanel vp = new VerticalPanel();
-        vp.setHeight(510);
+        vp.setHeight(493);
         vp.add(form);
         east.add(vp);
 
@@ -95,7 +95,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         centre.add(grid, new RowData(1, 1));
         centre.setHeading("Progetti Di Compensazione");
-        centre.setHeight(515);
+        centre.setHeight(520);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -221,7 +221,7 @@ public class EventoFormAcquisto extends LayoutContainer {
             }
             {
                 LayoutContainer c = new LayoutContainer();
-                c.setHeight(300);
+                c.setHeight(250);
                 c.setWidth(290);
                 c.setStyleAttribute("background-color", "#FF9933");
                 HBoxLayout layout = new HBoxLayout();
@@ -235,7 +235,6 @@ public class EventoFormAcquisto extends LayoutContainer {
                 c.add(label);
                 panel.add(c, new FormData("100%"));
             }
-
         }
         return panel;
     }
@@ -259,7 +258,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         Grid<ProgettoDiCompensazioneModel> grid = new Grid<ProgettoDiCompensazioneModel>(store, cm);
         grid.setBorders(true);
         grid.setHideHeaders(true);
-        grid.setHeight(515);
+        grid.setHeight(525);
 
         return grid;
     }

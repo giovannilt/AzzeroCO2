@@ -41,9 +41,7 @@
         <property name="username" value="azzeroco2"/>
         <property name="password" value="azzeroco2"/>
     </bean>
-
-
-    <!-- <bean
+  <!-- <bean
     name="authenticationFilter"
     class="org.jasig.cas.client.authentication.AuthenticationFilter"
     p:casServerLoginUrl="https://ubuntu:8443/cas/login"
@@ -61,6 +59,4 @@
             </bean>
         </property>
     </bean>-->
-
-
 </beans>

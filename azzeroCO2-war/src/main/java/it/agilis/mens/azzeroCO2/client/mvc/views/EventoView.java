@@ -108,7 +108,7 @@ public class EventoView extends View {
             center2Data.setMargins(new Margins(0, 0, 0, 0));
             center.add(eventoDettaglio, center2Data);
 
-            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 50);
+            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 46);
             southData.setMargins(new Margins(0, 0, 0, 0));
             center.add(south, southData);
         }

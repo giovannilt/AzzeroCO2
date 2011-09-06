@@ -78,22 +78,22 @@ public class EventoDettaglio extends LayoutContainer {
 
         add(eventoTab, new RowData(1, 1));
 
-        posizioniText.add( Arrays.asList("","Energia"));      //DETTAGLIO
-        posizioniText.add( Arrays.asList("Dettagli","Trasporto Persone"));   // ENERGIA
-        posizioniText.add( Arrays.asList("Energia","Pernottamenti"));         // TRASPORTO PERSONE
-        posizioniText.add( Arrays.asList("Trasporto Persone","Trasporto Merci"));     // Pernottamenti
-        posizioniText.add( Arrays.asList("Pernottamenti","Pubblicazioni rilegate"));   // Trasporto Merci
-        posizioniText.add( Arrays.asList("Trasporto Merci","Manifesti Piegevoli e Fogli"));      // Pubblicazioni rilegate
-        posizioniText.add( Arrays.asList("Pubblicazioni rilegate","Riepilogo"));      //Manifesti Piegevoli e Fogli
+        posizioniText.add( Arrays.asList("","Energia"));                                   // DETTAGLIO
+        posizioniText.add( Arrays.asList("Dettagli","Trasporto Persone"));                 // ENERGIA
+        posizioniText.add( Arrays.asList("Energia","Pernottamenti"));                      // TRASPORTO PERSONE
+        posizioniText.add( Arrays.asList("Trasporto Persone","Trasporto Merci"));          // Pernottamenti
+        posizioniText.add( Arrays.asList("Pernottamenti","Pubblicazioni rilegate"));       // Trasporto Merci
+        posizioniText.add( Arrays.asList("Trasporto Merci","Manifesti Piegevoli e Fogli"));// Pubblicazioni rilegate
+        posizioniText.add( Arrays.asList("Pubblicazioni rilegate","Riepilogo"));           // Manifesti Piegevoli e Fogli
         posizioniText.add( Arrays.asList("Manifesti Piegevoli e Fogli","Acquisto"));       // RIEPILOGO
-        posizioniText.add( Arrays.asList("Riepilogo","Conferma"));                // ACQUISTO
-        posizioniText.add( Arrays.asList("Acquisto",""));                // CONFERMA
+        posizioniText.add( Arrays.asList("Riepilogo","Conferma"));                         // ACQUISTO
+        posizioniText.add( Arrays.asList("Acquisto",""));                                  // CONFERMA
     }
 
 
     public ContentPanel createCalcoloTabs() {
         ContentPanel calcoloCardPanel = new ContentPanel();
-        calcoloCardPanel.setHeight(515);
+        calcoloCardPanel.setHeight(520);
         final CardLayout layout = new CardLayout();
         calcoloCardPanel.setLayout(layout);
         calcoloCardPanel.setHeaderVisible(false);
