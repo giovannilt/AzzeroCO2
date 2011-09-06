@@ -138,7 +138,6 @@ public class Utils {
         return _return;
     }
 
-
     public static List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione(List<ProgettoCompensazione> listOfProgettoDiCompensazione) {
         List<ProgettoDiCompensazioneModel> _return = new ArrayList<ProgettoDiCompensazioneModel>();
         for (ProgettoCompensazione pc : listOfProgettoDiCompensazione) {

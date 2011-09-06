@@ -85,15 +85,15 @@ public class EventoDettaglio extends LayoutContainer {
 
         formEnergia.setTitle("Energia");
         calcoloCardPanel.add(formEnergia, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        formTrasportoPersone.setTitle("TrasportoPersone");
+        formTrasportoPersone.setTitle("Trasporto Persone");
         calcoloCardPanel.add(formTrasportoPersone, new BorderLayoutData(Style.LayoutRegion.CENTER));
         formPernottamenti.setTitle("Pernottamenti");
         calcoloCardPanel.add(formPernottamenti, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        formTrasportoMerci.setTitle("TrasportoMerci");
+        formTrasportoMerci.setTitle("Trasporto Merci");
         calcoloCardPanel.add(formTrasportoMerci, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        formPubblicazioniRilegate.setTitle("PubblicazioniRilegate");
+        formPubblicazioniRilegate.setTitle("Pubblicazioni Rilegate");
         calcoloCardPanel.add(formPubblicazioniRilegate, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        formManifestiPiegevoliFogli.setTitle("ManifestiPiegevoliFogli");
+        formManifestiPiegevoliFogli.setTitle("Manifesti Piegevoli Fogli");
         calcoloCardPanel.add(formManifestiPiegevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         return calcoloCardPanel;
@@ -113,31 +113,34 @@ public class EventoDettaglio extends LayoutContainer {
                         if (layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
                             if (j > 0) {
                                 layout.setActiveItem(calcolo.getItem(j - 1));
-                                Dispatcher.forwardEvent(EventoEvents.PreviousText, calcolo.getItem(j - 1).getTitle());
+                                if(calcolo.getItem(j - 2).getTitle().equalsIgnoreCase("Energia")){
+                                   Dispatcher.forwardEvent(EventoEvents.PreviousText, "Dettaglio");
+                                } else{
+                                Dispatcher.forwardEvent(EventoEvents.PreviousText, calcolo.getItem(j - 2).getTitle());
+                                }
                                 Dispatcher.forwardEvent(EventoEvents.NextText, calcolo.getItem(j).getTitle());
-                                return;
-                            } else {
-                                item.setEnabled(false);
-                                eventoTab.getItems().get(i - 1).setEnabled(true);
-                                eventoTab.setSelection(eventoTab.getItems().get(i - 1));
-                                Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 1).getText());
-                                Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i).getTitle());
                                 return;
                             }
                         }
                     }
-                } else {
-                    if (i > 0) {
-                        item.setEnabled(false);
-                        eventoTab.getItems().get(i - 1).setEnabled(true);
-                        eventoTab.setSelection(eventoTab.getItems().get(i - 1));
-                        Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 1).getText());
-                        Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i).getText());
-                        return;
+                }
+                if (i > 0) {
+                    item.setEnabled(false);
+                    eventoTab.getItems().get(i - 1).setEnabled(true);
+                    eventoTab.setSelection(eventoTab.getItems().get(i - 1));
+                    if ((i - 2) >= 0) {
+                        if (eventoTab.getItems().get(i - 1).getText().equalsIgnoreCase("Calcolo")) {
+                            Dispatcher.forwardEvent(EventoEvents.PreviousText, "Manifesti Piegevoli Fogli");
+                        } else {
+                            Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 2).getText());
+                        }
+                    }else{
+                       Dispatcher.forwardEvent(EventoEvents.PreviousText, "Energia");
                     }
+                    Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i).getText());
+                    return;
                 }
             }
-
         }
     }
 
@@ -156,43 +159,37 @@ public class EventoDettaglio extends LayoutContainer {
                         if (layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
                             if (j < calcolo.getItems().size()) {
                                 layout.setActiveItem(calcolo.getItem(j));
-                                Dispatcher.forwardEvent(EventoEvents.NextText, calcolo.getItem(j + 1).getTitle());
-                                Dispatcher.forwardEvent(EventoEvents.PreviousText, calcolo.getItem(j - 1).getTitle());
-                                return;
-                            } else {
-                                item.setEnabled(false);
-                                eventoTab.getItems().get(i).setEnabled(true);
-                                if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
-                                    Dispatcher.forwardEvent(EventoEvents.Riepilogo);
-                                }
-                                eventoTab.setSelection(eventoTab.getItems().get(i));
-                                if (item.getText().equalsIgnoreCase("Calcolo")) {
-                                    Dispatcher.forwardEvent(EventoEvents.NextText, "Trasporto Persone");
+                                if (calcolo.getItem(j).getTitle().equalsIgnoreCase("Manifesti Piegevoli Fogli")) {
+                                    Dispatcher.forwardEvent(EventoEvents.NextText, "Riepilogo");
                                 } else {
-                                    Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i).getText());
+                                    Dispatcher.forwardEvent(EventoEvents.NextText, calcolo.getItem(j + 1).getTitle());
                                 }
-                                Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 1).getText());
+                                Dispatcher.forwardEvent(EventoEvents.PreviousText, calcolo.getItem(j - 1).getTitle());
                                 return;
                             }
                         }
                     }
-                } else {
-                    if (i < eventoTab.getItems().size()) {
-                        item.setEnabled(false);
-                        eventoTab.getItems().get(i).setEnabled(true);
-                        eventoTab.setSelection(eventoTab.getItems().get(i));
-                        if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
-                            Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
-                        }
-                        if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Calcolo")) {
-                            Dispatcher.forwardEvent(EventoEvents.NextText, "Trasporto Persone");
-                        } else {
-                            Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i).getText());
-                        }
-                        Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 1).getText());
-                        return;
-                    }
                 }
+                if (i < eventoTab.getItems().size()) {
+                    item.setEnabled(false);
+                    eventoTab.getItems().get(i).setEnabled(true);
+                    eventoTab.setSelection(eventoTab.getItems().get(i));
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
+                        Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
+                    }
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Calcolo")) {
+                        Dispatcher.forwardEvent(EventoEvents.NextText, "Trasporto Persone");
+                    } else {
+                        if ((i + 1) >= eventoTab.getItems().size()) {
+                            Dispatcher.forwardEvent(EventoEvents.NextText, "");
+                        } else {
+                            Dispatcher.forwardEvent(EventoEvents.NextText, eventoTab.getItems().get(i + 1).getText());
+                        }
+                    }
+                    Dispatcher.forwardEvent(EventoEvents.PreviousText, eventoTab.getItems().get(i - 1).getText());
+                    return;
+                }
+
             }
         }
     }
