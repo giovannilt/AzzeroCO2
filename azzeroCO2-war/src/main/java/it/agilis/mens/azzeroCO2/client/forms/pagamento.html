@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<form name="pagamentoCalcolatore" action="https://www.payment.fccrt.it/CheckOutEGIPSy.asp" method="POST"> <!-- N.B.  dati fissi  -->
+    <input type="hidden" name="TIPO_PAGAMENTO" value="CC"/> <!--  N.B. dato fisso    ---->
+    <input type="hidden" name="MERCHANT_ID" value="396870600001"/> <!--   N.B. dato fisso   ---->
+    <input type="hidden" name="ORDER_ID" value="<?=$ORDER_ID?>"/>
+    <input type="hidden" name="IMPORTO" value="<?=$IMPORTO?>"/>
+    <input type="hidden" name="DIVISA" value="EUR"/> <!--   N.B. dato fisso    ---->
+    <input type="hidden" name="ABI" value="03599"/> <!--  N.B. dato fisso      ---->
+    <input type="hidden" name="ITEMS" value="<?=$ITEMS?>"/>
+    <input type="hidden" name="URLOK"
+           value="(url completa della pagina in cui si dice che la transazione ha avuto esito positivo, ad esempio: http://....url..../paginaOK.php)"/>
+    <input type="hidden" name="URLKO"
+           value="(url completa della pagina in cui si dice che la transazione ha avuto esito negativo, ad esempio: http://....url..../paginaKO.php)"/>
+    <input type="hidden" name="URLACK"
+           value="(url completa della pagina 'ACK', ad esempio: http://....url..../paginaACK.php (vedi punto 3 per spiegazione)"/>
+    <input type="hidden" name="MAC" value="<?=$codiceMAC?>"/>
+    <input type="submit" value="PROCEDI"/>
+</form>
+</body>
+</html>
+
+
+a) paginaOk.php e pagina KO.php (i nomi sono un esempio, l’importante è scriverli coerentemente nel form)
+anche queste pagine quindi risiedono fisicamente sul vostro dominio/sito.
+in queste pagine ricevete in GET (quindi direttamente nell'url), i seguenti parametri
+
+TRANSACTION_ID  (id della transazione fornito dalla banca)
+MERCHANT_ID     (id del merchant, dove il merchant è AzzeroCO2 e l'id è sempre 396870600001
+ORDER_ID        (id dell'ordine)
+COD_AUT         (codice di autorizzazione fornito dalla banca)
+IMPORTO
+DIVISA          (nel nostro caso "EUR")
+MAC             (codice di controllo da usare tra poco)
+PROG_ID         (il codice dell'oggetto, nel nostro esempio mi pare "pagamentoCalcolatore"
+
+questi parametri, se volete, li potete assegnare a variabili da usare nella pagina con qualsiasi funzione di parsing dell'url;
+(in php ad esempio se ho "index.php?nome=marco" posso assegnare "marco" a $nome in questo modo:
+$nome=$_GET['nome'];
+ad esempio nella pagina “ok” potreste scrivere
+Caro cliente,
+il tuo ordine <?=$_GET['ORDER_ID']?> è andato a buon fine

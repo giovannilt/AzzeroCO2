@@ -16,10 +16,7 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.RegisterEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
@@ -32,6 +29,7 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
 public class NorthPanel extends LayoutContainer {
     private Button registrati = new Button();
     private Button amministrazione = new Button();
+    private Button pagamento = new Button();
     private Button login = new Button();
     private Boolean islogedIn = false;
     private LayoutContainer c = new LayoutContainer();
@@ -90,6 +88,14 @@ public class NorthPanel extends LayoutContainer {
             }
         });
         c.add(login, layoutData);
+
+        pagamento.setText("pagamento");
+        pagamento.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm);
+            }
+        });
+        c.add(pagamento, layoutData);
 
         add(c, new FlowData(1));
 

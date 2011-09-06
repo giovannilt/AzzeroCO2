@@ -47,8 +47,6 @@
     </dependencyManagement>
 
     <repositories>
-
-
         <repository>
             <id>central_2</id>
             <name>Maven Repository Switchboard</name>
@@ -62,7 +60,6 @@
             <name>Codehaus repo</name>
             <url>http://repository.codehaus.org/org/codehaus/mojo/</url>
         </repository>
-
         <repository>
             <id>Maven</id>
             <name>Maven repository</name>
@@ -76,7 +73,7 @@
         <repository>
             <id>central</id>
             <name>Maven Repository Switchboard</name>
-           <url>http://repo1.maven.org/maven2</url>
+            <url>http://repo1.maven.org/maven2</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -86,10 +83,7 @@
             <name>JBoss Repository</name>
             <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
             <layout>default</layout>
-
         </repository>
-
-
     </repositories>
 
 
@@ -107,4 +101,5 @@
             </properties>
         </profile>
     </profiles>
+
 </project>

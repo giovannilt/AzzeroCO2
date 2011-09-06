@@ -1,12 +1,13 @@
 package it.agilis.mens.azzeroCO2.server.services;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import it.agilis.mens.azzeroCO2.client.forms.amministrazione.ProgettiDiCompensazione;
 import it.agilis.mens.azzeroCO2.client.services.HustonService;
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
+import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
+import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
@@ -37,7 +38,8 @@ import java.util.Map;
  */
 public class HustonServiceImpl extends RemoteServiceServlet implements
         HustonService {
-
+    @Autowired
+    GitRepositoryState gitRepoState;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -73,7 +75,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
     @Override
     public List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione() throws IllegalArgumentException {
-         try {
+        try {
             return Utils.getListOfProgettoDiCompensazione(azzeroCO2Register.getListOfProgettoDiCompensazione());
         } catch (Exception e) {
             e.printStackTrace();
@@ -117,7 +119,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
         return true;
     }
 
-     @Override
+    @Override
     public Boolean saveProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensaziones) {
         try {
             azzeroCO2Register.saveProgettiCompensazione(Utils.getProgettiDiCompensazione(progettiDiCompensaziones));
@@ -201,5 +203,8 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
         }
     }
 
-
+    @Override
+    public GitRepositoryStateModel checkGitRevision() {
+        return Utils.getGitState(gitRepoState);
+    }
 }

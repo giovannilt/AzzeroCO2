@@ -9,6 +9,8 @@ package it.agilis.mens.azzeroCO2.server.utils;
  */
 
 import it.agilis.mens.azzeroCO2.core.entity.*;
+import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
+import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
@@ -191,4 +193,11 @@ public class Utils {
         return _return;
 
     }
+
+    public static GitRepositoryStateModel getGitState(GitRepositoryState gitRepoState) {
+        GitRepositoryStateModel _return= new GitRepositoryStateModel();
+        _return.setCommitId(gitRepoState.getCommitId());
+        return _return;  //To change body of created methods use File | Settings | File Templates.
+    }
+
 }

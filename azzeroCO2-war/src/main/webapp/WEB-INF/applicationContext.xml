@@ -9,7 +9,7 @@
            http://www.springframework.org/schema/context/spring-context-3.0.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-    <context:annotation-config />
+    <context:annotation-config/>
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
 
@@ -37,6 +37,19 @@
         <property name="url" value="jdbc:mysql://localhost:3306/azzeroco2"/>
         <property name="username" value="azzeroco2"/>
         <property name="password" value="azzeroco2"/>
+    </bean>
+
+    <bean name="gitRepositoryInformation" class="it.agilis.mens.azzeroCO2.server.GitRepositoryState">
+      <!--  <property name="branch" value="${git.branch}"/>
+        <property name="commitId" value="${git.commit.id}"/>
+        <property name="commitIdAbbrev" value="${commit.id.abbrev}"/>
+        <property name="commitTime" value="${git.commit.time}"/>
+        <property name="buildUserName" value="${git.build.user.name}"/>
+        <property name="buildUserEmail" value="${git.build.user.email}"/>
+        <property name="commitMessageFull" value="${git.commit.message.full}"/>
+        <property name="commitMessageShort" value="${git.commit.message.short}"/>
+        <property name="commitUserName" value="${git.commit.user.name}"/>
+        <property name="commitUserEmail" value="${git.commit.user.email}"/>-->
     </bean>
 
     <!-- <bean
