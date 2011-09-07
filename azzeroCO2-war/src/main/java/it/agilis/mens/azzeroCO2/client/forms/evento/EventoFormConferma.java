@@ -161,7 +161,7 @@ public class EventoFormConferma extends LayoutContainer {
 
         row = new ContentPanel();
         row.setHeaderVisible(false);
-        row.setHeight(400);
+        row.setHeight(335);
         row.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
         row.add(new Image(AzzeroCO2Resources.INSTANCE.fotoAlbero()), new RowData(-1, 1, new Margins(4)));

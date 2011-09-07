@@ -21,6 +21,58 @@ public class CalcoliHelper {
     private static HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
     private static Map<String, CoefficienteModel> coefficienti = null;
 
+    public static List<RiepilogoModel> getListOfRiepilogoModelLazy(DettaglioModel eventoModel) {
+        List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
+        RiepilogoModel model = null;
+        if (eventoModel != null && eventoModel.getEnergiaModel() != null) {
+            if (eventoModel.getEnergiaModel().getEnergiaElettrica() != 0 || eventoModel.getEnergiaModel().getGasMetano() != 0 || eventoModel.getEnergiaModel().getGasolio() != 0) {
+                model = new RiepilogoModel();
+                model.setDettagli("Energia");
+                model.setOggetto("Energia");
+                store.add(model);
+            }
+        }
+        if (eventoModel != null && eventoModel.getManifestiPieghevoliFogliModel() != null && eventoModel.getManifestiPieghevoliFogliModel().size() > 0) {
+            model = new RiepilogoModel();
+            String manifesti = "Manifesti Pieghevoli <br>";
+            for (ManifestiPieghevoliFogliModel mf : eventoModel.getManifestiPieghevoliFogliModel()) {
+                manifesti += "  / " + mf.getCategoria() + "<br>";
+            }
+            model.setDettagli("Manifesti Pieghevoli");
+            model.setOggetto(manifesti);
+            store.add(model);
+        }
+         if (eventoModel != null && eventoModel.getTrasportoPersoneModel() != null && eventoModel.getTrasportoPersoneModel().size() > 0) {
+            model = new RiepilogoModel();
+            String string = "Trasporto Persone <br>";
+            for (TrasportoPersoneModel mf : eventoModel.getTrasportoPersoneModel()) {
+                string += "  / " + mf.getCategoria() + "<br>";
+            }
+            model.setDettagli("Trasporto Persone");
+            model.setOggetto(string);
+            store.add(model);
+        }
+         if (eventoModel != null && eventoModel.getPubblicazioniRilegateModel() != null && eventoModel.getPubblicazioniRilegateModel().size() > 0) {
+            model = new RiepilogoModel();
+            String string = "Pubblicazioni Rilegate <br>";
+            for (PubblicazioniRilegateModel mf : eventoModel.getPubblicazioniRilegateModel()) {
+                string += "  / " + mf.getCategoria() + "<br>";
+            }
+            model.setDettagli("Pubblicazioni Rilegate");
+            model.setOggetto(string);
+            store.add(model);
+        }
+         if (eventoModel != null && eventoModel.getNottiModel() != null ) {
+            if (eventoModel.getNottiModel().getNotti()>0) {
+                model = new RiepilogoModel();
+                model.setDettagli("Notti");
+                model.setOggetto("Notti");
+                store.add(model);
+            }
+        }
+        return store;
+    }
+
     public static List<RiepilogoModel> geListOfRiepilogoModel(DettaglioModel eventoModel, Map<String, CoefficienteModel> c) {
         coefficienti = c;
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();

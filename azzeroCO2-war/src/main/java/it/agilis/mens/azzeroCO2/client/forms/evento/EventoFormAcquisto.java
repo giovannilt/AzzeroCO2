@@ -242,14 +242,14 @@ public class EventoFormAcquisto extends LayoutContainer {
     private Grid<ProgettoDiCompensazioneModel> createGrid() {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("nome", "Progetto", 245);
+        ColumnConfig column = new ColumnConfig("nome", "Progetto", 310);
         configs.add(column);
 
-        column = new ColumnConfig("kgCO2", "KgCO2", 120);
+        column = new ColumnConfig("kgCO2", "KgCO2", 60);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
         configs.add(column);
 
-        column = new ColumnConfig("prezzo", "Euro", 120);
+        column = new ColumnConfig("prezzo", "Euro", 60);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
         configs.add(column);
 
@@ -257,8 +257,9 @@ public class EventoFormAcquisto extends LayoutContainer {
 
         Grid<ProgettoDiCompensazioneModel> grid = new Grid<ProgettoDiCompensazioneModel>(store, cm);
         grid.setBorders(true);
-        grid.setHideHeaders(true);
+        //grid.setHideHeaders(true);
         grid.setHeight(525);
+
 
         return grid;
     }

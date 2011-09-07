@@ -18,7 +18,8 @@ public class ConoscoCO2West extends LayoutContainer {
     protected void onRender(Element target, int index) {
          super.onRender(target, index);
         ContentPanel panel = new ContentPanel();
-
+        panel.setHeaderVisible(false);
+        panel.setBodyStyle("background-color:#000000");
         add(panel);
 
     }

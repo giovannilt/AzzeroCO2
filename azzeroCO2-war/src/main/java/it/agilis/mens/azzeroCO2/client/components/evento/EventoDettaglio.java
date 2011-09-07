@@ -129,8 +129,11 @@ public class EventoDettaglio extends LayoutContainer {
                             if (j > 0) {
                                 layout.setActiveItem(calcolo.getItem(j - 1));
                                 posizioniLabel--;
-                                Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-                                Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+
+                                 DettaglioModel riepilogo= riepilogo();
+
+                                Dispatcher.forwardEvent(EventoEvents.NextText,     new Object[]{posizioniText.get(posizioniLabel).get(1), riepilogo});
+                                Dispatcher.forwardEvent(EventoEvents.PreviousText, new Object[]{posizioniText.get(posizioniLabel).get(0), riepilogo});
                                 return;
                             }
                         }
@@ -141,8 +144,9 @@ public class EventoDettaglio extends LayoutContainer {
                     eventoTab.getItems().get(i - 1).setEnabled(true);
                     eventoTab.setSelection(eventoTab.getItems().get(i - 1));
                     posizioniLabel--;
-                    Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-                    Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+                    DettaglioModel riepilogo= riepilogo();
+                    Dispatcher.forwardEvent(EventoEvents.NextText,     new Object[]{posizioniText.get(posizioniLabel).get(1), riepilogo});
+                    Dispatcher.forwardEvent(EventoEvents.PreviousText, new Object[]{posizioniText.get(posizioniLabel).get(0), riepilogo});
                     return;
                 }
             }
@@ -165,8 +169,9 @@ public class EventoDettaglio extends LayoutContainer {
                             if (j < calcolo.getItems().size()) {
                                 layout.setActiveItem(calcolo.getItem(j));
                                 posizioniLabel++;
-                                Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-                                Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+                                DettaglioModel riepilogo= riepilogo();
+                                Dispatcher.forwardEvent(EventoEvents.NextText,      new Object[]{posizioniText.get(posizioniLabel).get(1), riepilogo});
+                                Dispatcher.forwardEvent(EventoEvents.PreviousText,  new Object[]{posizioniText.get(posizioniLabel).get(0), riepilogo});
                                 return;
                             }
                         }
@@ -180,8 +185,9 @@ public class EventoDettaglio extends LayoutContainer {
                         Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     }
                     posizioniLabel++;
-                    Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-                    Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+                    DettaglioModel riepilogo= riepilogo();
+                    Dispatcher.forwardEvent(EventoEvents.NextText,      new Object[]{posizioniText.get(posizioniLabel).get(1), riepilogo});
+                    Dispatcher.forwardEvent(EventoEvents.PreviousText,  new Object[]{posizioniText.get(posizioniLabel).get(0), riepilogo});
                     return;
                 }
 

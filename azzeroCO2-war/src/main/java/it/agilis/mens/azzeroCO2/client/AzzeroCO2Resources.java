@@ -38,7 +38,7 @@ public interface AzzeroCO2Resources extends ClientBundle {
     ImageResource azzeroCO2Stemp();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/foto-alberi-1.png")
-    @ImageResource.ImageOptions(flipRtl = true)
+    @ImageResource.ImageOptions(flipRtl = true, width = 450, height = 450)
     ImageResource fotoAlbero();
 
     @Source("it/agilis/mens/azzeroCO2/client/imgs/Aereo.png")
@@ -84,4 +84,8 @@ public interface AzzeroCO2Resources extends ClientBundle {
     @Source("it/agilis/mens/azzeroCO2/client/icons/Rigth.png")
     @ImageResource.ImageOptions(flipRtl = true, width = 45, height = 45)
     ImageResource rigth();
+
+    @Source("it/agilis/mens/azzeroCO2/client/icons/Check-icon.png")
+    @ImageResource.ImageOptions(flipRtl = true, width = 14, height = 14)
+    ImageResource checkIcon();
 }

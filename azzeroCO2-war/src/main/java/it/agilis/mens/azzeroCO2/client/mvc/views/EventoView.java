@@ -40,7 +40,7 @@ public class EventoView extends View {
     private EventoDettaglio eventoDettaglio = new EventoDettaglio();
     private ContentPanel center = new ContentPanel();
     private EventoSouth south = new EventoSouth();
-
+    private  EventoWest west = new EventoWest();
     public EventoView(Controller controller) {
         super(controller);
     }
@@ -59,9 +59,11 @@ public class EventoView extends View {
         } else if (eventType.equals(EventoEvents.Riepilogo)) {
             eventoDettaglio.riepilogo();
         } else if (event.getType().equals(EventoEvents.PreviousText)) {
-            south.setTextLeft(event.<String>getData());
+            south.setTextLeft((String)event.<Object[]>getData()[0]);
+            west.setInStore((List < RiepilogoModel >) event.<Object[]>getData()[1]);
         } else if (event.getType().equals(EventoEvents.NextText)) {
-            south.setTextRigth(event.<String>getData());
+            south.setTextRigth((String)event.<Object[]>getData()[0]);
+                west.setInStore((List<RiepilogoModel>) event.<Object[]>getData()[1]);
         }
     }
 
@@ -89,14 +91,15 @@ public class EventoView extends View {
         evento.add(new EventoNorth(), northData);
 
 
-        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 150);
+        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 250);
         westData.setCollapsible(false);
         westData.setFloatable(false);
         westData.setHideCollapseTool(false);
         westData.setSplit(false);
         westData.setMargins(new Margins(0, 0, 0, 0));
 
-        evento.add(new EventoWest(), westData);
+
+        evento.add(west, westData);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         {
