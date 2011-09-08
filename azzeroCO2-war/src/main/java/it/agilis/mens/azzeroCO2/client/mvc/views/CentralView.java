@@ -97,7 +97,7 @@ public class CentralView extends View {
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
-            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
+            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 0, 0, 0));
             Button unEvento = new Button("Un Evento");
 
             unEvento.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.evento()));
@@ -110,7 +110,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.EVENTO);
                 }
             });
-            unEvento.setSize(366, 336);
+            unEvento.setSize(310, 310);
             c.add(unEvento, layoutData);
             Button unAnno = new Button("Un Anno Di attivita'");
             unAnno.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unAnnoDiAttivita()));
@@ -123,7 +123,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.ANNO_DI_ATTIVITA);
                 }
             });
-            unAnno.setSize(366, 336);
+            unAnno.setSize(310, 310);
             c.add(unAnno, layoutData);
             center.add(c, new FlowData(1));
         }
@@ -135,7 +135,7 @@ public class CentralView extends View {
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
-            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
+            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 0, 0, 0));
             Button pubblicazione = new Button("Una pubblicazione");
             pubblicazione.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unaPubblicazione()));
             pubblicazione.setIconAlign(Style.IconAlign.TOP);
@@ -146,7 +146,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.UNA_PUBBLICAZIONE);
                 }
             });
-            pubblicazione.setSize(243, 240);
+            pubblicazione.setSize(225, 225);
             c.add(pubblicazione, layoutData);
 
 
@@ -160,7 +160,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.WEB);
                 }
             });
-            web.setSize(243, 240);
+            web.setSize(225, 225);
             c.add(web, layoutData);
 
 
@@ -174,14 +174,14 @@ public class CentralView extends View {
                     setActiveItem(Eventi.CONOSCI_CO2);
                 }
             });
-            co2.setSize(243, 240);
+            co2.setSize(225, 225);
             c.add(co2, layoutData);
             center.add(c, new FlowData(1));
         }
 
         ContentPanel east = new ContentPanel();
         east.setHeaderVisible(false);
-        BorderLayoutData eastData = new BorderLayoutData(Style.LayoutRegion.EAST, 246);
+        BorderLayoutData eastData = new BorderLayoutData(Style.LayoutRegion.EAST, 300);
         eastData.setSplit(false);
         eastData.setMargins(new Margins(0));
 
@@ -189,7 +189,7 @@ public class CentralView extends View {
 
         {
             ContentPanel c = new ContentPanel();
-            c.setHeight("610px");
+            c.setHeight(527);
 
             c.setHeaderVisible(false);
             VBoxLayout layout = new VBoxLayout();
@@ -202,7 +202,7 @@ public class CentralView extends View {
             flex.setFlex(1);
             {   // Login
                 ContentPanel login = new ContentPanel();
-                login.setWidth("242px");
+                login.setWidth(290);
                 login.setHeading("Login");
                 //TODO inserire form login
                 login.addText("******");
@@ -222,8 +222,8 @@ public class CentralView extends View {
                 Image azzeroCO2Stemp = new Image(AzzeroCO2Resources.INSTANCE.azzeroCO2Stemp());
                 azzeroCO2Stemp.setAltText("AzzeroCO2");
 
-                compensazione.add(testo, new VBoxLayoutData(new Margins(5, 5, 5, 5)));
-                compensazione.add(azzeroCO2Stemp, new VBoxLayoutData(new Margins(0, 0, 5, 0)));
+                compensazione.add(testo, new VBoxLayoutData(new Margins(0, 0, 0, 0)));
+                compensazione.add(azzeroCO2Stemp, new VBoxLayoutData(new Margins(0, 0, 0, 0)));
                 c.add(compensazione, flex);
             }
             east.add(c, new FlowData(0));

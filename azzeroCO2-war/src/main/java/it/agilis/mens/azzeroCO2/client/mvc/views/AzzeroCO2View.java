@@ -78,7 +78,7 @@ public class AzzeroCO2View extends View {
 
     private void onInit(AppEvent event) {
 
-        main.setSize(1024, 730);
+        main.setSize(975, 650);
         main.setHeaderVisible(false);
 
         final BorderLayout layout = new BorderLayout();

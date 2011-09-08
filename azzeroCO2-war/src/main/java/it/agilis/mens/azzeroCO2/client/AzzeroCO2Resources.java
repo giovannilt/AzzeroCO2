@@ -15,9 +15,11 @@ public interface AzzeroCO2Resources extends ClientBundle {
     public static final AzzeroCO2Resources INSTANCE = GWT.create(AzzeroCO2Resources.class);
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/UnEvento.png")
+    @ImageResource.ImageOptions(flipRtl = true, width = 310, height = 310)
     ImageResource evento();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/UnAnnoDiAttivita.png")
+    @ImageResource.ImageOptions(flipRtl = true, width = 310, height = 310)
     ImageResource unAnnoDiAttivita();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/ConoscoLaCO2.png")
