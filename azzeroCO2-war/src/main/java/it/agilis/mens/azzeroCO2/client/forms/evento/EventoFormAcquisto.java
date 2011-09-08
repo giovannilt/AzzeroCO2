@@ -64,7 +64,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         binding.setStore(grid.getStore());
 
         VerticalPanel vp = new VerticalPanel();
-        vp.setHeight(493);
+        vp.setHeight(450);
         vp.add(form);
         east.add(vp);
 
@@ -95,7 +95,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         centre.add(grid, new RowData(1, 1));
         centre.setHeading("Progetti Di Compensazione");
-        centre.setHeight(520);
+        centre.setHeight(540);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));

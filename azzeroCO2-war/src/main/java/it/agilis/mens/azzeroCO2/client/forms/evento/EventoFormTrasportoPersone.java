@@ -110,12 +110,12 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         cpEst.setHeading("Categorie");
 
         cpEst.setLayout(new RowLayout(Orientation.VERTICAL));
-        cpEst.add(radioContent, new RowData(1, 0.07, new Margins(0, 0, 0, 0)));
-        cpEst.add(grid, new RowData(1, .93, new Margins(0, 0, 0, 0)));
+        cpEst.add(radioContent, new RowData(1, 0.10, new Margins(0, 0, 0, 0)));
+        cpEst.add(grid, new RowData(1, .90, new Margins(0, 0, 0, 0)));
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-        cp.add(cpEst, new RowData(.3, .98, new Margins(0, 0, 0, 0)));
+        cp.add(cpEst, new RowData(.35, .98, new Margins(0, 0, 0, 0)));
         cp.add(cpCentre, new RowData(.7, 1));
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
@@ -157,7 +157,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         {
             LayoutContainer km60 = new LayoutContainer();
             HBoxLayout layoutRigaKm60 = new HBoxLayout();
-            layoutRigaKm60.setPadding(new Padding(7));
+            layoutRigaKm60.setPadding(new Padding(2));
             km60.setLayout(layoutRigaKm60);
 
             km60.add(new LabelField("Distanza percorsa: provinciale"), flex);
@@ -220,7 +220,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         {
             LayoutContainer km300 = new LayoutContainer();
             HBoxLayout layoutRigaKm300 = new HBoxLayout();
-            layoutRigaKm300.setPadding(new Padding(7));
+            layoutRigaKm300.setPadding(new Padding(2));
             layoutRigaKm300.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km300.setLayout(layoutRigaKm300);
             km300.add(new LabelField("Distanza percorsa: regionale"), flex);
@@ -228,7 +228,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
             LayoutContainer km300input = new LayoutContainer();
             HBoxLayout layoutKm300input = new HBoxLayout();
-            layoutKm300input.setPadding(new Padding(7));
+            layoutKm300input.setPadding(new Padding(2));
             layoutKm300input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km300input.setLayout(layoutKm300input);
 
@@ -287,7 +287,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         {
             LayoutContainer km1000 = new LayoutContainer();
             HBoxLayout layoutRigaKm1000 = new HBoxLayout();
-            layoutRigaKm1000.setPadding(new Padding(7));
+            layoutRigaKm1000.setPadding(new Padding(2));
             layoutRigaKm1000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km1000.setLayout(layoutRigaKm1000);
             km1000.add(new LabelField("Distanza percorsa: nazionale"), flex);
@@ -295,7 +295,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             formPanel.add(km1000);
             LayoutContainer km1000input = new LayoutContainer();
             HBoxLayout layoutKm1000input = new HBoxLayout();
-            layoutKm1000input.setPadding(new Padding(7));
+            layoutKm1000input.setPadding(new Padding(2));
             layoutKm1000input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km1000input.setLayout(layoutKm1000input);
 
@@ -345,7 +345,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         {
             LayoutContainer km3000 = new LayoutContainer();
             HBoxLayout layoutRigaKm3000 = new HBoxLayout();
-            layoutRigaKm3000.setPadding(new Padding(7));
+            layoutRigaKm3000.setPadding(new Padding(2));
             layoutRigaKm3000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km3000.setLayout(layoutRigaKm3000);
 
@@ -354,7 +354,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
             LayoutContainer km3000input = new LayoutContainer();
             HBoxLayout layoutKm3000input = new HBoxLayout();
-            layoutKm3000input.setPadding(new Padding(7));
+            layoutKm3000input.setPadding(new Padding(2));
             layoutKm3000input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km3000input.setLayout(layoutKm3000input);
 
@@ -404,7 +404,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         {
             LayoutContainer km9000 = new LayoutContainer();
             HBoxLayout layoutRigaKm9000 = new HBoxLayout();
-            layoutRigaKm9000.setPadding(new Padding(7));
+            layoutRigaKm9000.setPadding(new Padding(2));
             layoutRigaKm9000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km9000.setLayout(layoutRigaKm9000);
 
@@ -413,7 +413,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
             LayoutContainer km9000input = new LayoutContainer();
             HBoxLayout layoutKm9000input = new HBoxLayout();
-            layoutKm9000input.setPadding(new Padding(7));
+            layoutKm9000input.setPadding(new Padding(2));
             layoutKm9000input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km9000input.setLayout(layoutKm9000input);
 

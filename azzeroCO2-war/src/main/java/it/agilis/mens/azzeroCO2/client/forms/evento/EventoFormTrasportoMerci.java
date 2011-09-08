@@ -63,7 +63,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         LayoutContainer c2 = new LayoutContainer();
         HBoxLayout layout2 = new HBoxLayout();
-        layout2.setPadding(new Padding(7));
+        layout2.setPadding(new Padding(2));
         layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c2.setLayout(layout2);
 
@@ -72,13 +72,13 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         panel.add(c2);
         LayoutContainer km30 = new LayoutContainer();
         HBoxLayout layoutRigaKm30 = new HBoxLayout();
-        layoutRigaKm30.setPadding(new Padding(7));
+        layoutRigaKm30.setPadding(new Padding(2));
         km30.setLayout(layoutRigaKm30);
         km30.add(new LabelField("Distanza percorsa: provinciale"), flex);
         panel.add(km30);
         LayoutContainer km30input = new LayoutContainer();
         HBoxLayout layoutKm30input = new HBoxLayout();
-        layoutKm30input.setPadding(new Padding(7));
+        layoutKm30input.setPadding(new Padding(2));
         layoutKm30input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km30input.setLayout(layoutKm30input);
 
@@ -104,7 +104,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
 
         LayoutContainer km150 = new LayoutContainer();
         HBoxLayout layoutRigaKm150 = new HBoxLayout();
-        layoutRigaKm150.setPadding(new Padding(7));
+        layoutRigaKm150.setPadding(new Padding(2));
         layoutRigaKm150.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km150.setLayout(layoutRigaKm150);
 
@@ -113,7 +113,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
 
         LayoutContainer km150input = new LayoutContainer();
         HBoxLayout layoutKm150input = new HBoxLayout();
-        layoutKm150input.setPadding(new Padding(7));
+        layoutKm150input.setPadding(new Padding(2));
         layoutKm150input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km150input.setLayout(layoutKm150input);
 
@@ -146,7 +146,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
 
         LayoutContainer km500 = new LayoutContainer();
         HBoxLayout layoutRigaKm500 = new HBoxLayout();
-        layoutRigaKm500.setPadding(new Padding(7));
+        layoutRigaKm500.setPadding(new Padding(2));
         layoutRigaKm500.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km500.setLayout(layoutRigaKm500);
         km500.add(new LabelField("Distanza percorsa: nazionale"), flex);
@@ -154,7 +154,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
 
         LayoutContainer km500input = new LayoutContainer();
         HBoxLayout layoutKm500input = new HBoxLayout();
-        layoutKm500input.setPadding(new Padding(7));
+        layoutKm500input.setPadding(new Padding(2));
         layoutKm500input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km500input.setLayout(layoutKm500input);
 
@@ -163,7 +163,6 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         NumberField furgoneKm500 = new NumberField();
         furgoneKm500.setName("furgoneKm500");
         furgoneKm500.setWidth(60);
-
 
         Image tir500 = new Image(AzzeroCO2Resources.INSTANCE.tir());
         tir500.setAltText("Auto");
@@ -195,7 +194,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
 
         LayoutContainer km1500 = new LayoutContainer();
         HBoxLayout layoutRigaKm15001500 = new HBoxLayout();
-        layoutRigaKm15001500.setPadding(new Padding(7));
+        layoutRigaKm15001500.setPadding(new Padding(2));
         layoutRigaKm15001500.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km1500.setLayout(layoutRigaKm15001500);
 
@@ -203,7 +202,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         panel.add(km1500);
         LayoutContainer km1500input = new LayoutContainer();
         HBoxLayout layoutKm15001500input = new HBoxLayout();
-        layoutKm15001500input.setPadding(new Padding(7));
+        layoutKm15001500input.setPadding(new Padding(2));
         layoutKm15001500input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km1500input.setLayout(layoutKm15001500input);
 
@@ -247,7 +246,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         
         LayoutContainer km9000 = new LayoutContainer();
         HBoxLayout layoutRigaKm90009000 = new HBoxLayout();
-        layoutRigaKm90009000.setPadding(new Padding(7));
+        layoutRigaKm90009000.setPadding(new Padding(2));
         layoutRigaKm90009000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km9000.setLayout(layoutRigaKm90009000);
 
@@ -255,7 +254,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         panel.add(km9000);
         LayoutContainer km9000input = new LayoutContainer();
         HBoxLayout layoutKm90009000input = new HBoxLayout();
-        layoutKm90009000input.setPadding(new Padding(7));
+        layoutKm90009000input.setPadding(new Padding(2));
         layoutKm90009000input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km9000input.setLayout(layoutKm90009000input);
 
@@ -279,8 +278,6 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         NumberField naveKm90009000 = new NumberField();
         naveKm90009000.setWidth(60);
 
-
-
         Image aereo9000 = new Image(AzzeroCO2Resources.INSTANCE.aereo());
         aereo9000.setAltText("Aereo");
         NumberField aereoKm90009000 = new NumberField();
@@ -298,9 +295,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         km9000input.add(aereo9000);
         km9000input.add(aereoKm90009000, flex);
         panel.add(km9000input, new FormData("100%"));
-        
-        
-        
+
         return panel;
     }
 

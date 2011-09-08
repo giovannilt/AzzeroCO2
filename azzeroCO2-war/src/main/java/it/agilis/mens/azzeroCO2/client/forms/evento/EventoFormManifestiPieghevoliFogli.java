@@ -69,8 +69,8 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-        cp.add(cpEst, new RowData(.3, .98));
-        cp.add(panel, new RowData(.7, 1));
+        cp.add(cpEst, new RowData(.35, .98));
+        cp.add(panel, new RowData(.65, 1));
 
         formBindings.setStore(grid.getStore());
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);

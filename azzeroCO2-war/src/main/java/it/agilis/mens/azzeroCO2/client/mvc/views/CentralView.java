@@ -94,8 +94,8 @@ public class CentralView extends View {
             LayoutContainer c = new LayoutContainer();
             HBoxLayout layout = new HBoxLayout();
             layout.setPadding(new Padding(0));
-            layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
-            layout.setPack(BoxLayout.BoxLayoutPack.START);
+            layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
+           // layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
             HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 0, 0, 0));
             Button unEvento = new Button("Un Evento");
@@ -110,7 +110,8 @@ public class CentralView extends View {
                     setActiveItem(Eventi.EVENTO);
                 }
             });
-            unEvento.setSize(310, 310);
+            unEvento.setSize(320, 280);
+            layoutData.setFlex(1);
             c.add(unEvento, layoutData);
             Button unAnno = new Button("Un Anno Di attivita'");
             unAnno.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unAnnoDiAttivita()));
@@ -123,7 +124,9 @@ public class CentralView extends View {
                     setActiveItem(Eventi.ANNO_DI_ATTIVITA);
                 }
             });
-            unAnno.setSize(310, 310);
+            unAnno.setSize(320, 280);
+            c.setSize(640, 280);
+            layoutData.setFlex(1);
             c.add(unAnno, layoutData);
             center.add(c, new FlowData(1));
         }
@@ -146,7 +149,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.UNA_PUBBLICAZIONE);
                 }
             });
-            pubblicazione.setSize(225, 225);
+            pubblicazione.setSize(215, 215);
             c.add(pubblicazione, layoutData);
 
 
@@ -160,7 +163,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.WEB);
                 }
             });
-            web.setSize(225, 225);
+            web.setSize(215, 215);
             c.add(web, layoutData);
 
 
@@ -174,7 +177,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.CONOSCI_CO2);
                 }
             });
-            co2.setSize(225, 225);
+            co2.setSize(215, 215);
             c.add(co2, layoutData);
             center.add(c, new FlowData(1));
         }

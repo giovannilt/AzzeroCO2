@@ -50,7 +50,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
         cp.setHeading("Riepilogo");
 
         // TODO MIGLIORARE
-        cp.setHeight(522);
+        cp.setHeight(450);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
