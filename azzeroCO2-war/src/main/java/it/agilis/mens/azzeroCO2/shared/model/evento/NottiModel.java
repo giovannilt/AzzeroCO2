@@ -16,7 +16,8 @@ public class NottiModel extends BaseModel {
         set("notti", notti);
     }
 
-    public Integer getNotti() {
-        return (Integer) get("notti");
+    public int getNotti() {
+        return get("notti") == null ? 0 : new Integer(get("notti").toString());
+
     }
 }
