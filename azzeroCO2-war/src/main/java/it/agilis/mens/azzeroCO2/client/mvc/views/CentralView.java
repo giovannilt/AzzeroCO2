@@ -91,7 +91,7 @@ public class CentralView extends View {
         {  // Primo Rigo "EVENTI"
             LayoutContainer c = new LayoutContainer();
             HBoxLayout layout = new HBoxLayout();
-            layout.setPadding(new Padding(6));
+            layout.setPadding(new Padding(0));
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
@@ -129,7 +129,7 @@ public class CentralView extends View {
         {  // Secondo Rigo "EVENTI"
             LayoutContainer c = new LayoutContainer();
             HBoxLayout layout = new HBoxLayout();
-            layout.setPadding(new Padding(6));
+            layout.setPadding(new Padding(0));
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);

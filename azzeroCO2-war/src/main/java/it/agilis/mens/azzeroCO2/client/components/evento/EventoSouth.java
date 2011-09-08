@@ -42,7 +42,7 @@ public class EventoSouth extends LayoutContainer {
         c.setLayout(layout);
         left.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.left()));
         left.setIconAlign(Style.IconAlign.LEFT);
-        left.setSize(48, 45);
+        left.setSize(32, 32);
         left.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -63,7 +63,7 @@ public class EventoSouth extends LayoutContainer {
 
         right.setIconAlign(Style.IconAlign.RIGHT);
         right.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.rigth()));
-        right.setSize(48, 45);
+        right.setSize(32, 32);
         c.add(right, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
         right.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override

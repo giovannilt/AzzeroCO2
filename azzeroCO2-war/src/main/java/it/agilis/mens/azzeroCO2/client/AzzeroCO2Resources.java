@@ -78,11 +78,11 @@ public interface AzzeroCO2Resources extends ClientBundle {
     ImageResource header();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/Left.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 45, height = 45)
+    @ImageResource.ImageOptions(flipRtl = true, width = 25, height = 25)
     ImageResource left();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/Rigth.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 45, height = 45)
+    @ImageResource.ImageOptions(flipRtl = true, width = 25, height = 25)
     ImageResource rigth();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/Check-icon.png")
