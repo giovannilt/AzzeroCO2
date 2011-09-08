@@ -198,20 +198,20 @@ public class CentralView extends View {
 
             VBoxLayoutData flex = new VBoxLayoutData(new Margins(0, 0, 0, 0));
             flex.setFlex(1);
-            {   // Cos'e' la compensazione
-                ContentPanel compensazione = new ContentPanel();
-                compensazione.setWidth("242px");
-                compensazione.setHeading("Che cosa e' la Compensazione?");
-                compensazione.addText("La compensazione e' .. .. .. .. ");
+            {   // Login
+                ContentPanel login = new ContentPanel();
+                login.setWidth("242px");
+                login.setHeading("Login");
+                login.addText("******");
 
 
-                c.add(compensazione, flex);
+                c.add(login, flex);
             }
             {   // NEWS
-                ContentPanel news = new ContentPanel();
-                news.setHeading("NEWS");
-                news.addText("NEWS .. .. .. .. ");
-                c.add(news, flex);
+                ContentPanel compensazione = new ContentPanel();
+                compensazione.setHeading("Cos'è la compensazione");
+                compensazione.addText("La combustione di fonti energetiche fossili (carbone, benzina, cherosene) sprigiona biossido di carbonio (CO2). Il CO2 è il maggior responsabile dei gas ad effetto serra provocati dall’uomo. Blabla blabla bla bla blal");
+                c.add(compensazione, flex);
             }
 
             east.add(c, new FlowData(0));
