@@ -40,7 +40,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         progetto.setNome("Nuovo Progetto");
         progetto.setAttivo(false);
         progetto.setPrezzo(0.00);
-        progetto.setKgCO2(0.00);
+        //progetto.setKgCO2(0.00);
         return progetto;
     }
 
@@ -86,10 +86,10 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         column.setEditor(new CellEditor(new TextField<String>()));
         configs.add(column);
 
-        column = new ColumnConfig("kgCO2", "Kg CO2", 300);
-         column.setAlignment(Style.HorizontalAlignment.RIGHT);
-        column.setEditor(new CellEditor(new NumberField()));
-        configs.add(column);
+        //column = new ColumnConfig("kgCO2", "Kg CO2", 300);
+         //column.setAlignment(Style.HorizontalAlignment.RIGHT);
+        //column.setEditor(new CellEditor(new NumberField()));
+        //configs.add(column);
 
         column = new ColumnConfig("prezzo", "Prezzo kg/CO2", 100);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);

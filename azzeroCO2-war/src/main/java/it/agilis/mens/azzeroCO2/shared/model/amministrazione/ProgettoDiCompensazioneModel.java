@@ -32,13 +32,13 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
     }
 
 
-    public Double getKgCO2() {
-        return get("kgCO2");
+    /*public Double getKgCO2() {
+    /    return get("kgCO2");
     }
 
     public void setKgCO2(Double kgCO2) {
         set("kgCO2", kgCO2);
-    }
+    } */
 
 
     public Boolean getAttivo() {
