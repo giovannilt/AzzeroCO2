@@ -87,83 +87,95 @@ public class TrasportoMerciModel extends BaseModel {
     public Double getAereoKm9000() {
         return get("aereiKm9000");
     }
-           /// SET
+    /// SET
 
-    public void setFurgoneKm30(Double furgoneKm30 ) {
-          set("furgoneKm30",furgoneKm30);
+    public void setFurgoneKm30(Double furgoneKm30) {
+        set("furgoneKm30", furgoneKm30);
     }
 
-    public void setFurgoneKm150(Double furgoneKm150 ) {
-          set("furgoneKm150", furgoneKm150);
+    public void setFurgoneKm150(Double furgoneKm150) {
+        set("furgoneKm150", furgoneKm150);
     }
 
-    public void setFurgoneKm500(Double  furgoneKm500) {
-          set("furgoneKm500", furgoneKm500);
+    public void setFurgoneKm500(Double furgoneKm500) {
+        set("furgoneKm500", furgoneKm500);
     }
 
-    public void setFurgoneKm1500(Double furgoneKm1500 ) {
-          set("furgoneKm1500", furgoneKm1500);
+    public void setFurgoneKm1500(Double furgoneKm1500) {
+        set("furgoneKm1500", furgoneKm1500);
     }
 
-    public void setFurgoneKm9000(Double furgoneKm9000 ) {
-          set("furgoneKm9000", furgoneKm9000 );
+    public void setFurgoneKm9000(Double furgoneKm9000) {
+        set("furgoneKm9000", furgoneKm9000);
     }
 
-    public void setTirKm30(Double  tirKm30) {
-          set("tirKm30",  tirKm30);
+    public void setTirKm30(Double tirKm30) {
+        set("tirKm30", tirKm30);
     }
 
-    public void setTirKm150(Double tirKm150 ) {
-          set("tirKm150", tirKm150 );
+    public void setTirKm150(Double tirKm150) {
+        set("tirKm150", tirKm150);
     }
 
-    public void setTirKm500(Double tirKm500 ) {
-          set("tirKm500", tirKm500 );
+    public void setTirKm500(Double tirKm500) {
+        set("tirKm500", tirKm500);
     }
 
-    public void setTirKm1500(Double tirKm1500 ) {
-          set("tirKm1500", tirKm1500 );
+    public void setTirKm1500(Double tirKm1500) {
+        set("tirKm1500", tirKm1500);
     }
 
-    public void setTirKm9000(Double tirKm9000  ) {
-          set("tirKm9000", tirKm9000 );
+    public void setTirKm9000(Double tirKm9000) {
+        set("tirKm9000", tirKm9000);
     }
 
-    public void setTrenoKm150(Double trenoKm150 ) {
-          set("trenoKm150", trenoKm150 );
+    public void setTrenoKm150(Double trenoKm150) {
+        set("trenoKm150", trenoKm150);
     }
 
-    public void setTrenoKm500(Double  trenoKm500) {
-          set("trenoKm500", trenoKm500 );
+    public void setTrenoKm500(Double trenoKm500) {
+        set("trenoKm500", trenoKm500);
     }
 
-    public void setTrenoKm1500(Double  trenoKm1500) {
-          set("trenoKm1500",  trenoKm1500);
+    public void setTrenoKm1500(Double trenoKm1500) {
+        set("trenoKm1500", trenoKm1500);
     }
 
-    public void setTrenoKm9000(Double  trenoKm9000) {
-          set("trenoKm9000", trenoKm9000 );
+    public void setTrenoKm9000(Double trenoKm9000) {
+        set("trenoKm9000", trenoKm9000);
     }
 
 
-    public void setNaveKm500(Double naveKm500 ) {
-          set("naveKm500",  naveKm500);
+    public void setNaveKm500(Double naveKm500) {
+        set("naveKm500", naveKm500);
     }
 
-    public void setNaveKm1500(Double naveKm1500 ) {
-          set("naveKm1500", naveKm1500 );
+    public void setNaveKm1500(Double naveKm1500) {
+        set("naveKm1500", naveKm1500);
     }
 
-    public void setNaveKm9000(Double  NaveKm9000) {
-          set("NaveKm9000", NaveKm9000 );
+    public void setNaveKm9000(Double naveKm9000) {
+        set("NaveKm9000", naveKm9000);
     }
 
-    public void setAereoKm1500(Double  aereoKm1500) {
-          set("aereoKm1500", aereoKm1500 );
+    public void setAereoKm1500(Double aereoKm1500) {
+        set("aereoKm1500", aereoKm1500);
     }
 
-    public void setAereoKm9000(Double aereiKm9000 ) {
-          set("aereiKm9000", aereiKm9000 );
+    public void setAereoKm9000(Double aereiKm9000) {
+        set("aereiKm9000", aereiKm9000);
     }
 
+    public boolean isVoid() {
+
+        for (Object value : getProperties().values()) {
+            if (value instanceof Double) {
+                Double d = (Double) value;
+                if (d != 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

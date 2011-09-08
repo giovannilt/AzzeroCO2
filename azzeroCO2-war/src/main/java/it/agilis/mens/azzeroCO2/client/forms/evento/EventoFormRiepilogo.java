@@ -62,13 +62,13 @@ public class EventoFormRiepilogo extends LayoutContainer {
         final NumberFormat number = NumberFormat.getFormat("0.00");
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 290);
+        ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 190);
         configs.add(column);
 
         column = new ColumnConfig("dettagli", "Dettagli", 410);
         configs.add(column);
 
-        column = new ColumnConfig("kgCO2", "Kg/CO2", 100);
+        column = new ColumnConfig("kgCO2", "Kg/CO2", 60);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
         configs.add(column);
 

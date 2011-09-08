@@ -34,16 +34,6 @@ public class CalcoliHelper {
                 store.add(model);
             }
         }
-        if (eventoModel != null && eventoModel.getManifestiPieghevoliFogliModel() != null && eventoModel.getManifestiPieghevoliFogliModel().size() > 0) {
-            model = new RiepilogoModel();
-            String manifesti = "Manifesti Pieghevoli <br>";
-            for (ManifestiPieghevoliFogliModel mf : eventoModel.getManifestiPieghevoliFogliModel()) {
-                manifesti += "  / " + mf.getCategoria() + "<br>";
-            }
-            model.setDettagli("Manifesti Pieghevoli");
-            model.setOggetto(manifesti);
-            store.add(model);
-        }
         if (eventoModel != null && eventoModel.getTrasportoPersoneModel() != null && eventoModel.getTrasportoPersoneModel().size() > 0) {
             model = new RiepilogoModel();
             String string = "Trasporto Persone <br>";
@@ -54,6 +44,35 @@ public class CalcoliHelper {
             model.setOggetto(string);
             store.add(model);
         }
+        if (eventoModel != null && eventoModel.getNottiModel() != null) {
+            if (eventoModel.getNottiModel() != null && eventoModel.getNottiModel().getNotti() != null && eventoModel.getNottiModel().getNotti() > 0) {
+                model = new RiepilogoModel();
+                model.setDettagli("Notti");
+                model.setOggetto("Notti");
+                store.add(model);
+            }
+        }
+
+        if (eventoModel != null && eventoModel.getTrasportoMerciModel() != null) {
+            if (eventoModel.getTrasportoMerciModel().isVoid()) {
+                model = new RiepilogoModel();
+                model.setDettagli("Trasporto Merci");
+                model.setOggetto("Trasporto Merci");
+                store.add(model);
+            }
+        }
+
+        if (eventoModel != null && eventoModel.getManifestiPieghevoliFogliModel() != null && eventoModel.getManifestiPieghevoliFogliModel().size() > 0) {
+            model = new RiepilogoModel();
+            String manifesti = "Manifesti Pieghevoli <br>";
+            for (ManifestiPieghevoliFogliModel mf : eventoModel.getManifestiPieghevoliFogliModel()) {
+                manifesti += "  / " + mf.getCategoria() + "<br>";
+            }
+            model.setDettagli("Manifesti Pieghevoli");
+            model.setOggetto(manifesti);
+            store.add(model);
+        }
+
         if (eventoModel != null && eventoModel.getPubblicazioniRilegateModel() != null && eventoModel.getPubblicazioniRilegateModel().size() > 0) {
             model = new RiepilogoModel();
             String string = "Pubblicazioni Rilegate <br>";
@@ -64,14 +83,7 @@ public class CalcoliHelper {
             model.setOggetto(string);
             store.add(model);
         }
-        if (eventoModel != null && eventoModel.getNottiModel() != null) {
-            if (eventoModel.getNottiModel()!=null && eventoModel.getNottiModel().getNotti()!=null && eventoModel.getNottiModel().getNotti() > 0) {
-                model = new RiepilogoModel();
-                model.setDettagli("Notti");
-                model.setOggetto("Notti");
-                store.add(model);
-            }
-        }
+
         return store;
     }
 
@@ -111,7 +123,7 @@ public class CalcoliHelper {
         String energia3 = "";
 
         CoefficienteModel coefficienteModelEnergia = coefficienti.get("ENEELE");
-        CoefficienteModel coefficientiEnergiaGAS = coefficienti.get("ENEGAS");
+        CoefficienteModel coefficientiEnergiaGAS =   coefficienti.get("ENEGAS");
         CoefficienteModel coefficienteModelGasolio = coefficienti.get("ENEGSL");
 
         double co2 = 0;
@@ -120,11 +132,11 @@ public class CalcoliHelper {
             co2 = energiaModel.getEnergiaElettrica() * coefficienteModelEnergia.getValore();
         }
         if (energiaModel.getGasMetano() != null && energiaModel.getGasMetano() > 0) {
-            energia2 = "Gas" + " " + energiaModel.getEnergiaElettrica() + " metri cubi  </br>";
+            energia2 = "Gas" + " " + energiaModel.getGasMetano() + " metri cubi  </br>";
             co2 += energiaModel.getGasMetano() * coefficientiEnergiaGAS.getValore();
         }
         if (energiaModel.getGasolio() != null && energiaModel.getGasolio() > 0) {
-            energia3 = "Gasolio" + " " + energiaModel.getEnergiaElettrica() + " litri </br>";
+            energia3 = "Gasolio" + " " + energiaModel.getGasolio() + " litri </br>";
             co2 += energiaModel.getGasolio() * coefficienteModelGasolio.getValore();
         }
         energia.setDettagli(energia1 + energia2 + energia3);
@@ -270,11 +282,11 @@ public class CalcoliHelper {
             }
 
 
-            CoefficienteModel coefficienteModelTPBUS = coefficienti.get("TRPBUS");
-            CoefficienteModel coefficienteModelTPAUTO = coefficienti.get("TRPAUT");
-            CoefficienteModel coefficienteModelTPTRENO = coefficienti.get("TRPTRE");
-            CoefficienteModel coefficienteModelTPAEREO = coefficienti.get("TRPAER");
-            CoefficienteModel coefficienteModelTPAEREE = coefficienti.get("TRPAER");
+            CoefficienteModel coefficienteModelTPBUS =    coefficienti.get("TRPBUS");
+            CoefficienteModel coefficienteModelTPAUTO =   coefficienti.get("TRPAUT");
+            CoefficienteModel coefficienteModelTPTRENO =  coefficienti.get("TRPTRE");
+            CoefficienteModel coefficienteModelTPAEREO =  coefficienti.get("TRPAER");
+            CoefficienteModel coefficienteModelTPAEREE =  coefficienti.get("TRPAER");
             CoefficienteModel coefficienteModelTPAERMOT = coefficienti.get("TRPMOT");
 
             Double co2 = tpm.getBusKm60() * coefficienteModelTPBUS.getValore() * 60;
@@ -349,7 +361,6 @@ public class CalcoliHelper {
                 co2 *= prm.getTiratura();
                 co2Copertina *= prm.getTiratura();
             }
-            String copertina;  // TODO.?.
             if (prm.getTipoDiCartaCopertina() != null) {
                 if (coefficienti.get(prm.getTipoDiCartaCopertina().getParametro()) != null) {
                     co2Copertina *= coefficienti.get(prm.getTipoDiCartaCopertina().getParametro()).getValore();
