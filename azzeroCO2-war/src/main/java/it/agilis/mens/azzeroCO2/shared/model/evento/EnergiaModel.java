@@ -20,7 +20,7 @@ public class EnergiaModel extends BaseModel {
     }
 
     public double getEnergiaElettrica() {
-        return get("energiaElettrica") == null ? 0 : new Double(get("motoKm60").toString());
+        return get("energiaElettrica") == null ? 0 : new Double(get("energiaElettrica").toString());
     }
 
     public void setGasMetano(Double gasMetano) {

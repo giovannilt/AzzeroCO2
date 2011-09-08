@@ -76,6 +76,4 @@ public class EventoController extends BaseController {
             forwardToView(eventoView, event);
         }
     }
-
-
 }
