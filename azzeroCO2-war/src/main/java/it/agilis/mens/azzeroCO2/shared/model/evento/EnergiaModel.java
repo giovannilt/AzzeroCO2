@@ -15,7 +15,7 @@ public class EnergiaModel extends BaseModel {
     private int gasMetano;
     private int gasolio;
 
-    public void setEnergiaElettrica(int energiaElettrica) {
+    public void setEnergiaElettrica(Double energiaElettrica) {
         set("energiaElettrica", energiaElettrica);
     }
 
@@ -23,7 +23,7 @@ public class EnergiaModel extends BaseModel {
         return (Double) get("energiaElettrica");
     }
 
-    public void setGasMetano(int gasMetano) {
+    public void setGasMetano(Double gasMetano) {
         set("gasMetano", gasMetano);
     }
 
@@ -31,7 +31,7 @@ public class EnergiaModel extends BaseModel {
         return (Double) get("gasMetano");
     }
 
-    public void setGasolio(int gasolio) {
+    public void setGasolio(Double gasolio) {
         set("gasolio", gasolio);
     }
 

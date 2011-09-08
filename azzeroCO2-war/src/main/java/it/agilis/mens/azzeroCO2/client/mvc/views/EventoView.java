@@ -40,7 +40,8 @@ public class EventoView extends View {
     private EventoDettaglio eventoDettaglio = new EventoDettaglio();
     private ContentPanel center = new ContentPanel();
     private EventoSouth south = new EventoSouth();
-    private  EventoWest west = new EventoWest();
+    private EventoWest west = new EventoWest();
+
     public EventoView(Controller controller) {
         super(controller);
     }
@@ -59,11 +60,11 @@ public class EventoView extends View {
         } else if (eventType.equals(EventoEvents.Riepilogo)) {
             eventoDettaglio.riepilogo();
         } else if (event.getType().equals(EventoEvents.PreviousText)) {
-            south.setTextLeft((String)event.<Object[]>getData()[0]);
-            west.setInStore((List < RiepilogoModel >) event.<Object[]>getData()[1]);
+            south.setTextLeft((String) event.<Object[]>getData()[0]);
+            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(eventoDettaglio.riepilogo()));
         } else if (event.getType().equals(EventoEvents.NextText)) {
-            south.setTextRigth((String)event.<Object[]>getData()[0]);
-                west.setInStore((List<RiepilogoModel>) event.<Object[]>getData()[1]);
+            south.setTextRigth((String) event.<Object[]>getData()[0]);
+            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(eventoDettaglio.riepilogo()));
         }
     }
 

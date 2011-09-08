@@ -11,124 +11,159 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  */
 public class TrasportoMerciModel extends BaseModel {
 
-    public int getAereoPiu250() {
-        return (Integer) get("aereoPiu250");
+    public Double getFurgoneKm30() {
+        return get("furgoneKm30");
     }
 
-    public void setAereoPiu250(int aereoPiu250) {
-        set("aereoPiu250", aereoPiu250);
+    public Double getFurgoneKm150() {
+        return get("furgoneKm150");
     }
 
-    public int getAereoPiu500() {
-        return (Integer) get("aereoPiu500");
+    public Double getFurgoneKm500() {
+        return get("furgoneKm500");
     }
 
-    public void setAereoPiu500(int aereoPiu500) {
-        set("aereoPiu500", aereoPiu500);
+    public Double getFurgoneKm1500() {
+        return get("furgoneKm1500");
     }
 
-    public int getTrenoPiu50() {
-        return (Integer) get("trenoPiu50");
+    public Double getFurgoneKm9000() {
+        return get("furgoneKm9000");
     }
 
-    public void setTrenoPiu50(int trenoPiu50) {
-        set("trenoPiu50", trenoPiu50);
+    public Double getTirKm30() {
+        return get("tirKm30");
     }
 
-    public int getTrenoPiu100() {
-        return (Integer) get("trenoPiu100");
+    public Double getTirKm150() {
+        return get("tirKm150");
     }
 
-    public void setTrenoPiu100(int trenoPiu100) {
-        set("trenoPiu100", trenoPiu100);
+    public Double getTirKm500() {
+        return get("tirKm500");
     }
 
-    public int getTrenoPiu250() {
-        return (Integer) get("trenoPiu250");
+    public Double getTirKm1500() {
+        return get("tirKm1500");
     }
 
-    public void setTrenoPiu250(int trenoPiu250) {
-        set("trenoPiu250", trenoPiu250);
+    public Double getTirKm9000() {
+        return get("tirKm9000");
     }
 
-    public int getTrenoPiu500() {
-        return (Integer) get("trenoPiu500");
+    public Double getTrenoKm150() {
+        return get("trenoKm150");
     }
 
-    public void setTrenoPiu500(int trenoPiu500) {
-        set("trenoPiu500", trenoPiu500);
+    public Double getTrenoKm500() {
+        return get("trenoKm500");
     }
 
-    public int getAutoPiu50() {
-        return (Integer) get("autoPiu50");
+    public Double getTrenoKm1500() {
+        return get("trenoKm1500");
     }
 
-    public void setAutoPiu50(int autoPiu50) {
-        set("autoPiu50", autoPiu50);
+    public Double getTrenoKm9000() {
+        return get("trenoKm9000");
     }
 
-    public int getAutoPiu100() {
-        return (Integer) get("autoPiu100");
+
+    public Double getNaveKm500() {
+        return get("naveKm500");
     }
 
-    public void setAutoPiu100(int autoPiu100) {
-        set("autoPiu100", autoPiu100);
+    public Double getNaveKm1500() {
+        return get("naveKm1500");
     }
 
-    public int getAutoPiu250() {
-        return (Integer) get("autoPiu250");
+    public Double getNaveKm9000() {
+        return get("NaveKm9000");
     }
 
-    public void setAutoPiu250(int autoPiu250) {
-        set("autoPiu250", autoPiu250);
+    public Double getAereoKm1500() {
+        return get("aereoKm1500");
     }
 
-    public int getAutoPiu500() {
-        return (Integer) get("autoPiu500");
+    public Double getAereoKm9000() {
+        return get("aereiKm9000");
+    }
+           /// SET
+
+    public void setFurgoneKm30(Double furgoneKm30 ) {
+          set("furgoneKm30",furgoneKm30);
     }
 
-    public void setAutoPiu500(int autoPiu500) {
-        set("autoPiu500", autoPiu500);
+    public void setFurgoneKm150(Double furgoneKm150 ) {
+          set("furgoneKm150", furgoneKm150);
     }
 
-    public int getBusPiu50() {
-        return (Integer) get("busPiu50");
+    public void setFurgoneKm500(Double  furgoneKm500) {
+          set("furgoneKm500", furgoneKm500);
     }
 
-    public void setBusPiu50(int busPiu50) {
-        set("busPiu50", busPiu50);
+    public void setFurgoneKm1500(Double furgoneKm1500 ) {
+          set("furgoneKm1500", furgoneKm1500);
     }
 
-    public int getBusPiu100() {
-        return (Integer) get("busPiu100");
+    public void setFurgoneKm9000(Double furgoneKm9000 ) {
+          set("furgoneKm9000", furgoneKm9000 );
     }
 
-    public void setBusPiu100(int busPiu100) {
-        set("busPiu100", busPiu100);
+    public void setTirKm30(Double  tirKm30) {
+          set("tirKm30",  tirKm30);
     }
 
-    public int getBusPiu250() {
-        return (Integer) get("busPiu250");
+    public void setTirKm150(Double tirKm150 ) {
+          set("tirKm150", tirKm150 );
     }
 
-    public void setBusPiu250(int busPiu250) {
-        set("busPiu250", busPiu250);
+    public void setTirKm500(Double tirKm500 ) {
+          set("tirKm500", tirKm500 );
     }
 
-    public int getBusPiu500() {
-        return (Integer) get("busPiu500");
+    public void setTirKm1500(Double tirKm1500 ) {
+          set("tirKm1500", tirKm1500 );
     }
 
-    public void setBusPiu500(int busPiu500) {
-        set("busPiu500", busPiu500);
+    public void setTirKm9000(Double tirKm9000  ) {
+          set("tirKm9000", tirKm9000 );
     }
 
-    public void setCategoria(String categoria) {
-        set("categoria", categoria);
+    public void setTrenoKm150(Double trenoKm150 ) {
+          set("trenoKm150", trenoKm150 );
     }
 
-    public String getCategoria() {
-        return (String) get("categoria");
+    public void setTrenoKm500(Double  trenoKm500) {
+          set("trenoKm500", trenoKm500 );
+    }
+
+    public void setTrenoKm1500(Double  trenoKm1500) {
+          set("trenoKm1500",  trenoKm1500);
+    }
+
+    public void setTrenoKm9000(Double  trenoKm9000) {
+          set("trenoKm9000", trenoKm9000 );
+    }
+
+
+    public void setNaveKm500(Double naveKm500 ) {
+          set("naveKm500",  naveKm500);
+    }
+
+    public void setNaveKm1500(Double naveKm1500 ) {
+          set("naveKm1500", naveKm1500 );
+    }
+
+    public void setNaveKm9000(Double  NaveKm9000) {
+          set("NaveKm9000", NaveKm9000 );
+    }
+
+    public void setAereoKm1500(Double  aereoKm1500) {
+          set("aereoKm1500", aereoKm1500 );
+    }
+
+    public void setAereoKm9000(Double aereiKm9000 ) {
+          set("aereiKm9000", aereiKm9000 );
     }
 
 }
