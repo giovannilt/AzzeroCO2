@@ -60,10 +60,10 @@ public class EventoView extends View {
         } else if (eventType.equals(EventoEvents.Riepilogo)) {
             eventoDettaglio.riepilogo();
         } else if (event.getType().equals(EventoEvents.PreviousText)) {
-            south.setTextLeft((String) event.<Object[]>getData()[0]);
+            south.setTextLeft(event.<String>getData());
             west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(eventoDettaglio.riepilogo()));
         } else if (event.getType().equals(EventoEvents.NextText)) {
-            south.setTextRigth((String) event.<Object[]>getData()[0]);
+            south.setTextRigth( event.<String>getData());
             west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(eventoDettaglio.riepilogo()));
         }
     }

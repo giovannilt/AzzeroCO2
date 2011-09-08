@@ -151,7 +151,6 @@ public class TrasportoPersoneModel extends BaseModel {
         set("trenoKm60", trenoKm60);
     }
 
-
     public void setCategoria(String categoria) {
         set("categoria", categoria);
     }

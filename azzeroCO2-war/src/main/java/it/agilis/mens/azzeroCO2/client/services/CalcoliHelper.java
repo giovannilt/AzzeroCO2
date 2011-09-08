@@ -25,7 +25,9 @@ public class CalcoliHelper {
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
         RiepilogoModel model = null;
         if (eventoModel != null && eventoModel.getEnergiaModel() != null) {
-            if (eventoModel.getEnergiaModel().getEnergiaElettrica() != 0 || eventoModel.getEnergiaModel().getGasMetano() != 0 || eventoModel.getEnergiaModel().getGasolio() != 0) {
+            if ((eventoModel.getEnergiaModel().getEnergiaElettrica() != null && eventoModel.getEnergiaModel().getEnergiaElettrica() != 0)
+                    || (eventoModel.getEnergiaModel().getGasMetano() != null && eventoModel.getEnergiaModel().getGasMetano() != 0)
+                    || (eventoModel.getEnergiaModel().getGasolio() != null && eventoModel.getEnergiaModel().getGasolio() != 0)) {
                 model = new RiepilogoModel();
                 model.setDettagli("Energia");
                 model.setOggetto("Energia");
@@ -42,7 +44,7 @@ public class CalcoliHelper {
             model.setOggetto(manifesti);
             store.add(model);
         }
-         if (eventoModel != null && eventoModel.getTrasportoPersoneModel() != null && eventoModel.getTrasportoPersoneModel().size() > 0) {
+        if (eventoModel != null && eventoModel.getTrasportoPersoneModel() != null && eventoModel.getTrasportoPersoneModel().size() > 0) {
             model = new RiepilogoModel();
             String string = "Trasporto Persone <br>";
             for (TrasportoPersoneModel mf : eventoModel.getTrasportoPersoneModel()) {
@@ -52,7 +54,7 @@ public class CalcoliHelper {
             model.setOggetto(string);
             store.add(model);
         }
-         if (eventoModel != null && eventoModel.getPubblicazioniRilegateModel() != null && eventoModel.getPubblicazioniRilegateModel().size() > 0) {
+        if (eventoModel != null && eventoModel.getPubblicazioniRilegateModel() != null && eventoModel.getPubblicazioniRilegateModel().size() > 0) {
             model = new RiepilogoModel();
             String string = "Pubblicazioni Rilegate <br>";
             for (PubblicazioniRilegateModel mf : eventoModel.getPubblicazioniRilegateModel()) {
@@ -62,8 +64,8 @@ public class CalcoliHelper {
             model.setOggetto(string);
             store.add(model);
         }
-         if (eventoModel != null && eventoModel.getNottiModel() != null ) {
-            if (eventoModel.getNottiModel().getNotti()>0) {
+        if (eventoModel != null && eventoModel.getNottiModel() != null) {
+            if (eventoModel.getNottiModel()!=null && eventoModel.getNottiModel().getNotti()!=null && eventoModel.getNottiModel().getNotti() > 0) {
                 model = new RiepilogoModel();
                 model.setDettagli("Notti");
                 model.setOggetto("Notti");
