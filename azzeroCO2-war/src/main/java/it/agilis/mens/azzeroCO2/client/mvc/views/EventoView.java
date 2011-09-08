@@ -22,6 +22,7 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
 import java.util.List;
@@ -60,12 +61,17 @@ public class EventoView extends View {
         } else if (eventType.equals(EventoEvents.Riepilogo)) {
             eventoDettaglio.riepilogo();
         } else if (event.getType().equals(EventoEvents.PreviousText)) {
+            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData());
-            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(eventoDettaglio.riepilogo()));
+            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo));
+            west.setTitle( riepilogo.getNome() );
         } else if (event.getType().equals(EventoEvents.NextText)) {
-            south.setTextRigth( event.<String>getData());
-            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(eventoDettaglio.riepilogo()));
+            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
+            south.setTextRigth(event.<String>getData());
+            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo));
+            west.setTitle(riepilogo.getNome() );
         }
+
     }
 
     private void onPrevius(AppEvent event) {

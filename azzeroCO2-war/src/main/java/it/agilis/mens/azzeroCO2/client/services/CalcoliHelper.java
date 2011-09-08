@@ -54,10 +54,24 @@ public class CalcoliHelper {
         }
 
         if (eventoModel != null && eventoModel.getTrasportoMerciModel() != null) {
-            if (eventoModel.getTrasportoMerciModel().isVoid()) {
+            if (!eventoModel.getTrasportoMerciModel().isVoid()) {
                 model = new RiepilogoModel();
                 model.setDettagli("Trasporto Merci");
                 model.setOggetto("Trasporto Merci");
+                store.add(model);
+            }
+        }
+        if (eventoModel != null && eventoModel.getPubblicazioniRilegateModel() != null && eventoModel.getPubblicazioniRilegateModel().size() > 0) {
+            model = new RiepilogoModel();
+            String string = "Pubblicazioni Rilegate <br>";
+            for (PubblicazioniRilegateModel mf : eventoModel.getPubblicazioniRilegateModel()) {
+                if (!mf.isVoid()) {
+                    string += "  / " + mf.getCategoria() + "<br>";
+                }
+            }
+            if (!string.equalsIgnoreCase("Pubblicazioni Rilegate <br>")) {
+                model.setDettagli("Pubblicazioni Rilegate");
+                model.setOggetto(string);
                 store.add(model);
             }
         }
@@ -66,24 +80,16 @@ public class CalcoliHelper {
             model = new RiepilogoModel();
             String manifesti = "Manifesti Pieghevoli <br>";
             for (ManifestiPieghevoliFogliModel mf : eventoModel.getManifestiPieghevoliFogliModel()) {
-                manifesti += "  / " + mf.getCategoria() + "<br>";
+                if (!mf.isVoid()) {
+                    manifesti += "  / " + mf.getCategoria() + "<br>";
+                }
             }
-            model.setDettagli("Manifesti Pieghevoli");
-            model.setOggetto(manifesti);
-            store.add(model);
-        }
-
-        if (eventoModel != null && eventoModel.getPubblicazioniRilegateModel() != null && eventoModel.getPubblicazioniRilegateModel().size() > 0) {
-            model = new RiepilogoModel();
-            String string = "Pubblicazioni Rilegate <br>";
-            for (PubblicazioniRilegateModel mf : eventoModel.getPubblicazioniRilegateModel()) {
-                string += "  / " + mf.getCategoria() + "<br>";
+            if (!manifesti.equalsIgnoreCase("Manifesti Pieghevoli <br>")) {
+                model.setDettagli("Manifesti Pieghevoli");
+                model.setOggetto(manifesti);
+                store.add(model);
             }
-            model.setDettagli("Pubblicazioni Rilegate");
-            model.setOggetto(string);
-            store.add(model);
         }
-
         return store;
     }
 
@@ -123,7 +129,7 @@ public class CalcoliHelper {
         String energia3 = "";
 
         CoefficienteModel coefficienteModelEnergia = coefficienti.get("ENEELE");
-        CoefficienteModel coefficientiEnergiaGAS =   coefficienti.get("ENEGAS");
+        CoefficienteModel coefficientiEnergiaGAS = coefficienti.get("ENEGAS");
         CoefficienteModel coefficienteModelGasolio = coefficienti.get("ENEGSL");
 
         double co2 = 0;
@@ -282,11 +288,11 @@ public class CalcoliHelper {
             }
 
 
-            CoefficienteModel coefficienteModelTPBUS =    coefficienti.get("TRPBUS");
-            CoefficienteModel coefficienteModelTPAUTO =   coefficienti.get("TRPAUT");
-            CoefficienteModel coefficienteModelTPTRENO =  coefficienti.get("TRPTRE");
-            CoefficienteModel coefficienteModelTPAEREO =  coefficienti.get("TRPAER");
-            CoefficienteModel coefficienteModelTPAEREE =  coefficienti.get("TRPAER");
+            CoefficienteModel coefficienteModelTPBUS = coefficienti.get("TRPBUS");
+            CoefficienteModel coefficienteModelTPAUTO = coefficienti.get("TRPAUT");
+            CoefficienteModel coefficienteModelTPTRENO = coefficienti.get("TRPTRE");
+            CoefficienteModel coefficienteModelTPAEREO = coefficienti.get("TRPAER");
+            CoefficienteModel coefficienteModelTPAEREE = coefficienti.get("TRPAER");
             CoefficienteModel coefficienteModelTPAERMOT = coefficienti.get("TRPMOT");
 
             Double co2 = tpm.getBusKm60() * coefficienteModelTPBUS.getValore() * 60;

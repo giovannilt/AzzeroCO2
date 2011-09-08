@@ -82,5 +82,18 @@ public class PubblicazioniRilegateModel extends BaseModel {
     public void setGrammaturaCopertina(Double grammaturaCopertina) {
         set("grammaturaCopertina", grammaturaCopertina);
     }
+
+    public boolean isVoid() {
+
+        for (Object value : getProperties().values()) {
+            if (value instanceof Double) {
+                Double d = (Double) value;
+                if (d != 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
 

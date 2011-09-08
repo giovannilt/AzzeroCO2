@@ -38,7 +38,6 @@ public class NorthPanel extends LayoutContainer {
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-
         HBoxLayout layout = new HBoxLayout();
         layout.setPadding(new Padding(1));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
@@ -60,7 +59,6 @@ public class NorthPanel extends LayoutContainer {
         });
 
         c.add(home, layoutData);
-
         amministrazione.setText("Impostazioni");
         amministrazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
@@ -70,10 +68,7 @@ public class NorthPanel extends LayoutContainer {
             }
         });
         c.add(amministrazione, layoutData);
-
-
         c.add(registrati, layoutData);
-
         login.setText("Login");
         login.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
@@ -88,7 +83,6 @@ public class NorthPanel extends LayoutContainer {
             }
         });
         c.add(login, layoutData);
-
         pagamento.setText("pagamento");
         pagamento.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
@@ -96,9 +90,7 @@ public class NorthPanel extends LayoutContainer {
             }
         });
         c.add(pagamento, layoutData);
-
         add(c, new FlowData(1));
-
         Image azzeroCO2Log = new Image(AzzeroCO2Resources.INSTANCE.header());
         add(azzeroCO2Log, layoutData);
     }
@@ -106,7 +98,6 @@ public class NorthPanel extends LayoutContainer {
     public void showLogout() {
         login.setText("LogOut");
         islogedIn = true;
-        //registrati.setVisible(false);
         c.remove(registrati);
     }
 
