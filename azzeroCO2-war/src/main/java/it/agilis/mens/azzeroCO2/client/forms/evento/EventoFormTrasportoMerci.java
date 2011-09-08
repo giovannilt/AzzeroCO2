@@ -94,7 +94,6 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         tirKm30.setName("tirKm30");
         tirKm30.setWidth(60);
 
-
         km30input.add(furgone);
         km30input.add(furgoneKm30, flex);
         km30input.add(tir);

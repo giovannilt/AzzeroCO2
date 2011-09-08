@@ -166,14 +166,9 @@ public class EventoDettaglio extends LayoutContainer {
                         if (layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
                             if (j < calcolo.getItems().size()) {
                                 layout.setActiveItem(calcolo.getItem(j));
-                                //posizioniLabel= posizioniLabel==1 ? 1 :posizioniLabel++;
                                 posizioniLabel++;
-                                //  DettaglioModel riepilogo = riepilogo();
                                 Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                                 Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
-                                if (posizioniLabel==7){//eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
-                                    Dispatcher.forwardEvent(EventoEvents.Riepilogo);
-                                }
                                 return;
                             }
                         }
@@ -188,6 +183,9 @@ public class EventoDettaglio extends LayoutContainer {
                     }
                     if (!eventoTab.getItems().get(i).getText().equalsIgnoreCase("Calcolo")) {
                         posizioniLabel++;
+                    }
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
+                        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
                     }
                     //  DettaglioModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
