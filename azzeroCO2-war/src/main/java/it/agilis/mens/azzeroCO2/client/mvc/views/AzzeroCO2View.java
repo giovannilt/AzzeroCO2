@@ -12,6 +12,7 @@ import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.google.gwt.user.client.ui.RootPanel;
+import it.agilis.mens.azzeroCO2.client.components.InfoDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 
 
@@ -25,6 +26,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 public class AzzeroCO2View extends View {
     private final ContentPanel main = new ContentPanel();
     private final Viewport viewport = new Viewport();
+    private InfoDialog infoDialog = new InfoDialog();
 
     public AzzeroCO2View(Controller controller) {
         super(controller);
@@ -45,7 +47,9 @@ public class AzzeroCO2View extends View {
             onCentralPanelReady(event);
         } else if (eventType.equals(AzzeroCO2Events.NewsPanelReady)) {
             onNewsPanelReady(event);
-         }
+        } else if (eventType.equals(AzzeroCO2Events.ShowInfo)){
+            infoDialog.show();
+        }
 
     }
 
@@ -101,5 +105,10 @@ public class AzzeroCO2View extends View {
     }
 
     private void onError(AppEvent event) {
+    }
+
+
+    public void setInfo(String info){
+        infoDialog.setInfo(info);
     }
 }

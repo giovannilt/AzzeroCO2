@@ -197,7 +197,17 @@ public class Utils {
     public static GitRepositoryStateModel getGitState(GitRepositoryState gitRepoState) {
         GitRepositoryStateModel _return= new GitRepositoryStateModel();
         _return.setCommitId(gitRepoState.getCommitId());
-        return _return;  //To change body of created methods use File | Settings | File Templates.
+
+         _return.setBranch(gitRepoState.getBranch());
+
+         _return.setBuildUserName(gitRepoState.getBuildUserName());
+         _return.setBuildUserEmail(gitRepoState.getBuildUserEmail());
+         _return.setBuildTime(gitRepoState.getBuildTime());
+
+         _return.setCommitUserName(gitRepoState.getCommitUserName());
+         _return.setCommitUserEmail(gitRepoState.getCommitUserEmail());
+         _return.setCommitTime(gitRepoState.getCommitTime());
+        return _return;
     }
 
 }

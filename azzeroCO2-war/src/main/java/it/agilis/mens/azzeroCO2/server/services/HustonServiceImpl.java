@@ -207,4 +207,6 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     public GitRepositoryStateModel checkGitRevision() {
         return Utils.getGitState(gitRepoState);
     }
+
+
 }

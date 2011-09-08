@@ -6,6 +6,7 @@ import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
+import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -28,6 +29,7 @@ public abstract class BaseController extends Controller {
     private UserInfoModel userInfoModel;
     private Map<String, CoefficienteModel> coefficientiMAP = new HashMap<String, CoefficienteModel>();
     private List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList = new ArrayList<ProgettoDiCompensazioneModel>();
+    private String info="";
 
     public UserInfoModel getUserInfoModel() {
         return userInfoModel;
@@ -72,6 +74,19 @@ public abstract class BaseController extends Controller {
         hustonService.getListOfProgettoDiCompensazione(aCallback);
     }
 
+     public void setInfo() {
+        AsyncCallback<GitRepositoryStateModel> aCallback = new AsyncCallback<GitRepositoryStateModel>() {
+            public void onFailure(Throwable caught) {
+                Info.display("Error", "Errore impossibile connettersi al server");
+            }
+            @Override
+            public void onSuccess(GitRepositoryStateModel result) {
+               info= result.toString();
+            }
+        };
+        hustonService.checkGitRevision(aCallback);
+    }
+
     public Map<String, CoefficienteModel> getCoefficientiMAP() {
         return coefficientiMAP;
     }
@@ -86,5 +101,9 @@ public abstract class BaseController extends Controller {
 
     public void setProgettiDiCompensazioneList(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
         this.progettiDiCompensazioneList = progettiDiCompensazioneList;
+    }
+
+    public String getInfo() {
+        return info;
     }
 }
