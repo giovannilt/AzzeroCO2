@@ -406,7 +406,7 @@ public class CalcoliHelper {
 
         if (trasportoMerciModel.getTirKm500() != null && trasportoMerciModel.getTirKm500() > 0) {
             tir500 = "Tir:" + " " + trasportoMerciModel.getTirKm500() + " ton </br>";
-            co2 += trasportoMerciModel.getTirKm150() * coefficienteModelTir.getValore();
+            co2 += trasportoMerciModel.getTirKm500() * coefficienteModelTir.getValore();
         }
         if (trasportoMerciModel.getTrenoKm500() != null && trasportoMerciModel.getTrenoKm500() > 0) {
             treno500 = "Tir:" + " " + trasportoMerciModel.getTirKm500() + " ton </br>";
@@ -430,7 +430,7 @@ public class CalcoliHelper {
             co2 += trasportoMerciModel.getTirKm1500() * coefficienteModelTir.getValore();
         }
         if (trasportoMerciModel.getTrenoKm1500() != null && trasportoMerciModel.getTrenoKm1500() > 0) {
-            treno150 = "Treno:" + " " + trasportoMerciModel.getTirKm1500() + " ton </br>";
+            treno1500 = "Treno:" + " " + trasportoMerciModel.getTirKm1500() + " ton </br>";
             co2 += trasportoMerciModel.getTrenoKm1500() * coefficienteModelTreno.getValore();
         }
 
@@ -460,7 +460,7 @@ public class CalcoliHelper {
             co2 += trasportoMerciModel.getTirKm9000() * coefficienteModelTir.getValore();
         }
         if (trasportoMerciModel.getTrenoKm9000() != null && trasportoMerciModel.getTrenoKm9000() > 0) {
-            treno150 = "Treno:" + " " + trasportoMerciModel.getTirKm9000() + " ton </br>";
+            treno9000 = "Treno:" + " " + trasportoMerciModel.getTirKm9000() + " ton </br>";
             co2 += trasportoMerciModel.getTrenoKm9000() * coefficienteModelTreno.getValore();
         }
 
@@ -498,7 +498,7 @@ public class CalcoliHelper {
             extraeuropeo="Distanza: extra europea:</br>";
         }
 
-        traspMerci.setDettagli(provinciale+furgone30+tir30+regionale+furgone150+tir150+treno150+nazionale+furgone500+tir500+treno500+nave1500+europeo+furgone1500+tir1500+treno1500+nave1500+aereo1500+extraeuropeo+furgone9000+tir9000+treno9000+nave9000+aereo9000);
+        traspMerci.setDettagli(provinciale+furgone30+tir30+regionale+furgone150+tir150+treno150+nazionale+furgone500+tir500+treno500+nave500+nave1500+europeo+furgone1500+tir1500+treno1500+nave1500+aereo1500+extraeuropeo+furgone9000+tir9000+treno9000+nave9000+aereo9000);
 
         if (co2 > 0) {
             traspMerci.setKgCO2(co2);
