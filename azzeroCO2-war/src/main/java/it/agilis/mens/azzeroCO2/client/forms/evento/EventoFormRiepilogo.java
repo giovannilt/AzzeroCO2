@@ -59,7 +59,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
     private Grid<RiepilogoModel> createGrid() {
 
-        final NumberFormat number = NumberFormat.getFormat("0.00");
+        final NumberFormat number = NumberFormat.getDecimalFormat();// NumberFormat.getFormat("0.00");
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
         ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 190);
@@ -70,6 +70,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 60);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
+
         configs.add(column);
 
         ColumnModel cm = new ColumnModel(configs);
@@ -79,13 +80,18 @@ public class EventoFormRiepilogo extends LayoutContainer {
         somma.setSummaryType("kgCO2", SummaryType.SUM);
         somma.setRenderer("kgCO2", new AggregationRenderer<RiepilogoModel>() {
             public Object render(Number value, int colIndex, Grid<RiepilogoModel> grid, ListStore<RiepilogoModel> store) {
-                return number.format(value.doubleValue());
+                Double v = (Double) value;
+                if (v == null) {
+                    return 0;
+                }
+                return number.format(v);
             }
         });
         cm.addAggregationRow(somma);
 
         somma = new AggregationRowConfig<RiepilogoModel>();
         somma.setHtml("name", "kgCO2");
+
 
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
@@ -94,12 +100,11 @@ public class EventoFormRiepilogo extends LayoutContainer {
         return grid;
     }
 
-    public ListStore<RiepilogoModel> getStore() {
-        return store;
-    }
-
-    public void setStore(ListStore<RiepilogoModel> store) {
-        this.store = store;
+    public void setEventoRiepilogoInStore(List<RiepilogoModel> models) {
+        for (RiepilogoModel r : store.getModels()) {
+            store.remove(r);
+        }
+        this.store.add(models);
     }
 
     public void clear() {

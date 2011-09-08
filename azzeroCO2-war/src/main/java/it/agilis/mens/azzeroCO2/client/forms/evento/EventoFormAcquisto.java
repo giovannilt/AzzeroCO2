@@ -260,7 +260,6 @@ public class EventoFormAcquisto extends LayoutContainer {
         //grid.setHideHeaders(true);
         grid.setHeight(525);
 
-
         return grid;
     }
 

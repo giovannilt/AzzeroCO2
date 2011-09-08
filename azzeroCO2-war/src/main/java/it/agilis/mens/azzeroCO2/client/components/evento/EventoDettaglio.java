@@ -187,7 +187,6 @@ public class EventoDettaglio extends LayoutContainer {
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
                         Dispatcher.forwardEvent(EventoEvents.Riepilogo);
                     }
-                    //  DettaglioModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return;
@@ -238,12 +237,7 @@ public class EventoDettaglio extends LayoutContainer {
     }
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
-        if (eventoFormRiepilogo.getStore() != null) {
-            for (RiepilogoModel rm : eventoFormRiepilogo.getStore().getModels()) {
-                eventoFormRiepilogo.getStore().remove(rm);
-            }
-        }
-        eventoFormRiepilogo.getStore().add(eventoRiepilogoModels);
+        eventoFormRiepilogo.setEventoRiepilogoInStore(eventoRiepilogoModels);
         eventoFormAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo());
     }
 

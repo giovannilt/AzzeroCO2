@@ -11,15 +11,6 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
  */
 public class RiepilogoModel extends BaseModelData {
 
-    public RiepilogoModel() {
-
-    }
-
-    public RiepilogoModel(String oggetto, String dettagli, Double kgCO2) {
-        setOggetto(oggetto);
-        setDettagli(dettagli);
-        setKgCO2(kgCO2);
-    }
 
 
     public String getOggetto() {
