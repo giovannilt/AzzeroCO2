@@ -20,7 +20,7 @@ public class PubblicazioniRilegateModel extends BaseModel {
     }
 
     public Double getAltezza() {
-        return (Double) get("altezza");
+        return get("altezza")== null ? 0 : new Double(get("altezza").toString());
     }
 
     public void setAltezza(Double altezza) {
@@ -28,23 +28,23 @@ public class PubblicazioniRilegateModel extends BaseModel {
     }
 
     public Double getLarghezza() {
-        return (Double) get("larghezza");
+        return  get("larghezza")== null ? 0 : new Double(get("larghezza").toString());
     }
 
     public void setLarghezza(Double larghezza) {
         set("larghezza", larghezza);
     }
 
-    public Double getNumeroDiPagine() {
-        return get("numeroDiPagine");
+    public Integer getNumeroDiPagine() {
+        return get("numeroDiPagine")== null ? 0 : new Integer(get("numeroDiPagine").toString());
     }
 
     public void setNumeroDiPagine(Double numeroDiPagine) {
         set("numeroDiPagine", numeroDiPagine);
     }
 
-    public Double getTiratura() {
-        return get("tiratura");
+    public Integer getTiratura() {
+        return get("tiratura")== null ? 0 : new Integer(get("tiratura").toString());
     }
 
     public void setTiratura(Double tiratura) {
@@ -60,7 +60,7 @@ public class PubblicazioniRilegateModel extends BaseModel {
     }
 
     public Double getGrammatura() {
-        return (Double) get("grammatura");
+        return (Double) get("grammatura")== null ? 0 : new Double(get("grammatura").toString());
     }
 
     public void setGrammatura(Double grammatura) {
@@ -76,7 +76,7 @@ public class PubblicazioniRilegateModel extends BaseModel {
     }
 
     public Double getGrammaturaCopertina() {
-        return (Double) get("grammaturaCopertina");
+        return (Double) get("grammaturaCopertina")== null ? 0 : new Double(get("grammaturaCopertina").toString());
     }
 
     public void setGrammaturaCopertina(Double grammaturaCopertina) {

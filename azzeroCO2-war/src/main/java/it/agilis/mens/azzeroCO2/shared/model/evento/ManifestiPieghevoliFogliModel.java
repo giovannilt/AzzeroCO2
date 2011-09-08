@@ -20,7 +20,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
     }
 
     public Double getAltezza() {
-        return get("altezza");
+        return get("altezza")== null ? 0 : new Double(get("altezza").toString());
     }
 
     public void setAltezza(Double altezza) {
@@ -28,7 +28,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
     }
 
     public Double getLarghezza() {
-        return get("larghezza");
+        return get("larghezza")== null ? 0 : new Double(get("larghezza").toString());
     }
 
     public void setLarghezza(Double larghezza) {
@@ -36,15 +36,15 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
     }
 
     public Integer getNumeroDiPagine() {
-        return get("numeroDiPagine");
+        return get("numeroDiPagine")== null ? 0 : new Integer(get("numeroDiPagina").toString());
     }
 
     public void setNumeroDiPagine(Integer numeroDiPagine) {
         set("numeroDiPagine", numeroDiPagine);
     }
 
-    public Double getTiratura() {
-        return get("tiratura");
+    public Integer getTiratura() {
+        return get("tiratura")== null ? 0 : new Integer(get("tiratura").toString());
     }
 
     public void setTiratura(Double tiratura) {
@@ -60,7 +60,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
     }
 
     public Double getGrammatura() {
-        return get("grammatura");
+        return get("grammatura")== null ? 0 : new Double(get("grammatura").toString());
     }
 
     public void setGrammatura(double grammatura) {
