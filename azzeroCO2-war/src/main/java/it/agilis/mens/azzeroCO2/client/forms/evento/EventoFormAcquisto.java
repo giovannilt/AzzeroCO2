@@ -245,9 +245,6 @@ public class EventoFormAcquisto extends LayoutContainer {
         ColumnConfig column = new ColumnConfig("nome", "Progetto", 310);
         configs.add(column);
 
-        column = new ColumnConfig("kgCO2", "KgCO2", 60);
-        column.setAlignment(Style.HorizontalAlignment.RIGHT);
-        configs.add(column);
 
         column = new ColumnConfig("prezzo", "Euro", 60);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
