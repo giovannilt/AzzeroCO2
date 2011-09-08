@@ -44,5 +44,6 @@ public interface HustonService extends RemoteService {
     Boolean saveProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensaziones);
 
     GitRepositoryStateModel checkGitRevision();
+
 }
 

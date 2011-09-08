@@ -32,6 +32,7 @@ public class NorthPanel extends LayoutContainer {
     private Button pagamento = new Button();
     private Button login = new Button();
     private Boolean islogedIn = false;
+    private Button info = new Button();
     private LayoutContainer c = new LayoutContainer();
     private HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
@@ -83,6 +84,15 @@ public class NorthPanel extends LayoutContainer {
             }
         });
         c.add(login, layoutData);
+
+        info.setText("Info");
+        info.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+               Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfo);
+            }
+        });
+        c.add(info, layoutData);
+
         pagamento.setText("pagamento");
         pagamento.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
