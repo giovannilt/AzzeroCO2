@@ -73,8 +73,8 @@ public class EventoFormAcquisto extends LayoutContainer {
                     public void handleEvent(SelectionChangedEvent<ProgettoDiCompensazioneModel> be) {
                         if (be.getSelection().size() > 0) {
                             titoloProgettoScelto.setText(be.getSelection().get(0).getNome());
-                            euroPerKCo2Progetto.setText((be.getSelection().get(0).getKgCO2() * be.getSelection().get(0).getPrezzo()) + "");
-                            totale.setText((be.getSelection().get(0).getKgCO2() * be.getSelection().get(0).getPrezzo() * totaleKC02) + "");
+                            //euroPerKCo2Progetto.setText((be.getSelection().get(0).getKgCO2() * be.getSelection().get(0).getPrezzo()) + "");
+                            //totale.setText((be.getSelection().get(0).getKgCO2() * be.getSelection().get(0).getPrezzo() * totaleKC02) + "");
                             binding.bind(be.getSelection().get(0));
                         } else {
                             titoloProgettoScelto.setText("TitoloProgettoScelto");
@@ -245,9 +245,6 @@ public class EventoFormAcquisto extends LayoutContainer {
         ColumnConfig column = new ColumnConfig("nome", "Progetto", 310);
         configs.add(column);
 
-        column = new ColumnConfig("kgCO2", "KgCO2", 60);
-        column.setAlignment(Style.HorizontalAlignment.RIGHT);
-        configs.add(column);
 
         column = new ColumnConfig("prezzo", "Euro", 60);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);

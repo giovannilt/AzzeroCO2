@@ -30,7 +30,7 @@ public class TipoDiCartaModel extends BaseModelData {
 
 
     public String getNome() {
-        return get("parametro");
+        return get("nome");
     }
 
     public void setNome(String nome) {

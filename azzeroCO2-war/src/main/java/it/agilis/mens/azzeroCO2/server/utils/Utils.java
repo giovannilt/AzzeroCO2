@@ -170,7 +170,7 @@ public class Utils {
         ProgettoDiCompensazioneModel pcm = new ProgettoDiCompensazioneModel();
         pcm.setId(pc.getId());
         pcm.setAttivo(pc.getAttivo());
-        pcm.setKgCO2(pc.getKgCo2());
+        //pcm.setKgCO2(pc.getKgCo2());
         pcm.setNome(pc.getNome());
         pcm.setPrezzo(pc.getPrezzo());
         return pcm;
@@ -184,7 +184,7 @@ public class Utils {
 
             pdc.setAttivo(pdcm.getAttivo());
             pdc.setId(pdcm.getId());
-            pdc.setKgCo2(pdcm.getKgCO2());
+            //pdc.setKgCo2(pdcm.getKgCO2());
             pdc.setNome(pdcm.getNome());
             pdc.setPrezzo(pdcm.getPrezzo());
 
