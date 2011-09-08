@@ -1,6 +1,5 @@
 package it.agilis.mens.azzeroCO2.client.services;
 
-import com.extjs.gxt.ui.client.Registry;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
@@ -17,17 +16,15 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class CalcoliHelper {
-
-    private static HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
-    private static Map<String, CoefficienteModel> coefficienti = null;
+     private static Map<String, CoefficienteModel> coefficienti = null;
 
     public static List<RiepilogoModel> getListOfRiepilogoModelLazy(DettaglioModel eventoModel) {
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
         RiepilogoModel model = null;
         if (eventoModel != null && eventoModel.getEnergiaModel() != null) {
-            if ((eventoModel.getEnergiaModel().getEnergiaElettrica() != null && eventoModel.getEnergiaModel().getEnergiaElettrica() != 0)
-                    || (eventoModel.getEnergiaModel().getGasMetano() != null && eventoModel.getEnergiaModel().getGasMetano() != 0)
-                    || (eventoModel.getEnergiaModel().getGasolio() != null && eventoModel.getEnergiaModel().getGasolio() != 0)) {
+            if ( eventoModel.getEnergiaModel().getEnergiaElettrica() != 0
+                    ||  eventoModel.getEnergiaModel().getGasMetano() != 0
+                    ||  eventoModel.getEnergiaModel().getGasolio() != 0) {
                 model = new RiepilogoModel();
                 model.setDettagli("Energia");
                 model.setOggetto("Energia");
@@ -45,7 +42,7 @@ public class CalcoliHelper {
             store.add(model);
         }
         if (eventoModel != null && eventoModel.getNottiModel() != null) {
-            if (eventoModel.getNottiModel() != null && eventoModel.getNottiModel().getNotti() > 0) {
+            if (eventoModel.getNottiModel().getNotti() > 0) {
                 model = new RiepilogoModel();
                 model.setDettagli("Notti");
                 model.setOggetto("Notti");
@@ -137,15 +134,15 @@ public class CalcoliHelper {
         CoefficienteModel coefficienteModelGasolio = coefficienti.get("ENEGSL");
 
         double co2 = 0;
-        if (energiaModel.getEnergiaElettrica() != null && energiaModel.getEnergiaElettrica() > 0) {
+        if ( energiaModel.getEnergiaElettrica() > 0) {
             energia1 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h </br>";
             co2 = energiaModel.getEnergiaElettrica() * coefficienteModelEnergia.getValore();
         }
-        if (energiaModel.getGasMetano() != null && energiaModel.getGasMetano() > 0) {
+        if ( energiaModel.getGasMetano() > 0) {
             energia2 = "Gas" + " " + energiaModel.getGasMetano() + " metri cubi  </br>";
             co2 += energiaModel.getGasMetano() * coefficientiEnergiaGAS.getValore();
         }
-        if (energiaModel.getGasolio() != null && energiaModel.getGasolio() > 0) {
+        if (energiaModel.getGasolio() > 0) {
             energia3 = "Gasolio" + " " + energiaModel.getGasolio() + " litri </br>";
             co2 += energiaModel.getGasolio() * coefficienteModelGasolio.getValore();
         }
@@ -510,13 +507,13 @@ public class CalcoliHelper {
             double co2Copertina = 0;
 
             String formato = "";
-            if (prm.getLarghezza() != null && prm.getAltezza() != null) {
+            if (prm.getLarghezza() >0  && prm.getAltezza()> 0) {
                 formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "</br>";
                 co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100;
                 co2Copertina = (prm.getAltezza() / 100 * prm.getLarghezza() / 100) * 2;
             }
             String pagine = "";
-            if (prm.getNumeroDiPagine() != null) {
+            if (prm.getNumeroDiPagine()>0) {
                 pagine = "Numero di pagine: " + prm.getNumeroDiPagine() + "</br>";
                 co2 *= prm.getNumeroDiPagine();
             }
@@ -527,12 +524,12 @@ public class CalcoliHelper {
                 }
                 materiale = prm.getTipoDiCarta().getNome();
             }
-            if (prm.getGrammatura() != null) {
+            if (prm.getGrammatura() >0) {
                 materiale += " " + prm.getGrammatura() + " gr</br>";
                 co2 *= prm.getGrammatura();
             }
             String tiratura = "";
-            if (prm.getTiratura() != null) {
+            if (prm.getTiratura() >0) {
                 tiratura = "Tiratura " + prm.getTiratura();
                 co2 *= prm.getTiratura();
                 co2Copertina *= prm.getTiratura();
@@ -542,7 +539,7 @@ public class CalcoliHelper {
                     co2Copertina *= coefficienti.get(prm.getTipoDiCartaCopertina().getParametro()).getValore();
                 }
             }
-            if (prm.getGrammaturaCopertina() != null) {
+            if (prm.getGrammaturaCopertina() >0) {
                 co2Copertina *= prm.getGrammaturaCopertina();
             }
 
@@ -565,7 +562,7 @@ public class CalcoliHelper {
 
             _rm.setOggetto("Manifesti, pieghevoli, fogli / " + prm.getCategoria());
             String formato = "";
-            if (prm.getLarghezza() != null && prm.getAltezza() != null) {
+            if (prm.getLarghezza() >0 && prm.getAltezza() >0) {
                 formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "</br>";
                 co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100;
             }
@@ -576,17 +573,17 @@ public class CalcoliHelper {
                 }
                 materiale = prm.getTipoDiCarta().getNome();
             }
-            if (prm.getGrammatura() != null) {
+            if (prm.getGrammatura() >0) {
                 materiale += " " + prm.getGrammatura() + " gr</br>";
                 co2 *= prm.getGrammatura();
             }
             String pagine = "";
-            if (prm.getNumeroDiPagine() != null) {
+            if (prm.getNumeroDiPagine() >0) {
                 pagine = "Numero di pagine: " + prm.getNumeroDiPagine() + "</br>";
                 co2 *= prm.getNumeroDiPagine();
             }
             String tiratura = "";
-            if (prm.getTiratura() != null) {
+            if (prm.getTiratura() >0) {
                 tiratura = "Tiratura " + prm.getTiratura();
                 co2 *= prm.getTiratura();
             }

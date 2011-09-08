@@ -88,7 +88,6 @@ public class TrasportoMerciModel extends BaseModel {
     }
 
     public boolean isVoid() {
-
         for (Object value : getProperties().values()) {
             if (value instanceof Double) {
                 Double d = (Double) value;

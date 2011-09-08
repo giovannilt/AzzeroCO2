@@ -1,22 +1,23 @@
 package it.agilis.mens.azzeroCO2.client.mvc.views;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.event.*;
+import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.EventType;
+import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.mvc.View;
-import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.Status;
+import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
@@ -188,7 +189,7 @@ public class CentralView extends View {
 
         {
             ContentPanel c = new ContentPanel();
-            c.setHeight("672px");
+            c.setHeight("610px");
 
             c.setHeaderVisible(false);
             VBoxLayout layout = new VBoxLayout();
@@ -203,28 +204,28 @@ public class CentralView extends View {
                 ContentPanel login = new ContentPanel();
                 login.setWidth("242px");
                 login.setHeading("Login");
-
-
-
-
                 //TODO inserire form login
-
-
-
-
-
                 login.addText("******");
-
-
                 c.add(login, flex);
             }
-            {   // NEWS
+            {
                 ContentPanel compensazione = new ContentPanel();
-                compensazione.setHeading("Cos'è la compensazione");
-                compensazione.addText("La combustione di fonti energetiche fossili (carbone, benzina, cherosene) sprigiona biossido di carbonio (CO2). Il CO2 è il maggior responsabile dei gas ad effetto serra provocati dall’uomo. Blabla blabla bla bla blal");
+                compensazione.setHeading("Cos'e' la compensazione?");
+                VBoxLayout layoutCompensazione = new VBoxLayout();
+                layoutCompensazione.setPadding(new Padding(5));
+                layoutCompensazione.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
+                compensazione.setLayout(layoutCompensazione);
+
+                Text testo = new Text("La combustione di fonti energetiche fossili (carbone, benzina, cherosene) sprigiona biossido di carbonio (CO2). Il CO2 è il maggior responsabile dei gas ad effetto serra provocati dall’uomo. Blabla blabla bla bla blal");
+                testo.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+
+                Image azzeroCO2Stemp = new Image(AzzeroCO2Resources.INSTANCE.azzeroCO2Stemp());
+                azzeroCO2Stemp.setAltText("AzzeroCO2");
+
+                compensazione.add(testo, new VBoxLayoutData(new Margins(5, 5, 5, 5)));
+                compensazione.add(azzeroCO2Stemp, new VBoxLayoutData(new Margins(0, 0, 5, 0)));
                 c.add(compensazione, flex);
             }
-
             east.add(c, new FlowData(0));
         }
         _return.setTitle(Eventi.MAIN.name());
