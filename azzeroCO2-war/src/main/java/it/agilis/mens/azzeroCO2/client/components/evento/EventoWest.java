@@ -134,6 +134,10 @@ public class EventoWest extends LayoutContainer {
     }
 
     public void setTitle(String title) {
-        this.title.setText(title);
+        if (title == null || "".equalsIgnoreCase(title)) {
+            this.title.setText("Evento");
+        } else {
+            this.title.setText(title);
+        }
     }
 }

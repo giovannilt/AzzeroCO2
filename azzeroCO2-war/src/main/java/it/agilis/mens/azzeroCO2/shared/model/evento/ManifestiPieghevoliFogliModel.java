@@ -66,7 +66,18 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
     public void setGrammatura(double grammatura) {
         set("grammatura", grammatura);
     }
+     public boolean isVoid() {
 
+        for (Object value : getProperties().values()) {
+            if (value instanceof Double) {
+                Double d = (Double) value;
+                if (d != 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
 }
 
