@@ -59,7 +59,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
     private Grid<RiepilogoModel> createGrid() {
 
-        final NumberFormat number = NumberFormat.getDecimalFormat();// NumberFormat.getFormat("0.00");
+        final NumberFormat number = NumberFormat.getFormat("0.00");
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
         ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 190);
