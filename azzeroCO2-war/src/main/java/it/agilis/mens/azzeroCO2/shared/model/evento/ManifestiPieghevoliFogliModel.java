@@ -19,7 +19,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
         set("categoria", categoria);
     }
 
-    public Double getAltezza() {
+    public double getAltezza() {
         return get("altezza")== null ? 0 : new Double(get("altezza").toString());
     }
 
@@ -27,7 +27,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
         set("altezza", altezza);
     }
 
-    public Double getLarghezza() {
+    public double getLarghezza() {
         return get("larghezza")== null ? 0 : new Double(get("larghezza").toString());
     }
 
@@ -35,7 +35,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
         set("larghezza", larghezza);
     }
 
-    public Integer getNumeroDiPagine() {
+    public int getNumeroDiPagine() {
         return get("numeroDiPagine")== null ? 0 : new Integer(get("numeroDiPagina").toString());
     }
 
@@ -43,7 +43,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
         set("numeroDiPagine", numeroDiPagine);
     }
 
-    public Integer getTiratura() {
+    public int getTiratura() {
         return get("tiratura")== null ? 0 : new Integer(get("tiratura").toString());
     }
 
@@ -59,7 +59,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
         set("tipoDiCarta", tipoDiCarta);
     }
 
-    public Double getGrammatura() {
+    public double getGrammatura() {
         return get("grammatura")== null ? 0 : new Double(get("grammatura").toString());
     }
 
