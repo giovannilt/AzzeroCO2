@@ -481,7 +481,7 @@ public class CalcoliHelper {
         if(trasportoMerciModel.getFurgoneKm150()+trasportoMerciModel.getTirKm150()+trasportoMerciModel.getTirKm150()>0){
             regionale="Distanza: regionale:</br>";
         }
-        if(trasportoMerciModel.getFurgoneKm500()+trasportoMerciModel.getTirKm500()+trasportoMerciModel.getTrenoKm1500()+trasportoMerciModel.getNaveKm500()>0){
+        if(trasportoMerciModel.getFurgoneKm500()+trasportoMerciModel.getTirKm500()+trasportoMerciModel.getTrenoKm500()+trasportoMerciModel.getNaveKm500()>0){
             nazionale="Distanza: nazionale:</br>";
         }
         if(trasportoMerciModel.getFurgoneKm1500()+trasportoMerciModel.getTirKm1500()+trasportoMerciModel.getTrenoKm1500()+trasportoMerciModel.getNaveKm1500()+trasportoMerciModel.getAereoKm1500()>0){
@@ -492,7 +492,7 @@ public class CalcoliHelper {
             extraeuropeo="Distanza: extra europea:</br>";
         }
 
-        traspMerci.setDettagli(provinciale+furgone30+tir30+regionale+furgone150+tir150+treno150+nazionale+furgone500+tir500+treno500+nave500+nave1500+europeo+furgone1500+tir1500+treno1500+nave1500+aereo1500+extraeuropeo+furgone9000+tir9000+treno9000+nave9000+aereo9000);
+        traspMerci.setDettagli(provinciale+furgone30+tir30+regionale+furgone150+tir150+treno150+nazionale+furgone500+tir500+treno500+nave500+europeo+furgone1500+tir1500+treno1500+nave1500+aereo1500+extraeuropeo+furgone9000+tir9000+treno9000+nave9000+aereo9000);
 
         if (co2 > 0) {
             traspMerci.setKgCO2(co2);
