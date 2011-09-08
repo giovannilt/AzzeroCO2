@@ -116,6 +116,10 @@ public class CalcoliHelper {
 
         store.addAll(getTrasportoPersone(eventoModel.getTrasportoPersoneModel()));
 
+        model= getTrasportoMerci(eventoModel.getTrasportoMerciModel());
+        if(model!=null){
+            store.add(model);
+        }
 
         return store;
     }
@@ -360,9 +364,6 @@ public class CalcoliHelper {
         String aereo9000 ="";
 
 
-
-
-
         CoefficienteModel coefficienteModelFurgone = coefficienti.get("TRMFUR");
         CoefficienteModel coefficienteModelTir =   coefficienti.get("TRMTIR");
         CoefficienteModel coefficienteModelTreno = coefficienti.get("TRMTRE");
@@ -393,11 +394,9 @@ public class CalcoliHelper {
             co2 += trasportoMerciModel.getTirKm150() * coefficienteModelTir.getValore();
         }
         if (trasportoMerciModel.getTrenoKm150() != null && trasportoMerciModel.getTrenoKm150() > 0) {
-            tir150 = "Tir:" + " " + trasportoMerciModel.getTirKm150() + " ton </br>";
+            treno150 = "Treno:" + " " + trasportoMerciModel.getTrenoKm150() + " ton </br>";
             co2 += trasportoMerciModel.getTrenoKm150() * coefficienteModelTreno.getValore();
         }
-
-
 
         if (trasportoMerciModel.getFurgoneKm500() != null && trasportoMerciModel.getFurgoneKm500() > 0) {
             furgone500 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm500() + " ton </br>";
@@ -409,7 +408,7 @@ public class CalcoliHelper {
             co2 += trasportoMerciModel.getTirKm500() * coefficienteModelTir.getValore();
         }
         if (trasportoMerciModel.getTrenoKm500() != null && trasportoMerciModel.getTrenoKm500() > 0) {
-            treno500 = "Tir:" + " " + trasportoMerciModel.getTirKm500() + " ton </br>";
+            treno500 = "Tir:" + " " + trasportoMerciModel.getTrenoKm500() + " ton </br>";
             co2 += trasportoMerciModel.getTrenoKm500() * coefficienteModelTreno.getValore();
         }
 
@@ -443,11 +442,6 @@ public class CalcoliHelper {
             aereo1500 = "Aereo:" + " " + trasportoMerciModel.getAereoKm1500() + " ton </br>";
             co2 += trasportoMerciModel.getAereoKm1500() * coefficienteModelAereoEU.getValore();
         }
-
-
-
-
-
 
 
         if (trasportoMerciModel.getFurgoneKm9000() != null && trasportoMerciModel.getFurgoneKm9000() > 0) {
@@ -506,10 +500,6 @@ public class CalcoliHelper {
         }
         return null;
     }
-
-
-
-
 
     private static List<RiepilogoModel> getPubblRil(List<PubblicazioniRilegateModel> pubblRilModel) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();

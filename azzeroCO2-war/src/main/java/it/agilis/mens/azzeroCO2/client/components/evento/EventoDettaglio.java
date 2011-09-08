@@ -129,7 +129,7 @@ public class EventoDettaglio extends LayoutContainer {
                             if (j > 0) {
                                 layout.setActiveItem(calcolo.getItem(j - 1));
                                 posizioniLabel--;
-                              //  DettaglioModel riepilogo = riepilogo();
+                                //  DettaglioModel riepilogo = riepilogo();
                                 Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                                 Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                                 return;
@@ -142,7 +142,7 @@ public class EventoDettaglio extends LayoutContainer {
                     eventoTab.getItems().get(i - 1).setEnabled(true);
                     eventoTab.setSelection(eventoTab.getItems().get(i - 1));
                     posizioniLabel--;
-                  //  DettaglioModel riepilogo = riepilogo();
+                    //  DettaglioModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return;
@@ -166,11 +166,12 @@ public class EventoDettaglio extends LayoutContainer {
                         if (layout.getActiveItem().getTitle().equalsIgnoreCase(subItem.getTitle())) {
                             if (j < calcolo.getItems().size()) {
                                 layout.setActiveItem(calcolo.getItem(j));
+                                //posizioniLabel= posizioniLabel==1 ? 1 :posizioniLabel++;
                                 posizioniLabel++;
-                              //  DettaglioModel riepilogo = riepilogo();
+                                //  DettaglioModel riepilogo = riepilogo();
                                 Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                                 Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
-                                if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
+                                if (posizioniLabel==7){//eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
                                     Dispatcher.forwardEvent(EventoEvents.Riepilogo);
                                 }
                                 return;
@@ -185,8 +186,10 @@ public class EventoDettaglio extends LayoutContainer {
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     }
-                    posizioniLabel++;
-                  //  DettaglioModel riepilogo = riepilogo();
+                    if (!eventoTab.getItems().get(i).getText().equalsIgnoreCase("Calcolo")) {
+                        posizioniLabel++;
+                    }
+                    //  DettaglioModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return;
