@@ -99,7 +99,7 @@ public class NorthPanel extends LayoutContainer {
                 Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm);
             }
         });
-        c.add(pagamento, layoutData);
+     //   c.add(pagamento, layoutData);
         add(c, new FlowData(1));
         Image azzeroCO2Log = new Image(AzzeroCO2Resources.INSTANCE.header());
         add(azzeroCO2Log, layoutData);

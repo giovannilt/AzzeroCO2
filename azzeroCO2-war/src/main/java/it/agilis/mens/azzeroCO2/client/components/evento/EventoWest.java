@@ -38,10 +38,6 @@ public class EventoWest extends LayoutContainer {
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-        /* HBoxLayout layout = new HBoxLayout();
-        layout.setPadding(new Padding(10, 1, 100, 2));
-        layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
-        setLayout(layout);*/
         VBoxLayout layout = new VBoxLayout();
         layout.setPadding(new Padding(5));
         layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
@@ -55,21 +51,19 @@ public class EventoWest extends LayoutContainer {
         ContentPanel panel = new ContentPanel();
         panel.setHeaderVisible(false);
         panel.setBodyStyle("backgroundColor: silver;");
-        panel.add(createGrid());
+        panel.add(createGrid(), new VBoxLayoutData(new Margins(0, 5, 2, 0)));;
 
         title.setStyleAttribute("backgroundColor", "silver");
         title.setStyleAttribute("color", "black");
         title.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+        title.setStyleAttribute("text-align", "center");
+        title.setStyleAttribute("vertical-align ", "middle");
         title.setWidth(240);
+        title.setHeight(25);
 
-        /*   RiepilogoModel model = new RiepilogoModel();
-        model.setOggetto("OGGETTO<br>PIPPO INZAGHI");
+        RiepilogoModel model = new RiepilogoModel();
+        model.setOggetto("Non Hai ancora Inserito </br> Nessuna Attivita'");
         store.add(model);
-
-
-        model = new RiepilogoModel();
-        model.setOggetto("OGGETTO2");
-        store.add(model);*/
 
         panel.setStyleAttribute("backgroundColor", "#E9E9E9");
         add(panel, flex);
@@ -77,10 +71,7 @@ public class EventoWest extends LayoutContainer {
     }
 
     private Grid<RiepilogoModel> createGrid() {
-
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
-
-
         ColumnConfig column = new ColumnConfig("img", "img", 20);
         //column.setWidth(30);
         column.setAlignment(Style.HorizontalAlignment.LEFT);
@@ -114,9 +105,9 @@ public class EventoWest extends LayoutContainer {
 
         grid = new Grid<RiepilogoModel>(store, cm);
         grid.setAutoHeight(true);
-        //  grid.setHeight(400);
+        grid.setHeight(400);
         grid.setWidth(243);
-        //     grid.setStripeRows(true);
+ //     grid.setStripeRows(true);
         grid.setHideHeaders(true);
         grid.setStyleAttribute("backgroundColor", "#E9E9E9");
         grid.disableTextSelection(true);
@@ -130,7 +121,13 @@ public class EventoWest extends LayoutContainer {
 
     public void setInStore(List<RiepilogoModel> model) {
         store.removeAll();
-        store.add(model);
+        if (model.size() == 0) {
+            RiepilogoModel m = new RiepilogoModel();
+            m.setOggetto("Non Hai ancora Inserito </br> Nessuna Attivita'");
+            store.add(m);
+        } else {
+            store.add(model);
+        }
     }
 
     public void setTitle(String title) {
