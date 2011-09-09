@@ -143,6 +143,7 @@ public class CentralView extends View {
             layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
             HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 0, 0, 0));
+
             Button pubblicazione = new Button("Una pubblicazione");
             pubblicazione.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unaPubblicazione()));
             pubblicazione.setIconAlign(Style.IconAlign.TOP);
@@ -159,7 +160,7 @@ public class CentralView extends View {
 
             Button web = new Button("Un sito web");
             web.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unSitoWeb()));
-            web.setIconAlign(Style.IconAlign.TOP);
+            web.setIconAlign(Style.IconAlign.BOTTOM);
             web.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
