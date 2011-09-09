@@ -110,12 +110,14 @@ public class CentralView extends View {
                     setActiveItem(Eventi.EVENTO);
                 }
             });
-            unEvento.setSize(320, 280);
+            unEvento.setSize(300, 300);
+            //unEvento.setSize(300, 300);
             layoutData.setFlex(1);
             c.add(unEvento, layoutData);
             Button unAnno = new Button("Un Anno Di attivita'");
             unAnno.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unAnnoDiAttivita()));
             unAnno.setIconAlign(Style.IconAlign.TOP);
+
 
             unAnno.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
@@ -124,8 +126,10 @@ public class CentralView extends View {
                     setActiveItem(Eventi.ANNO_DI_ATTIVITA);
                 }
             });
-            unAnno.setSize(320, 280);
-            c.setSize(640, 280);
+            //unAnno.setSize(320, 280);
+            unAnno.setSize(300,300);
+            c.setSize(640, 300);
+            //c.setSize(640, 280);
             layoutData.setFlex(1);
             c.add(unAnno, layoutData);
             center.add(c, new FlowData(1));
