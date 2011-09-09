@@ -46,7 +46,7 @@ public class Coupon extends LayoutContainer {
         ContentPanel centre = createCentre(store);
       //  centre.setHeading("Coupon");
         centre.setHeaderVisible(false);
-        centre.setHeight(637);
+        centre.setHeight(477);
         centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
@@ -153,9 +153,9 @@ public class Coupon extends LayoutContainer {
         ColumnModel cm = new ColumnModel(configs);
         final Grid<CouponModel> grid = new Grid<CouponModel>(store, cm);
         grid.setBorders(true);
-        grid.setAutoHeight(true);
+      //  grid.setAutoHeight(true);
         grid.addPlugin(re);
-        grid.setHeight(600);
+        grid.setHeight(430);
         centre.add(grid);
 
         ToolBar toolbar = new ToolBar();
