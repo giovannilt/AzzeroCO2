@@ -201,107 +201,117 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         panel.add(km500input, new FormData("100%"));
 
         LayoutContainer km1500 = new LayoutContainer();
-        HBoxLayout layoutRigaKm15001500 = new HBoxLayout();
-        layoutRigaKm15001500.setPadding(new Padding(2));
-        layoutRigaKm15001500.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
-        km1500.setLayout(layoutRigaKm15001500);
+        HBoxLayout layoutRigaKm1500 = new HBoxLayout();
+        layoutRigaKm1500.setPadding(new Padding(2));
+        layoutRigaKm1500.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        km1500.setLayout(layoutRigaKm1500);
 
         km1500.add(new LabelField("Distanza percorsa: europea"), flex);
         panel.add(km1500);
         LayoutContainer km1500input = new LayoutContainer();
-        HBoxLayout layoutKm15001500input = new HBoxLayout();
-        layoutKm15001500input.setPadding(new Padding(2));
-        layoutKm15001500input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
-        km1500input.setLayout(layoutKm15001500input);
+        HBoxLayout layoutKm1500input = new HBoxLayout();
+        layoutKm1500input.setPadding(new Padding(2));
+        layoutKm1500input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        km1500input.setLayout(layoutKm1500input);
 
         Image furgone1500 = new Image(AzzeroCO2Resources.INSTANCE.furgone());
         furgone1500.setAltText("Furgone");
         NumberField furgoneKm1500 = new NumberField();
         furgoneKm1500.setWidth(60);
+        furgoneKm1500.setPropertyEditorType(Double.class);
 
         Image tir1500 = new Image(AzzeroCO2Resources.INSTANCE.tir());
         tir1500.setAltText("Tir");
         NumberField tirKm1500 = new NumberField();
         tirKm1500.setWidth(60);
+        tirKm1500.setPropertyEditorType(Double.class);
 
         Image treno1500 = new Image(AzzeroCO2Resources.INSTANCE.treno());
         treno1500.setAltText("Treno");
-        NumberField trenoKm15001500 = new NumberField();
-        trenoKm15001500.setWidth(60);
+        NumberField trenoKm1500 = new NumberField();
+        trenoKm1500.setWidth(60);
+        trenoKm1500.setPropertyEditorType(Double.class);
 
         Image nave1500 = new Image(AzzeroCO2Resources.INSTANCE.nave());
         nave1500.setAltText("Nave");
-        NumberField naveKm15001500 = new NumberField();
-        naveKm15001500.setWidth(60);
+        NumberField naveKm1500 = new NumberField();
+        naveKm1500.setWidth(60);
+        naveKm1500.setPropertyEditorType(Double.class);
 
         Image aereo1500 = new Image(AzzeroCO2Resources.INSTANCE.aereo());
         aereo1500.setAltText("Aereo");
-        NumberField aereoKm15001500 = new NumberField();
-        aereoKm15001500.setWidth(60);
+        NumberField aereoKm1500 = new NumberField();
+        aereoKm1500.setWidth(60);
+        aereoKm1500.setPropertyEditorType(Double.class);
 
         km1500input.add(furgone1500);
         km1500input.add(furgoneKm1500, flex);
         km1500input.add(tir1500);
         km1500input.add(tirKm1500, flex);
         km1500input.add(treno1500);
-        km1500input.add(trenoKm15001500, flex);
+        km1500input.add(trenoKm1500, flex);
         km1500input.add(nave1500);
-        km1500input.add(naveKm15001500, flex);
+        km1500input.add(naveKm1500, flex);
 
         km1500input.add(aereo1500);
-        km1500input.add(aereoKm15001500, flex);
+        km1500input.add(aereoKm1500, flex);
         panel.add(km1500input, new FormData("100%"));
         
         LayoutContainer km9000 = new LayoutContainer();
-        HBoxLayout layoutRigaKm90009000 = new HBoxLayout();
-        layoutRigaKm90009000.setPadding(new Padding(2));
-        layoutRigaKm90009000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
-        km9000.setLayout(layoutRigaKm90009000);
+        HBoxLayout layoutRigaKm9000 = new HBoxLayout();
+        layoutRigaKm9000.setPadding(new Padding(2));
+        layoutRigaKm9000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        km9000.setLayout(layoutRigaKm9000);
 
         km9000.add(new LabelField("Distanza percorsa: Extraeuropea"), flex);
         panel.add(km9000);
         LayoutContainer km9000input = new LayoutContainer();
-        HBoxLayout layoutKm90009000input = new HBoxLayout();
-        layoutKm90009000input.setPadding(new Padding(2));
-        layoutKm90009000input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
-        km9000input.setLayout(layoutKm90009000input);
+        HBoxLayout layoutKm9000input = new HBoxLayout();
+        layoutKm9000input.setPadding(new Padding(2));
+        layoutKm9000input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        km9000input.setLayout(layoutKm9000input);
 
         Image furgone9000 = new Image(AzzeroCO2Resources.INSTANCE.furgone());
         furgone9000.setAltText("Furgone");
         NumberField furgoneKm9000 = new NumberField();
         furgoneKm9000.setWidth(60);
+        furgoneKm9000.setPropertyEditorType(Double.class);
 
         Image tir9000 = new Image(AzzeroCO2Resources.INSTANCE.tir());
         tir9000.setAltText("Tir");
         NumberField tirKm9000 = new NumberField();
         tirKm9000.setWidth(60);
+        tirKm9000.setPropertyEditorType(Double.class);
 
         Image treno9000 = new Image(AzzeroCO2Resources.INSTANCE.treno());
         treno9000.setAltText("Treno");
-        NumberField trenoKm90009000 = new NumberField();
-        trenoKm90009000.setWidth(60);
+        NumberField trenoKm9000 = new NumberField();
+        trenoKm9000.setWidth(60);
+        trenoKm9000.setPropertyEditorType(Double.class);
 
         Image nave9000 = new Image(AzzeroCO2Resources.INSTANCE.nave());
         nave9000.setAltText("Nave");
-        NumberField naveKm90009000 = new NumberField();
-        naveKm90009000.setWidth(60);
+        NumberField naveKm9000 = new NumberField();
+        naveKm9000.setWidth(60);
+        naveKm9000.setPropertyEditorType(Double.class);
 
         Image aereo9000 = new Image(AzzeroCO2Resources.INSTANCE.aereo());
         aereo9000.setAltText("Aereo");
-        NumberField aereoKm90009000 = new NumberField();
-        aereoKm90009000.setWidth(60);
+        NumberField aereoKm9000 = new NumberField();
+        aereoKm9000.setWidth(60);
+        aereoKm9000.setPropertyEditorType(Double.class);
 
         km9000input.add(furgone9000);
         km9000input.add(furgoneKm9000, flex);
         km9000input.add(tir9000);
         km9000input.add(tirKm9000, flex);
         km9000input.add(treno9000);
-        km9000input.add(trenoKm90009000, flex);
+        km9000input.add(trenoKm9000, flex);
         km9000input.add(nave9000);
-        km9000input.add(naveKm90009000, flex);
+        km9000input.add(naveKm9000, flex);
 
         km9000input.add(aereo9000);
-        km9000input.add(aereoKm90009000, flex);
+        km9000input.add(aereoKm9000, flex);
         panel.add(km9000input, new FormData("100%"));
 
         return panel;
