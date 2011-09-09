@@ -23,15 +23,15 @@ public interface AzzeroCO2Resources extends ClientBundle {
     ImageResource unAnnoDiAttivita();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/ConoscoLaCO2.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 200, height = 200)
+    @ImageResource.ImageOptions(flipRtl = true, width = 210, height = 195)
     ImageResource conoscoLaCO2();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/UnaPubblicazione.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 200, height = 200)
+   @ImageResource.ImageOptions(flipRtl = true, width = 210, height = 195)
     ImageResource unaPubblicazione();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/UnSitoWeb.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 200, height = 200)
+    @ImageResource.ImageOptions(flipRtl = true, width = 210, height = 195)
     ImageResource unSitoWeb();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/Check.png")

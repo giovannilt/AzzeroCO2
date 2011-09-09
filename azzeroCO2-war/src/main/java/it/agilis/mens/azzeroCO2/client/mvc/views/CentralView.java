@@ -154,13 +154,13 @@ public class CentralView extends View {
                     setActiveItem(Eventi.UNA_PUBBLICAZIONE);
                 }
             });
-            pubblicazione.setSize(215, 215);
+            pubblicazione.setSize(213, 210);
             c.add(pubblicazione, layoutData);
 
 
             Button web = new Button("Un sito web");
             web.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unSitoWeb()));
-            web.setIconAlign(Style.IconAlign.BOTTOM);
+            web.setIconAlign(Style.IconAlign.TOP);
             web.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
@@ -168,7 +168,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.WEB);
                 }
             });
-            web.setSize(215, 215);
+            web.setSize(213, 210);
             c.add(web, layoutData);
 
 
@@ -182,7 +182,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.CONOSCI_CO2);
                 }
             });
-            co2.setSize(215, 215);
+            co2.setSize(213, 210);
             c.add(co2, layoutData);
             center.add(c, new FlowData(1));
         }

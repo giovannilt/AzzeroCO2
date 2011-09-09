@@ -35,7 +35,7 @@ public class Ordini extends LayoutContainer {
       //  centre.setHeading("Ordini");
        centre.setHeaderVisible(false);
         centre.setFrame(true);
-        centre.setHeight(637);
+        centre.setHeight(477);
         centre.setFrame(true);
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -97,8 +97,8 @@ public class Ordini extends LayoutContainer {
 
         Grid<OrdineModel> grid = new Grid<OrdineModel>(store, cm);
         grid.setBorders(true);
-        grid.setAutoHeight(true);
-        grid.setHeight(600);
+       // grid.setAutoHeight(true);
+        grid.setHeight(430);
         //    centre.setBottomComponent(toolBar);
         centre.add(grid);
 
