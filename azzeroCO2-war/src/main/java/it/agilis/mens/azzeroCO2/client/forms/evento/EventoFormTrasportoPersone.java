@@ -56,20 +56,20 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         panel.setEnabled(false);
         formBindings.setStore(grid.getStore());
 
-      /*  final FormPanel panelTutte = createGroupForm();
-        panelTutte.add(panelTutte);
-        panelTutte.setHeading("Tutte le Persone");*/
+        /*  final FormPanel panelTutte = createGroupForm();
+      panelTutte.add(panelTutte);
+      panelTutte.setHeading("Tutte le Persone");*/
 
         ContentPanel cpCentre = new ContentPanel();
         cpCentre.setHeaderVisible(false);
         final CardLayout cardLayout = new CardLayout();
         cpCentre.setLayout(cardLayout);
-       // cpCentre.add(panelTutte);
+        // cpCentre.add(panelTutte);
         cpCentre.add(panel);
-    //    grid.setEnabled(false);
-    //    toolBar.setEnabled(false);
+        //    grid.setEnabled(false);
+        //    toolBar.setEnabled(false);
 
-     /*   ContentPanel radioContent = new ContentPanel();
+        /*   ContentPanel radioContent = new ContentPanel();
         radioContent.setHeaderVisible(false);
         radioContent.setFrame(true);
 
@@ -108,7 +108,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         cpEst.setHeading("Categorie");
 
         cpEst.setLayout(new RowLayout(Orientation.VERTICAL));
-      //  cpEst.add(radioContent, new RowData(1, 0.10, new Margins(0, 0, 0, 0)));
+        //  cpEst.add(radioContent, new RowData(1, 0.10, new Margins(0, 0, 0, 0)));
         cpEst.add(grid, new RowData(1, 1, new Margins(0, 0, 0, 0)));
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
@@ -238,6 +238,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
             Image bus300 = new Image(AzzeroCO2Resources.INSTANCE.bus());
             Image moto300 = new Image(AzzeroCO2Resources.INSTANCE.moto());
+            Image treno300 = new Image(AzzeroCO2Resources.INSTANCE.treno());
             NumberField busKm300 = new NumberField();
             busKm300.setName("busKm300");
             busKm300.setWidth(60);
@@ -252,7 +253,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             NumberField autoKm300 = new NumberField();
             autoKm300.setName("autoKm300");
             autoKm300.setWidth(60);
-            Image treno100 = new Image(AzzeroCO2Resources.INSTANCE.treno());
             autoKm300.setRegex("[0-9]+");
             autoKm300.getMessages().setRegexText("Inserisci un numero intero");
             autoKm300.setPropertyEditorType(Integer.class);
@@ -267,7 +267,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
 
             NumberField motoKm300 = new NumberField();
-            trenoKm300.setName("motoKm300");
+            motoKm300.setName("motoKm300");
             motoKm300.setWidth(60);
             motoKm300.setRegex("[0-9]+");
             motoKm300.getMessages().setRegexText("Inserisci un numero intero");
@@ -276,10 +276,9 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
             km300input.add(bus300);
             km300input.add(busKm300, flex);
-
             km300input.add(automobile300);
             km300input.add(autoKm300, flex);
-            km300input.add(treno100);
+            km300input.add(treno300);
             km300input.add(trenoKm300, flex);
             km300input.add(moto300);
             km300input.add(motoKm300, flex);

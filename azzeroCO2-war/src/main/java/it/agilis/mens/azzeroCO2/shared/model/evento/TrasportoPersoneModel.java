@@ -20,7 +20,7 @@ public class TrasportoPersoneModel extends BaseModel {
     }
 
     public int getAereoKm3000() {
-        return get("aereoKm3000") == null ? 0 : new Integer(get("naveKm9000").toString());
+        return get("aereoKm3000") == null ? 0 : new Integer(get("aereoKm3000").toString());
     }
 
     public void setAereoKm1500(int aereoKm3000) {
