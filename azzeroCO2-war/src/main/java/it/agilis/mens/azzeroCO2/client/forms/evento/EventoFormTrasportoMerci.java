@@ -218,30 +218,35 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         furgone1500.setAltText("Furgone");
         NumberField furgoneKm1500 = new NumberField();
         furgoneKm1500.setWidth(60);
+        furgoneKm1500.setName(("furgoneKm1500"));
         furgoneKm1500.setPropertyEditorType(Double.class);
 
         Image tir1500 = new Image(AzzeroCO2Resources.INSTANCE.tir());
         tir1500.setAltText("Tir");
         NumberField tirKm1500 = new NumberField();
         tirKm1500.setWidth(60);
+        tirKm1500.setName("tirKm1500");
         tirKm1500.setPropertyEditorType(Double.class);
 
         Image treno1500 = new Image(AzzeroCO2Resources.INSTANCE.treno());
         treno1500.setAltText("Treno");
         NumberField trenoKm1500 = new NumberField();
         trenoKm1500.setWidth(60);
+        trenoKm1500.setName("trenoKm1500");
         trenoKm1500.setPropertyEditorType(Double.class);
 
         Image nave1500 = new Image(AzzeroCO2Resources.INSTANCE.nave());
         nave1500.setAltText("Nave");
         NumberField naveKm1500 = new NumberField();
         naveKm1500.setWidth(60);
+        naveKm1500.setName("naveKm1500");
         naveKm1500.setPropertyEditorType(Double.class);
 
         Image aereo1500 = new Image(AzzeroCO2Resources.INSTANCE.aereo());
         aereo1500.setAltText("Aereo");
         NumberField aereoKm1500 = new NumberField();
         aereoKm1500.setWidth(60);
+        aereoKm1500.setName("aereoKm1500");
         aereoKm1500.setPropertyEditorType(Double.class);
 
         km1500input.add(furgone1500);
@@ -275,30 +280,35 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         furgone9000.setAltText("Furgone");
         NumberField furgoneKm9000 = new NumberField();
         furgoneKm9000.setWidth(60);
+        furgoneKm9000.setName("furgoneKm9000");
         furgoneKm9000.setPropertyEditorType(Double.class);
 
         Image tir9000 = new Image(AzzeroCO2Resources.INSTANCE.tir());
         tir9000.setAltText("Tir");
         NumberField tirKm9000 = new NumberField();
         tirKm9000.setWidth(60);
+        tirKm9000.setName("tirKm9000");
         tirKm9000.setPropertyEditorType(Double.class);
 
         Image treno9000 = new Image(AzzeroCO2Resources.INSTANCE.treno());
         treno9000.setAltText("Treno");
         NumberField trenoKm9000 = new NumberField();
         trenoKm9000.setWidth(60);
+        trenoKm9000.setName("trenoKm9000");
         trenoKm9000.setPropertyEditorType(Double.class);
 
         Image nave9000 = new Image(AzzeroCO2Resources.INSTANCE.nave());
         nave9000.setAltText("Nave");
         NumberField naveKm9000 = new NumberField();
         naveKm9000.setWidth(60);
+        naveKm9000.setName("naveKm9000");
         naveKm9000.setPropertyEditorType(Double.class);
 
         Image aereo9000 = new Image(AzzeroCO2Resources.INSTANCE.aereo());
         aereo9000.setAltText("Aereo");
         NumberField aereoKm9000 = new NumberField();
         aereoKm9000.setWidth(60);
+        aereoKm9000.setName("aereoKm9000");
         aereoKm9000.setPropertyEditorType(Double.class);
 
         km9000input.add(furgone9000);
