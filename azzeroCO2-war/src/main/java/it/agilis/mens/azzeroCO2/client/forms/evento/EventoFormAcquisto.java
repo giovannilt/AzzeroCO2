@@ -64,7 +64,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         binding.setStore(grid.getStore());
 
         VerticalPanel vp = new VerticalPanel();
-        vp.setHeight(450);
+        vp.setHeight(410);
         vp.add(form);
         east.add(vp);
 
@@ -95,7 +95,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         centre.add(grid, new RowData(1, 1));
         centre.setHeading("Progetti Di Compensazione");
-        centre.setHeight(540);
+        centre.setHeight(438);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -221,17 +221,17 @@ public class EventoFormAcquisto extends LayoutContainer {
             }
             {
                 LayoutContainer c = new LayoutContainer();
-                c.setHeight(250);
+                c.setHeight(160);
                 c.setWidth(290);
                 c.setStyleAttribute("background-color", "#FF9933");
                 HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(10));
+                layout.setPadding(new Padding(5));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
                 c.setLayout(layout);
 
                 LabelField label = new LabelField("AzzeroCO2 puo' offrirti <br>consulenza per<br>la riduzione delle emissioni <br>Chiamaci !!");
                 label.setStyleAttribute("font-size", "20px");
-                label.setWidth(300);
+                label.setWidth(290);
                 c.add(label);
                 panel.add(c, new FormData("100%"));
             }
@@ -255,7 +255,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         Grid<ProgettoDiCompensazioneModel> grid = new Grid<ProgettoDiCompensazioneModel>(store, cm);
         grid.setBorders(true);
         //grid.setHideHeaders(true);
-        grid.setHeight(525);
+        grid.setHeight(400);
 
         return grid;
     }

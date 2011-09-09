@@ -191,4 +191,16 @@ public class TrasportoPersoneModel extends BaseModel {
     public void setMotoKm60(int motoKm60) {
         set("motoKm60", motoKm60);
     }
+
+     public boolean isVoid() {
+    for (Object value : getProperties().values()) {
+            if (value instanceof Integer) {
+                Integer d = (Integer) value;
+                if (d != 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

@@ -87,12 +87,14 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         NumberField furgoneKm30 = new NumberField();
         furgoneKm30.setName("furgoneKm30");
         furgoneKm30.setWidth(60);
+        furgoneKm30.setPropertyEditorType(Double.class);
 
         Image tir = new Image(AzzeroCO2Resources.INSTANCE.tir());
         furgone.setAltText("Tir");
         NumberField tirKm30 = new NumberField();
         tirKm30.setName("tirKm30");
         tirKm30.setWidth(60);
+        tirKm30.setPropertyEditorType(Double.class);
 
         km30input.add(furgone);
         km30input.add(furgoneKm30, flex);
@@ -123,18 +125,20 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         NumberField furgoneKm150 = new NumberField();
         furgoneKm150.setName("furgoneKm150");
         furgoneKm150.setWidth(60);
+        furgoneKm150.setPropertyEditorType(Double.class);
 
         Image tir150 = new Image(AzzeroCO2Resources.INSTANCE.tir());
         tir150.setAltText("Tir");
         NumberField tirKm150 = new NumberField();
         tirKm150.setName("tirKm150");
-        tirKm150.setWidth(60);
+        tirKm150.setWidth(60); tirKm150.setPropertyEditorType(Double.class);
 
         Image treno150 = new Image(AzzeroCO2Resources.INSTANCE.treno());
         treno150.setAltText("Treno");
         NumberField trenoKm150 = new NumberField();
         trenoKm150.setName("trenoKm150");
         trenoKm150.setWidth(60);
+        trenoKm150.setPropertyEditorType(Double.class);
 
         km150input.add(furgone150);
         km150input.add(furgoneKm150, flex);
@@ -163,24 +167,28 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         NumberField furgoneKm500 = new NumberField();
         furgoneKm500.setName("furgoneKm500");
         furgoneKm500.setWidth(60);
+        furgoneKm500.setPropertyEditorType(Double.class);
 
         Image tir500 = new Image(AzzeroCO2Resources.INSTANCE.tir());
         tir500.setAltText("Auto");
         NumberField tirKm500 = new NumberField();
         tirKm500.setName("tirKm500");
         tirKm500.setWidth(60);
+        tirKm500.setPropertyEditorType(Double.class);
 
         Image treno500 = new Image(AzzeroCO2Resources.INSTANCE.treno());
         treno500.setAltText("Treno");
         NumberField trenoKm500 = new NumberField();
         trenoKm500.setName("trenoKm500");
         trenoKm500.setWidth(60);
+        trenoKm500.setPropertyEditorType(Double.class);
 
         Image nave500 = new Image(AzzeroCO2Resources.INSTANCE.nave());
         nave500.setAltText("Nave");
         NumberField naveKm500 = new NumberField();
         naveKm500.setName("naveKm500");
         naveKm500.setWidth(60);
+        naveKm500.setPropertyEditorType(Double.class);
 
         km500input.add(furgone500);
         km500input.add(furgoneKm500, flex);

@@ -16,15 +16,15 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class CalcoliHelper {
-     private static Map<String, CoefficienteModel> coefficienti = null;
+    private static Map<String, CoefficienteModel> coefficienti = null;
 
     public static List<RiepilogoModel> getListOfRiepilogoModelLazy(DettaglioModel eventoModel) {
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
         RiepilogoModel model = null;
         if (eventoModel != null && eventoModel.getEnergiaModel() != null) {
-            if ( eventoModel.getEnergiaModel().getEnergiaElettrica() != 0
-                    ||  eventoModel.getEnergiaModel().getGasMetano() != 0
-                    ||  eventoModel.getEnergiaModel().getGasolio() != 0) {
+            if (eventoModel.getEnergiaModel().getEnergiaElettrica() != 0
+                    || eventoModel.getEnergiaModel().getGasMetano() != 0
+                    || eventoModel.getEnergiaModel().getGasolio() != 0) {
                 model = new RiepilogoModel();
                 model.setDettagli("Energia");
                 model.setOggetto("Energia");
@@ -35,11 +35,15 @@ public class CalcoliHelper {
             model = new RiepilogoModel();
             String string = "Trasporto Persone <br>";
             for (TrasportoPersoneModel mf : eventoModel.getTrasportoPersoneModel()) {
-                string += "  / " + mf.getCategoria() + "<br>";
+                if (!mf.isVoid()) {
+                    string += "  / " + mf.getCategoria() + "<br>";
+                }
             }
-            model.setDettagli("Trasporto Persone");
-            model.setOggetto(string);
-            store.add(model);
+            if (!string.equalsIgnoreCase("Trasporto Persone <br>")) {
+                model.setDettagli("Trasporto Persone");
+                model.setOggetto(string);
+                store.add(model);
+            }
         }
         if (eventoModel != null && eventoModel.getNottiModel() != null) {
             if (eventoModel.getNottiModel().getNotti() > 0) {
@@ -113,8 +117,8 @@ public class CalcoliHelper {
 
         store.addAll(getTrasportoPersone(eventoModel.getTrasportoPersoneModel()));
 
-        model= getTrasportoMerci(eventoModel.getTrasportoMerciModel());
-        if(model!=null){
+        model = getTrasportoMerci(eventoModel.getTrasportoMerciModel());
+        if (model != null) {
             store.add(model);
         }
 
@@ -130,15 +134,15 @@ public class CalcoliHelper {
         String energia3 = "";
 
         CoefficienteModel coefficienteModelEnergia = coefficienti.get("ENEELE");
-        CoefficienteModel coefficientiEnergiaGAS =   coefficienti.get("ENEGAS");
+        CoefficienteModel coefficientiEnergiaGAS = coefficienti.get("ENEGAS");
         CoefficienteModel coefficienteModelGasolio = coefficienti.get("ENEGSL");
 
         double co2 = 0;
-        if ( energiaModel.getEnergiaElettrica() > 0) {
+        if (energiaModel.getEnergiaElettrica() > 0) {
             energia1 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h </br>";
             co2 = energiaModel.getEnergiaElettrica() * coefficienteModelEnergia.getValore();
         }
-        if ( energiaModel.getGasMetano() > 0) {
+        if (energiaModel.getGasMetano() > 0) {
             energia2 = "Gas" + " " + energiaModel.getGasMetano() + " metri cubi  </br>";
             co2 += energiaModel.getGasMetano() * coefficientiEnergiaGAS.getValore();
         }
@@ -332,9 +336,6 @@ public class CalcoliHelper {
     }
 
 
-
-
-
     private static RiepilogoModel getTrasportoMerci(TrasportoMerciModel trasportoMerciModel) {
         RiepilogoModel traspMerci = new RiepilogoModel();
 
@@ -342,81 +343,80 @@ public class CalcoliHelper {
         String furgone30 = "";
         String tir30 = "";
         String furgone150 = "";
-        String tir150 ="";
-        String treno150 ="";
+        String tir150 = "";
+        String treno150 = "";
         String furgone1500 = "";
-        String furgone500 ="";
-        String tir500 ="";
-        String treno500 ="";
-        String nave500 ="";
+        String furgone500 = "";
+        String tir500 = "";
+        String treno500 = "";
+        String nave500 = "";
 
-        String tir1500 ="";
-        String treno1500 ="";
-        String nave1500 ="";
-        String aereo1500="";
+        String tir1500 = "";
+        String treno1500 = "";
+        String nave1500 = "";
+        String aereo1500 = "";
         String furgone9000 = "";
-        String tir9000 ="";
-        String treno9000 ="";
+        String tir9000 = "";
+        String treno9000 = "";
         String nave9000 = "";
-        String aereo9000 ="";
+        String aereo9000 = "";
 
 
         CoefficienteModel coefficienteModelFurgone = coefficienti.get("TRMFUR");
-        CoefficienteModel coefficienteModelTir =   coefficienti.get("TRMTIR");
+        CoefficienteModel coefficienteModelTir = coefficienti.get("TRMTIR");
         CoefficienteModel coefficienteModelTreno = coefficienti.get("TRMTRE");
         CoefficienteModel coefficienteModelNave = coefficienti.get("TRMNAV");
-        CoefficienteModel coefficienteModelAereoEU= coefficienti.get("TRMAEU");
+        CoefficienteModel coefficienteModelAereoEU = coefficienti.get("TRMAEU");
         CoefficienteModel coefficienteModelAereoEE = coefficienti.get("TRMAEE");
 
 
         double co2 = 0;
-        if ( trasportoMerciModel.getFurgoneKm30() > 0) {
+        if (trasportoMerciModel.getFurgoneKm30() > 0) {
             furgone30 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm30() + " ton </br>";
             co2 = trasportoMerciModel.getFurgoneKm30() * coefficienteModelFurgone.getValore();
         }
 
-        if ( trasportoMerciModel.getTirKm30() > 0) {
+        if (trasportoMerciModel.getTirKm30() > 0) {
             tir30 = "Tir:" + " " + trasportoMerciModel.getTirKm30() + " ton </br>";
             co2 += trasportoMerciModel.getTirKm30() * coefficienteModelTir.getValore();
         }
 
 
-        if ( trasportoMerciModel.getFurgoneKm150() > 0) {
+        if (trasportoMerciModel.getFurgoneKm150() > 0) {
             furgone150 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm150() + " ton </br>";
             co2 += trasportoMerciModel.getFurgoneKm150() * coefficienteModelFurgone.getValore();
         }
 
-        if ( trasportoMerciModel.getTirKm150() > 0) {
+        if (trasportoMerciModel.getTirKm150() > 0) {
             tir150 = "Tir:" + " " + trasportoMerciModel.getTirKm150() + " ton </br>";
             co2 += trasportoMerciModel.getTirKm150() * coefficienteModelTir.getValore();
         }
-        if ( trasportoMerciModel.getTrenoKm150() > 0) {
+        if (trasportoMerciModel.getTrenoKm150() > 0) {
             treno150 = "Treno:" + " " + trasportoMerciModel.getTrenoKm150() + " ton </br>";
             co2 += trasportoMerciModel.getTrenoKm150() * coefficienteModelTreno.getValore();
         }
 
-        if ( trasportoMerciModel.getFurgoneKm500() > 0) {
+        if (trasportoMerciModel.getFurgoneKm500() > 0) {
             furgone500 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm500() + " ton </br>";
             co2 += trasportoMerciModel.getFurgoneKm500() * coefficienteModelFurgone.getValore();
         }
 
-        if ( trasportoMerciModel.getTirKm500() > 0) {
+        if (trasportoMerciModel.getTirKm500() > 0) {
             tir500 = "Tir:" + " " + trasportoMerciModel.getTirKm500() + " ton </br>";
             co2 += trasportoMerciModel.getTirKm500() * coefficienteModelTir.getValore();
         }
-        if ( trasportoMerciModel.getTrenoKm500() > 0) {
+        if (trasportoMerciModel.getTrenoKm500() > 0) {
             treno500 = "Tir:" + " " + trasportoMerciModel.getTrenoKm500() + " ton </br>";
             co2 += trasportoMerciModel.getTrenoKm500() * coefficienteModelTreno.getValore();
         }
 
-        if ( trasportoMerciModel.getNaveKm500() > 0) {
+        if (trasportoMerciModel.getNaveKm500() > 0) {
             nave500 = "Tir:" + " " + trasportoMerciModel.getTirKm500() + " ton </br>";
             co2 += trasportoMerciModel.getNaveKm500() * coefficienteModelTreno.getValore();
         }
 
 
-
-        if ( trasportoMerciModel.getFurgoneKm1500() > 0) {
+        if (trasportoMerciModel.getFurgoneKm1500() > 0) {
             furgone1500 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm1500() + " ton </br>";
             co2 += trasportoMerciModel.getFurgoneKm1500() * coefficienteModelFurgone.getValore();
         }
@@ -430,12 +430,12 @@ public class CalcoliHelper {
             co2 += trasportoMerciModel.getTrenoKm1500() * coefficienteModelTreno.getValore();
         }
 
-        if ( trasportoMerciModel.getNaveKm1500() > 0) {
+        if (trasportoMerciModel.getNaveKm1500() > 0) {
             nave1500 = "Nave:" + " " + trasportoMerciModel.getTirKm1500() + " ton </br>";
             co2 += trasportoMerciModel.getNaveKm1500() * coefficienteModelNave.getValore();
         }
 
-        if ( trasportoMerciModel.getAereoKm1500() > 0) {
+        if (trasportoMerciModel.getAereoKm1500() > 0) {
             aereo1500 = "Aereo:" + " " + trasportoMerciModel.getAereoKm1500() + " ton </br>";
             co2 += trasportoMerciModel.getAereoKm1500() * coefficienteModelAereoEU.getValore();
         }
@@ -446,11 +446,11 @@ public class CalcoliHelper {
             co2 += trasportoMerciModel.getFurgoneKm9000() * coefficienteModelFurgone.getValore();
         }
 
-        if ( trasportoMerciModel.getTirKm9000() > 0) {
+        if (trasportoMerciModel.getTirKm9000() > 0) {
             tir9000 = "Tir:" + " " + trasportoMerciModel.getTirKm9000() + " ton </br>";
             co2 += trasportoMerciModel.getTirKm9000() * coefficienteModelTir.getValore();
         }
-        if ( trasportoMerciModel.getTrenoKm9000() > 0) {
+        if (trasportoMerciModel.getTrenoKm9000() > 0) {
             treno9000 = "Treno:" + " " + trasportoMerciModel.getTirKm9000() + " ton </br>";
             co2 += trasportoMerciModel.getTrenoKm9000() * coefficienteModelTreno.getValore();
         }
@@ -466,29 +466,29 @@ public class CalcoliHelper {
         }
 
 
-        String provinciale="";
-        String regionale="";
-        String nazionale="";
-        String europeo="";
-        String extraeuropeo="";
-        if(trasportoMerciModel.getFurgoneKm30()+trasportoMerciModel.getTirKm30()>0){
-            provinciale="Distanza provinciale:</br>";
+        String provinciale = "";
+        String regionale = "";
+        String nazionale = "";
+        String europeo = "";
+        String extraeuropeo = "";
+        if (trasportoMerciModel.getFurgoneKm30() + trasportoMerciModel.getTirKm30() > 0) {
+            provinciale = "Distanza provinciale:</br>";
         }
 
-        if(trasportoMerciModel.getFurgoneKm150()+trasportoMerciModel.getTirKm150()+trasportoMerciModel.getTirKm150()>0){
-            regionale="Distanza regionale:</br>";
+        if (trasportoMerciModel.getFurgoneKm150() + trasportoMerciModel.getTirKm150() + trasportoMerciModel.getTirKm150() > 0) {
+            regionale = "Distanza regionale:</br>";
         }
-        if(trasportoMerciModel.getFurgoneKm500()+trasportoMerciModel.getTirKm500()+trasportoMerciModel.getTrenoKm500()+trasportoMerciModel.getNaveKm500()>0){
-            nazionale="Distanza nazionale:</br>";
+        if (trasportoMerciModel.getFurgoneKm500() + trasportoMerciModel.getTirKm500() + trasportoMerciModel.getTrenoKm500() + trasportoMerciModel.getNaveKm500() > 0) {
+            nazionale = "Distanza nazionale:</br>";
         }
-        if(trasportoMerciModel.getFurgoneKm1500()+trasportoMerciModel.getTirKm1500()+trasportoMerciModel.getTrenoKm1500()+trasportoMerciModel.getNaveKm1500()+trasportoMerciModel.getAereoKm1500()>0){
-            europeo="Distanza europea:</br>";
+        if (trasportoMerciModel.getFurgoneKm1500() + trasportoMerciModel.getTirKm1500() + trasportoMerciModel.getTrenoKm1500() + trasportoMerciModel.getNaveKm1500() + trasportoMerciModel.getAereoKm1500() > 0) {
+            europeo = "Distanza europea:</br>";
         }
-        if(trasportoMerciModel.getFurgoneKm9000()+trasportoMerciModel.getTirKm9000()+trasportoMerciModel.getTrenoKm9000()+trasportoMerciModel.getNaveKm9000()+trasportoMerciModel.getAereoKm9000()>0){
-            extraeuropeo="Distanza extra europea:</br>";
+        if (trasportoMerciModel.getFurgoneKm9000() + trasportoMerciModel.getTirKm9000() + trasportoMerciModel.getTrenoKm9000() + trasportoMerciModel.getNaveKm9000() + trasportoMerciModel.getAereoKm9000() > 0) {
+            extraeuropeo = "Distanza extra europea:</br>";
         }
 
-        traspMerci.setDettagli(provinciale+furgone30+tir30+regionale+furgone150+tir150+treno150+nazionale+furgone500+tir500+treno500+nave500+europeo+furgone1500+tir1500+treno1500+nave1500+aereo1500+extraeuropeo+furgone9000+tir9000+treno9000+nave9000+aereo9000);
+        traspMerci.setDettagli(provinciale + furgone30 + tir30 + regionale + furgone150 + tir150 + treno150 + nazionale + furgone500 + tir500 + treno500 + nave500 + europeo + furgone1500 + tir1500 + treno1500 + nave1500 + aereo1500 + extraeuropeo + furgone9000 + tir9000 + treno9000 + nave9000 + aereo9000);
 
         if (co2 > 0) {
             traspMerci.setKgCO2(co2);
@@ -507,13 +507,13 @@ public class CalcoliHelper {
             double co2Copertina = 0;
 
             String formato = "";
-            if (prm.getLarghezza() >0  && prm.getAltezza()> 0) {
+            if (prm.getLarghezza() > 0 && prm.getAltezza() > 0) {
                 formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "</br>";
                 co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100;
                 co2Copertina = (prm.getAltezza() / 100 * prm.getLarghezza() / 100) * 2;
             }
             String pagine = "";
-            if (prm.getNumeroDiPagine()>0) {
+            if (prm.getNumeroDiPagine() > 0) {
                 pagine = "Numero di pagine: " + prm.getNumeroDiPagine() + "</br>";
                 co2 *= prm.getNumeroDiPagine();
             }
@@ -524,12 +524,12 @@ public class CalcoliHelper {
                 }
                 materiale = prm.getTipoDiCarta().getNome();
             }
-            if (prm.getGrammatura() >0) {
+            if (prm.getGrammatura() > 0) {
                 materiale += " " + prm.getGrammatura() + " gr</br>";
                 co2 *= prm.getGrammatura();
             }
             String tiratura = "";
-            if (prm.getTiratura() >0) {
+            if (prm.getTiratura() > 0) {
                 tiratura = "Tiratura " + prm.getTiratura();
                 co2 *= prm.getTiratura();
                 co2Copertina *= prm.getTiratura();
@@ -539,7 +539,7 @@ public class CalcoliHelper {
                     co2Copertina *= coefficienti.get(prm.getTipoDiCartaCopertina().getParametro()).getValore();
                 }
             }
-            if (prm.getGrammaturaCopertina() >0) {
+            if (prm.getGrammaturaCopertina() > 0) {
                 co2Copertina *= prm.getGrammaturaCopertina();
             }
 
@@ -562,7 +562,7 @@ public class CalcoliHelper {
 
             _rm.setOggetto("Manifesti, pieghevoli, fogli / " + prm.getCategoria());
             String formato = "";
-            if (prm.getLarghezza() >0 && prm.getAltezza() >0) {
+            if (prm.getLarghezza() > 0 && prm.getAltezza() > 0) {
                 formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "</br>";
                 co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100;
             }
@@ -573,17 +573,17 @@ public class CalcoliHelper {
                 }
                 materiale = prm.getTipoDiCarta().getNome();
             }
-            if (prm.getGrammatura() >0) {
+            if (prm.getGrammatura() > 0) {
                 materiale += " " + prm.getGrammatura() + " gr</br>";
                 co2 *= prm.getGrammatura();
             }
             String pagine = "";
-            if (prm.getNumeroDiPagine() >0) {
+            if (prm.getNumeroDiPagine() > 0) {
                 pagine = "Numero di pagine: " + prm.getNumeroDiPagine() + "</br>";
                 co2 *= prm.getNumeroDiPagine();
             }
             String tiratura = "";
-            if (prm.getTiratura() >0) {
+            if (prm.getTiratura() > 0) {
                 tiratura = "Tiratura " + prm.getTiratura();
                 co2 *= prm.getTiratura();
             }

@@ -50,7 +50,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
         cp.setHeading("Riepilogo");
 
         // TODO MIGLIORARE
-        cp.setHeight(450);
+        cp.setHeight(440);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
@@ -65,12 +65,17 @@ public class EventoFormRiepilogo extends LayoutContainer {
         ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 190);
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 410);
+        column = new ColumnConfig("dettagli", "Dettagli", 400);
         configs.add(column);
 
-        column = new ColumnConfig("kgCO2", "Kg/CO2", 60);
+        column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
-
+        column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
+            @Override
+            public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
+                return number.format(model.<Number>get(property));  //To change body of implemented methods use File | Settings | File Templates.
+            }
+        });
         configs.add(column);
 
         ColumnModel cm = new ColumnModel(configs);
@@ -92,11 +97,10 @@ public class EventoFormRiepilogo extends LayoutContainer {
         somma = new AggregationRowConfig<RiepilogoModel>();
         somma.setHtml("name", "kgCO2");
 
-
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
         grid.setAutoHeight(true);
-
+        grid.setHeight(420);
         return grid;
     }
 

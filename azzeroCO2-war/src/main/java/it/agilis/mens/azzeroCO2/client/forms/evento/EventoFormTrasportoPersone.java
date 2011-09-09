@@ -54,24 +54,22 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         final Grid<TrasportoPersoneModel> grid = createGrid();
 
         panel.setEnabled(false);
-
-
         formBindings.setStore(grid.getStore());
 
-        final FormPanel panelTutte = createGroupForm();
+      /*  final FormPanel panelTutte = createGroupForm();
         panelTutte.add(panelTutte);
-        panelTutte.setHeading("Tutte le Persone");
+        panelTutte.setHeading("Tutte le Persone");*/
 
         ContentPanel cpCentre = new ContentPanel();
         cpCentre.setHeaderVisible(false);
         final CardLayout cardLayout = new CardLayout();
         cpCentre.setLayout(cardLayout);
-        cpCentre.add(panelTutte);
+       // cpCentre.add(panelTutte);
         cpCentre.add(panel);
-        grid.setEnabled(false);
-        toolBar.setEnabled(false);
+    //    grid.setEnabled(false);
+    //    toolBar.setEnabled(false);
 
-        ContentPanel radioContent = new ContentPanel();
+     /*   ContentPanel radioContent = new ContentPanel();
         radioContent.setHeaderVisible(false);
         radioContent.setFrame(true);
 
@@ -79,8 +77,8 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         tutti.addListener(Events.OnClick, new Listener<BaseEvent>() {
             public void handleEvent(BaseEvent be) {
                 Info.display("Info", "Categoria Tutte le persone Attiva");
-                cardLayout.setActiveItem(panelTutte);
-                formBindings.unbind();
+               // cardLayout.setActiveItem(panelTutte);
+               // formBindings.unbind();
                 grid.setEnabled(false);
                 toolBar.setEnabled(false);
             }
@@ -104,19 +102,19 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         RadioGroup radioGroup = new RadioGroup();
         radioGroup.add(tutti);
         radioGroup.add(personalizzato);
-        radioContent.add(radioGroup);
+        radioContent.add(radioGroup);*/
 
         ContentPanel cpEst = new ContentPanel();
         cpEst.setHeading("Categorie");
 
         cpEst.setLayout(new RowLayout(Orientation.VERTICAL));
-        cpEst.add(radioContent, new RowData(1, 0.10, new Margins(0, 0, 0, 0)));
-        cpEst.add(grid, new RowData(1, .90, new Margins(0, 0, 0, 0)));
+      //  cpEst.add(radioContent, new RowData(1, 0.10, new Margins(0, 0, 0, 0)));
+        cpEst.add(grid, new RowData(1, 1, new Margins(0, 0, 0, 0)));
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
         cp.add(cpEst, new RowData(.35, .98, new Margins(0, 0, 0, 0)));
-        cp.add(cpCentre, new RowData(.7, 1));
+        cp.add(cpCentre, new RowData(.65, 1));
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,
@@ -133,6 +131,12 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                 });
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+
+        TrasportoPersoneModel tpm = new TrasportoPersoneModel();
+        tpm.setCategoria("Tutte le Persone");
+        trasportoPersoneModel.add(tpm);
+        grid.getSelectionModel().select(0, true);
+        formBindings.bind(tpm);
         add(cp, centerData);
     }
 
@@ -245,7 +249,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             busKm300.getMessages().setRegexText("Inserisci un numero intero");
 
 
-
             NumberField autoKm300 = new NumberField();
             autoKm300.setName("autoKm300");
             autoKm300.setWidth(60);
@@ -321,7 +324,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             trenoKm1000.setWidth(60);
             trenoKm1000.setRegex("[0-9]+");
             trenoKm1000.getMessages().setRegexText("Inserisci un numero intero");
-
+            trenoKm1000.setPropertyEditorType(Integer.class);
 
             Image aereo1000 = new Image(AzzeroCO2Resources.INSTANCE.aereo());
             NumberField aereoKm1000 = new NumberField();
@@ -330,7 +333,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             aereoKm1000.setRegex("[0-9]+");
             aereoKm1000.getMessages().setRegexText("Inserisci un numero intero");
             aereoKm1000.setPropertyEditorType(Integer.class);
-
 
             km1000input.add(bus1000);
             km1000input.add(busKm1000, flex);
