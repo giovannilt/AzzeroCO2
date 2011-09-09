@@ -64,7 +64,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         binding.setStore(grid.getStore());
 
         VerticalPanel vp = new VerticalPanel();
-        vp.setHeight(410);
+        vp.setHeight(412);
         vp.add(form);
         east.add(vp);
 

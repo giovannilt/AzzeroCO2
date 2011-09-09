@@ -1,9 +1,7 @@
 package it.agilis.mens.azzeroCO2.client.mvc.views;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.event.ButtonEvent;
-import com.extjs.gxt.ui.client.event.EventType;
-import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
@@ -15,6 +13,8 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.form.FormPanel;
+import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Image;
@@ -95,7 +95,7 @@ public class CentralView extends View {
             HBoxLayout layout = new HBoxLayout();
             layout.setPadding(new Padding(0));
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
-           // layout.setPack(BoxLayout.BoxLayoutPack.START);
+            // layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
             HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 0, 0, 0));
             Button unEvento = new Button("Un Evento");
@@ -197,18 +197,47 @@ public class CentralView extends View {
             c.setHeaderVisible(false);
             VBoxLayout layout = new VBoxLayout();
             layout.setPadding(new Padding(0));
-            layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.STRETCHMAX);
+            layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
 
             c.setLayout(layout);
 
             VBoxLayoutData flex = new VBoxLayoutData(new Margins(0, 0, 0, 0));
             flex.setFlex(1);
             {   // Login
-                ContentPanel login = new ContentPanel();
+                FormPanel login = new FormPanel();
                 login.setWidth(290);
                 login.setHeading("Login");
-                //TODO inserire form login
-                login.addText("******");
+
+                KeyListener keyListener = new KeyListener() {
+                    public void componentKeyUp(ComponentEvent event) {
+                        //  validate();
+                    }
+                };
+                TextField<String> userName = new TextField<String>();
+                userName.setWidth(45);
+                userName.setMinLength(4);
+                userName.setFieldLabel("Username");
+                userName.setName("userName");
+                userName.addKeyListener(keyListener);
+                login.add(userName);
+
+                TextField<String> password = new TextField<String>();
+                password.setWidth(45);
+                password.setMinLength(4);
+                password.setPassword(true);
+                password.setFieldLabel("Password");
+                password.setName("password");
+                password.addKeyListener(keyListener);
+                login.add(password);
+
+                Button btn = new Button("Submit");
+                btn.addSelectionListener(new SelectionListener<ButtonEvent>() {
+                    @Override
+                    public void componentSelected(ButtonEvent ce) {
+
+                    }
+                });
+                login.addButton(btn);
                 c.add(login, flex);
             }
             {
@@ -233,6 +262,8 @@ public class CentralView extends View {
         }
         _return.setTitle(Eventi.MAIN.name());
         return _return;
+
+
     }
 
 

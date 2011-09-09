@@ -56,7 +56,7 @@ public class EventoFormConferma extends LayoutContainer {
         panel.setFrame(true);
         panel.setHeaderVisible(false);
 
-        panel.setHeight(410);
+        panel.setHeight(412);
         panel.setWidth(300);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));

@@ -4,12 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <bean name="gitRepositoryInformation" class="it.agilis.mens.azzeroCO2.server.GitRepositoryState">
-        <property name="branch" value="${git.branch}"/>
-        <property name="commitId" value="${git.commit.id}"/>
-        <property name="commitTime" value="${git.commit.time}"/>
-        <property name="buildUserName" value="${git.build.user.name}"/>
-        <property name="buildUserEmail" value="${git.build.user.email}"/>
-        <property name="commitUserName" value="${git.commit.user.name}"/>
+        <property name="branch"          value="${git.branch}"/>
+        <property name="commitId"        value="${git.commit.id}"/>
+        <property name="commitTime"      value="${git.commit.time}"/>
+        <property name="buildTime"       value="${git.build.time}"/>
+        <property name="buildUserName"   value="${git.build.user.name}"/>
+        <property name="buildUserEmail"  value="${git.build.user.email}"/>
+        <property name="commitUserName"  value="${git.commit.user.name}"/>
         <property name="commitUserEmail" value="${git.commit.user.email}"/>
     </bean>
 
