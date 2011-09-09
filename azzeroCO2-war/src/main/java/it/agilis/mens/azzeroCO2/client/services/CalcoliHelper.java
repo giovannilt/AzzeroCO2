@@ -406,12 +406,12 @@ public class CalcoliHelper {
             co2 += trasportoMerciModel.getTirKm500() * coefficienteModelTir.getValore();
         }
         if (trasportoMerciModel.getTrenoKm500() > 0) {
-            treno500 = "Tir:" + " " + trasportoMerciModel.getTrenoKm500() + " ton </br>";
+            treno500 = "Treno:" + " " + trasportoMerciModel.getTrenoKm500() + " ton </br>";
             co2 += trasportoMerciModel.getTrenoKm500() * coefficienteModelTreno.getValore();
         }
 
         if (trasportoMerciModel.getNaveKm500() > 0) {
-            nave500 = "Tir:" + " " + trasportoMerciModel.getTirKm500() + " ton </br>";
+            nave500 = "Nave:" + " " + trasportoMerciModel.getTirKm500() + " ton </br>";
             co2 += trasportoMerciModel.getNaveKm500() * coefficienteModelTreno.getValore();
         }
 
