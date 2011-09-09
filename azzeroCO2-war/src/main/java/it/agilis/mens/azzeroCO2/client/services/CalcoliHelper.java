@@ -270,7 +270,7 @@ public class CalcoliHelper {
                 tp3000Treno = "Treno " + tpm.getTrenoKm3000() + " tratte </br>";
             }
             if (tpm.getAereoKm3000() > 0) {
-                tp3000Aereo = "Moto " + tpm.getAereoKm3000() + " tratte </br>";
+                tp3000Aereo = "Aereo " + tpm.getAereoKm3000() + " tratte </br>";
             }
             if (tpm.getBusKm3000() + tpm.getAutoKm3000() + tpm.getTrenoKm3000() > 0) {
                 tp3000 = "Distanza Europea:</br>" + tp3000Bus + tp3000Auto + tp3000Treno + tp3000Aereo;
@@ -366,8 +366,8 @@ public class CalcoliHelper {
         CoefficienteModel coefficienteModelTir = coefficienti.get("TRMTIR");
         CoefficienteModel coefficienteModelTreno = coefficienti.get("TRMTRE");
         CoefficienteModel coefficienteModelNave = coefficienti.get("TRMNAV");
-        CoefficienteModel coefficienteModelAereoEU = coefficienti.get("TRMAEU");
-        CoefficienteModel coefficienteModelAereoEE = coefficienti.get("TRMAEE");
+        CoefficienteModel coefficienteModelTMAereoEU = coefficienti.get("TRMAEU");
+        CoefficienteModel coefficienteModelTMAereoEE = coefficienti.get("TRMAEE");
 
 
         double co2 = 0;
@@ -411,7 +411,7 @@ public class CalcoliHelper {
         }
 
         if (trasportoMerciModel.getNaveKm500() > 0) {
-            nave500 = "Nave:" + " " + trasportoMerciModel.getTirKm500() + " ton </br>";
+            nave500 = "Nave:" + " " + trasportoMerciModel.getNaveKm500() + " ton </br>";
             co2 += trasportoMerciModel.getNaveKm500() * coefficienteModelTreno.getValore();
         }
 
@@ -426,18 +426,18 @@ public class CalcoliHelper {
             co2 += trasportoMerciModel.getTirKm1500() * coefficienteModelTir.getValore();
         }
         if (trasportoMerciModel.getTrenoKm1500() > 0) {
-            treno1500 = "Treno:" + " " + trasportoMerciModel.getTirKm1500() + " ton </br>";
+            treno1500 = "Treno:" + " " + trasportoMerciModel.getTrenoKm1500() + " ton </br>";
             co2 += trasportoMerciModel.getTrenoKm1500() * coefficienteModelTreno.getValore();
         }
 
         if (trasportoMerciModel.getNaveKm1500() > 0) {
-            nave1500 = "Nave:" + " " + trasportoMerciModel.getTirKm1500() + " ton </br>";
+            nave1500 = "Nave:" + " " + trasportoMerciModel.getNaveKm1500() + " ton </br>";
             co2 += trasportoMerciModel.getNaveKm1500() * coefficienteModelNave.getValore();
         }
 
         if (trasportoMerciModel.getAereoKm1500() > 0) {
             aereo1500 = "Aereo:" + " " + trasportoMerciModel.getAereoKm1500() + " ton </br>";
-            co2 += trasportoMerciModel.getAereoKm1500() * coefficienteModelAereoEU.getValore();
+            co2 += trasportoMerciModel.getAereoKm1500() * coefficienteModelTMAereoEU.getValore();
         }
 
 
@@ -451,18 +451,18 @@ public class CalcoliHelper {
             co2 += trasportoMerciModel.getTirKm9000() * coefficienteModelTir.getValore();
         }
         if (trasportoMerciModel.getTrenoKm9000() > 0) {
-            treno9000 = "Treno:" + " " + trasportoMerciModel.getTirKm9000() + " ton </br>";
+            treno9000 = "Treno:" + " " + trasportoMerciModel.getTrenoKm9000() + " ton </br>";
             co2 += trasportoMerciModel.getTrenoKm9000() * coefficienteModelTreno.getValore();
         }
 
         if (trasportoMerciModel.getNaveKm9000() > 0) {
-            nave9000 = "Nave:" + " " + trasportoMerciModel.getTirKm9000() + " ton </br>";
+            nave9000 = "Nave:" + " " + trasportoMerciModel.getNaveKm9000() + " ton </br>";
             co2 += trasportoMerciModel.getNaveKm9000() * coefficienteModelNave.getValore();
         }
 
         if (trasportoMerciModel.getAereoKm9000() > 0) {
             aereo9000 = "Aereo:" + " " + trasportoMerciModel.getAereoKm9000() + " ton </br>";
-            co2 += trasportoMerciModel.getAereoKm9000() * coefficienteModelAereoEE.getValore();
+            co2 += trasportoMerciModel.getAereoKm9000() * coefficienteModelTMAereoEE.getValore();
         }
 
 
@@ -476,16 +476,16 @@ public class CalcoliHelper {
         }
 
         if (trasportoMerciModel.getFurgoneKm150() + trasportoMerciModel.getTirKm150() + trasportoMerciModel.getTirKm150() > 0) {
-            regionale = "Distanza regionale:</br>";
+            regionale = "</br>Distanza regionale:</br>";
         }
         if (trasportoMerciModel.getFurgoneKm500() + trasportoMerciModel.getTirKm500() + trasportoMerciModel.getTrenoKm500() + trasportoMerciModel.getNaveKm500() > 0) {
-            nazionale = "Distanza nazionale:</br>";
+            nazionale = "</br>Distanza nazionale:</br>";
         }
         if (trasportoMerciModel.getFurgoneKm1500() + trasportoMerciModel.getTirKm1500() + trasportoMerciModel.getTrenoKm1500() + trasportoMerciModel.getNaveKm1500() + trasportoMerciModel.getAereoKm1500() > 0) {
-            europeo = "Distanza europea:</br>";
+            europeo = "</br>Distanza europea:</br>";
         }
         if (trasportoMerciModel.getFurgoneKm9000() + trasportoMerciModel.getTirKm9000() + trasportoMerciModel.getTrenoKm9000() + trasportoMerciModel.getNaveKm9000() + trasportoMerciModel.getAereoKm9000() > 0) {
-            extraeuropeo = "Distanza extra europea:</br>";
+            extraeuropeo = "</br>Distanza extra europea:</br>";
         }
 
         traspMerci.setDettagli(provinciale + furgone30 + tir30 + regionale + furgone150 + tir150 + treno150 + nazionale + furgone500 + tir500 + treno500 + nave500 + europeo + furgone1500 + tir1500 + treno1500 + nave1500 + aereo1500 + extraeuropeo + furgone9000 + tir9000 + treno9000 + nave9000 + aereo9000);
