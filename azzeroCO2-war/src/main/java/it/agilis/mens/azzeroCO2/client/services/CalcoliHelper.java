@@ -224,7 +224,7 @@ public class CalcoliHelper {
             if (tpm.getMotoKm60() > 0) {
                 tp60Moto = "Moto " + tpm.getMotoKm60() + " tratte </br>";
             }
-            if (tpm.getBusKm60() + tpm.getAutoKm60() + tpm.getTrenoKm60() > 0) {
+            if (tpm.getBusKm60() + tpm.getAutoKm60() + tpm.getTrenoKm60() + tpm.getMotoKm60()> 0) {
                 tp60 = "Distanza Provinciale:</br>" + tp60Bus + tp60Auto + tp60Treno + tp60Moto;
             }
 
@@ -240,7 +240,7 @@ public class CalcoliHelper {
             if (tpm.getMotoKm300() > 0) {
                 tp300Moto = "Moto " + tpm.getMotoKm300() + " tratte </br>";
             }
-            if (tpm.getBusKm300() + tpm.getAutoKm300() + tpm.getTrenoKm300() > 0) {
+            if (tpm.getBusKm300() + tpm.getAutoKm300() + tpm.getTrenoKm300() + tpm.getMotoKm300() > 0) {
                 tp300 = "Distanza Regionale:</br>" + tp300Bus + tp300Auto + tp300Treno + tp300Moto;
             }
 
@@ -263,17 +263,17 @@ public class CalcoliHelper {
             if (tpm.getBusKm3000() > 0) {
                 tp3000Bus = "Bus " + tpm.getBusKm3000() + " tratte </br>";
             }
-            if (tpm.getAutoKm300() > 0) {
+            if (tpm.getAutoKm3000() > 0) {
                 tp3000Auto = "Auto " + tpm.getAutoKm3000() + " tratte </br>";
             }
-            if (tpm.getTrenoKm300() > 0) {
+            if (tpm.getTrenoKm3000() > 0) {
                 tp3000Treno = "Treno " + tpm.getTrenoKm3000() + " tratte </br>";
             }
-            if (tpm.getMotoKm300() > 0) {
+            if (tpm.getAereoKm3000() > 0) {
                 tp3000Aereo = "Moto " + tpm.getAereoKm3000() + " tratte </br>";
             }
             if (tpm.getBusKm3000() + tpm.getAutoKm3000() + tpm.getTrenoKm3000() > 0) {
-                tp3000 = "Distanza Regionale:</br>" + tp3000Bus + tp3000Auto + tp3000Treno + tp3000Aereo;
+                tp3000 = "Distanza Europea:</br>" + tp3000Bus + tp3000Auto + tp3000Treno + tp3000Aereo;
             }
 
             if (tpm.getBusKm9000() > 0) {
@@ -289,7 +289,7 @@ public class CalcoliHelper {
                 tp9000Aereo = "Aereo " + tpm.getAereoKm9000() + " tratte </br>";
             }
             if (tpm.getBusKm9000() + tpm.getAutoKm9000() + tpm.getTrenoKm9000() + tpm.getAereoKm9000() > 0) {
-                tp9000 = "Distanza europea:</br>" + tp9000Bus + tp9000Auto + tp9000Treno + tp9000Aereo;
+                tp9000 = "Distanza Extra Europea:</br>" + tp9000Bus + tp9000Auto + tp9000Treno + tp9000Aereo;
             }
 
 
