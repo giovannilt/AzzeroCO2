@@ -65,7 +65,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
         ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 190);
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 400);
+        column = new ColumnConfig("dettagli", "Dettagli", 385);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
@@ -99,8 +99,8 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
-        grid.setAutoHeight(true);
-        grid.setHeight(420);
+  //      grid.setAutoHeight(true);
+        grid.setHeight(350);
         return grid;
     }
 
