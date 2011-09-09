@@ -56,7 +56,7 @@ public class EventoFormConferma extends LayoutContainer {
         panel.setFrame(true);
         panel.setHeaderVisible(false);
 
-        panel.setHeight(510);
+        panel.setHeight(410);
         panel.setWidth(300);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
@@ -65,7 +65,7 @@ public class EventoFormConferma extends LayoutContainer {
         {  // DESCRIZIONE
             LayoutContainer c = new LayoutContainer();
             HBoxLayout layout = new HBoxLayout();
-            layout.setPadding(new Padding(5));
+            layout.setPadding(new Padding(2));
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
             c.setLayout(layout);
             LabelField label = new LabelField("Scarica i materiali di comunicazione <br>relativi al tuo acquisto:");
@@ -78,13 +78,12 @@ public class EventoFormConferma extends LayoutContainer {
             {
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(5));
+                layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
                 c.setLayout(layout);
 
                 Image check = new Image(AzzeroCO2Resources.INSTANCE.check());
                 check.setAltText("Bus");
-                check.setSize("100", "100");
                 c.add(check);
                 LabelField label = new LabelField("Attestato di Compensazione.");
                 label.setWidth(300);
@@ -94,13 +93,12 @@ public class EventoFormConferma extends LayoutContainer {
             {
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(5));
+                layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
                 c.setLayout(layout);
 
                 Image check = new Image(AzzeroCO2Resources.INSTANCE.check());
                 check.setAltText("Bus");
-                check.setSize("100", "100");
                 c.add(check);
                 LabelField label = new LabelField("Scheda Forestazione Italiana.");
                 label.setWidth(300);
@@ -111,7 +109,7 @@ public class EventoFormConferma extends LayoutContainer {
             {    // PROGETTO SCELTO
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(5));
+                layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
@@ -125,7 +123,7 @@ public class EventoFormConferma extends LayoutContainer {
             {
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(5));
+                layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
                 c.setLayout(layout);
 
@@ -148,7 +146,7 @@ public class EventoFormConferma extends LayoutContainer {
 
         ContentPanel row = new ContentPanel();
         row.setHeaderVisible(false);
-        row.setHeight(150);
+        row.setHeight(75);
         row.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
         Text label = new Text("Hai Compensato 2.540 Kg di CO2 pintando 3.745 nuovi alberi!!");
