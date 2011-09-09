@@ -11,6 +11,8 @@ import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.Image;
+import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 
 import java.util.ArrayList;
@@ -62,10 +64,18 @@ public class EventoFormRiepilogo extends LayoutContainer {
         final NumberFormat number = NumberFormat.getFormat("0.00");
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("oggetto", "Oggetto", 190);
+        ColumnConfig column = new ColumnConfig("OK", "", 20);
+        column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
+            @Override
+            public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
+                return new Image(AzzeroCO2Resources.INSTANCE.checkIcon());
+            }
+        });
+        configs.add(column);
+        column = new ColumnConfig("oggetto", "Oggetto", 150);
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 385);
+        column = new ColumnConfig("dettagli", "Dettagli", 405);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
@@ -73,7 +83,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
-                return number.format(model.<Number>get(property));  //To change body of implemented methods use File | Settings | File Templates.
+                return number.format(model.<Number>get(property));
             }
         });
         configs.add(column);
@@ -99,7 +109,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
-  //      grid.setAutoHeight(true);
+        //      grid.setAutoHeight(true);
         grid.setHeight(350);
         return grid;
     }
