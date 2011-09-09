@@ -84,7 +84,7 @@ public class TrasportoMerciModel extends BaseModel {
     }
 
     public double getAereoKm9000() {
-        return get("aereiKm9000") == null ? 0 : new Double(get("aereiKm9000").toString());
+        return get("aereoKm9000") == null ? 0 : new Double(get("aereiKm9000").toString());
     }
 
     public boolean isVoid() {
