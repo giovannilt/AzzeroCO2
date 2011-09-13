@@ -373,96 +373,96 @@ public class CalcoliHelper {
         double co2 = 0;
         if (trasportoMerciModel.getFurgoneKm30() > 0) {
             furgone30 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm30() + " ton </br>";
-            co2 = trasportoMerciModel.getFurgoneKm30() * coefficienteModelFurgone.getValore();
+            co2 = trasportoMerciModel.getFurgoneKm30() * coefficienteModelFurgone.getValore()*30;
         }
 
         if (trasportoMerciModel.getTirKm30() > 0) {
             tir30 = "Tir:" + " " + trasportoMerciModel.getTirKm30() + " ton </br>";
-            co2 += trasportoMerciModel.getTirKm30() * coefficienteModelTir.getValore();
+            co2 += trasportoMerciModel.getTirKm30() * coefficienteModelTir.getValore()*30;
         }
 
 
         if (trasportoMerciModel.getFurgoneKm150() > 0) {
             furgone150 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm150() + " ton </br>";
-            co2 += trasportoMerciModel.getFurgoneKm150() * coefficienteModelFurgone.getValore();
+            co2 += trasportoMerciModel.getFurgoneKm150() * coefficienteModelFurgone.getValore()*150;
         }
 
         if (trasportoMerciModel.getTirKm150() > 0) {
             tir150 = "Tir:" + " " + trasportoMerciModel.getTirKm150() + " ton </br>";
-            co2 += trasportoMerciModel.getTirKm150() * coefficienteModelTir.getValore();
+            co2 += trasportoMerciModel.getTirKm150() * coefficienteModelTir.getValore()*150;
         }
         if (trasportoMerciModel.getTrenoKm150() > 0) {
             treno150 = "Treno:" + " " + trasportoMerciModel.getTrenoKm150() + " ton </br>";
-            co2 += trasportoMerciModel.getTrenoKm150() * coefficienteModelTreno.getValore();
+            co2 += trasportoMerciModel.getTrenoKm150() * coefficienteModelTreno.getValore()*150;
         }
 
         if (trasportoMerciModel.getFurgoneKm500() > 0) {
             furgone500 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm500() + " ton </br>";
-            co2 += trasportoMerciModel.getFurgoneKm500() * coefficienteModelFurgone.getValore();
+            co2 += trasportoMerciModel.getFurgoneKm500() * coefficienteModelFurgone.getValore()*500;
         }
 
         if (trasportoMerciModel.getTirKm500() > 0) {
             tir500 = "Tir:" + " " + trasportoMerciModel.getTirKm500() + " ton </br>";
-            co2 += trasportoMerciModel.getTirKm500() * coefficienteModelTir.getValore();
+            co2 += trasportoMerciModel.getTirKm500() * coefficienteModelTir.getValore()*500;
         }
         if (trasportoMerciModel.getTrenoKm500() > 0) {
             treno500 = "Treno:" + " " + trasportoMerciModel.getTrenoKm500() + " ton </br>";
-            co2 += trasportoMerciModel.getTrenoKm500() * coefficienteModelTreno.getValore();
+            co2 += trasportoMerciModel.getTrenoKm500() * coefficienteModelTreno.getValore()*500;
         }
 
         if (trasportoMerciModel.getNaveKm500() > 0) {
             nave500 = "Nave:" + " " + trasportoMerciModel.getNaveKm500() + " ton </br>";
-            co2 += trasportoMerciModel.getNaveKm500() * coefficienteModelTreno.getValore();
+            co2 += trasportoMerciModel.getNaveKm500() * coefficienteModelNave.getValore()*500;
         }
 
 
         if (trasportoMerciModel.getFurgoneKm1500() > 0) {
             furgone1500 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm1500() + " ton </br>";
-            co2 += trasportoMerciModel.getFurgoneKm1500() * coefficienteModelFurgone.getValore();
+            co2 += trasportoMerciModel.getFurgoneKm1500() * coefficienteModelFurgone.getValore()*1500;
         }
 
         if (trasportoMerciModel.getTirKm1500() > 0) {
             tir1500 = "Tir:" + " " + trasportoMerciModel.getTirKm1500() + " ton </br>";
-            co2 += trasportoMerciModel.getTirKm1500() * coefficienteModelTir.getValore();
+            co2 += trasportoMerciModel.getTirKm1500() * coefficienteModelTir.getValore()*1500;
         }
         if (trasportoMerciModel.getTrenoKm1500() > 0) {
             treno1500 = "Treno:" + " " + trasportoMerciModel.getTrenoKm1500() + " ton </br>";
-            co2 += trasportoMerciModel.getTrenoKm1500() * coefficienteModelTreno.getValore();
+            co2 += trasportoMerciModel.getTrenoKm1500() * coefficienteModelTreno.getValore()*1500;
         }
 
         if (trasportoMerciModel.getNaveKm1500() > 0) {
             nave1500 = "Nave:" + " " + trasportoMerciModel.getNaveKm1500() + " ton </br>";
-            co2 += trasportoMerciModel.getNaveKm1500() * coefficienteModelNave.getValore();
+            co2 += trasportoMerciModel.getNaveKm1500() * coefficienteModelNave.getValore()*1500;
         }
 
         if (trasportoMerciModel.getAereoKm1500() > 0) {
             aereo1500 = "Aereo:" + " " + trasportoMerciModel.getAereoKm1500() + " ton </br>";
-            co2 += trasportoMerciModel.getAereoKm1500() * coefficienteModelTMAereoEU.getValore();
+            co2 += trasportoMerciModel.getAereoKm1500() * coefficienteModelTMAereoEU.getValore()*1500;
         }
 
 
         if (trasportoMerciModel.getFurgoneKm9000() > 0) {
             furgone9000 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm9000() + " ton </br>";
-            co2 += trasportoMerciModel.getFurgoneKm9000() * coefficienteModelFurgone.getValore();
+            co2 += trasportoMerciModel.getFurgoneKm9000() * coefficienteModelFurgone.getValore()*9000;
         }
 
         if (trasportoMerciModel.getTirKm9000() > 0) {
             tir9000 = "Tir:" + " " + trasportoMerciModel.getTirKm9000() + " ton </br>";
-            co2 += trasportoMerciModel.getTirKm9000() * coefficienteModelTir.getValore();
+            co2 += trasportoMerciModel.getTirKm9000() * coefficienteModelTir.getValore()*9000;
         }
         if (trasportoMerciModel.getTrenoKm9000() > 0) {
             treno9000 = "Treno:" + " " + trasportoMerciModel.getTrenoKm9000() + " ton </br>";
-            co2 += trasportoMerciModel.getTrenoKm9000() * coefficienteModelTreno.getValore();
+            co2 += trasportoMerciModel.getTrenoKm9000() * coefficienteModelTreno.getValore()*9000;
         }
 
         if (trasportoMerciModel.getNaveKm9000() > 0) {
             nave9000 = "Nave:" + " " + trasportoMerciModel.getNaveKm9000() + " ton </br>";
-            co2 += trasportoMerciModel.getNaveKm9000() * coefficienteModelNave.getValore();
+            co2 += trasportoMerciModel.getNaveKm9000() * coefficienteModelNave.getValore()*9000;
         }
 
         if (trasportoMerciModel.getAereoKm9000() > 0) {
             aereo9000 = "Aereo:" + " " + trasportoMerciModel.getAereoKm9000() + " ton </br>";
-            co2 += trasportoMerciModel.getAereoKm9000() * coefficienteModelTMAereoEE.getValore();
+            co2 += trasportoMerciModel.getAereoKm9000() * coefficienteModelTMAereoEE.getValore()*9000;
         }
 
 
