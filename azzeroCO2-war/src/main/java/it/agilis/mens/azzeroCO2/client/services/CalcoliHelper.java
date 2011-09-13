@@ -297,7 +297,7 @@ public class CalcoliHelper {
             CoefficienteModel coefficienteModelTPAUTO = coefficienti.get("TRPAUT");
             CoefficienteModel coefficienteModelTPTRENO = coefficienti.get("TRPTRE");
             CoefficienteModel coefficienteModelTPAEREO = coefficienti.get("TRPAER");
-            CoefficienteModel coefficienteModelTPAEREE = coefficienti.get("TRPAER");
+            CoefficienteModel coefficienteModelTPAEREE = coefficienti.get("TRPAEE");
             CoefficienteModel coefficienteModelTPAERMOT = coefficienti.get("TRPMOT");
 
             Double co2 = tpm.getBusKm60() * coefficienteModelTPBUS.getValore() * 60;
