@@ -502,6 +502,7 @@ public class CalcoliHelper {
 
         for (PubblicazioniRilegateModel prm : pubblRilModel) {
             RiepilogoModel _rm = new RiepilogoModel();
+            //TODO il calcolo della co2 sballa ma non capisco, quello delle pubbl non rilegate funziona
 
             double co2 = 0;
             double co2Copertina = 0;
@@ -516,7 +517,9 @@ public class CalcoliHelper {
             if (prm.getNumeroDiPagine() > 0) {
                 pagine = "Numero di pagine: " + prm.getNumeroDiPagine() + "</br>";
                 co2 *= prm.getNumeroDiPagine();
+
             }
+
             String materiale = "";
             if (prm.getTipoDiCarta() != null) {
                 if (coefficienti.get(prm.getTipoDiCarta().getParametro()) != null) {
@@ -526,7 +529,7 @@ public class CalcoliHelper {
             }
             if (prm.getGrammatura() > 0) {
                 materiale += " " + prm.getGrammatura() + " gr</br>";
-                co2 *= prm.getGrammatura();
+                co2 *= prm.getGrammatura()/1000;
             }
             String tiratura = "";
             if (prm.getTiratura() > 0) {
@@ -540,11 +543,13 @@ public class CalcoliHelper {
                 }
             }
             if (prm.getGrammaturaCopertina() > 0) {
-                co2Copertina *= prm.getGrammaturaCopertina();
+                co2Copertina *= prm.getGrammaturaCopertina()/1000;
             }
+            co2+=co2Copertina;
+            if (co2 > 0) {
 
-            if (co2 + co2Copertina > 0) {
-                _rm.setKgCO2(co2 + co2Copertina);
+
+                _rm.setKgCO2(co2 );
                 _rm.setOggetto("Pubblicazioni rilegate / " + prm.getCategoria());
                 _rm.setDettagli(formato + "</br>" + materiale + "</br>" + pagine + "</br>" + tiratura);
                 _return.add(_rm);
@@ -575,7 +580,7 @@ public class CalcoliHelper {
             }
             if (prm.getGrammatura() > 0) {
                 materiale += " " + prm.getGrammatura() + " gr</br>";
-                co2 *= prm.getGrammatura();
+                co2 *= prm.getGrammatura()/1000;
             }
             String pagine = "";
             if (prm.getNumeroDiPagine() > 0) {
