@@ -86,6 +86,7 @@ public class CentralView extends View {
 
         ContentPanel center = new ContentPanel();
         center.setHeading("Compensa le emissioni delle tue attivita'!");
+
         center.setScrollMode(Style.Scroll.AUTOX);
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -200,16 +201,16 @@ public class CentralView extends View {
             c.setHeight(530);
 
             c.setHeaderVisible(false);
-            VBoxLayout layout = new VBoxLayout();
-            layout.setPadding(new Padding(0));
-            layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
+            c.setLayout((new RowLayout(Style.Orientation.VERTICAL)));
 
-            c.setLayout(layout);
+            {
+                LayoutContainer rigo = new LayoutContainer();
+                rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-            {   // Login
+                // Login
                 FormPanel login = new FormPanel();
                 login.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-                login.setWidth(290);
+                //  login.setWidth(290);
                 login.setHeading("Login");
 
                 KeyListener keyListener = new KeyListener() {
@@ -219,6 +220,7 @@ public class CentralView extends View {
                 };
 
                 LabelField label = new LabelField("UserName: ");
+                label.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
                 label.setWidth(100);
 
                 TextField<String> userName = new TextField<String>();
@@ -227,10 +229,16 @@ public class CentralView extends View {
                 userName.setName("userName");
                 userName.addKeyListener(keyListener);
 
-                login.add(label, new RowData(1, -1, new Margins(4)));
-                login.add(userName, new RowData(1, 1, new Margins(0, 4, 0, 4)));
+                rigo.add(label, new RowData(0.3, 1, new Margins(4, 1, 4, 1)));
+                rigo.add(userName, new RowData(0.7, 1, new Margins(4, 1, 4, 1)));
+
+                login.add(rigo, new RowData(1, 0.5));
+
+                rigo = new LayoutContainer();
+                rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
                 label = new LabelField("Password: ");
+                label.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
                 label.setWidth(100);
 
                 TextField<String> password = new TextField<String>();
@@ -240,8 +248,8 @@ public class CentralView extends View {
                 password.setName("password");
                 password.addKeyListener(keyListener);
 
-                login.add(label, new RowData(1, -1, new Margins(4)));
-                login.add(password, new RowData(1, 1, new Margins(0, 4, 0, 4)));
+                rigo.add(label, new RowData(0.3, 1, new Margins(4, 1, 4, 1)));
+                rigo.add(password, new RowData(0.7, 1, new Margins(4, 1,4, 1)));
 
                 Button btn = new Button("Submit");
                 btn.addSelectionListener(new SelectionListener<ButtonEvent>() {
@@ -250,12 +258,15 @@ public class CentralView extends View {
 
                     }
                 });
+
+                login.add(rigo, new RowData(1, 0.5));
                 login.addButton(btn);
-                c.add(login);
+
+
+                c.add(login, new RowData(1, 0.3, new Margins(1, 1, 1, 1)));
             }
             {
                 ContentPanel compensazione = new ContentPanel();
-                compensazione.setSize(290, 295);
                 compensazione.setHeading("Cos'e' la compensazione?");
                 VBoxLayout layoutCompensazione = new VBoxLayout();
                 layoutCompensazione.setPadding(new Padding(5));
@@ -269,7 +280,7 @@ public class CentralView extends View {
 
                 compensazione.add(testo, new VBoxLayoutData(new Margins(1, 1, 1, 1)));
                 compensazione.add(azzeroCO2Stemp, new VBoxLayoutData(new Margins(0, 0, 0, 0)));
-                c.add(compensazione);
+                c.add(compensazione, new RowData(1, 0.7, new Margins(1, 1, 1, 1)));
             }
             east.add(c, new FlowData(0));
         }
