@@ -14,6 +14,7 @@ import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
+import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
@@ -97,7 +98,7 @@ public class CentralView extends View {
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
             // layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
-            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 0, 0, 0));
+            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(1, 1, 1, 1));
             Button unEvento = new Button("Un Evento");
 
             unEvento.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.evento()));
@@ -110,9 +111,8 @@ public class CentralView extends View {
                     setActiveItem(Eventi.EVENTO);
                 }
             });
-            unEvento.setSize(300, 300);
-            //unEvento.setSize(300, 300);
-            layoutData.setFlex(1);
+            unEvento.setSize(319, 300);
+            //   layoutData.setFlex(1);
             c.add(unEvento, layoutData);
             Button unAnno = new Button("Un Anno Di attivita'");
             unAnno.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unAnnoDiAttivita()));
@@ -127,7 +127,7 @@ public class CentralView extends View {
                 }
             });
             //unAnno.setSize(320, 280);
-            unAnno.setSize(300,300);
+            unAnno.setSize(319, 300);
             c.setSize(640, 300);
             //c.setSize(640, 280);
             layoutData.setFlex(1);
@@ -142,7 +142,7 @@ public class CentralView extends View {
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
-            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 0, 0, 0));
+            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(1, 1, 1, 1));
 
             Button pubblicazione = new Button("Una pubblicazione");
             pubblicazione.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unaPubblicazione()));
@@ -197,7 +197,7 @@ public class CentralView extends View {
 
         {
             ContentPanel c = new ContentPanel();
-            c.setHeight(527);
+            c.setHeight(530);
 
             c.setHeaderVisible(false);
             VBoxLayout layout = new VBoxLayout();
@@ -206,10 +206,9 @@ public class CentralView extends View {
 
             c.setLayout(layout);
 
-            VBoxLayoutData flex = new VBoxLayoutData(new Margins(0, 0, 0, 0));
-            flex.setFlex(1);
             {   // Login
                 FormPanel login = new FormPanel();
+                login.setLayout(new RowLayout(Style.Orientation.VERTICAL));
                 login.setWidth(290);
                 login.setHeading("Login");
 
@@ -218,22 +217,31 @@ public class CentralView extends View {
                         //  validate();
                     }
                 };
+
+                LabelField label = new LabelField("UserName: ");
+                label.setWidth(100);
+
                 TextField<String> userName = new TextField<String>();
                 userName.setWidth(45);
                 userName.setMinLength(4);
-                userName.setFieldLabel("Username");
                 userName.setName("userName");
                 userName.addKeyListener(keyListener);
-                login.add(userName);
+
+                login.add(label, new RowData(1, -1, new Margins(4)));
+                login.add(userName, new RowData(1, 1, new Margins(0, 4, 0, 4)));
+
+                label = new LabelField("Password: ");
+                label.setWidth(100);
 
                 TextField<String> password = new TextField<String>();
                 password.setWidth(45);
                 password.setMinLength(4);
                 password.setPassword(true);
-                password.setFieldLabel("Password");
                 password.setName("password");
                 password.addKeyListener(keyListener);
-                login.add(password);
+
+                login.add(label, new RowData(1, -1, new Margins(4)));
+                login.add(password, new RowData(1, 1, new Margins(0, 4, 0, 4)));
 
                 Button btn = new Button("Submit");
                 btn.addSelectionListener(new SelectionListener<ButtonEvent>() {
@@ -243,10 +251,11 @@ public class CentralView extends View {
                     }
                 });
                 login.addButton(btn);
-                c.add(login, flex);
+                c.add(login);
             }
             {
                 ContentPanel compensazione = new ContentPanel();
+                compensazione.setSize(290, 295);
                 compensazione.setHeading("Cos'e' la compensazione?");
                 VBoxLayout layoutCompensazione = new VBoxLayout();
                 layoutCompensazione.setPadding(new Padding(5));
@@ -255,13 +264,12 @@ public class CentralView extends View {
 
                 Text testo = new Text("La combustione di fonti energetiche fossili (carbone, benzina, cherosene) sprigiona biossido di carbonio (CO2). Il CO2 è il maggior responsabile dei gas ad effetto serra provocati dall’uomo. Blabla blabla bla bla blal");
                 testo.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
-
                 Image azzeroCO2Stemp = new Image(AzzeroCO2Resources.INSTANCE.azzeroCO2Stemp());
                 azzeroCO2Stemp.setAltText("AzzeroCO2");
 
-                compensazione.add(testo, new VBoxLayoutData(new Margins(0, 0, 0, 0)));
+                compensazione.add(testo, new VBoxLayoutData(new Margins(1, 1, 1, 1)));
                 compensazione.add(azzeroCO2Stemp, new VBoxLayoutData(new Margins(0, 0, 0, 0)));
-                c.add(compensazione, flex);
+                c.add(compensazione);
             }
             east.add(c, new FlowData(0));
         }

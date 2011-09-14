@@ -15,23 +15,23 @@ public interface AzzeroCO2Resources extends ClientBundle {
     public static final AzzeroCO2Resources INSTANCE = GWT.create(AzzeroCO2Resources.class);
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/UnEvento.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 320, height = 300)
+    @ImageResource.ImageOptions(flipRtl = true, width = 317, height = 300)
     ImageResource evento();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/UnAnnoDiAttivita.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 320, height = 300)
+    @ImageResource.ImageOptions(flipRtl = true, width = 317, height = 300)
     ImageResource unAnnoDiAttivita();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/ConoscoLaCO2.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 210, height = 195)
+    @ImageResource.ImageOptions(flipRtl = true, width = 213, height = 193)
     ImageResource conoscoLaCO2();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/UnaPubblicazione.png")
-   @ImageResource.ImageOptions(flipRtl = true, width = 210, height = 195)
+   @ImageResource.ImageOptions(flipRtl = true, width = 213, height = 193)
     ImageResource unaPubblicazione();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/UnSitoWeb.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 210, height = 195)
+    @ImageResource.ImageOptions(flipRtl = true, width = 213, height = 193)
     ImageResource unSitoWeb();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/Check.png")
