@@ -96,12 +96,7 @@ public class Coefficienti extends LayoutContainer {
         saveButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                /*List<CouponModel> coupons = new ArrayList<CouponModel>();
-                for (Record r : store.getModifiedRecords()) {
-                    coupons.add((CouponModel) r.getModel());
-                }*/
-                Dispatcher.forwardEvent(AmministrazioneEvents.SaveCoupons, store.getModels());
-
+                Dispatcher.forwardEvent(AmministrazioneEvents.SaveCoefficienti, store.getModels());
             }
         });
 
