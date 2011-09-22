@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.core.register;
 
 import it.agilis.mens.azzeroCO2.core.criteria.OrdineCriteria;
+import it.agilis.mens.azzeroCO2.core.criteria.SellaRicevutaDiPagamentoCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.*;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public interface IAzzeroCO2Register {
 
     List<TipoDiCarta> getTipoDiCarta() throws Exception;
 
+    SellaRicevutaDiPagamento getSellaRicevutaDiPagamento(SellaRicevutaDiPagamentoCriteria criteria);
 
 }
 

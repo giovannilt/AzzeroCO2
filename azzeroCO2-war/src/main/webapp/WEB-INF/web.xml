@@ -6,7 +6,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-    <display-name>AzzeroCO2-Maven-Archetype</display-name>
+    <display-name>AzzeroCO2</display-name>
     <!-- Default page to serve -->
     <welcome-file-list>
         <welcome-file>azzeroCO2.html</welcome-file>
@@ -21,6 +21,16 @@
     <servlet-mapping>
         <servlet-name>hustonServlet</servlet-name>
         <url-pattern>/azzeroCO2/huston</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>rispostaBancaServlet</servlet-name>
+        <servlet-class>it.agilis.mens.azzeroCO2.server.services.RispostaBancaServiceImpl</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>rispostaBancaServlet</servlet-name>
+        <url-pattern>/azzeroCO2/rispostaBanca</url-pattern>
     </servlet-mapping>
 
     <session-config>

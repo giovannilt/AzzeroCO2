@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.core.register.impl;
 
 import it.agilis.mens.azzeroCO2.core.criteria.OrdineCriteria;
+import it.agilis.mens.azzeroCO2.core.criteria.SellaRicevutaDiPagamentoCriteria;
 import it.agilis.mens.azzeroCO2.core.dao.*;
 import it.agilis.mens.azzeroCO2.core.entity.*;
 import it.agilis.mens.azzeroCO2.core.register.IAzzeroCO2Register;
@@ -29,6 +30,16 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     private ICoefficienteDAO coefficienteDAO;
     @Autowired
     private IProgettoCompesnazioneDAO progettoCompensazioneDAO;
+    @Autowired
+    private ISellaRicevutaDiPagamentoDAO pagamentoDAO;
+
+    public ISellaRicevutaDiPagamentoDAO getPagamentoDAO() {
+        return pagamentoDAO;
+    }
+
+    public void setPagamentoDAO(ISellaRicevutaDiPagamentoDAO pagamentoDAO) {
+        this.pagamentoDAO = pagamentoDAO;
+    }
 
     public IProgettoCompesnazioneDAO getProgettoCompensazioneDAO() {
         return progettoCompensazioneDAO;
@@ -152,5 +163,9 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         for (ProgettoCompensazione p : progettiDiCompensazione) {
             progettoCompensazioneDAO.save(p);
         }
+    }
+
+    public SellaRicevutaDiPagamento getSellaRicevutaDiPagamento(SellaRicevutaDiPagamentoCriteria criteria) {
+        return pagamentoDAO.getPagamento(criteria);
     }
 }

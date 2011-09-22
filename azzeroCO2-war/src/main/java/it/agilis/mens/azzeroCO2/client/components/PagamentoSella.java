@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.client.components;
 
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.Dialog;
@@ -9,6 +10,7 @@ import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,6 +22,7 @@ import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 public class PagamentoSella extends Dialog {
 
     private FormPanel form = new FormPanel();
+    private PagamentoModel model= new PagamentoModel("0.0");
 
     public PagamentoSella() {
 
@@ -42,13 +45,13 @@ public class PagamentoSella extends Dialog {
         form.setHeaderVisible(false);
 
         TextField<String> TIPO_PAGAMENTO = new TextField<String>();
-        TIPO_PAGAMENTO.setValue("CC");
+     //   TIPO_PAGAMENTO.setValue("CC");
         TIPO_PAGAMENTO.setName("TIPO_PAGAMENTO");
         TIPO_PAGAMENTO.setVisible(false);
         form.add(TIPO_PAGAMENTO);
 
         TextField<String> MERCHANT_ID = new TextField<String>();   //" value="396870600001"/
-        MERCHANT_ID.setValue("396870600001");
+      //  MERCHANT_ID.setValue("396870600001");
         MERCHANT_ID.setName("MERCHANT_ID");
         MERCHANT_ID.setVisible(false);
         form.add(MERCHANT_ID);
@@ -105,8 +108,10 @@ public class PagamentoSella extends Dialog {
         MAC.setVisible(false);
         form.add(MAC);
 
-        return form;
+        FormBinding binding = new FormBinding(form, true);
+        binding.bind(model);
 
+        return form;
     }
 
     @Override
@@ -120,5 +125,13 @@ public class PagamentoSella extends Dialog {
             }
         });
         addButton(submit);
+    }
+
+    public PagamentoModel getModel() {
+        return model;
+    }
+
+    public void setModel(PagamentoModel model) {
+        this.model = model;
     }
 }
