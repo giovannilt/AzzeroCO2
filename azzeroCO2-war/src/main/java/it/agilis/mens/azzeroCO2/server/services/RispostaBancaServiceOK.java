@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.server.services;
 import it.agilis.mens.azzeroCO2.core.criteria.SellaRicevutaDiPagamentoCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.SellaRicevutaDiPagamento;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,7 +22,7 @@ import java.io.IOException;
  * Time: 15.02
  * To change this template use File | Settings | File Templates.
  */
-public class RispostaBancaServiceImpl extends HttpServlet {
+public class RispostaBancaServiceOK extends HttpServlet {
     @Autowired
     @Qualifier("azzeroCO2Register")
     private AzzeroCO2Register azzeroCO2Register;
@@ -47,14 +50,29 @@ public class RispostaBancaServiceImpl extends HttpServlet {
         String MAC = request.getParameter("MAC");                //(codice di controllo da usare tra poco)
         String PROG_ID = request.getParameter("PROG_ID");       //(il codice dell'oggetto, nel nostro esempio mi pare "pagamentoCalcolatore"
 
-        SellaRicevutaDiPagamentoCriteria criteria= new SellaRicevutaDiPagamentoCriteria();
+        SellaRicevutaDiPagamentoCriteria criteria = new SellaRicevutaDiPagamentoCriteria();
         criteria.setOrderId(ORDER_ID);
 
-        SellaRicevutaDiPagamento ricevuta= azzeroCO2Register.getSellaRicevutaDiPagamento(criteria);
+        SellaRicevutaDiPagamento ricevuta = azzeroCO2Register.getSellaRicevutaDiPagamento(criteria);
+         if (ricevuta != null) {
+            ricevuta.setTRANSACTION_ID(TRANSACTION_ID);
+            ricevuta.setCOD_AUT(COD_AUT);
+            try {
+                MessageDigest algorithm = MessageDigest.getInstance("MD5");
+                algorithm.reset();
 
-        ricevuta.setTRANSACTION_ID(TRANSACTION_ID);
-        ricevuta.setCOD_AUT(COD_AUT);
+                String controllo = TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key;
+                algorithm.update(controllo.toLowerCase().getBytes());
 
+                if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toLowerCase())) {
+                     //BISOGNA SCRIVER ESITO  OK TUTTO BENE SU DB
+                } else {
+                    // MEN IN THE MIDDEL STANNO PROVANDO UN ATTACCO....
 
+                }
+            } catch (NoSuchAlgorithmException e) {
+                  e.printStackTrace();
+            }
+        }
     }
 }

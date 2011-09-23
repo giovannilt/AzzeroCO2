@@ -7,7 +7,7 @@
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
     <display-name>AzzeroCO2</display-name>
-    <!-- Default page to serve -->
+    <!-- Default page to server -->
     <welcome-file-list>
         <welcome-file>azzeroCO2.html</welcome-file>
     </welcome-file-list>
@@ -24,17 +24,29 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>rispostaBancaServlet</servlet-name>
-        <servlet-class>it.agilis.mens.azzeroCO2.server.services.RispostaBancaServiceImpl</servlet-class>
+        <display-name>RispostaBancaKO</display-name>
+        <servlet-name>rispostaBancaServletOK</servlet-name>
+        <servlet-class>it.agilis.mens.azzeroCO2.server.services.RispostaBancaServiceOK</servlet-class>
+        <load-on-startup>0</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>rispostaBancaServlet</servlet-name>
-        <url-pattern>/azzeroCO2/rispostaBanca</url-pattern>
+        <servlet-name>rispostaBancaServletOK</servlet-name>
+        <url-pattern>/azzeroCO2/rispostaBancaOK</url-pattern>
+    </servlet-mapping>
+
+     <servlet>
+        <servlet-name>rispostaBancaServletKO</servlet-name>
+        <servlet-class>it.agilis.mens.azzeroCO2.server.services.RispostaBancaServiceKO</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>rispostaBancaServletKO</servlet-name>
+        <url-pattern>/azzeroCO2/rispostaBancaKO</url-pattern>
     </servlet-mapping>
 
     <session-config>
-        <session-timeout>120</session-timeout>
+        <session-timeout>60</session-timeout>
     </session-config>
 
     <!--<filter>

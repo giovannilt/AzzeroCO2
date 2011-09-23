@@ -15,7 +15,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class PagamentoModel extends BaseModelData {
-    private final String key = "8C4796853CD664B2F6AC00C13B268108";
+    public static final String key = "8C4796853CD664B2F6AC00C13B268108";
 
     public PagamentoModel(String importo) {
 
