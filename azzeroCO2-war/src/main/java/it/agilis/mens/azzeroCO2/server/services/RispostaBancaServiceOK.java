@@ -42,7 +42,7 @@ public class RispostaBancaServiceOK extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String TRANSACTION_ID = request.getParameter("TRANSACTION_ID");//(id della transazione fornito dalla banca)
-        String MERCHANT_ID = request.getParameter("MERCHANT_ID");     //(id del merchant, dove il merchant è AzzeroCO2 e l'id è sempre 396870600001
+        String MERCHANT_ID = request.getParameter("MERCHANT_ID");     //(id del merchant, dove il merchant  AzzeroCO2 e l'id  sempre 396870600001
         String ORDER_ID = request.getParameter("ORDER_ID");          //(id dell'ordine)
         String COD_AUT = request.getParameter("COD_AUT");           //(codice di autorizzazione fornito dalla banca)
         String IMPORTO = request.getParameter("IMPORTO");          //
@@ -50,28 +50,30 @@ public class RispostaBancaServiceOK extends HttpServlet {
         String MAC = request.getParameter("MAC");                //(codice di controllo da usare tra poco)
         String PROG_ID = request.getParameter("PROG_ID");       //(il codice dell'oggetto, nel nostro esempio mi pare "pagamentoCalcolatore"
 
-        SellaRicevutaDiPagamentoCriteria criteria = new SellaRicevutaDiPagamentoCriteria();
-        criteria.setOrderId(ORDER_ID);
+        if (ORDER_ID != null && ORDER_ID.length() > 0) {
+            SellaRicevutaDiPagamentoCriteria criteria = new SellaRicevutaDiPagamentoCriteria();
+            criteria.setOrderId(ORDER_ID);
 
-        SellaRicevutaDiPagamento ricevuta = azzeroCO2Register.getSellaRicevutaDiPagamento(criteria);
-         if (ricevuta != null) {
-            ricevuta.setTRANSACTION_ID(TRANSACTION_ID);
-            ricevuta.setCOD_AUT(COD_AUT);
-            try {
-                MessageDigest algorithm = MessageDigest.getInstance("MD5");
-                algorithm.reset();
+            SellaRicevutaDiPagamento ricevuta = azzeroCO2Register.getSellaRicevutaDiPagamento(criteria);
+            if (ricevuta != null) {
+                ricevuta.setTRANSACTION_ID(TRANSACTION_ID);
+                ricevuta.setCOD_AUT(COD_AUT);
+                try {
+                    MessageDigest algorithm = MessageDigest.getInstance("MD5");
+                    algorithm.reset();
 
-                String controllo = TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key;
-                algorithm.update(controllo.toLowerCase().getBytes());
+                    String controllo = TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key;
+                    algorithm.update(controllo.toLowerCase().getBytes());
 
-                if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toLowerCase())) {
-                     //BISOGNA SCRIVER ESITO  OK TUTTO BENE SU DB
-                } else {
-                    // MEN IN THE MIDDEL STANNO PROVANDO UN ATTACCO....
+                    if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toLowerCase())) {
+                        //BISOGNA SCRIVER ESITO  OK TUTTO BENE SU DB
+                    } else {
+                        // MEN IN THE MIDDEL STANNO PROVANDO UN ATTACCO....
 
+                    }
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
                 }
-            } catch (NoSuchAlgorithmException e) {
-                  e.printStackTrace();
             }
         }
     }

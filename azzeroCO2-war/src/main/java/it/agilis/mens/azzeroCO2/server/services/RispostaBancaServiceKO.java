@@ -42,7 +42,7 @@ public class RispostaBancaServiceKO extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String TRANSACTION_ID = request.getParameter("TRANSACTION_ID");//(id della transazione fornito dalla banca)
-        String MERCHANT_ID = request.getParameter("MERCHANT_ID");     //(id del merchant, dove il merchant è AzzeroCO2 e l'id è sempre 396870600001
+        String MERCHANT_ID = request.getParameter("MERCHANT_ID");     //(id del merchant, dove il merchant  AzzeroCO2 e l'id  sempre 396870600001
         String ORDER_ID = request.getParameter("ORDER_ID");          //(id dell'ordine)
         String COD_AUT = request.getParameter("COD_AUT");           //(codice di autorizzazione fornito dalla banca)
         String IMPORTO = request.getParameter("IMPORTO");          //
