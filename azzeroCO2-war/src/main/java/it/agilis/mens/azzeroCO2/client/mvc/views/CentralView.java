@@ -251,7 +251,7 @@ public class CentralView extends View {
                 rigo.add(label, new RowData(0.3, 1, new Margins(4, 1, 4, 1)));
                 rigo.add(password, new RowData(0.7, 1, new Margins(4, 1,4, 1)));
 
-                Button btn = new Button("Submit");
+                Button btn = new Button("Invia");
                 btn.addSelectionListener(new SelectionListener<ButtonEvent>() {
                     @Override
                     public void componentSelected(ButtonEvent ce) {
@@ -278,7 +278,7 @@ public class CentralView extends View {
                 Image azzeroCO2Stemp = new Image(AzzeroCO2Resources.INSTANCE.azzeroCO2Stemp());
                 azzeroCO2Stemp.setAltText("AzzeroCO2");
 
-                compensazione.add(testo, new VBoxLayoutData(new Margins(1, 1, 1, 1)));
+                compensazione.add(testo, new VBoxLayoutData(new Margins(2, 2, 2, 2)));
                 compensazione.add(azzeroCO2Stemp, new VBoxLayoutData(new Margins(0, 0, 0, 0)));
                 c.add(compensazione, new RowData(1, 0.7, new Margins(1, 1, 1, 1)));
             }

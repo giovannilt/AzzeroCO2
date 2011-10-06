@@ -39,6 +39,8 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     private final FormPanel panel = createGroupForm();
     private final FormBinding formBindings = new FormBinding(panel, true);
 
+
+    @SuppressWarnings("rawtypes")
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
@@ -63,7 +65,6 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         cpEst.setFrame(false);
         cpEst.setHeading("Manifesti, pieghevoli, fogli");
         cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-
         cpEst.add(textContent, new RowData(1, .25, new Margins(0, 0, 0, 0)));
         cpEst.add(grid, new RowData(1, .75, new Margins(0, 0, 0, 0)));
         cpEst.setBottomComponent(toolBar);
@@ -71,12 +72,13 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
 
         cp.add(cpEst, new RowData(.35, .98));
         cp.add(panel, new RowData(.65, 1));
+        panel.setHeading(manifestiPieghevoliFogliModel.getModels().get(0).getCategoria());
 
         formBindings.setStore(grid.getStore());
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,
-                new Listener<SelectionChangedEvent<PubblicazioniRilegateModel>>() {
-                    public void handleEvent(SelectionChangedEvent<PubblicazioniRilegateModel> be) {
+                new Listener<SelectionChangedEvent<ManifestiPieghevoliFogliModel>>() {
+                    public void handleEvent(SelectionChangedEvent<ManifestiPieghevoliFogliModel> be) {
                         if (be.getSelection().size() > 0) {
                             formBindings.bind(be.getSelection().get(0));
                             panel.setHeading(be.getSelection().get(0).getCategoria());
@@ -224,7 +226,6 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         text.setAllowBlank(false);
         column.setEditor(new CellEditor(text));
         configs.add(column);
-
 
         column = new ColumnConfig();
         column.setRowHeader(false);

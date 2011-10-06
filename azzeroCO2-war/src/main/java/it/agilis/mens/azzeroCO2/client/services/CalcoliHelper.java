@@ -28,6 +28,7 @@ public class CalcoliHelper {
                 model = new RiepilogoModel();
                 model.setDettagli("Energia");
                 model.setOggetto("Energia");
+                model.setIndex(1);
                 store.add(model);
             }
         }
@@ -42,14 +43,16 @@ public class CalcoliHelper {
             if (!string.equalsIgnoreCase("Trasporto Persone <br>")) {
                 model.setDettagli("Trasporto Persone");
                 model.setOggetto(string);
+                model.setIndex(2);
                 store.add(model);
             }
         }
         if (eventoModel != null && eventoModel.getNottiModel() != null) {
             if (eventoModel.getNottiModel().getNotti() > 0) {
                 model = new RiepilogoModel();
-                model.setDettagli("Notti");
-                model.setOggetto("Notti");
+                model.setDettagli("Pernottamento / Notti");
+                model.setOggetto("Pernottamento / Notti");
+                model.setIndex(3);
                 store.add(model);
             }
         }
@@ -59,6 +62,7 @@ public class CalcoliHelper {
                 model = new RiepilogoModel();
                 model.setDettagli("Trasporto Merci");
                 model.setOggetto("Trasporto Merci");
+                model.setIndex(4);
                 store.add(model);
             }
         }
@@ -73,6 +77,7 @@ public class CalcoliHelper {
             if (!string.equalsIgnoreCase("Pubblicazioni Rilegate <br>")) {
                 model.setDettagli("Pubblicazioni Rilegate");
                 model.setOggetto(string);
+                model.setIndex(5);
                 store.add(model);
             }
         }
@@ -88,6 +93,7 @@ public class CalcoliHelper {
             if (!manifesti.equalsIgnoreCase("Manifesti Pieghevoli <br>")) {
                 model.setDettagli("Manifesti Pieghevoli");
                 model.setOggetto(manifesti);
+                model.setIndex(6);
                 store.add(model);
             }
         }
@@ -106,21 +112,32 @@ public class CalcoliHelper {
                 store.add(model);
             }
         }
+        List<RiepilogoModel> trasportoPersone = getTrasportoPersone(eventoModel.getTrasportoPersoneModel());
+        if (trasportoPersone != null) {
+            store.addAll(trasportoPersone);
+        }
         if (eventoModel != null && eventoModel.getNottiModel() != null) {
             model = getNotti(eventoModel.getNottiModel());
             if (model != null) {
                 store.add(model);
             }
         }
-        store.addAll(getPubblNonRil(eventoModel.getManifestiPieghevoliFogliModel()));
-        store.addAll(getPubblRil(eventoModel.getPubblicazioniRilegateModel()));
-
-        store.addAll(getTrasportoPersone(eventoModel.getTrasportoPersoneModel()));
 
         model = getTrasportoMerci(eventoModel.getTrasportoMerciModel());
         if (model != null) {
             store.add(model);
         }
+        List<RiepilogoModel> pubblRil = getPubblRil(eventoModel.getPubblicazioniRilegateModel());
+
+        if (pubblRil != null) {
+            store.addAll(pubblRil);
+        }
+
+        List<RiepilogoModel> pubblNonRil = getPubblNonRil(eventoModel.getManifestiPieghevoliFogliModel());
+        if (pubblNonRil != null) {
+            store.addAll(pubblNonRil);
+        }
+
 
         return store;
     }
@@ -334,7 +351,6 @@ public class CalcoliHelper {
         }
         return _return;
     }
-
 
     private static RiepilogoModel getTrasportoMerci(TrasportoMerciModel trasportoMerciModel) {
         RiepilogoModel traspMerci = new RiepilogoModel();

@@ -71,6 +71,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
         cp.add(cpEst, new RowData(.35, .98));
         cp.add(panel, new RowData(.65, 1));
+        panel.setHeading(pubblicazioniRilegateModel.getModels().get(0).getCategoria());
 
         formBindings.setStore(grid.getStore());
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);

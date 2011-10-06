@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -27,6 +28,23 @@ public class RispostaBancaServiceOK extends HttpServlet {
     @Qualifier("azzeroCO2Register")
     private AzzeroCO2Register azzeroCO2Register;
 
+
+    private static final String PAGE_TOP = ""
+      + "<html>"
+      + "<head>"
+      + "<title>AzzeroCO2</title>"
+      + "</head>"
+      + "<body>"
+      + "<h3>AzzeroCO2</h3>"
+      + "<table>";
+
+  private static final String PAGE_BOTTOM = ""
+      + "</table>"
+      + "</body>"
+      + "</html>"
+  ;
+
+
     public AzzeroCO2Register getAzzeroCO2Register() {
         return azzeroCO2Register;
     }
@@ -36,7 +54,7 @@ public class RispostaBancaServiceOK extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+         doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,6 +67,8 @@ public class RispostaBancaServiceOK extends HttpServlet {
         String DIVISA = request.getParameter("DIVISA");           //(nel nostro caso "EUR")
         String MAC = request.getParameter("MAC");                //(codice di controllo da usare tra poco)
         String PROG_ID = request.getParameter("PROG_ID");       //(il codice dell'oggetto, nel nostro esempio mi pare "pagamentoCalcolatore"
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
 
         if (ORDER_ID != null && ORDER_ID.length() > 0) {
             SellaRicevutaDiPagamentoCriteria criteria = new SellaRicevutaDiPagamentoCriteria();
@@ -75,6 +95,10 @@ public class RispostaBancaServiceOK extends HttpServlet {
                     e.printStackTrace();
                 }
             }
+        } else  {
+
+            out.println(PAGE_TOP+"<tr><td>Errore nella ricezione dei dati.</td></tr>"+PAGE_BOTTOM);
+
         }
     }
 }

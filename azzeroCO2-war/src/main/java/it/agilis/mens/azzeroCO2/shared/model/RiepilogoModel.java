@@ -11,7 +11,13 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
  */
 public class RiepilogoModel extends BaseModelData {
 
+   public int getIndex() {
+       return (Integer) get("index");
+   }
 
+    public void setIndex(int index){
+        set("index", index);
+    }
 
     public String getOggetto() {
         return get("oggetto");

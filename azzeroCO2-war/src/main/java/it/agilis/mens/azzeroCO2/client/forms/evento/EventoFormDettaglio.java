@@ -4,10 +4,7 @@ import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.form.DateField;
-import com.extjs.gxt.ui.client.widget.form.FormPanel;
-import com.extjs.gxt.ui.client.widget.form.TextArea;
-import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
@@ -69,6 +66,7 @@ public class EventoFormDettaglio extends LayoutContainer {
 
         DateField dataInizio = new DateField();
         dataInizio.setFieldLabel("Data inizio");
+        dataInizio.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
         dataInizio.setName("inizio");
         left.add(dataInizio);
 
@@ -91,6 +89,7 @@ public class EventoFormDettaglio extends LayoutContainer {
 
         DateField dataFine = new DateField();
         dataFine.setFieldLabel("Data fine");
+        dataFine.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
         dataFine.setName("fine");
         right.add(dataFine);
 

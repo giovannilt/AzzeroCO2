@@ -64,13 +64,14 @@ public class EventoFormRiepilogo extends LayoutContainer {
         final NumberFormat number = NumberFormat.getFormat("0.00");
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("OK", "", 20);
+        ColumnConfig column = new ColumnConfig("index", "", 20);
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
                 return new Image(AzzeroCO2Resources.INSTANCE.checkIcon());
             }
         });
+        column.setSortable(true);
         configs.add(column);
         column = new ColumnConfig("oggetto", "Oggetto", 150);
         configs.add(column);
@@ -111,6 +112,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
         grid.setBorders(true);
         //      grid.setAutoHeight(true);
         grid.setHeight(350);
+
         return grid;
     }
 
