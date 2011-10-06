@@ -64,6 +64,8 @@ public class EventoSouth extends LayoutContainer {
         rigthText.setStyleAttribute("text-align", "right");
         rigthText.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
         leftText.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+        leftText.setStyleAttribute("font-size","14px");
+        rigthText.setStyleAttribute("font-size","14px");
 
         c.add(rigthText, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
 
