@@ -211,7 +211,7 @@ public class Utils {
         return _return;
     }
 
-    public static Ordine getEvento( DettaglioModel dettaglioModel)  {
+    public static Ordine getOrdine( DettaglioModel dettaglioModel)  {
         Ordine o= new Ordine();
 
 
