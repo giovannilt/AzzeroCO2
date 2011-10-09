@@ -209,10 +209,10 @@ public class Utils {
 
     public static Ordine getOrdine(DettaglioModel dettaglioModel) {
         Ordine o = new Ordine();
-        try{
+        try {
             o.setId(dettaglioModel.getOrdineId());
-        }catch(Exception e){
-         //   e.printStackTrace();
+        } catch (Exception e) {
+            //   e.printStackTrace();
         }
 
         Evento e = new Evento();
@@ -336,10 +336,136 @@ public class Utils {
         return o;
     }
 
-    public static DettaglioModel getDettaglioModel(Ordine ordine) {
-        DettaglioModel dm= new DettaglioModel();
 
+    public static DettaglioModel getDettaglioModel(Ordine o) {
+        DettaglioModel dm = new DettaglioModel();
+
+        dm.setOrdineId(o.getId());
+
+        dm.setId(o.getEvento().getId());
+        dm.setNome(o.getEvento().getNome());
+        dm.setDove(o.getEvento().getDove());
+        dm.setInizio(o.getEvento().getInizio());
+        dm.setFine(o.getEvento().getFine());
+        dm.setNote(o.getEvento().getNote());
+
+        EnergiaModel em = new EnergiaModel();
+        // CHECK id of EMM
+        em.setEnergiaElettrica(o.getEvento().getEnergiaElettrica());
+        em.setGasMetano(o.getEvento().getGas());
+        em.setGasolio(o.getEvento().getGasolio());
+
+        NottiModel notti = new NottiModel();
+        notti.setNotti(o.getEvento().getPernottamenti());
+        dm.setNottiModel(notti);
+
+        
+            TrasportoMerciModel tm = new TrasportoMerciModel();
+            tm.setId(o.getTrasportoMerci().getId());
+            tm.setFurgoneKm30(o.getTrasportoMerci().getFurgone30());
+            tm.setFurgoneKm150(o.getTrasportoMerci().getFurgone150());
+            tm.setFurgoneKm1500(o.getTrasportoMerci().getFurgone1500());
+            tm.setFurgoneKm500(o.getTrasportoMerci().getFurgone500());
+            tm.setFurgoneKm9000(o.getTrasportoMerci().getFurgone9000());
+            tm.setTirKm30(o.getTrasportoMerci().getTir30());
+            tm.setTirKm150(o.getTrasportoMerci().getTir150());
+            tm.setTirKm1500(o.getTrasportoMerci().getTir1500());
+            tm.setTirKm500(o.getTrasportoMerci().getTir500());
+            tm.setTirKm9000(o.getTrasportoMerci().getTir9000());
+            tm.setTrenoKm150(o.getTrasportoMerci().getTreno150());
+            tm.setTrenoKm1500(o.getTrasportoMerci().getTreno1500());
+            tm.setTrenoKm500(o.getTrasportoMerci().getTreno500());
+            tm.setTrenoKm9000(o.getTrasportoMerci().getTreno9000());
+            tm.setNaveKm1500(o.getTrasportoMerci().getNave1500());
+            tm.setNaveKm500(o.getTrasportoMerci().getNave500());
+            tm.setNaveKm9000(o.getTrasportoMerci().getNave9000());
+            tm.setAereoKm1500(o.getTrasportoMerci().getAereo1500());
+            tm.setAereoKm9000(o.getTrasportoMerci().getAereo9000());
+            
+        dm.setTrasportoMerciModel(tm);
+        
+
+            List<TrasportoPersoneModel> tpmList = new ArrayList<TrasportoPersoneModel>();
+            for (TrasportoPersone tpm : o.getTrasportoPersone()) {
+                TrasportoPersoneModel tp = new TrasportoPersoneModel();
+                tp.setId(tpm.getId());
+                tp.setAereoKm1000(tpm.getAereo1000());
+                tp.setAereoKm3000(tpm.getAereo3000());
+                tp.setAereoKm9000(tpm.getAereo9000());
+                tp.setAutoKm60(tpm.getAuto60());
+                tp.setAutoKm300(tpm.getAuto300());
+                tp.setAutoKm1000(tpm.getAuto1000());
+                tp.setAutoKm3000(tpm.getAuto3000());
+                tp.setAutoKm9000(tpm.getAuto9000());
+                tp.setBusKm60(tpm.getBus60());
+                tp.setBusKm300(tpm.getBus300());
+                tp.setBusKm1000(tpm.getBus1000());
+                tp.setBusKm3000(tpm.getBus3000());
+                tp.setBusKm9000(tpm.getBus9000());
+                tp.setMotoKm60(tpm.getMoto60());
+                tp.setMotoKm300(tpm.getMoto300());
+                tp.setTrenoKm60(tpm.getTreno60());
+                tp.setTrenoKm300(tpm.getTreno300());
+                tp.setTrenoKm1000(tpm.getTreno300());
+                tp.setTrenoKm1000(tpm.getTreno1000());
+                tp.setTreno3000(tpm.getTreno3000());
+                tp.setTrenoKm9000(tpm.getTreno9000());
+                tp.setCategoria(tpm.getCategoria());
+                tpmList.add(tp);
+            }
+
+        dm.setTrasportoPersoneModel(tpmList);
+
+
+        if (dettaglioModel.getPubblicazioniRilegateModel() != null && dettaglioModel.getPubblicazioniRilegateModel().size() > 0) {
+            List<Pubblicazione> pubblicazioniRilegateList = new ArrayList<Pubblicazione>();
+            for (PubblicazioniRilegateModel prm : dettaglioModel.getPubblicazioniRilegateModel()) {
+                Pubblicazione pr = new Pubblicazione();
+                pr.setId(prm.getId());
+                pr.setAltezza(prm.getAltezza());
+                pr.setLarghezza(prm.getLarghezza());
+                TipoDiCarta tp = new TipoDiCarta();
+                tp.setId(prm.getTipoDiCarta().getId());
+                tp.setNome(prm.getTipoDiCarta().getNome());
+                tp.setParametro(prm.getTipoDiCarta().getParametro());
+                pr.setTipoDiCarta(tp);
+                pr.setGrammatura(prm.getGrammatura());
+                pr.setPagine(new Long(prm.getNumeroDiPagine()));
+                pr.setTiratura(new Long(prm.getTiratura()));
+                tp = new TipoDiCarta();
+                tp.setId(prm.getTipoDiCartaCopertina().getId());
+                tp.setNome(prm.getTipoDiCartaCopertina().getNome());
+                tp.setParametro(prm.getTipoDiCartaCopertina().getParametro());
+                pr.setTipoDiCartaCopertina(tp);
+                pr.setGrammaturaCopertina(prm.getGrammaturaCopertina());
+                pr.setCategoria(prm.getCategoria());
+                pr.setRilegato(true);
+                pubblicazioniRilegateList.add(pr);
+            }
+            o.setPubblicazioni(pubblicazioniRilegateList);
+        }
+        if (dettaglioModel.getManifestiPieghevoliFogliModel() != null && dettaglioModel.getManifestiPieghevoliFogliModel().size() > 0) {
+            List<Pubblicazione> pubblicazioniList = new ArrayList<Pubblicazione>();
+            for (ManifestiPieghevoliFogliModel pnrm : dettaglioModel.getManifestiPieghevoliFogliModel()) {
+                Pubblicazione pnr = new Pubblicazione();
+                pnr.setId(pnrm.getId());
+                pnr.setAltezza(pnrm.getAltezza());
+                pnr.setLarghezza(pnrm.getLarghezza());
+                TipoDiCarta tp = new TipoDiCarta();
+                tp.setId(pnrm.getTipoDiCarta().getId());
+                tp.setNome(pnrm.getTipoDiCarta().getNome());
+                tp.setParametro(pnrm.getTipoDiCarta().getParametro());
+                pnr.setTipoDiCarta(tp);
+                pnr.setGrammatura(pnrm.getGrammatura());
+                pnr.setTiratura(new Long(pnrm.getTiratura()));
+                pnr.setCategoria(pnrm.getCategoria());
+                pnr.setRilegato(false);
+                pubblicazioniList.add(pnr);
+            }
+            o.setPubblicazioni(pubblicazioniList);
+        }
         return dm;
-
     }
+
+
 }
