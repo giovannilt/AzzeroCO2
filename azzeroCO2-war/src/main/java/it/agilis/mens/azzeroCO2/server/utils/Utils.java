@@ -419,7 +419,7 @@ public class Utils {
 
 
         List<Pubblicazione> pubblicazioniRilegateList = new ArrayList<Pubblicazione>();
-        for (PubblicazioniRilegateModel prm : dettaglioModel.getPubblicazioniRilegateModel()) {
+        for (PubblicazioniRilegateModel prm : o.getPubblicazioni()) {
             Pubblicazione pr = new Pubblicazione();
             pr.setId(prm.getId());
             pr.setAltezza(prm.getAltezza());
@@ -428,21 +428,21 @@ public class Utils {
             tp.setId(prm.getTipoDiCarta().getId());
             tp.setNome(prm.getTipoDiCarta().getNome());
             tp.setParametro(prm.getTipoDiCarta().getParametro());
-                pr.setTipoDiCarta(tp);
-                pr.setGrammatura(prm.getGrammatura());
-                pr.setPagine(new Long(prm.getNumeroDiPagine()));
-                pr.setTiratura(new Long(prm.getTiratura()));
-                tp = new TipoDiCarta();
-                tp.setId(prm.getTipoDiCartaCopertina().getId());
-                tp.setNome(prm.getTipoDiCartaCopertina().getNome());
-                tp.setParametro(prm.getTipoDiCartaCopertina().getParametro());
-                pr.setTipoDiCartaCopertina(tp);
-                pr.setGrammaturaCopertina(prm.getGrammaturaCopertina());
-                pr.setCategoria(prm.getCategoria());
-                pr.setRilegato(true);
-                pubblicazioniRilegateList.add(pr);
-            }
-            o.setPubblicazioni(pubblicazioniRilegateList);
+            pr.setTipoDiCarta(tp);
+            pr.setGrammatura(prm.getGrammatura());
+            pr.setPagine(new Long(prm.getNumeroDiPagine()));
+            pr.setTiratura(new Long(prm.getTiratura()));
+            tp = new TipoDiCarta();
+            tp.setId(prm.getTipoDiCartaCopertina().getId());
+            tp.setNome(prm.getTipoDiCartaCopertina().getNome());
+            tp.setParametro(prm.getTipoDiCartaCopertina().getParametro());
+            pr.setTipoDiCartaCopertina(tp);
+            pr.setGrammaturaCopertina(prm.getGrammaturaCopertina());
+            pr.setCategoria(prm.getCategoria());
+            pr.setRilegato(true);
+            pubblicazioniRilegateList.add(pr);
+        }
+        dm.setPubblicazioniRilegateModel(pubblicazioniRilegateList);
 
 
 
