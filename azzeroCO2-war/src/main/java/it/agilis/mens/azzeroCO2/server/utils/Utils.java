@@ -226,6 +226,12 @@ public class Utils {
         o.setEvento(e);
 
 
+        TrasportoMerci tm=new TrasportoMerci();
+        tm.setId=
+
+
+
+
 
         List<TrasportoPersone> trasportoPersoneList= new ArrayList<TrasportoPersone>() ;
 
@@ -309,7 +315,7 @@ public class Utils {
             pnr.setGrammatura(pnrm.getGrammatura());
             pnr.setTiratura(pnrm.getTiratura());
             pnr.setCategoria(pnrm.getCategoria());
-            //TODO pr.setRilegato(false);
+            pnr.setRilegato(false);
 
 
             pubblicazioniRilegateList.add(pr);
