@@ -82,15 +82,15 @@ public class DAOSupport extends HibernateDaoSupport {
         });
     }
 
-    protected void saveObject(final Object entity) throws Exception {
-        runAndLogException(new MyRunnable() {
+    protected Object saveObject(final Object entity) throws Exception {
+        return runAndLogException(new MyRunnable() {
             public Object run(final HibernateTemplate hibernateTemplate)
                     throws Exception {
                 hibernateTemplate.setFlushMode(HibernateAccessor.FLUSH_EAGER);
 
                 hibernateTemplate.saveOrUpdate(entity);
 
-                return null;
+                return entity;
             }
         });
     }

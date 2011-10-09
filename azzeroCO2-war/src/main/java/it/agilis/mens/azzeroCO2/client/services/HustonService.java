@@ -2,6 +2,7 @@ package it.agilis.mens.azzeroCO2.client.services;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import it.agilis.mens.azzeroCO2.core.entity.Ordine;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
@@ -46,6 +47,6 @@ public interface HustonService extends RemoteService {
 
     GitRepositoryStateModel checkGitRevision();
 
-    Boolean saveOrdine(DettaglioModel eventoViewRiepilogo);
+    DettaglioModel saveOrdine(DettaglioModel eventoViewRiepilogo);
 }
 

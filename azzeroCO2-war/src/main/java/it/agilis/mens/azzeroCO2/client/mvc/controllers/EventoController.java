@@ -36,8 +36,6 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.CaricaProgettiDiCompensazione);
         registerEventTypes(EventoEvents.PreviousText);
         registerEventTypes(EventoEvents.NextText);
-
-
     }
 
     @Override
@@ -78,13 +76,14 @@ public class EventoController extends BaseController {
                 Info.display("Warning", "Nome Evento Mancante");
             } else {
                 final DettaglioModel evento=eventoView.getRiepilogo();
-                AsyncCallback<Boolean> dettaglioModel = new AsyncCallback<Boolean>() {
+                AsyncCallback<DettaglioModel> dettaglioModel = new AsyncCallback<DettaglioModel>() {
                     public void onFailure(Throwable caught) {
                         Info.display("Error", "Errore impossibile connettersi al server");
                     }
                     @Override
-                    public void onSuccess(Boolean result) {
-                        if (result != null && result) {
+                    public void onSuccess(DettaglioModel result) {
+                        if (result != null) {
+                            eventoView.setDettaglioModel(result);
                             Info.display("Info", "Evento "+ evento.getNome()+ " salvato con successo.");
                         }
                     }

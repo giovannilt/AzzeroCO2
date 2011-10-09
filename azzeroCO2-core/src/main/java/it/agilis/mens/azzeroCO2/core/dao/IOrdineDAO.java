@@ -16,5 +16,5 @@ public interface IOrdineDAO {
 
     List<Ordine> getListOfOrdini(OrdineCriteria ordineCriteria);
 
-    void save(Ordine o) throws Exception;
+    Ordine save(Ordine o) throws Exception;
 }

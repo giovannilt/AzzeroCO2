@@ -211,14 +211,11 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public Boolean saveOrdine(DettaglioModel evento) {
+    public DettaglioModel saveOrdine(DettaglioModel evento) {
         try {
-            Ordine o= Utils.getOrdine(evento);
-            azzeroCO2Register.saveOrUpdateOrdine(o);
-
-            return true;
+            return Utils.getDettaglioModel(azzeroCO2Register.saveOrUpdateOrdine(Utils.getOrdine(evento)));
         } catch (Exception e){
-           return false;
+           return null;
         }
 
     }

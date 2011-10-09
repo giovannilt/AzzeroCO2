@@ -25,7 +25,7 @@ public class OrdineDAO extends DAOSupport implements IOrdineDAO  {
     }
 
     @Override
-    public void save(Ordine o) throws Exception {
-        saveObject(o);
+    public Ordine save(Ordine o) throws Exception {
+        return (Ordine) saveObject(o);
     }
 }

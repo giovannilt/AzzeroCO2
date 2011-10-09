@@ -158,8 +158,7 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     }
 
     @Override
-    public void saveOrUpdateOrdine(Ordine o) throws Exception {
-        ordineDAO.save(o);
-
+    public Ordine saveOrUpdateOrdine(Ordine o) throws Exception {
+       return ordineDAO.save(o);
     }
 }

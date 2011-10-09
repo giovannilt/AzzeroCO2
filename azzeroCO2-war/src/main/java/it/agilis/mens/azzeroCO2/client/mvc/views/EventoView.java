@@ -149,4 +149,6 @@ public class EventoView extends View {
     }
 
 
+    public void setDettaglioModel(DettaglioModel result) {
+    }
 }

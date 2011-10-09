@@ -336,4 +336,10 @@ public class Utils {
         return o;
     }
 
+    public static DettaglioModel getDettaglioModel(Ordine ordine) {
+        DettaglioModel dm= new DettaglioModel();
+
+        return dm;
+
+    }
 }
