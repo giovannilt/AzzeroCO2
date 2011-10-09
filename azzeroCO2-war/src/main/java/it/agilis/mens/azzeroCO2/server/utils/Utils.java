@@ -15,14 +15,10 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Utils {
 
@@ -213,7 +209,7 @@ public class Utils {
 
     public static Ordine getOrdine( DettaglioModel dettaglioModel)  {
         Ordine o= new Ordine();
-
+        o.setId(dettaglioModel.getOrdineId());
         Evento e =new Evento();
         e.setId(dettaglioModel.getId());
         e.setNome(dettaglioModel.getNome());
@@ -226,9 +222,75 @@ public class Utils {
         e.setGasolio(dettaglioModel.getEnergiaModel().getGasolio());
         e.setPernottamenti(dettaglioModel.getNottiModel().getNotti());
 
-
-
         o.setEvento(e);
+
+        List<TrasportoPersone> trasportoPersoneList= new ArrayList<TrasportoPersone>() ;
+
+        for(TrasportoPersoneModel tpm: dettaglioModel.getTrasportoPersoneModel()){
+            TrasportoPersone tp= new TrasportoPersone();
+            tp.setId(tpm.getId());
+
+            tp.setAereo1000(tpm.getAereoKm1000());
+            tp.setAereo3000(tpm.getAereoKm3000());
+            tp.setAereo9000(tpm.getAereoKm9000());
+            tp.setAuto60(tpm.getAutoKm60());
+            tp.setAuto300(tpm.getAutoKm300());
+            tp.setAuto1000(tpm.getAutoKm1000());
+            tp.setAuto3000(tpm.getAutoKm3000());
+            tp.setAuto9000(tpm.getAutoKm9000());
+            tp.setBus60(tpm.getBusKm60());
+            tp.setBus300(tpm.getBusKm300());
+            tp.setBus1000(tpm.getBusKm1000());
+            tp.setBus3000(tpm.getBusKm3000());
+            tp.setBus9000(tpm.getBusKm9000());
+            tp.setMoto60(tpm.getMotoKm60());
+            tp.setMoto300(tpm.getMotoKm300());
+            tp.setTreno60(tpm.getTrenoKm60());
+            tp.setTreno300(tpm.getTrenoKm300());
+            tp.setTreno1000(tpm.getTrenoKm300());
+            tp.setTreno1000(tpm.getTrenoKm1000());
+            tp.setTreno3000(tpm.getTrenoKm3000());
+            tp.setTreno9000(tpm.getTrenoKm9000());
+            tp.setCategoria(tpm.getCategoria());
+
+
+            trasportoPersoneList.add(tp);
+        }
+
+        o.setTrasportoPersone(trasportoPersoneList);
+
+
+
+
+
+
+        List<Pubblicazione> pubblicazioniRilegateList= new ArrayList<Pubblicazione>() ;
+
+        for(PubblicazioniRilegateModel prm: dettaglioModel.getPubblicazioniRilegateModel()){
+            Pubblicazione pr= new Pubblicazione();
+            pr.setId(prm.getId());
+            pr.setAltezza(prm.getAltezza());
+            pr.setLarghezza(prm.getLarghezza());
+            pr.setTipoDiCarta(prm.getTipoDiCarta());
+            pr.setGrammatura(prm.getGrammatura());
+            pr.setPagine(new Long(prm.getNumeroDiPagine()));
+            pr.setTiratura(prm.getTiratura());
+            pr.setTipoDiCartaCopertina(prm.getTipoDiCartaCopertina());
+            pr.setGrammaturaCopertina(prm.getGrammaturaCopertina());
+            pr.setCategoria(prm.getCategoria());
+            //TODO pr.setRilegato(true);
+
+
+            pubblicazioniRilegateList.add(pr);
+        }
+
+        o.setPubblicazioni(pubblicazioniRilegateList);
+
+
+
+
+
+
 
 
         return o;
