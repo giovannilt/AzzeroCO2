@@ -253,8 +253,7 @@ public class Utils {
         tm.setAereo1500(dettaglioModel.getTrasportoMerciModel().getAereoKm1500());
         tm.setAereo9000(dettaglioModel.getTrasportoMerciModel().getAereoKm9000());
 
-
-
+        o.setTrasportoMerci(tm);
 
         List<TrasportoPersone> trasportoPersoneList= new ArrayList<TrasportoPersone>() ;
 
@@ -323,10 +322,6 @@ public class Utils {
         }
 
         o.setPubblicazioni(pubblicazioniRilegateList);
-
-
-
-
         List<Pubblicazione> pubblicazioniList= new ArrayList<Pubblicazione>() ;
 
         for(ManifestiPieghevoliFogliModel pnrm: dettaglioModel.getManifestiPieghevoliFogliModel()){
@@ -334,14 +329,19 @@ public class Utils {
             pnr.setId(pnrm.getId());
             pnr.setAltezza(pnrm.getAltezza());
             pnr.setLarghezza(pnrm.getLarghezza());
-            pnr.setTipoDiCarta(pnrm.getTipoDiCarta());
+
+            TipoDiCarta tp= new TipoDiCarta();
+            tp.setId(pnrm.getTipoDiCarta().getId());
+            tp.setNome(pnrm.getTipoDiCarta().getNome());
+            tp.setParametro(pnrm.getTipoDiCarta().getParametro());
+
+            pnr.setTipoDiCarta(tp);
             pnr.setGrammatura(pnrm.getGrammatura());
-            pnr.setTiratura(pnrm.getTiratura());
+            pnr.setTiratura(new Long(pnrm.getTiratura()));
             pnr.setCategoria(pnrm.getCategoria());
             pnr.setRilegato(false);
 
-
-            pubblicazioniRilegateList.add(pr);
+            pubblicazioniList.add(pnr);
         }
 
         o.setPubblicazioni(pubblicazioniRilegateList);
