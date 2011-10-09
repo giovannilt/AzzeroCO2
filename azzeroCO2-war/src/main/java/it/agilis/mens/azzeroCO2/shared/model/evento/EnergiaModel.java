@@ -11,10 +11,6 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  */
 public class EnergiaModel extends BaseModel {
 
-    private int energiaElettrica;
-    private int gasMetano;
-    private int gasolio;
-
      public long getId()  {
         return (Long) get("id");
     }
