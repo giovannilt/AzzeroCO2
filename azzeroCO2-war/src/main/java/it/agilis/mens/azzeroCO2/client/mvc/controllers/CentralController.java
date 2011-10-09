@@ -30,6 +30,7 @@ public class CentralController extends BaseController {
         registerEventTypes(CentralEvents.AmministrazioneReady);
         registerEventTypes(AzzeroCO2Events.LoggedIn);
         registerEventTypes(CentralEvents.ShowPanel);
+
     }
 
     @Override
