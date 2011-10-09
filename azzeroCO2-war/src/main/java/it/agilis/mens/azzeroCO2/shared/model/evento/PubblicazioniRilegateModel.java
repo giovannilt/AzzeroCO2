@@ -11,6 +11,14 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  */
 public class PubblicazioniRilegateModel extends BaseModel {
 
+
+     public long getId()  {
+        return (Long) get("id");
+    }
+    public void setId(Long id){
+        set("id",id);
+    }
+
     public String getCategoria() {
         return get("categoria");
     }

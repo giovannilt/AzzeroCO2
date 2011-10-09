@@ -15,6 +15,13 @@ public class EnergiaModel extends BaseModel {
     private int gasMetano;
     private int gasolio;
 
+     public long getId()  {
+        return (Long) get("id");
+    }
+    public void setId(Long id){
+        set("id",id);
+    }
+
     public void setEnergiaElettrica(Double energiaElettrica) {
         set("energiaElettrica", energiaElettrica);
     }

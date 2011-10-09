@@ -10,6 +10,12 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  * To change this template use File | Settings | File Templates.
  */
 public class TrasportoMerciModel extends BaseModel {
+     public long getId()  {
+        return (Long) get("id");
+    }
+    public void setId(Long id){
+        set("id",id);
+    }
 
     public double getFurgoneKm30() {
         return get("furgoneKm30") == null ? 0 : new Double(get("furgoneKm30").toString());

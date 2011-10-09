@@ -21,6 +21,12 @@ public class DettaglioModel extends BaseModel {
     private List<PubblicazioniRilegateModel> pubblicazioniRilegateModel;
     private List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel;
 
+    public long getId()  {
+        return (Long) get("id");
+    }
+    public void setId(Long id){
+        set("id",id);
+    }
 
     public String getNome() {
         return (String) get("nome");

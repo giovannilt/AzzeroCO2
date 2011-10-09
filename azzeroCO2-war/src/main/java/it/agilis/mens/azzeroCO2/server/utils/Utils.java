@@ -15,6 +15,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
@@ -208,6 +209,15 @@ public class Utils {
          _return.setCommitUserEmail(gitRepoState.getCommitUserEmail());
          _return.setCommitTime(gitRepoState.getCommitTime());
         return _return;
+    }
+
+    public static Ordine getEvento( DettaglioModel dettaglioModel)  {
+        Ordine o= new Ordine();
+
+
+        return o;
+
+
     }
 
 }

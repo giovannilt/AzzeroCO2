@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
@@ -64,7 +65,7 @@ public class EventoController extends BaseController {
                 eventoView.riepilogo(getCoefficientiMAP());
             }
         } else if (event.getType().equals(EventoEvents.CaricaProgettiDiCompensazione)) {
-            if (getProgettiDiCompensazioneList().size()==0) {
+            if (getProgettiDiCompensazioneList().size() == 0) {
                 setProgettiDiCompensazione();
             }
             eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
@@ -72,6 +73,28 @@ public class EventoController extends BaseController {
             setCoefficienti();
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
+        } else if (event.getType().equals(EventoEvents.Save)) {
+            if (eventoView.getRiepilogo().getNome() == null || eventoView.getRiepilogo().getNome().length() == 0) {
+                Info.display("Warning", "Nome Evento Mancante");
+            } else {
+                final DettaglioModel evento=eventoView.getRiepilogo();
+                AsyncCallback<Boolean> dettaglioModel = new AsyncCallback<Boolean>() {
+                    public void onFailure(Throwable caught) {
+                        Info.display("Error", "Errore impossibile connettersi al server");
+                    }
+
+                    @Override
+                    public void onSuccess(Boolean result) {
+                        if (result != null && result) {
+                            Info.display("Info", "Evento "+ evento.getNome()+ " salvato con successo.");
+                        }
+                    }
+
+
+                };
+
+                getHustonService().saveEvento(evento, dettaglioModel);
+            }
         } else {
             forwardToView(eventoView, event);
         }

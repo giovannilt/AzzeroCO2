@@ -11,6 +11,14 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  */
 public class ManifestiPieghevoliFogliModel extends BaseModel {
 
+    public long getId() {
+        return (Long) get("id");
+    }
+
+    public void setId(Long id) {
+        set("id", id);
+    }
+
     public String getCategoria() {
         return get("categoria");
     }
@@ -20,7 +28,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
     }
 
     public double getAltezza() {
-        return get("altezza")== null ? 0 : new Double(get("altezza").toString());
+        return get("altezza") == null ? 0 : new Double(get("altezza").toString());
     }
 
     public void setAltezza(Double altezza) {
@@ -28,7 +36,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
     }
 
     public double getLarghezza() {
-        return get("larghezza")== null ? 0 : new Double(get("larghezza").toString());
+        return get("larghezza") == null ? 0 : new Double(get("larghezza").toString());
     }
 
     public void setLarghezza(Double larghezza) {
@@ -36,7 +44,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
     }
 
     public int getNumeroDiPagine() {
-        return get("numeroDiPagine")== null ? 0 : new Integer(get("numeroDiPagina").toString());
+        return get("numeroDiPagine") == null ? 0 : new Integer(get("numeroDiPagina").toString());
     }
 
     public void setNumeroDiPagine(Integer numeroDiPagine) {
@@ -44,7 +52,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
     }
 
     public int getTiratura() {
-        return get("tiratura")== null ? 0 : new Integer(get("tiratura").toString());
+        return get("tiratura") == null ? 0 : new Integer(get("tiratura").toString());
     }
 
     public void setTiratura(Double tiratura) {
@@ -60,13 +68,14 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
     }
 
     public double getGrammatura() {
-        return get("grammatura")== null ? 0 : new Double(get("grammatura").toString());
+        return get("grammatura") == null ? 0 : new Double(get("grammatura").toString());
     }
 
     public void setGrammatura(double grammatura) {
         set("grammatura", grammatura);
     }
-     public boolean isVoid() {
+
+    public boolean isVoid() {
 
         for (Object value : getProperties().values()) {
             if (value instanceof Double) {

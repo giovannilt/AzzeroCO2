@@ -12,6 +12,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -206,6 +207,17 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     @Override
     public GitRepositoryStateModel checkGitRevision() {
         return Utils.getGitState(gitRepoState);
+    }
+
+    @Override
+    public Boolean saveEvento(DettaglioModel evento) {
+        try {
+
+            return true;
+        } catch (Exception e){
+           return false;
+        }
+
     }
 
 

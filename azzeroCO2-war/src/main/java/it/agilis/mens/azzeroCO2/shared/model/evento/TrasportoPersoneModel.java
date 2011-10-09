@@ -11,6 +11,13 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  */
 public class TrasportoPersoneModel extends BaseModel {
 
+     public long getId()  {
+        return (Long) get("id");
+    }
+    public void setId(Long id){
+        set("id",id);
+    }
+
     public int getAereoKm9000() {
         return get("aereoKm9000") == null ? 0 : new Integer(get("aereoKm9000").toString());
     }

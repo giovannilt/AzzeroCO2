@@ -143,4 +143,10 @@ public class EventoView extends View {
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
         eventoDettaglio.setProgettiDiCompensazione(progettiDiCompensazioneList);
     }
+
+    public DettaglioModel getRiepilogo(){
+          return eventoDettaglio.riepilogo();
+    }
+
+
 }
