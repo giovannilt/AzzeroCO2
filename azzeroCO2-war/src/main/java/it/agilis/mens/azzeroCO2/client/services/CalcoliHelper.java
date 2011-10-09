@@ -518,7 +518,6 @@ public class CalcoliHelper {
 
         for (PubblicazioniRilegateModel prm : pubblRilModel) {
             RiepilogoModel _rm = new RiepilogoModel();
-            //TODO il calcolo della co2 sballa ma non capisco, quello delle pubbl non rilegate funziona
 
             double co2 = 0;
             double co2Copertina = 0;
@@ -549,7 +548,7 @@ public class CalcoliHelper {
             }
             String tiratura = "";
             if (prm.getTiratura() > 0) {
-                tiratura = "Tiratura " + prm.getTiratura();
+                tiratura = "Tiratura " + prm.getTiratura()+"</br>";
                 co2 *= prm.getTiratura();
                 co2Copertina *= prm.getTiratura();
             }
@@ -581,7 +580,7 @@ public class CalcoliHelper {
 
             double co2 = 0;
 
-            _rm.setOggetto("Manifesti, pieghevoli, fogli / " + prm.getCategoria());
+            _rm.setOggetto("Manifesti, pieghevoli, fogli / " + prm.getCategoria() + "</br>");
             String formato = "";
             if (prm.getLarghezza() > 0 && prm.getAltezza() > 0) {
                 formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "</br>";
@@ -605,7 +604,7 @@ public class CalcoliHelper {
             }
             String tiratura = "";
             if (prm.getTiratura() > 0) {
-                tiratura = "Tiratura " + prm.getTiratura();
+                tiratura = "Tiratura " + prm.getTiratura() +"</br>";
                 co2 *= prm.getTiratura();
             }
 
