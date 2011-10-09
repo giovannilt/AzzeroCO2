@@ -28,9 +28,9 @@ public class Evento {
     private String note;
 
     private Integer pernottamenti;
-    private Integer energiaElettrica;
-    private Integer gasolio;
-    private Integer gas;
+    private Double energiaElettrica;
+    private Double gasolio;
+    private Double gas;
 
     @OneToOne
     private Ordine ordine;
@@ -99,27 +99,27 @@ public class Evento {
         this.pernottamenti = pernottamenti;
     }
 
-    public Integer getEnergiaElettrica() {
+    public Double getEnergiaElettrica() {
         return energiaElettrica;
     }
 
-    public void setEnergiaElettrica(Integer energiaElettrica) {
+    public void setEnergiaElettrica(Double energiaElettrica) {
         this.energiaElettrica = energiaElettrica;
     }
 
-    public Integer getGasolio() {
+    public Double getGasolio() {
         return gasolio;
     }
 
-    public void setGasolio(Integer gasolio) {
+    public void setGasolio(Double gasolio) {
         this.gasolio = gasolio;
     }
 
-    public Integer getGas() {
+    public Double getGas() {
         return gas;
     }
 
-    public void setGas(Integer gas) {
+    public void setGas(Double gas) {
         this.gas = gas;
     }
 
