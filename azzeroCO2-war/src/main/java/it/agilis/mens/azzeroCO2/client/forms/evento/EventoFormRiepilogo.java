@@ -16,7 +16,6 @@ import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,9 +134,12 @@ public class EventoFormRiepilogo extends LayoutContainer {
          for (RiepilogoModel r : store.getModels()) {
             t += r.getKgCO2();
         }
-        DecimalFormat df = new DecimalFormat("#.##");
 
-        totale.setText(df.format(t));
+           final NumberFormat number = NumberFormat.getFormat("0.00");
+
+
+
+        totale.setText(number.format(t));
     }
 
 

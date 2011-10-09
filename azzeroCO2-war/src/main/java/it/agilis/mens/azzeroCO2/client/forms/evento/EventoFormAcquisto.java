@@ -19,12 +19,12 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.*;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -275,8 +275,8 @@ public class EventoFormAcquisto extends LayoutContainer {
             totale += r.getKgCO2();
         }
         this.totaleKC02 = totale;
-        DecimalFormat df = new DecimalFormat("#.##");
-        kcO2Evento.setText(df.format(totale));
+        final NumberFormat number = NumberFormat.getFormat("0.00");
+        kcO2Evento.setText(number.format(totale));
         titoloEvento.setText(riepilogo.getNome());
     }
 }
