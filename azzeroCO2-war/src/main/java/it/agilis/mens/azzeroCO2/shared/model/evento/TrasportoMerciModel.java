@@ -93,82 +93,81 @@ public class TrasportoMerciModel extends BaseModel {
         return get("aereoKm9000") == null ? 0 : new Double(get("aereoKm9000").toString());
     }
     
-      public void getFurgoneKm30(double val) {
+      public void setFurgoneKm30(double val) {
         set("furgoneKm30", val);
     }
 
-    public void getFurgoneKm150(double val) {
+    public void setFurgoneKm150(double val) {
         set("furgoneKm150", val);
     }
 
-    public void getFurgoneKm500(double val) {
+    public void setFurgoneKm500(double val) {
         set("furgoneKm500", val);
     }
 
-    public void getFurgoneKm1500(double val) {
+    public void setFurgoneKm1500(double val) {
         set("furgoneKm1500", val);
     }
 
-    public void getFurgoneKm9000(double val) {
+    public void setFurgoneKm9000(double val) {
         set("furgoneKm9000", val);
     }
 
-    public void getTirKm30(double val) {
+    public void setTirKm30(double val) {
         set("tirKm30", val);
     }
 
-    public void getTirKm150(double val) {
+    public void setTirKm150(double val) {
         set("tirKm150", val);
     }
 
-    public void getTirKm500(double val) {
+    public void setTirKm500(double val) {
         set("tirKm500", val);
     }
 
-    public void getTirKm1500(double val) {
+    public void setTirKm1500(double val) {
         set("tirKm1500", val);
     }
 
-    public void getTirKm9000(double val) {
+    public void setTirKm9000(double val) {
         set("tirKm9000", val);
     }
 
-    public void getTrenoKm150(double val) {
+    public void setTrenoKm150(double val) {
         set("trenoKm150", val);
     }
 
-    public void getTrenoKm500(double val) {
+    public void setTrenoKm500(double val) {
         set("trenoKm500", val);
     }
 
-    public void getTrenoKm1500(double val) {
+    public void setTrenoKm1500(double val) {
         set("trenoKm1500", val);
     }
 
-    public void getTrenoKm9000(double val) {
+    public void setTrenoKm9000(double val) {
         set("trenoKm9000", val);
     }
 
-    public void getNaveKm500(double val) {
+    public void setNaveKm500(double val) {
         set("naveKm500", val);
     }
 
-    public void getNaveKm1500(double val) {
+    public void setNaveKm1500(double val) {
         set("naveKm1500", val);
     }
 
-    public void getNaveKm9000(double val) {
+    public void setNaveKm9000(double val) {
         set("naveKm9000", val);
     }
 
-    public void getAereoKm1500(double val) {
+    public void setAereoKm1500(double val) {
         set("aereoKm1500", val);
     }
 
-    public void getAereoKm9000(double val) {
+    public void setAereoKm9000(double val) {
          set("aereoKm9000", val);
-    } 
-    
+    }
 
     public boolean isVoid() {
         for (Object value : getProperties().values()) {
