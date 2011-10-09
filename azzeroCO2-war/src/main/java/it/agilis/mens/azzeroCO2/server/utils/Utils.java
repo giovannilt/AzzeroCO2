@@ -409,7 +409,7 @@ public class Utils {
                 tp.setTrenoKm300(tpm.getTreno300());
                 tp.setTrenoKm1000(tpm.getTreno300());
                 tp.setTrenoKm1000(tpm.getTreno1000());
-                tp.setTreno3000(tpm.getTreno3000());
+                tp.setTrenoKm3000(tpm.getTreno3000());
                 tp.setTrenoKm9000(tpm.getTreno9000());
                 tp.setCategoria(tpm.getCategoria());
                 tpmList.add(tp);
@@ -418,17 +418,16 @@ public class Utils {
         dm.setTrasportoPersoneModel(tpmList);
 
 
-        if (dettaglioModel.getPubblicazioniRilegateModel() != null && dettaglioModel.getPubblicazioniRilegateModel().size() > 0) {
-            List<Pubblicazione> pubblicazioniRilegateList = new ArrayList<Pubblicazione>();
-            for (PubblicazioniRilegateModel prm : dettaglioModel.getPubblicazioniRilegateModel()) {
-                Pubblicazione pr = new Pubblicazione();
-                pr.setId(prm.getId());
-                pr.setAltezza(prm.getAltezza());
-                pr.setLarghezza(prm.getLarghezza());
-                TipoDiCarta tp = new TipoDiCarta();
-                tp.setId(prm.getTipoDiCarta().getId());
-                tp.setNome(prm.getTipoDiCarta().getNome());
-                tp.setParametro(prm.getTipoDiCarta().getParametro());
+        List<Pubblicazione> pubblicazioniRilegateList = new ArrayList<Pubblicazione>();
+        for (PubblicazioniRilegateModel prm : dettaglioModel.getPubblicazioniRilegateModel()) {
+            Pubblicazione pr = new Pubblicazione();
+            pr.setId(prm.getId());
+            pr.setAltezza(prm.getAltezza());
+            pr.setLarghezza(prm.getLarghezza());
+            TipoDiCarta tp = new TipoDiCarta();
+            tp.setId(prm.getTipoDiCarta().getId());
+            tp.setNome(prm.getTipoDiCarta().getNome());
+            tp.setParametro(prm.getTipoDiCarta().getParametro());
                 pr.setTipoDiCarta(tp);
                 pr.setGrammatura(prm.getGrammatura());
                 pr.setPagine(new Long(prm.getNumeroDiPagine()));
@@ -444,7 +443,9 @@ public class Utils {
                 pubblicazioniRilegateList.add(pr);
             }
             o.setPubblicazioni(pubblicazioniRilegateList);
-        }
+
+
+
         if (dettaglioModel.getManifestiPieghevoliFogliModel() != null && dettaglioModel.getManifestiPieghevoliFogliModel().size() > 0) {
             List<Pubblicazione> pubblicazioniList = new ArrayList<Pubblicazione>();
             for (ManifestiPieghevoliFogliModel pnrm : dettaglioModel.getManifestiPieghevoliFogliModel()) {
