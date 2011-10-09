@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.server.services;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import it.agilis.mens.azzeroCO2.client.services.HustonService;
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
+import it.agilis.mens.azzeroCO2.core.entity.Ordine;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
@@ -210,8 +211,10 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public Boolean saveEvento(DettaglioModel evento) {
+    public Boolean saveOrdine(DettaglioModel evento) {
         try {
+            Ordine o= Utils.getOrdine(evento);
+            azzeroCO2Register.saveOrUpdateOrdine(o);
 
             return true;
         } catch (Exception e){

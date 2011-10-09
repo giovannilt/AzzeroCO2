@@ -93,7 +93,7 @@ public class EventoController extends BaseController {
 
                 };
 
-                getHustonService().saveEvento(evento, dettaglioModel);
+                getHustonService().saveOrdine(evento, dettaglioModel);
             }
         } else {
             forwardToView(eventoView, event);

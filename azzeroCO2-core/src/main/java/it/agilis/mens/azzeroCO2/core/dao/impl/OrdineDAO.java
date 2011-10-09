@@ -23,4 +23,9 @@ public class OrdineDAO extends DAOSupport implements IOrdineDAO  {
         return (List<Ordine>) getList(detachedCriteria, true);
 
     }
+
+    @Override
+    public void save(Ordine o) throws Exception {
+        saveObject(o);
+    }
 }

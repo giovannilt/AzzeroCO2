@@ -46,6 +46,6 @@ public interface HustonService extends RemoteService {
 
     GitRepositoryStateModel checkGitRevision();
 
-    Boolean saveEvento(DettaglioModel eventoViewRiepilogo);
+    Boolean saveOrdine(DettaglioModel eventoViewRiepilogo);
 }
 

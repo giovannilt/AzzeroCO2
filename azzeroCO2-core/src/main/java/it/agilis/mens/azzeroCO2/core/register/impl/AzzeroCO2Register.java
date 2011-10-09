@@ -90,17 +90,10 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         return couponDAO;
     }
 
-
-    @Override
-    public List<Ordine> getOrdini(OrdineCriteria ordineCriteria) throws Exception {
-        return ordineDAO.getListOfOrdini(ordineCriteria);
-    }
-
     @Override
     public List<Coupon> getListOfCoupon() throws Exception {
         return couponDAO.getListOfCoupon();
     }
-
 
     @Override
     public void saveCoupon(Coupon coupon) throws Exception {
@@ -112,11 +105,6 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         for (Coupon c : coupons) {
             couponDAO.save(c);
         }
-    }
-
-    @Override
-    public void saveCoefficiente(Coefficiente coefficiente) throws Exception {
-        coefficienteDAO.save(coefficiente);
     }
 
     @Override
@@ -135,37 +123,43 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         return userInfoDAO.findUserInfo(userName);
     }
 
-    /*@Override
-    public List<Grammatura> getGrammatura() throws Exception {
-        return grammaturaDAO.getGrammatura();
-    }
-    */
     @Override
     public List<TipoDiCarta> getTipoDiCarta() throws Exception {
         return tipoDiCartaDAO.getTipoDiCarta();
     }
 
+    @Override
     public List<Coefficiente> getCoefficienti() {
         return coefficienteDAO.getListOfCoefficienti();
     }
 
+    @Override
     public List<ProgettoCompensazione> getListOfProgettoDiCompensazione() {
         return progettoCompensazioneDAO.getListOfProgettoDiCompensazione();
     }
 
+    @Override
     public List<Ordine> getListOfOrdini(UserInfo userInfo) {
         OrdineCriteria ordineCriteria = new OrdineCriteria();
         ordineCriteria.setUserInfo(userInfo);
         return ordineDAO.getListOfOrdini(ordineCriteria);
     }
 
+    @Override
     public void saveProgettiCompensazione(List<ProgettoCompensazione> progettiDiCompensazione) throws Exception {
         for (ProgettoCompensazione p : progettiDiCompensazione) {
             progettoCompensazioneDAO.save(p);
         }
     }
 
+    @Override
     public SellaRicevutaDiPagamento getSellaRicevutaDiPagamento(SellaRicevutaDiPagamentoCriteria criteria) {
         return pagamentoDAO.getPagamento(criteria);
+    }
+
+    @Override
+    public void saveOrUpdateOrdine(Ordine o) throws Exception {
+        ordineDAO.save(o);
+
     }
 }
