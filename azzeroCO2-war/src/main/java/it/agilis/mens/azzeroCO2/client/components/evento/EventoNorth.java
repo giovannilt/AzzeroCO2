@@ -48,7 +48,7 @@ public class EventoNorth extends LayoutContainer {
             @Override
             public void componentSelected(IconButtonEvent ce) {
                 Dispatcher.forwardEvent(EventoEvents.Save, "Save");
-                Info.display("Info", "Evento salvato");
+               // Info.display("Info", "Evento salvato");
             }
         });
         c.add(save, new HBoxLayoutData(new Margins(5, 5, 0, 0)));

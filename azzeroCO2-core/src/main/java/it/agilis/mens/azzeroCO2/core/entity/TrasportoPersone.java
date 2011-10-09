@@ -59,14 +59,6 @@ public class TrasportoPersone {
         this.categoria = categoria;
     }
 
-    public Integer getAuto60() {
-        return auto60;
-    }
-
-    public void setAuto60(Integer auto60) {
-        this.auto60 = auto60;
-    }
-
     public Integer getMoto60() {
         return moto60;
     }
@@ -82,36 +74,6 @@ public class TrasportoPersone {
     public void setMoto300(Integer moto300) {
         this.moto300 = moto300;
     }
-
-
-
-    public Integer getAuto300() {
-        return auto300;
-    }
-
-    public void setAuto300(Integer auto300) {
-        this.auto300 = auto300;
-    }
-
-    public Integer getAuto1000() {
-        return auto1000;
-    }
-
-    public void setAuto1000(Integer auto1000) {
-        this.auto1000 = auto1000;
-    }
-
-    public Integer getAuto3000() {
-        return auto3000;
-    }
-
-    public void setAuto3000(Integer auto3000) {
-        this.auto3000 = auto3000;
-    }
-
-
-
-
 
     public Integer getBus60() {
         return bus60;
@@ -145,7 +107,53 @@ public class TrasportoPersone {
         this.bus3000 = bus3000;
     }
 
+    public Integer getBus9000() {
+        return bus9000;
+    }
 
+    public void setBus9000(Integer bus9000) {
+        this.bus9000 = bus9000;
+    }
+
+    public Integer getAuto60() {
+        return auto60;
+    }
+
+    public void setAuto60(Integer auto60) {
+        this.auto60 = auto60;
+    }
+
+    public Integer getAuto300() {
+        return auto300;
+    }
+
+    public void setAuto300(Integer auto300) {
+        this.auto300 = auto300;
+    }
+
+    public Integer getAuto1000() {
+        return auto1000;
+    }
+
+    public void setAuto1000(Integer auto1000) {
+        this.auto1000 = auto1000;
+    }
+
+    public Integer getAuto3000() {
+        return auto3000;
+    }
+
+    public void setAuto3000(Integer auto3000) {
+        this.auto3000 = auto3000;
+    }
+
+    public Integer getAuto9000() {
+        return auto9000;
+    }
+
+    public void setAuto9000(Integer auto9000) {
+        this.auto9000 = auto9000;
+    }
 
     public Integer getTreno60() {
         return treno60;
@@ -159,7 +167,7 @@ public class TrasportoPersone {
         return treno300;
     }
 
-    public void setTreno10(Integer treno300) {
+    public void setTreno300(Integer treno300) {
         this.treno300 = treno300;
     }
 
@@ -179,7 +187,13 @@ public class TrasportoPersone {
         this.treno3000 = treno3000;
     }
 
+    public Integer getTreno9000() {
+        return treno9000;
+    }
 
+    public void setTreno9000(Integer treno9000) {
+        this.treno9000 = treno9000;
+    }
 
     public Integer getAereo1000() {
         return aereo1000;
@@ -197,30 +211,6 @@ public class TrasportoPersone {
         this.aereo3000 = aereo3000;
     }
 
-
-    public Integer getBus9000() {
-        return bus9000;
-    }
-
-    public void setBus9000(Integer bus9000) {
-        this.bus9000 = bus9000;
-    }
-
-    public Integer getAuto9000() {
-        return auto9000;
-    }
-
-    public void setAuto9000(Integer auto9000) {
-        this.auto9000 = auto9000;
-    }
-
-    public Integer getTreno9000() {
-        return treno9000;
-    }
-
-    public void setTreno9000(Integer treno9000) {
-        this.treno9000 = treno9000;
-    }
     public Integer getAereo9000() {
         return aereo9000;
     }
@@ -229,5 +219,11 @@ public class TrasportoPersone {
         this.aereo9000 = aereo9000;
     }
 
+    public Ordine getOrdine() {
+        return ordine;
+    }
 
+    public void setOrdine(Ordine ordine) {
+        this.ordine = ordine;
+    }
 }

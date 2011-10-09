@@ -6,7 +6,6 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.Html;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
@@ -14,7 +13,6 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
@@ -42,7 +40,7 @@ public class AmministrazioneNorth extends LayoutContainer {
         flex.setFlex(1);
         c.add(new Text(), flex);
 
-        ToolButton save = new ToolButton("x-tool-save");
+      /*  ToolButton save = new ToolButton("x-tool-save");
         save.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
@@ -50,7 +48,7 @@ public class AmministrazioneNorth extends LayoutContainer {
                 Info.display("Info", "Amministrazione salvata");
             }
         });
-        c.add(save, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
+        c.add(save, new HBoxLayoutData(new Margins(0, 5, 0, 0)));*/
 
         ToolButton close = new ToolButton("x-tool-close");
 
