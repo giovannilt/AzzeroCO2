@@ -37,6 +37,9 @@ public class Ordine {
     @OneToMany
     private List<Pubblicazione> pubblicazioni;
 
+    @OneToOne
+    private TrasportoMerci trasportoMerci;
+
     @OneToMany
     private List<TrasportoPersone> trasportoPersone;
 
@@ -150,6 +153,14 @@ public class Ordine {
 
     public void setValoreCompensazione(Double valoreCompensazione) {
         this.valoreCompensazione = valoreCompensazione;
+    }
+
+    public TrasportoMerci getTrasportoMerci() {
+        return trasportoMerci;
+    }
+
+    public void setTrasportoMerci(TrasportoMerci trasportoMerci) {
+        this.trasportoMerci = trasportoMerci;
     }
 }
 
