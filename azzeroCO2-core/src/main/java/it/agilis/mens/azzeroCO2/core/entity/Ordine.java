@@ -31,8 +31,8 @@ public class Ordine {
     @ManyToOne
     private UserInfo utente;
 
-    @OneToMany
-    private List<ProgettoCompensazione> progettoCompensaziones;
+    @OneToOne
+    private ProgettoCompensazione progettoCompensazione;
 
     @OneToMany
     private List<Pubblicazione> pubblicazioni;
@@ -91,12 +91,12 @@ public class Ordine {
         this.utente = utente;
     }
 
-    public List<ProgettoCompensazione> getProgettoCompensaziones() {
-        return progettoCompensaziones;
+    public ProgettoCompensazione getProgettoCompensazione() {
+        return progettoCompensazione;
     }
 
-    public void setProgettoCompensaziones(List<ProgettoCompensazione> progettoCompensaziones) {
-        this.progettoCompensaziones = progettoCompensaziones;
+    public void setProgettoCompensazione(ProgettoCompensazione progettoCompensazione) {
+        this.progettoCompensazione = progettoCompensazione;
     }
 
     public List<Pubblicazione> getPubblicazioni() {
