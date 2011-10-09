@@ -2,19 +2,21 @@ package it.agilis.mens.azzeroCO2.client.forms.evento;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.util.Margins;
+import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.grid.*;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.extjs.gxt.ui.client.widget.layout.RowData;
-import com.extjs.gxt.ui.client.widget.layout.RowLayout;
+import com.extjs.gxt.ui.client.widget.grid.ColumnData;
+import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +30,15 @@ import java.util.List;
 public class EventoFormRiepilogo extends LayoutContainer {
 
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
+    private Text totaleText = new Text("Totale KG/CO2");
+    private Text totale = new Text("0.00");
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        BorderLayout layout = new BorderLayout();
-        setLayout(layout);
+        BorderLayout layout_C = new BorderLayout();
+        setLayout(layout_C);
 
         ContentPanel cp = new ContentPanel();
         cp.setFrame(true);
@@ -45,11 +49,33 @@ public class EventoFormRiepilogo extends LayoutContainer {
         cpEst.setFrame(false);
         cpEst.setHeaderVisible(false);
         cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-        cpEst.add(createGrid(), new RowData(1, 1));
+        cpEst.add(createGrid(), new RowData(1, 0.95));
 
         cp.add(cpEst, new RowData(1, 1));
 
-        cp.setHeading("Riepilogo");
+        LayoutContainer c = new LayoutContainer();
+        c.setHeight(30);
+        HBoxLayout layout = new HBoxLayout();
+        layout.setPadding(new Padding(1));
+        layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        c.setLayout(layout);
+        HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 0, 0, 5));
+        flex.setFlex(1);
+        c.add(totaleText, flex);
+
+        totaleText.setSize(300, 15);
+        totaleText.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+        totaleText.setStyleAttribute("font-size", "14px");
+        totaleText.setStyleAttribute("color", "#D38131");
+        totale.setSize(250, 15);
+        totale.setStyleAttribute("text-align", "right");
+        totale.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+        totale.setStyleAttribute("font-size", "14px");
+        totale.setStyleAttribute("color", "#D38131");
+        c.add(totale, new HBoxLayoutData(new Margins(0, 20, 0, 0)));
+
+
+        cpEst.add(c, new RowData(1, 0.05));
 
         // TODO MIGLIORARE
         cp.setHeight(440);
@@ -91,23 +117,6 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
         ColumnModel cm = new ColumnModel(configs);
 
-        AggregationRowConfig<RiepilogoModel> somma = new AggregationRowConfig<RiepilogoModel>();
-        somma.setHtml("name", "Somma");
-        somma.setSummaryType("kgCO2", SummaryType.SUM);
-        somma.setRenderer("kgCO2", new AggregationRenderer<RiepilogoModel>() {
-            public Object render(Number value, int colIndex, Grid<RiepilogoModel> grid, ListStore<RiepilogoModel> store) {
-                Double v = (Double) value;
-                if (v == null) {
-                    return 0;
-                }
-                return number.format(v);
-            }
-        });
-        cm.addAggregationRow(somma);
-
-        somma = new AggregationRowConfig<RiepilogoModel>();
-        somma.setHtml("name", "kgCO2");
-
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
         //      grid.setAutoHeight(true);
@@ -121,7 +130,16 @@ public class EventoFormRiepilogo extends LayoutContainer {
             store.remove(r);
         }
         this.store.add(models);
+
+        double t=0;
+         for (RiepilogoModel r : store.getModels()) {
+            t += r.getKgCO2();
+        }
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        totale.setText(df.format(t));
     }
+
 
     public void clear() {
     }

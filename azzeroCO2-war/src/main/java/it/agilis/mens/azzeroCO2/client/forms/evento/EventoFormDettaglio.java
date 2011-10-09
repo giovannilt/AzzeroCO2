@@ -69,6 +69,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         dataInizio.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
         dataInizio.setName("inizio");
         left.add(dataInizio);
+     //   dataInizio.set
 
         TextArea note = new TextArea();
         note.setPreventScrollbars(true);
