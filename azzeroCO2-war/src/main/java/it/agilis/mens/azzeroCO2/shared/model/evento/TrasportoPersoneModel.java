@@ -30,7 +30,7 @@ public class TrasportoPersoneModel extends BaseModel {
         return get("aereoKm3000") == null ? 0 : new Integer(get("aereoKm3000").toString());
     }
 
-    public void setAereoKm1500(int aereoKm3000) {
+    public void setAereoKm3000(int aereoKm3000) {
         set("aereoKm3000", aereoKm3000);
     }
 
@@ -55,7 +55,7 @@ public class TrasportoPersoneModel extends BaseModel {
         return get("autoKm3000") == null ? 0 : new Integer(get("autoKm3000").toString());
     }
 
-    public void setAutoKm1500(int autoKm3000) {
+    public void setAutoKm3000(int autoKm3000) {
         set("autoKm3000", autoKm3000);
     }
 
@@ -140,7 +140,7 @@ public class TrasportoPersoneModel extends BaseModel {
 
     }
 
-    public void setTrenoKm1500(int trenoKm3000) {
+    public void setTrenoKm3000(int trenoKm3000) {
         set("trenoKm3000", trenoKm3000);
     }
 

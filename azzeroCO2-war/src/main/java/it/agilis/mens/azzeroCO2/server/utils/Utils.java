@@ -54,6 +54,7 @@ public class Utils {
 
     public static UserInfo getUserInfo(UserInfoModel registrazioneModel) {
         UserInfo userInfo = new UserInfo();
+        if(registrazioneModel!=null)
         userInfo.setPassword(registrazioneModel.getPassword());
         userInfo.setUserName(registrazioneModel.getUserName());
         userInfo.setNome(registrazioneModel.getNome());

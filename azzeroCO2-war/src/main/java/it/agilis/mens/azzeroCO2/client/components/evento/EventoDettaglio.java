@@ -244,4 +244,6 @@ public class EventoDettaglio extends LayoutContainer {
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
         eventoFormAcquisto.setInStore(progettiDiCompensazioneList);
     }
+
+
 }
