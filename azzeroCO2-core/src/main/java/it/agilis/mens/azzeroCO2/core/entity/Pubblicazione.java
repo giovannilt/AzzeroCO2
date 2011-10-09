@@ -1,7 +1,9 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * Created by IntelliJ IDEA.
@@ -25,12 +27,10 @@ public class Pubblicazione {
     private Double grammatura;
     private Double grammaturaCopertina;
     private Long tiratura;
+    private Boolean rilegato;
 
-    @OneToMany
-    private List<TipoDiCarta> tipoDiCarta;
-
-    @OneToMany
-    private List<TipoDiCarta> tipoDiCartaCopertina;
+    private TipoDiCarta tipoDiCarta;
+    private TipoDiCarta tipoDiCartaCopertina;
 
     @ManyToOne
     private Ordine ordine;
@@ -41,6 +41,14 @@ public class Pubblicazione {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getRilegato() {
+        return rilegato;
+    }
+
+    public void setRilegato(Boolean rilegato) {
+        this.rilegato = rilegato;
     }
 
     public Double getAltezza() {
@@ -107,19 +115,19 @@ public class Pubblicazione {
         this.tiratura = tiratura;
     }
 
-    public List<TipoDiCarta> getTipoDiCarta() {
+    public TipoDiCarta getTipoDiCarta() {
         return tipoDiCarta;
     }
 
-    public void setTipoDiCarta(List<TipoDiCarta> tipoDiCarta) {
+    public void setTipoDiCarta(TipoDiCarta tipoDiCarta) {
         this.tipoDiCarta = tipoDiCarta;
     }
 
-    public List<TipoDiCarta> getTipoDiCartaCopertina() {
+    public TipoDiCarta getTipoDiCartaCopertina() {
         return tipoDiCartaCopertina;
     }
 
-    public void setTipoDiCartaCopertina(List<TipoDiCarta> tipoDiCartaCopertina) {
+    public void setTipoDiCartaCopertina(TipoDiCarta tipoDiCartaCopertina) {
         this.tipoDiCartaCopertina = tipoDiCartaCopertina;
     }
 
