@@ -13,6 +13,7 @@
 			<list>
 				<value>it.agilis.mens.azzeroCO2.core.entity.UserInfo</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.TrasportoPersone</value>
+                <value>it.agilis.mens.azzeroCO2.core.entity.TrasportoMerci</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.TipoDiCarta</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.Sito</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.Pubblicazione</value>
