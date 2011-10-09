@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>AzzeroCO2</name>
+    <groupId>it.agilis.mens.azzeroCO2.app</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>azzeroCO2-app</artifactId>
+    <packaging>pom</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <modules>
+        <module>azzeroCO2-war</module>
+        <module>azzeroCO2-core</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <spring.version>3.0.5.RELEASE</spring.version>
+
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+        <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+
+        <gwtVersion>2.3.0</gwtVersion>
+        <gxt.version>2.2.3</gxt.version>
+
+        <loccount.fileExcludePatterns>log</loccount.fileExcludePatterns>
+        <loccount.dirExcludePatterns>**/target/**</loccount.dirExcludePatterns>
+
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>central_2</id>
+            <name>Maven Repository Switchboard</name>
+            <url>http://repo2.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>codehaus-maven-repo</id>
+            <name>Codehaus repo</name>
+            <url>http://repository.codehaus.org/org/codehaus/mojo/</url>
+        </repository>
+        <repository>
+            <id>Maven</id>
+            <name>Maven repository</name>
+            <url>http://maven.jahia.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>mvnBrowser</id>
+            <name>Maven repository</name>
+            <url>http://www.mvnbrowser.com/</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>jboss</id>
+            <name>JBoss Repository</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+
+    <profiles>
+        <profile>
+            <!-- creates a ear 'quick' so without running any tests -->
+            <id>quickProfile</id>
+            <activation>
+                <property>
+                    <name>quick</name>
+                </property>
+            </activation>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>
