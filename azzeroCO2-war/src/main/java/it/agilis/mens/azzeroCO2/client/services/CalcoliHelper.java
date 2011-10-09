@@ -50,8 +50,8 @@ public class CalcoliHelper {
         if (eventoModel != null && eventoModel.getNottiModel() != null) {
             if (eventoModel.getNottiModel().getNotti() > 0) {
                 model = new RiepilogoModel();
-                model.setDettagli("Pernottamento / Notti");
-                model.setOggetto("Pernottamento / Notti");
+                model.setDettagli("Pernottamenti");
+                model.setOggetto("Pernottamenti");
                 model.setIndex(3);
                 store.add(model);
             }
