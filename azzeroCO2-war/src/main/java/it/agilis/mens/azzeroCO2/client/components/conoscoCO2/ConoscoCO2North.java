@@ -36,6 +36,7 @@ public class ConoscoCO2North extends LayoutContainer {
         c.add(new Text(), flex);
         c.add(new ToolButton("x-tool-save"), new HBoxLayoutData(new Margins(0, 5, 0, 0)));
         c.add(new ToolButton("x-tool-close"), new HBoxLayoutData(new Margins(0, 5, 0, 0)));
+        c.setStyleAttribute("background-color","yellow");
 
         add(c);
     }
