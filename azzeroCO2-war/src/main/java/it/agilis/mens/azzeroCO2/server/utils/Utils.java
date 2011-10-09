@@ -227,8 +227,31 @@ public class Utils {
 
 
         TrasportoMerci tm=new TrasportoMerci();
-        tm.setId=
+        tm.setId(dettaglioModel.getTrasportoMerciModel().getId());
+        tm.setFurgone30(dettaglioModel.getTrasportoMerciModel().getFurgoneKm30());
+        tm.setFurgone150(dettaglioModel.getTrasportoMerciModel().getFurgoneKm150());
+        tm.setFurgone1500(dettaglioModel.getTrasportoMerciModel().getFurgoneKm1500());
+        tm.setFurgone500(dettaglioModel.getTrasportoMerciModel().getFurgoneKm500());
+        tm.setFurgone9000(dettaglioModel.getTrasportoMerciModel().getFurgoneKm9000());
 
+        tm.setTir30(dettaglioModel.getTrasportoMerciModel().getTirKm30());
+        tm.setTir150(dettaglioModel.getTrasportoMerciModel().getTirKm150());
+        tm.setTir1500(dettaglioModel.getTrasportoMerciModel().getTirKm1500());
+        tm.setTir500(dettaglioModel.getTrasportoMerciModel().getTirKm500());
+        tm.setTir9000(dettaglioModel.getTrasportoMerciModel().getTirKm9000());
+
+        tm.setTreno150(dettaglioModel.getTrasportoMerciModel().getTrenoKm150());
+        tm.setTreno1500(dettaglioModel.getTrasportoMerciModel().getTrenoKm1500());
+        tm.setTreno500(dettaglioModel.getTrasportoMerciModel().getTrenoKm500());
+        tm.setTreno9000(dettaglioModel.getTrasportoMerciModel().getTrenoKm9000());
+
+
+        tm.setNave1500(dettaglioModel.getTrasportoMerciModel().getNaveKm1500());
+        tm.setNave500(dettaglioModel.getTrasportoMerciModel().getNaveKm500());
+        tm.setNave9000(dettaglioModel.getTrasportoMerciModel().getNaveKm9000());
+
+        tm.setAereo1500(dettaglioModel.getTrasportoMerciModel().getAereoKm1500());
+        tm.setAereo9000(dettaglioModel.getTrasportoMerciModel().getAereoKm9000());
 
 
 
