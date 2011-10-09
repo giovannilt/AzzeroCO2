@@ -565,7 +565,7 @@ public class CalcoliHelper {
 
 
                 _rm.setKgCO2(co2);
-                _rm.setOggetto("Pubblicazioni rilegate / " + prm.getCategoria());
+                _rm.setOggetto("Pubblicazioni rilegate / </br>" + prm.getCategoria());
                 _rm.setDettagli(formato + "</br>" + materiale + "</br>" + pagine + "</br>" + tiratura);
                 _return.add(_rm);
             }
@@ -580,7 +580,7 @@ public class CalcoliHelper {
 
             double co2 = 0;
 
-            _rm.setOggetto("Manifesti, pieghevoli, fogli / " + prm.getCategoria() + "</br>");
+            _rm.setOggetto("Manifesti, pieghevoli, fogli / / </br>" + prm.getCategoria());
             String formato = "";
             if (prm.getLarghezza() > 0 && prm.getAltezza() > 0) {
                 formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "</br>";

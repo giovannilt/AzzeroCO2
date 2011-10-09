@@ -99,10 +99,10 @@ public class EventoFormRiepilogo extends LayoutContainer {
         });
         column.setSortable(true);
         configs.add(column);
-        column = new ColumnConfig("oggetto", "Oggetto", 150);
+        column = new ColumnConfig("oggetto", "Oggetto", 160);
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 405);
+        column = new ColumnConfig("dettagli", "Dettagli", 395);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
