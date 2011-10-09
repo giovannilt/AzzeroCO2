@@ -253,16 +253,10 @@ public class Utils {
             tp.setTreno9000(tpm.getTrenoKm9000());
             tp.setCategoria(tpm.getCategoria());
 
-
             trasportoPersoneList.add(tp);
         }
 
         o.setTrasportoPersone(trasportoPersoneList);
-
-
-
-
-
 
         List<Pubblicazione> pubblicazioniRilegateList= new ArrayList<Pubblicazione>() ;
 
@@ -271,14 +265,26 @@ public class Utils {
             pr.setId(prm.getId());
             pr.setAltezza(prm.getAltezza());
             pr.setLarghezza(prm.getLarghezza());
-            pr.setTipoDiCarta(prm.getTipoDiCarta());
+
+            TipoDiCarta tp= new TipoDiCarta();
+            tp.setId(prm.getTipoDiCarta().getId());
+            tp.setNome(prm.getTipoDiCarta().getNome());
+            tp.setParametro(prm.getTipoDiCarta().getParametro());
+
+            pr.setTipoDiCarta(tp);
             pr.setGrammatura(prm.getGrammatura());
             pr.setPagine(new Long(prm.getNumeroDiPagine()));
-            pr.setTiratura(prm.getTiratura());
-            pr.setTipoDiCartaCopertina(prm.getTipoDiCartaCopertina());
+            pr.setTiratura(new Long(prm.getTiratura()));
+
+            tp= new TipoDiCarta();
+            tp.setId(prm.getTipoDiCartaCopertina().getId());
+            tp.setNome(prm.getTipoDiCartaCopertina().getNome());
+            tp.setParametro(prm.getTipoDiCartaCopertina().getParametro());
+
+            pr.setTipoDiCartaCopertina(tp);
             pr.setGrammaturaCopertina(prm.getGrammaturaCopertina());
             pr.setCategoria(prm.getCategoria());
-            //TODO pr.setRilegato(true);
+            pr.setRilegato(true);
 
 
             pubblicazioniRilegateList.add(pr);
