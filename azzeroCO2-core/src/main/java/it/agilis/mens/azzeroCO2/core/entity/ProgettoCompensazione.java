@@ -3,8 +3,7 @@ package it.agilis.mens.azzeroCO2.core.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
+import javax.persistence.OneToOne;
 
 
 /**
@@ -22,8 +21,8 @@ public class ProgettoCompensazione {
     @GeneratedValue
     private Long id;
 
-    @OneToMany
-    private List<Ordine> ordine;
+    @OneToOne
+    private Ordine ordine;
 
     private String nome;
     private Double  prezzo;
@@ -39,11 +38,11 @@ public class ProgettoCompensazione {
         this.id = id;
     }
 
-    public List<Ordine> getOrdine() {
+    public Ordine getOrdine() {
         return ordine;
     }
 
-    public void setOrdine(List<Ordine> ordine) {
+    public void setOrdine(Ordine ordine) {
         this.ordine = ordine;
     }
 
