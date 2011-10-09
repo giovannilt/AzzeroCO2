@@ -209,6 +209,7 @@ public class Utils {
 
     public static Ordine getOrdine( DettaglioModel dettaglioModel)  {
         Ordine o= new Ordine();
+
         o.setId(dettaglioModel.getOrdineId());
         Evento e =new Evento();
         e.setId(dettaglioModel.getId());
@@ -223,6 +224,8 @@ public class Utils {
         e.setPernottamenti(dettaglioModel.getNottiModel().getNotti());
 
         o.setEvento(e);
+
+
 
         List<TrasportoPersone> trasportoPersoneList= new ArrayList<TrasportoPersone>() ;
 
@@ -289,6 +292,24 @@ public class Utils {
 
 
 
+        List<Pubblicazione> pubblicazioniList= new ArrayList<Pubblicazione>() ;
+
+        for(ManifestiPieghevoliFogliModel pnrm: dettaglioModel.getManifestiPieghevoliFogliModel()){
+            Pubblicazione pnr= new Pubblicazione();
+            pnr.setId(pnrm.getId());
+            pnr.setAltezza(pnrm.getAltezza());
+            pnr.setLarghezza(pnrm.getLarghezza());
+            pnr.setTipoDiCarta(pnrm.getTipoDiCarta());
+            pnr.setGrammatura(pnrm.getGrammatura());
+            pnr.setTiratura(pnrm.getTiratura());
+            pnr.setCategoria(pnrm.getCategoria());
+            //TODO pr.setRilegato(false);
+
+
+            pubblicazioniRilegateList.add(pr);
+        }
+
+        o.setPubblicazioni(pubblicazioniRilegateList);
 
 
 
