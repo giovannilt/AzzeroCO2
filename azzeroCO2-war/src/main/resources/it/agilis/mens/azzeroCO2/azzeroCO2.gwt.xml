@@ -26,4 +26,7 @@
     <inherits name="com.google.gwt.resources.Resources" />
 
 
+    <extend-property name="locale" values="it"/>
+
+
 </module>

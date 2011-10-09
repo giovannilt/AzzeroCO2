@@ -64,16 +64,19 @@ public class EventoSouth extends LayoutContainer {
         rigthText.setStyleAttribute("text-align", "right");
         rigthText.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
         leftText.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
-        leftText.setStyleAttribute("font-size","14px");
-        rigthText.setStyleAttribute("font-size","14px");
+        leftText.setStyleAttribute("font-size", "14px");
+        rigthText.setStyleAttribute("font-size", "14px");
 
         c.add(rigthText, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
 
         right.setIconAlign(Style.IconAlign.RIGHT);
-      //  right.setText("Energia");
+        //  right.setText("Energia");
         right.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.rigth()));
         right.setSize(32, 32);
         right.setTitle("");
+        right.setText("");
+        right.setToolTip("");
+
         c.add(right, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
         right.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
@@ -87,16 +90,16 @@ public class EventoSouth extends LayoutContainer {
 
     public void setTextLeft(String left_t) {
         leftText.setText(left_t);
-        left.setToolTip(left_t);
-        left.setTitle("");
-        left.setText("");
+        //    left.setToolTip(left_t);
+        //    left.setTitle("");
+        //   left.setText("");
     }
 
     public void setTextRigth(String right_t) {
         rigthText.setText(right_t);
-        right.setToolTip(right_t);
-        right.setText("");
-        right.setTitle("");
+        //   right.setToolTip(right_t);
+        //   right.setText("");
+        //   right.setTitle("");
     }
 
 }
