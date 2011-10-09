@@ -55,7 +55,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
         return get("tiratura") == null ? 0 : new Integer(get("tiratura").toString());
     }
 
-    public void setTiratura(Double tiratura) {
+    public void setTiratura(Integer tiratura) {
         set("tiratura", tiratura);
     }
 
