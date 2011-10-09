@@ -48,7 +48,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         FormPanel panel = new FormPanel();
 
         panel.setFrame(true);
-        panel.setHeading("Dettagli EventoPanel");
+        panel.setHeading("Dettagli Evento");
 
         panel.setButtonAlign(Style.HorizontalAlignment.CENTER);
         panel.setLayout(new ColumnLayout());
@@ -66,6 +66,7 @@ public class EventoFormDettaglio extends LayoutContainer {
 
         DateField dataInizio = new DateField();
         dataInizio.setFieldLabel("Data inizio");
+
         dataInizio.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
         dataInizio.setName("inizio");
         left.add(dataInizio);

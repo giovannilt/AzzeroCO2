@@ -214,6 +214,22 @@ public class Utils {
     public static Ordine getOrdine( DettaglioModel dettaglioModel)  {
         Ordine o= new Ordine();
 
+        Evento e =new Evento();
+        e.setId(dettaglioModel.getId());
+        e.setNome(dettaglioModel.getNome());
+        e.setDove(dettaglioModel.getDove());
+        e.setInizio(dettaglioModel.getInizio());
+        e.setFine(dettaglioModel.getFine());
+        e.setNote(dettaglioModel.getNote());
+        e.setEnergiaElettrica(dettaglioModel.getEnergiaModel().getEnergiaElettrica());
+        e.setGas(dettaglioModel.getEnergiaModel().getGasMetano());
+        e.setGasolio(dettaglioModel.getEnergiaModel().getGasolio());
+        e.setPernottamenti(dettaglioModel.getNottiModel().getNotti());
+
+
+
+        o.setEvento(e);
+
 
         return o;
 
