@@ -25,6 +25,7 @@ public class Pubblicazione {
     private Double grammatura;
     private Double grammaturaCopertina;
     private Long tiratura;
+    private Boolean rilegato;
 
     @OneToMany
     private List<TipoDiCarta> tipoDiCarta;
@@ -42,6 +43,14 @@ public class Pubblicazione {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getRilegato() {
+        return rilegato;
+    }
+
+    public void setRilegato(Boolean rilegato) {
+        this.rilegato = rilegato;
     }
 
     public Double getAltezza() {

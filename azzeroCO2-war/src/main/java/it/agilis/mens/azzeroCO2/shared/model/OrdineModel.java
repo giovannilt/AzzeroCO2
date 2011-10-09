@@ -1,7 +1,9 @@
-package it.agilis.mens.azzeroCO2.shared.model.amministrazione;
+package it.agilis.mens.azzeroCO2.shared.model;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
 import it.agilis.mens.azzeroCO2.client.forms.amministrazione.UserInfo;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 
 import java.util.Date;
 
@@ -14,9 +16,21 @@ import java.util.Date;
  */
 public class OrdineModel extends BaseModelData {
 
+    public int getIndex() {
+        return (Integer) get("index");
+    }
+
+    public void setIndex(int index) {
+        set("index", index);
+    }
+
 
     public Date getData() {
         return get("data");
+    }
+
+    public void setData(Date data) {
+        set("data", data);
     }
 
     public Long getId() {
@@ -27,25 +41,28 @@ public class OrdineModel extends BaseModelData {
         set("id", id);
     }
 
-    public void setData(Date data) {
-        set("data", data);
+    public UserInfo getUserInfo() {
+        return get("userInfo");
     }
 
-    public UserInfo getCliente() {
-        return get("cliente");
-    }
-
-    public void setCliente(UserInfo cliente) {
-        set("cliente", cliente);
+    public void setUserInfo(UserInfo userInfo) {
+        set("userInfo", userInfo);
     }
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazione() {
         return get("progettoDiCompensazione");
     }
 
-
     public void setProgettoDiCompensazione(ProgettoDiCompensazioneModel progettoDiCompensazione) {
         set("progettoDiCompensazione", progettoDiCompensazione);
+    }
+
+    public void setCoupon(CouponModel coupon) {
+        set("coupon", coupon);
+    }
+
+    public CouponModel getCouponModel() {
+        return get("coupon");
     }
 
     public Double getKgco2() {
@@ -55,7 +72,6 @@ public class OrdineModel extends BaseModelData {
     public void setKgco2(Double kgco2) {
         set("kgco2", kgco2);
     }
-
 
     public Double getImporto() {
         return get("importo");

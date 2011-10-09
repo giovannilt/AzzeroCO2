@@ -82,15 +82,12 @@ public class EventoController extends BaseController {
                     public void onFailure(Throwable caught) {
                         Info.display("Error", "Errore impossibile connettersi al server");
                     }
-
                     @Override
                     public void onSuccess(Boolean result) {
                         if (result != null && result) {
                             Info.display("Info", "Evento "+ evento.getNome()+ " salvato con successo.");
                         }
                     }
-
-
                 };
 
                 getHustonService().saveOrdine(evento, dettaglioModel);

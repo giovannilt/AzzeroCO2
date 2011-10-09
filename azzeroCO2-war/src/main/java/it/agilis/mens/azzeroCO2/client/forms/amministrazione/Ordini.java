@@ -10,7 +10,8 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
+import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +33,7 @@ public class Ordini extends LayoutContainer {
 
         setLayout(new BorderLayout());
         ContentPanel centre = createCentre();
-      //  centre.setHeading("Ordini");
-       centre.setHeaderVisible(false);
+        centre.setHeaderVisible(false);
         centre.setFrame(true);
         centre.setHeight(477);
         centre.setFrame(true);
@@ -45,24 +45,11 @@ public class Ordini extends LayoutContainer {
     private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
 
-        /*    PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
-
-                // loader
-                PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
-                loader.setRemoteSort(true);
-
-                final PagingToolBar toolBar = new PagingToolBar(2);
-                toolBar.bind(loader);
-
-
-                loader.load(0, 10);
-        */
-
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("data", "Data OrdineModel", 100);
+        ColumnConfig column = new ColumnConfig("data", "Data Ordine", 100);
         configs.add(column);
 
         column = new ColumnConfig("cliente", "Cliente", 300);
@@ -73,6 +60,12 @@ public class Ordini extends LayoutContainer {
 
         column = new ColumnConfig("kgco2", "KG CO2", 100);
         column.setAlignment((Style.HorizontalAlignment.RIGHT));
+        column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
+            @Override
+            public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
+                return number.format(model.<Number>get(property));
+            }
+        });
         configs.add(column);
 
         column = new ColumnConfig("Importo", "Importo ", 100);
@@ -80,20 +73,6 @@ public class Ordini extends LayoutContainer {
         configs.add(column);
 
         ColumnModel cm = new ColumnModel(configs);
-
-        AggregationRowConfig<OrdineModel> somma = new AggregationRowConfig<OrdineModel>();
-        somma.setHtml("name", "Totale");
-
-        somma.setSummaryType("kgCO2", SummaryType.SUM);
-        somma.setRenderer("kgCO2", new AggregationRenderer<OrdineModel>() {
-            public Object render(Number value, int colIndex, Grid<OrdineModel> grid, ListStore<OrdineModel> store) {
-                return number.format(value.doubleValue());
-            }
-        });
-        cm.addAggregationRow(somma);
-
-        somma = new AggregationRowConfig<OrdineModel>();
-        somma.setHtml("name", "kgCO2");
 
         Grid<OrdineModel> grid = new Grid<OrdineModel>(store, cm);
         grid.setBorders(true);
