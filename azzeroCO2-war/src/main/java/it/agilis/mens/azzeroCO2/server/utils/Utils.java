@@ -153,7 +153,7 @@ public class Utils {
             om.setId(o.getId());
             om.setData(o.getDataOrdine());
             //TODO om.setCliente(o.getUtente());
-            om.setProgettoDiCompensazione(getProgettoDiCompensazioneModel(o.getProgettoComp()));
+            om.setProgettoDiCompensazione(getProgettoDiCompensazioneModel(o.getProgettoCompensazione()));
             om.setKgco2(o.getKgCo2());
             om.setImporto(o.getValoreCompensazione());
 
@@ -209,7 +209,12 @@ public class Utils {
 
     public static Ordine getOrdine(DettaglioModel dettaglioModel) {
         Ordine o = new Ordine();
-        o.setId(dettaglioModel.getOrdineId());
+        try{
+            o.setId(dettaglioModel.getOrdineId());
+        }catch(Exception e){
+         //   e.printStackTrace();
+        }
+
         Evento e = new Evento();
         e.setId(dettaglioModel.getId());
         e.setNome(dettaglioModel.getNome());
@@ -217,6 +222,7 @@ public class Utils {
         e.setInizio(dettaglioModel.getInizio());
         e.setFine(dettaglioModel.getFine());
         e.setNote(dettaglioModel.getNote());
+
         if (dettaglioModel.getEnergiaModel() != null) {
             e.setEnergiaElettrica(dettaglioModel.getEnergiaModel().getEnergiaElettrica());
             e.setGas(dettaglioModel.getEnergiaModel().getGasMetano());

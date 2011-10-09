@@ -21,15 +21,15 @@ public class DettaglioModel extends BaseModel {
     private List<PubblicazioniRilegateModel> pubblicazioniRilegateModel;
     private List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel;
 
-    public long getOrdineId()  {
-        return (Long) get("ordineId");
+    public Long getOrdineId()  {
+        return get("ordineId");
     }
     public void setOrdineId(Long ordineId){
-        set("OrdineId", ordineId);
+        set("ordineId", ordineId);
     }
 
-    public long getId()  {
-        return (Long) get("id");
+    public Long getId()  {
+        return get("id");
     }
     public void setId(Long id){
         set("id",id);

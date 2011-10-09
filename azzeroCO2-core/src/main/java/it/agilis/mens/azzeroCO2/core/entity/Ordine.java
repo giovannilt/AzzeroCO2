@@ -25,26 +25,24 @@ public class Ordine {
     @OneToOne
     private Sito sito;
 
-    @OneToOne
+    @OneToOne(cascade ={ CascadeType.ALL}, fetch = FetchType.LAZY)
     private Evento evento;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.EAGER)
     private UserInfo utente;
 
     @OneToOne
     private ProgettoCompensazione progettoCompensazione;
 
-    @OneToMany
+    @OneToMany (cascade ={CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Pubblicazione> pubblicazioni;
 
-    @OneToOne
+    @OneToOne (cascade ={CascadeType.ALL}, fetch = FetchType.LAZY)
     private TrasportoMerci trasportoMerci;
 
-    @OneToMany
+    @OneToMany (cascade ={CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<TrasportoPersone> trasportoPersone;
 
-    @ManyToOne
-    private ProgettoCompensazione progettoComp;
 
     private Date dataOrdine;
     private Boolean editable;
@@ -113,14 +111,6 @@ public class Ordine {
 
     public void setTrasportoPersone(List<TrasportoPersone> trasportoPersone) {
         this.trasportoPersone = trasportoPersone;
-    }
-
-    public ProgettoCompensazione getProgettoComp() {
-        return progettoComp;
-    }
-
-    public void setProgettoComp(ProgettoCompensazione progettoComp) {
-        this.progettoComp = progettoComp;
     }
 
     public Date getDataOrdine() {
