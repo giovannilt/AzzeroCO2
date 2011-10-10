@@ -309,6 +309,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     public void setManifestiPieghevoliFogliModel(List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel) {
         this.manifestiPieghevoliFogliModel.removeAll(); // TODO check
         this.manifestiPieghevoliFogliModel.add(manifestiPieghevoliFogliModel);
+        // formBindings.bind();
     }
 
     public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {

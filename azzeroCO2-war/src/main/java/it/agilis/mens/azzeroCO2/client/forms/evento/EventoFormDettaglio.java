@@ -113,5 +113,6 @@ public class EventoFormDettaglio extends LayoutContainer {
 
     public void setDettaglioModel(DettaglioModel dettaglioModel) {
         this.dettaglioModel = dettaglioModel;
+        binding.bind(dettaglioModel);
     }
 }

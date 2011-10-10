@@ -147,6 +147,7 @@ public class EventoFormEnergia extends LayoutContainer {
 
     public void setEnergiaModel(EnergiaModel energiaModel) {
         this.energiaModel = energiaModel;
+        binding.bind(energiaModel);
     }
 }
 
