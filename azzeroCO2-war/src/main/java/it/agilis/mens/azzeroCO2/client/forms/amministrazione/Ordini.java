@@ -4,6 +4,7 @@ import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -14,6 +15,7 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
@@ -86,11 +88,8 @@ public class Ordini extends LayoutContainer {
                 new Listener<SelectionChangedEvent<DettaglioModel>>() {
                     public void handleEvent(SelectionChangedEvent<DettaglioModel> be) {
                         if (be.getSelection().size() > 0) {
-                            DettaglioModel ordine= be.getSelectedItem();
-
-
+                            Dispatcher.forwardEvent(EventoEvents.LoadEvento,be.getSelectedItem());
                             Info.display("Info", "Upload-Evento!!!!");
-
                         }
                     }
                 });

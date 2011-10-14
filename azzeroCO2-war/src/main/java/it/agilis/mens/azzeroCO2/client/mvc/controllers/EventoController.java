@@ -32,15 +32,22 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.Save);
         registerEventTypes(AzzeroCO2Events.LoggedIn);
         registerEventTypes(EventoEvents.Riepilogo);
+
+        registerEventTypes(EventoEvents.LoadEvento);
+
         registerEventTypes(EventoEvents.CaricaCoefficienti);
         registerEventTypes(EventoEvents.CaricaProgettiDiCompensazione);
+
         registerEventTypes(EventoEvents.PreviousText);
         registerEventTypes(EventoEvents.NextText);
     }
 
     @Override
     public void handleEvent(AppEvent event) {
-        if (event.getType().equals(AzzeroCO2Events.Init)) {
+        if (event.getType().equals(EventoEvents.LoadEvento)) {
+
+            eventoView.setDettaglioModel((DettaglioModel) event.getData());
+        } else if (event.getType().equals(AzzeroCO2Events.Init)) {
             AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
@@ -53,7 +60,6 @@ public class EventoController extends BaseController {
                     }
                 }
             };
-
             getHustonService().getTipoDiCarta(tipoDiCartaCallBack);
             forwardToView(eventoView, event);
         } else if (event.getType().equals(EventoEvents.Riepilogo)) {
