@@ -81,11 +81,11 @@ public class AmministrazioneController extends BaseController {
             };
             hustonService.saveCoupons(coupons, aCallback);
         } else if (event.getType().equals(AmministrazioneEvents.ShowAmministrazione)) {
-            //if (getUserInfoModel().getProfilo().equalsIgnoreCase("Administrator")) {
+            if (getUserInfoModel().getProfilo().equalsIgnoreCase("Administrator")) {
                 getCoefficienti();
                 getCoupons();
                 getProgettiDiCompensazione();
-         //   }
+            }
             getOrdini();
             amministrazioneView.setUserInfo(getUserInfoModel());
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {

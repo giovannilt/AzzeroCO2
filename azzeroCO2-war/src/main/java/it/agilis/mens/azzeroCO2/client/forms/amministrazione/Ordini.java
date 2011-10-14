@@ -49,11 +49,8 @@ public class Ordini extends LayoutContainer {
 
     private ContentPanel createCentre() {
         ContentPanel centre = new ContentPanel();
-
         final NumberFormat number = NumberFormat.getFormat("0.00");
-
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
-
         ColumnConfig column = new ColumnConfig("data", "Data Ordine", 100);
         configs.add(column);
 
@@ -90,7 +87,7 @@ public class Ordini extends LayoutContainer {
                 new Listener<SelectionChangedEvent<ManifestiPieghevoliFogliModel>>() {
                     public void handleEvent(SelectionChangedEvent<ManifestiPieghevoliFogliModel> be) {
                         if (be.getSelection().size() > 0) {
-                           Info.display("Info", "Upload-Evento");
+                           Info.display("Info", "Upload-Evento!!!!");
                         }
                     }
                 });
