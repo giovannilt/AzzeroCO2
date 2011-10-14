@@ -15,7 +15,9 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
@@ -90,7 +92,8 @@ public class Ordini extends LayoutContainer {
                         if (be.getSelection().size() > 0) {
                             //TODO... dispecchare evento per il load corretto
                             Dispatcher.forwardEvent(EventoEvents.LoadEvento,be.getSelectedItem());
-                            Info.display("Info", "Upload-Evento!!!!");
+                            Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
+                            Info.display("Info", "Uploading Evento... "+ be.getSelectedItem().getNome());
                         }
                     }
                 });
