@@ -88,6 +88,7 @@ public class Ordini extends LayoutContainer {
                 new Listener<SelectionChangedEvent<DettaglioModel>>() {
                     public void handleEvent(SelectionChangedEvent<DettaglioModel> be) {
                         if (be.getSelection().size() > 0) {
+                            //TODO... dispecchare evento per il load corretto
                             Dispatcher.forwardEvent(EventoEvents.LoadEvento,be.getSelectedItem());
                             Info.display("Info", "Upload-Evento!!!!");
                         }
