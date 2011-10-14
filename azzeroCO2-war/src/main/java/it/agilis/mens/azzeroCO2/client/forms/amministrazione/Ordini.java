@@ -14,9 +14,8 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ import java.util.List;
  */
 public class Ordini extends LayoutContainer {
 
-    private final ListStore<OrdineModel> store = new ListStore<OrdineModel>();
+    private final ListStore<DettaglioModel> store = new ListStore<DettaglioModel>();
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -76,18 +75,22 @@ public class Ordini extends LayoutContainer {
 
         ColumnModel cm = new ColumnModel(configs);
 
-        Grid<OrdineModel> grid = new Grid<OrdineModel>(store, cm);
+        Grid<DettaglioModel> grid = new Grid<DettaglioModel>(store, cm);
         grid.setBorders(true);
         // grid.setAutoHeight(true);
         grid.setHeight(430);
         //    centre.setBottomComponent(toolBar);
 
-        grid.getSelectionModel().setSelectionMode(Style.SelectionMode.MULTI);
+        grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,
-                new Listener<SelectionChangedEvent<ManifestiPieghevoliFogliModel>>() {
-                    public void handleEvent(SelectionChangedEvent<ManifestiPieghevoliFogliModel> be) {
+                new Listener<SelectionChangedEvent<DettaglioModel>>() {
+                    public void handleEvent(SelectionChangedEvent<DettaglioModel> be) {
                         if (be.getSelection().size() > 0) {
-                           Info.display("Info", "Upload-Evento!!!!");
+                            DettaglioModel ordine= be.getSelectedItem();
+
+
+                            Info.display("Info", "Upload-Evento!!!!");
+
                         }
                     }
                 });
@@ -97,7 +100,7 @@ public class Ordini extends LayoutContainer {
         return centre;
     }
 
-    public void setOrdiniInStore(List<OrdineModel> ordiniModels) {
+    public void setOrdiniInStore(List<DettaglioModel> ordiniModels) {
         store.removeAll();
         store.add(ordiniModels);
     }

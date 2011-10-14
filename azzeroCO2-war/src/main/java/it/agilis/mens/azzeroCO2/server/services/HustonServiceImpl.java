@@ -8,7 +8,6 @@ import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
-import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -85,7 +84,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public List<OrdineModel> getListOfOrdini(UserInfoModel userInfoModel) {
+    public List<DettaglioModel> getListOfOrdini(UserInfoModel userInfoModel) {
         try {
             return Utils.getListOfOrdini(azzeroCO2Register.getListOfOrdini(Utils.getUserInfo(userInfoModel)));
         } catch (Exception e) {

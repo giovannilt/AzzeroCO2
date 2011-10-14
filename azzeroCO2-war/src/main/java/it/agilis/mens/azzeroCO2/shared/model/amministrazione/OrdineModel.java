@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.shared.model;
+package it.agilis.mens.azzeroCO2.shared.model.amministrazione;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;

@@ -11,14 +11,16 @@ package it.agilis.mens.azzeroCO2.server.utils;
 import it.agilis.mens.azzeroCO2.core.entity.*;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
-import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Utils {
 
@@ -147,18 +149,10 @@ public class Utils {
 
     }
 
-    public static List<OrdineModel> getListOfOrdini(List<Ordine> listOfOrdini) {
-        List<OrdineModel> _return = new ArrayList<OrdineModel>();
+    public static List<DettaglioModel> getListOfOrdini(List<Ordine> listOfOrdini) {
+        List<DettaglioModel> _return = new ArrayList<DettaglioModel>();
         for (Ordine o : listOfOrdini) {
-            OrdineModel om = new OrdineModel();
-            om.setId(o.getId());
-            om.setData(o.getDataOrdine());
-            //TODO om.setCliente(o.getUtente());
-            om.setProgettoDiCompensazione(getProgettoDiCompensazioneModel(o.getProgettoCompensazione()));
-            om.setKgco2(o.getKgCo2());
-            om.setImporto(o.getValoreCompensazione());
-
-            _return.add(om);
+            _return.add(getDettaglioModel(o));
         }
         return _return;
 
@@ -342,12 +336,10 @@ public class Utils {
         return o;
     }
 
-
     public static DettaglioModel getDettaglioModel(Ordine o) {
         DettaglioModel dm = new DettaglioModel();
 
         dm.setOrdineId(o.getId());
-
         dm.setId(o.getEvento().getId());
         dm.setNome(o.getEvento().getNome());
         dm.setDove(o.getEvento().getDove());

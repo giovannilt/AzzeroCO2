@@ -15,10 +15,10 @@ import it.agilis.mens.azzeroCO2.client.components.amministrazione.Amministrazion
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
-import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.List;
@@ -81,7 +81,7 @@ public class AmministrazioneView extends View {
        amministrazione.setProgettiDiCompensazione(progettiDiCompensazione);
     }
 
-    public void setOrdini(List<OrdineModel> ordini) {
+    public void setOrdini(List<DettaglioModel> ordini) {
         amministrazione.setOrdini(ordini);
     }
 

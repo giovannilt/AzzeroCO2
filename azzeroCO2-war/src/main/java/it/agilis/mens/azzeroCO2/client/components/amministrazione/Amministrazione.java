@@ -8,10 +8,10 @@ import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.amministrazione.*;
-import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.ArrayList;
@@ -79,7 +79,7 @@ public class Amministrazione extends LayoutContainer {
         progettiDiCompensazioneForm.setProgettiDicompensazioneInStore(progettiDiCompensazioneModels);
     }
 
-    public void setOrdini(List<OrdineModel> ordini) {
+    public void setOrdini(List<DettaglioModel> ordini) {
         ordiniForm.setOrdiniInStore(ordini);
     }
 
