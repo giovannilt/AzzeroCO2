@@ -1,9 +1,9 @@
 package it.agilis.mens.azzeroCO2.shared.model;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
-import it.agilis.mens.azzeroCO2.client.forms.amministrazione.UserInfo;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.Date;
 
@@ -41,11 +41,11 @@ public class OrdineModel extends BaseModelData {
         set("id", id);
     }
 
-    public UserInfo getUserInfo() {
+    public UserInfoModel getUserInfoModel() {
         return get("userInfo");
     }
 
-    public void setUserInfo(UserInfo userInfo) {
+    public void setUserInfo(UserInfoModel userInfo) {
         set("userInfo", userInfo);
     }
 

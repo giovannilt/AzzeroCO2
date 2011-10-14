@@ -1,9 +1,13 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
@@ -12,6 +16,7 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,9 +81,20 @@ public class Ordini extends LayoutContainer {
 
         Grid<OrdineModel> grid = new Grid<OrdineModel>(store, cm);
         grid.setBorders(true);
-       // grid.setAutoHeight(true);
+        // grid.setAutoHeight(true);
         grid.setHeight(430);
         //    centre.setBottomComponent(toolBar);
+
+        grid.getSelectionModel().setSelectionMode(Style.SelectionMode.MULTI);
+        grid.getSelectionModel().addListener(Events.SelectionChange,
+                new Listener<SelectionChangedEvent<ManifestiPieghevoliFogliModel>>() {
+                    public void handleEvent(SelectionChangedEvent<ManifestiPieghevoliFogliModel> be) {
+                        if (be.getSelection().size() > 0) {
+                           Info.display("Info", "Upload-Evento");
+                        }
+                    }
+                });
+
         centre.add(grid);
 
         return centre;
