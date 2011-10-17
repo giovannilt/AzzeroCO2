@@ -24,6 +24,14 @@ public class EventoFormPernottamenti extends LayoutContainer {
 
     private NottiModel nottiModel = new NottiModel();
     private FormBinding binding = null;
+    private FormPanel formPanel;
+
+    public EventoFormPernottamenti() {
+        formPanel = createForm();
+        binding = new FormBinding(formPanel, true);
+        binding.bind(nottiModel);
+
+    }
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -37,11 +45,8 @@ public class EventoFormPernottamenti extends LayoutContainer {
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        FormPanel formPanel = createForm();
         cp.add(formPanel, new RowData(1, 1));
 
-        binding = new FormBinding(formPanel, true);
-        binding.bind(nottiModel);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);

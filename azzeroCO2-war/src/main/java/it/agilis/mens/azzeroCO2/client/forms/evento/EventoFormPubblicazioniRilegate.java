@@ -39,6 +39,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
     private final FormBinding formBindings = new FormBinding(panel, true);
 
 
+
     @SuppressWarnings("rawtypes")
     @Override
     protected void onRender(Element parent, int index) {

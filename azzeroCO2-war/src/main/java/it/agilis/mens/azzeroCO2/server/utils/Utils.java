@@ -202,10 +202,9 @@ public class Utils {
         return _return;
     }
 
-    public static Ordine getOrdine(DettaglioModel dettaglioModel) {
+    public static Ordine getOrdine(DettaglioModel dettaglioModel)  {
         Ordine o = new Ordine();
         o.setId(dettaglioModel.getOrdineId());
-
 
         Evento e = new Evento();
         e.setId(dettaglioModel.getId());
@@ -340,13 +339,14 @@ public class Utils {
         DettaglioModel dm = new DettaglioModel();
 
         dm.setOrdineId(o.getId());
-        dm.setId(o.getEvento().getId());
-        dm.setNome(o.getEvento().getNome());
-        dm.setDove(o.getEvento().getDove());
-        dm.setInizio(o.getEvento().getInizio());
-        dm.setFine(o.getEvento().getFine());
-        dm.setNote(o.getEvento().getNote());
-
+        if(o.getEvento()!=null){
+            dm.setId(o.getEvento().getId());
+            dm.setNome(o.getEvento().getNome());
+            dm.setDove(o.getEvento().getDove());
+            dm.setInizio(o.getEvento().getInizio());
+            dm.setFine(o.getEvento().getFine());
+            dm.setNote(o.getEvento().getNote());
+        }
         EnergiaModel em = new EnergiaModel();
         // CHECK id of EMM
         em.setEnergiaElettrica(o.getEvento().getEnergiaElettrica());

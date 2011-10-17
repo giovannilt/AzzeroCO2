@@ -25,6 +25,13 @@ public class EventoFormEnergia extends LayoutContainer {
 
     private EnergiaModel energiaModel = new EnergiaModel();
     private FormBinding binding = null;
+    private  FormPanel formPanel;
+
+     public EventoFormEnergia() {
+        formPanel = createForm();
+        binding = new FormBinding(formPanel, true);
+        binding.bind(energiaModel);
+    }
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -38,11 +45,7 @@ public class EventoFormEnergia extends LayoutContainer {
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        FormPanel formPanel = createForm();
         cp.add(formPanel, new RowData(1, 1));
-
-        binding = new FormBinding(formPanel, true);
-        binding.bind(energiaModel);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);

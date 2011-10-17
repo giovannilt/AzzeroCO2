@@ -35,7 +35,7 @@
         <url-pattern>/azzeroCO2/rispostaBancaOK</url-pattern>
     </servlet-mapping>
 
-     <servlet>
+    <servlet>
         <servlet-name>rispostaBancaServletKO</servlet-name>
         <servlet-class>it.agilis.mens.azzeroCO2.server.services.RispostaBancaServiceKO</servlet-class>
     </servlet>

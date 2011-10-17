@@ -88,7 +88,7 @@ public class Coefficienti extends LayoutContainer {
         Grid<CoefficienteModel> grid = new Grid<CoefficienteModel>(store, cm);
         grid.setBorders(true);
         grid.addPlugin(re);
-     //   grid.setAutoHeight(true);
+        //   grid.setAutoHeight(true);
         grid.setHeight(430);
 
 
@@ -112,8 +112,12 @@ public class Coefficienti extends LayoutContainer {
     }
 
     public void setCoefficentiInStore(List<CoefficienteModel> coefficienteModels) {
-        store.removeAll();
-        store.add(coefficienteModels);
+        try {
+            store.removeAll();
+            store.add(coefficienteModels);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 
