@@ -44,7 +44,7 @@ public class Coupon extends LayoutContainer {
         setLayout(layout);
 
         ContentPanel centre = createCentre(store);
-      //  centre.setHeading("Coupon");
+        //  centre.setHeading("Coupon");
         centre.setHeaderVisible(false);
         centre.setHeight(477);
         centre.setFrame(true);
@@ -59,18 +59,18 @@ public class Coupon extends LayoutContainer {
     private ContentPanel createCentre(final ListStore<CouponModel> store) {
         ContentPanel centre = new ContentPanel();
 
-      /*  PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
+        /*  PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(CouponModel.class);
 
-        // loader
-        PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
-        loader.setRemoteSort(true);
+                // loader
+                PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
+                loader.setRemoteSort(true);
 
 
-        final PagingToolBar toolBar = new PagingToolBar(10);
-        toolBar.bind(loader);
+                final PagingToolBar toolBar = new PagingToolBar(10);
+                toolBar.bind(loader);
 
-        loader.load(0, 10);
-*/
+                loader.load(0, 10);
+        */
 
         final NumberFormat number = NumberFormat.getFormat("0.00");
 
@@ -153,7 +153,7 @@ public class Coupon extends LayoutContainer {
         ColumnModel cm = new ColumnModel(configs);
         final Grid<CouponModel> grid = new Grid<CouponModel>(store, cm);
         grid.setBorders(true);
-      //  grid.setAutoHeight(true);
+        //  grid.setAutoHeight(true);
         grid.addPlugin(re);
         grid.setHeight(430);
         centre.add(grid);
@@ -184,9 +184,10 @@ public class Coupon extends LayoutContainer {
         });
 
         centre.setButtonAlign(Style.HorizontalAlignment.CENTER);
-      /*  grid.getAriaSupport().setDescribedBy(toolBar.getId() + "-display");
-        centre.setBottomComponent(toolBar);
-      */  toolbar.add(add);
+        /*  grid.getAriaSupport().setDescribedBy(toolBar.getId() + "-display");
+          centre.setBottomComponent(toolBar);
+        */
+        toolbar.add(add);
         toolbar.add(saveButton);
         centre.setTopComponent(toolbar);
 
@@ -195,10 +196,15 @@ public class Coupon extends LayoutContainer {
     }
 
 
-    public void setCouponInStore(List<CouponModel> couponModels){
-        store.removeAll();
-        store.add(couponModels);
+    public void setCouponInStore(List<CouponModel> couponModels) {
+        try {
+            store.removeAll();
+            store.add(couponModels);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
     public void clear() {
     }
 }

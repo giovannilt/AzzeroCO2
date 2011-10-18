@@ -87,7 +87,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         configs.add(column);
 
         //column = new ColumnConfig("kgCO2", "Kg CO2", 300);
-         //column.setAlignment(Style.HorizontalAlignment.RIGHT);
+        //column.setAlignment(Style.HorizontalAlignment.RIGHT);
         //column.setEditor(new CellEditor(new NumberField()));
         //configs.add(column);
 
@@ -110,7 +110,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
 
         Grid<ProgettoDiCompensazioneModel> grid = new Grid<ProgettoDiCompensazioneModel>(store, cm);
         grid.setBorders(true);
-    //    grid.setAutoHeight(true);
+        //    grid.setAutoHeight(true);
         grid.addPlugin(re);
         grid.setHeight(430);
 
@@ -149,8 +149,12 @@ public class ProgettiDiCompensazione extends LayoutContainer {
     }
 
     public void setProgettiDicompensazioneInStore(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneModels) {
-        store.removeAll();
-        store.add(progettiDiCompensazioneModels);
+        try {
+            store.removeAll();
+            store.add(progettiDiCompensazioneModels);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void clear() {

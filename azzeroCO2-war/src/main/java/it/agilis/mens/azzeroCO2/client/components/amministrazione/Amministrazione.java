@@ -34,6 +34,7 @@ public class Amministrazione extends LayoutContainer {
     private final Coupon couponForm = new Coupon();
     private final Ordini ordiniForm = new Ordini();
     private final UserInfo userInfoForm= new UserInfo();
+    private UserInfoModel userInfoModel;
 
     @Override
     protected void onRender(Element target, int index) {
@@ -83,7 +84,21 @@ public class Amministrazione extends LayoutContainer {
         ordiniForm.setOrdiniInStore(ordini);
     }
 
+
     public void setUserInfo(UserInfoModel userInfoModel) {
-        //To change body of created methods use File | Settings | File Templates.
+        this.userInfoModel=userInfoModel;
+        if(userInfoModel!=null &&
+           userInfoModel.getProfilo()!=null &&
+           !userInfoModel.getProfilo().isEmpty() &&
+                userInfoModel.getProfilo().equalsIgnoreCase("Administrator")
+                ){
+            // couponForm.setVisible(true);
+            // coefficentiForm.setVisible(true);
+             //progettiDiCompensazioneForm.setVisible(true);
+        } else{
+            // couponForm.setVisible(false);
+            // coefficentiForm.setVisible(false);
+            // progettiDiCompensazioneForm.setVisible(false);
+        }
     }
 }

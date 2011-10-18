@@ -18,7 +18,6 @@ import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
-import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
 import java.util.ArrayList;
@@ -54,28 +53,24 @@ public class Ordini extends LayoutContainer {
         ContentPanel centre = new ContentPanel();
         final NumberFormat number = NumberFormat.getFormat("0.00");
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
-        ColumnConfig column = new ColumnConfig("data", "Data Ordine", 100);
+
+
+        ColumnConfig column = new ColumnConfig("ordineId", "ordineId", 300);
         configs.add(column);
 
-        column = new ColumnConfig("cliente", "Cliente", 300);
+
+        column = new ColumnConfig("nome", "nome", 200);
         configs.add(column);
 
-        column = new ColumnConfig("programma", "ProgettoDiCompensazione", 200);
-        configs.add(column);
-
-        column = new ColumnConfig("kgco2", "KG CO2", 100);
+        /*column = new ColumnConfig("kgco2", "KG CO2", 100);
         column.setAlignment((Style.HorizontalAlignment.RIGHT));
-        column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
+        column.setRenderer(new GridCellRenderer<DettaglioModel>() {
             @Override
-            public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
+            public Object render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<DettaglioModel> riepilogoModelListStore, Grid<DettaglioModel> riepilogoModelGrid) {
                 return number.format(model.<Number>get(property));
             }
         });
-        configs.add(column);
-
-        column = new ColumnConfig("Importo", "Importo ", 100);
-        column.setAlignment(Style.HorizontalAlignment.RIGHT);
-        configs.add(column);
+        configs.add(column);*/
 
         ColumnModel cm = new ColumnModel(configs);
 
@@ -91,9 +86,9 @@ public class Ordini extends LayoutContainer {
                     public void handleEvent(SelectionChangedEvent<DettaglioModel> be) {
                         if (be.getSelection().size() > 0) {
                             //TODO... dispecchare evento per il load corretto
-                            Dispatcher.forwardEvent(EventoEvents.LoadEvento,be.getSelectedItem());
+                            Dispatcher.forwardEvent(EventoEvents.LoadEvento, be.getSelectedItem());
                             Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
-                            Info.display("Info", "Uploading Evento... "+ be.getSelectedItem().getNome());
+                            Info.display("Info", "Uploading Evento... " + be.getSelectedItem().getNome());
                         }
                     }
                 });
@@ -104,8 +99,12 @@ public class Ordini extends LayoutContainer {
     }
 
     public void setOrdiniInStore(List<DettaglioModel> ordiniModels) {
-        store.removeAll();
-        store.add(ordiniModels);
+        try {
+            store.removeAll();
+            store.add(ordiniModels);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

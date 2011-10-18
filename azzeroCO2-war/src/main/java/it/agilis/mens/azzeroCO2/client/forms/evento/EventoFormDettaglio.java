@@ -20,6 +20,13 @@ public class EventoFormDettaglio extends LayoutContainer {
 
     private DettaglioModel dettaglioModel = new DettaglioModel();
     private FormBinding binding = null;
+    FormPanel formPanel;
+
+    public EventoFormDettaglio() {
+        formPanel = createForm();
+        binding = new FormBinding(formPanel, true);
+        binding.bind(dettaglioModel);
+    }
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -32,12 +39,8 @@ public class EventoFormDettaglio extends LayoutContainer {
         cp.setFrame(true);
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-
-        FormPanel formPanel = createForm();
         cp.add(formPanel, new RowData(1, 1));
 
-        binding = new FormBinding(formPanel, true);
-        binding.bind(dettaglioModel);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
@@ -70,7 +73,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         dataInizio.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
         dataInizio.setName("inizio");
         left.add(dataInizio);
-     //   dataInizio.set
+        //   dataInizio.set
 
         TextArea note = new TextArea();
         note.setPreventScrollbars(true);
@@ -100,7 +103,6 @@ public class EventoFormDettaglio extends LayoutContainer {
 
         return panel;
     }
-
 
 
     public void clear() {
