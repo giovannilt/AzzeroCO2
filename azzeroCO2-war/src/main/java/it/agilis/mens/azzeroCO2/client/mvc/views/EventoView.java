@@ -63,15 +63,18 @@ public class EventoView extends View {
         } else if (event.getType().equals(EventoEvents.PreviousText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData());
-            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo));
-            west.setTitle( riepilogo.getNome() );
+            setRiassunto(riepilogo);
         } else if (event.getType().equals(EventoEvents.NextText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData());
-            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo));
-            west.setTitle(riepilogo.getNome() );
+            setRiassunto(riepilogo);
         }
 
+    }
+
+    public void setRiassunto(DettaglioModel riepilogo) {
+        west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo));
+        west.setTitle( riepilogo.getNome() );
     }
 
     private void onPrevius(AppEvent event) {

@@ -46,6 +46,7 @@ public class EventoController extends BaseController {
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(EventoEvents.LoadEvento)) {
             eventoView.setDettaglioModel((DettaglioModel) event.getData());
+            eventoView.setRiassunto((DettaglioModel) event.getData());
         } else if (event.getType().equals(AzzeroCO2Events.Init)) {
             AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
                 public void onFailure(Throwable caught) {
