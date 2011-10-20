@@ -46,6 +46,7 @@ public class EventoSouth extends LayoutContainer {
         left.setText("");
         left.setToolTip("");
         left.setTitle("");
+        left.setEnabled(false);
 
         left.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
@@ -89,14 +90,26 @@ public class EventoSouth extends LayoutContainer {
 
 
     public void setTextLeft(String left_t) {
+        if (left_t.length() == 0) {
+            left.setEnabled(false);
+        } else {
+            left.setEnabled(true);
+        }
         leftText.setText(left_t);
+
         //    left.setToolTip(left_t);
         //    left.setTitle("");
         //   left.setText("");
     }
 
     public void setTextRigth(String right_t) {
+        if (right_t.length() == 0) {
+            right.setEnabled(false);
+        } else {
+            right.setEnabled(true);
+        }
         rigthText.setText(right_t);
+
         //   right.setToolTip(right_t);
         //   right.setText("");
         //   right.setTitle("");

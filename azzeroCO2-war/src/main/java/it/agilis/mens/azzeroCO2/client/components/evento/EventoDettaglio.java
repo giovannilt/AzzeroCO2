@@ -178,14 +178,18 @@ public class EventoDettaglio extends LayoutContainer {
                     item.setEnabled(false);
                     eventoTab.getItems().get(i).setEnabled(true);
                     eventoTab.setSelection(eventoTab.getItems().get(i));
+
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
+                    }
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
+                        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
                     }
                     if (!eventoTab.getItems().get(i).getText().equalsIgnoreCase("Calcolo")) {
                         posizioniLabel++;
                     }
-                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
-                        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+                    if(posizioniLabel==0){
+                        posizioniLabel++;
                     }
                     Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
@@ -244,6 +248,4 @@ public class EventoDettaglio extends LayoutContainer {
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
         eventoFormAcquisto.setInStore(progettiDiCompensazioneList);
     }
-
-
 }
