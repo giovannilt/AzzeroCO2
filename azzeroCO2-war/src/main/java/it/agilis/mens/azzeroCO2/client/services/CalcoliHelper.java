@@ -531,26 +531,26 @@ public class CalcoliHelper {
             String pagine = "";
             if (prm.getNumeroDiPagine() > 0) {
                 pagine = "Numero di pagine: " + prm.getNumeroDiPagine() + "</br>";
-                co2 *= prm.getNumeroDiPagine();
+                co2 = co2 * prm.getNumeroDiPagine();
 
             }
 
             String materiale = "";
             if (prm.getTipoDiCarta() != null) {
                 if (coefficienti.get(prm.getTipoDiCarta().getParametro()) != null) {
-                    co2 *= coefficienti.get(prm.getTipoDiCarta().getParametro()).getValore();
+                    co2 = co2 * coefficienti.get(prm.getTipoDiCarta().getParametro()).getValore();
                 }
                 materiale = prm.getTipoDiCarta().getNome();
             }
             if (prm.getGrammatura() > 0) {
                 materiale += " " + prm.getGrammatura() + " gr</br>";
-                co2 *= prm.getGrammatura() / 1000;
+                co2 = co2 * (prm.getGrammatura() / 1000);
             }
             String tiratura = "";
             if (prm.getTiratura() > 0) {
                 tiratura = "Tiratura " + prm.getTiratura()+"</br>";
-                co2 *= prm.getTiratura();
-                co2Copertina *= prm.getTiratura();
+                co2 = co2 * prm.getTiratura();
+                co2Copertina = co2Copertina * prm.getTiratura();
             }
             if (prm.getTipoDiCartaCopertina() != null) {
                 if (coefficienti.get(prm.getTipoDiCartaCopertina().getParametro()) != null) {
@@ -558,12 +558,10 @@ public class CalcoliHelper {
                 }
             }
             if (prm.getGrammaturaCopertina() > 0) {
-                co2Copertina *= prm.getGrammaturaCopertina() / 1000;
+                co2Copertina = co2Copertina * prm.getGrammaturaCopertina() / 1000;
             }
-            co2 += co2Copertina;
+            co2 = co2 + co2Copertina;
             if (co2 > 0) {
-
-
                 _rm.setKgCO2(co2);
                 _rm.setOggetto("Pubblicazioni rilegate / </br>" + prm.getCategoria());
                 _rm.setDettagli(formato + "</br>" + materiale + "</br>" + pagine + "</br>" + tiratura);

@@ -204,7 +204,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
                 NumberField numeroDiPagine = new NumberField();
                 numeroDiPagine.setWidth(60);
-                numeroDiPagine.setName("quantita");
+                numeroDiPagine.setName("numeroDiPagine");
                 numeroDiPagine.setRegex("[0-9]+");
                 numeroDiPagine.getMessages().setRegexText("Inserisci un numero intero");
                 numeroDiPagine.setPropertyEditorType(Integer.class);
