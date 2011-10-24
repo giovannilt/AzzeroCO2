@@ -157,6 +157,7 @@ public class AmministrazioneController extends BaseController {
                 amministrazioneView.setProgettiDiCompensazione(result);
             }
         };
-        hustonService.getListOfProgettoDiCompensazione(aCallback);
+
+        hustonService.getListOfProgettoDiCompensazione(true , aCallback);
     }
 }

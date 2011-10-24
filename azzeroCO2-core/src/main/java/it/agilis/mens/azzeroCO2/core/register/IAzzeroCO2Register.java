@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.register;
 
+import it.agilis.mens.azzeroCO2.core.criteria.ProgettoCompensazioneCriteria;
 import it.agilis.mens.azzeroCO2.core.criteria.SellaRicevutaDiPagamentoCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.*;
 
@@ -40,7 +41,7 @@ public interface IAzzeroCO2Register {
 
     List<Coefficiente> getCoefficienti();
 
-    List<ProgettoCompensazione> getListOfProgettoDiCompensazione();
+    List<ProgettoCompensazione> getListOfProgettoDiCompensazione(ProgettoCompensazioneCriteria criteria);
 
     List<Ordine> getListOfOrdini(UserInfo userInfo);
 

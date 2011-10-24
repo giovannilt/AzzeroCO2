@@ -2,6 +2,7 @@ package it.agilis.mens.azzeroCO2.server.services;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import it.agilis.mens.azzeroCO2.client.services.HustonService;
+import it.agilis.mens.azzeroCO2.core.criteria.ProgettoCompensazioneCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
@@ -75,9 +76,11 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione() throws IllegalArgumentException {
+    public List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione(boolean all) throws IllegalArgumentException {
         try {
-            return Utils.getListOfProgettoDiCompensazione(azzeroCO2Register.getListOfProgettoDiCompensazione());
+            ProgettoCompensazioneCriteria progettoCompensazioneCriteria= new ProgettoCompensazioneCriteria();
+            progettoCompensazioneCriteria.setAttivo(!all);
+            return Utils.getListOfProgettoDiCompensazione(azzeroCO2Register.getListOfProgettoDiCompensazione(progettoCompensazioneCriteria));
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.dao;
 
+import it.agilis.mens.azzeroCO2.core.criteria.ProgettoCompensazioneCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.ProgettoCompensazione;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface IProgettoCompesnazioneDAO {
-    List<ProgettoCompensazione> getListOfProgettoDiCompensazione();
+    List<ProgettoCompensazione> getListOfProgettoDiCompensazione(ProgettoCompensazioneCriteria criteria);
 
     void save(ProgettoCompensazione progettoCompensazione) throws Exception;
 }

@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.core.register.impl;
 
 import it.agilis.mens.azzeroCO2.core.criteria.OrdineCriteria;
+import it.agilis.mens.azzeroCO2.core.criteria.ProgettoCompensazioneCriteria;
 import it.agilis.mens.azzeroCO2.core.criteria.SellaRicevutaDiPagamentoCriteria;
 import it.agilis.mens.azzeroCO2.core.dao.*;
 import it.agilis.mens.azzeroCO2.core.entity.*;
@@ -135,8 +136,8 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     }
 
     @Override
-    public List<ProgettoCompensazione> getListOfProgettoDiCompensazione() {
-        return progettoCompensazioneDAO.getListOfProgettoDiCompensazione();
+    public List<ProgettoCompensazione> getListOfProgettoDiCompensazione(ProgettoCompensazioneCriteria criteria) {
+        return progettoCompensazioneDAO.getListOfProgettoDiCompensazione(criteria);
     }
 
     @Override

@@ -1,10 +1,9 @@
 package it.agilis.mens.azzeroCO2.core.dao.impl;
 
+import it.agilis.mens.azzeroCO2.core.criteria.ProgettoCompensazioneCriteria;
 import it.agilis.mens.azzeroCO2.core.dao.DAOSupport;
 import it.agilis.mens.azzeroCO2.core.dao.IProgettoCompesnazioneDAO;
-import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.ProgettoCompensazione;
-import org.hibernate.criterion.DetachedCriteria;
 
 import java.util.List;
 
@@ -17,9 +16,8 @@ import java.util.List;
  */
 public class ProgettoCompesnazioneDAO extends DAOSupport implements IProgettoCompesnazioneDAO {
     @Override
-    public List<ProgettoCompensazione> getListOfProgettoDiCompensazione() {
-
-        return (List<ProgettoCompensazione>) getList(DetachedCriteria.forClass(ProgettoCompensazione.class, "ProgettoCompensazione"), true);
+    public List<ProgettoCompensazione> getListOfProgettoDiCompensazione(ProgettoCompensazioneCriteria criteria) {
+        return (List<ProgettoCompensazione>) getList(criteria.getDetachedCriteria(), true);
     }
 
       @Override

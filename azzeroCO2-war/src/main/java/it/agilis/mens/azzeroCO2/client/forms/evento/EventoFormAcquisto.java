@@ -45,7 +45,7 @@ public class EventoFormAcquisto extends LayoutContainer {
     private double totaleKC02 = 0;
     private LabelField titoloEvento = new LabelField("Titolo Evento ");
     private LabelField kcO2Evento = new LabelField("Kg C02");
-    private final LabelField titoloProgettoScelto = new LabelField("TitoloProgettoScelto");
+    private final LabelField titoloProgettoScelto = new LabelField("ProgettoScelto");
     private final LabelField euroPerKCo2Progetto = new LabelField(" 0.00");
     private final LabelField totale = new LabelField(" 0.00");
 
@@ -65,7 +65,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         binding.setStore(grid.getStore());
 
         VerticalPanel vp = new VerticalPanel();
-        vp.setHeight(412);
+        vp.setHeight(422);
         vp.add(form);
         east.add(vp);
 
@@ -74,11 +74,11 @@ public class EventoFormAcquisto extends LayoutContainer {
                     public void handleEvent(SelectionChangedEvent<ProgettoDiCompensazioneModel> be) {
                         if (be.getSelection().size() > 0) {
                             titoloProgettoScelto.setText(be.getSelection().get(0).getNome());
-                            //euroPerKCo2Progetto.setText((be.getSelection().get(0).getKgCO2() * be.getSelection().get(0).getPrezzo()) + "");
-                            //totale.setText((be.getSelection().get(0).getKgCO2() * be.getSelection().get(0).getPrezzo() * totaleKC02) + "");
+                            euroPerKCo2Progetto.setText( be.getSelection().get(0).getPrezzo() + "");
+                           totale.setText((totaleKC02 * be.getSelection().get(0).getPrezzo() * totaleKC02) + "");
                             binding.bind(be.getSelection().get(0));
                         } else {
-                            titoloProgettoScelto.setText("TitoloProgettoScelto");
+                            titoloProgettoScelto.setText("Titolo ProgettoScelto");
                             euroPerKCo2Progetto.setText("0.0");
                             totale.setText("0.0");
                             binding.unbind();
@@ -128,6 +128,7 @@ public class EventoFormAcquisto extends LayoutContainer {
                 HBoxLayout layout = new HBoxLayout();
                 layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+
                 c.setLayout(layout);
                 titoloEvento.setWidth(220);
                 c.add(titoloEvento);
@@ -138,11 +139,12 @@ public class EventoFormAcquisto extends LayoutContainer {
                 HBoxLayout layout = new HBoxLayout();
                 layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+                  layout.setPack(BoxLayout.BoxLayoutPack.END);
                 c.setLayout(layout);
                 LabelField label = new LabelField("Kg/CO2");
-                label.setWidth(190);
+                label.setWidth(220);
                 c.add(label);
-                c.add(kcO2Evento, flex);
+                c.add(kcO2Evento);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -175,12 +177,13 @@ public class EventoFormAcquisto extends LayoutContainer {
             {
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(5));
+                layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
-                c.setLayout(layout);
 
+                 layout.setPack(BoxLayout.BoxLayoutPack.END);
+                  c.setLayout(layout);
                 LabelField label = new LabelField("€ x Kg/CO2 ");
-                label.setWidth(180);
+                label.setWidth(220);
                 c.add(label);
                 c.add(euroPerKCo2Progetto);
 
@@ -189,14 +192,14 @@ public class EventoFormAcquisto extends LayoutContainer {
             { // TOTALE
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(5));
+                layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
-
+                  layout.setPack(BoxLayout.BoxLayoutPack.END);
                 LabelField label = new LabelField("Totale € ");
                 label.setStyleAttribute("color", "#FF9933");
                 label.setStyleAttribute("font-size", "16px");
-                label.setWidth(180);
+                label.setWidth(220);
                 c.add(label);
 
                 totale.setStyleAttribute("color", "#FF9933");

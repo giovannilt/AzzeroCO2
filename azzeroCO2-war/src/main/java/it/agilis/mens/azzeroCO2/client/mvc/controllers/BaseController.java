@@ -71,7 +71,7 @@ public abstract class BaseController extends Controller {
                 progettiDiCompensazioneList.addAll(result);
             }
         };
-        hustonService.getListOfProgettoDiCompensazione(aCallback);
+        hustonService.getListOfProgettoDiCompensazione(false, aCallback);
     }
 
      public void setInfo() {
