@@ -220,8 +220,10 @@ public class EventoDettaglio extends LayoutContainer {
         eventoModel.setTrasportoPersoneModel(formTrasportoPersone.getTrasportoPersoneModel());
         eventoModel.setNottiModel(formPernottamenti.getNottiModel());
         eventoModel.setTrasportoMerciModel(formTrasportoMerci.getTrasportoMerciModel());
+
         eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
         eventoModel.setManifestiPieghevoliFogliModel(formManifestiPiegevoliFogli.getManifestiPieghevoliFogliModel());
+
         return eventoModel;
     }
 

@@ -9,6 +9,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensaz
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
+import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,6 @@ public interface HustonService extends RemoteService {
 
     GitRepositoryStateModel checkGitRevision();
 
-    DettaglioModel saveOrdine(DettaglioModel eventoViewRiepilogo);
+    DettaglioVTO saveOrdine(DettaglioVTO riepilogo);
 }
 

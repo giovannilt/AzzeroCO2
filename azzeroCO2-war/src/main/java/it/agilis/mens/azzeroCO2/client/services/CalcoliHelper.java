@@ -536,7 +536,7 @@ public class CalcoliHelper {
             }
 
             String materiale = "";
-            if (prm.getTipoDiCarta() != null) {
+            if (prm.getTipoDiCarta() != null ) {
                 if (coefficienti.get(prm.getTipoDiCarta().getParametro()) != null) {
                     co2 = co2 * coefficienti.get(prm.getTipoDiCarta().getParametro()).getValore();
                 }
@@ -548,11 +548,11 @@ public class CalcoliHelper {
             }
             String tiratura = "";
             if (prm.getTiratura() > 0) {
-                tiratura = "Tiratura " + prm.getTiratura()+"</br>";
+                tiratura = "Tiratura " + prm.getTiratura() + "</br>";
                 co2 = co2 * prm.getTiratura();
                 co2Copertina = co2Copertina * prm.getTiratura();
             }
-            if (prm.getTipoDiCartaCopertina() != null) {
+            if (prm.getTipoDiCartaCopertina() != null ) {
                 if (coefficienti.get(prm.getTipoDiCartaCopertina().getParametro()) != null) {
                     co2Copertina *= coefficienti.get(prm.getTipoDiCartaCopertina().getParametro()).getValore();
                 }
@@ -585,12 +585,15 @@ public class CalcoliHelper {
                 co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100;
             }
             String materiale = "";
+          /*
+             TODO SISTEMARE
+
             if (prm.getTipoDiCarta() != null) {
                 if (coefficienti.containsKey(prm.getTipoDiCarta().getParametro())) {
                     co2 *= coefficienti.get(prm.getTipoDiCarta().getParametro()).getValore();
                 }
                 materiale = prm.getTipoDiCarta().getNome();
-            }
+            }*/
             if (prm.getGrammatura() > 0) {
                 materiale += " " + prm.getGrammatura() + " gr</br>";
                 co2 *= prm.getGrammatura() / 1000;
@@ -602,7 +605,7 @@ public class CalcoliHelper {
             }
             String tiratura = "";
             if (prm.getTiratura() > 0) {
-                tiratura = "Tiratura " + prm.getTiratura() +"</br>";
+                tiratura = "Tiratura " + prm.getTiratura() + "</br>";
                 co2 *= prm.getTiratura();
             }
 

@@ -1,7 +1,6 @@
 package it.agilis.mens.azzeroCO2.shared.model.evento;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
-import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
  * Created by IntelliJ IDEA.
@@ -10,7 +9,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * Time: 12:46 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TipoDiCartaModel extends BaseModel implements IsSerializable {
+public class TipoDiCartaModel extends BaseModel {
 
     public Long getId() {
         return get("id");
@@ -27,7 +26,6 @@ public class TipoDiCartaModel extends BaseModel implements IsSerializable {
     public void setParametro(String parametro) {
         set("parametro", parametro);
     }
-
 
     public String getNome() {
         return get("nome");

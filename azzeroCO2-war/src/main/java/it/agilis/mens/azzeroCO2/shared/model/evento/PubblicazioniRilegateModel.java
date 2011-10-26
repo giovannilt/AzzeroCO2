@@ -11,12 +11,12 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  */
 public class PubblicazioniRilegateModel extends BaseModel {
 
-
-     public Long getId()  {
+    public Long getId() {
         return get("id");
     }
-    public void setId(Long id){
-        set("id",id);
+
+    public void setId(Long id) {
+        set("id", id);
     }
 
     public String getCategoria() {
@@ -28,7 +28,7 @@ public class PubblicazioniRilegateModel extends BaseModel {
     }
 
     public Double getAltezza() {
-        return get("altezza")== null ? 0 : new Double(get("altezza").toString());
+        return get("altezza") == null ? 0 : new Double(get("altezza").toString());
     }
 
     public void setAltezza(Double altezza) {
@@ -36,7 +36,7 @@ public class PubblicazioniRilegateModel extends BaseModel {
     }
 
     public Double getLarghezza() {
-        return  get("larghezza")== null ? 0 : new Double(get("larghezza").toString());
+        return get("larghezza") == null ? 0 : new Double(get("larghezza").toString());
     }
 
     public void setLarghezza(Double larghezza) {
@@ -44,7 +44,7 @@ public class PubblicazioniRilegateModel extends BaseModel {
     }
 
     public Integer getNumeroDiPagine() {
-        return get("numeroDiPagine")== null ? 0 : new Integer(get("numeroDiPagine").toString());
+        return get("numeroDiPagine") == null ? 0 : new Integer(get("numeroDiPagine").toString());
     }
 
     public void setNumeroDiPagine(Integer numeroDiPagine) {
@@ -52,11 +52,29 @@ public class PubblicazioniRilegateModel extends BaseModel {
     }
 
     public Integer getTiratura() {
-        return get("tiratura")== null ? 0 : new Integer(get("tiratura").toString());
+        return get("tiratura") == null ? 0 : new Integer(get("tiratura").toString());
     }
 
     public void setTiratura(Integer tiratura) {
         set("tiratura", tiratura);
+    }
+
+
+    public Double getGrammatura() {
+        return (Double) get("grammatura") == null ? 0 : new Double(get("grammatura").toString());
+    }
+
+    public void setGrammatura(Double grammatura) {
+        set("grammatura", grammatura);
+    }
+
+    // TODO CHECK
+    public TipoDiCartaModel getTipoDiCartaCopertina() {
+        return get("tipoDiCartaCopertina");
+    }
+
+    public void setTipoDiCartaCopertina(TipoDiCartaModel tipoDiCartaCopertina) {
+        set("tipoDiCartaCoprtina", tipoDiCartaCopertina);
     }
 
     public TipoDiCartaModel getTipoDiCarta() {
@@ -66,25 +84,10 @@ public class PubblicazioniRilegateModel extends BaseModel {
     public void setTipoDiCarta(TipoDiCartaModel tipoDiCarta) {
         set("tipoDiCarta", tipoDiCarta);
     }
-
-    public Double getGrammatura() {
-        return (Double) get("grammatura")== null ? 0 : new Double(get("grammatura").toString());
-    }
-
-    public void setGrammatura(Double grammatura) {
-        set("grammatura", grammatura);
-    }
-
-    public TipoDiCartaModel getTipoDiCartaCopertina() {
-        return (TipoDiCartaModel) get("tipoDiCartaCopertina");
-    }
-
-    public void setTipoDiCartaCopertina(TipoDiCartaModel tipoDiCartaCopertina) {
-        set("tipoDiCartaCoprtina", tipoDiCartaCopertina);
-    }
+    // TODO CHECK
 
     public Double getGrammaturaCopertina() {
-        return (Double) get("grammaturaCopertina")== null ? 0 : new Double(get("grammaturaCopertina").toString());
+        return (Double) get("grammaturaCopertina") == null ? 0 : new Double(get("grammaturaCopertina").toString());
     }
 
     public void setGrammaturaCopertina(Double grammaturaCopertina) {

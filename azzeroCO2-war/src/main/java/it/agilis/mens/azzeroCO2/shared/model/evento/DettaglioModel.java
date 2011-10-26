@@ -18,6 +18,7 @@ public class DettaglioModel extends BaseModel {
     private List<TrasportoPersoneModel> trasportoPersoneModel;
     private NottiModel nottiModel;
     private TrasportoMerciModel trasportoMerciModel;
+
     private List<PubblicazioniRilegateModel> pubblicazioniRilegateModel;
     private List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel;
 

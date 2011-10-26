@@ -2,6 +2,7 @@ package it.agilis.mens.azzeroCO2.server.services;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import it.agilis.mens.azzeroCO2.client.services.HustonService;
+import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.core.criteria.ProgettoCompensazioneCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
@@ -15,6 +16,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensaz
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
+import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -213,9 +215,9 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public DettaglioModel saveOrdine(DettaglioModel evento) {
+    public DettaglioVTO saveOrdine(DettaglioVTO evento) {
         try {
-            return Utils.getDettaglioModel(azzeroCO2Register.saveOrUpdateOrdine(Utils.getOrdine(evento)));
+            return AzzerroCO2UtilsClientHelper.getDettaglioVTO(Utils.getDettaglioModel(azzeroCO2Register.saveOrUpdateOrdine(Utils.getOrdine(AzzerroCO2UtilsClientHelper.getDettaglioModel(evento)))));
         } catch (Exception e){
             e.printStackTrace();
            return null;

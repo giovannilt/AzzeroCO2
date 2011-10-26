@@ -6,9 +6,11 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
+import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
+import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 
 import java.util.List;
 
@@ -78,24 +80,25 @@ public class EventoController extends BaseController {
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
         } else if (event.getType().equals(EventoEvents.Save)) {
-            if (eventoView.getRiepilogo().getNome() == null || eventoView.getRiepilogo().getNome().length() == 0) {
+           final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo());
+            if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
                 Info.display("Warning", "Nome Evento Mancante");
             } else {
-                final DettaglioModel evento=eventoView.getRiepilogo();
-                AsyncCallback<DettaglioModel> dettaglioModel = new AsyncCallback<DettaglioModel>() {
+
+                AsyncCallback<DettaglioVTO> dettaglio = new AsyncCallback<DettaglioVTO>() {
                     public void onFailure(Throwable caught) {
                         Info.display("Error", "Errore impossibile connettersi al server");
                     }
                     @Override
-                    public void onSuccess(DettaglioModel result) {
+                    public void onSuccess(DettaglioVTO result) {
                         if (result != null) {
-                            eventoView.setDettaglioModel(result);
-                            Info.display("Info", "Evento "+ evento.getNome()+ " salvato con successo.");
+                            eventoView.setDettaglioModel(AzzerroCO2UtilsClientHelper.getDettaglioModel(result));
+                            Info.display("Info", "Evento "+ riepilogo.getNome()+ " salvato con successo.");
                         }
                     }
                 };
 
-                getHustonService().saveOrdine(evento, dettaglioModel);
+                getHustonService().saveOrdine(riepilogo, dettaglio);
             }
         } else {
             forwardToView(eventoView, event);

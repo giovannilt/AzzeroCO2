@@ -285,7 +285,7 @@ public class Utils {
                 pr.setAltezza(prm.getAltezza());
                 pr.setLarghezza(prm.getLarghezza());
 
-                if (prm.getTipoDiCarta() != null) {
+                if (prm.getTipoDiCarta() != null ) {
                     TipoDiCarta tp = new TipoDiCarta();
                     tp.setId(prm.getTipoDiCarta().getId());
                     tp.setNome(prm.getTipoDiCarta().getNome());
@@ -320,7 +320,7 @@ public class Utils {
                 pnr.setAltezza(pnrm.getAltezza());
                 pnr.setLarghezza(pnrm.getLarghezza());
                 TipoDiCarta tp = new TipoDiCarta();
-                tp.setId(pnrm.getTipoDiCarta().getId());
+              tp.setId(pnrm.getTipoDiCarta().getId());
                 tp.setNome(pnrm.getTipoDiCarta().getNome());
                 tp.setParametro(pnrm.getTipoDiCarta().getParametro());
                 pnr.setTipoDiCarta(tp);
@@ -465,7 +465,7 @@ public class Utils {
                         tp.setId(prm.getTipoDiCarta().getId());
                         tp.setNome(prm.getTipoDiCarta().getNome());
                         tp.setParametro(prm.getTipoDiCarta().getParametro());
-                        mpfm.setTipoDiCarta(tp);
+                     // TODO SISTEMARE   mpfm.setTipoDiCarta(tp);
                     }
                     mpfm.setGrammatura(prm.getGrammatura());
                     mpfm.setTiratura(prm.getTiratura().intValue());
