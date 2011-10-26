@@ -41,11 +41,13 @@ public class EventoFormAcquisto extends LayoutContainer {
     private ListStore<ProgettoDiCompensazioneModel> store = new ListStore<ProgettoDiCompensazioneModel>();
     private FormBinding binding = null;
 
-
+    private final NumberFormat number = NumberFormat.getFormat("0.00");
     private double totaleKC02 = 0;
+
+    private LabelField totaleKC02Label = new LabelField();
     private LabelField titoloEvento = new LabelField("Titolo Evento ");
     private LabelField kcO2Evento = new LabelField("Kg C02");
-    private final LabelField titoloProgettoScelto = new LabelField("TitoloProgettoScelto");
+    private final LabelField titoloProgettoScelto = new LabelField("ProgettoScelto");
     private final LabelField euroPerKCo2Progetto = new LabelField(" 0.00");
     private final LabelField totale = new LabelField(" 0.00");
 
@@ -65,7 +67,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         binding.setStore(grid.getStore());
 
         VerticalPanel vp = new VerticalPanel();
-        vp.setHeight(412);
+        vp.setHeight(422);
         vp.add(form);
         east.add(vp);
 
@@ -74,13 +76,15 @@ public class EventoFormAcquisto extends LayoutContainer {
                     public void handleEvent(SelectionChangedEvent<ProgettoDiCompensazioneModel> be) {
                         if (be.getSelection().size() > 0) {
                             titoloProgettoScelto.setText(be.getSelection().get(0).getNome());
-                            //euroPerKCo2Progetto.setText((be.getSelection().get(0).getKgCO2() * be.getSelection().get(0).getPrezzo()) + "");
-                            //totale.setText((be.getSelection().get(0).getKgCO2() * be.getSelection().get(0).getPrezzo() * totaleKC02) + "");
+                            euroPerKCo2Progetto.setText(number.format(be.getSelection().get(0).getPrezzo()));
+                            totale.setText(number.format((totaleKC02 * be.getSelection().get(0).getPrezzo() )));
+                            totaleKC02Label.setText(number.format(totaleKC02) + " kg/CO2?");
                             binding.bind(be.getSelection().get(0));
                         } else {
-                            titoloProgettoScelto.setText("TitoloProgettoScelto");
+                            titoloProgettoScelto.setText("Titolo ProgettoScelto");
                             euroPerKCo2Progetto.setText("0.0");
                             totale.setText("0.0");
+                            totaleKC02Label.setText("0.0 kg/CO2?");
                             binding.unbind();
                         }
                     }
@@ -110,7 +114,8 @@ public class EventoFormAcquisto extends LayoutContainer {
         panel.setHeaderVisible(false);
         panel.setSize(300, -1);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
-        HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 2, 0, 0));
+        HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 2, 0, 10));
+        flex.setFlex(1);
         {
             LayoutContainer c = new LayoutContainer();
             HBoxLayout layout = new HBoxLayout();
@@ -119,7 +124,7 @@ public class EventoFormAcquisto extends LayoutContainer {
             c.setLayout(layout);
             LabelField label = new LabelField("Evento: ");
             label.setStyleAttribute("font-size", "16px");
-            c.add(label, flex);
+            c.add(label);
             panel.add(c);
         }
         {
@@ -131,18 +136,19 @@ public class EventoFormAcquisto extends LayoutContainer {
                 c.setLayout(layout);
                 titoloEvento.setWidth(220);
                 c.add(titoloEvento);
-                panel.add(c, new FormData("100%"));
+                panel.add(c);
             }
             {
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
                 layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+                layout.setPack(BoxLayout.BoxLayoutPack.END);
                 c.setLayout(layout);
                 LabelField label = new LabelField("Kg/CO2");
-                label.setWidth(190);
+                label.setWidth(220);
                 c.add(label);
-                c.add(kcO2Evento, flex);
+                c.add(kcO2Evento);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -175,13 +181,15 @@ public class EventoFormAcquisto extends LayoutContainer {
             {
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(5));
+                layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
-                c.setLayout(layout);
 
+                layout.setPack(BoxLayout.BoxLayoutPack.END);
+                c.setLayout(layout);
                 LabelField label = new LabelField("€ x Kg/CO2 ");
-                label.setWidth(180);
+                label.setWidth(220);
                 c.add(label);
+                euroPerKCo2Progetto.setWidth(30);
                 c.add(euroPerKCo2Progetto);
 
                 panel.add(c, new FormData("100%"));
@@ -189,18 +197,20 @@ public class EventoFormAcquisto extends LayoutContainer {
             { // TOTALE
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(5));
+                layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
-
+                layout.setPack(BoxLayout.BoxLayoutPack.END);
                 LabelField label = new LabelField("Totale € ");
                 label.setStyleAttribute("color", "#FF9933");
                 label.setStyleAttribute("font-size", "16px");
-                label.setWidth(180);
+                label.setWidth(210);
+
                 c.add(label);
 
                 totale.setStyleAttribute("color", "#FF9933");
                 totale.setStyleAttribute("font-size", "16px");
+                totale.setWidth(45);
                 c.add(totale, flex);
 
                 panel.add(c, new FormData("100%"));
@@ -222,18 +232,23 @@ public class EventoFormAcquisto extends LayoutContainer {
             }
             {
                 LayoutContainer c = new LayoutContainer();
-                c.setHeight(160);
+                c.setHeight(150);
                 c.setWidth(290);
                 c.setStyleAttribute("background-color", "#FF9933");
-                HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(5));
-                layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+                VBoxLayout layout = new VBoxLayout();
+                layout.setPadding(new Padding(2));
+                layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.LEFT);
                 c.setLayout(layout);
 
-                LabelField label = new LabelField("AzzeroCO2 puo' offrirti <br>consulenza per<br>la riduzione delle emissioni <br>Chiamaci !!");
-                label.setStyleAttribute("font-size", "20px");
-                label.setWidth(290);
-                c.add(label);
+                totaleKC02Label.setStyleAttribute("font-size", "18px");
+                totaleKC02Label.setStyleAttribute("color", "#2F3645");
+                totaleKC02Label.setWidth("");
+                c.add(totaleKC02Label, new VBoxLayoutData(new Margins(5, 0, 10, 0)));
+                LabelField label = new LabelField("AzzeroCO2 puo' offrirti consulenza <br> per la riduzione delle emissioni <br>Chiamaci !!");
+                label.setStyleAttribute("font-size", "16px");
+                label.setStyleAttribute("color", "#2F3645");
+                //label.setWidth(290);
+                c.add(label, new VBoxLayoutData(new Margins(5, 0, 5, 0)));
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -275,8 +290,9 @@ public class EventoFormAcquisto extends LayoutContainer {
             totale += r.getKgCO2();
         }
         this.totaleKC02 = totale;
-        final NumberFormat number = NumberFormat.getFormat("0.00");
+
         kcO2Evento.setText(number.format(totale));
+        totaleKC02Label.setText(number.format(totale) + " kg/CO2?");
         titoloEvento.setText(riepilogo.getNome());
     }
 }

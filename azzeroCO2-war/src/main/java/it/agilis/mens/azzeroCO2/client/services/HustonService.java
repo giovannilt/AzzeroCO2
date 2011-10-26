@@ -3,7 +3,6 @@ package it.agilis.mens.azzeroCO2.client.services;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -38,7 +37,7 @@ public interface HustonService extends RemoteService {
 
     List<CouponModel> getListOfCoupon() throws IllegalArgumentException;
 
-    List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione() throws IllegalArgumentException;
+    List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione(boolean all) throws IllegalArgumentException;
 
     List<DettaglioModel> getListOfOrdini(UserInfoModel userInfoModel);
 
