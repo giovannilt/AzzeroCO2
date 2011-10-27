@@ -289,7 +289,7 @@ public class CalcoliHelper {
             if (tpm.getAereoKm3000() > 0) {
                 tp3000Aereo = "Aereo " + tpm.getAereoKm3000() + " tratte </br>";
             }
-            if (tpm.getBusKm3000() + tpm.getAutoKm3000() + tpm.getTrenoKm3000() > 0) {
+            if (tpm.getBusKm3000() + tpm.getAutoKm3000() + tpm.getTrenoKm3000() + tpm.getAereoKm3000() > 0) {
                 tp3000 = "Distanza Europea:</br>" + tp3000Bus + tp3000Auto + tp3000Treno + tp3000Aereo;
             }
 
@@ -344,7 +344,21 @@ public class CalcoliHelper {
             co2 += tpm.getAereoKm9000() * coefficienteModelTPAEREE.getValore() * 9000;
 
             if (co2 > 0) {
-                _rm.setDettagli(tp60 + "</br>" + tp300 + "</br>" + tp1000 + "</br>" + tp3000 + "</br>" + tp9000);
+                String temp = tp60;
+                if (tp300 != null && tp300.length() > 0) {
+                    temp = temp + "</br>" + tp300;
+                }
+                if (tp1000 != null && tp1000.length() > 0) {
+                    temp = temp + "</br>" + tp1000;
+                }
+                if (tp3000 != null && tp3000.length() > 0) {
+                    temp = temp + "</br>" + tp3000;
+                }
+                if (tp9000 != null && tp9000.length() > 0) {
+                    temp = temp + "</br>" + tp9000;
+                }
+                //  _rm.setDettagli(tp60 + "</br>" + tp300 + "</br>" + tp1000 + "</br>" + tp3000 + "</br>" + tp9000);
+                _rm.setDettagli(temp);
                 _rm.setKgCO2(co2);
                 _return.add(_rm);
             }
@@ -536,7 +550,7 @@ public class CalcoliHelper {
             }
 
             String materiale = "";
-            if (prm.getTipoDiCarta() != null ) {
+            if (prm.getTipoDiCarta() != null) {
                 if (coefficienti.get(prm.getTipoDiCarta().getParametro()) != null) {
                     co2 = co2 * coefficienti.get(prm.getTipoDiCarta().getParametro()).getValore();
                 }
@@ -552,7 +566,7 @@ public class CalcoliHelper {
                 co2 = co2 * prm.getTiratura();
                 co2Copertina = co2Copertina * prm.getTiratura();
             }
-            if (prm.getTipoDiCartaCopertina() != null ) {
+            if (prm.getTipoDiCartaCopertina() != null) {
                 if (coefficienti.get(prm.getTipoDiCartaCopertina().getParametro()) != null) {
                     co2Copertina *= coefficienti.get(prm.getTipoDiCartaCopertina().getParametro()).getValore();
                 }
@@ -585,7 +599,7 @@ public class CalcoliHelper {
                 co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100;
             }
             String materiale = "";
-          /*
+            /*
              TODO SISTEMARE
 
             if (prm.getTipoDiCarta() != null) {
