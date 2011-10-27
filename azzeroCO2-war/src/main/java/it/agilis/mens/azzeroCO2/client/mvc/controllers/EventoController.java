@@ -87,7 +87,7 @@ public class EventoController extends BaseController {
 
                 AsyncCallback<DettaglioVTO> dettaglio = new AsyncCallback<DettaglioVTO>() {
                     public void onFailure(Throwable caught) {
-                        Info.display("Error", "Errore impossibile connettersi al server");
+                        Info.display("Error", "Errore impossibile connettersi al server "+ caught);
                     }
                     @Override
                     public void onSuccess(DettaglioVTO result) {

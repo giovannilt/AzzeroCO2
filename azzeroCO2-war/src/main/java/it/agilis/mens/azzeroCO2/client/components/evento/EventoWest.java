@@ -34,6 +34,13 @@ public class EventoWest extends LayoutContainer {
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Evento");
 
+    public EventoWest() {
+        RiepilogoModel model = new RiepilogoModel();
+        model.setOggetto("Non Hai ancora Inserito </br> Nessuna Attivita'");
+        store.add(model);
+
+    }
+
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
@@ -51,7 +58,7 @@ public class EventoWest extends LayoutContainer {
         ContentPanel panel = new ContentPanel();
         panel.setHeaderVisible(false);
         panel.setBodyStyle("backgroundColor: silver;");
-        panel.add(createGrid(), new VBoxLayoutData(new Margins(0, 5, 2, 0)));;
+        panel.add(createGrid(), new VBoxLayoutData(new Margins(0, 5, 2, 0)));
 
         title.setStyleAttribute("backgroundColor", "silver");
         title.setStyleAttribute("color", "black");
@@ -60,10 +67,6 @@ public class EventoWest extends LayoutContainer {
         title.setStyleAttribute("vertical-align ", "middle");
         title.setWidth(240);
         title.setHeight(25);
-
-        RiepilogoModel model = new RiepilogoModel();
-        model.setOggetto("Non Hai ancora Inserito </br> Nessuna Attivita'");
-        store.add(model);
 
         panel.setStyleAttribute("backgroundColor", "#E9E9E9");
         add(panel, flex);
@@ -107,7 +110,7 @@ public class EventoWest extends LayoutContainer {
         grid.setAutoHeight(true);
         grid.setHeight(400);
         grid.setWidth(243);
- //     grid.setStripeRows(true);
+        //     grid.setStripeRows(true);
         grid.setHideHeaders(true);
         grid.setStyleAttribute("backgroundColor", "#E9E9E9");
         grid.disableTextSelection(true);

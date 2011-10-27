@@ -8,7 +8,6 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,11 +18,11 @@ import java.util.List;
  */
 public class DettaglioVTO implements Serializable {
     private EnergiaModel energiaModel;
-    private List<TrasportoPersoneModel> trasportoPersoneModel;
+    private ArrayList<TrasportoPersoneModel> trasportoPersoneModel;
     private NottiModel nottiModel;
     private TrasportoMerciModel trasportoMerciModel;
 
-    private ArrayList<PubblicazioniRilegateVTO> pubblicazioniRilegateVTO;
+    private  ArrayList<PubblicazioniRilegateVTO> pubblicazioniRilegateVTO;
     private ArrayList<ManifestiPieghevoliFogliVTO> manifestiPieghevoliFogliVTO;
     private String dove;
     private Date inizio;
@@ -69,11 +68,11 @@ public class DettaglioVTO implements Serializable {
         this.energiaModel = energiaModel;
     }
 
-    public List<TrasportoPersoneModel> getTrasportoPersoneModel() {
+    public ArrayList<TrasportoPersoneModel> getTrasportoPersoneModel() {
         return trasportoPersoneModel;
     }
 
-    public void setTrasportoPersoneModel(List<TrasportoPersoneModel> trasportoPersoneModel) {
+    public void setTrasportoPersoneModel(ArrayList<TrasportoPersoneModel> trasportoPersoneModel) {
         this.trasportoPersoneModel = trasportoPersoneModel;
     }
 
@@ -93,7 +92,7 @@ public class DettaglioVTO implements Serializable {
         this.trasportoMerciModel = trasportoMerciModel;
     }
 
-    public List<PubblicazioniRilegateVTO> getPubblicazioniRilegateVTO() {
+    public ArrayList<PubblicazioniRilegateVTO> getPubblicazioniRilegateVTO() {
         return pubblicazioniRilegateVTO;
     }
 
@@ -101,7 +100,7 @@ public class DettaglioVTO implements Serializable {
         this.pubblicazioniRilegateVTO = pubblicazioniRilegateVTO;
     }
 
-    public List<ManifestiPieghevoliFogliVTO> getManifestiPieghevoliFogliVTO() {
+    public ArrayList<ManifestiPieghevoliFogliVTO> getManifestiPieghevoliFogliVTO() {
         return manifestiPieghevoliFogliVTO;
     }
 

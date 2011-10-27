@@ -12,6 +12,7 @@ import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -232,7 +233,7 @@ public class EventoDettaglio extends LayoutContainer {
         formEnergia.setEnergiaModel(eventoModel.getEnergiaModel());
         formTrasportoPersone.setTrasportoPersoneModel(eventoModel.getTrasportoPersoneModel());
         formPernottamenti.setNottiModel(eventoModel.getNottiModel());
-        formTrasportoMerci.setTrasportoMerciModel(eventoModel.getTrasportoMerciModel());
+        formTrasportoMerci.setTrasportoMerciModel(eventoModel.getTrasportoMerciModel()==null ? new TrasportoMerciModel() : eventoModel.getTrasportoMerciModel());
         formPubblicazioniRilegate.setPubblicazioniRilegateModel(eventoModel.getPubblicazioniRilegateModel());
         formManifestiPiegevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
     }

@@ -44,7 +44,7 @@ public class ManifestiPieghevoliFogliModel extends BaseModel {
     }
 
     public int getNumeroDiPagine() {
-        return get("numeroDiPagine") == null ? 0 : new Integer(get("numeroDiPagina").toString());
+        return get("numeroDiPagine") == null ? 0 : new Integer(get("numeroDiPagine").toString());
     }
 
     public void setNumeroDiPagine(Integer numeroDiPagine) {

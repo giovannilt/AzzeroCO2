@@ -5,6 +5,7 @@ import it.agilis.mens.azzeroCO2.client.services.HustonService;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.core.criteria.ProgettoCompensazioneCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
+import it.agilis.mens.azzeroCO2.core.entity.Ordine;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
@@ -217,7 +218,15 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     @Override
     public DettaglioVTO saveOrdine(DettaglioVTO evento) {
         try {
-            return AzzerroCO2UtilsClientHelper.getDettaglioVTO(Utils.getDettaglioModel(azzeroCO2Register.saveOrUpdateOrdine(Utils.getOrdine(AzzerroCO2UtilsClientHelper.getDettaglioModel(evento)))));
+            DettaglioModel dettaglioModel = AzzerroCO2UtilsClientHelper.getDettaglioModel(evento);
+            Ordine ordine = Utils.getOrdine(dettaglioModel);
+
+            Ordine o = azzeroCO2Register.saveOrUpdateOrdine(ordine);
+
+            DettaglioModel dettaglioModel1 = Utils.getDettaglioModel( o);
+            DettaglioVTO dettaglioVTO = AzzerroCO2UtilsClientHelper.getDettaglioVTO(dettaglioModel1);
+
+            return dettaglioVTO;
         } catch (Exception e){
             e.printStackTrace();
            return null;

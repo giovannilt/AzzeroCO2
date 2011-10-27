@@ -1,7 +1,9 @@
 package it.agilis.mens.azzeroCO2.shared.vto;
 
 
-public class ManifestiPieghevoliFogliVTO {
+import java.io.Serializable;
+
+public class ManifestiPieghevoliFogliVTO implements Serializable{
 
     private Long id;
     private String categoria;

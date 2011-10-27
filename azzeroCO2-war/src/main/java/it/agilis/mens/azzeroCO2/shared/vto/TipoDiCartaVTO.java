@@ -1,6 +1,6 @@
 package it.agilis.mens.azzeroCO2.shared.vto;
 
-import com.extjs.gxt.ui.client.data.BaseModel;
+import java.io.Serializable;
 
 /**
  * Created by IntelliJ IDEA.
@@ -9,7 +9,7 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  * Time: 12:46 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TipoDiCartaVTO extends BaseModel {
+public class TipoDiCartaVTO implements Serializable {
 
     private Long id;
     private String nome;

@@ -2,6 +2,7 @@ package it.agilis.mens.azzeroCO2.shared.model.evento;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class DettaglioModel extends BaseModel {
 
     private EnergiaModel energiaModel;
-    private List<TrasportoPersoneModel> trasportoPersoneModel;
+    private ArrayList<TrasportoPersoneModel> trasportoPersoneModel;
     private NottiModel nottiModel;
     private TrasportoMerciModel trasportoMerciModel;
 
@@ -80,11 +81,11 @@ public class DettaglioModel extends BaseModel {
         this.energiaModel = energiaModel;
     }
 
-    public List<TrasportoPersoneModel> getTrasportoPersoneModel() {
+    public ArrayList<TrasportoPersoneModel> getTrasportoPersoneModel() {
         return trasportoPersoneModel;
     }
 
-    public void setTrasportoPersoneModel(List<TrasportoPersoneModel> trasportoPersoneModel) {
+    public void setTrasportoPersoneModel(ArrayList<TrasportoPersoneModel> trasportoPersoneModel) {
         this.trasportoPersoneModel = trasportoPersoneModel;
     }
 

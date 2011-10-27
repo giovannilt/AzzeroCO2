@@ -28,6 +28,12 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
 
     private TrasportoMerciModel trasportoMerciModel = new TrasportoMerciModel();
     private FormBinding binding = null;
+    private FormPanel panel = createForm();
+
+    public EventoFormTrasportoMerci() {
+        binding = new FormBinding(panel, true);
+        binding.bind(trasportoMerciModel);
+    }
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -41,13 +47,11 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        FormPanel panel = createForm();
+
         panel.setHeading("Trasporto merci");
         panel.getHeader().addTool(new ToolButton("x-tool-help"));
         panel.getHeader().addTool(new ToolButton("x-tool-close"));
 
-        binding = new FormBinding(panel, true);
-        binding.bind(trasportoMerciModel);
 
         cp.add(panel, new RowData(1, 1));
 
@@ -131,7 +135,8 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         tir150.setAltText("Tir");
         NumberField tirKm150 = new NumberField();
         tirKm150.setName("tirKm150");
-        tirKm150.setWidth(60); tirKm150.setPropertyEditorType(Double.class);
+        tirKm150.setWidth(60);
+        tirKm150.setPropertyEditorType(Double.class);
 
         Image treno150 = new Image(AzzeroCO2Resources.INSTANCE.treno());
         treno150.setAltText("Treno");
@@ -261,7 +266,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         km1500input.add(aereo1500);
         km1500input.add(aereoKm1500, flex);
         panel.add(km1500input, new FormData("100%"));
-        
+
         LayoutContainer km9000 = new LayoutContainer();
         HBoxLayout layoutRigaKm9000 = new HBoxLayout();
         layoutRigaKm9000.setPadding(new Padding(2));
@@ -337,6 +342,7 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
 
     public void setTrasportoMerciModel(TrasportoMerciModel trasportoMerciModel) {
         this.trasportoMerciModel = trasportoMerciModel;
+        binding.bind(trasportoMerciModel);
     }
 
 }

@@ -202,7 +202,7 @@ public class Utils {
         return _return;
     }
 
-    public static Ordine getOrdine(DettaglioModel dettaglioModel)  {
+    public static Ordine getOrdine(DettaglioModel dettaglioModel) {
         Ordine o = new Ordine();
         o.setId(dettaglioModel.getOrdineId());
 
@@ -285,7 +285,7 @@ public class Utils {
                 pr.setAltezza(prm.getAltezza());
                 pr.setLarghezza(prm.getLarghezza());
 
-                if (prm.getTipoDiCarta() != null ) {
+                if (prm.getTipoDiCarta() != null) {
                     TipoDiCarta tp = new TipoDiCarta();
                     tp.setId(prm.getTipoDiCarta().getId());
                     tp.setNome(prm.getTipoDiCarta().getNome());
@@ -319,11 +319,13 @@ public class Utils {
                 pnr.setId(pnrm.getId());
                 pnr.setAltezza(pnrm.getAltezza());
                 pnr.setLarghezza(pnrm.getLarghezza());
-                TipoDiCarta tp = new TipoDiCarta();
-              tp.setId(pnrm.getTipoDiCarta().getId());
-                tp.setNome(pnrm.getTipoDiCarta().getNome());
-                tp.setParametro(pnrm.getTipoDiCarta().getParametro());
-                pnr.setTipoDiCarta(tp);
+                if (pnrm.getTipoDiCarta() != null) {
+                    TipoDiCarta tp = new TipoDiCarta();
+                    tp.setId(pnrm.getTipoDiCarta().getId());
+                    tp.setNome(pnrm.getTipoDiCarta().getNome());
+                    tp.setParametro(pnrm.getTipoDiCarta().getParametro());
+                    pnr.setTipoDiCarta(tp);
+                }
                 pnr.setGrammatura(pnrm.getGrammatura());
                 pnr.setTiratura(new Long(pnrm.getTiratura()));
                 pnr.setCategoria(pnrm.getCategoria());
@@ -339,7 +341,7 @@ public class Utils {
         DettaglioModel dm = new DettaglioModel();
 
         dm.setOrdineId(o.getId());
-        if(o.getEvento()!=null){
+        if (o.getEvento() != null) {
             dm.setId(o.getEvento().getId());
             dm.setNome(o.getEvento().getNome());
             dm.setDove(o.getEvento().getDove());
@@ -387,7 +389,7 @@ public class Utils {
         }
 
         if (o.getPubblicazioni() != null) {
-            List<TrasportoPersoneModel> tpmList = new ArrayList<TrasportoPersoneModel>();
+            ArrayList<TrasportoPersoneModel> tpmList = new ArrayList<TrasportoPersoneModel>();
             for (TrasportoPersone tpm : o.getTrasportoPersone()) {
                 TrasportoPersoneModel tp = new TrasportoPersoneModel();
                 tp.setId(tpm.getId());
@@ -465,7 +467,7 @@ public class Utils {
                         tp.setId(prm.getTipoDiCarta().getId());
                         tp.setNome(prm.getTipoDiCarta().getNome());
                         tp.setParametro(prm.getTipoDiCarta().getParametro());
-                     // TODO SISTEMARE   mpfm.setTipoDiCarta(tp);
+                        // TODO SISTEMARE   mpfm.setTipoDiCarta(tp);
                     }
                     mpfm.setGrammatura(prm.getGrammatura());
                     mpfm.setTiratura(prm.getTiratura().intValue());

@@ -35,6 +35,11 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
     public EventoFormTrasportoPersone() {
         this.trasportoPersoneModel.setMonitorChanges(true);
+
+        TrasportoPersoneModel tpm = new TrasportoPersoneModel();
+        tpm.setCategoria("Tutte le Persone");
+        trasportoPersoneModel.add(tpm);
+        formBindings.bind(tpm);
     }
 
     @SuppressWarnings("rawtypes")
@@ -132,11 +137,9 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
 
-        TrasportoPersoneModel tpm = new TrasportoPersoneModel();
-        tpm.setCategoria("Tutte le Persone");
-        trasportoPersoneModel.add(tpm);
+
         grid.getSelectionModel().select(0, true);
-        formBindings.bind(tpm);
+
         add(cp, centerData);
     }
 
@@ -550,15 +553,17 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
 
     public void clear() {
-
+       for(TrasportoPersoneModel m :  this.trasportoPersoneModel.getModels()){
+            this.trasportoPersoneModel.remove(m);
+       }
     }
 
-    public List<TrasportoPersoneModel> getTrasportoPersoneModel() {
-        return trasportoPersoneModel.getModels();
+    public ArrayList<TrasportoPersoneModel> getTrasportoPersoneModel() {
+        return (ArrayList) trasportoPersoneModel.getModels();
     }
 
     public void setTrasportoPersoneModel(List<TrasportoPersoneModel> trasportoPersoneModel) {
-        this.trasportoPersoneModel.removeAll(); // TODO CHECK
+        clear();
         this.trasportoPersoneModel.add(trasportoPersoneModel);
     }
 }
