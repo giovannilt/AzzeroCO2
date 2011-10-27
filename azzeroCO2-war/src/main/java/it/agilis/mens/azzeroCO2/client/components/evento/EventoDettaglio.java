@@ -240,6 +240,8 @@ public class EventoDettaglio extends LayoutContainer {
         formManifestiPiegevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
 
         eventoFormAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
+
+
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
