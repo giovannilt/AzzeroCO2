@@ -219,7 +219,7 @@ public class CentralView extends View {
                     }
                 };
 
-                LabelField label = new LabelField("UserName: ");
+                LabelField label = new LabelField("Utente: ");
                 label.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
                 label.setWidth(100);
 
