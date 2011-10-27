@@ -225,6 +225,8 @@ public class EventoDettaglio extends LayoutContainer {
         eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
         eventoModel.setManifestiPieghevoliFogliModel(formManifestiPiegevoliFogli.getManifestiPieghevoliFogliModel());
 
+        eventoModel.setProgettoDiCompensazioneModel(eventoFormAcquisto.getProgettoDiCompensazioneModel());
+
         return eventoModel;
     }
 
@@ -236,6 +238,8 @@ public class EventoDettaglio extends LayoutContainer {
         formTrasportoMerci.setTrasportoMerciModel(eventoModel.getTrasportoMerciModel()==null ? new TrasportoMerciModel() : eventoModel.getTrasportoMerciModel());
         formPubblicazioniRilegate.setPubblicazioniRilegateModel(eventoModel.getPubblicazioniRilegateModel());
         formManifestiPiegevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
+
+        eventoFormAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {

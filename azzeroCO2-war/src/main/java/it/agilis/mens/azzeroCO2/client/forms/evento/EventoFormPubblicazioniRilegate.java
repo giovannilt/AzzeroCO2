@@ -35,9 +35,17 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
     private ListStore<PubblicazioniRilegateModel> pubblicazioniRilegateModel = new ListStore<PubblicazioniRilegateModel>();
     private ToolBar toolBar = new ToolBar();
     private ListStore<TipoDiCartaModel> tipoDiCartaModelListStore = new ListStore<TipoDiCartaModel>();
-     private final FormPanel panel = createGroupForm();
+    private final FormPanel panel = createGroupForm();
     private final FormBinding formBindings = new FormBinding(panel, true);
+    private final Grid<PubblicazioniRilegateModel> grid = createGrid();
 
+    public EventoFormPubblicazioniRilegate() {
+        this.pubblicazioniRilegateModel.setMonitorChanges(true);
+        PubblicazioniRilegateModel catalogo = new PubblicazioniRilegateModel();
+        catalogo.setCategoria("Catalogo");
+        pubblicazioniRilegateModel.add(catalogo);
+        formBindings.bind(catalogo);
+    }
 
 
     @SuppressWarnings("rawtypes")
@@ -54,7 +62,6 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        final Grid<PubblicazioniRilegateModel> grid = createGrid();
 
         ContentPanel textContent = new ContentPanel();
         textContent.setHeaderVisible(false);
@@ -89,6 +96,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 });
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
+         grid.getSelectionModel().select(0, true);
     }
 
     private FormPanel createGroupForm() {
@@ -291,10 +299,6 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
     private Grid<PubblicazioniRilegateModel> createGrid() {
 
-        PubblicazioniRilegateModel catalogo= new PubblicazioniRilegateModel();
-        catalogo.setCategoria("Catalogo");
-        pubblicazioniRilegateModel.add(catalogo);
-
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
         ColumnConfig column = new ColumnConfig();
@@ -372,13 +376,14 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         });
         toolBar.add(add);
 
-        grid.getSelectionModel().select(0,true);
-        formBindings.bind(catalogo);
 
         return grid;
     }
 
     public void clear() {
+        for (PubblicazioniRilegateModel m : this.pubblicazioniRilegateModel.getModels()) {
+            this.pubblicazioniRilegateModel.remove(m);
+        }
     }
 
     public List<PubblicazioniRilegateModel> getPubblicazioniRilegateModel() {
@@ -386,8 +391,10 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
     }
 
     public void setPubblicazioniRilegateModel(List<PubblicazioniRilegateModel> pubblicazioniRilegateModel) {
-        this.pubblicazioniRilegateModel.removeAll(); // TODO CHECK
+        clear();
         this.pubblicazioniRilegateModel.add(pubblicazioniRilegateModel);
+        //   grid.getSelectionModel().select(0, true);
+
     }
 
 

@@ -129,7 +129,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     @Override
     public Boolean saveProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensaziones) {
         try {
-            azzeroCO2Register.saveProgettiCompensazione(Utils.getProgettiDiCompensazione(progettiDiCompensaziones));
+            azzeroCO2Register.saveProgettiCompensazione(Utils.getProgettiDiCompensazioneList(progettiDiCompensaziones));
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -223,7 +223,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
             Ordine o = azzeroCO2Register.saveOrUpdateOrdine(ordine);
 
-            DettaglioModel dettaglioModel1 = Utils.getDettaglioModel( o);
+            DettaglioModel dettaglioModel1 = Utils.getDettaglioModel(o);
             DettaglioVTO dettaglioVTO = AzzerroCO2UtilsClientHelper.getDettaglioVTO(dettaglioModel1);
 
             return dettaglioVTO;

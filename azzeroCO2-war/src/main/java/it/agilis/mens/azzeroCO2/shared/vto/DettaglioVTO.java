@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.shared.vto;
 
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
@@ -31,6 +32,11 @@ public class DettaglioVTO implements Serializable {
     private String nome;
     private String note;
     private Long ordineId;
+    private ProgettoDiCompensazioneModel progettoDiCompensazioneModel;
+
+    public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
+        return progettoDiCompensazioneModel;
+    }
 
     public void setOrdineId(Long ordineId) {
         this.ordineId = ordineId;
@@ -134,5 +140,10 @@ public class DettaglioVTO implements Serializable {
 
     public Long getOrdineId() {
         return ordineId;
+    }
+
+    public void setProgettoDiCompensazioneModel(ProgettoDiCompensazioneModel progettoDiCompensazioneModel) {
+        this.progettoDiCompensazioneModel=progettoDiCompensazioneModel;
+
     }
 }

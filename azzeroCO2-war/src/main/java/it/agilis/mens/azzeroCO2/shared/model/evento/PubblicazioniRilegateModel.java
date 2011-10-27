@@ -74,7 +74,7 @@ public class PubblicazioniRilegateModel extends BaseModel {
     }
 
     public void setTipoDiCartaCopertina(TipoDiCartaModel tipoDiCartaCopertina) {
-        set("tipoDiCartaCoprtina", tipoDiCartaCopertina);
+        set("tipoDiCartaCopertina", tipoDiCartaCopertina);
     }
 
     public TipoDiCartaModel getTipoDiCarta() {

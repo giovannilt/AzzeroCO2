@@ -38,7 +38,14 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     private ListStore<TipoDiCartaModel> tipoDiCartaModelListStore = new ListStore<TipoDiCartaModel>();
     private final FormPanel panel = createGroupForm();
     private final FormBinding formBindings = new FormBinding(panel, true);
+    private final Grid<ManifestiPieghevoliFogliModel> grid = createGrid();
 
+    public EventoFormManifestiPieghevoliFogli() {
+        ManifestiPieghevoliFogliModel manifesti = new ManifestiPieghevoliFogliModel();
+        manifesti.setCategoria("Manifesti");
+        manifestiPieghevoliFogliModel.add(manifesti);
+        formBindings.bind(manifesti);
+    }
 
     @SuppressWarnings("rawtypes")
     @Override
@@ -54,7 +61,6 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        final Grid<ManifestiPieghevoliFogliModel> grid = createGrid();
 
         ContentPanel textContent = new ContentPanel();
         textContent.setHeaderVisible(false);
@@ -89,6 +95,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 });
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
+         grid.getSelectionModel().select(0, true);
     }
 
     private FormPanel createGroupForm() {
@@ -212,9 +219,6 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
 
     private Grid<ManifestiPieghevoliFogliModel> createGrid() {
 
-        ManifestiPieghevoliFogliModel manifesti = new ManifestiPieghevoliFogliModel();
-        manifesti.setCategoria("Manifesti");
-        manifestiPieghevoliFogliModel.add(manifesti);
 
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
@@ -294,12 +298,14 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         });
         toolBar.add(add);
 
-        grid.getSelectionModel().select(0, true);
-        formBindings.bind(manifesti);
+
         return grid;
     }
 
     public void clear() {
+        for (ManifestiPieghevoliFogliModel m : this.manifestiPieghevoliFogliModel.getModels()) {
+            this.manifestiPieghevoliFogliModel.remove(m);
+        }
     }
 
     public List<ManifestiPieghevoliFogliModel> getManifestiPieghevoliFogliModel() {
@@ -307,9 +313,10 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     }
 
     public void setManifestiPieghevoliFogliModel(List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel) {
-        this.manifestiPieghevoliFogliModel.removeAll(); // TODO check
+        clear();
         this.manifestiPieghevoliFogliModel.add(manifestiPieghevoliFogliModel);
-        // formBindings.bind();
+     //   grid.getSelectionModel().select(0, true);
+
     }
 
     public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {

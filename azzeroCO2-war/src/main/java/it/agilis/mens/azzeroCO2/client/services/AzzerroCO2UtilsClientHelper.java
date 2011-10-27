@@ -28,6 +28,7 @@ public class AzzerroCO2UtilsClientHelper {
         dettaglioVTO.setEnergiaModel(dettaglioModel.getEnergiaModel());
         dettaglioVTO.setTrasportoMerciModel(dettaglioModel.getTrasportoMerciModel());
         dettaglioVTO.setTrasportoPersoneModel(dettaglioModel.getTrasportoPersoneModel());
+        dettaglioVTO.setProgettoDiCompensazioneModel(dettaglioModel.getProgettoDiCompensazioneModel());
 
         dettaglioVTO.setDove(dettaglioModel.getDove());
         dettaglioVTO.setFine(dettaglioModel.getFine());
@@ -60,6 +61,7 @@ public class AzzerroCO2UtilsClientHelper {
         _return.setAltezza(p.getAltezza());
         _return.setCategoria(p.getCategoria());
         _return.setGrammatura(p.getGrammatura());
+        _return.setTiratura(p.getTiratura());
 
         _return.setGrammaturaCopertina(p.getGrammaturaCopertina());
         _return.setId(p.getId());
@@ -127,6 +129,8 @@ public class AzzerroCO2UtilsClientHelper {
 
         dettaglioModel.setManifestiPieghevoliFogliModel(getManifestiPiegjevoliFogltioModelList(dettaglioVTO.getManifestiPieghevoliFogliVTO()));
         dettaglioModel.setPubblicazioniRilegateModel(getPubblicazioniRilegateModelList(dettaglioVTO.getPubblicazioniRilegateVTO()));
+
+        dettaglioModel.setProgettoDiCompensazioneModel(dettaglioVTO.getProgettoDiCompensazioneModel());
 
         return dettaglioModel;
     }

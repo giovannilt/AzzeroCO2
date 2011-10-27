@@ -159,6 +159,9 @@ public class Utils {
     }
 
     private static ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel(ProgettoCompensazione pc) {
+        if(pc==null){
+            return null;
+        }
         ProgettoDiCompensazioneModel pcm = new ProgettoDiCompensazioneModel();
         pcm.setId(pc.getId());
         pcm.setAttivo(pc.getAttivo());
@@ -169,20 +172,24 @@ public class Utils {
 
     }
 
-    public static List<ProgettoCompensazione> getProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensaziones) {
+    public static List<ProgettoCompensazione> getProgettiDiCompensazioneList(List<ProgettoDiCompensazioneModel> progettiDiCompensaziones) {
         List<ProgettoCompensazione> _return = new ArrayList<ProgettoCompensazione>();
         for (ProgettoDiCompensazioneModel pdcm : progettiDiCompensaziones) {
-            ProgettoCompensazione pdc = new ProgettoCompensazione();
 
-            pdc.setAttivo(pdcm.getAttivo());
-            pdc.setId(pdcm.getId());
-            //pdc.setKgCo2(pdcm.getKgCO2());
-            pdc.setNome(pdcm.getNome());
-            pdc.setPrezzo(pdcm.getPrezzo());
-
-            _return.add(pdc);
+            _return.add(getProgettoDiCompensazione(pdcm));
         }
         return _return;
+
+    }
+
+    public static ProgettoCompensazione getProgettoDiCompensazione(ProgettoDiCompensazioneModel pdcm) {
+        ProgettoCompensazione pdc = new ProgettoCompensazione();
+
+        pdc.setAttivo(pdcm.getAttivo());
+        pdc.setId(pdcm.getId());
+        pdc.setNome(pdcm.getNome());
+        pdc.setPrezzo(pdcm.getPrezzo());
+        return pdc;
 
     }
 
@@ -205,6 +212,8 @@ public class Utils {
     public static Ordine getOrdine(DettaglioModel dettaglioModel) {
         Ordine o = new Ordine();
         o.setId(dettaglioModel.getOrdineId());
+
+        o.setProgettoCompensazione(getProgettoDiCompensazione(dettaglioModel.getProgettoDiCompensazioneModel()));
 
         Evento e = new Evento();
         e.setId(dettaglioModel.getId());
@@ -310,7 +319,11 @@ public class Utils {
                 pr.setRilegato(true);
                 pubblicazioniRilegateList.add(pr);
             }
-            o.setPubblicazioni(pubblicazioniRilegateList);
+            if (o.getPubblicazioni() == null) {
+                o.setPubblicazioni(pubblicazioniRilegateList);
+            } else {
+                o.getPubblicazioni().addAll(pubblicazioniRilegateList);
+            }
         }
         if (dettaglioModel.getManifestiPieghevoliFogliModel() != null && dettaglioModel.getManifestiPieghevoliFogliModel().size() > 0) {
             List<Pubblicazione> pubblicazioniList = new ArrayList<Pubblicazione>();
@@ -332,13 +345,21 @@ public class Utils {
                 pnr.setRilegato(false);
                 pubblicazioniList.add(pnr);
             }
-            o.setPubblicazioni(pubblicazioniList);
+
+            if (o.getPubblicazioni() == null) {
+                o.setPubblicazioni(pubblicazioniList);
+            } else {
+                o.getPubblicazioni().addAll(pubblicazioniList);
+            }
+            //o.setPubblicazioni(pubblicazioniList);
         }
         return o;
     }
 
     public static DettaglioModel getDettaglioModel(Ordine o) {
         DettaglioModel dm = new DettaglioModel();
+
+        dm.setProgettoDiCompensazioneModel(getProgettoDiCompensazioneModel(o.getProgettoCompensazione()));
 
         dm.setOrdineId(o.getId());
         if (o.getEvento() != null) {
@@ -467,7 +488,7 @@ public class Utils {
                         tp.setId(prm.getTipoDiCarta().getId());
                         tp.setNome(prm.getTipoDiCarta().getNome());
                         tp.setParametro(prm.getTipoDiCarta().getParametro());
-                        // TODO SISTEMARE   mpfm.setTipoDiCarta(tp);
+                        mpfm.setTipoDiCarta(tp);
                     }
                     mpfm.setGrammatura(prm.getGrammatura());
                     mpfm.setTiratura(prm.getTiratura().intValue());

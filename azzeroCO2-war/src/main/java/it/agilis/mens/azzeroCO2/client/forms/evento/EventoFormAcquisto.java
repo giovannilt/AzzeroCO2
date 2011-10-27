@@ -50,6 +50,14 @@ public class EventoFormAcquisto extends LayoutContainer {
     private final LabelField titoloProgettoScelto = new LabelField("ProgettoScelto");
     private final LabelField euroPerKCo2Progetto = new LabelField(" 0.00");
     private final LabelField totale = new LabelField(" 0.00");
+    private ProgettoDiCompensazioneModel selectedModel;
+    private Grid<ProgettoDiCompensazioneModel> grid = createGrid();
+    private FormPanel form = createForm();
+
+    public EventoFormAcquisto() {
+        binding = new FormBinding(form, true);
+        binding.setStore(grid.getStore());
+    }
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -60,11 +68,6 @@ public class EventoFormAcquisto extends LayoutContainer {
         layout.setEnableState(false);
         setStyleAttribute("padding", "0px");
 
-        Grid<ProgettoDiCompensazioneModel> grid = createGrid();
-        FormPanel form = createForm();
-
-        binding = new FormBinding(form, true);
-        binding.setStore(grid.getStore());
 
         VerticalPanel vp = new VerticalPanel();
         vp.setHeight(422);
@@ -77,9 +80,10 @@ public class EventoFormAcquisto extends LayoutContainer {
                         if (be.getSelection().size() > 0) {
                             titoloProgettoScelto.setText(be.getSelection().get(0).getNome());
                             euroPerKCo2Progetto.setText(number.format(be.getSelection().get(0).getPrezzo()));
-                            totale.setText(number.format((totaleKC02 * be.getSelection().get(0).getPrezzo() )));
+                            totale.setText(number.format((totaleKC02 * be.getSelection().get(0).getPrezzo())));
                             totaleKC02Label.setText(number.format(totaleKC02) + " kg/CO2?");
                             binding.bind(be.getSelection().get(0));
+                            selectedModel = be.getSelection().get(0);
                         } else {
                             titoloProgettoScelto.setText("Titolo ProgettoScelto");
                             euroPerKCo2Progetto.setText("0.0");
@@ -277,11 +281,17 @@ public class EventoFormAcquisto extends LayoutContainer {
     }
 
     public void setInStore(List<ProgettoDiCompensazioneModel> progettoDiCompensazioneModel) {
-        this.store.removeAll();
+        clear();
         this.store.add(progettoDiCompensazioneModel);
+        if(selectedModel!=null) {
+              grid.getSelectionModel().select(selectedModel, true);
+        }
     }
 
     public void clear() {
+        for (ProgettoDiCompensazioneModel m : store.getModels()) {
+            this.store.remove(m);
+        }
     }
 
     public void setRiepilogo(List<RiepilogoModel> eventoRiepilogoModels, DettaglioModel riepilogo) {
@@ -294,6 +304,15 @@ public class EventoFormAcquisto extends LayoutContainer {
         kcO2Evento.setText(number.format(totale));
         totaleKC02Label.setText(number.format(totale) + " kg/CO2?");
         titoloEvento.setText(riepilogo.getNome());
+    }
+
+    public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
+        return selectedModel;
+    }
+
+    public void setProgettoDiCompensazione(ProgettoDiCompensazioneModel model){
+        selectedModel=model;
+        grid.getSelectionModel().select(model, true);
     }
 }
 

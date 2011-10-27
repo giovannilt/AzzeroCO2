@@ -35,7 +35,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
     public EventoFormTrasportoPersone() {
         this.trasportoPersoneModel.setMonitorChanges(true);
-
         TrasportoPersoneModel tpm = new TrasportoPersoneModel();
         tpm.setCategoria("Tutte le Persone");
         trasportoPersoneModel.add(tpm);
