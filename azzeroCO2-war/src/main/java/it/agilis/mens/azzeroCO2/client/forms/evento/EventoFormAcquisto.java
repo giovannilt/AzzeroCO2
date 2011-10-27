@@ -51,10 +51,11 @@ public class EventoFormAcquisto extends LayoutContainer {
     private final LabelField euroPerKCo2Progetto = new LabelField(" 0.00");
     private final LabelField totale = new LabelField(" 0.00");
     private ProgettoDiCompensazioneModel selectedModel;
-    private Grid<ProgettoDiCompensazioneModel> grid = createGrid();
+    private Grid<ProgettoDiCompensazioneModel> grid;
     private FormPanel form = createForm();
 
     public EventoFormAcquisto() {
+        grid = createGrid();
         binding = new FormBinding(form, true);
         binding.setStore(grid.getStore());
     }
@@ -274,24 +275,23 @@ public class EventoFormAcquisto extends LayoutContainer {
 
         Grid<ProgettoDiCompensazioneModel> grid = new Grid<ProgettoDiCompensazioneModel>(store, cm);
         grid.setBorders(true);
+        grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         //grid.setHideHeaders(true);
         grid.setHeight(400);
 
         return grid;
     }
 
-    public void setInStore(List<ProgettoDiCompensazioneModel> progettoDiCompensazioneModel) {
-        clear();
-        this.store.add(progettoDiCompensazioneModel);
-        if(selectedModel!=null) {
-              grid.getSelectionModel().select(selectedModel, true);
-        }
-    }
-
     public void clear() {
         for (ProgettoDiCompensazioneModel m : store.getModels()) {
             this.store.remove(m);
         }
+    }
+
+    public void setInStore(List<ProgettoDiCompensazioneModel> progettoDiCompensazioneModel) {
+        clear();
+        this.store.add(progettoDiCompensazioneModel);
+        select(selectedModel);
     }
 
     public void setRiepilogo(List<RiepilogoModel> eventoRiepilogoModels, DettaglioModel riepilogo) {
@@ -310,9 +310,27 @@ public class EventoFormAcquisto extends LayoutContainer {
         return selectedModel;
     }
 
-    public void setProgettoDiCompensazione(ProgettoDiCompensazioneModel model){
-        selectedModel=model;
-        grid.getSelectionModel().select(model, true);
+    public void setProgettoDiCompensazione(ProgettoDiCompensazioneModel model) {
+        selectedModel = model;
+
+        if (this.store.getModels().size() == 0) {
+            grid.getSelectionModel().select(model, true);
+            return;
+        }
+
+        select(model);
+    }
+
+    private void select(ProgettoDiCompensazioneModel model) {
+        for (ProgettoDiCompensazioneModel m : this.store.getModels()) {
+            if (m.getId() == model.getId()) {
+                grid.getSelectionModel().select(m, true);
+                break;
+            }
+        }
     }
 }
+
+
+
 

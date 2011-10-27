@@ -47,8 +47,13 @@ public class EventoController extends BaseController {
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(EventoEvents.LoadEvento)) {
+            setCoefficienti();
+            setProgettiDiCompensazione();
+            eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
             eventoView.setDettaglioModel((DettaglioModel) event.getData());
             eventoView.setRiassunto((DettaglioModel) event.getData());
+
+
         } else if (event.getType().equals(AzzeroCO2Events.Init)) {
             AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
                 public void onFailure(Throwable caught) {
@@ -72,8 +77,8 @@ public class EventoController extends BaseController {
                 }
             }
             if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
-                 Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 002");
-            }else{
+                Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 002");
+            } else {
                 eventoView.riepilogo(getCoefficientiMAP());
             }
         } else if (event.getType().equals(EventoEvents.CaricaProgettiDiCompensazione)) {
