@@ -6,10 +6,7 @@ import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.BoxComponent;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.Info;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
@@ -65,8 +62,13 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
         ContentPanel textContent = new ContentPanel();
         textContent.setHeaderVisible(false);
-        textContent.setFrame(true);
-        textContent.addText("Si tratta di gruppi di pagine riunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br>Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie.");
+        textContent.setLayout(new RowLayout(Style.Orientation.VERTICAL));
+        textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
+        Text testo= new Text(" Si tratta di gruppi di pagine riunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br>Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie. ");
+        testo.setStyleAttribute("font-size","9pt");
+
+       // testo.setStyleAttribute("background-color","#2F3645");
+        textContent.add(testo);
 
         ContentPanel cpEst = new ContentPanel();
         cpEst.setFrame(false);
