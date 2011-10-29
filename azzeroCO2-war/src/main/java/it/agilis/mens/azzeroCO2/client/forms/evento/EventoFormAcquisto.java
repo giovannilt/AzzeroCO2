@@ -323,6 +323,9 @@ public class EventoFormAcquisto extends LayoutContainer {
 
     private void select(ProgettoDiCompensazioneModel model) {
         for (ProgettoDiCompensazioneModel m : this.store.getModels()) {
+            if(m==null || model==null){
+                return;
+            }
             if (m.getId() == model.getId()) {
                 grid.getSelectionModel().select(m, true);
                 break;
