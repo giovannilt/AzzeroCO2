@@ -8,6 +8,7 @@ import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.amministrazione.*;
+import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -33,7 +34,7 @@ public class Amministrazione extends LayoutContainer {
     private final ProgettiDiCompensazione progettiDiCompensazioneForm = new ProgettiDiCompensazione();
     private final Coupon couponForm = new Coupon();
     private final Ordini ordiniForm = new Ordini();
-    private final UserInfo userInfoForm= new UserInfo();
+    private final UserInfo userInfoForm = new UserInfo();
     private UserInfoModel userInfoModel;
 
     @Override
@@ -68,10 +69,11 @@ public class Amministrazione extends LayoutContainer {
     }
 
     public void setCoefficienti(Map<String, CoefficienteModel> coefficienti) {
-        List coefficientiList= new ArrayList<CoefficienteModel>();
+        List coefficientiList = new ArrayList<CoefficienteModel>();
         coefficientiList.addAll(coefficienti.values());
         coefficentiForm.setCoefficentiInStore(coefficientiList);
     }
+
     public void setCoupon(List<CouponModel> coupon) {
         couponForm.setCouponInStore(coupon);
     }
@@ -86,19 +88,22 @@ public class Amministrazione extends LayoutContainer {
 
 
     public void setUserInfo(UserInfoModel userInfoModel) {
-        this.userInfoModel=userInfoModel;
-        if(userInfoModel!=null &&
-           userInfoModel.getProfilo()!=null &&
-           !userInfoModel.getProfilo().isEmpty() &&
-                userInfoModel.getProfilo().equalsIgnoreCase("Administrator")
-                ){
-            // couponForm.setVisible(true);
-            // coefficentiForm.setVisible(true);
-             //progettiDiCompensazioneForm.setVisible(true);
-        } else{
-            // couponForm.setVisible(false);
-            // coefficentiForm.setVisible(false);
-            // progettiDiCompensazioneForm.setVisible(false);
+        this.userInfoModel = userInfoModel;
+
+        if (userInfoModel != null &&
+                userInfoModel.getProfilo() != null &&
+                (userInfoModel.getProfilo().intValue() == Profile.Administrator.ordinal()
+                        || userInfoModel.getProfilo().intValue() == Profile.SuperAdministrator.ordinal()
+                )) {
+            couponForm.setVisible(true);
+            coefficentiForm.setVisible(true);
+            progettiDiCompensazioneForm.setVisible(true);
+        } else {
+            couponForm.setVisible(false);
+            coefficentiForm.setVisible(false);
+            progettiDiCompensazioneForm.setVisible(false);
         }
     }
+
+
 }

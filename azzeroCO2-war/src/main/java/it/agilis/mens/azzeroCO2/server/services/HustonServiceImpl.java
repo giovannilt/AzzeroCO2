@@ -8,8 +8,10 @@ import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.Ordine;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
+import it.agilis.mens.azzeroCO2.core.register.impl.EmailSender;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
+import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
@@ -24,9 +26,11 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +49,14 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
         HustonService {
     @Autowired
     GitRepositoryState gitRepoState;
+
+    public GitRepositoryState getGitRepoState() {
+        return gitRepoState;
+    }
+
+    public void setGitRepoState(GitRepositoryState gitRepoState) {
+        this.gitRepoState = gitRepoState;
+    }
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -68,6 +80,19 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
         this.azzeroCO2Register = azzeroCO2Register;
     }
 
+    @Autowired
+    @Qualifier("emailSender")
+    private EmailSender emailSender;
+
+
+    public EmailSender getEmailSender() {
+        return emailSender;
+    }
+
+    public void setEmailSender(EmailSender emailSender) {
+        this.emailSender = emailSender;
+    }
+
     @Override
     public List<CouponModel> getListOfCoupon() throws IllegalArgumentException {
         try {
@@ -81,7 +106,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     @Override
     public List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione(boolean all) throws IllegalArgumentException {
         try {
-            ProgettoCompensazioneCriteria progettoCompensazioneCriteria= new ProgettoCompensazioneCriteria();
+            ProgettoCompensazioneCriteria progettoCompensazioneCriteria = new ProgettoCompensazioneCriteria();
             progettoCompensazioneCriteria.setAttivo(!all);
             return Utils.getListOfProgettoDiCompensazione(azzeroCO2Register.getListOfProgettoDiCompensazione(progettoCompensazioneCriteria));
         } catch (Exception e) {
@@ -164,14 +189,14 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
     @Override
     public UserInfoModel getUserInfo(String userName, String password) throws IllegalArgumentException {
-
-        UserInfoModel userInfoModel = Utils.getUserInfoModel(azzeroCO2Register.getUserInfo(userName));
-
-        if (userInfoModel != null &&
-                userInfoModel.getPassword().contentEquals(password)) {
-
-            return userInfoModel;
-
+        try {
+            UserInfoModel userInfoModel = Utils.getUserInfoModel(azzeroCO2Register.getUserInfo(userName));
+            if (userInfoModel != null &&
+                    userInfoModel.getPassword().contentEquals(password)) {
+                return userInfoModel;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
 
@@ -227,12 +252,21 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
             DettaglioVTO dettaglioVTO = AzzerroCO2UtilsClientHelper.getDettaglioVTO(dettaglioModel1);
 
             return dettaglioVTO;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-           return null;
+            return null;
         }
 
     }
 
-
+    @Override
+    public void sentMail(EMailVTO email) {
+        try {
+            emailSender.sendMail(Utils.getEmail(email));
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

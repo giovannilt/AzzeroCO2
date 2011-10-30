@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.core.entity;
+package it.agilis.mens.azzeroCO2.shared;
 
 /**
  * Created by IntelliJ IDEA.
@@ -9,8 +9,8 @@ package it.agilis.mens.azzeroCO2.core.entity;
  */
 
 
-public enum Profile {
-     Guest {
+public enum Profile{
+    Guest {
         @Override
         public String toString() {
             return "Guest";
@@ -38,8 +38,6 @@ public enum Profile {
         }
 
     };
-
-
 }
 
 

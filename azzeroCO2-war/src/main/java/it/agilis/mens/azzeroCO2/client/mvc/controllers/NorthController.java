@@ -17,18 +17,17 @@ public class NorthController extends BaseController {
 
     private NorthView northView = new NorthView(this);
 
-
-    public NorthController() {
+     public NorthController() {
         registerEventTypes(AzzeroCO2Events.Init);
         registerEventTypes(LoginEvents.ShowLogOut);
         registerEventTypes(AzzeroCO2Events.LoggedIn);
-
     }
 
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
+            northView.setUserInfo((UserInfoModel) event.getData());
         } else {
             forwardToView(northView, event);
         }

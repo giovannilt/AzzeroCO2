@@ -93,6 +93,7 @@ public class AmministrazioneController extends BaseController {
             amministrazioneView.setUserInfo(getUserInfoModel());
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
+             amministrazioneView.setUserInfo((UserInfoModel) event.getData());
         } else {
             forwardToView(amministrazioneView, event);
         }

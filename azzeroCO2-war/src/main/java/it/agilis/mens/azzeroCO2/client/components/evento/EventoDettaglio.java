@@ -180,6 +180,9 @@ public class EventoDettaglio extends LayoutContainer {
                     eventoTab.getItems().get(i).setEnabled(true);
                     eventoTab.setSelection(eventoTab.getItems().get(i));
 
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
+                        Dispatcher.forwardEvent(EventoEvents.SentEmailConferma);
+                    }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     }
@@ -215,28 +218,22 @@ public class EventoDettaglio extends LayoutContainer {
         eventoFormAcquisto.clear();
         eventoFormConferma.clear();
 
-        posizioniLabel = 1;
 
-        eventoTab.setSelection(eventoTab.getItems().get(0));
-        eventoTab.getSelectedItem().setEnabled(true);
+        while (posizioniLabel != 0) {
+            previusTab();
+        }
 
         for (TabItem item : eventoTab.getItems()) {
             if (item.getText().equalsIgnoreCase("Calcolo")) {
                 ContentPanel calcolo = (ContentPanel) item.getItem(0);
-                CardLayout layout = (CardLayout) calcolo.getLayout();
+                EventoFormEnergia formEnergia = (EventoFormEnergia) calcolo.getItem(0);
+                formEnergia.layout(true);
 
-                EventoFormEnergia formEnergia= (EventoFormEnergia)calcolo.getItem(0);
-                layout.setActiveItem(formEnergia);
-
+                // TODO BETTER
                 formEnergia.setWidth("691");
                 break;
             }
         }
-        Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(0).get(1));
-        Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(0).get(0));
-        nextTab();
-        previusTab();
-
     }
 
     public DettaglioModel riepilogo() {

@@ -9,13 +9,16 @@ package it.agilis.mens.azzeroCO2.server.utils;
  */
 
 import it.agilis.mens.azzeroCO2.core.entity.*;
+import it.agilis.mens.azzeroCO2.core.entity.Profile;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
+import it.agilis.mens.azzeroCO2.shared.*;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
+import it.agilis.mens.azzeroCO2.core.register.impl.Email;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,10 +74,15 @@ public class Utils {
         userInfo.setFax(registrazioneModel.getFax());
         userInfo.setCellulare(registrazioneModel.getCellulare());
         userInfo.setEmail(registrazioneModel.getEmail());
+
+        userInfo.setProfile(Profile.Guest);
         return userInfo;
     }
 
     public static UserInfoModel getUserInfoModel(UserInfo userInfo) {
+        if(userInfo==null){
+            return null;
+        }
         UserInfoModel userInfoModel = new UserInfoModel();
         userInfoModel.setUserName(userInfo.getUserName());
         userInfoModel.setCap(userInfo.getCap());
@@ -91,7 +99,9 @@ public class Utils {
         userInfoModel.setRagioneSoc(userInfo.getRagSociale());
         userInfoModel.setId(userInfo.getId());
 
-        return userInfoModel;  //To change body of created methods use File | Settings | File Templates.
+        userInfoModel.setProfilo(userInfo.getProfile().ordinal());
+
+        return userInfoModel;
     }
 
     public static List<TipoDiCartaModel> getTipoDiCarta(List<TipoDiCarta> tipoDiCarta) {
@@ -183,6 +193,9 @@ public class Utils {
     }
 
     public static ProgettoCompensazione getProgettoDiCompensazione(ProgettoDiCompensazioneModel pdcm) {
+        if(pdcm==null){
+            return null;
+        }
         ProgettoCompensazione pdc = new ProgettoCompensazione();
 
         pdc.setAttivo(pdcm.getAttivo());
@@ -503,5 +516,13 @@ public class Utils {
         return dm;
     }
 
+    public static Email getEmail(EMailVTO e){
+        Email _return= new Email();
+        _return.setBody(e.getBody());
+        _return.setFromUser(e.getFromUser());
+        _return.setSubject(e.getSubject());
+        _return.setToUser(e.getToUser().toArray(new String[]{}));
 
+        return _return;
+    }
 }

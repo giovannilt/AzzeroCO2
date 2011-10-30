@@ -7,6 +7,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
+import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -42,6 +43,8 @@ public class EventoController extends BaseController {
 
         registerEventTypes(EventoEvents.PreviousText);
         registerEventTypes(EventoEvents.NextText);
+
+        registerEventTypes(EventoEvents.SentEmailConferma);
     }
 
     @Override
@@ -88,6 +91,10 @@ public class EventoController extends BaseController {
             eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
         } else if (event.getType().equals(EventoEvents.CaricaCoefficienti)) {
             setCoefficienti();
+        } else if (event.getType().equals(EventoEvents.SentEmailConferma)) {
+
+            sentMail((EMailVTO)event.getData());
+
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
         } else if (event.getType().equals(EventoEvents.Save)) {
@@ -115,4 +122,6 @@ public class EventoController extends BaseController {
             forwardToView(eventoView, event);
         }
     }
+
+
 }

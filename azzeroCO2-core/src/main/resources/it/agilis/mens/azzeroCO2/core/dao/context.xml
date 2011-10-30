@@ -56,4 +56,17 @@
         </property>
     </bean>
 
+    <!-- **************** -->
+    <!-- Email management -->
+    <!-- **************** -->
+
+
+    <bean id="emailSender" class="it.agilis.mens.azzeroCO2.core.register.impl.EmailSender">
+          <property name="host" value="${azzeroCO2.smtpHost}"/>
+        <property name="port" value="${azzeroCO2.smtpPort}"/>
+        <property name="username" value="${azzeroCO2.smtpUsername}"/>
+        <property name="password" value="${azzeroCO2.smtpPassword}"/>
+    </bean>
+    <!-- END Email Manager -->
+
 </beans>

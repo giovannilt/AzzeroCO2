@@ -8,6 +8,7 @@ import com.extjs.gxt.ui.client.mvc.View;
 import it.agilis.mens.azzeroCO2.client.components.main.NorthPanel;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -37,4 +38,8 @@ public class NorthView extends View {
 		Dispatcher.forwardEvent(new AppEvent(AzzeroCO2Events.NorthPanelReady,
                 northPanel));
 	}
+
+    public void setUserInfo(UserInfoModel data) {
+        northPanel.setUserInfo(data);
+    }
 }
