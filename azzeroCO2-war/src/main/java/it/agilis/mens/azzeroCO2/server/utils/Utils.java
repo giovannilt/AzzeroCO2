@@ -9,6 +9,7 @@ package it.agilis.mens.azzeroCO2.server.utils;
  */
 
 import it.agilis.mens.azzeroCO2.core.entity.*;
+import it.agilis.mens.azzeroCO2.core.entity.Profile;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
 import it.agilis.mens.azzeroCO2.shared.*;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class  Utils {
+public class Utils {
 
     public static List<CouponModel> getListOfCoupon(List<Coupon> listOfCoupon) {
         List<CouponModel> coupons = new ArrayList<CouponModel>();
