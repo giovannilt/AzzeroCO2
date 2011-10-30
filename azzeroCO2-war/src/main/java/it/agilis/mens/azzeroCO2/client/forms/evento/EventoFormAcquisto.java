@@ -71,7 +71,7 @@ public class EventoFormAcquisto extends LayoutContainer {
 
 
         VerticalPanel vp = new VerticalPanel();
-        vp.setHeight(422);
+        vp.setHeight(622);
         vp.add(form);
         east.add(vp);
 
@@ -119,8 +119,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         panel.setHeaderVisible(false);
         panel.setSize(300, -1);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
-        HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 2, 0, 10));
-        flex.setFlex(1);
+
         {
             LayoutContainer c = new LayoutContainer();
             HBoxLayout layout = new HBoxLayout();
@@ -145,15 +144,12 @@ public class EventoFormAcquisto extends LayoutContainer {
             }
             {
                 LayoutContainer c = new LayoutContainer();
-                HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(2));
-                layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
-                layout.setPack(BoxLayout.BoxLayoutPack.END);
-                c.setLayout(layout);
+                c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
+
                 LabelField label = new LabelField("Kg/CO2");
-                label.setWidth(220);
-                c.add(label);
-                c.add(kcO2Evento);
+             //   label.setWidth(220);
+                c.add(label, new FillData(2,20,2,0));
+                c.add(kcO2Evento, new FillData(2,0,2,50));
 
                 panel.add(c, new FormData("100%"));
             }
@@ -185,59 +181,47 @@ public class EventoFormAcquisto extends LayoutContainer {
             }
             {
                 LayoutContainer c = new LayoutContainer();
-                HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(2));
-                layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+                c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
 
-                layout.setPack(BoxLayout.BoxLayoutPack.END);
-                c.setLayout(layout);
                 LabelField label = new LabelField("€ x Kg/CO2 ");
-                label.setWidth(220);
-                c.add(label);
-                euroPerKCo2Progetto.setWidth(30);
-                c.add(euroPerKCo2Progetto);
+
+                c.add(label, new FillData(2,20,2,0));
+                c.add(euroPerKCo2Progetto, new FillData(2,0,2,50));
 
                 panel.add(c, new FormData("100%"));
             }
             { // TOTALE
                 LayoutContainer c = new LayoutContainer();
-                HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(2));
-                layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
-                c.setLayout(layout);
-                layout.setPack(BoxLayout.BoxLayoutPack.END);
+                c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
+
                 LabelField label = new LabelField("Totale € ");
                 label.setStyleAttribute("color", "#FF9933");
                 label.setStyleAttribute("font-size", "16px");
-                label.setWidth(210);
 
-                c.add(label);
+                c.add(label, new FillData(2,20,2,0));
 
                 totale.setStyleAttribute("color", "#FF9933");
                 totale.setStyleAttribute("font-size", "16px");
-                totale.setWidth(45);
-                c.add(totale, flex);
+
+                c.add(totale, new FillData(2,0,2,50));
 
                 panel.add(c, new FormData("100%"));
             }
             { // Coupon
                 LayoutContainer c = new LayoutContainer();
-                HBoxLayout layout = new HBoxLayout();
-                layout.setPadding(new Padding(5));
-                layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
-                c.setLayout(layout);
+                c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
 
                 LabelField label = new LabelField("Hai Un Coupon? ");
-                label.setWidth(100);
-                c.add(label);
+
+                c.add(label, new FillData(2,20,2,0));
                 TextField<String> coupon = new TextField<String>();
-                coupon.setWidth(150);
-                c.add(coupon, flex);
+                c.add(coupon, new FillData(0,0,0,0));
+
                 panel.add(c, new FormData("100%"));
             }
             {
                 LayoutContainer c = new LayoutContainer();
-                c.setHeight(150);
+                c.setHeight(190);
                 c.setWidth(290);
                 c.setStyleAttribute("background-color", "#FF9933");
                 VBoxLayout layout = new VBoxLayout();
@@ -253,7 +237,7 @@ public class EventoFormAcquisto extends LayoutContainer {
                 label.setStyleAttribute("font-size", "16px");
                 label.setStyleAttribute("color", "#2F3645");
                 //label.setWidth(290);
-                c.add(label, new VBoxLayoutData(new Margins(5, 0, 5, 0)));
+                c.add(label, new VBoxLayoutData(new Margins(15, 0, 5, 0)));
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -323,7 +307,7 @@ public class EventoFormAcquisto extends LayoutContainer {
 
     private void select(ProgettoDiCompensazioneModel model) {
         for (ProgettoDiCompensazioneModel m : this.store.getModels()) {
-            if(m==null || model==null){
+            if (m == null || model == null) {
                 return;
             }
             if (m.getId() == model.getId()) {

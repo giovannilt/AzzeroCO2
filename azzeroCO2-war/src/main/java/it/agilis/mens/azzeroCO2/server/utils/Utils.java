@@ -10,12 +10,14 @@ package it.agilis.mens.azzeroCO2.server.utils;
 
 import it.agilis.mens.azzeroCO2.core.entity.*;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
+import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
+import it.agilis.mens.azzeroCO2.core.register.impl.Email;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -503,5 +505,13 @@ public class Utils {
         return dm;
     }
 
+    public static Email getEmail(EMailVTO e){
+        Email _return= new Email();
+        _return.setBody(e.getBody());
+        _return.setFromUser(e.getFromUser());
+        _return.setSubject(e.getSubject());
+        _return.setToUser(e.getToUser().toArray(new String[]{}));
 
+        return _return;
+    }
 }
