@@ -273,8 +273,10 @@ public class CentralView extends View {
                 layoutCompensazione.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
                 compensazione.setLayout(layoutCompensazione);
 
-                Text testo = new Text("La combustione di fonti energetiche fossili (carbone, benzina, cherosene) sprigiona biossido di carbonio (CO2). Il CO2 è il maggior responsabile dei gas ad effetto serra provocati dall’uomo. Blabla blabla bla bla blal");
+                Text testo = new Text(" La combustione di fonti energetiche fossili (carbone, benzina, cherosene) sprigiona biossido di carbonio (CO2). Il CO2 è il maggior responsabile dei gas ad effetto serra provocati dall’uomo. Blabla blabla bla bla blal");
                 testo.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+                testo.setStyleAttribute("font-size", "9pt");
+
                 Image azzeroCO2Stemp = new Image(AzzeroCO2Resources.INSTANCE.azzeroCO2Stemp());
                 azzeroCO2Stemp.setAltText("AzzeroCO2");
 
