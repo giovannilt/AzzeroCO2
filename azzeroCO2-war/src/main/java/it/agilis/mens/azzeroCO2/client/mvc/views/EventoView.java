@@ -56,6 +56,7 @@ public class EventoView extends View {
             onNext(event);
         } else if (eventType.equals(EventoEvents.ClearPanel)) {
             eventoDettaglio.clearPanel();
+            west.clean();
         } else if (eventType.equals(EventoEvents.Previous)) {
             onPrevius(event);
         } else if (eventType.equals(EventoEvents.Riepilogo)) {
@@ -78,11 +79,11 @@ public class EventoView extends View {
     }
 
     private void onPrevius(AppEvent event) {
-        eventoDettaglio.previusTab(event);
+        eventoDettaglio.previusTab();
     }
 
     private void onNext(AppEvent event) {
-        eventoDettaglio.nextTab(event);
+        eventoDettaglio.nextTab();
     }
 
     private void onInit(AppEvent event) {

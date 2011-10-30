@@ -144,7 +144,9 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
 
     public void clear() {
+        store.removeAll();
     }
+
 }
 
 

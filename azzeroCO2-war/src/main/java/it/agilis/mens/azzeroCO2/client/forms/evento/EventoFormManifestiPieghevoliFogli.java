@@ -6,10 +6,7 @@ import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.BoxComponent;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.Info;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
@@ -41,10 +38,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     private final Grid<ManifestiPieghevoliFogliModel> grid = createGrid();
 
     public EventoFormManifestiPieghevoliFogli() {
-        ManifestiPieghevoliFogliModel manifesti = new ManifestiPieghevoliFogliModel();
-        manifesti.setCategoria("Manifesti");
-        manifestiPieghevoliFogliModel.add(manifesti);
-        formBindings.bind(manifesti);
+        setDefault();
     }
 
     @SuppressWarnings("rawtypes")
@@ -61,12 +55,13 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-
         ContentPanel textContent = new ContentPanel();
         textContent.setHeaderVisible(false);
-        textContent.setFrame(true);
-        // TODO
-        textContent.addText("..................");
+        textContent.setLayout(new RowLayout(Style.Orientation.VERTICAL));
+        textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
+        Text testo = new Text(" Si tratta di gruppi di pagine riunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br>Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie. ");
+        testo.setStyleAttribute("font-size", "9pt");
+
         ContentPanel cpEst = new ContentPanel();
         cpEst.setFrame(false);
         cpEst.setHeading("Manifesti, pieghevoli, fogli");
@@ -78,6 +73,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
 
         cp.add(cpEst, new RowData(.35, .98));
         cp.add(panel, new RowData(.65, 1));
+
         panel.setHeading(manifestiPieghevoliFogliModel.getModels().get(0).getCategoria());
 
         formBindings.setStore(grid.getStore());
@@ -95,7 +91,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 });
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
-         grid.getSelectionModel().select(0, true);
+        grid.getSelectionModel().select(0, true);
     }
 
     private FormPanel createGroupForm() {
@@ -302,9 +298,12 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         return grid;
     }
 
-    public void clear() {
+    public void clear(boolean setDefault) {
         for (ManifestiPieghevoliFogliModel m : this.manifestiPieghevoliFogliModel.getModels()) {
             this.manifestiPieghevoliFogliModel.remove(m);
+        }
+        if (setDefault) {
+            setDefault();
         }
     }
 
@@ -313,10 +312,19 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     }
 
     public void setManifestiPieghevoliFogliModel(List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel) {
-        clear();
+        clear(false);
         this.manifestiPieghevoliFogliModel.add(manifestiPieghevoliFogliModel);
-     //   grid.getSelectionModel().select(0, true);
+        if (manifestiPieghevoliFogliModel.size() == 0) {
+            setDefault();
+        }
 
+    }
+
+    private void setDefault() {
+        ManifestiPieghevoliFogliModel manifesti = new ManifestiPieghevoliFogliModel();
+        manifesti.setCategoria("Manifesti");
+        manifestiPieghevoliFogliModel.add(manifesti);
+        formBindings.bind(manifesti);
     }
 
     public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {

@@ -25,9 +25,9 @@ public class EventoFormEnergia extends LayoutContainer {
 
     private EnergiaModel energiaModel = new EnergiaModel();
     private FormBinding binding = null;
-    private  FormPanel formPanel;
+    private FormPanel formPanel;
 
-     public EventoFormEnergia() {
+    public EventoFormEnergia() {
         formPanel = createForm();
         binding = new FormBinding(formPanel, true);
         binding.bind(energiaModel);
@@ -44,7 +44,6 @@ public class EventoFormEnergia extends LayoutContainer {
         cp.setFrame(true);
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-
         cp.add(formPanel, new RowData(1, 1));
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
@@ -79,7 +78,7 @@ public class EventoFormEnergia extends LayoutContainer {
         NumberField energiaElettrica = new NumberField();
         energiaElettrica.setWidth(60);
         energiaElettrica.setName("energiaElettrica");
-       // energiaElettrica.setPropertyEditorType(Integer.class);
+        // energiaElettrica.setPropertyEditorType(Integer.class);
 
         LabelField label = new LabelField("Energia Elettrica ");
         label.setWidth(100);
@@ -107,7 +106,7 @@ public class EventoFormEnergia extends LayoutContainer {
         NumberField gasMetano = new NumberField();
         gasMetano.setName("gasMetano");
         gasMetano.setWidth(60);
-      //  gasMetano.setPropertyEditorType(Integer.class);
+        //  gasMetano.setPropertyEditorType(Integer.class);
 
         label = new LabelField("Gas Metano ");
         label.setWidth(100);
@@ -126,7 +125,7 @@ public class EventoFormEnergia extends LayoutContainer {
         NumberField gasolio = new NumberField();
         gasolio.setName("gasolio");
         gasolio.setWidth(60);
-      //  gasolio.setPropertyEditorType(Integer.class);
+        //  gasolio.setPropertyEditorType(Integer.class);
 
         label = new LabelField("Gasolio ");
         label.setWidth(100);
@@ -142,6 +141,8 @@ public class EventoFormEnergia extends LayoutContainer {
 
     public void clear() {
         binding.clear();
+        energiaModel = new EnergiaModel();
+        binding.bind(energiaModel);
     }
 
     public EnergiaModel getEnergiaModel() {

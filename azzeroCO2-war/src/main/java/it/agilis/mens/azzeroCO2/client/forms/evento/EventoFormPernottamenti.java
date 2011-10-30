@@ -83,6 +83,9 @@ public class EventoFormPernottamenti extends LayoutContainer {
 
     public void clear() {
         binding.clear();
+        nottiModel= new NottiModel();
+        binding.bind(nottiModel);
+
     }
 
     public NottiModel getNottiModel() {

@@ -334,6 +334,9 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
 
     public void clear() {
         binding.clear();
+        trasportoMerciModel= new TrasportoMerciModel();
+        binding.bind(trasportoMerciModel);
+
     }
 
     public TrasportoMerciModel getTrasportoMerciModel() {

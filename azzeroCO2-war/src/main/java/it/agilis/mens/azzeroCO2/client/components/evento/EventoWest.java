@@ -124,7 +124,7 @@ public class EventoWest extends LayoutContainer {
 
     public void setInStore(List<RiepilogoModel> model) {
         store.removeAll();
-        if (model.size() == 0) {
+        if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
             m.setOggetto("Non Hai ancora Inserito </br> Nessuna Attivita'");
             store.add(m);
@@ -139,5 +139,10 @@ public class EventoWest extends LayoutContainer {
         } else {
             this.title.setText(title);
         }
+    }
+
+    public void clean(){
+        setInStore(null);
+        setTitle(null);
     }
 }

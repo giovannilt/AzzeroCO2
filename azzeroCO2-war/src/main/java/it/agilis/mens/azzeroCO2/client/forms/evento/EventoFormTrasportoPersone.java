@@ -35,10 +35,8 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
     public EventoFormTrasportoPersone() {
         this.trasportoPersoneModel.setMonitorChanges(true);
-        TrasportoPersoneModel tpm = new TrasportoPersoneModel();
-        tpm.setCategoria("Tutte le Persone");
-        trasportoPersoneModel.add(tpm);
-        formBindings.bind(tpm);
+        setDefault();
+
     }
 
     @SuppressWarnings("rawtypes")
@@ -499,7 +497,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                         }
                     });
                 }
-
                 ToolButton b = new ToolButton("x-tool-close", new SelectionListener<IconButtonEvent>() {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
@@ -551,10 +548,20 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
     }
 
 
-    public void clear() {
-       for(TrasportoPersoneModel m :  this.trasportoPersoneModel.getModels()){
+    public void clear(boolean setDefault) {
+        for (TrasportoPersoneModel m : this.trasportoPersoneModel.getModels()) {
             this.trasportoPersoneModel.remove(m);
-       }
+        }
+        if(setDefault){
+            setDefault();
+        }
+    }
+
+    private void setDefault() {
+        TrasportoPersoneModel tpm = new TrasportoPersoneModel();
+        tpm.setCategoria("Tutte le Persone");
+        trasportoPersoneModel.add(tpm);
+        formBindings.bind(tpm);
     }
 
     public ArrayList<TrasportoPersoneModel> getTrasportoPersoneModel() {
@@ -562,8 +569,11 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
     }
 
     public void setTrasportoPersoneModel(List<TrasportoPersoneModel> trasportoPersoneModel) {
-        clear();
+        clear(false);
         this.trasportoPersoneModel.add(trasportoPersoneModel);
+        if (trasportoPersoneModel.size() == 0) {
+            setDefault();
+        }
     }
 }
 

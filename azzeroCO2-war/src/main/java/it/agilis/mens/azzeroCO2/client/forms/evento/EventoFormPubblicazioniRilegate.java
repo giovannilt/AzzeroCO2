@@ -38,10 +38,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
     public EventoFormPubblicazioniRilegate() {
         this.pubblicazioniRilegateModel.setMonitorChanges(true);
-        PubblicazioniRilegateModel catalogo = new PubblicazioniRilegateModel();
-        catalogo.setCategoria("Catalogo");
-        pubblicazioniRilegateModel.add(catalogo);
-        formBindings.bind(catalogo);
+        setDefault();
     }
 
 
@@ -64,10 +61,10 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         textContent.setHeaderVisible(false);
         textContent.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
-        Text testo= new Text(" Si tratta di gruppi di pagine riunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br>Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie. ");
-        testo.setStyleAttribute("font-size","9pt");
+        Text testo = new Text(" Si tratta di gruppi di pagine riunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br>Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie. ");
+        testo.setStyleAttribute("font-size", "9pt");
 
-       // testo.setStyleAttribute("background-color","#2F3645");
+        // testo.setStyleAttribute("background-color","#2F3645");
         textContent.add(testo);
 
         ContentPanel cpEst = new ContentPanel();
@@ -98,7 +95,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 });
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
-         grid.getSelectionModel().select(0, true);
+        grid.getSelectionModel().select(0, true);
     }
 
     private FormPanel createGroupForm() {
@@ -382,9 +379,12 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         return grid;
     }
 
-    public void clear() {
+    public void clear(boolean setDefault) {
         for (PubblicazioniRilegateModel m : this.pubblicazioniRilegateModel.getModels()) {
             this.pubblicazioniRilegateModel.remove(m);
+        }
+        if (setDefault) {
+            setDefault();
         }
     }
 
@@ -393,12 +393,19 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
     }
 
     public void setPubblicazioniRilegateModel(List<PubblicazioniRilegateModel> pubblicazioniRilegateModel) {
-        clear();
+        clear(false);
         this.pubblicazioniRilegateModel.add(pubblicazioniRilegateModel);
-        //   grid.getSelectionModel().select(0, true);
-
+        if (pubblicazioniRilegateModel.size() == 0) {
+            setDefault();
+        }
     }
 
+    private void setDefault() {
+        PubblicazioniRilegateModel catalogo = new PubblicazioniRilegateModel();
+        catalogo.setCategoria("Catalogo");
+        pubblicazioniRilegateModel.add(catalogo);
+        formBindings.bind(catalogo);
+    }
 
     public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {
         tipoDiCartaModelListStore.add(tipoDiCarta);

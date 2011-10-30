@@ -1,7 +1,6 @@
 package it.agilis.mens.azzeroCO2.client.components.evento;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
@@ -80,7 +79,7 @@ public class EventoDettaglio extends LayoutContainer {
         add(eventoTab, new RowData(1, 1));
 
         posizioniText.add(Arrays.asList("", "Energia"));                                   // DETTAGLIO
-        posizioniText.add(Arrays.asList("Dettagli", "Trasporto Persone"));                 // ENERGIA
+        posizioniText.add(Arrays.asList("Dettaglio", "Trasporto Persone"));                 // ENERGIA
         posizioniText.add(Arrays.asList("Energia", "Pernottamenti"));                      // TRASPORTO PERSONE
         posizioniText.add(Arrays.asList("Trasporto Persone", "Trasporto Merci"));          // Pernottamenti
         posizioniText.add(Arrays.asList("Pernottamenti", "Pubblicazioni rilegate"));       // Trasporto Merci
@@ -115,7 +114,7 @@ public class EventoDettaglio extends LayoutContainer {
         return calcoloCardPanel;
     }
 
-    public void previusTab(AppEvent event) {
+    public void previusTab() {
         for (int i = eventoTab.getItems().size() - 1; i >= 0; i--) {
             TabItem item = eventoTab.getItems().get(i);
 
@@ -152,7 +151,7 @@ public class EventoDettaglio extends LayoutContainer {
         }
     }
 
-    public void nextTab(AppEvent event) {
+    public void nextTab() {
         int i = 0;
         for (TabItem item : eventoTab.getItems()) {
             i++;
@@ -177,6 +176,7 @@ public class EventoDettaglio extends LayoutContainer {
                 }
                 if (i < eventoTab.getItems().size()) {
                     item.setEnabled(false);
+
                     eventoTab.getItems().get(i).setEnabled(true);
                     eventoTab.setSelection(eventoTab.getItems().get(i));
 
@@ -189,9 +189,10 @@ public class EventoDettaglio extends LayoutContainer {
                     if (!eventoTab.getItems().get(i).getText().equalsIgnoreCase("Calcolo")) {
                         posizioniLabel++;
                     }
-                    if(posizioniLabel==0){
+                    if (posizioniLabel == 0) {
                         posizioniLabel++;
                     }
+
                     Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return;
@@ -204,15 +205,38 @@ public class EventoDettaglio extends LayoutContainer {
     public void clearPanel() {
         formDettaglio.clear();
         formEnergia.clear();
-        formTrasportoPersone.clear();
+        formTrasportoPersone.clear(true);
         formPernottamenti.clear();
         formTrasportoMerci.clear();
-        formPubblicazioniRilegate.clear();
-        formManifestiPiegevoliFogli.clear();
+        formPubblicazioniRilegate.clear(true);
+        formManifestiPiegevoliFogli.clear(true);
 
         eventoFormRiepilogo.clear();
         eventoFormAcquisto.clear();
         eventoFormConferma.clear();
+
+        posizioniLabel = 1;
+
+        eventoTab.setSelection(eventoTab.getItems().get(0));
+        eventoTab.getSelectedItem().setEnabled(true);
+
+        for (TabItem item : eventoTab.getItems()) {
+            if (item.getText().equalsIgnoreCase("Calcolo")) {
+                ContentPanel calcolo = (ContentPanel) item.getItem(0);
+                CardLayout layout = (CardLayout) calcolo.getLayout();
+
+                EventoFormEnergia formEnergia= (EventoFormEnergia)calcolo.getItem(0);
+                layout.setActiveItem(formEnergia);
+
+                formEnergia.setWidth("691");
+                break;
+            }
+        }
+        Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(0).get(1));
+        Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(0).get(0));
+        nextTab();
+        previusTab();
+
     }
 
     public DettaglioModel riepilogo() {
@@ -235,7 +259,7 @@ public class EventoDettaglio extends LayoutContainer {
         formEnergia.setEnergiaModel(eventoModel.getEnergiaModel());
         formTrasportoPersone.setTrasportoPersoneModel(eventoModel.getTrasportoPersoneModel());
         formPernottamenti.setNottiModel(eventoModel.getNottiModel());
-        formTrasportoMerci.setTrasportoMerciModel(eventoModel.getTrasportoMerciModel()==null ? new TrasportoMerciModel() : eventoModel.getTrasportoMerciModel());
+        formTrasportoMerci.setTrasportoMerciModel(eventoModel.getTrasportoMerciModel() == null ? new TrasportoMerciModel() : eventoModel.getTrasportoMerciModel());
         formPubblicazioniRilegate.setPubblicazioniRilegateModel(eventoModel.getPubblicazioniRilegateModel());
         formManifestiPiegevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
 

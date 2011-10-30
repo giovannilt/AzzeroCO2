@@ -20,7 +20,7 @@ public class EventoFormDettaglio extends LayoutContainer {
 
     private DettaglioModel dettaglioModel = new DettaglioModel();
     private FormBinding binding = null;
-    FormPanel formPanel;
+    private FormPanel formPanel;
 
     public EventoFormDettaglio() {
         formPanel = createForm();
@@ -40,7 +40,6 @@ public class EventoFormDettaglio extends LayoutContainer {
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         cp.add(formPanel, new RowData(1, 1));
-
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
@@ -106,7 +105,11 @@ public class EventoFormDettaglio extends LayoutContainer {
 
 
     public void clear() {
-        binding.unbind();
+      //  binding.unbind();
+        binding.clear();
+        formPanel.clear();
+        dettaglioModel= new DettaglioModel();
+        binding.bind(dettaglioModel);
     }
 
     public DettaglioModel getDettaglioModel() {
