@@ -21,9 +21,7 @@ import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
-import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
@@ -36,6 +34,8 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
 public class CentralView extends View {
     private final ContentPanel centralPanel = new ContentPanel();
     private CardLayout layout = new CardLayout();
+    private LayoutContainer logInLogOut = new LayoutContainer();
+
 
     public CentralView(Controller controller) {
         super(controller);
@@ -204,66 +204,92 @@ public class CentralView extends View {
             c.setLayout((new RowLayout(Style.Orientation.VERTICAL)));
 
             {
-                LayoutContainer rigo = new LayoutContainer();
-                rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-                // Login
-                FormPanel login = new FormPanel();
-                login.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-                //  login.setWidth(290);
-                login.setHeading("Login");
+                logInLogOut.setLayout(new CardLayout());
 
-                KeyListener keyListener = new KeyListener() {
-                    public void componentKeyUp(ComponentEvent event) {
-                        //  validate();
-                    }
-                };
+                {
+                    final FormPanel login = new FormPanel();
+                    LayoutContainer rigo = new LayoutContainer();
+                    rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-                LabelField label = new LabelField("Utente: ");
-                label.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
-                label.setWidth(100);
+                    login.setLayout(new RowLayout(Style.Orientation.VERTICAL));
+                    //  login.setWidth(290);
+                    login.setHeading("Login");
+                    KeyListener keyListener = new KeyListener() {
+                        public void componentKeyUp(ComponentEvent event) {
+                            //  validate();
+                        }
+                    };
 
-                TextField<String> userName = new TextField<String>();
-                userName.setWidth(45);
-                userName.setMinLength(4);
-                userName.setName("userName");
-                userName.addKeyListener(keyListener);
+                    LabelField label = new LabelField("Utente: ");
+                    label.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+                    label.setWidth(100);
 
-                rigo.add(label, new RowData(0.3, 1, new Margins(4, 1, 4, 1)));
-                rigo.add(userName, new RowData(0.7, 1, new Margins(4, 1, 4, 1)));
+                    final TextField<String> userName = new TextField<String>();
+                    userName.setWidth(45);
+                    userName.setMinLength(4);
+                    userName.setName("userName");
+                    userName.addKeyListener(keyListener);
 
-                login.add(rigo, new RowData(1, 0.5));
+                    rigo.add(label, new RowData(0.3, 1, new Margins(4, 1, 4, 1)));
+                    rigo.add(userName, new RowData(0.7, 1, new Margins(4, 1, 4, 1)));
 
-                rigo = new LayoutContainer();
-                rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+                    login.add(rigo, new RowData(1, 0.5));
 
-                label = new LabelField("Password: ");
-                label.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
-                label.setWidth(100);
+                    rigo = new LayoutContainer();
+                    rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-                TextField<String> password = new TextField<String>();
-                password.setWidth(45);
-                password.setMinLength(4);
-                password.setPassword(true);
-                password.setName("password");
-                password.addKeyListener(keyListener);
+                    label = new LabelField("Password: ");
+                    label.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+                    label.setWidth(100);
 
-                rigo.add(label, new RowData(0.3, 1, new Margins(4, 1, 4, 1)));
-                rigo.add(password, new RowData(0.7, 1, new Margins(4, 1,4, 1)));
+                    final TextField<String> password = new TextField<String>();
+                    password.setWidth(45);
+                    password.setMinLength(4);
+                    password.setPassword(true);
+                    password.setName("password");
+                    password.addKeyListener(keyListener);
 
-                Button btn = new Button("Invia");
-                btn.addSelectionListener(new SelectionListener<ButtonEvent>() {
-                    @Override
-                    public void componentSelected(ButtonEvent ce) {
+                    rigo.add(label, new RowData(0.3, 1, new Margins(4, 1, 4, 1)));
+                    rigo.add(password, new RowData(0.7, 1, new Margins(4, 1, 4, 1)));
 
-                    }
-                });
+                    Button btn = new Button("Invia");
+                    btn.addSelectionListener(new SelectionListener<ButtonEvent>() {
+                        @Override
+                        public void componentSelected(ButtonEvent ce) {
+                            AppEvent event = new AppEvent(LoginEvents.DoLogin);
+                            event.setData("userName", userName.getValue());
+                            event.setData("password", password.getValue());
 
-                login.add(rigo, new RowData(1, 0.5));
-                login.addButton(btn);
+                            Dispatcher.forwardEvent(event);
+                        }
+                    });
 
+                    login.add(rigo, new RowData(1, 0.5));
+                    login.addButton(btn);
+                    Button registstra = new Button("Non Sei Ancora Registrato?");
+                    registstra.addSelectionListener(new SelectionListener<ButtonEvent>() {
+                        @Override
+                        public void componentSelected(ButtonEvent ce) {
+                            Dispatcher.forwardEvent(RegisterEvents.ShowForm, ce);
+                        }
+                    });
+                    login.addButton(registstra);
+                    logInLogOut.add(login);
+                }
+                {
+                    LayoutContainer rigo = new LayoutContainer();
+                    rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-                c.add(login, new RowData(1, 0.3, new Margins(1, 1, 1, 1)));
+                    Text testo = new Text("Benvenuto!!");
+                    testo.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+                    testo.setBounds(30, 30, 250, 180);
+
+                    rigo.add(testo, new RowData(1, 1, new Margins(4, 1, 4, 1)));
+                    logInLogOut.add(rigo);
+
+                }
+                c.add(logInLogOut, new RowData(1, 0.3, new Margins(1, 1, 1, 1)));
             }
             {
                 ContentPanel compensazione = new ContentPanel();
@@ -275,6 +301,7 @@ public class CentralView extends View {
 
                 Text testo = new Text("La combustione di fonti energetiche fossili (carbone, benzina, cherosene) sprigiona biossido di carbonio (CO2). Il CO2 è il maggior responsabile dei gas ad effetto serra provocati dall’uomo. Blabla blabla bla bla blal");
                 testo.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+                testo.setBounds(250, 250, 250, 180);
                 Image azzeroCO2Stemp = new Image(AzzeroCO2Resources.INSTANCE.azzeroCO2Stemp());
                 azzeroCO2Stemp.setAltText("AzzeroCO2");
 
@@ -288,6 +315,15 @@ public class CentralView extends View {
         return _return;
 
 
+    }
+
+    public void enableDisableLoginForm() {
+        CardLayout layout1 = (CardLayout) logInLogOut.getLayout();
+        if (layout1.getActiveItem() instanceof FormPanel) {
+            layout1.setActiveItem(logInLogOut.getItem(1));
+        } else {
+            layout1.setActiveItem(logInLogOut.getItem(0));
+        }
     }
 
 

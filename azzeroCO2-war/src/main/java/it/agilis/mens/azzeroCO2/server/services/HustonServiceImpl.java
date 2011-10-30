@@ -189,14 +189,14 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
     @Override
     public UserInfoModel getUserInfo(String userName, String password) throws IllegalArgumentException {
-
-        UserInfoModel userInfoModel = Utils.getUserInfoModel(azzeroCO2Register.getUserInfo(userName));
-
-        if (userInfoModel != null &&
-                userInfoModel.getPassword().contentEquals(password)) {
-
-            return userInfoModel;
-
+        try {
+            UserInfoModel userInfoModel = Utils.getUserInfoModel(azzeroCO2Register.getUserInfo(userName));
+            if (userInfoModel != null &&
+                    userInfoModel.getPassword().contentEquals(password)) {
+                return userInfoModel;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
 

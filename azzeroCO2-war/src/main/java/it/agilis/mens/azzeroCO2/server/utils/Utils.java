@@ -9,8 +9,9 @@ package it.agilis.mens.azzeroCO2.server.utils;
  */
 
 import it.agilis.mens.azzeroCO2.core.entity.*;
+import it.agilis.mens.azzeroCO2.core.entity.Profile;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
-import it.agilis.mens.azzeroCO2.shared.EMailVTO;
+import it.agilis.mens.azzeroCO2.shared.*;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Utils {
+public class  Utils {
 
     public static List<CouponModel> getListOfCoupon(List<Coupon> listOfCoupon) {
         List<CouponModel> coupons = new ArrayList<CouponModel>();
@@ -73,10 +74,15 @@ public class Utils {
         userInfo.setFax(registrazioneModel.getFax());
         userInfo.setCellulare(registrazioneModel.getCellulare());
         userInfo.setEmail(registrazioneModel.getEmail());
+
+        userInfo.setProfile(Profile.Guest);
         return userInfo;
     }
 
     public static UserInfoModel getUserInfoModel(UserInfo userInfo) {
+        if(userInfo==null){
+            return null;
+        }
         UserInfoModel userInfoModel = new UserInfoModel();
         userInfoModel.setUserName(userInfo.getUserName());
         userInfoModel.setCap(userInfo.getCap());
@@ -93,7 +99,9 @@ public class Utils {
         userInfoModel.setRagioneSoc(userInfo.getRagSociale());
         userInfoModel.setId(userInfo.getId());
 
-        return userInfoModel;  //To change body of created methods use File | Settings | File Templates.
+        userInfoModel.setProfilo(userInfo.getProfile().ordinal());
+
+        return userInfoModel;
     }
 
     public static List<TipoDiCartaModel> getTipoDiCarta(List<TipoDiCarta> tipoDiCarta) {

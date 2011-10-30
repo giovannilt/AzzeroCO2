@@ -25,7 +25,7 @@ public class AzzeroCO2Controller extends BaseController {
         registerEventTypes(AzzeroCO2Events.NewsPanelReady);
         registerEventTypes(AzzeroCO2Events.LoggedIn);
         registerEventTypes(AzzeroCO2Events.ShowInfo);
-        registerEventTypes(LoginEvents.DoLogin);
+
         registerEventTypes(LoginEvents.LogOut);
     }
 

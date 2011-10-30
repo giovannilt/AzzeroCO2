@@ -140,12 +140,12 @@ public class UserInfoModel extends BaseModel {
         set("pivaCF", pivaCF);
     }
 
-    public String getProfilo() {
+    public Integer getProfilo() {
          return  get("profile");
     }
 
-    public void setProfilo(String profile) {
-        set("profilo", profile);
+    public void setProfilo(Integer profile) {
+        set("profile", profile);
     }
 
     public void setId(Long id) {
@@ -154,4 +154,5 @@ public class UserInfoModel extends BaseModel {
     public Long getId(){
         return  get("id");
     }
+
 }

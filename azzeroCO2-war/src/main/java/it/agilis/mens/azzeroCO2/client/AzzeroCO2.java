@@ -8,6 +8,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.controllers.*;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonService;
+import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 
@@ -17,7 +18,6 @@ public class AzzeroCO2 implements EntryPoint {
         Registry.register(AzzeroCO2Constants.HUSTON_SERVICE, GWT.<Object>create(HustonService.class));
 
         Dispatcher dispatcher = Dispatcher.get();
-
 
 
         dispatcher.addController(new AzzeroCO2Controller());
@@ -37,9 +37,9 @@ public class AzzeroCO2 implements EntryPoint {
         dispatcher.dispatch(AzzeroCO2Events.UIReady);
 
 
-        UserInfoModel user= new UserInfoModel();
-        user.setNome("TEST");
-        user.setProfilo("Administrator");
+        UserInfoModel user = new UserInfoModel();
+        user.setNome("Guest");
+        user.setProfilo(Profile.Guest.ordinal());
 
         dispatcher.dispatch(AzzeroCO2Events.LoggedIn, user);
 

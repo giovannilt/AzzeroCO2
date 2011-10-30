@@ -43,11 +43,11 @@ public class LoginController extends BaseController {
                 public void onSuccess(UserInfoModel result) {
                     if (result != null) {
                         Info.display("Info", "Benventuo " + result.getNome());
-                        loginView.hide();
-                        // TODO. BISOGNA CAPIRE SE e' una BUONA PRATICA inoltrare eventi dai controller
-                        Dispatcher.forwardEvent(LoginEvents.ShowLogOut);
+                        if(loginView !=null){
+                            loginView.hide();
+                        }
 
-                        // TODO. BISOGNA CAPIRE SE e' una BUONA PRATICA inoltrare eventi dai controller
+                        Dispatcher.forwardEvent(LoginEvents.ShowLogOut);
                         AppEvent event = new AppEvent(AzzeroCO2Events.LoggedIn);
                         event.setData(result);
                         Dispatcher.forwardEvent(event);
@@ -62,8 +62,10 @@ public class LoginController extends BaseController {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
                 }
+
                 @Override
                 public void onSuccess(Object result) {
+
                     Info.display("LOGOUT", "LOGOUT");
                 }
             };

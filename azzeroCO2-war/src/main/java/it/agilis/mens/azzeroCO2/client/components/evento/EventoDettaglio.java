@@ -226,11 +226,10 @@ public class EventoDettaglio extends LayoutContainer {
         for (TabItem item : eventoTab.getItems()) {
             if (item.getText().equalsIgnoreCase("Calcolo")) {
                 ContentPanel calcolo = (ContentPanel) item.getItem(0);
-                CardLayout layout = (CardLayout) calcolo.getLayout();
-
                 EventoFormEnergia formEnergia = (EventoFormEnergia) calcolo.getItem(0);
-                //  layout.setActiveItem(formEnergia);
+                formEnergia.layout(true);
 
+                // TODO BETTER
                 formEnergia.setWidth("691");
                 break;
             }
