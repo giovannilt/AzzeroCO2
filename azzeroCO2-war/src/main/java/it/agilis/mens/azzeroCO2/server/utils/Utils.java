@@ -9,7 +9,6 @@ package it.agilis.mens.azzeroCO2.server.utils;
  */
 
 import it.agilis.mens.azzeroCO2.core.entity.*;
-import it.agilis.mens.azzeroCO2.core.entity.Profile;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
 import it.agilis.mens.azzeroCO2.shared.*;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
