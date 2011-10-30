@@ -185,6 +185,9 @@ public class Utils {
     }
 
     public static ProgettoCompensazione getProgettoDiCompensazione(ProgettoDiCompensazioneModel pdcm) {
+        if(pdcm==null){
+            return null;
+        }
         ProgettoCompensazione pdc = new ProgettoCompensazione();
 
         pdc.setAttivo(pdcm.getAttivo());
