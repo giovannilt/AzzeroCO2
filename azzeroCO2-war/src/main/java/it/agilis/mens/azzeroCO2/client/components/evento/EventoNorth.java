@@ -6,7 +6,6 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.Html;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
@@ -48,7 +47,6 @@ public class EventoNorth extends LayoutContainer {
             @Override
             public void componentSelected(IconButtonEvent ce) {
                 Dispatcher.forwardEvent(EventoEvents.Save, "Save");
-               // Info.display("Info", "Evento salvato");
             }
         });
         c.add(save, new HBoxLayoutData(new Margins(5, 5, 0, 0)));

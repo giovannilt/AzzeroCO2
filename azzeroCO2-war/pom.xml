@@ -8,8 +8,8 @@
     <artifactId>azzeroCO2-war</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-
     <name>AzzeroCO2 WAR</name>
+
     <parent>
         <artifactId>azzeroCO2-app</artifactId>
         <groupId>it.agilis.mens.azzeroCO2.app</groupId>
@@ -217,7 +217,6 @@
                     <i18nMessagesBundle>it.agilis.mens.azzeroCO2.client.Messages</i18nMessagesBundle>
                 </configuration>
             </plugin>
-
             <!-- Copy static web files before executing gwt:run -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -235,7 +234,6 @@
                     <webappDirectory>${webappDirectory}</webappDirectory>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -245,8 +243,6 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
-
-
         </plugins>
     </build>
 

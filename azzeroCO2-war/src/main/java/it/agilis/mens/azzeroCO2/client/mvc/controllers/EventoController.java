@@ -8,6 +8,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.EMailVTO;
+import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -98,6 +99,10 @@ public class EventoController extends BaseController {
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
         } else if (event.getType().equals(EventoEvents.Save)) {
+            if(getUserInfoModel().getProfilo()== Profile.Guest.ordinal()){
+
+                return;
+            }
             final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo());
             if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
                 Info.display("Warning", "Nome Evento Mancante");
