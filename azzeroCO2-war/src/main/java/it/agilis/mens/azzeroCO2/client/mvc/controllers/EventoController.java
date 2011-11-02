@@ -105,7 +105,6 @@ public class EventoController extends BaseController {
 
         } else if (event.getType().equals(EventoEvents.CaricaCoefficienti)) {
             setCoefficienti();
-        } else if (event.getType().equals(EventoEvents.SentEmailConferma)) {
 
         } else if (event.getType().equals(EventoEvents.SentEmailConferma)) {
             sentMail((EMailVTO)event.getData());
