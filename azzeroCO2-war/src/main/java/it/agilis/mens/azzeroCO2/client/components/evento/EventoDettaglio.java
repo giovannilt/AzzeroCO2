@@ -7,11 +7,13 @@ import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.evento.*;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +44,7 @@ public class EventoDettaglio extends LayoutContainer {
     private final EventoFormConferma eventoFormConferma = new EventoFormConferma();
     private static int posizioniLabel = 1;
     private List<List<String>> posizioniText = new ArrayList<List<String>>();
+    private UserInfoModel userInfoModel;
 
     @Override
     protected void onRender(Element target, int index) {
@@ -175,20 +178,24 @@ public class EventoDettaglio extends LayoutContainer {
                     }
                 }
                 if (i < eventoTab.getItems().size()) {
+                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
+                        Dispatcher.forwardEvent(EventoEvents.SentEmailConferma);
+                    }
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
+                        Dispatcher.forwardEvent(EventoEvents.Acquisto);
+                        if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
+                            return;
+                        }
+                    }
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
+                        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+                    }
+
                     item.setEnabled(false);
 
                     eventoTab.getItems().get(i).setEnabled(true);
                     eventoTab.setSelection(eventoTab.getItems().get(i));
 
-                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
-                        Dispatcher.forwardEvent(EventoEvents.SentEmailConferma);
-                    }
-                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
-                        Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
-                    }
-                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
-                        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
-                    }
                     if (!eventoTab.getItems().get(i).getText().equalsIgnoreCase("Calcolo")) {
                         posizioniLabel++;
                     }
@@ -277,5 +284,9 @@ public class EventoDettaglio extends LayoutContainer {
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
         eventoFormAcquisto.setInStore(progettiDiCompensazioneList);
+    }
+
+    public void setUserInfoModel(UserInfoModel userInfoModel) {
+        this.userInfoModel = userInfoModel;
     }
 }

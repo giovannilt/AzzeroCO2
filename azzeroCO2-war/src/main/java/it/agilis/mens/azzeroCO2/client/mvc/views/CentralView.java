@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.Profile;
 
 /**
  * Created by IntelliJ IDEA.
@@ -35,6 +36,7 @@ public class CentralView extends View {
     private final ContentPanel centralPanel = new ContentPanel();
     private CardLayout layout = new CardLayout();
     private LayoutContainer logInLogOut = new LayoutContainer();
+    private Text benvenuto;
 
 
     public CentralView(Controller controller) {
@@ -281,11 +283,11 @@ public class CentralView extends View {
                     LayoutContainer rigo = new LayoutContainer();
                     rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-                    Text testo = new Text("Benvenuto!!");
-                    testo.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
-                    testo.setBounds(30, 30, 250, 180);
+                     benvenuto = new Text("Benvenuto!!");
+                    benvenuto.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+                    benvenuto.setBounds(30, 30, 250, 180);
 
-                    rigo.add(testo, new RowData(1, 1, new Margins(4, 1, 4, 1)));
+                    rigo.add(benvenuto, new RowData(1, 1, new Margins(4, 1, 4, 1)));
                     logInLogOut.add(rigo);
 
                 }
@@ -317,10 +319,11 @@ public class CentralView extends View {
 
     }
 
-    public void enableDisableLoginForm() {
+    public void enableDisableLoginForm(Profile profile) {
         CardLayout layout1 = (CardLayout) logInLogOut.getLayout();
         if (layout1.getActiveItem() instanceof FormPanel) {
             layout1.setActiveItem(logInLogOut.getItem(1));
+            benvenuto.setText(benvenuto.getText() + " " + profile.name());
         } else {
             layout1.setActiveItem(logInLogOut.getItem(0));
         }

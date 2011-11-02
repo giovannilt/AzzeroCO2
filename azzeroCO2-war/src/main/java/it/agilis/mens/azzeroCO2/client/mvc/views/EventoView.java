@@ -24,6 +24,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,7 @@ public class EventoView extends View {
     private ContentPanel center = new ContentPanel();
     private EventoSouth south = new EventoSouth();
     private EventoWest west = new EventoWest();
+    private UserInfoModel userInfoModel;
 
     public EventoView(Controller controller) {
         super(controller);
@@ -155,5 +157,10 @@ public class EventoView extends View {
 
     public void setDettaglioModel(DettaglioModel result) {
           eventoDettaglio.restore(result);
+    }
+
+    public void setUserInfo(UserInfoModel userInfoModel) {
+        this.userInfoModel=userInfoModel;
+        eventoDettaglio.setUserInfoModel(userInfoModel);
     }
 }

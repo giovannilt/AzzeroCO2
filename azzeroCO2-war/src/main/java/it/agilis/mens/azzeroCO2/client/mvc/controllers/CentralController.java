@@ -35,7 +35,7 @@ public class CentralController extends BaseController {
         if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
             if (((UserInfoModel) event.getData()).getProfilo() != Profile.Guest.ordinal()) {
-                centralView.enableDisableLoginForm();
+                centralView.enableDisableLoginForm(Profile.values()[((UserInfoModel) event.getData()).getProfilo()]);
             }
         } else {
             forwardToView(centralView, event);
