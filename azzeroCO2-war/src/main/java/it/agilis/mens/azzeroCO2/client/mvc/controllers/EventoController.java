@@ -1,10 +1,12 @@
 package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.EMailVTO;
@@ -90,11 +92,12 @@ public class EventoController extends BaseController {
                 setProgettiDiCompensazione();
             }
             eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
+
         } else if (event.getType().equals(EventoEvents.CaricaCoefficienti)) {
             setCoefficienti();
-        } else if (event.getType().equals(EventoEvents.SentEmailConferma)) {
 
-            sentMail((EMailVTO)event.getData());
+        } else if (event.getType().equals(EventoEvents.SentEmailConferma)) {
+            sentMail((EMailVTO) event.getData());
 
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());

@@ -75,7 +75,7 @@ public class Utils {
         userInfo.setCellulare(registrazioneModel.getCellulare());
         userInfo.setEmail(registrazioneModel.getEmail());
 
-        userInfo.setProfile(Profile.Guest);
+        userInfo.setProfile(Profile.User);
         return userInfo;
     }
 

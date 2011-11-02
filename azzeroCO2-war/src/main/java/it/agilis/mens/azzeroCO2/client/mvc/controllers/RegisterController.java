@@ -8,6 +8,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.RegisterEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.RegisterView;
+import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 /**
@@ -52,7 +53,9 @@ public class RegisterController extends BaseController {
                     }
                 }
             };
-            getHustonService().createNewUser((UserInfoModel) event.getData(), aCallback);
+            UserInfoModel data = (UserInfoModel) event.getData();
+            data.setProfilo(Profile.User.ordinal());
+            getHustonService().createNewUser(data, aCallback);
         } else {
             forwardToView(view, event);
         }

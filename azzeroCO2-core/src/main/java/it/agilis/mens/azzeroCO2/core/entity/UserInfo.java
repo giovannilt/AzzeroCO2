@@ -36,7 +36,7 @@ public class UserInfo implements Serializable {
     private String fax;
     private String cellulare;
     private String email;
-    private Profile profile= Profile.Guest;
+    private Profile profile= Profile.User;
 
 
     public Long getId() {
