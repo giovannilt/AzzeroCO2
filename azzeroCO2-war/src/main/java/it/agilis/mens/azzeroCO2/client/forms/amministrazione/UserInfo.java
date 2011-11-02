@@ -64,6 +64,7 @@ public class UserInfo extends LayoutContainer {
 
     private FormPanel createForm() {
         FormPanel formPanel = new FormPanel();
+        formPanel.setWidth(1);
         formPanel.setHeaderVisible(false);
 
         formPanel.setButtonAlign(Style.HorizontalAlignment.LEFT);

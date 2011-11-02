@@ -36,6 +36,10 @@ public class Amministrazione extends LayoutContainer {
     private final Ordini ordiniForm = new Ordini();
     private final UserInfo userInfoForm = new UserInfo();
     private UserInfoModel userInfoModel;
+    private TabItem couponTab = new TabItem("Coupon");
+    private TabItem coefficientiTab = new TabItem("Coefficienti Di Calcolo");
+    private TabItem programmiTab = new TabItem("Progetti Di Compensazione");
+
 
     @Override
     protected void onRender(Element target, int index) {
@@ -47,15 +51,15 @@ public class Amministrazione extends LayoutContainer {
         ordiniTab.add(ordiniForm);
         amministrazioneTab.add(ordiniTab);
 
-        TabItem couponTab = new TabItem("Coupon");
+
         couponTab.add(couponForm);
         amministrazioneTab.add(couponTab);
 
-        TabItem coefficientiTab = new TabItem("Coefficienti Di Calcolo");
+
         coefficientiTab.add(coefficentiForm);
         amministrazioneTab.add(coefficientiTab);
 
-        TabItem programmiTab = new TabItem("Progetti Di Compensazione");
+
         programmiTab.add(progettiDiCompensazioneForm);
         amministrazioneTab.add(programmiTab);
 
@@ -95,15 +99,13 @@ public class Amministrazione extends LayoutContainer {
                 (userInfoModel.getProfilo().intValue() == Profile.Administrator.ordinal()
                         || userInfoModel.getProfilo().intValue() == Profile.SuperAdministrator.ordinal()
                 )) {
-            couponForm.setVisible(true);
-            coefficentiForm.setVisible(true);
-            progettiDiCompensazioneForm.setVisible(true);
+
+            //ALL VISIBLE
         } else {
-            couponForm.setVisible(false);
-            coefficentiForm.setVisible(false);
-            progettiDiCompensazioneForm.setVisible(false);
+        // TODO nascondere le tab che non si devono vedere
         }
     }
-
-
 }
+
+
+

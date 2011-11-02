@@ -26,7 +26,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class AmministrazioneController extends BaseController {
-    AmministrazioneView amministrazioneView = new AmministrazioneView(this);
+   private AmministrazioneView amministrazioneView = new AmministrazioneView(this);
 
     public AmministrazioneController() {
         registerEventTypes(AzzeroCO2Events.Init);
