@@ -95,9 +95,10 @@ public class EventoController extends BaseController {
 
         } else if (event.getType().equals(EventoEvents.CaricaCoefficienti)) {
             setCoefficienti();
+        } else if (event.getType().equals(EventoEvents.SentEmailConferma)) {
 
         } else if (event.getType().equals(EventoEvents.SentEmailConferma)) {
-            sentMail((EMailVTO) event.getData());
+            sentMail((EMailVTO)event.getData());
 
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
