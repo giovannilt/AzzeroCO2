@@ -38,6 +38,7 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.Save);
         registerEventTypes(AzzeroCO2Events.LoggedIn);
         registerEventTypes(EventoEvents.Riepilogo);
+        registerEventTypes(EventoEvents.Acquisto);
 
         registerEventTypes(EventoEvents.LoadEvento);
 
@@ -87,6 +88,15 @@ public class EventoController extends BaseController {
             } else {
                 eventoView.riepilogo(getCoefficientiMAP());
             }
+        } else if (event.getType().equals(EventoEvents.Acquisto)) {
+            if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
+                Dispatcher.forwardEvent(LoginEvents.ShowForm);
+            } else {
+                if (getProgettiDiCompensazioneList().size() == 0) {
+                    setProgettiDiCompensazione();
+                }
+                eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
+            }
         } else if (event.getType().equals(EventoEvents.CaricaProgettiDiCompensazione)) {
             if (getProgettiDiCompensazioneList().size() == 0) {
                 setProgettiDiCompensazione();
@@ -102,6 +112,7 @@ public class EventoController extends BaseController {
 
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
+            eventoView.setUserInfo(getUserInfoModel());
 
         } else if (event.getType().equals(EventoEvents.Save)) {
             if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
