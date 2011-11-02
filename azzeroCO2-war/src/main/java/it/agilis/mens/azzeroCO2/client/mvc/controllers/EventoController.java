@@ -98,7 +98,6 @@ public class EventoController extends BaseController {
 
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
-    
 
         } else if (event.getType().equals(EventoEvents.Save)) {
             if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
