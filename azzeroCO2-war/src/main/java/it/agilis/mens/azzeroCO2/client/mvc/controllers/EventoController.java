@@ -98,30 +98,32 @@ public class EventoController extends BaseController {
 
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
+    
+
         } else if (event.getType().equals(EventoEvents.Save)) {
-            if(getUserInfoModel().getProfilo()== Profile.Guest.ordinal()){
-
-                return;
-            }
-            final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo());
-            if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
-                Info.display("Warning", "Nome Evento Mancante");
-            } else {
-                AsyncCallback<DettaglioVTO> dettaglio = new AsyncCallback<DettaglioVTO>() {
-                    public void onFailure(Throwable caught) {
-                        Info.display("Error", "Errore impossibile connettersi al server " + caught);
-                    }
-
-                    @Override
-                    public void onSuccess(DettaglioVTO result) {
-                        if (result != null) {
-                            eventoView.setDettaglioModel(AzzerroCO2UtilsClientHelper.getDettaglioModel(result));
-                            Info.display("Info", "Evento " + riepilogo.getNome() + " salvato con successo.");
+            if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
+               Dispatcher.forwardEvent(LoginEvents.ShowForm);
+            }else{
+                final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo());
+                if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
+                    Info.display("Warning", "Nome Evento Mancante");
+                } else {
+                    AsyncCallback<DettaglioVTO> dettaglio = new AsyncCallback<DettaglioVTO>() {
+                        public void onFailure(Throwable caught) {
+                            Info.display("Error", "Errore impossibile connettersi al server " + caught);
                         }
-                    }
-                };
 
-                getHustonService().saveOrdine(riepilogo, dettaglio);
+                        @Override
+                        public void onSuccess(DettaglioVTO result) {
+                            if (result != null) {
+                                eventoView.setDettaglioModel(AzzerroCO2UtilsClientHelper.getDettaglioModel(result));
+                                Info.display("Info", "Evento " + riepilogo.getNome() + " salvato con successo.");
+                            }
+                        }
+                    };
+
+                    getHustonService().saveOrdine(riepilogo, dettaglio);
+                }
             }
         } else {
             forwardToView(eventoView, event);
