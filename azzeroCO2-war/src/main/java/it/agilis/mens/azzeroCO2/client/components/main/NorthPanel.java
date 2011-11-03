@@ -83,7 +83,7 @@ public class NorthPanel extends LayoutContainer {
                 } else {
                     Dispatcher.forwardEvent(LoginEvents.LogOut);
                     showLogin();
-                    Window.open(GWT.getModuleBaseURL(), "_self", "");
+                    Window.open(GWT.getHostPageBaseURL(), "_self", "");
 
                 }
             }
