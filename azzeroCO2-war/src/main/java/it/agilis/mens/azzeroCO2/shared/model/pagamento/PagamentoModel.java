@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.shared.model.pagamento;
 
 import com.extjs.gxt.ui.client.data.BaseModelData;
+import com.google.gwt.core.client.GWT;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -27,9 +28,9 @@ public class PagamentoModel extends BaseModelData {
         setDIVISA("EUR");
         setABI("03599");
         setITEMS("pagamentoCalcolatore^Pagamento online della propria impronta di CO2^1^" + importo + "^EUR");  // DA COMPLETARE CON IMPORTO ED ^EUR
-        setURLOK("/azzeroCO2/rispostaBanca");
-        setURLKO("/azzeroCO2/rispostaBanca");
-        setURLACK("/azzeroCO2/rispostaBanca");
+        setURLOK(GWT.getHostPageBaseURL()+"/azzeroCO2/rispostaBancaOK");
+        setURLKO(GWT.getHostPageBaseURL()+"/azzeroCO2/rispostaBancaKO");
+        setURLACK(GWT.getHostPageBaseURL()+"/azzeroCO2/rispostaBanca");
         try {
             setMAC(new String(getMAC_MD5(), "UTF-8"));
         } catch (UnsupportedEncodingException e) {

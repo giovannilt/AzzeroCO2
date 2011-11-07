@@ -186,6 +186,7 @@ public class EventoDettaglio extends LayoutContainer {
                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return;
                         }
+                        return;
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
                         Dispatcher.forwardEvent(EventoEvents.Riepilogo);

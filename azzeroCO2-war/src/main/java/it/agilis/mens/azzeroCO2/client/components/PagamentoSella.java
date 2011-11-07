@@ -4,12 +4,15 @@ import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.AppEvent;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
+import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 
 /**
@@ -22,7 +25,8 @@ import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 public class PagamentoSella extends Dialog {
 
     private FormPanel form = new FormPanel();
-    private PagamentoModel model= new PagamentoModel("0.0");
+    private PagamentoModel model = new PagamentoModel("0.0");
+
 
     public PagamentoSella() {
 
@@ -45,31 +49,31 @@ public class PagamentoSella extends Dialog {
         form.setHeaderVisible(false);
 
         TextField<String> TIPO_PAGAMENTO = new TextField<String>();
-     //   TIPO_PAGAMENTO.setValue("CC");
+        //   TIPO_PAGAMENTO.setValue("CC");
         TIPO_PAGAMENTO.setName("TIPO_PAGAMENTO");
-        TIPO_PAGAMENTO.setVisible(false);
+        //       TIPO_PAGAMENTO.setVisible(false);
         form.add(TIPO_PAGAMENTO);
 
         TextField<String> MERCHANT_ID = new TextField<String>();   //" value="396870600001"/
-      //  MERCHANT_ID.setValue("396870600001");
+        //  MERCHANT_ID.setValue("396870600001");
         MERCHANT_ID.setName("MERCHANT_ID");
-        MERCHANT_ID.setVisible(false);
+        //      MERCHANT_ID.setVisible(false);
         form.add(MERCHANT_ID);
 
         TextField<String> ORDER_ID = new TextField<String>(); //      " value="<?=$ORDER_ID?>"/>
         ORDER_ID.setName("ORDER_ID");
-        ORDER_ID.setVisible(false);
+        //      ORDER_ID.setVisible(false);
         form.add(ORDER_ID);
 
         TextField<String> IMPORTO = new TextField<String>(); //      " value="<?=$IMPORTO?>"/>
         IMPORTO.setName("IMPORTO");
-        IMPORTO.setVisible(false);
+        //      IMPORTO.setVisible(false);
         form.add(IMPORTO);
 
         TextField<String> DIVISA = new TextField<String>();
         DIVISA.setValue("DIVISA");
         DIVISA.setName("EUR");
-        DIVISA.setVisible(false);
+        //   DIVISA.setVisible(false);
         form.add(DIVISA);
 
         TextField<String> ABI = new TextField<String>();   //    " value="03599"/>
@@ -81,31 +85,31 @@ public class PagamentoSella extends Dialog {
         TextField<String> ITEMS = new TextField<String>();  //     " value="<?=$ITEMS?>"/>
         ITEMS.setValue("....");
         ITEMS.setName("ITEMS");
-        ITEMS.setVisible(false);
+        //    ITEMS.setVisible(false);
         form.add(ITEMS);
 
         TextField<String> URLOK = new TextField<String>();
         URLOK.setValue("....");
         URLOK.setName("URLOK");
-        URLOK.setVisible(false);
+        //    URLOK.setVisible(false);
         form.add(URLOK);
 
         TextField<String> URLKO = new TextField<String>();
         URLKO.setValue("....");
         URLKO.setName("URLKO");
-        URLKO.setVisible(false);
+        //    URLKO.setVisible(false);
         form.add(URLKO);
 
         TextField<String> URLACK = new TextField<String>();
         URLACK.setValue("....");
         URLACK.setName("URLACK");
-        URLACK.setVisible(false);
+        //    URLACK.setVisible(false);
         form.add(URLACK);
 
         TextField<String> MAC = new TextField<String>();   //    " value="<?=$codiceMAC?>"/>
         MAC.setValue("....");
         MAC.setName("MAC");
-        MAC.setVisible(false);
+        //     MAC.setVisible(false);
         form.add(MAC);
 
         FormBinding binding = new FormBinding(form, true);
@@ -121,6 +125,10 @@ public class PagamentoSella extends Dialog {
         Button submit = new Button("Compensa");
         submit.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
+                AppEvent event = new AppEvent(PagamentoSellaEvents.SubmitForm);
+                event.setData(form.getModel());
+                Dispatcher.forwardEvent(event);
+
                 form.submit();
             }
         });
@@ -134,4 +142,6 @@ public class PagamentoSella extends Dialog {
     public void setModel(PagamentoModel model) {
         this.model = model;
     }
+
+
 }

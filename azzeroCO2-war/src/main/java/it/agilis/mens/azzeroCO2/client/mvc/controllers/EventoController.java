@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.EMailVTO;
@@ -96,6 +97,7 @@ public class EventoController extends BaseController {
                     setProgettiDiCompensazione();
                 }
                 eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
+                Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm);
             }
         } else if (event.getType().equals(EventoEvents.CaricaProgettiDiCompensazione)) {
             if (getProgettiDiCompensazioneList().size() == 0) {

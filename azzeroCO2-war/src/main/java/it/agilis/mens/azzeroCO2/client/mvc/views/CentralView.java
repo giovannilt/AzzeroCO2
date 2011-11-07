@@ -269,7 +269,7 @@ public class CentralView extends View {
 
                     login.add(rigo, new RowData(1, 0.5));
                     login.addButton(btn);
-                    Button registstra = new Button("Non Sei Ancora Registrato?");
+                    Button registstra = new Button("Registrati");
                     registstra.addSelectionListener(new SelectionListener<ButtonEvent>() {
                         @Override
                         public void componentSelected(ButtonEvent ce) {

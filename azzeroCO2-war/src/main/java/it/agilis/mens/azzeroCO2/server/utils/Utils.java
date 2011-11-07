@@ -17,6 +17,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.core.register.impl.Email;
 
@@ -80,7 +81,7 @@ public class Utils {
     }
 
     public static UserInfoModel getUserInfoModel(UserInfo userInfo) {
-        if(userInfo==null){
+        if (userInfo == null) {
             return null;
         }
         UserInfoModel userInfoModel = new UserInfoModel();
@@ -169,7 +170,7 @@ public class Utils {
     }
 
     private static ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel(ProgettoCompensazione pc) {
-        if(pc==null){
+        if (pc == null) {
             return null;
         }
         ProgettoDiCompensazioneModel pcm = new ProgettoDiCompensazioneModel();
@@ -193,7 +194,7 @@ public class Utils {
     }
 
     public static ProgettoCompensazione getProgettoDiCompensazione(ProgettoDiCompensazioneModel pdcm) {
-        if(pdcm==null){
+        if (pdcm == null) {
             return null;
         }
         ProgettoCompensazione pdc = new ProgettoCompensazione();
@@ -516,13 +517,28 @@ public class Utils {
         return dm;
     }
 
-    public static Email getEmail(EMailVTO e){
-        Email _return= new Email();
+    public static Email getEmail(EMailVTO e) {
+        Email _return = new Email();
         _return.setBody(e.getBody());
         _return.setFromUser(e.getFromUser());
         _return.setSubject(e.getSubject());
         _return.setToUser(e.getToUser().toArray(new String[]{}));
 
         return _return;
+    }
+
+    public static SellaRicevutaDiPagamento getRicevuta(PagamentoModel pagamentoModel) {
+        SellaRicevutaDiPagamento ricevuta = new SellaRicevutaDiPagamento();
+
+        ricevuta.setEsito(Esito.WAITING);
+        ricevuta.setMERCHANT_ID(pagamentoModel.getMERCHANT_ID());
+        ricevuta.setDIVISA(pagamentoModel.getDIVISA());
+        ricevuta.setIMPORTO(pagamentoModel.getIMPORTO());
+        ricevuta.setMAC(pagamentoModel.getMAC());
+        ricevuta.setORDER_ID(pagamentoModel.getORDER_ID());
+
+
+        return ricevuta;
+
     }
 }

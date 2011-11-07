@@ -25,5 +25,11 @@ public class SellaRicevutaDiPagamentoDAO extends DAOSupport implements ISellaRic
         }
     }
 
+    @Override
+    public void salvaRicevuta(SellaRicevutaDiPagamento ricevuta) throws Exception {
+
+        saveObject(ricevuta);
+    }
+
 
 }

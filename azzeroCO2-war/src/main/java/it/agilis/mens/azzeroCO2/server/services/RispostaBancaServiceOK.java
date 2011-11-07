@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.server.services;
 
 import it.agilis.mens.azzeroCO2.core.criteria.SellaRicevutaDiPagamentoCriteria;
+import it.agilis.mens.azzeroCO2.core.entity.Esito;
 import it.agilis.mens.azzeroCO2.core.entity.SellaRicevutaDiPagamento;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
@@ -30,19 +31,18 @@ public class RispostaBancaServiceOK extends HttpServlet {
 
 
     private static final String PAGE_TOP = ""
-      + "<html>"
-      + "<head>"
-      + "<title>AzzeroCO2</title>"
-      + "</head>"
-      + "<body>"
-      + "<h3>AzzeroCO2</h3>"
-      + "<table>";
+            + "<html>"
+            + "<head>"
+            + "<title>AzzeroCO2</title>"
+            + "</head>"
+            + "<body>"
+            + "<h3>AzzeroCO2</h3>"
+            + "<table>";
 
-  private static final String PAGE_BOTTOM = ""
-      + "</table>"
-      + "</body>"
-      + "</html>"
-  ;
+    private static final String PAGE_BOTTOM = ""
+            + "</table>"
+            + "</body>"
+            + "</html>";
 
 
     public AzzeroCO2Register getAzzeroCO2Register() {
@@ -54,7 +54,7 @@ public class RispostaBancaServiceOK extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         doGet(request, response);
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -68,6 +68,7 @@ public class RispostaBancaServiceOK extends HttpServlet {
         String MAC = request.getParameter("MAC");                //(codice di controllo da usare tra poco)
         String PROG_ID = request.getParameter("PROG_ID");       //(il codice dell'oggetto, nel nostro esempio mi pare "pagamentoCalcolatore"
         response.setContentType("text/html");
+
         PrintWriter out = response.getWriter();
 
         if (ORDER_ID != null && ORDER_ID.length() > 0) {
@@ -86,18 +87,21 @@ public class RispostaBancaServiceOK extends HttpServlet {
                     algorithm.update(controllo.toLowerCase().getBytes());
 
                     if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toLowerCase())) {
-                        //BISOGNA SCRIVER ESITO  OK TUTTO BENE SU DB
+                        ricevuta.setEsito(Esito.PAGATO);
+                        azzeroCO2Register.saveRicevuta(ricevuta);
                     } else {
                         // MEN IN THE MIDDEL STANNO PROVANDO UN ATTACCO....
-
                     }
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
+                    out.println(PAGE_TOP + "<tr><td>Errore nella ricezione dei dati.+0</td></tr>" + PAGE_BOTTOM);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    out.println(PAGE_TOP + "<tr><td>Errore nella ricezione dei dati.+1</td></tr>" + PAGE_BOTTOM);
                 }
             }
-        } else  {
-
-            out.println(PAGE_TOP+"<tr><td>Errore nella ricezione dei dati.</td></tr>"+PAGE_BOTTOM);
+        } else {
+             out.println(PAGE_TOP + "<tr><td>Errore nella ricezione dei dati.+2</td></tr>" + PAGE_BOTTOM);
 
         }
     }
