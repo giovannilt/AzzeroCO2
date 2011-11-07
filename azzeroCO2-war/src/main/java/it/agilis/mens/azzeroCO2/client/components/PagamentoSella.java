@@ -71,8 +71,9 @@ public class PagamentoSella extends Dialog {
         form.add(IMPORTO);
 
         TextField<String> DIVISA = new TextField<String>();
-        DIVISA.setValue("DIVISA");
-        DIVISA.setName("EUR");
+        DIVISA.setName("DIVISA");
+        DIVISA.setValue("EUR");
+
         //   DIVISA.setVisible(false);
         form.add(DIVISA);
 

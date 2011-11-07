@@ -2,10 +2,8 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
 import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
-import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.PagamentoSellaView;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
@@ -37,8 +35,9 @@ public class PagamentoController extends BaseController {
 
                 @Override
                 public void onSuccess(Object o) {
-                    //TODO....
-                    Dispatcher.forwardEvent(LoginEvents.ShowForm);
+                    //TODO....bisogna aspettare che la banca ci comunichi l'avvenuto pagamento per abilitare le form ad andare AVANTI
+                    //Dispatcher.forwardEvent(LoginEvents.ShowForm);
+                    forwardToView(pagamentroView, new AppEvent(PagamentoSellaEvents.CloseForm));
                 }
 
 

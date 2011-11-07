@@ -27,7 +27,7 @@ public interface AzzeroCO2Resources extends ClientBundle {
     ImageResource conoscoLaCO2();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/UnaPubblicazione.png")
-   @ImageResource.ImageOptions(flipRtl = true, width = 213, height = 193)
+    @ImageResource.ImageOptions(flipRtl = true, width = 213, height = 193)
     ImageResource unaPubblicazione();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/UnSitoWeb.png")

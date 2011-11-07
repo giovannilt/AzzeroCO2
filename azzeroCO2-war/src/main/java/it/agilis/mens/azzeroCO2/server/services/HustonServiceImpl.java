@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-//import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -274,7 +273,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     @Override
     public void savePagamento(PagamentoModel pagamentoModel) {
         try {
-              azzeroCO2Register.saveRicevuta(Utils.getRicevuta(pagamentoModel));
+            azzeroCO2Register.saveRicevuta(Utils.getRicevuta(pagamentoModel));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -22,7 +22,6 @@
                 <value>it.agilis.mens.azzeroCO2.core.entity.Evento</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.Coupon</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.Coefficiente</value>
-                <value>it.agilis.mens.azzeroCO2.core.entity.SellaInvioPagamento</value>
                 <value>it.agilis.mens.azzeroCO2.core.entity.SellaRicevutaDiPagamento</value>
 			</list>
 		</property>
