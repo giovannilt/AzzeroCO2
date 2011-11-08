@@ -154,7 +154,6 @@ public class EventoView extends View {
           return eventoDettaglio.riepilogo();
     }
 
-
     public void setDettaglioModel(DettaglioModel result) {
           eventoDettaglio.restore(result);
     }

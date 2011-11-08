@@ -43,11 +43,21 @@ public class Ordine {
     @OneToMany (cascade ={CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<TrasportoPersone> trasportoPersone;
 
-
     private Date dataOrdine;
     private Boolean editable;
     private Double kgCo2;
     private Double valoreCompensazione;
+
+    @OneToOne (cascade ={CascadeType.ALL}, fetch = FetchType.LAZY)
+    private SellaRicevutaDiPagamento ricevutaDiPagamento;
+
+    public SellaRicevutaDiPagamento getRicevutaDiPagamento() {
+        return ricevutaDiPagamento;
+    }
+
+    public void setRicevutaDiPagamento(SellaRicevutaDiPagamento ricevutaDiPagamento) {
+        this.ricevutaDiPagamento = ricevutaDiPagamento;
+    }
 
     public Long getId() {
         return id;

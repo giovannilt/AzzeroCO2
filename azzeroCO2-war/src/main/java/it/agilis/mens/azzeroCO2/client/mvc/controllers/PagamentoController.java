@@ -32,15 +32,12 @@ public class PagamentoController extends BaseController {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
                 }
-
                 @Override
                 public void onSuccess(Object o) {
                     //TODO....bisogna aspettare che la banca ci comunichi l'avvenuto pagamento per abilitare le form ad andare AVANTI
                     //Dispatcher.forwardEvent(LoginEvents.ShowForm);
                     forwardToView(pagamentroView, new AppEvent(PagamentoSellaEvents.CloseForm));
                 }
-
-
             };
             getHustonService().savePagamento(pagamentoModel, aCallback);
         } else {
