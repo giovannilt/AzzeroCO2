@@ -141,9 +141,10 @@ public class EventoView extends View {
         eventoDettaglio.setTipoDiCarta(tipoDiCartaModels);
     }
 
-    public void riepilogo(Map<String, CoefficienteModel> coefficienti) {
+    public  List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
         List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti);
         eventoDettaglio.setEventoRiepilogoInStore(list);
+        return list;
     }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
@@ -162,4 +163,6 @@ public class EventoView extends View {
         this.userInfoModel=userInfoModel;
         eventoDettaglio.setUserInfoModel(userInfoModel);
     }
+
+
 }

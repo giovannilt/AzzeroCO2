@@ -178,15 +178,16 @@ public class EventoDettaglio extends LayoutContainer {
                     }
                 }
                 if (i < eventoTab.getItems().size()) {
-                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
-                        Dispatcher.forwardEvent(EventoEvents.SentEmailConferma);
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
+                        Dispatcher.forwardEvent(EventoEvents.Conferma);
+                        // Dispatcher.forwardEvent(EventoEvents.SentEmailConferma);
+                        return;
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(EventoEvents.Acquisto);
                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return;
                         }
-                        return;
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
                         Dispatcher.forwardEvent(EventoEvents.Riepilogo);

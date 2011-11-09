@@ -2,11 +2,9 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
 import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
-import com.extjs.gxt.ui.client.widget.Info;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.PagamentoSellaView;
-import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,7 +25,10 @@ public class PagamentoController extends BaseController {
     public void handleEvent(AppEvent event) {
         EventType type = event.getType();
         if (type.equals(PagamentoSellaEvents.SubmitForm)) {
-            PagamentoModel pagamentoModel = (PagamentoModel) event.getData();
+
+            DettaglioModel model= (DettaglioModel)event.getData();
+
+            /*PagamentoModel pagamentoModel = (PagamentoModel) event.getData();
             AsyncCallback aCallback = new AsyncCallback() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
@@ -39,7 +40,7 @@ public class PagamentoController extends BaseController {
                     forwardToView(pagamentroView, new AppEvent(PagamentoSellaEvents.CloseForm));
                 }
             };
-            getHustonService().savePagamento(pagamentoModel, aCallback);
+            getHustonService().savePagamento(pagamentoModel, aCallback);*/
         } else {
             forwardToView(pagamentroView, event);
         }

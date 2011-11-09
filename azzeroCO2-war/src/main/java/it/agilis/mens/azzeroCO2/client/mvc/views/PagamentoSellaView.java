@@ -31,9 +31,7 @@ public class PagamentoSellaView extends View {
     protected void handleEvent(AppEvent event) {
         if (event.getType() == PagamentoSellaEvents.CloseForm) {
             pagamentroSellaDialog.hide();
-        }
-        if (event.getType() == PagamentoSellaEvents.ShowForm) {
-            // mostra la finestra
+        } else if (event.getType() == PagamentoSellaEvents.ShowForm) {
             pagamentroSellaDialog.show();
         }
     }

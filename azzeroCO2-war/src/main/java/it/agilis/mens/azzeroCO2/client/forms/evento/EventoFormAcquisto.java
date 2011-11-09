@@ -261,7 +261,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         grid.setBorders(true);
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         //grid.setHideHeaders(true);
-        grid.setHeight(400);
+        grid.setHeight(402);
 
         return grid;
     }

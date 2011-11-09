@@ -28,6 +28,7 @@ public class EventoEvents {
     public static final EventType CaricaProgettiDiCompensazione = new EventType();
     public static final EventType LoadEvento = new EventType();
     public static final EventType Acquisto = new EventType();
+    public static final EventType Conferma = new EventType();
 
  public static final EventType SentEmailConferma = new EventType();
 

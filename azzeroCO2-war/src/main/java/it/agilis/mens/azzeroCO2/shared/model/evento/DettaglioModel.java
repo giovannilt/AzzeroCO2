@@ -26,7 +26,7 @@ public class DettaglioModel extends BaseModel {
     private List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel;
     private ProgettoDiCompensazioneModel progettoDiCompensazioneModel;
 
-    private PagamentoModel pagamentoModel= new PagamentoModel();
+    private PagamentoModel pagamentoModel;
 
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
