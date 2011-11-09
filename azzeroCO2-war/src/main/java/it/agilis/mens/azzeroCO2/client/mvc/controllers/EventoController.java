@@ -14,6 +14,7 @@ import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
@@ -167,7 +168,8 @@ public class EventoController extends BaseController {
         for (RiepilogoModel r : eventoRiepilogoModels) {
             totale += r.getKgCO2();
         }
-
+        ProgettoDiCompensazioneModel p= model.getProgettoDiCompensazioneModel();
+        totale= totale * (p!=null ? p.getPrezzo() : 0);
 
         //TODO SUI CUPON
         // model.getCouponModel();
