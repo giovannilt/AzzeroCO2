@@ -48,7 +48,7 @@ public class Ordine {
     private Double kgCo2;
     private Double valoreCompensazione;
 
-    @OneToOne (cascade ={CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToOne (cascade ={CascadeType.ALL}, fetch = FetchType.EAGER)
     private SellaRicevutaDiPagamento ricevutaDiPagamento;
 
     public SellaRicevutaDiPagamento getRicevutaDiPagamento() {
