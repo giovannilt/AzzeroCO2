@@ -71,9 +71,26 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c2.setLayout(layout2);
 
-        c2.add(new LabelField("Inserisci il numero di tonnellate di merce per chilometraggio a mezzo di trasporto. Il trasporto viene calcolato su medie di chilometraggio"), flex);
+        LabelField istruzione=new LabelField("Inserisci il numero di tonnellate di merce per chilometraggio a mezzo di trasporto. </br>");
+        LabelField note =new LabelField("Il trasporto viene calcolato su medie di chilometraggio");
+        istruzione.setStyleAttribute("font-weight","bold");
+        note.setStyleAttribute("font-style","italic");
 
+        c2.add(istruzione, flex);
         panel.add(c2);
+
+        LayoutContainer c3 = new LayoutContainer();
+        HBoxLayout layout3 = new HBoxLayout();
+        layout3.setPadding(new Padding(2));
+        layout3.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        c3.setLayout(layout3);
+        c3.add(note,flex);
+        panel.add(c3);
+
+
+
+
+
         LayoutContainer km30 = new LayoutContainer();
         HBoxLayout layoutRigaKm30 = new HBoxLayout();
         layoutRigaKm30.setPadding(new Padding(2));

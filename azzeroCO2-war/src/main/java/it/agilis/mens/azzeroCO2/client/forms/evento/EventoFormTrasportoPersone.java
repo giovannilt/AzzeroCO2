@@ -107,7 +107,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         radioContent.add(radioGroup);*/
 
         ContentPanel cpEst = new ContentPanel();
-        cpEst.setHeading("Categorie");
+        cpEst.setHeading("Trasporto persone");
 
         cpEst.setLayout(new RowLayout(Orientation.VERTICAL));
         //  cpEst.add(radioContent, new RowData(1, 0.10, new Margins(0, 0, 0, 0)));
@@ -155,8 +155,35 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             cl.setLayout(layout);
 
-            cl.add(new LabelField("Inserisci il numero di tratte per distanza percorsa e mezzo di trasporto.<br> Es: due pendolari in treno che partecipano a un evento di 4 giorni = 16 tratte."), flex);
+            LabelField istruzioni = new LabelField("Inserisci il numero di tratte per distanza percorsa e mezzo di trasporto.<br> ");
+            LabelField note = new LabelField("Es: due pendolari in treno che partecipano a un evento di 4 giorni = 16 tratte.");
+
+            istruzioni.setStyleAttribute("font-weight","bolder");
+            note.setStyleAttribute("font-style","italic");
+
+
+
+            cl.add(istruzioni, flex);
+
             formPanel.add(cl);
+
+
+            LayoutContainer c2 = new LayoutContainer();
+            HBoxLayout layout2 = new HBoxLayout();
+            layout2.setPadding(new Padding(5));
+            layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+            c2.setLayout(layout2);
+
+            c2.add(note, flex);
+
+
+            formPanel.add(c2);
+
+
+
+
+
+
         }
         {
             LayoutContainer km60 = new LayoutContainer();

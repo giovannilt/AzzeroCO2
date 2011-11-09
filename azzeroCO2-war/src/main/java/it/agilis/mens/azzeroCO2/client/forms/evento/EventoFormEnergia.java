@@ -95,7 +95,9 @@ public class EventoFormEnergia extends LayoutContainer {
         layout3.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
         c3.setLayout(layout3);
 
-        c3.add(new LabelField("Non riempire in caso di energia da fonti rinnovabili."), flex);
+        LabelField note = new LabelField("Non riempire in caso di energia da fonti rinnovabili.</br></br></br>");
+        note.setStyleAttribute("font-style","italic");
+        c3.add(note, flex);
 
         panel.add(c3);
 
