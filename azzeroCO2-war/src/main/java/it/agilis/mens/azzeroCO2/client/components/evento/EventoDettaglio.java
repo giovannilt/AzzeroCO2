@@ -69,7 +69,7 @@ public class EventoDettaglio extends LayoutContainer {
         riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
-        TabItem acquisto = new TabItem("Acquisto");
+        TabItem acquisto = new TabItem("Scegli progetto di compensazione");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         eventoTab.add(acquisto);
@@ -88,9 +88,9 @@ public class EventoDettaglio extends LayoutContainer {
         posizioniText.add(Arrays.asList("Pernottamenti", "Pubblicazioni rilegate"));       // Trasporto Merci
         posizioniText.add(Arrays.asList("Trasporto Merci", "Manifesti Piegevoli e Fogli"));// Pubblicazioni rilegate
         posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Riepilogo"));           // Manifesti Piegevoli e Fogli
-        posizioniText.add(Arrays.asList("Manifesti Piegevoli e Fogli", "Acquisto"));       // RIEPILOGO
+        posizioniText.add(Arrays.asList("Manifesti Piegevoli e Fogli", "Scegli progetto di compensazione"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Conferma"));                         // ACQUISTO
-        posizioniText.add(Arrays.asList("Acquisto", ""));                                  // CONFERMA
+        posizioniText.add(Arrays.asList("Scegli progetto di compensazione", ""));                                  // CONFERMA
     }
 
 
@@ -183,7 +183,7 @@ public class EventoDettaglio extends LayoutContainer {
                         // Dispatcher.forwardEvent(EventoEvents.SentEmailConferma);
                         return;
                     }
-                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
                         Dispatcher.forwardEvent(EventoEvents.Acquisto);
                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return;

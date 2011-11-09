@@ -49,7 +49,7 @@ public class ConoscoCO2 extends LayoutContainer {
         riepilogo.add(eventoFormRiepilogo);
         conoscoCO2Tab.add(riepilogo);
 
-        TabItem acquisto = new TabItem("Acquisto");
+        TabItem acquisto = new TabItem("Scegli progetto di compensazione");
         acquisto.setEnabled(false);
         acquisto.add(eventoFormAcquisto);
         conoscoCO2Tab.add(acquisto);

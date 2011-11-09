@@ -108,7 +108,9 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
             layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
             c2.setLayout(layout2);
 
-            c2.add(new LabelField("Definire le caratteristiche."), flex);
+            LabelField istruzioni = new LabelField("Definire le caratteristiche.");
+            istruzioni.setStyleAttribute("font-weight","bolder");
+            c2.add(istruzioni, flex);
 
             panel.add(c2);
         }
