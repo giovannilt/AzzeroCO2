@@ -521,10 +521,14 @@ public class Utils {
     }
 
     private static PagamentoModel getPagamentoModel(SellaRicevutaDiPagamento ricevutaDiPagamento) {
-        PagamentoModel ricevuta= new PagamentoModel();
+        if (ricevutaDiPagamento == null) {
+            return null;
+        }
+        PagamentoModel ricevuta = new PagamentoModel();
+
 
         //TODO DA DEFINIRE....
-      // ricevuta.setEsito(Esito.WAITING);
+        // ricevuta.setEsito(Esito.WAITING);
         ricevuta.setMERCHANT_ID(ricevutaDiPagamento.getMERCHANT_ID());
         ricevuta.setDIVISA(ricevutaDiPagamento.getDIVISA());
         ricevuta.setIMPORTO(ricevutaDiPagamento.getIMPORTO());
@@ -545,6 +549,9 @@ public class Utils {
     }
 
     public static SellaRicevutaDiPagamento getRicevuta(PagamentoModel pagamentoModel) {
+        if (pagamentoModel == null) {
+            return null;
+        }
         SellaRicevutaDiPagamento ricevuta = new SellaRicevutaDiPagamento();
 
         //TODO Settare L'esito CORRETTO

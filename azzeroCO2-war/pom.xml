@@ -33,12 +33,12 @@
             <version>${gwtVersion}</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-dev</artifactId>
             <version>${gwtVersion}</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
