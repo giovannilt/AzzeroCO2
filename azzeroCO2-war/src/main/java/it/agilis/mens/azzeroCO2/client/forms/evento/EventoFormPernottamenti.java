@@ -60,7 +60,21 @@ public class EventoFormPernottamenti extends LayoutContainer {
         panel.setHeading("Pernottamenti");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
+
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
+
+
+        LayoutContainer c1 = new LayoutContainer();
+        HBoxLayout layout1 = new HBoxLayout();
+        layout1.setPadding(new Padding(5));
+        layout1.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        c1.setLayout(layout1);
+
+        LabelField istruzioni = new LabelField("Inserisci il numero di notti in hotel che l'evento ha reso necessarie<br> ");
+        istruzioni.setStyleAttribute("font-weight","bolder");
+
+
+
         LayoutContainer notti = new LayoutContainer();
         HBoxLayout layoutNotti = new HBoxLayout();
         layoutNotti.setPadding(new Padding(10));
@@ -76,6 +90,10 @@ public class EventoFormPernottamenti extends LayoutContainer {
 
         notti.add(new LabelField("notti"), flex);
         notti.add(numeroNotti, flex);
+
+        c1.add(istruzioni, flex);
+        panel.add(c1);
+
 
         panel.add(notti, new FormData("100%"));
         return panel;

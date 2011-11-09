@@ -68,7 +68,7 @@ public class NorthPanel extends LayoutContainer {
             }
         });
         amministrazione.setVisible(false);
-        amministrazione.setText("Impostazioni");
+        amministrazione.setText("Area personale");
         amministrazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 Dispatcher.forwardEvent(AmministrazioneEvents.ShowAmministrazione);

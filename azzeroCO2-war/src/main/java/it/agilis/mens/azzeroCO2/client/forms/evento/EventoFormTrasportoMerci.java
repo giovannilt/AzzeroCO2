@@ -71,9 +71,26 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c2.setLayout(layout2);
 
-        c2.add(new LabelField("Inserisci il numero di tonnellate di merce per chilometraggio a mezzo di trasporto. Il trasporto viene calcolato su medie di chilometraggio"), flex);
+        LabelField istruzione=new LabelField("Inserisci il numero di tonnellate di merce per chilometraggio a mezzo di trasporto. </br>");
+        LabelField note =new LabelField("Il trasporto viene calcolato su medie di chilometraggio");
+        istruzione.setStyleAttribute("font-weight","bold");
+        note.setStyleAttribute("font-style","italic");
 
+        c2.add(istruzione, flex);
         panel.add(c2);
+
+        LayoutContainer c3 = new LayoutContainer();
+        HBoxLayout layout3 = new HBoxLayout();
+        layout3.setPadding(new Padding(2));
+        layout3.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        c3.setLayout(layout3);
+        c3.add(note,flex);
+        panel.add(c3);
+
+
+
+
+
         LayoutContainer km30 = new LayoutContainer();
         HBoxLayout layoutRigaKm30 = new HBoxLayout();
         layoutRigaKm30.setPadding(new Padding(2));
@@ -281,12 +298,13 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         layoutKm9000input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km9000input.setLayout(layoutKm9000input);
 
-        Image furgone9000 = new Image(AzzeroCO2Resources.INSTANCE.furgone());
+        /*Image furgone9000 = new Image(AzzeroCO2Resources.INSTANCE.furgone());
         furgone9000.setAltText("Furgone");
         NumberField furgoneKm9000 = new NumberField();
         furgoneKm9000.setWidth(60);
         furgoneKm9000.setName("furgoneKm9000");
         furgoneKm9000.setPropertyEditorType(Double.class);
+        */
 
         Image tir9000 = new Image(AzzeroCO2Resources.INSTANCE.tir());
         tir9000.setAltText("Tir");
@@ -316,8 +334,8 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         aereoKm9000.setName("aereoKm9000");
         aereoKm9000.setPropertyEditorType(Double.class);
 
-        km9000input.add(furgone9000);
-        km9000input.add(furgoneKm9000, flex);
+        //km9000input.add(furgone9000);
+        //km9000input.add(furgoneKm9000, flex);
         km9000input.add(tir9000);
         km9000input.add(tirKm9000, flex);
         km9000input.add(treno9000);
