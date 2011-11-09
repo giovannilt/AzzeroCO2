@@ -2,6 +2,7 @@ package it.agilis.mens.azzeroCO2.shared.model.evento;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,22 +26,27 @@ public class DettaglioModel extends BaseModel {
     private List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel;
     private ProgettoDiCompensazioneModel progettoDiCompensazioneModel;
 
+    private PagamentoModel pagamentoModel;
+
+
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
         return progettoDiCompensazioneModel;
     }
 
-    public Long getOrdineId()  {
+    public Long getOrdineId() {
         return get("ordineId");
     }
-    public void setOrdineId(Long ordineId){
+
+    public void setOrdineId(Long ordineId) {
         set("ordineId", ordineId);
     }
 
-    public Long getId()  {
+    public Long getId() {
         return get("id");
     }
-    public void setId(Long id){
-        set("id",id);
+
+    public void setId(Long id) {
+        set("id", id);
     }
 
     public String getNome() {
@@ -132,6 +138,14 @@ public class DettaglioModel extends BaseModel {
     }
 
     public void setProgettoDiCompensazioneModel(ProgettoDiCompensazioneModel progettoDiCompensazioneModel) {
-        this.progettoDiCompensazioneModel=progettoDiCompensazioneModel;
+        this.progettoDiCompensazioneModel = progettoDiCompensazioneModel;
+    }
+
+    public PagamentoModel getPagamentoModel() {
+        return pagamentoModel;
+    }
+
+    public void setPagamentoModel(PagamentoModel pagamentoModel) {
+        this.pagamentoModel = pagamentoModel;
     }
 }

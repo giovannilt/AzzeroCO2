@@ -18,6 +18,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-//import it.agilis.mens.azzeroCO2.shared.model.evento.GrammaturaModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -266,6 +266,15 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
         } catch (MessagingException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void savePagamento(PagamentoModel pagamentoModel) {
+        try {
+            azzeroCO2Register.saveRicevuta(Utils.getRicevuta(pagamentoModel));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

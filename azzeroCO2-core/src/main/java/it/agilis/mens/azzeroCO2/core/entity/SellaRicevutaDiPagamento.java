@@ -25,6 +25,7 @@ public class SellaRicevutaDiPagamento {
     private String DIVISA;
     private String MAC;
     private String PROG_ID;
+    private Esito ESITO;
 
 
     public Long getId() {
@@ -97,5 +98,13 @@ public class SellaRicevutaDiPagamento {
 
     public void setPROG_ID(String PROG_ID) {
         this.PROG_ID = PROG_ID;
+    }
+
+    public void setEsito(Esito esito) {
+        this.ESITO=esito;
+    }
+
+    public Esito getESITO() {
+        return ESITO;
     }
 }

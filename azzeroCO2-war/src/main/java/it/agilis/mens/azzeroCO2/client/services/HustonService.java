@@ -9,6 +9,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 
@@ -50,5 +51,7 @@ public interface HustonService extends RemoteService {
     DettaglioVTO saveOrdine(DettaglioVTO riepilogo);
 
     void sentMail(EMailVTO email);
+
+    void savePagamento(PagamentoModel pagamentoModel);
 }
 

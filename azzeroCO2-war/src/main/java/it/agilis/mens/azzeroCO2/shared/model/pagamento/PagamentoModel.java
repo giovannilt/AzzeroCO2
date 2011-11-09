@@ -1,10 +1,10 @@
 package it.agilis.mens.azzeroCO2.shared.model.pagamento;
 
-import com.extjs.gxt.ui.client.data.BaseModelData;
+import com.extjs.gxt.ui.client.data.BaseModel;
+import com.google.gwt.core.client.GWT;
+import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 
 import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 /**
@@ -14,8 +14,11 @@ import java.util.Date;
  * Time: 17.25
  * To change this template use File | Settings | File Templates.
  */
-public class PagamentoModel extends BaseModelData {
+public class PagamentoModel extends BaseModel {
     public static final String key = "8C4796853CD664B2F6AC00C13B268108";
+
+    public PagamentoModel() {
+    }
 
     public PagamentoModel(String importo) {
 
@@ -27,14 +30,16 @@ public class PagamentoModel extends BaseModelData {
         setDIVISA("EUR");
         setABI("03599");
         setITEMS("pagamentoCalcolatore^Pagamento online della propria impronta di CO2^1^" + importo + "^EUR");  // DA COMPLETARE CON IMPORTO ED ^EUR
-        setURLOK("/azzeroCO2/rispostaBanca");
-        setURLKO("/azzeroCO2/rispostaBanca");
-        setURLACK("/azzeroCO2/rispostaBanca");
+        setURLOK(GWT.getHostPageBaseURL()+"/azzeroCO2/rispostaBancaOK");
+        setURLKO(GWT.getHostPageBaseURL()+"/azzeroCO2/rispostaBancaKO");
+        setURLACK(GWT.getHostPageBaseURL()+"/azzeroCO2/rispostaBanca");
         try {
-            setMAC(new String(getMAC_MD5(), "UTF-8"));
+            setMAC(new String(AzzerroCO2UtilsClientHelper.getMAC_MD5(this), "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+
         }
+
     }
 
     private String generateID() {
@@ -42,7 +47,7 @@ public class PagamentoModel extends BaseModelData {
         return _return;
     }
 
-    private byte[] getMAC_MD5() {
+  /*  private byte[] getMAC_MD5() {
         MessageDigest algorithm = null;
         byte messageDigest[] = new byte[]{};
         try {
@@ -56,7 +61,7 @@ public class PagamentoModel extends BaseModelData {
             e.printStackTrace();
             return messageDigest;
         }
-    }
+    }*/
 
     public String getTIPO_PAGAMENTO() {
         return get("TIPO_PAGAMENTO");

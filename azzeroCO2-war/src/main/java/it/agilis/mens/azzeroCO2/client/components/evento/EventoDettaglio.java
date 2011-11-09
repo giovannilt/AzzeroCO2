@@ -178,8 +178,10 @@ public class EventoDettaglio extends LayoutContainer {
                     }
                 }
                 if (i < eventoTab.getItems().size()) {
-                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
-                        Dispatcher.forwardEvent(EventoEvents.SentEmailConferma);
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
+                        Dispatcher.forwardEvent(EventoEvents.Conferma);
+                        // Dispatcher.forwardEvent(EventoEvents.SentEmailConferma);
+                        return;
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
                         Dispatcher.forwardEvent(EventoEvents.Acquisto);

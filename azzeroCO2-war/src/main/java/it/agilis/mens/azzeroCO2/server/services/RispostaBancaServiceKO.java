@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.server.services;
 
 import it.agilis.mens.azzeroCO2.core.criteria.SellaRicevutaDiPagamentoCriteria;
+import it.agilis.mens.azzeroCO2.core.entity.Esito;
 import it.agilis.mens.azzeroCO2.core.entity.SellaRicevutaDiPagamento;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -26,6 +28,21 @@ public class RispostaBancaServiceKO extends HttpServlet {
     @Autowired
     @Qualifier("azzeroCO2Register")
     private AzzeroCO2Register azzeroCO2Register;
+
+    private static final String PAGE_TOP = ""
+            + "<html>"
+            + "<head>"
+            + "<title>AzzeroCO2</title>"
+            + "</head>"
+            + "<body>"
+            + "<h3>AzzeroCO2</h3>"
+            + "<table>";
+
+    private static final String PAGE_BOTTOM = ""
+            + "</table>"
+            + "</body>"
+            + "</html>";
+
 
     public AzzeroCO2Register getAzzeroCO2Register() {
         return azzeroCO2Register;
@@ -53,6 +70,7 @@ public class RispostaBancaServiceKO extends HttpServlet {
         SellaRicevutaDiPagamentoCriteria criteria = new SellaRicevutaDiPagamentoCriteria();
         criteria.setOrderId(ORDER_ID);
 
+        PrintWriter out = response.getWriter();
         SellaRicevutaDiPagamento ricevuta = azzeroCO2Register.getSellaRicevutaDiPagamento(criteria);
         if (ricevuta != null) {
             ricevuta.setTRANSACTION_ID(TRANSACTION_ID);
@@ -65,14 +83,21 @@ public class RispostaBancaServiceKO extends HttpServlet {
                 algorithm.update(controllo.toLowerCase().getBytes());
 
                 if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toLowerCase())) {
-                     //BISOGNA SCRIVER ESITO  KO SU DB
+                    ricevuta.setEsito(Esito.KO);
+                    azzeroCO2Register.saveRicevuta(ricevuta);
                 } else {
                     // MEN IN THE MIDDEL STANNO PROVANDO UN ATTACCO....
 
                 }
             } catch (NoSuchAlgorithmException e) {
-                  e.printStackTrace();
+                e.printStackTrace();
+                out.println(PAGE_TOP + "<tr><td>Errore nella ricezione dei dati. -0</td></tr>" + PAGE_BOTTOM);
+            } catch (Exception e) {
+                e.printStackTrace();
+                out.println(PAGE_TOP + "<tr><td>Errore nella ricezione dei dati. -1</td></tr>" + PAGE_BOTTOM);
             }
+        }  else{
+             out.println(PAGE_TOP + "<tr><td>Errore nella ricezione dei dati. -2</td></tr>" + PAGE_BOTTOM);
         }
     }
 }

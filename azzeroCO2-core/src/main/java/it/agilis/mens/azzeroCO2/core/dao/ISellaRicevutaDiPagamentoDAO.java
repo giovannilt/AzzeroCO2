@@ -13,4 +13,6 @@ import it.agilis.mens.azzeroCO2.core.entity.SellaRicevutaDiPagamento;
 public interface ISellaRicevutaDiPagamentoDAO {
 
     SellaRicevutaDiPagamento getPagamento(SellaRicevutaDiPagamentoCriteria criteria);
+
+    void salvaRicevuta(SellaRicevutaDiPagamento ricevuta) throws Exception;
 }

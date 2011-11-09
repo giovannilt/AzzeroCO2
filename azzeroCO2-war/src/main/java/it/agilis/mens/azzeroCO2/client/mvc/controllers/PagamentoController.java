@@ -4,6 +4,7 @@ import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.PagamentoSellaView;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,12 +18,33 @@ public class PagamentoController extends BaseController {
 
     public PagamentoController() {
         registerEventTypes(PagamentoSellaEvents.ShowForm);
+        registerEventTypes(PagamentoSellaEvents.SubmitForm);
+        registerEventTypes(PagamentoSellaEvents.CloseForm);
     }
 
     public void handleEvent(AppEvent event) {
         EventType type = event.getType();
-        forwardToView(pagamentroView, event);
+        if (type.equals(PagamentoSellaEvents.ShowForm)) {
+            forwardToView(pagamentroView, event);
+            DettaglioModel model = (DettaglioModel) event.getData();
+            pagamentroView.setPagamentoModel(model.getPagamentoModel());
+            /*PagamentoModel pagamentoModel = (PagamentoModel) event.getData();
+            AsyncCallback aCallback = new AsyncCallback() {
+                public void onFailure(Throwable caught) {
+                    Info.display("Error", "Errore impossibile connettersi al server");
+                }
+                @Override
+                public void onSuccess(Object o) {
+                    //TODO....bisogna aspettare che la banca ci comunichi l'avvenuto pagamento per abilitare le form ad andare AVANTI
+                    //Dispatcher.forwardEvent(LoginEvents.ShowForm);
+                    forwardToView(pagamentroView, new AppEvent(PagamentoSellaEvents.CloseForm));
+                }
+            };
+            getHustonService().savePagamento(pagamentoModel, aCallback);*/
 
+        } else {
+            forwardToView(pagamentroView, event);
+        }
     }
 
 }

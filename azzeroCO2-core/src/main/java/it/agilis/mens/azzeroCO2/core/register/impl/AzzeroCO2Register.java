@@ -163,4 +163,8 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     public Ordine saveOrUpdateOrdine(Ordine o) throws Exception {
        return ordineDAO.save(o);
     }
+
+    public void saveRicevuta(SellaRicevutaDiPagamento ricevuta) throws Exception {
+        pagamentoDAO.salvaRicevuta(ricevuta);
+    }
 }

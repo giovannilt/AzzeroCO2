@@ -4,11 +4,14 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 import it.agilis.mens.azzeroCO2.shared.vto.ManifestiPieghevoliFogliVTO;
 import it.agilis.mens.azzeroCO2.shared.vto.PubblicazioniRilegateVTO;
 import it.agilis.mens.azzeroCO2.shared.vto.TipoDiCartaVTO;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -198,4 +201,20 @@ public class AzzerroCO2UtilsClientHelper {
         return _return;
     }
 
+
+    public static byte[] getMAC_MD5(PagamentoModel model){
+          MessageDigest algorithm = null;
+        byte messageDigest[] = new byte[]{};
+        try {
+            algorithm = MessageDigest.getInstance("MD5");
+            algorithm.reset();
+
+            algorithm.update((model.getMERCHANT_ID() + model.getORDER_ID() + model.getIMPORTO() + model.getDIVISA() + model.getABI() + model.getITEMS() + model.key).toLowerCase().getBytes());
+            messageDigest = algorithm.digest();
+            return messageDigest;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return messageDigest;
+        }
+    }
 }
