@@ -9,3 +9,4 @@ azzeroCO2-core/target/
 /*.iml
 /.settings/
 /lib/
+/*.project
