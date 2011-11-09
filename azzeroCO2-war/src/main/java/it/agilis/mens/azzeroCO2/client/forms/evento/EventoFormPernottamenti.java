@@ -70,7 +70,7 @@ public class EventoFormPernottamenti extends LayoutContainer {
         layout1.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c1.setLayout(layout1);
 
-        LabelField istruzioni = new LabelField("Inserisci il numero di tratte per distanza percorsa e mezzo di trasporto.<br> ");
+        LabelField istruzioni = new LabelField("Inserisci il numero di notti in hotel che l'evento ha reso necessarie<br> ");
         istruzioni.setStyleAttribute("font-weight","bolder");
 
 
