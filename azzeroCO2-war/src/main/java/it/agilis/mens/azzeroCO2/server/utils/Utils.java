@@ -237,6 +237,8 @@ public class Utils {
         e.setFine(dettaglioModel.getFine());
         e.setNote(dettaglioModel.getNote());
 
+        o.setRicevutaDiPagamento(getRicevuta(dettaglioModel.getPagamentoModel()));
+
         if (dettaglioModel.getEnergiaModel() != null) {
             e.setEnergiaElettrica(dettaglioModel.getEnergiaModel().getEnergiaElettrica());
             e.setGas(dettaglioModel.getEnergiaModel().getGasMetano());
@@ -375,6 +377,7 @@ public class Utils {
 
         dm.setProgettoDiCompensazioneModel(getProgettoDiCompensazioneModel(o.getProgettoCompensazione()));
 
+        dm.setPagamentoModel(getPagamentoModel(o.getRicevutaDiPagamento()));
         dm.setOrdineId(o.getId());
         if (o.getEvento() != null) {
             dm.setId(o.getEvento().getId());
@@ -517,6 +520,20 @@ public class Utils {
         return dm;
     }
 
+    private static PagamentoModel getPagamentoModel(SellaRicevutaDiPagamento ricevutaDiPagamento) {
+        PagamentoModel ricevuta= new PagamentoModel();
+
+        //TODO DA DEFINIRE....
+      // ricevuta.setEsito(Esito.WAITING);
+        ricevuta.setMERCHANT_ID(ricevutaDiPagamento.getMERCHANT_ID());
+        ricevuta.setDIVISA(ricevutaDiPagamento.getDIVISA());
+        ricevuta.setIMPORTO(ricevutaDiPagamento.getIMPORTO());
+        ricevuta.setMAC(ricevutaDiPagamento.getMAC());
+        ricevuta.setORDER_ID(ricevutaDiPagamento.getORDER_ID());
+
+        return ricevuta;
+    }
+
     public static Email getEmail(EMailVTO e) {
         Email _return = new Email();
         _return.setBody(e.getBody());
@@ -530,6 +547,7 @@ public class Utils {
     public static SellaRicevutaDiPagamento getRicevuta(PagamentoModel pagamentoModel) {
         SellaRicevutaDiPagamento ricevuta = new SellaRicevutaDiPagamento();
 
+        //TODO Settare L'esito CORRETTO
         ricevuta.setEsito(Esito.WAITING);
         ricevuta.setMERCHANT_ID(pagamentoModel.getMERCHANT_ID());
         ricevuta.setDIVISA(pagamentoModel.getDIVISA());

@@ -5,6 +5,7 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class DettaglioVTO implements Serializable {
+
     private EnergiaModel energiaModel;
     private ArrayList<TrasportoPersoneModel> trasportoPersoneModel;
     private NottiModel nottiModel;
@@ -33,6 +35,7 @@ public class DettaglioVTO implements Serializable {
     private String note;
     private Long ordineId;
     private ProgettoDiCompensazioneModel progettoDiCompensazioneModel;
+    private PagamentoModel pagamentoModel;
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
         return progettoDiCompensazioneModel;
@@ -144,6 +147,13 @@ public class DettaglioVTO implements Serializable {
 
     public void setProgettoDiCompensazioneModel(ProgettoDiCompensazioneModel progettoDiCompensazioneModel) {
         this.progettoDiCompensazioneModel=progettoDiCompensazioneModel;
+    }
 
+    public void setSellaRicevutaDiPagamento(PagamentoModel pagamentoModel) {
+        this.pagamentoModel=pagamentoModel;
+    }
+
+    public PagamentoModel getPagamentoModel() {
+        return pagamentoModel;
     }
 }

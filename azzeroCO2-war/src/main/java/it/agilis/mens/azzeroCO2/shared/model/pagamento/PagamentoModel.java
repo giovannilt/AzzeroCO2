@@ -30,9 +30,9 @@ public class PagamentoModel extends BaseModel {
         setDIVISA("EUR");
         setABI("03599");
         setITEMS("pagamentoCalcolatore^Pagamento online della propria impronta di CO2^1^" + importo + "^EUR");  // DA COMPLETARE CON IMPORTO ED ^EUR
-        setURLOK(GWT.getHostPageBaseURL()+"/azzeroCO2/rispostaBancaOK");
-        setURLKO(GWT.getHostPageBaseURL()+"/azzeroCO2/rispostaBancaKO");
-        setURLACK(GWT.getHostPageBaseURL()+"/azzeroCO2/rispostaBanca");
+        setURLOK(GWT.getHostPageBaseURL()+"azzeroCO2/rispostaBancaOK");
+        setURLKO(GWT.getHostPageBaseURL()+"azzeroCO2/rispostaBancaKO");
+        setURLACK(GWT.getHostPageBaseURL()+"azzeroCO2/rispostaBanca");
         try {
             setMAC(new String(AzzerroCO2UtilsClientHelper.getMAC_MD5(this), "UTF-8"));
         } catch (UnsupportedEncodingException e) {
@@ -46,22 +46,6 @@ public class PagamentoModel extends BaseModel {
         String _return = "AZZEROCO2." + new Date().getTime();
         return _return;
     }
-
-  /*  private byte[] getMAC_MD5() {
-        MessageDigest algorithm = null;
-        byte messageDigest[] = new byte[]{};
-        try {
-            algorithm = MessageDigest.getInstance("MD5");
-            algorithm.reset();
-
-            algorithm.update((getMERCHANT_ID() + getORDER_ID() + getIMPORTO() + getDIVISA() + getABI() + getITEMS() + key).toLowerCase().getBytes());
-            messageDigest = algorithm.digest();
-            return messageDigest;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return messageDigest;
-        }
-    }*/
 
     public String getTIPO_PAGAMENTO() {
         return get("TIPO_PAGAMENTO");
