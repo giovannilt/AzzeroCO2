@@ -4,15 +4,12 @@ import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
-import com.extjs.gxt.ui.client.mvc.AppEvent;
-import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
-import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 
 /**
@@ -24,9 +21,9 @@ import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
  */
 public class PagamentoSella extends Dialog {
 
-    private FormPanel form = new FormPanel();
+    private FormPanel form;
     private PagamentoModel model = new PagamentoModel("0.0");
-
+    private FormBinding binding;
 
     public PagamentoSella() {
 
@@ -37,6 +34,11 @@ public class PagamentoSella extends Dialog {
         setModal(true);
         setButtonAlign(Style.HorizontalAlignment.LEFT);
         setButtons("");
+
+
+        form = new FormPanel();
+        binding = new FormBinding(form, true);
+        binding.bind(model);
 
         add(getForm());
 
@@ -104,6 +106,7 @@ public class PagamentoSella extends Dialog {
         TextField<String> URLACK = new TextField<String>();
         URLACK.setValue("....");
         URLACK.setName("URLACK");
+
         //    URLACK.setVisible(false);
         form.add(URLACK);
 
@@ -113,8 +116,6 @@ public class PagamentoSella extends Dialog {
         //     MAC.setVisible(false);
         form.add(MAC);
 
-        FormBinding binding = new FormBinding(form, true);
-        binding.bind(model);
 
         return form;
     }
@@ -126,10 +127,6 @@ public class PagamentoSella extends Dialog {
         Button submit = new Button("Compensa");
         submit.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-                AppEvent event = new AppEvent(PagamentoSellaEvents.SubmitForm);
-                event.setData(form.getModel());
-                Dispatcher.forwardEvent(event);
-
                 form.submit();
             }
         });
@@ -142,6 +139,9 @@ public class PagamentoSella extends Dialog {
 
     public void setModel(PagamentoModel model) {
         this.model = model;
+        binding = new FormBinding(form, true);
+        binding.bind(model);
+
     }
 
 

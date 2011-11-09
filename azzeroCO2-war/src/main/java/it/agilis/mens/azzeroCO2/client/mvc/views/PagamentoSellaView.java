@@ -5,6 +5,7 @@ import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
 import it.agilis.mens.azzeroCO2.client.components.PagamentoSella;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,26 +16,30 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
  */
 public class PagamentoSellaView extends View {
     // la finestra di login è una  dialog modale
-    private PagamentoSella pagamentroSellaDialog;
+    private PagamentoSella pagamentoSellaDialog;
 
     public PagamentoSellaView(Controller controller) {
         super(controller);
+
     }
 
     @Override
     protected void initialize() {
         super.initialize();
-        pagamentroSellaDialog = new PagamentoSella();
+        pagamentoSellaDialog = new PagamentoSella();
     }
 
     @Override
     protected void handleEvent(AppEvent event) {
         if (event.getType() == PagamentoSellaEvents.CloseForm) {
-            pagamentroSellaDialog.hide();
+            pagamentoSellaDialog.hide();
         } else if (event.getType() == PagamentoSellaEvents.ShowForm) {
-            pagamentroSellaDialog.show();
+            pagamentoSellaDialog.show();
         }
     }
 
 
+    public void setPagamentoModel(PagamentoModel pagamentoModel) {
+        pagamentoSellaDialog.setModel(pagamentoModel);
+    }
 }

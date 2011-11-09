@@ -24,10 +24,10 @@ public class PagamentoController extends BaseController {
 
     public void handleEvent(AppEvent event) {
         EventType type = event.getType();
-        if (type.equals(PagamentoSellaEvents.SubmitForm)) {
-
-            DettaglioModel model= (DettaglioModel)event.getData();
-
+        if (type.equals(PagamentoSellaEvents.ShowForm)) {
+            forwardToView(pagamentroView, event);
+            DettaglioModel model = (DettaglioModel) event.getData();
+            pagamentroView.setPagamentoModel(model.getPagamentoModel());
             /*PagamentoModel pagamentoModel = (PagamentoModel) event.getData();
             AsyncCallback aCallback = new AsyncCallback() {
                 public void onFailure(Throwable caught) {
@@ -41,6 +41,7 @@ public class PagamentoController extends BaseController {
                 }
             };
             getHustonService().savePagamento(pagamentoModel, aCallback);*/
+
         } else {
             forwardToView(pagamentroView, event);
         }

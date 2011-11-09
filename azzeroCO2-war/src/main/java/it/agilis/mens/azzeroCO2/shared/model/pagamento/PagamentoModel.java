@@ -1,6 +1,6 @@
 package it.agilis.mens.azzeroCO2.shared.model.pagamento;
 
-import com.extjs.gxt.ui.client.data.BaseModelData;
+import com.extjs.gxt.ui.client.data.BaseModel;
 import com.google.gwt.core.client.GWT;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 
@@ -14,7 +14,7 @@ import java.util.Date;
  * Time: 17.25
  * To change this template use File | Settings | File Templates.
  */
-public class PagamentoModel extends BaseModelData {
+public class PagamentoModel extends BaseModel {
     public static final String key = "8C4796853CD664B2F6AC00C13B268108";
 
     public PagamentoModel() {
