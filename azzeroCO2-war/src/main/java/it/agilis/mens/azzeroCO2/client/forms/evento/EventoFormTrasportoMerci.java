@@ -298,12 +298,13 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         layoutKm9000input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km9000input.setLayout(layoutKm9000input);
 
-        Image furgone9000 = new Image(AzzeroCO2Resources.INSTANCE.furgone());
+        /*Image furgone9000 = new Image(AzzeroCO2Resources.INSTANCE.furgone());
         furgone9000.setAltText("Furgone");
         NumberField furgoneKm9000 = new NumberField();
         furgoneKm9000.setWidth(60);
         furgoneKm9000.setName("furgoneKm9000");
         furgoneKm9000.setPropertyEditorType(Double.class);
+        */
 
         Image tir9000 = new Image(AzzeroCO2Resources.INSTANCE.tir());
         tir9000.setAltText("Tir");
@@ -333,8 +334,8 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         aereoKm9000.setName("aereoKm9000");
         aereoKm9000.setPropertyEditorType(Double.class);
 
-        km9000input.add(furgone9000);
-        km9000input.add(furgoneKm9000, flex);
+        //km9000input.add(furgone9000);
+        //km9000input.add(furgoneKm9000, flex);
         km9000input.add(tir9000);
         km9000input.add(tirKm9000, flex);
         km9000input.add(treno9000);

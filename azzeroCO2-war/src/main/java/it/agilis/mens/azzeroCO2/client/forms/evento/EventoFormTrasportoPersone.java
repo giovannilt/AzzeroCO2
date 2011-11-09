@@ -445,7 +445,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             layoutKm9000input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km9000input.setLayout(layoutKm9000input);
 
-            Image bus9000 = new Image(AzzeroCO2Resources.INSTANCE.bus());
+            /*Image bus9000 = new Image(AzzeroCO2Resources.INSTANCE.bus());
             NumberField busKm9000 = new NumberField();
             busKm9000.setName("busKm9000");
             busKm9000.setWidth(60);
@@ -468,6 +468,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             trenoKm9000.setRegex("[0-9]+");
             trenoKm9000.getMessages().setRegexText("Inserisci un numero intero");
             trenoKm9000.setPropertyEditorType(Integer.class);
+            */
 
             Image aereo9000 = new Image(AzzeroCO2Resources.INSTANCE.aereo());
             NumberField aereoKm9000 = new NumberField();
@@ -477,12 +478,12 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             aereoKm9000.getMessages().setRegexText("Inserisci un numero intero");
             aereoKm9000.setPropertyEditorType(Integer.class);
 
-            km9000input.add(bus9000);
-            km9000input.add(busKm9000, flex);
-            km9000input.add(automobile9000);
-            km9000input.add(autoKm9000, flex);
-            km9000input.add(treno9000);
-            km9000input.add(trenoKm9000, flex);
+            //km9000input.add(bus9000);
+            //km9000input.add(busKm9000, flex);
+            //km9000input.add(automobile9000);
+            //km9000input.add(autoKm9000, flex);
+            //km9000input.add(treno9000);
+            //km9000input.add(trenoKm9000, flex);
             km9000input.add(aereo9000);
             km9000input.add(aereoKm9000, flex);
             formPanel.add(km9000input);
