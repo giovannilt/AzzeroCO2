@@ -112,7 +112,10 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
             layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
             c2.setLayout(layout2);
 
-            c2.add(new LabelField("Definisci le caratteristiche della pubblicazione."), flex);
+            LabelField istruzioni =new LabelField("Definisci le caratteristiche della pubblicazione.");
+            istruzioni.setStyleAttribute("font-weight","bolder");
+
+            c2.add(istruzioni, flex);
 
             panel.add(c2);
         }
