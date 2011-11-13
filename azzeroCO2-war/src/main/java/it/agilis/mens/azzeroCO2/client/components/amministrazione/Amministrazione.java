@@ -37,8 +37,8 @@ public class Amministrazione extends LayoutContainer {
     private final UserInfo userInfoForm = new UserInfo();
     private UserInfoModel userInfoModel;
     private TabItem couponTab = new TabItem("Coupon");
-    private TabItem coefficientiTab = new TabItem("Coefficienti Di Calcolo");
-    private TabItem programmiTab = new TabItem("Progetti Di Compensazione");
+    private TabItem coefficientiTab = new TabItem("Coefficienti di calcolo");
+    private TabItem programmiTab = new TabItem("Progetti di compensazione");
 
 
     @Override
@@ -47,7 +47,7 @@ public class Amministrazione extends LayoutContainer {
 
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        TabItem ordiniTab = new TabItem("Ordini");
+        TabItem ordiniTab = new TabItem("I tuoi calcoli");
         ordiniTab.add(ordiniForm);
         amministrazioneTab.add(ordiniTab);
 

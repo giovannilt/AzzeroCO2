@@ -61,17 +61,24 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         textContent.setHeaderVisible(false);
         textContent.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
-        Text testo = new Text(" Si tratta di gruppi di pagine riunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br>Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie. ");
+        Text testo = new Text(" Si tratta di gruppi di pagine riunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br><br>");
         testo.setStyleAttribute("font-size", "9pt");
+
+        Text note = new Text(" Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie. ");
+         note.setStyleAttribute("font-size", "9pt");
+        note.setStyleAttribute("font-style","italic");
+
+
 
         // testo.setStyleAttribute("background-color","#2F3645");
         textContent.add(testo);
+        textContent.add(note);
 
         ContentPanel cpEst = new ContentPanel();
         cpEst.setFrame(false);
         cpEst.setHeading("Pubblicazioni Rilegate");
         cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-        cpEst.add(textContent, new RowData(1, .25, new Margins(0, 0, 0, 0)));
+        cpEst.add(textContent, new RowData(1, .28, new Margins(0, 0, 0, 0)));
         cpEst.add(grid, new RowData(1, .75, new Margins(0, 0, 0, 0)));
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
@@ -168,7 +175,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 c.setLayout(layout);
 
                 ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
-                tipoDiCarta.setEmptyText("TipoDiCarta");
+                tipoDiCarta.setEmptyText("Seleziona tipo di carta");
                 tipoDiCarta.setToolTip("TipoDiCarta");
                 tipoDiCarta.setWidth(200);
                 tipoDiCarta.setDisplayField("nome");
@@ -260,7 +267,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
 
                 ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
-                tipoDiCarta.setEmptyText("TipoDiCarta");
+                tipoDiCarta.setEmptyText("Seleziona tipo di carta");
                 tipoDiCarta.setToolTip("TipoDiCarta");
                 tipoDiCarta.setWidth(200);
                 tipoDiCarta.setDisplayField("nome");

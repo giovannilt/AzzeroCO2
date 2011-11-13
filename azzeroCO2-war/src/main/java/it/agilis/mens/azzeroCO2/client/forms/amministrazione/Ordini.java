@@ -55,11 +55,11 @@ public class Ordini extends LayoutContainer {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
 
-        ColumnConfig column = new ColumnConfig("ordineId", "ordineId", 300);
+        ColumnConfig column = new ColumnConfig("ordineId", "Num. Ordine", 100);
         configs.add(column);
 
 
-        column = new ColumnConfig("nome", "nome", 200);
+        column = new ColumnConfig("nome", "Descrizione", 200);
         configs.add(column);
 
         /*column = new ColumnConfig("kgco2", "KG CO2", 100);
@@ -72,7 +72,26 @@ public class Ordini extends LayoutContainer {
         });
         configs.add(column);*/
 
+        column = new ColumnConfig("dataLastUpd", "Ultima modifica", 90);
+        configs.add(column);
+
+        column = new ColumnConfig("kgco2", "Kg CO2", 50);
+        column.setAlignment((Style.HorizontalAlignment.RIGHT));
+        configs.add(column);
+
+        column = new ColumnConfig("importo", "Importo", 50);
+        column.setAlignment((Style.HorizontalAlignment.RIGHT));
+        configs.add(column);
+
+        column = new ColumnConfig("flag compensato", "Compensato", 50);
+        configs.add(column);
+        // TODO popolare le colonne non ancora popolate
+
+
         ColumnModel cm = new ColumnModel(configs);
+
+
+
 
         Grid<DettaglioModel> grid = new Grid<DettaglioModel>(store, cm);
         grid.setBorders(true);

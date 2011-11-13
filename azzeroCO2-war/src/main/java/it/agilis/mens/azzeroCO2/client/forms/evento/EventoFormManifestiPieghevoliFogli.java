@@ -59,14 +59,23 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         textContent.setHeaderVisible(false);
         textContent.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
-        Text testo = new Text(" Si tratta di gruppi di pagine riunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br>Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie. ");
+        Text testo = new Text(" Si tratta di pubblicazioni non rilegate. <br><br>");
         testo.setStyleAttribute("font-size", "9pt");
+
+
+        Text note = new Text("Puoi inserire più di un formato. ");
+        note.setStyleAttribute("font-size", "9pt");
+        note.setStyleAttribute("font-style","italic");
+
+        textContent.add(testo);
+        textContent.add(note);
+
 
         ContentPanel cpEst = new ContentPanel();
         cpEst.setFrame(false);
         cpEst.setHeading("Manifesti, pieghevoli, fogli");
         cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-        cpEst.add(textContent, new RowData(1, .25, new Margins(0, 0, 0, 0)));
+        cpEst.add(textContent, new RowData(1, .15, new Margins(0, 0, 0, 0)));
         cpEst.add(grid, new RowData(1, .75, new Margins(0, 0, 0, 0)));
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
@@ -108,7 +117,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
             layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
             c2.setLayout(layout2);
 
-            LabelField istruzioni = new LabelField("Definire le caratteristiche.");
+            LabelField istruzioni = new LabelField("Definisci le caratteristiche.");
             istruzioni.setStyleAttribute("font-weight","bolder");
             c2.add(istruzioni, flex);
 
@@ -151,7 +160,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 c.setLayout(layout);
 
                 ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
-                tipoDiCarta.setEmptyText("TipoDiCarta");
+                tipoDiCarta.setEmptyText("Seleziona tipo di carta");
                 tipoDiCarta.setToolTip("TipoDiCarta");
                 tipoDiCarta.setDisplayField("parametro");
                 tipoDiCarta.setWidth(200);
