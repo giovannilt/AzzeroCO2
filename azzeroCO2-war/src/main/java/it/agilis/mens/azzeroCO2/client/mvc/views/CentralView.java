@@ -283,7 +283,7 @@ public class CentralView extends View {
                     LayoutContainer rigo = new LayoutContainer();
                     rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-                    benvenuto = new Text("Benvenuto!! ");
+                    benvenuto = new Text("Benvenuto ");
                     benvenuto.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
                     benvenuto.setBounds(30, 30, 250, 180);
 
