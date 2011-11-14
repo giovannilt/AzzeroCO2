@@ -4,7 +4,6 @@ import com.extjs.gxt.ui.client.data.BaseModel;
 import com.google.gwt.core.client.GWT;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 /**
@@ -30,15 +29,13 @@ public class PagamentoModel extends BaseModel {
         setDIVISA("EUR");
         setABI("03599");
         setITEMS("pagamentoCalcolatore^Pagamento online della propria impronta di CO2^1^" + importo + "^EUR");  // DA COMPLETARE CON IMPORTO ED ^EUR
-        setURLOK(GWT.getHostPageBaseURL()+"azzeroCO2/rispostaBancaOK");
-        setURLKO(GWT.getHostPageBaseURL()+"azzeroCO2/rispostaBancaKO");
-        setURLACK(GWT.getHostPageBaseURL()+"azzeroCO2/rispostaBanca");
-        try {
-            setMAC(new String(AzzerroCO2UtilsClientHelper.getMAC_MD5(this), "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+        setURLOK(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBancaOK");
+        setURLKO(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBancaKO");
+        setURLACK(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBanca");
 
-        }
+       setMAC(AzzerroCO2UtilsClientHelper.getMAC_MD5(this));
+
+
 
     }
 
@@ -133,5 +130,26 @@ public class PagamentoModel extends BaseModel {
 
     public void setMAC(String MAC) {
         set("MAC", MAC);
+    }
+
+    @Override
+    public String toString() {
+        String _return = new String();
+
+        _return += "TIPO_PAGAMENTO=" + getTIPO_PAGAMENTO() + "&";
+        _return += "MAC=" + getMAC() + "&";
+        _return += "URLACK=" + getURLACK() + "&";
+        _return += "URLKO=" + getURLKO() + "&";
+        _return += "URLOK=" + getURLOK() + "&";
+        _return += "ITEMS=" + getITEMS() + "&";
+        _return += "ABI=" + getABI() + "&";
+        _return += "DIVISA=" + getDIVISA() + "&";
+        _return += "IMPORTO=" + getIMPORTO() + "&";
+        _return += "ORDER_ID=" + getORDER_ID() + "&";
+        _return += "MERCHANT_ID=" + getMERCHANT_ID();
+
+        _return = "https://www.payment.fccrt.it/CheckOutEGIPSy.asp#" + _return;
+        return _return;
+
     }
 }

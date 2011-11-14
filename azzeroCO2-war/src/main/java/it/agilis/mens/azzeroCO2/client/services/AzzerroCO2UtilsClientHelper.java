@@ -195,7 +195,7 @@ public class AzzerroCO2UtilsClientHelper {
     }
 
     private static TipoDiCartaModel getTipoDiCartaModel(TipoDiCartaVTO tipoDiCartaVTO) {
-        if(tipoDiCartaVTO==null){
+        if (tipoDiCartaVTO == null) {
             return null;
         }
         TipoDiCartaModel _return = new TipoDiCartaModel();
@@ -206,19 +206,35 @@ public class AzzerroCO2UtilsClientHelper {
     }
 
 
-    public static byte[] getMAC_MD5(PagamentoModel model){
-          MessageDigest algorithm = null;
-        byte messageDigest[] = new byte[]{};
-        try {
-            algorithm = MessageDigest.getInstance("MD5");
-            algorithm.reset();
+    public static String getMAC_MD5(PagamentoModel model) {
+        String s = model.getMERCHANT_ID() + model.getORDER_ID() + model.getIMPORTO() + model.getDIVISA() + model.getABI() + model.getITEMS() + model.key;
+        s = s.toLowerCase();
 
-            algorithm.update((model.getMERCHANT_ID() + model.getORDER_ID() + model.getIMPORTO() + model.getDIVISA() + model.getABI() + model.getITEMS() + model.key).toLowerCase().getBytes());
-            messageDigest = algorithm.digest();
-            return messageDigest;
+        return encodeMD5(s);
+    }
+
+    private static String encodeMD5(String stringToEncode) {
+
+        byte[] uniqueKey = stringToEncode.getBytes();
+
+        byte[] hash = null;
+        try {
+            hash = MessageDigest.getInstance("MD5").digest(uniqueKey);
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return messageDigest;
+            throw new Error("no MD5 support in this VM");
         }
+        StringBuffer hashString = new StringBuffer();
+        for (int i = 0; i < hash.length; ++i) {
+            String hex = Integer.toHexString(hash[i]);
+            if (hex.length() == 1) {
+                hashString.append('0');
+                hashString.append(hex.charAt(hex.length() - 1));
+            } else {
+                hashString.append(hex.substring(hex.length() - 2));
+            }
+        }
+
+        return hashString.toString();
+
     }
 }
