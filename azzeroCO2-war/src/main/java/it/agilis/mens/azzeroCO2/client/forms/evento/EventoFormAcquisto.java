@@ -219,7 +219,7 @@ public class EventoFormAcquisto extends LayoutContainer {
 
                 panel.add(c, new FormData("100%"));
             }
-            {
+            /*{
                 LayoutContainer c = new LayoutContainer();
                 c.setHeight(190);
                 c.setWidth(290);
@@ -239,7 +239,7 @@ public class EventoFormAcquisto extends LayoutContainer {
                 //label.setWidth(290);
                 c.add(label, new VBoxLayoutData(new Margins(15, 0, 5, 0)));
                 panel.add(c, new FormData("100%"));
-            }
+            } */
         }
         return panel;
     }
