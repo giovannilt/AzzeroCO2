@@ -114,7 +114,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.EVENTO);
                 }
             });
-            unEvento.setSize(319, 300);
+            unEvento.setSize(351,332); //(319, 300);
             //   layoutData.setFlex(1);
             c.add(unEvento, layoutData);
             Button unAnno = new Button("Un Anno Di attivita'");
@@ -130,7 +130,7 @@ public class CentralView extends View {
                 }
             });
             //unAnno.setSize(320, 280);
-            unAnno.setSize(319, 300);
+            unAnno.setSize(353,333);//(319, 300);
             c.setSize(640, 300);
             //c.setSize(640, 280);
             layoutData.setFlex(1);
@@ -157,7 +157,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.UNA_PUBBLICAZIONE);
                 }
             });
-            pubblicazione.setSize(213, 210);
+            pubblicazione.setSize(212,200);//(213, 210);
             c.add(pubblicazione, layoutData);
 
 
@@ -171,7 +171,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.WEB);
                 }
             });
-            web.setSize(213, 210);
+            web.setSize(212,200);//(213, 210);
             c.add(web, layoutData);
 
 
@@ -185,7 +185,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.CONOSCI_CO2);
                 }
             });
-            co2.setSize(213, 210);
+            co2.setSize(212,200);//(213, 210);
             c.add(co2, layoutData);
             center.add(c, new FlowData(1));
         }
