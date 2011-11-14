@@ -604,15 +604,13 @@ public class CalcoliHelper {
                 co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100;
             }
             String materiale = "";
-            /*
-             TODO SISTEMARE
 
             if (prm.getTipoDiCarta() != null) {
                 if (coefficienti.containsKey(prm.getTipoDiCarta().getParametro())) {
                     co2 *= coefficienti.get(prm.getTipoDiCarta().getParametro()).getValore();
                 }
                 materiale = prm.getTipoDiCarta().getNome();
-            }*/
+            }
             if (prm.getGrammatura() > 0) {
                 materiale += " " + prm.getGrammatura() + " gr</br>";
                 co2 *= prm.getGrammatura() / 1000;
