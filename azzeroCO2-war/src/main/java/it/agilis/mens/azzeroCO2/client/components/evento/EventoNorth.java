@@ -12,9 +12,7 @@ import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
-import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
  * Created by IntelliJ IDEA.
@@ -56,8 +54,11 @@ public class EventoNorth extends LayoutContainer {
         close.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
-                Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
+
+                Dispatcher.forwardEvent(EventoEvents.ShowConfermDialog);
+
+             //   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+             //   Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
             }
         });
         c.add(close, new HBoxLayoutData(new Margins(5, 5, 0, 0)));

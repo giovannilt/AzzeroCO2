@@ -14,7 +14,10 @@ import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
-import com.extjs.gxt.ui.client.widget.form.*;
+import com.extjs.gxt.ui.client.widget.form.FormPanel;
+import com.extjs.gxt.ui.client.widget.form.LabelField;
+import com.extjs.gxt.ui.client.widget.form.NumberField;
+import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
@@ -145,7 +148,15 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         FormPanel formPanel = new FormPanel();
         formPanel.setFrame(true);
         formPanel.getHeader().addTool(new ToolButton("x-tool-help"));
-        formPanel.getHeader().addTool(new ToolButton("x-tool-close"));
+        ToolButton tool = new ToolButton("x-tool-refresh");
+        formPanel.getHeader().addTool(tool);
+
+        tool.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                clear(true);
+            }
+        });
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         {
@@ -158,9 +169,8 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             LabelField istruzioni = new LabelField("Inserisci il numero di tratte per distanza percorsa e mezzo di trasporto.<br> ");
             LabelField note = new LabelField("Es: due pendolari in treno che partecipano a un evento di 4 giorni = 16 tratte.");
 
-            istruzioni.setStyleAttribute("font-weight","bolder");
-            note.setStyleAttribute("font-style","italic");
-
+            istruzioni.setStyleAttribute("font-weight", "bolder");
+            note.setStyleAttribute("font-style", "italic");
 
 
             cl.add(istruzioni, flex);
@@ -178,11 +188,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
 
             formPanel.add(c2);
-
-
-
-
-
 
         }
         {
@@ -580,7 +585,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         for (TrasportoPersoneModel m : this.trasportoPersoneModel.getModels()) {
             this.trasportoPersoneModel.remove(m);
         }
-        if(setDefault){
+        if (setDefault) {
             setDefault();
         }
     }

@@ -228,8 +228,10 @@ public class EventoDettaglio extends LayoutContainer {
         eventoFormConferma.clear();
 
 
-        while (posizioniLabel != 0) {
-            previusTab();
+        if (posizioniLabel != 1) {
+            while (posizioniLabel != 0) {
+                previusTab();
+            }
         }
 
         for (TabItem item : eventoTab.getItems()) {

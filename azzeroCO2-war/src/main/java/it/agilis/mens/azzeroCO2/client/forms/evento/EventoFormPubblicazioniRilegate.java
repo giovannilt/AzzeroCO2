@@ -65,9 +65,8 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         testo.setStyleAttribute("font-size", "9pt");
 
         Text note = new Text(" Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie. ");
-         note.setStyleAttribute("font-size", "9pt");
-        note.setStyleAttribute("font-style","italic");
-
+        note.setStyleAttribute("font-size", "9pt");
+        note.setStyleAttribute("font-style", "italic");
 
 
         // testo.setStyleAttribute("background-color","#2F3645");
@@ -86,6 +85,17 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         cp.add(cpEst, new RowData(.35, .98));
         cp.add(panel, new RowData(.65, 1));
         panel.setHeading(pubblicazioniRilegateModel.getModels().get(0).getCategoria());
+
+
+        panel.getHeader().addTool(new ToolButton("x-tool-help"));
+        ToolButton tool = new ToolButton("x-tool-refresh");
+        panel.getHeader().addTool(tool);
+        tool.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                clear(true);
+            }
+        });
 
         formBindings.setStore(grid.getStore());
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
@@ -119,8 +129,8 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
             layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
             c2.setLayout(layout2);
 
-            LabelField istruzioni =new LabelField("Definisci le caratteristiche della pubblicazione.");
-            istruzioni.setStyleAttribute("font-weight","bolder");
+            LabelField istruzioni = new LabelField("Definisci le caratteristiche della pubblicazione.");
+            istruzioni.setStyleAttribute("font-weight", "bolder");
 
             c2.add(istruzioni, flex);
 

@@ -65,7 +65,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
 
         Text note = new Text("Puoi inserire più di un formato. ");
         note.setStyleAttribute("font-size", "9pt");
-        note.setStyleAttribute("font-style","italic");
+        note.setStyleAttribute("font-style", "italic");
 
         textContent.add(testo);
         textContent.add(note);
@@ -84,6 +84,16 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         cp.add(panel, new RowData(.65, 1));
 
         panel.setHeading(manifestiPieghevoliFogliModel.getModels().get(0).getCategoria());
+
+        panel.getHeader().addTool(new ToolButton("x-tool-help"));
+        ToolButton tool = new ToolButton("x-tool-refresh");
+        panel.getHeader().addTool(tool);
+        tool.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                clear(true);
+            }
+        });
 
         formBindings.setStore(grid.getStore());
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
@@ -118,7 +128,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
             c2.setLayout(layout2);
 
             LabelField istruzioni = new LabelField("Definisci le caratteristiche.");
-            istruzioni.setStyleAttribute("font-weight","bolder");
+            istruzioni.setStyleAttribute("font-weight", "bolder");
             c2.add(istruzioni, flex);
 
             panel.add(c2);

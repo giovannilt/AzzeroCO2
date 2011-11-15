@@ -33,10 +33,11 @@ public class EventoWest extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Evento");
+    private final String oggettoDiDefault="Non Hai ancora Inserito </br> Nessuna Attivita'";
 
     public EventoWest() {
         RiepilogoModel model = new RiepilogoModel();
-        model.setOggetto("Non Hai ancora Inserito </br> Nessuna Attivita'");
+        model.setOggetto(oggettoDiDefault);
         store.add(model);
 
     }
@@ -81,8 +82,12 @@ public class EventoWest extends LayoutContainer {
         column.setRenderer(new GridCellRenderer() {
             @Override
             public Object render(ModelData model, String property, ColumnData config, int rowIndex, int colIndex, ListStore listStore, Grid grid) {
-
                 config.style += "background-color: silver;";
+                List<RiepilogoModel> r = listStore.getModels();
+                if(r.size()==1 && r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)){
+                    return null;
+                }
+
                 return new Image(AzzeroCO2Resources.INSTANCE.checkIcon());//new ToolButton("x-tool-pin");
             }
         });

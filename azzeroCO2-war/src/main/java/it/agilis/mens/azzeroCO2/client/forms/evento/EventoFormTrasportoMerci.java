@@ -2,6 +2,8 @@ package it.agilis.mens.azzeroCO2.client.forms.evento;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
+import com.extjs.gxt.ui.client.event.IconButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -50,7 +52,14 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
 
         panel.setHeading("Trasporto merci");
         panel.getHeader().addTool(new ToolButton("x-tool-help"));
-        panel.getHeader().addTool(new ToolButton("x-tool-close"));
+        ToolButton tool = new ToolButton("x-tool-refresh");
+        panel.getHeader().addTool(tool);
+        tool.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                clear();
+            }
+        });
 
 
         cp.add(panel, new RowData(1, 1));

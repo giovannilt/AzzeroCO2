@@ -105,11 +105,15 @@ public class EventoFormDettaglio extends LayoutContainer {
 
 
     public void clear() {
-      //  binding.unbind();
-        binding.clear();
-        formPanel.clear();
-        dettaglioModel= new DettaglioModel();
-        binding.bind(dettaglioModel);
+        try {
+            //  binding.unbind();
+            binding.clear();
+            formPanel.clear();
+            dettaglioModel = new DettaglioModel();
+            binding.bind(dettaglioModel);
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
     }
 
     public DettaglioModel getDettaglioModel() {

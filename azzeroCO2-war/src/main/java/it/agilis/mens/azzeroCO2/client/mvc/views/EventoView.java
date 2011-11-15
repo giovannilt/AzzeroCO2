@@ -10,6 +10,7 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import it.agilis.mens.azzeroCO2.client.components.dialogs.EventoConfermDialog;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoDettaglio;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoNorth;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoSouth;
@@ -38,6 +39,7 @@ import java.util.Map;
  */
 public class EventoView extends View {
     private ContentPanel evento = new ContentPanel();
+    private EventoConfermDialog eventoConfermDialog= new EventoConfermDialog();
 
     private EventoDettaglio eventoDettaglio = new EventoDettaglio();
     private ContentPanel center = new ContentPanel();
@@ -71,6 +73,8 @@ public class EventoView extends View {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData());
             setRiassunto(riepilogo);
+        } else if(event.getType().equals(EventoEvents.ShowConfermDialog)){
+            eventoConfermDialog.show();
         }
 
     }
