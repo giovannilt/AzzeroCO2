@@ -2,11 +2,16 @@ package it.agilis.mens.azzeroCO2.client.forms.evento;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
+import com.extjs.gxt.ui.client.event.IconButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
 /**
@@ -54,6 +59,24 @@ public class EventoFormDettaglio extends LayoutContainer {
 
         panel.setButtonAlign(Style.HorizontalAlignment.CENTER);
         panel.setLayout(new ColumnLayout());
+
+         ToolButton tool1 = new ToolButton("x-tool-help");
+        panel.getHeader().addTool(tool1);
+        tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+            }
+        });
+        ToolButton tool = new ToolButton("x-tool-refresh");
+        panel.getHeader().addTool(tool);
+        tool.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                clear();
+            }
+        });
+
 
         LayoutContainer left = new LayoutContainer();
         left.setStyleAttribute("paddingRight", "10px");

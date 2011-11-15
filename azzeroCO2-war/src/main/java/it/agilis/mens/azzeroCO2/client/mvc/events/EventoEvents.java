@@ -17,6 +17,7 @@ public class EventoEvents {
     public static final EventType NorthPanelReady = new EventType();
     public static final EventType CentralPanelReady = new EventType();
     public static final EventType NewsPanelReady = new EventType();*/
+    public static final EventType ShowInfoDialog = new EventType();
     public static final EventType ShowConfermDialog = new EventType();
     public static final EventType ClearPanel = new EventType();
     public static final EventType Save = new EventType();

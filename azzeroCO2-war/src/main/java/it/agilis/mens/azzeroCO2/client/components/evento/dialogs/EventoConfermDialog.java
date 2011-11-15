@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.client.components.dialogs;
+package it.agilis.mens.azzeroCO2.client.components.evento.dialogs;
 
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;

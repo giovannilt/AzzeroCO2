@@ -5,6 +5,7 @@ import com.extjs.gxt.ui.client.Style.Orientation;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.data.BeanModel;
 import com.extjs.gxt.ui.client.event.*;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
@@ -25,6 +26,7 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 
 import java.util.ArrayList;
@@ -147,7 +149,14 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
         FormPanel formPanel = new FormPanel();
         formPanel.setFrame(true);
-        formPanel.getHeader().addTool(new ToolButton("x-tool-help"));
+        ToolButton tool1 = new ToolButton("x-tool-help");
+        formPanel.getHeader().addTool(tool1);
+        tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+            }
+        });
         ToolButton tool = new ToolButton("x-tool-refresh");
         formPanel.getHeader().addTool(tool);
 

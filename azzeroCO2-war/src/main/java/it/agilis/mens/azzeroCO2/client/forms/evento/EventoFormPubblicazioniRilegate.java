@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.client.forms.evento;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.*;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
@@ -15,6 +16,7 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
@@ -87,7 +89,14 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         panel.setHeading(pubblicazioniRilegateModel.getModels().get(0).getCategoria());
 
 
-        panel.getHeader().addTool(new ToolButton("x-tool-help"));
+        ToolButton tool1 = new ToolButton("x-tool-help");
+        panel.getHeader().addTool(tool1);
+        tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+            }
+        });
         ToolButton tool = new ToolButton("x-tool-refresh");
         panel.getHeader().addTool(tool);
         tool.addSelectionListener(new SelectionListener<IconButtonEvent>() {

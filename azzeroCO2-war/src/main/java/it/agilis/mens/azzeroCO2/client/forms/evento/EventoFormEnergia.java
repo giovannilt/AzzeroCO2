@@ -2,16 +2,21 @@ package it.agilis.mens.azzeroCO2.client.forms.evento;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
+import com.extjs.gxt.ui.client.event.IconButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.FormPanel.LabelAlign;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
 
 /**
@@ -46,6 +51,7 @@ public class EventoFormEnergia extends LayoutContainer {
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         cp.add(formPanel, new RowData(1, 1));
 
+
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
     }
@@ -58,6 +64,23 @@ public class EventoFormEnergia extends LayoutContainer {
         panel.setHeading("Energia");
         panel.setLabelAlign(LabelAlign.LEFT);
 
+        ToolButton tool1 = new ToolButton("x-tool-help");
+        panel.getHeader().addTool(tool1);
+        tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+            }
+        });
+        ToolButton tool = new ToolButton("x-tool-refresh");
+        panel.getHeader().addTool(tool);
+        tool.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                clear();
+            }
+        });
+
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         LayoutContainer c2 = new LayoutContainer();
         HBoxLayout layout2 = new HBoxLayout();
@@ -66,7 +89,7 @@ public class EventoFormEnergia extends LayoutContainer {
         c2.setLayout(layout2);
 
         LabelField widget = new LabelField("Inserisci nei relativi campi la qualita' di energia utilizzata per realizzare l'evento.");
-        widget.setStyleAttribute("font-weight","bolder");
+        widget.setStyleAttribute("font-weight", "bolder");
         c2.add(widget, flex);
 
         panel.add(c2);
@@ -96,7 +119,7 @@ public class EventoFormEnergia extends LayoutContainer {
         c3.setLayout(layout3);
 
         LabelField note = new LabelField("Non riempire in caso di energia da fonti rinnovabili.</br></br></br>");
-        note.setStyleAttribute("font-style","italic");
+        note.setStyleAttribute("font-style", "italic");
         c3.add(note, flex);
 
         panel.add(c3);

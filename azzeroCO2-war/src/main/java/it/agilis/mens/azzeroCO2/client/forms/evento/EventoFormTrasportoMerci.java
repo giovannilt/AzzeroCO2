@@ -4,6 +4,7 @@ import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.IconButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -16,6 +17,7 @@ import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
 
 
@@ -51,7 +53,14 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
 
 
         panel.setHeading("Trasporto merci");
-        panel.getHeader().addTool(new ToolButton("x-tool-help"));
+       ToolButton tool1 = new ToolButton("x-tool-help");
+        panel.getHeader().addTool(tool1);
+        tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+            }
+        });
         ToolButton tool = new ToolButton("x-tool-refresh");
         panel.getHeader().addTool(tool);
         tool.addSelectionListener(new SelectionListener<IconButtonEvent>() {

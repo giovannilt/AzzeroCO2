@@ -2,15 +2,20 @@ package it.agilis.mens.azzeroCO2.client.forms.evento;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
+import com.extjs.gxt.ui.client.event.IconButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
 
 /**
@@ -60,6 +65,22 @@ public class EventoFormPernottamenti extends LayoutContainer {
         panel.setHeading("Pernottamenti");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
+        ToolButton tool1 = new ToolButton("x-tool-help");
+        panel.getHeader().addTool(tool1);
+        tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+            }
+        });
+        ToolButton tool = new ToolButton("x-tool-refresh");
+        panel.getHeader().addTool(tool);
+        tool.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                clear();
+            }
+        });
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
@@ -71,8 +92,7 @@ public class EventoFormPernottamenti extends LayoutContainer {
         c1.setLayout(layout1);
 
         LabelField istruzioni = new LabelField("Inserisci il numero di notti in hotel che l'evento ha reso necessarie<br> ");
-        istruzioni.setStyleAttribute("font-weight","bolder");
-
+        istruzioni.setStyleAttribute("font-weight", "bolder");
 
 
         LayoutContainer notti = new LayoutContainer();
@@ -101,7 +121,7 @@ public class EventoFormPernottamenti extends LayoutContainer {
 
     public void clear() {
         binding.clear();
-        nottiModel= new NottiModel();
+        nottiModel = new NottiModel();
         binding.bind(nottiModel);
 
     }

@@ -58,6 +58,7 @@ public class EventoController extends BaseController {
 
         registerEventTypes(EventoEvents.SentEmailConferma);
         registerEventTypes(EventoEvents.ShowConfermDialog);
+        registerEventTypes(EventoEvents.ShowInfoDialog);
     }
 
     @Override
