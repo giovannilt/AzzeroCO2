@@ -31,11 +31,13 @@ public class EventoSouth extends LayoutContainer {
     private Button left = new Button();
     private Button right = new Button();
 
+    private LayoutContainer c = new LayoutContainer();
+
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-        LayoutContainer c = new LayoutContainer();
+
         HBoxLayout layout = new HBoxLayout();
         layout.setPadding(new Padding(1));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
@@ -47,6 +49,7 @@ public class EventoSouth extends LayoutContainer {
         left.setToolTip("");
         left.setTitle("");
         left.setEnabled(false);
+        left.setVisible(false);
 
         left.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
@@ -92,11 +95,14 @@ public class EventoSouth extends LayoutContainer {
     public void setTextLeft(String left_t) {
         if (left_t.length() == 0) {
             left.setEnabled(false);
+            left.setVisible(false);
         } else {
             left.setEnabled(true);
+            left.setVisible(true);
         }
         leftText.setText(left_t);
 
+        c.layout(true);
         //    left.setToolTip(left_t);
         //    left.setTitle("");
         //   left.setText("");
@@ -105,11 +111,13 @@ public class EventoSouth extends LayoutContainer {
     public void setTextRigth(String right_t) {
         if (right_t.length() == 0) {
             right.setEnabled(false);
+            right.setVisible(false);
         } else {
             right.setEnabled(true);
+            right.setVisible(true);
         }
         rigthText.setText(right_t);
-
+        c.layout(true);
         //   right.setToolTip(right_t);
         //   right.setText("");
         //   right.setTitle("");

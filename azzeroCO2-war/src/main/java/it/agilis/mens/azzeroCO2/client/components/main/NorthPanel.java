@@ -28,7 +28,6 @@ import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 public class NorthPanel extends LayoutContainer {
     private Button registrati = new Button();
     private Button amministrazione = new Button();
-   // private Button pagamento = new Button();
     private Button login = new Button();
     private Boolean islogedIn = false;
     private Button info = new Button();
@@ -89,14 +88,6 @@ public class NorthPanel extends LayoutContainer {
             }
         });
         login.setWidth(70);
-/*
-        pagamento.setText("pagamento");
-        pagamento.addSelectionListener(new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm);
-            }
-        });
-        c.add(pagamento, layoutData);*/
 
         c.add(info, layoutData);
         c.add(amministrazione, layoutData);
