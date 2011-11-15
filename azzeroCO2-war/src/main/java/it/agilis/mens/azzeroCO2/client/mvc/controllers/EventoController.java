@@ -59,11 +59,14 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.SentEmailConferma);
         registerEventTypes(EventoEvents.ShowConfermDialog);
         registerEventTypes(EventoEvents.ShowInfoDialog);
+        registerEventTypes(EventoEvents.ShowRiepilogo);
     }
 
     @Override
     public void handleEvent(AppEvent event) {
-        if (event.getType().equals(EventoEvents.LoadEvento)) {
+        if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
+            eventoView.showRiepilogo();
+        }else if (event.getType().equals(EventoEvents.LoadEvento)) {
             setCoefficienti();
             setProgettiDiCompensazione();
             eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());

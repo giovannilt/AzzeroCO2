@@ -293,4 +293,29 @@ public class EventoDettaglio extends LayoutContainer {
     public void setUserInfoModel(UserInfoModel userInfoModel) {
         this.userInfoModel = userInfoModel;
     }
+
+    public void showRiepilogo() {
+        if (posizioniLabel != 1) {
+            while (posizioniLabel != 0) {
+                previusTab();
+            }
+        }
+
+        for (TabItem item : eventoTab.getItems()) {
+            if (item.getText().equalsIgnoreCase("Calcolo")) {
+                ContentPanel calcolo = (ContentPanel) item.getItem(0);
+                EventoFormEnergia formEnergia = (EventoFormEnergia) calcolo.getItem(0);
+                formEnergia.layout(true);
+
+                // TODO BETTER
+                formEnergia.setWidth("691");
+                break;
+            }
+        }
+
+        while (posizioniLabel != 7) {
+            nextTab();
+        }
+        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+    }
 }

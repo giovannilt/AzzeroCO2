@@ -87,11 +87,7 @@ public class Ordini extends LayoutContainer {
         configs.add(column);
         // TODO popolare le colonne non ancora popolate
 
-
         ColumnModel cm = new ColumnModel(configs);
-
-
-
 
         Grid<DettaglioModel> grid = new Grid<DettaglioModel>(store, cm);
         grid.setBorders(true);
@@ -107,11 +103,11 @@ public class Ordini extends LayoutContainer {
                             //TODO... dispecchare evento per il load corretto
                             Dispatcher.forwardEvent(EventoEvents.LoadEvento, be.getSelectedItem());
                             Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
+                            Dispatcher.forwardEvent(EventoEvents.ShowRiepilogo);
                             Info.display("Info", "Uploading Evento... " + be.getSelectedItem().getNome());
                         }
                     }
                 });
-
         centre.add(grid);
 
         return centre;
