@@ -353,7 +353,20 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     private void setDefault() {
         ManifestiPieghevoliFogliModel manifesti = new ManifestiPieghevoliFogliModel();
         manifesti.setCategoria("Manifesti");
+
+
+        ManifestiPieghevoliFogliModel pieghevoli = new ManifestiPieghevoliFogliModel();
+        pieghevoli.setCategoria("Pieghevoli");
+
+        ManifestiPieghevoliFogliModel fogli = new ManifestiPieghevoliFogliModel();
+        fogli.setCategoria("Fogli");
+
+
+
         manifestiPieghevoliFogliModel.add(manifesti);
+        manifestiPieghevoliFogliModel.add(pieghevoli);
+        manifestiPieghevoliFogliModel.add(fogli);
+
         formBindings.bind(manifesti);
     }
 

@@ -9,10 +9,7 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.BoxComponent;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.Info;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
@@ -111,16 +108,46 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         radioGroup.add(personalizzato);
         radioContent.add(radioGroup);*/
 
+
+
+
+        ContentPanel textContent = new ContentPanel();
+        textContent.setHeaderVisible(false);
+        textContent.setLayout(new RowLayout(Style.Orientation.VERTICAL));
+        textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
+        Text testo = new Text(" Scegli 'Tutte le persone' per calcolare le emissioni di tutte le persone che si sono spostate per l'evento.<br><br>Se invece vuoi dettagliare i trasporti per categoria di persone, non compilare 'Tutte le persone' ma usa le altre categorie disponibili o creane nuove.");
+        testo.setStyleAttribute("font-size", "9pt");
+
+
+
+        // testo.setStyleAttribute("background-color","#2F3645");
+        textContent.add(testo);
+
+
+        // testo.setStyleAttribute("background-color","#2F3645");
+        textContent.add(testo);
+
+
+
+
         ContentPanel cpEst = new ContentPanel();
+        cpEst.setFrame(false);
         cpEst.setHeading("Trasporto persone");
 
         cpEst.setLayout(new RowLayout(Orientation.VERTICAL));
+
         //  cpEst.add(radioContent, new RowData(1, 0.10, new Margins(0, 0, 0, 0)));
-        cpEst.add(grid, new RowData(1, 1, new Margins(0, 0, 0, 0)));
+        //cpEst.add(grid, new RowData(1, 1, new Margins(0, 0, 0, 0)));
+        cpEst.add(textContent, new RowData(1, .35, new Margins(0, 0, 0, 0)));
+        cpEst.add(grid, new RowData(1, .55, new Margins(0, 0, 0, 0)));
+
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-        cp.add(cpEst, new RowData(.35, .98, new Margins(0, 0, 0, 0)));
+        //cp.add(cpEst, new RowData(.35, .98, new Margins(0, 0, 0, 0)));
+        cp.add(cpEst, new RowData(.35, .98));
+        cp.add(panel, new RowData(.65, 1));
+
         cp.add(cpCentre, new RowData(.65, 1));
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
@@ -601,8 +628,21 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
     private void setDefault() {
         TrasportoPersoneModel tpm = new TrasportoPersoneModel();
-        tpm.setCategoria("Tutte le Persone");
+        tpm.setCategoria("Tutte le persone");
+        TrasportoPersoneModel tpmRealtori = new TrasportoPersoneModel();
+        tpmRealtori.setCategoria("Relatori");
+        TrasportoPersoneModel tpmStaff = new TrasportoPersoneModel();
+        tpmStaff.setCategoria("Staff");
+        TrasportoPersoneModel tpmSpettatori = new TrasportoPersoneModel();
+        tpmSpettatori.setCategoria("Spettatori");
+        TrasportoPersoneModel tpmFornitori = new TrasportoPersoneModel();
+        tpmFornitori.setCategoria("Fornitori");
+
         trasportoPersoneModel.add(tpm);
+        trasportoPersoneModel.add(tpmRealtori);
+        trasportoPersoneModel.add(tpmSpettatori);
+        trasportoPersoneModel.add(tpmStaff);
+        trasportoPersoneModel.add(tpmFornitori);
         formBindings.bind(tpm);
     }
 

@@ -432,7 +432,25 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
     private void setDefault() {
         PubblicazioniRilegateModel catalogo = new PubblicazioniRilegateModel();
         catalogo.setCategoria("Catalogo");
+
+        PubblicazioniRilegateModel bilancio = new PubblicazioniRilegateModel();
+        bilancio.setCategoria("Bilancio");
+
+        PubblicazioniRilegateModel report = new PubblicazioniRilegateModel();
+        report.setCategoria("Report");
+
+        PubblicazioniRilegateModel libro = new PubblicazioniRilegateModel();
+        libro.setCategoria("Libro");
+
+
+
         pubblicazioniRilegateModel.add(catalogo);
+        pubblicazioniRilegateModel.add(bilancio);
+        pubblicazioniRilegateModel.add(report);
+        pubblicazioniRilegateModel.add(libro);
+
+
+
         formBindings.bind(catalogo);
     }
 
