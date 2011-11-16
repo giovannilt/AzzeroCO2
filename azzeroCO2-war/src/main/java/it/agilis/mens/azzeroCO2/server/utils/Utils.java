@@ -9,6 +9,7 @@ package it.agilis.mens.azzeroCO2.server.utils;
  */
 
 import it.agilis.mens.azzeroCO2.core.entity.*;
+import it.agilis.mens.azzeroCO2.core.entity.Esito;
 import it.agilis.mens.azzeroCO2.core.entity.Profile;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
 import it.agilis.mens.azzeroCO2.shared.*;
@@ -17,7 +18,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
-import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.*;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.core.register.impl.Email;
 
@@ -375,6 +376,8 @@ public class Utils {
     public static DettaglioModel getDettaglioModel(Ordine o) {
         DettaglioModel dm = new DettaglioModel();
 
+        dm.setLastUpdate(o.getLastUpdate());
+
         dm.setProgettoDiCompensazioneModel(getProgettoDiCompensazioneModel(o.getProgettoCompensazione()));
 
         dm.setPagamentoModel(getPagamentoModel(o.getRicevutaDiPagamento()));
@@ -528,7 +531,7 @@ public class Utils {
 
 
         //TODO DA DEFINIRE....
-        // ricevuta.setEsito(Esito.WAITING);
+        ricevuta.setEsito(Esito.WAITING.toString());
         ricevuta.setMERCHANT_ID(ricevutaDiPagamento.getMERCHANT_ID());
         ricevuta.setDIVISA(ricevutaDiPagamento.getDIVISA());
         ricevuta.setIMPORTO(ricevutaDiPagamento.getIMPORTO());

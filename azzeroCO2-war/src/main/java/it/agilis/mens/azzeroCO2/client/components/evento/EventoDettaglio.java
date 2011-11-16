@@ -228,11 +228,11 @@ public class EventoDettaglio extends LayoutContainer {
         eventoFormConferma.clear();
 
 
-        if (posizioniLabel != 1) {
-            while (posizioniLabel != 0) {
+        //if (posizioniLabel != 1) {
+            while (posizioniLabel > 0) {
                 previusTab();
             }
-        }
+        //}
 
         for (TabItem item : eventoTab.getItems()) {
             if (item.getText().equalsIgnoreCase("Calcolo")) {

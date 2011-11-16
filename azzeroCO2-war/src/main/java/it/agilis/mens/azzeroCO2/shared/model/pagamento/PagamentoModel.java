@@ -4,6 +4,7 @@ import com.extjs.gxt.ui.client.data.BaseModel;
 import com.google.gwt.core.client.GWT;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 
+
 import java.util.Date;
 
 /**
@@ -33,8 +34,7 @@ public class PagamentoModel extends BaseModel {
         setURLKO(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBancaKO");
         setURLACK(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBanca");
 
-       setMAC(AzzerroCO2UtilsClientHelper.getMAC_MD5(this));
-
+        setMAC(AzzerroCO2UtilsClientHelper.getMAC_MD5(this));
 
 
     }
@@ -130,6 +130,21 @@ public class PagamentoModel extends BaseModel {
 
     public void setMAC(String MAC) {
         set("MAC", MAC);
+    }
+
+    public Double getKgCO2() {
+        return get("kgCO2");
+    }
+
+    public void setKgCO2(Double kgCO2) {
+        set("kgCO2", kgCO2);
+    }
+     public String getEsito() {
+        return get("esito");
+    }
+
+    public void setEsito(String esito) {
+        set("esito", esito);
     }
 
     @Override

@@ -51,6 +51,16 @@ public class Ordine {
     @OneToOne (cascade ={CascadeType.ALL}, fetch = FetchType.EAGER)
     private SellaRicevutaDiPagamento ricevutaDiPagamento;
 
+    private Date lastUpdate;
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
     public SellaRicevutaDiPagamento getRicevutaDiPagamento() {
         return ricevutaDiPagamento;
     }
