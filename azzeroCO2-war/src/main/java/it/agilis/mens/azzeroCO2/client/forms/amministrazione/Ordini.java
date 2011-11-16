@@ -13,6 +13,7 @@ import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
@@ -62,30 +63,43 @@ public class Ordini extends LayoutContainer {
         column = new ColumnConfig("nome", "Descrizione", 200);
         configs.add(column);
 
-        /*column = new ColumnConfig("kgco2", "KG CO2", 100);
+
+        column = new ColumnConfig("lastUpdate", "Ultima Modifica", 120);
+        column.setDateTimeFormat(DateTimeFormat.getFormat("dd.MM.y"));
+        configs.add(column);
+
+        column = new ColumnConfig("euro", "Euro", 150);
         column.setAlignment((Style.HorizontalAlignment.RIGHT));
         column.setRenderer(new GridCellRenderer<DettaglioModel>() {
-            @Override
-            public Object render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<DettaglioModel> riepilogoModelListStore, Grid<DettaglioModel> riepilogoModelGrid) {
-                return number.format(model.<Number>get(property));
+            public String render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                                 ListStore<DettaglioModel> store, Grid<DettaglioModel> grid) {
+                if (model.getPagamentoModel() != null) {
+                    return model.getPagamentoModel().getIMPORTO();
+                } else {
+                    return "0.0";
+                }
             }
         });
-        configs.add(column);*/
-
-        column = new ColumnConfig("dataLastUpd", "Ultima modifica", 90);
         configs.add(column);
 
-        column = new ColumnConfig("kgco2", "Kg CO2", 50);
+        column = new ColumnConfig("kgCO2", "kgCO2", 150);
         column.setAlignment((Style.HorizontalAlignment.RIGHT));
         configs.add(column);
 
-        column = new ColumnConfig("importo", "Importo", 50);
-        column.setAlignment((Style.HorizontalAlignment.RIGHT));
+        column = new ColumnConfig("editable", "Compensato", 150);
+        column.setRenderer(new GridCellRenderer<DettaglioModel>() {
+            public String render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                                 ListStore<DettaglioModel> store, Grid<DettaglioModel> grid) {
+                if (model.getPagamentoModel() != null) {
+
+                    return model.getPagamentoModel().getIMPORTO();
+                } else {
+                    return "SI";
+                }
+            }
+        });
         configs.add(column);
 
-        column = new ColumnConfig("flag compensato", "Compensato", 50);
-        configs.add(column);
-        // TODO popolare le colonne non ancora popolate
 
         ColumnModel cm = new ColumnModel(configs);
 
@@ -100,7 +114,6 @@ public class Ordini extends LayoutContainer {
                 new Listener<SelectionChangedEvent<DettaglioModel>>() {
                     public void handleEvent(SelectionChangedEvent<DettaglioModel> be) {
                         if (be.getSelection().size() > 0) {
-                            //TODO... dispecchare evento per il load corretto
                             Dispatcher.forwardEvent(EventoEvents.LoadEvento, be.getSelectedItem());
                             Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
                             Dispatcher.forwardEvent(EventoEvents.ShowRiepilogo);

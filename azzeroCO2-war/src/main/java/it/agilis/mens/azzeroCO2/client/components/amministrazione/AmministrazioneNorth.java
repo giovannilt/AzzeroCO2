@@ -34,7 +34,7 @@ public class AmministrazioneNorth extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.TOP);
         c.setLayout(layout);
 
-        c.add(new Html("<p style=\"padding:1px;\">Amministrazione calcolatore</p>"));
+        c.add(new Html("<p style=\"padding:1px;font-family: arial;\">Amministrazione calcolatore</p>"));
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         flex.setFlex(1);

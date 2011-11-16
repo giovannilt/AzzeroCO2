@@ -68,7 +68,6 @@ public class PubblicazioniRilegateModel extends BaseModel {
         set("grammatura", grammatura);
     }
 
-    // TODO CHECK
     public TipoDiCartaModel getTipoDiCartaCopertina() {
         return get("tipoDiCartaCopertina");
     }
@@ -84,7 +83,6 @@ public class PubblicazioniRilegateModel extends BaseModel {
     public void setTipoDiCarta(TipoDiCartaModel tipoDiCarta) {
         set("tipoDiCarta", tipoDiCarta);
     }
-    // TODO CHECK
 
     public Double getGrammaturaCopertina() {
         return (Double) get("grammaturaCopertina") == null ? 0 : new Double(get("grammaturaCopertina").toString());

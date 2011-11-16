@@ -4,6 +4,7 @@ import com.extjs.gxt.ui.client.data.BaseModel;
 import com.google.gwt.core.client.GWT;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 
+
 import java.util.Date;
 
 /**
@@ -150,6 +151,10 @@ public class PagamentoModel extends BaseModel {
 
         _return = "https://www.payment.fccrt.it/CheckOutEGIPSy.asp#" + _return;
         return _return;
+
+    }
+
+    public void setEsito(Esito e) {
 
     }
 }

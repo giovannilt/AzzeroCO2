@@ -32,16 +32,21 @@ public class EventoSouth extends LayoutContainer {
     private Button right = new Button();
 
     private LayoutContainer c = new LayoutContainer();
+    private HBoxLayout layout = new HBoxLayout();
+    private HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 0, 0, 5));
 
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
 
-        HBoxLayout layout = new HBoxLayout();
         layout.setPadding(new Padding(1));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c.setLayout(layout);
+        c.setLayoutOnChange(true);
+        c.setAutoHeight(false);
+        c.setAutoWidth(false);
+
         left.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.left()));
         left.setIconAlign(Style.IconAlign.LEFT);
         left.setSize(32, 32);
@@ -51,6 +56,7 @@ public class EventoSouth extends LayoutContainer {
         left.setEnabled(false);
         left.setVisible(false);
 
+
         left.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -59,7 +65,7 @@ public class EventoSouth extends LayoutContainer {
         });
         c.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
 
-        HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 0, 0, 5));
+
         flex.setFlex(1);
         c.add(leftText, flex);
 
@@ -93,34 +99,34 @@ public class EventoSouth extends LayoutContainer {
 
 
     public void setTextLeft(String left_t) {
+
         if (left_t.length() == 0) {
             left.setEnabled(false);
             left.setVisible(false);
+            leftText.setVisible(false);
+
         } else {
             left.setEnabled(true);
             left.setVisible(true);
+            leftText.setVisible(true);
         }
         leftText.setText(left_t);
-
         c.layout(true);
-        //    left.setToolTip(left_t);
-        //    left.setTitle("");
-        //   left.setText("");
+
     }
 
     public void setTextRigth(String right_t) {
         if (right_t.length() == 0) {
             right.setEnabled(false);
             right.setVisible(false);
+
         } else {
             right.setEnabled(true);
             right.setVisible(true);
+
         }
         rigthText.setText(right_t);
         c.layout(true);
-        //   right.setToolTip(right_t);
-        //   right.setText("");
-        //   right.setTitle("");
     }
 
 }

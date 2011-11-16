@@ -17,6 +17,8 @@ import java.util.List;
  */
 public class DettaglioModel extends BaseModel {
 
+    private Date lastUpdate;
+
     private EnergiaModel energiaModel;
     private ArrayList<TrasportoPersoneModel> trasportoPersoneModel;
     private NottiModel nottiModel;
@@ -27,7 +29,6 @@ public class DettaglioModel extends BaseModel {
     private ProgettoDiCompensazioneModel progettoDiCompensazioneModel;
 
     private PagamentoModel pagamentoModel;
-
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
         return progettoDiCompensazioneModel;
@@ -63,6 +64,14 @@ public class DettaglioModel extends BaseModel {
 
     public void setDove(String dove) {
         set("dove", dove);
+    }
+
+     public Date getLastUpdate() {
+        return (Date) get("lastUpdate");
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        set("lastUpdate", lastUpdate);
     }
 
     public String getNote() {

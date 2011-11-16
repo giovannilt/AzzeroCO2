@@ -8,6 +8,7 @@ import it.agilis.mens.azzeroCO2.core.entity.*;
 import it.agilis.mens.azzeroCO2.core.register.IAzzeroCO2Register;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -161,6 +162,8 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
 
     @Override
     public Ordine saveOrUpdateOrdine(Ordine o) throws Exception {
+
+        o.setLastUpdate(new Date());
        return ordineDAO.save(o);
     }
 
