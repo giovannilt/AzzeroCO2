@@ -281,10 +281,14 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 ToolButton b = new ToolButton("x-tool-close", new SelectionListener<IconButtonEvent>() {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
-                        Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
-                        formBindings.unbind();
-                        panel.setHeading("Aggiungi una Categoria o Personalizza quelle esistenti");
-                        manifestiPieghevoliFogliModel.remove(model);
+                        if (manifestiPieghevoliFogliModel.getModels().size() == 1) {
+                            Info.display("Info", "<ul><li>Impossibile Eliminare tutte le categorie </li></ul>");
+                        } else {
+                            Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
+                            formBindings.unbind();
+                            panel.setHeading("Aggiungi una Categoria o Personalizza quelle esistenti");
+                            manifestiPieghevoliFogliModel.remove(model);
+                        }
                     }
                 });
                 // b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
