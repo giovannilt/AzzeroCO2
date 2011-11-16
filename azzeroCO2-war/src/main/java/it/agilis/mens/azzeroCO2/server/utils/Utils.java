@@ -531,7 +531,7 @@ public class Utils {
 
 
         //TODO DA DEFINIRE....
-        ricevuta.setEsito(it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito.valueOf(Esito.WAITING.toString()));
+        ricevuta.setEsito(Esito.WAITING.toString());
         ricevuta.setMERCHANT_ID(ricevutaDiPagamento.getMERCHANT_ID());
         ricevuta.setDIVISA(ricevutaDiPagamento.getDIVISA());
         ricevuta.setIMPORTO(ricevutaDiPagamento.getIMPORTO());

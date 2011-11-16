@@ -65,7 +65,7 @@ public class Ordini extends LayoutContainer {
 
 
         column = new ColumnConfig("lastUpdate", "Ultima Modifica", 120);
-        column.setDateTimeFormat(DateTimeFormat.getFormat("dd.MM.y"));
+        column.setDateTimeFormat(DateTimeFormat.getFormat("dd.MM.y HH:mm"));
         configs.add(column);
 
         column = new ColumnConfig("euro", "Euro", 150);
@@ -76,13 +76,23 @@ public class Ordini extends LayoutContainer {
                 if (model.getPagamentoModel() != null) {
                     return model.getPagamentoModel().getIMPORTO();
                 } else {
-                    return "0.0";
+                    return "-";
                 }
             }
         });
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "kgCO2", 150);
+        column.setRenderer(new GridCellRenderer<DettaglioModel>() {
+            public String render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                                 ListStore<DettaglioModel> store, Grid<DettaglioModel> grid) {
+                if (model.getPagamentoModel() != null && model.getPagamentoModel().getKgCO2()!=null) {
+                    return number.format(model.getPagamentoModel().getKgCO2());
+                } else {
+                    return "-";
+                }
+            }
+        });
         column.setAlignment((Style.HorizontalAlignment.RIGHT));
         configs.add(column);
 
@@ -90,11 +100,10 @@ public class Ordini extends LayoutContainer {
         column.setRenderer(new GridCellRenderer<DettaglioModel>() {
             public String render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex,
                                  ListStore<DettaglioModel> store, Grid<DettaglioModel> grid) {
-                if (model.getPagamentoModel() != null) {
-
-                    return model.getPagamentoModel().getIMPORTO();
+                if (model.getPagamentoModel() != null && model.getPagamentoModel().getEsito() != null) {
+                    return model.getPagamentoModel().getEsito().toString();
                 } else {
-                    return "SI";
+                    return "NO";
                 }
             }
         });

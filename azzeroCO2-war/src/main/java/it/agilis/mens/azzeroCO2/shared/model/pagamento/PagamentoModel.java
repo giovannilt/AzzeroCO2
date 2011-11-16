@@ -34,8 +34,7 @@ public class PagamentoModel extends BaseModel {
         setURLKO(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBancaKO");
         setURLACK(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBanca");
 
-       setMAC(AzzerroCO2UtilsClientHelper.getMAC_MD5(this));
-
+        setMAC(AzzerroCO2UtilsClientHelper.getMAC_MD5(this));
 
 
     }
@@ -133,6 +132,21 @@ public class PagamentoModel extends BaseModel {
         set("MAC", MAC);
     }
 
+    public Double getKgCO2() {
+        return get("kgCO2");
+    }
+
+    public void setKgCO2(Double kgCO2) {
+        set("kgCO2", kgCO2);
+    }
+     public String getEsito() {
+        return get("esito");
+    }
+
+    public void setEsito(String esito) {
+        set("esito", esito);
+    }
+
     @Override
     public String toString() {
         String _return = new String();
@@ -151,10 +165,6 @@ public class PagamentoModel extends BaseModel {
 
         _return = "https://www.payment.fccrt.it/CheckOutEGIPSy.asp#" + _return;
         return _return;
-
-    }
-
-    public void setEsito(Esito e) {
 
     }
 }
