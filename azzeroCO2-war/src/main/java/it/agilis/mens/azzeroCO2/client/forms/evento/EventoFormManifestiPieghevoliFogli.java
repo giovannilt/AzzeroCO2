@@ -78,7 +78,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         cpEst.setHeading("Manifesti, pieghevoli, fogli");
         cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         cpEst.add(textContent, new RowData(1, .15, new Margins(0, 0, 0, 0)));
-        cpEst.add(grid, new RowData(1, .75, new Margins(0, 0, 0, 0)));
+        cpEst.add(grid, new RowData(1, .85, new Margins(0, 0, 0, 0)));
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
