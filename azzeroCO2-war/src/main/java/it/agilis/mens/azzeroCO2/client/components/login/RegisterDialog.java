@@ -93,6 +93,7 @@ public class RegisterDialog extends Dialog {
         userName.getMessages().setMinLengthText("la username deve essere di almeno 6 caratteri");
 
         userName.addKeyListener(keyListener);
+        userName.setLabelStyle("width:150");
         formPanel.add(userName);
 
         password = new TextField<String>();
@@ -102,6 +103,7 @@ public class RegisterDialog extends Dialog {
         password.setFieldLabel("Password");
         password.setName("password");
         password.addKeyListener(keyListener);
+        password.setLabelStyle("width:150");
         formPanel.add(password);
 
 
@@ -112,6 +114,8 @@ public class RegisterDialog extends Dialog {
         repassword.setFieldLabel("Ripeti password");
         repassword.setName("repassword");
         repassword.addKeyListener(keyListener);
+        repassword.setLabelStyle("white-space:nowrap");
+        repassword.setLabelStyle("width:150");
         formPanel.add(repassword);
 
 
@@ -122,6 +126,7 @@ public class RegisterDialog extends Dialog {
         nome.setFieldLabel("Nome");
         nome.setName("nome");
         nome.addKeyListener(keyListener);
+        nome.setLabelStyle("width:150");
         formPanel.add(nome);
 
         cognome = new TextField<String>();
@@ -131,6 +136,7 @@ public class RegisterDialog extends Dialog {
         cognome.setFieldLabel("Cognome");
         cognome.setName("cognome");
         cognome.addKeyListener(keyListener);
+        cognome.setLabelStyle("width:150");
         formPanel.add(cognome);
 
         ragioneSoc = new TextField<String>();
@@ -140,6 +146,9 @@ public class RegisterDialog extends Dialog {
         ragioneSoc.setFieldLabel("Rag. sociale");
         ragioneSoc.setName("ragioneSoc");
         ragioneSoc.addKeyListener(keyListener);
+        ragioneSoc.setLabelStyle("white-space:nowrap");
+        ragioneSoc.setLabelStyle("width:150");
+
         formPanel.add(ragioneSoc);
 
         indirizzo = new TextField<String>();
@@ -149,6 +158,7 @@ public class RegisterDialog extends Dialog {
         indirizzo.setFieldLabel("Indirizzo");
         indirizzo.setName("indirizzo");
         indirizzo.addKeyListener(keyListener);
+        indirizzo.setLabelStyle("width:150");
         formPanel.add(indirizzo);
 
 
@@ -159,6 +169,8 @@ public class RegisterDialog extends Dialog {
         citta.setFieldLabel("Città");
         citta.setName("citta");
         citta.addKeyListener(keyListener);
+        citta.setLabelStyle("width:150");
+
         formPanel.add(citta);
 
         provincia = new TextField<String>();
@@ -169,6 +181,7 @@ public class RegisterDialog extends Dialog {
         provincia.setFieldLabel("Provincia");
         provincia.setName("provincia");
         provincia.addKeyListener(keyListener);
+        provincia.setLabelStyle("width:150");
         formPanel.add(provincia);
 
         cap = new TextField<String>();
@@ -180,6 +193,7 @@ public class RegisterDialog extends Dialog {
         cap.setFieldLabel("CAP");
         cap.setName("cap");
         cap.addKeyListener(keyListener);
+        cap.setLabelStyle("width:150");
         formPanel.add(cap);
 
         partitaIvaCF = new TextField<String>();
@@ -189,6 +203,7 @@ public class RegisterDialog extends Dialog {
         partitaIvaCF.getMessages().setMinLengthText("La partita iva deve essere lunga 11 cifre e il codice fiscale 17 caratteri");
         partitaIvaCF.setFieldLabel("P.Iva/CF");
         partitaIvaCF.addKeyListener(keyListener);
+        partitaIvaCF.setLabelStyle("width:150");
         formPanel.add(partitaIvaCF);
 
         telefono = new TextField<String>();
@@ -199,6 +214,7 @@ public class RegisterDialog extends Dialog {
         telefono.addKeyListener(keyListener);
         telefono.setRegex("[0-9]+");
         telefono.getMessages().setRegexText("Solo valori numerici");
+        telefono.setLabelStyle("width:150");
         formPanel.add(telefono);
 
         fax = new TextField<String>();
@@ -209,6 +225,7 @@ public class RegisterDialog extends Dialog {
         fax.addKeyListener(keyListener);
         fax.setRegex("^[0-9]+");
         fax.getMessages().setRegexText("Solo valori numerici");
+        fax.setLabelStyle("width:150");
         formPanel.add(fax);
 
         cellulare = new TextField<String>();
@@ -219,6 +236,7 @@ public class RegisterDialog extends Dialog {
         cellulare.addKeyListener(keyListener);
         cellulare.setRegex("^[0-9]+");
         cellulare.getMessages().setRegexText("Solo valori numerici");
+        cellulare.setLabelStyle("width:150");
         formPanel.add(cellulare);
 
         email = new TextField<String>();
@@ -228,6 +246,7 @@ public class RegisterDialog extends Dialog {
         email.addKeyListener(keyListener);
         email.setRegex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
         email.getMessages().setRegexText("Email errata");
+        email.setLabelStyle("width:150");
         formPanel.add(email);
 
 
@@ -238,6 +257,7 @@ public class RegisterDialog extends Dialog {
         reemail.addKeyListener(keyListener);
         reemail.setRegex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
         reemail.getMessages().setRegexText("Ripeti emil");
+        reemail.setLabelStyle("width:150");
         formPanel.add(reemail);
 
 
