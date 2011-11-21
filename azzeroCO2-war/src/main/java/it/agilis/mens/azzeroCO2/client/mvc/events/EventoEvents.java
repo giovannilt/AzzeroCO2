@@ -11,6 +11,7 @@ import com.extjs.gxt.ui.client.event.EventType;
  */
 public class EventoEvents {
 
+    public static final EventType ClearStep = new EventType();
     public static final EventType ShowStep = new EventType();
     public static final EventType ShowRiepilogo = new EventType();
     public static final EventType ShowInfoDialog = new EventType();

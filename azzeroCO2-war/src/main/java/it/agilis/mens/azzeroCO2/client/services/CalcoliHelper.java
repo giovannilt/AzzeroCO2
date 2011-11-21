@@ -114,6 +114,7 @@ public class CalcoliHelper {
         }
         List<RiepilogoModel> trasportoPersone = getTrasportoPersone(eventoModel.getTrasportoPersoneModel());
         if (trasportoPersone != null) {
+
             store.addAll(trasportoPersone);
         }
         if (eventoModel != null && eventoModel.getNottiModel() != null) {
@@ -171,6 +172,7 @@ public class CalcoliHelper {
 
         if (co2 > 0) {
             energia.setKgCO2(co2);
+            energia.setIndex(1);
             return energia;
         }
         return null;
@@ -189,6 +191,7 @@ public class CalcoliHelper {
         }
 
         if (co2 > 0) {
+            notti.setIndex(3);
             return notti;
         }
         return null;

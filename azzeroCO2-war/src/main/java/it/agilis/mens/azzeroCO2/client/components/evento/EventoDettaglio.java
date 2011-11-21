@@ -334,4 +334,8 @@ public class EventoDettaglio extends LayoutContainer {
                 }
             }
     }
+
+    public void clearStep(RiepilogoModel data) {
+       // TODO Meglio gestire l'evento su ogni evento form....
+    }
 }

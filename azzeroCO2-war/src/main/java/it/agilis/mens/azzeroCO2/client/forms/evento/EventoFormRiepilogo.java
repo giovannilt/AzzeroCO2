@@ -1,16 +1,16 @@
 package it.agilis.mens.azzeroCO2.client.forms.evento;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.event.Events;
-import com.extjs.gxt.ui.client.event.Listener;
-import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
+import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
+import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
@@ -117,6 +117,43 @@ public class EventoFormRiepilogo extends LayoutContainer {
                 return number.format(model.<Number>get(property));
             }
         });
+        configs.add(column);
+
+        column = new ColumnConfig();
+        column.setRowHeader(false);
+        column.setId("Cancella");
+        column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
+            private boolean init;
+
+            public Object render(final RiepilogoModel model, String property, ColumnData config, final int rowIndex,
+                                 final int colIndex, final ListStore<RiepilogoModel> store, Grid<RiepilogoModel> grid) {
+                if (!init) {
+                    init = true;
+                    grid.addListener(Events.ColumnResize, new Listener<GridEvent<RiepilogoModel>>() {
+                        public void handleEvent(GridEvent<RiepilogoModel> be) {
+                            for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
+                                if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
+                                        && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
+                                    ((BoxComponent) be.getGrid().getView().getWidget(i, be.getColIndex())).setWidth(be.getWidth() - 10);
+                                }
+                            }
+                        }
+                    });
+                }
+                ToolButton b = new ToolButton("x-tool-close", new SelectionListener<IconButtonEvent>() {
+                    @Override
+                    public void componentSelected(IconButtonEvent ce) {
+                          store.remove(model);
+                        Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
+                    }
+                });
+                // b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
+                b.setToolTip("Elimina");
+
+                return b;
+            }
+        });
+        column.setWidth(50);
         configs.add(column);
 
         ColumnModel cm = new ColumnModel(configs);
