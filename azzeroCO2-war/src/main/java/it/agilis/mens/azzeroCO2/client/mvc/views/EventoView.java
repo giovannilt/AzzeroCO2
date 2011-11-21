@@ -10,6 +10,7 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoDettaglio;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoNorth;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoSouth;
@@ -40,14 +41,16 @@ import java.util.Map;
  */
 public class EventoView extends View {
     private ContentPanel evento = new ContentPanel();
-    private EventoConfermDialog eventoConfermDialog= new EventoConfermDialog();
-    private EventoInfoDialog eventoInfoDialog= new EventoInfoDialog();
+    private EventoConfermDialog eventoConfermDialog = new EventoConfermDialog();
+    private EventoInfoDialog eventoInfoDialog = new EventoInfoDialog();
 
     private EventoDettaglio eventoDettaglio = new EventoDettaglio();
     private ContentPanel center = new ContentPanel();
     private EventoSouth south = new EventoSouth();
     private EventoWest west = new EventoWest();
     private UserInfoModel userInfoModel;
+
+    private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
 
     public EventoView(Controller controller) {
         super(controller);
@@ -75,11 +78,11 @@ public class EventoView extends View {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData());
             setRiassunto(riepilogo);
-        } else if(event.getType().equals(EventoEvents.ShowStep)){
+        } else if (event.getType().equals(EventoEvents.ShowStep)) {
             eventoDettaglio.showStep(event.<RiepilogoModel>getData());
-        } else if(event.getType().equals(EventoEvents.ShowInfoDialog)){
-           eventoInfoDialog.show();
-        } else if(event.getType().equals(EventoEvents.ShowConfermDialog)){
+        } else if (event.getType().equals(EventoEvents.ShowInfoDialog)) {
+            eventoInfoDialog.show();
+        } else if (event.getType().equals(EventoEvents.ShowConfermDialog)) {
             eventoConfermDialog.show();
         }
 
@@ -87,7 +90,14 @@ public class EventoView extends View {
 
     public void setRiassunto(DettaglioModel riepilogo) {
         west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo));
-        west.setTitle( riepilogo.getNome() );
+        if (riepilogo.getInizio() != null
+                && riepilogo.getFine() != null) {
+            String dal = " Dal " + dateFormat.format(riepilogo.getInizio());
+            String a = " al " + dateFormat.format(riepilogo.getFine());
+            west.setTitle(riepilogo.getNome() + dal + a);
+        } else {
+            west.setTitle(riepilogo.getNome());
+        }
     }
 
     private void onPrevius(AppEvent event) {
@@ -136,7 +146,7 @@ public class EventoView extends View {
 
             BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 33);
             southData.setMargins(new Margins(0, 0, 0, 0));
-            center.setStyleAttribute("background-color","#313646");
+            center.setStyleAttribute("background-color", "#313646");
             center.add(south, southData);
         }
         center.setHeaderVisible(false);
@@ -152,7 +162,7 @@ public class EventoView extends View {
         eventoDettaglio.setTipoDiCarta(tipoDiCartaModels);
     }
 
-    public  List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
+    public List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
         List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti);
         eventoDettaglio.setEventoRiepilogoInStore(list);
         return list;
@@ -162,16 +172,16 @@ public class EventoView extends View {
         eventoDettaglio.setProgettiDiCompensazione(progettiDiCompensazioneList);
     }
 
-    public DettaglioModel getRiepilogo(){
-          return eventoDettaglio.riepilogo();
+    public DettaglioModel getRiepilogo() {
+        return eventoDettaglio.riepilogo();
     }
 
     public void setDettaglioModel(DettaglioModel result) {
-          eventoDettaglio.restore(result);
+        eventoDettaglio.restore(result);
     }
 
     public void setUserInfo(UserInfoModel userInfoModel) {
-        this.userInfoModel=userInfoModel;
+        this.userInfoModel = userInfoModel;
         eventoDettaglio.setUserInfoModel(userInfoModel);
     }
 

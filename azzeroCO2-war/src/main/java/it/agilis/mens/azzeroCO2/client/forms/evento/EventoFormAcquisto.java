@@ -11,8 +11,7 @@ import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
-import com.extjs.gxt.ui.client.widget.button.*;
-import com.extjs.gxt.ui.client.widget.form.DateField;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
@@ -20,13 +19,12 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.*;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
-import com.extjs.gxt.ui.client.widget.button.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +60,8 @@ public class EventoFormAcquisto extends LayoutContainer {
     private Grid<ProgettoDiCompensazioneModel> grid;
     private FormPanel form = createForm();
 
+    private DateTimeFormat dateFormat= DateTimeFormat.getFormat("dd.MM.y");
+
     public EventoFormAcquisto() {
         grid = createGrid();
         binding = new FormBinding(form, true);
@@ -76,7 +76,6 @@ public class EventoFormAcquisto extends LayoutContainer {
         setLayout(layout);
         layout.setEnableState(false);
         setStyleAttribute("padding", "0px");
-
 
         VerticalPanel vp = new VerticalPanel();
         vp.setHeight(622);
@@ -158,10 +157,7 @@ public class EventoFormAcquisto extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
                 luogoEvento.setWidth(220);
-                LabelField luogoData;
-                luogoData = luogoEvento;
-                //TODO concatenare luogoEvento con " dal " + inizioEvento + " al " fineEvento
-                c.add(luogoData);
+                c.add(luogoEvento);
 
                 panel.add(c);
             }
@@ -328,7 +324,11 @@ public class EventoFormAcquisto extends LayoutContainer {
         kcO2Evento.setText(number.format(totale));
         totaleKC02Label.setText(number.format(totale) + " kg/CO2?");
         titoloEvento.setText(riepilogo.getNome());
-        luogoEvento.setText(riepilogo.getDove());
+        if(riepilogo.getInizio()!=null && riepilogo.getFine()!=null){
+            luogoEvento.setText(riepilogo.getDove() + " Dal "+dateFormat.format(riepilogo.getInizio()) + " a "+dateFormat.format(riepilogo.getFine()) );
+        }else{
+            luogoEvento.setText(riepilogo.getDove());
+        }
         inizioEvento.setText(riepilogo.getInizio().toString());
         fineEvento.setText(riepilogo.getFine().toString());
 

@@ -229,11 +229,13 @@ public class EventoDettaglio extends LayoutContainer {
         eventoFormConferma.clear();
 
 
-        //if (posizioniLabel != 1) {
-            while (posizioniLabel > 0) {
-                previusTab();
-            }
-        //}
+        if (posizioniLabel == 1) {
+            return;
+        }
+        while (posizioniLabel > 0) {
+            previusTab();
+        }
+
 
         for (TabItem item : eventoTab.getItems()) {
             if (item.getText().equalsIgnoreCase("Calcolo")) {
@@ -243,8 +245,6 @@ public class EventoDettaglio extends LayoutContainer {
 
                 // TODO BETTER
                 formEnergia.setWidth("691");
-                formEnergia.syncSize();
-                formEnergia.recalculate();
                 break;
             }
         }

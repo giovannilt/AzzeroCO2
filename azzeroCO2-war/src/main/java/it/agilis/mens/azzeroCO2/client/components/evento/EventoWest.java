@@ -33,8 +33,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class EventoWest extends LayoutContainer {
-
-
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Evento");
@@ -72,8 +70,9 @@ public class EventoWest extends LayoutContainer {
         title.setStyleAttribute("font-family", "arial");
         title.setStyleAttribute("text-align", "center");
         title.setStyleAttribute("vertical-align ", "middle");
-        title.setWidth(240);
+        title.setWidth(250);
         title.setHeight(25);
+        title.setStyleAttribute("font-size","14px");
 
 
         panel.setStyleAttribute("backgroundColor", "#E9E9E9");
