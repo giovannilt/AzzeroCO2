@@ -53,5 +53,7 @@ public interface HustonService extends RemoteService {
     void sentMail(EMailVTO email);
 
     void savePagamento(PagamentoModel pagamentoModel);
+
+    boolean saveUserInfo(UserInfoModel data);
 }
 

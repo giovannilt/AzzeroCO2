@@ -55,7 +55,6 @@ public class DAOSupport extends HibernateDaoSupport {
                         executableCriteria.setCacheable(cachable);
                         return executableCriteria.list();
                     }
-
                 });
     }
 
@@ -88,7 +87,7 @@ public class DAOSupport extends HibernateDaoSupport {
                     throws Exception {
                 hibernateTemplate.setFlushMode(HibernateAccessor.FLUSH_EAGER);
 
-                hibernateTemplate.saveOrUpdate(entity);
+                hibernateTemplate.merge(entity);
 
                 return entity;
             }

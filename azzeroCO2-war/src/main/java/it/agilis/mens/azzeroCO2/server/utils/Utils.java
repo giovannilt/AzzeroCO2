@@ -77,6 +77,8 @@ public class Utils {
         userInfo.setCellulare(registrazioneModel.getCellulare());
         userInfo.setEmail(registrazioneModel.getEmail());
 
+        userInfo.setId(registrazioneModel.getId());
+
         userInfo.setProfile(Profile.User);
         return userInfo;
     }
@@ -100,8 +102,11 @@ public class Utils {
         userInfoModel.setTelefono(userInfo.getTelefono());
         userInfoModel.setRagioneSoc(userInfo.getRagSociale());
         userInfoModel.setId(userInfo.getId());
+        userInfoModel.setProvincia(userInfo.getProvincia());
 
         userInfoModel.setProfilo(userInfo.getProfile().ordinal());
+
+        userInfoModel.setId(userInfo.getId());
 
         return userInfoModel;
     }

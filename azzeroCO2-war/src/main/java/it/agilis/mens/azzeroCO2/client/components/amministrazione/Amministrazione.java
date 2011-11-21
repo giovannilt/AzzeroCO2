@@ -93,7 +93,7 @@ public class Amministrazione extends LayoutContainer {
 
     public void setUserInfo(UserInfoModel userInfoModel) {
         this.userInfoModel = userInfoModel;
-
+         userInfoForm.setUserInStore(userInfoModel);
         if (userInfoModel != null &&
                 userInfoModel.getProfilo() != null &&
                 (userInfoModel.getProfilo().intValue() == Profile.Administrator.ordinal()

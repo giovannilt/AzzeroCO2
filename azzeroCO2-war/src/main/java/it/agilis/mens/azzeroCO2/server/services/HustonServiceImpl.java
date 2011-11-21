@@ -278,4 +278,15 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
             e.printStackTrace();
         }
     }
+
+    @Override
+    public boolean saveUserInfo(UserInfoModel userInfoModel) {
+         try {
+            azzeroCO2Register.saveUserInfo(Utils.getUserInfo(userInfoModel));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

@@ -24,6 +24,7 @@ public class RegisterController extends BaseController {
 
     public RegisterController() {
         registerEventTypes(RegisterEvents.DoRegistration);
+        registerEventTypes(RegisterEvents.SaveUserInfo);
         registerEventTypes(RegisterEvents.ShowForm);
         registerEventTypes(RegisterEvents.HideForm);
         registerEventTypes(AzzeroCO2Events.LoggedIn);
@@ -34,6 +35,25 @@ public class RegisterController extends BaseController {
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
+        } else if (event.getType().equals(RegisterEvents.SaveUserInfo)) {
+            AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
+                public void onFailure(Throwable caught) {
+                    Info.display("Error", "Errore nella creazione dell'utente");
+                }
+
+                @Override
+                public void onSuccess(Boolean result) {
+                    if (result) {
+                        Info.display("Info", "Username salvato.");
+                     //   view.hideStatus();
+                    }else{
+                        Info.display("Error", "Errore nel salvataggio.");
+                    }
+                }
+            };
+            UserInfoModel data = (UserInfoModel) event.getData();
+          //  data.setProfilo(Profile.User.ordinal());
+            getHustonService().saveUserInfo(data, aCallback);
         } else if (event.getType().equals(RegisterEvents.DoRegistration)) {
             AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
                 public void onFailure(Throwable caught) {

@@ -2,10 +2,12 @@ package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
+import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.ComponentEvent;
 import com.extjs.gxt.ui.client.event.KeyListener;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
@@ -13,6 +15,8 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.RegisterEvents;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,6 +28,8 @@ import com.google.gwt.user.client.Element;
 
 public class UserInfo extends LayoutContainer {
     private FormBinding binding;
+    private FormPanel centre;
+    private UserInfoModel userInfoModel = new UserInfoModel();
 
     protected TextField<String> userName;
     protected TextField<String> password;
@@ -43,6 +49,12 @@ public class UserInfo extends LayoutContainer {
     protected TextField<String> partitaIvaCF;
 
 
+    public UserInfo() {
+        centre = createForm();
+        binding = new FormBinding(centre, true);
+        binding.bind(userInfoModel);
+    }
+
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
@@ -50,11 +62,10 @@ public class UserInfo extends LayoutContainer {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-
-        ContentPanel centre = createForm();
         //    centre.setHeading("CouponModel");
         centre.setHeaderVisible(false);
-        centre.setHeight(637);
+        centre.setScrollMode(Style.Scroll.AUTO);
+        centre.setHeight(479);
         centre.setFrame(true);
 
 
@@ -68,6 +79,7 @@ public class UserInfo extends LayoutContainer {
         FormPanel formPanel = new FormPanel();
         formPanel.setWidth(1);
         formPanel.setHeaderVisible(false);
+        formPanel.setScrollMode(Style.Scroll.AUTO);
 
         formPanel.setButtonAlign(Style.HorizontalAlignment.LEFT);
 
@@ -133,7 +145,7 @@ public class UserInfo extends LayoutContainer {
         ragioneSoc.getMessages().setMinLengthText("Ragione sociale troppo breve");
 
         ragioneSoc.setFieldLabel("Rag. sociale");
-        ragioneSoc.setName("ragioneSoc");
+        ragioneSoc.setName("ragioneSociale");
         ragioneSoc.addKeyListener(keyListener);
         ragioneSoc.setLabelStyle("width:150");
         formPanel.add(ragioneSoc);
@@ -184,7 +196,7 @@ public class UserInfo extends LayoutContainer {
         partitaIvaCF = new TextField<String>();
         partitaIvaCF.setMinLength(11);
         partitaIvaCF.setMaxLength(17);
-        partitaIvaCF.setName("partitaIvaCF");
+        partitaIvaCF.setName("pivaCF");
         partitaIvaCF.getMessages().setMinLengthText("La partita iva deve essere lunga 11 cifre e il codice fiscale 17 caratteri");
         partitaIvaCF.setFieldLabel("P.Iva/CF");
         partitaIvaCF.addKeyListener(keyListener);
@@ -244,6 +256,17 @@ public class UserInfo extends LayoutContainer {
         reemail.setLabelStyle("width:150");
         formPanel.add(reemail);
 
+        Button conferma = new Button("Conferma");
+
+        conferma.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                if (binding != null) {
+                    Dispatcher.forwardEvent(RegisterEvents.SaveUserInfo, binding.getModel());
+                }
+            }
+        });
+
+        formPanel.add(conferma);
         return formPanel;
     }
 
@@ -269,12 +292,14 @@ public class UserInfo extends LayoutContainer {
                         && email.getValue().equals(reemail.getValue())
                         && password.getValue().equals(repassword.getValue())
         );
-
-
     }
 
+    public void setUserInStore(UserInfoModel userInfoModel) {
+       binding.bind(userInfoModel);
+    }
 
     public void clear() {
+        binding.bind(userInfoModel);
     }
 
 }
