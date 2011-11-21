@@ -7,6 +7,7 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
@@ -22,6 +23,7 @@ import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 public class PagamentoSella extends Dialog {
     private PagamentoModel model = new PagamentoModel("0.01");
     private ContentPanel panel = new ContentPanel();
+    private LabelField url = new LabelField("URL ");
 
     public PagamentoSella() {
 
@@ -33,6 +35,12 @@ public class PagamentoSella extends Dialog {
         setLayout(layout);
 
 
+         final BorderLayout panelLayout = new BorderLayout();
+         BorderLayoutData centerDataPanel = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        centerDataPanel.setMargins(new Margins(0));
+
+        panel.setLayout(panelLayout);
+        panel.add(url, centerDataPanel);
         panel.setUrl("http://www.giovannilt.it/");
         panel.setHeaderVisible(false);
         panel.setBorders(false);
@@ -41,6 +49,7 @@ public class PagamentoSella extends Dialog {
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
+
 
         add(panel, centerData);
 
@@ -67,6 +76,7 @@ public class PagamentoSella extends Dialog {
     public void setModel(PagamentoModel model) {
         this.model = model;
         panel.setUrl(model.toString());
+        url.setText(model.toString());
 
 
     }

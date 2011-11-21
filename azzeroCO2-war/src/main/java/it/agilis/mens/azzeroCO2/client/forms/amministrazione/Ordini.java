@@ -109,7 +109,6 @@ public class Ordini extends LayoutContainer {
         });
         configs.add(column);
 
-
         ColumnModel cm = new ColumnModel(configs);
 
         Grid<DettaglioModel> grid = new Grid<DettaglioModel>(store, cm);
