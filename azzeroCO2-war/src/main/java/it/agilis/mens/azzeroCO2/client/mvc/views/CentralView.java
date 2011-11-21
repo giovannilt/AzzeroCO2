@@ -87,7 +87,7 @@ public class CentralView extends View {
         _return.setStyleAttribute("padding", "1px");
 
         ContentPanel center = new ContentPanel();
-        center.setHeading("Compensa le emissioni delle tue attivita'!");
+        center.setHeading("Compensa le emissioni delle tue attività");
 
         center.setScrollMode(Style.Scroll.AUTOX);
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);

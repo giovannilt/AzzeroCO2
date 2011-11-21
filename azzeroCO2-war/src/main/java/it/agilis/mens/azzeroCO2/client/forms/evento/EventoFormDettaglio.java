@@ -55,7 +55,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         FormPanel panel = new FormPanel();
 
         panel.setFrame(true);
-        panel.setHeading("Dettagli Evento");
+        panel.setHeading("Dettagli evento");
 
         panel.setButtonAlign(Style.HorizontalAlignment.CENTER);
         panel.setLayout(new ColumnLayout());

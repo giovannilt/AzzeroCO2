@@ -58,6 +58,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         final Grid<TrasportoPersoneModel> grid = createGrid();
 
         panel.setEnabled(false);
+
         formBindings.setStore(grid.getStore());
 
         /*  final FormPanel panelTutte = createGroupForm();
@@ -139,7 +140,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         //  cpEst.add(radioContent, new RowData(1, 0.10, new Margins(0, 0, 0, 0)));
         //cpEst.add(grid, new RowData(1, 1, new Margins(0, 0, 0, 0)));
         cpEst.add(textContent, new RowData(1, .35, new Margins(0, 0, 0, 0)));
-        cpEst.add(grid, new RowData(1, .55, new Margins(0, 0, 0, 0)));
+        cpEst.add(grid, new RowData(1, .65, new Margins(0, 0, 0, 0)));
 
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);

@@ -11,7 +11,8 @@ import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
-import com.extjs.gxt.ui.client.widget.button.ToolButton;
+import com.extjs.gxt.ui.client.widget.button.*;
+import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
@@ -19,11 +20,13 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.*;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import com.extjs.gxt.ui.client.widget.button.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +48,12 @@ public class EventoFormAcquisto extends LayoutContainer {
     private double totaleKC02 = 0;
 
     private LabelField totaleKC02Label = new LabelField();
-    private LabelField titoloEvento = new LabelField("Titolo Evento ");
+    private LabelField titoloEvento = new LabelField(" - ");
+    private LabelField luogoEvento = new LabelField(" - ");
+    private LabelField inizioEvento = new LabelField(" - ");
+    private LabelField fineEvento = new LabelField(" - ");
+
+
     private LabelField kcO2Evento = new LabelField("Kg C02");
     private final LabelField titoloProgettoScelto = new LabelField("ProgettoScelto");
     private final LabelField euroPerKCo2Progetto = new LabelField(" 0.00");
@@ -117,7 +125,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
         panel.setHeaderVisible(false);
-        panel.setSize(300, -1);
+        panel.setSize(300, 500);  //300,-1 sd
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
         {
@@ -129,6 +137,7 @@ public class EventoFormAcquisto extends LayoutContainer {
             LabelField label = new LabelField("Evento: ");
             label.setStyleAttribute("font-size", "16px");
             c.add(label);
+
             panel.add(c);
         }
         {
@@ -144,10 +153,25 @@ public class EventoFormAcquisto extends LayoutContainer {
             }
             {
                 LayoutContainer c = new LayoutContainer();
+                HBoxLayout layout = new HBoxLayout();
+                layout.setPadding(new Padding(2));
+                layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+                c.setLayout(layout);
+                luogoEvento.setWidth(220);
+                LabelField luogoData;
+                luogoData = luogoEvento;
+                //TODO concatenare luogoEvento con " dal " + inizioEvento + " al " fineEvento
+                c.add(luogoData);
+
+                panel.add(c);
+            }
+            {
+                LayoutContainer c = new LayoutContainer();
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
 
                 LabelField label = new LabelField("Kg/CO2");
              //   label.setWidth(220);
+                c.setHeight(50);
                 c.add(label, new FillData(2,20,2,0));
                 c.add(kcO2Evento, new FillData(2,0,2,50));
 
@@ -182,6 +206,7 @@ public class EventoFormAcquisto extends LayoutContainer {
             {
                 LayoutContainer c = new LayoutContainer();
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
+                c.setHeight(50);
 
                 LabelField label = new LabelField("€ x Kg/CO2 ");
 
@@ -193,12 +218,12 @@ public class EventoFormAcquisto extends LayoutContainer {
             { // TOTALE
                 LayoutContainer c = new LayoutContainer();
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
+                c.setHeight(60);
 
                 LabelField label = new LabelField("Totale € ");
                 label.setStyleAttribute("color", "#FF9933");
                 label.setStyleAttribute("font-size", "16px");
-
-                c.add(label, new FillData(2,20,2,0));
+                c.add(label, new FillData(2, 20, 2, 0));
 
                 totale.setStyleAttribute("color", "#FF9933");
                 totale.setStyleAttribute("font-size", "16px");
@@ -210,15 +235,30 @@ public class EventoFormAcquisto extends LayoutContainer {
             { // Coupon
                 LayoutContainer c = new LayoutContainer();
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
-
+                c.setHeight(30);
                 LabelField label = new LabelField("Hai Un Coupon? ");
 
                 c.add(label, new FillData(2,20,2,0));
                 TextField<String> coupon = new TextField<String>();
                 c.add(coupon, new FillData(0,0,0,0));
-
                 panel.add(c, new FormData("100%"));
             }
+
+
+            { // Coupon
+                LayoutContainer c = new LayoutContainer();
+                c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
+
+                com.extjs.gxt.ui.client.widget.button.Button ricalcola;
+                ricalcola=new com.extjs.gxt.ui.client.widget.button.Button("Calcola sconto");
+                //TODO fare funzionare sto pulsantone di calcolo del coupon
+                c.add(ricalcola);
+                panel.add(c); //, new FormData("100%"));
+            }
+
+
+
+
             /*{
                 LayoutContainer c = new LayoutContainer();
                 c.setHeight(190);
@@ -288,6 +328,10 @@ public class EventoFormAcquisto extends LayoutContainer {
         kcO2Evento.setText(number.format(totale));
         totaleKC02Label.setText(number.format(totale) + " kg/CO2?");
         titoloEvento.setText(riepilogo.getNome());
+        luogoEvento.setText(riepilogo.getDove());
+        inizioEvento.setText(riepilogo.getInizio().toString());
+        fineEvento.setText(riepilogo.getFine().toString());
+
     }
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {

@@ -83,10 +83,12 @@ public class Ordini extends LayoutContainer {
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "kgCO2", 150);
+        column.setAlignment((Style.HorizontalAlignment.RIGHT));
         column.setRenderer(new GridCellRenderer<DettaglioModel>() {
             public String render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex,
                                  ListStore<DettaglioModel> store, Grid<DettaglioModel> grid) {
-                if (model.getPagamentoModel() != null && model.getPagamentoModel().getKgCO2()!=null) {
+                if (model.getPagamentoModel() != null && model.getPagamentoModel().getKgCO2()!=null)
+                {
                     return number.format(model.getPagamentoModel().getKgCO2());
                 } else {
                     return "-";

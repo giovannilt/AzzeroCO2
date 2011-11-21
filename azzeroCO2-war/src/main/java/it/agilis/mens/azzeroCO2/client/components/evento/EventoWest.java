@@ -33,7 +33,7 @@ public class EventoWest extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Evento");
-    private final String oggettoDiDefault="Non Hai ancora Inserito </br> Nessuna Attivita'";
+    private final String oggettoDiDefault="Non hai ancora inserito </br> nessuna attivita'";
 
     public EventoWest() {
         RiepilogoModel model = new RiepilogoModel();
@@ -59,15 +59,17 @@ public class EventoWest extends LayoutContainer {
         ContentPanel panel = new ContentPanel();
         panel.setHeaderVisible(false);
         panel.setBodyStyle("backgroundColor: silver;");
+        panel.setBorders(false);
         panel.add(createGrid(), new VBoxLayoutData(new Margins(0, 5, 2, 0)));
 
         title.setStyleAttribute("backgroundColor", "silver");
         title.setStyleAttribute("color", "black");
-        title.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+        title.setStyleAttribute("font-family", "arial");
         title.setStyleAttribute("text-align", "center");
         title.setStyleAttribute("vertical-align ", "middle");
         title.setWidth(240);
         title.setHeight(25);
+
 
         panel.setStyleAttribute("backgroundColor", "#E9E9E9");
         add(panel, flex);
@@ -78,6 +80,8 @@ public class EventoWest extends LayoutContainer {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
         ColumnConfig column = new ColumnConfig("img", "img", 20);
         //column.setWidth(30);
+
+
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setRenderer(new GridCellRenderer() {
             @Override
@@ -91,6 +95,7 @@ public class EventoWest extends LayoutContainer {
                 return new Image(AzzeroCO2Resources.INSTANCE.checkIcon());//new ToolButton("x-tool-pin");
             }
         });
+
         configs.add(column);
 
         column = new ColumnConfig("oggetto", "oggetto", 220);
@@ -102,7 +107,9 @@ public class EventoWest extends LayoutContainer {
                 text.setStyleAttribute("backgroundColor", "silver");
                 text.setStyleAttribute("color", "black");
                 text.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+
                 config.style += "background-color: silver;";
+
                 return text;
             }
         });
@@ -121,7 +128,7 @@ public class EventoWest extends LayoutContainer {
         grid.disableTextSelection(true);
         grid.setTrackMouseOver(false);
         //   grid.setLoadMask(true);
-        //  grid.setBorders(false);
+        //grid.setBorders(false);
 
         return grid;
     }
@@ -131,7 +138,7 @@ public class EventoWest extends LayoutContainer {
         store.removeAll();
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
-            m.setOggetto("Non Hai ancora Inserito </br> Nessuna Attivita'");
+            m.setOggetto("Non hai ancora inserito </br> nessuna attivita'");
             store.add(m);
         } else {
             store.add(model);

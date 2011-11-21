@@ -104,7 +104,7 @@ public class NorthPanel extends LayoutContainer {
     }
 
     public void showLogout() {
-        login.setText("LogOut");
+        login.setText("Esci");
         islogedIn = true;
         registrati.setVisible(false);
         //  c.remove(registrati);
