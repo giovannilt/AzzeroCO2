@@ -75,6 +75,8 @@ public class EventoView extends View {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData());
             setRiassunto(riepilogo);
+        } else if(event.getType().equals(EventoEvents.ShowStep)){
+            eventoDettaglio.showStep(event.<RiepilogoModel>getData());
         } else if(event.getType().equals(EventoEvents.ShowInfoDialog)){
            eventoInfoDialog.show();
         } else if(event.getType().equals(EventoEvents.ShowConfermDialog)){

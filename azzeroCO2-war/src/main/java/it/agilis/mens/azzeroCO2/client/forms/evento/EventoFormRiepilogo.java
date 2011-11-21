@@ -1,6 +1,10 @@
 package it.agilis.mens.azzeroCO2.client.forms.evento;
 
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
@@ -14,6 +18,7 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 
 import java.util.ArrayList;
@@ -117,6 +122,17 @@ public class EventoFormRiepilogo extends LayoutContainer {
         ColumnModel cm = new ColumnModel(configs);
 
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
+
+        grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
+        grid.getSelectionModel().addListener(Events.SelectionChange,
+                new Listener<SelectionChangedEvent<RiepilogoModel>>() {
+                    public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
+                        if (be.getSelection().size() > 0) {
+                            Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());
+                        }
+                    }
+                });
+
         grid.setBorders(true);
         //      grid.setAutoHeight(true);
         grid.setHeight(350);
@@ -130,13 +146,12 @@ public class EventoFormRiepilogo extends LayoutContainer {
         }
         this.store.add(models);
 
-        double t=0;
-         for (RiepilogoModel r : store.getModels()) {
+        double t = 0;
+        for (RiepilogoModel r : store.getModels()) {
             t += r.getKgCO2();
         }
 
-           final NumberFormat number = NumberFormat.getFormat("0.00");
-
+        final NumberFormat number = NumberFormat.getFormat("0.00");
 
 
         totale.setText(number.format(t));

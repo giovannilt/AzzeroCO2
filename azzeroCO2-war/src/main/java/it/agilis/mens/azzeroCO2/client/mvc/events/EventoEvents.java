@@ -11,12 +11,7 @@ import com.extjs.gxt.ui.client.event.EventType;
  */
 public class EventoEvents {
 
-    /*public static final EventType EventoPanelReady= new EventType();
-    public static final EventType Error = new EventType();
-    public static final EventType UIReady = new EventType();
-    public static final EventType NorthPanelReady = new EventType();
-    public static final EventType CentralPanelReady = new EventType();
-    public static final EventType NewsPanelReady = new EventType();*/
+    public static final EventType ShowStep = new EventType();
     public static final EventType ShowRiepilogo = new EventType();
     public static final EventType ShowInfoDialog = new EventType();
     public static final EventType ShowConfermDialog = new EventType();
@@ -33,7 +28,7 @@ public class EventoEvents {
     public static final EventType Acquisto = new EventType();
     public static final EventType Conferma = new EventType();
 
- public static final EventType SentEmailConferma = new EventType();
+    public static final EventType SentEmailConferma = new EventType();
 
 
 }

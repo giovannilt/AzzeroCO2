@@ -98,7 +98,7 @@ public class Ordini extends LayoutContainer {
         column.setAlignment((Style.HorizontalAlignment.RIGHT));
         configs.add(column);
 
-        column = new ColumnConfig("editable", "Compensato", 150);
+        column = new ColumnConfig("compensato", "Compensato", 150);
         column.setRenderer(new GridCellRenderer<DettaglioModel>() {
             public String render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex,
                                  ListStore<DettaglioModel> store, Grid<DettaglioModel> grid) {

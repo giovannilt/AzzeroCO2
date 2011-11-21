@@ -2,6 +2,10 @@ package it.agilis.mens.azzeroCO2.client.components.evento;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.data.ModelData;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
@@ -15,6 +19,7 @@ import com.extjs.gxt.ui.client.widget.layout.VBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 
 import java.util.ArrayList;
@@ -129,6 +134,19 @@ public class EventoWest extends LayoutContainer {
         grid.setTrackMouseOver(false);
         //   grid.setLoadMask(true);
         //grid.setBorders(false);
+
+
+        grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
+        grid.getSelectionModel().addListener(Events.SelectionChange,
+                new Listener<SelectionChangedEvent<RiepilogoModel>>() {
+                    public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
+                        if (be.getSelection().size() > 0) {
+                            Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());
+                        }
+                    }
+                });
+
+        grid.setBorders(false);
 
         return grid;
     }

@@ -117,7 +117,7 @@ public class EventoDettaglio extends LayoutContainer {
         return calcoloCardPanel;
     }
 
-    public void previusTab() {
+    public String previusTab() {
         for (int i = eventoTab.getItems().size() - 1; i >= 0; i--) {
             TabItem item = eventoTab.getItems().get(i);
 
@@ -135,7 +135,7 @@ public class EventoDettaglio extends LayoutContainer {
                                 //  DettaglioModel riepilogo = riepilogo();
                                 Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                                 Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
-                                return;
+                                return layout.getActiveItem().getTitle();
                             }
                         }
                     }
@@ -148,13 +148,14 @@ public class EventoDettaglio extends LayoutContainer {
                     //  DettaglioModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
-                    return;
+                    return eventoTab.getItems().get(i - 1).getTitle();
                 }
             }
         }
+        return "";
     }
 
-    public void nextTab() {
+    public String nextTab() {
         int i = 0;
         for (TabItem item : eventoTab.getItems()) {
             i++;
@@ -172,7 +173,7 @@ public class EventoDettaglio extends LayoutContainer {
                                 posizioniLabel++;
                                 Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                                 Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
-                                return;
+                                return layout.getActiveItem().getTitle();
                             }
                         }
                     }
@@ -181,12 +182,12 @@ public class EventoDettaglio extends LayoutContainer {
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
                         Dispatcher.forwardEvent(EventoEvents.Conferma);
                         // Dispatcher.forwardEvent(EventoEvents.SentEmailConferma);
-                        return;
+                        return eventoTab.getItems().get(i).getText();
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
                         Dispatcher.forwardEvent(EventoEvents.Acquisto);
                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
-                            return;
+                            return eventoTab.getItems().get(i).getText();
                         }
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
@@ -207,11 +208,11 @@ public class EventoDettaglio extends LayoutContainer {
 
                     Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
-                    return;
+                    return eventoTab.getItems().get(i).getText();
                 }
-
             }
         }
+        return "";
     }
 
     public void clearPanel() {
@@ -242,6 +243,8 @@ public class EventoDettaglio extends LayoutContainer {
 
                 // TODO BETTER
                 formEnergia.setWidth("691");
+                formEnergia.syncSize();
+                formEnergia.recalculate();
                 break;
             }
         }
@@ -272,8 +275,6 @@ public class EventoDettaglio extends LayoutContainer {
         formManifestiPiegevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
 
         eventoFormAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
-
-
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
@@ -300,7 +301,6 @@ public class EventoDettaglio extends LayoutContainer {
                 previusTab();
             }
         }
-
         for (TabItem item : eventoTab.getItems()) {
             if (item.getText().equalsIgnoreCase("Calcolo")) {
                 ContentPanel calcolo = (ContentPanel) item.getItem(0);
@@ -312,10 +312,26 @@ public class EventoDettaglio extends LayoutContainer {
                 break;
             }
         }
-
         while (posizioniLabel != 7) {
             nextTab();
         }
         Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+    }
+
+    public void showStep(RiepilogoModel tabToShow) {
+        if (posizioniLabel != 1) {
+            while (posizioniLabel != 0) {
+                String s = previusTab();
+                if(s!=null && s.equalsIgnoreCase(tabToShow.getOggetto())){
+                  return;
+                }
+            }
+        }
+         while (posizioniText.size() >= posizioniLabel ) {
+                String s = nextTab();
+                if(s!=null && s.equalsIgnoreCase(tabToShow.getOggetto())){
+                  return;
+                }
+            }
     }
 }
