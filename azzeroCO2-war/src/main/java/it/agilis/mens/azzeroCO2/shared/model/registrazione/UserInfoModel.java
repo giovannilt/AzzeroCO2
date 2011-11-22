@@ -132,11 +132,11 @@ public class UserInfoModel extends BaseModel {
         set("reemail", reemail);
     }
 
-    public String getPartitaIvaCF() {
+    public String getPivaCF() {
          return  get("pivaCF");
     }
 
-    public void setPartitaIvaCF(String pivaCF) {
+    public void setPivaCF(String pivaCF) {
         set("pivaCF", pivaCF);
     }
 

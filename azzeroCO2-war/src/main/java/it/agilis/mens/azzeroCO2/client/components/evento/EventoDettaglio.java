@@ -322,20 +322,22 @@ public class EventoDettaglio extends LayoutContainer {
         if (posizioniLabel != 1) {
             while (posizioniLabel != 0) {
                 String s = previusTab();
-                if(s!=null && s.equalsIgnoreCase(tabToShow.getOggetto())){
-                  return;
+                if (s != null && s.equalsIgnoreCase(tabToShow.getOggetto())) {
+                    return;
                 }
             }
         }
-         while (posizioniText.size() >= posizioniLabel ) {
-                String s = nextTab();
-                if(s!=null && s.equalsIgnoreCase(tabToShow.getOggetto())){
-                  return;
-                }
+        while (posizioniText.size() >= posizioniLabel) {
+            String s = nextTab();
+            if (s != null && s.toLowerCase().startsWith(tabToShow.getOggetto())) {
+                return;
             }
+        }
     }
 
     public void clearStep(RiepilogoModel data) {
-       // TODO Meglio gestire l'evento su ogni evento form....
+        // TODO Meglio gestire l'evento su ogni evento form....
+
+        // -----
     }
 }

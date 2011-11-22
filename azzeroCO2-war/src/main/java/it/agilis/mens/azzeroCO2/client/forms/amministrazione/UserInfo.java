@@ -145,7 +145,7 @@ public class UserInfo extends LayoutContainer {
         ragioneSoc.getMessages().setMinLengthText("Ragione sociale troppo breve");
 
         ragioneSoc.setFieldLabel("Rag. sociale");
-        ragioneSoc.setName("ragioneSociale");
+        ragioneSoc.setName("ragSociale");
         ragioneSoc.addKeyListener(keyListener);
         ragioneSoc.setLabelStyle("width:150");
         formPanel.add(ragioneSoc);

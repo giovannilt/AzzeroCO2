@@ -71,7 +71,7 @@ public class Utils {
         userInfo.setCitta(registrazioneModel.getCitta());
         userInfo.setProvincia(registrazioneModel.getProvincia());
         userInfo.setCap(registrazioneModel.getCap());
-        userInfo.setpIvaCF(registrazioneModel.getPartitaIvaCF());
+        userInfo.setpIvaCF(registrazioneModel.getPivaCF());
         userInfo.setTelefono(registrazioneModel.getTelefono());
         userInfo.setFax(registrazioneModel.getFax());
         userInfo.setCellulare(registrazioneModel.getCellulare());
@@ -97,7 +97,7 @@ public class Utils {
         userInfoModel.setFax(userInfo.getFax());
         userInfoModel.setIndirizzo(userInfo.getIndirizzo());
         userInfoModel.setNome(userInfo.getNome());
-        userInfoModel.setPartitaIvaCF(userInfo.getpIvaCF());
+        userInfoModel.setPivaCF(userInfo.getpIvaCF());
         userInfoModel.setPassword(userInfo.getPassword());
         userInfoModel.setTelefono(userInfo.getTelefono());
         userInfoModel.setRagioneSoc(userInfo.getRagSociale());
