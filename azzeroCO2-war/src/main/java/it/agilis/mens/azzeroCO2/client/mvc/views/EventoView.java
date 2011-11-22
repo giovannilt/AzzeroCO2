@@ -65,6 +65,8 @@ public class EventoView extends View {
             onNext(event);
         } else if (eventType.equals(EventoEvents.ClearStep)) {
             eventoDettaglio.clearStep((RiepilogoModel) event.getData());
+            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
+            setRiassunto(riepilogo);
         } else if (eventType.equals(EventoEvents.ClearPanel)) {
             eventoDettaglio.clearPanel();
             west.clean();
