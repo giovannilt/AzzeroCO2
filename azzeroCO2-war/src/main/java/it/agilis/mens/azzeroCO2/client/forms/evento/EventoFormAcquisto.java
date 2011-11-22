@@ -325,7 +325,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         totaleKC02Label.setText(number.format(totale) + " kg/CO2?");
         titoloEvento.setText(riepilogo.getNome());
         if(riepilogo.getInizio()!=null && riepilogo.getFine()!=null){
-            luogoEvento.setText(riepilogo.getDove() + " Dal "+dateFormat.format(riepilogo.getInizio()) + " a "+dateFormat.format(riepilogo.getFine()) );
+            luogoEvento.setText(riepilogo.getDove() + "<br>dal "+dateFormat.format(riepilogo.getInizio()) + " al "+dateFormat.format(riepilogo.getFine()) );
         }else{
             luogoEvento.setText(riepilogo.getDove());
         }

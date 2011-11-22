@@ -71,7 +71,7 @@ public class EventoWest extends LayoutContainer {
         title.setStyleAttribute("text-align", "center");
         title.setStyleAttribute("vertical-align ", "middle");
         title.setWidth(250);
-        title.setHeight(25);
+        title.setHeight(60);
         title.setStyleAttribute("font-size","14px");
 
 
