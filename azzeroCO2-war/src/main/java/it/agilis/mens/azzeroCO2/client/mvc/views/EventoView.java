@@ -92,13 +92,16 @@ public class EventoView extends View {
 
     public void setRiassunto(DettaglioModel riepilogo) {
         west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo));
+        String nome= riepilogo.getNome()!=null ? riepilogo.getNome() : "Evento";
+        String dove= riepilogo.getDove()!=null ? riepilogo.getDove() : "";
+
         if (riepilogo.getInizio() != null
                 && riepilogo.getFine() != null) {
             String dal = "<br>dal " + dateFormat.format(riepilogo.getInizio());
             String a = " al " + dateFormat.format(riepilogo.getFine());
-            west.setTitle(riepilogo.getNome() +"<br>"+ riepilogo.getDove() + dal + a);
+            west.setTitle(nome +"<br>"+ dove + dal + a);
         } else {
-            west.setTitle(riepilogo.getNome()+"<br>"+ riepilogo.getDove());
+            west.setTitle(nome+"<br>"+ dove);
         }
     }
 
