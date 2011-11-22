@@ -143,13 +143,12 @@ public class EventoFormRiepilogo extends LayoutContainer {
                 ToolButton b = new ToolButton("x-tool-close", new SelectionListener<IconButtonEvent>() {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
-                          store.remove(model);
+                        store.remove(model);
                         Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
+                        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
                     }
                 });
-                // b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
                 b.setToolTip("Elimina");
-
                 return b;
             }
         });

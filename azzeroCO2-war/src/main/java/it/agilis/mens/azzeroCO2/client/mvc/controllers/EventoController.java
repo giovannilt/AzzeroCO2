@@ -61,6 +61,7 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.ShowInfoDialog);
         registerEventTypes(EventoEvents.ShowRiepilogo);
         registerEventTypes(EventoEvents.ShowStep);
+        registerEventTypes(EventoEvents.ClearStep);
     }
 
     @Override

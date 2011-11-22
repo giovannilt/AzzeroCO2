@@ -71,7 +71,8 @@ public class EventoView extends View {
         } else if (eventType.equals(EventoEvents.Previous)) {
             onPrevius(event);
         } else if (eventType.equals(EventoEvents.Riepilogo)) {
-            eventoDettaglio.riepilogo();
+            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
+            setRiassunto(riepilogo);
         } else if (event.getType().equals(EventoEvents.PreviousText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData());
@@ -87,7 +88,6 @@ public class EventoView extends View {
         } else if (event.getType().equals(EventoEvents.ShowConfermDialog)) {
             eventoConfermDialog.show();
         }
-
     }
 
     public void setRiassunto(DettaglioModel riepilogo) {

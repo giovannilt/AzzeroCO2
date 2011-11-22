@@ -322,16 +322,14 @@ public class EventoDettaglio extends LayoutContainer {
         if (posizioniLabel != 1) {
             while (posizioniLabel != 0) {
                 String s = previusTab();
-                if (s != null && s.equalsIgnoreCase(tabToShow.getOggetto())) {
+                if (s != null && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
                     return;
                 }
             }
         }
-        while (posizioniText.size() >= posizioniLabel) {
-            String s = nextTab();
-            if(s.equalsIgnoreCase("Conferma")){
-                return;
-            }
+        String s = "";
+        while (posizioniText.size() - 4 >= posizioniLabel) {
+             s = nextTab();
             if (s != null && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
                 return;
             }
@@ -339,8 +337,18 @@ public class EventoDettaglio extends LayoutContainer {
     }
 
     public void clearStep(RiepilogoModel data) {
-        // TODO Meglio gestire l'evento su ogni evento form....
-
-        // -----
+        if (data.getOggetto().equalsIgnoreCase("Energia")) {
+            formEnergia.clear();
+        } else if (data.getOggetto().startsWith("Trasporto Persone")) {
+            formTrasportoPersone.clear(true);
+        } else if (data.getOggetto().equalsIgnoreCase("Pernottamenti")) {
+            formPernottamenti.clear();
+        } else if (data.getOggetto().equalsIgnoreCase("Trasporto Merci")) {
+            formTrasportoMerci.clear();
+        } else if (data.getOggetto().equalsIgnoreCase("Publicazioni rilegate")) {
+            formPubblicazioniRilegate.clear(true);
+        } else if (data.getOggetto().equalsIgnoreCase("Manifesti")) {
+            formManifestiPiegevoliFogli.clear(true);
+        }
     }
 }
