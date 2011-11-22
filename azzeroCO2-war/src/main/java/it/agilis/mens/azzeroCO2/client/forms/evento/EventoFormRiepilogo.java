@@ -106,7 +106,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
         column = new ColumnConfig("oggetto", "Oggetto", 160);
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 395);
+        column = new ColumnConfig("dettagli", "Dettagli", 346);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);

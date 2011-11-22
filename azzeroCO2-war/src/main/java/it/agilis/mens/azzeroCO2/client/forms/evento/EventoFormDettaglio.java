@@ -77,7 +77,6 @@ public class EventoFormDettaglio extends LayoutContainer {
             }
         });
 
-
         LayoutContainer left = new LayoutContainer();
         left.setStyleAttribute("paddingRight", "10px");
         FormLayout layout = new FormLayout();
