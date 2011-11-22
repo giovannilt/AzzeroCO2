@@ -329,7 +329,10 @@ public class EventoDettaglio extends LayoutContainer {
         }
         while (posizioniText.size() >= posizioniLabel) {
             String s = nextTab();
-            if (s != null && s.toLowerCase().startsWith(tabToShow.getOggetto())) {
+            if(s.equalsIgnoreCase("Conferma")){
+                return;
+            }
+            if (s != null && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
                 return;
             }
         }
