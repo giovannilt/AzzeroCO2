@@ -1,5 +1,5 @@
 body {
-    background-color: #313646; /*#16181a;*/
+    background-color: #16181a;
     color: #fcfcfc;
 }
 
@@ -14,7 +14,7 @@ body {
 }
 
 .ext-el-mask-msg div {
-    background-color: #313646; /*#232d38;*/
+    background-color:  #232d38;
     border-color: #556;
     color: #fff;
     /*font: normal 14px tahoma, arial, helvetica, sans-serif;    Serena 07/11/2011 */
@@ -23,7 +23,7 @@ body {
 }
 
 .x-mask-loading div {
-    background-color: #313646; /*#232d38;*/
+    background-color: #232d38;
     background-image: url(../images/grid/loading.gif);
 }
 
@@ -1545,8 +1545,8 @@ a.x-menu-item {
     /*font-family: tahoma, arial, verdana, sans-serif; Serena 07/11/2011   */
     font-family: arial;
     border-color: #313646; /*#18181A;*/
-    background-color:#313646;
-    /*background-image: url(../images/panel/white-top-bottom.gif);          sd*/
+
+    background-image: url(../images/panel/white-top-bottom.gif);          sd*/
 }
 
 .x-panel-body {
@@ -1556,7 +1556,7 @@ a.x-menu-item {
 
 .x-tab-panel .x-panel-body {
     color: #fffff6;
-    border-color: #313646; /*#18181A;*/
+    border-color: #18181A;
     background-color: #1f2730;
 }
 
