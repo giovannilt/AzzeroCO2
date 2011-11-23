@@ -177,6 +177,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
         FormPanel formPanel = new FormPanel();
         formPanel.setFrame(true);
+
         ToolButton tool1 = new ToolButton("x-tool-help");
         formPanel.getHeader().addTool(tool1);
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {

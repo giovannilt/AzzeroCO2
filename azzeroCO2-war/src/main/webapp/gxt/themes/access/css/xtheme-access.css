@@ -1,5 +1,5 @@
 body {
-    background-color: #16181a;
+    background-color: #313646; /*#16181a;*/
     color: #fcfcfc;
 }
 
@@ -14,7 +14,7 @@ body {
 }
 
 .ext-el-mask-msg div {
-    background-color: #232d38;
+    background-color: #313646; /*#232d38;*/
     border-color: #556;
     color: #fff;
     /*font: normal 14px tahoma, arial, helvetica, sans-serif;    Serena 07/11/2011 */
@@ -23,7 +23,7 @@ body {
 }
 
 .x-mask-loading div {
-    background-color: #232d38;
+    background-color: #313646; /*#232d38;*/
     background-image: url(../images/grid/loading.gif);
 }
 
@@ -86,7 +86,7 @@ body {
 }
 
 .x-tab-panel-header, .x-tab-panel-footer {
-    border-color: #222;
+    border-color: #313646; /*#222;*/
 }
 
 ul.x-tab-strip-top {
@@ -102,7 +102,7 @@ ul.x-tab-strip-bottom {
 }
 
 .x-tab-panel-header-plain .x-tab-strip-spacer, .x-tab-panel-footer-plain .x-tab-strip-spacer {
-    border-color: #222;
+    border-color: #313646; /*#222;*/
     background-color: #e18325;
 }
 
@@ -154,7 +154,7 @@ ul.x-tab-strip-bottom {
 }
 
 .x-tab-panel-body {
-    border-color: #18181a;
+    border-color: #313646; /*#18181A;*/
     background-color: #fff;
 }
 
@@ -297,7 +297,7 @@ ul.x-tab-strip-bottom {
 }
 
 .x-form-invalid, textarea.x-form-invalid {
-    background-color: #15171a;
+    background-color: #313646; /*#15171A;*/*/
     background-image: url(../images/grid/invalid_line.gif);
     border-color: #c30;
 }
@@ -510,7 +510,7 @@ ul.x-tab-strip-bottom {
 }
 
 .x-toolbar {
-    border-color: #18181a;
+    border-color: #313646; /*#18181A;*/
     background-color: #393d4e;
     background-image: url(../images/toolbar/bg.gif);
 }
@@ -664,7 +664,7 @@ ul.x-tab-strip-bottom {
 }
 
 .x-grid3 {
-    background-color: #1f2933;
+    background-color: #313646; /*#1f2933;*/
 }
 
 .x-grid-panel .x-panel-mc .x-panel-body {
@@ -687,7 +687,8 @@ ul.x-tab-strip-bottom {
 }
 
 .x-grid3-row {
-    border-bottom: 1px solid #111;
+    border-bottom: 0px solid #111;
+    border-style:none;
 }
 
 .x-grid3-row-alt {
@@ -1344,7 +1345,7 @@ td.x-date-mp-sep {
 }
 
 .x-menu {
-    border-color: #222;
+    border-color: #313646; /*#222;*/
     background-color: #414551;
     background-image: url(../images/menu/menu.gif);
 }
@@ -1534,7 +1535,7 @@ a.x-menu-item {
 }
 
 .x-panel {
-    border-color: #18181a;
+    border-color: #313646; /*#18181A;*/
 }
 
 .x-panel-header {
@@ -1543,19 +1544,19 @@ a.x-menu-item {
     font-size: 14px;
     /*font-family: tahoma, arial, verdana, sans-serif; Serena 07/11/2011   */
     font-family: arial;
-    border-color: #18181a;
-    background-image: url(../images/panel/white-top-bottom.gif);
+    border-color: #313646; /*#18181A;*/
+    background-color:#313646;
+    /*background-image: url(../images/panel/white-top-bottom.gif);          sd*/
 }
 
 .x-panel-body {
-    color: #fffff6;
-    border-color: #18181a;
-    background-color: #232d38;
+    border-color: #313646; /*#18181A;*/
+    background-color: #313646; /*#232d38;*/
 }
 
 .x-tab-panel .x-panel-body {
     color: #fffff6;
-    border-color: #18181a;
+    border-color: #313646; /*#18181A;*/
     background-color: #1f2730;
 }
 
@@ -1628,11 +1629,11 @@ a.x-menu-item {
 }
 
 .x-panel-ghost ul {
-    border-color: #18181a;
+    border-color: #313646; /*#18181A;*/
 }
 
 .x-panel-dd-spacer {
-    border-color: #18181a;
+    border-color: #313646; /*#18181A;*/
 }
 
 .x-panel-fbar td, .x-panel-fbar span, .x-panel-fbar input, .x-panel-fbar div, .x-panel-fbar select, .x-panel-fbar label {
@@ -1642,7 +1643,7 @@ a.x-menu-item {
 
 .x-window-proxy {
     background-color: #1f2833;
-    border-color: #18181a;
+    border-color: #313646; /*#18181A;*/
 }
 
 .x-window-tl .x-window-header {
@@ -1676,7 +1677,7 @@ a.x-menu-item {
 }
 
 .x-window-mc {
-    border-color: #18181a;
+    border-color: #313646; /*#18181A;*/
     /*font: normal 14px tahoma, arial, helvetica, sans-serif; Serena 07/11/2011 */
     font: normal 14px arial;
     background-color: #1f2833;
@@ -1809,11 +1810,11 @@ body.x-body-masked .x-window-plain .x-window-mc {
 }
 
 .x-progress-wrap {
-    border-color: #18181a;
+    border-color: #313646; /*#18181A;*/
 }
 
 .x-progress-inner {
-    background-color: #232d38;
+    background-color: #313646; /*#232d38;*/
     background-image: none;
 }
 
@@ -1923,7 +1924,7 @@ body.x-body-masked .x-window-plain .x-window-mc {
 }
 
 .x-border {
-    border: 1px solid #18181a;
+    border: 1px solid #313646; /*#18181A;*/
 }
 
 .x-grid3-hd-row .x-grid3-hd {
@@ -1933,6 +1934,7 @@ body.x-body-masked .x-window-plain .x-window-mc {
 
 .x-grid3-row {
     border-color: #1f2933 black black;
+    border-style:none;
 }
 
 .x-grid3-row-checker, .x-grid3-hd-checker {
@@ -1950,7 +1952,7 @@ body.x-body-masked .x-window-plain .x-window-mc {
 }
 
 .x-tree3 {
-    background-color: #232D38;
+    background-color: #313646; /*#232D38;*/
 }
 
 .x-tree3-node-text {
@@ -1978,11 +1980,11 @@ body.x-body-masked .x-window-plain .x-window-mc {
 }
 
 .x-view, x-combo-list {
-    background-color: #232D38;
+    background-color: #313646; /*#232D38;*/
 }
 
 .x-view {
-    border: 1px solid #18181a;
+    border: 1px solid #313646; /*#18181A;*/
 }
 
 .x-view-highlightrow {
@@ -2075,6 +2077,7 @@ body.x-body-masked .x-window-plain .x-window-mc {
 
 .x-grid3-row-selected .x-tree3-node-text {
     color: black !important;
+
 }
 
 .x-contrast .x-ftree2-selected .x-tree3-node-text {

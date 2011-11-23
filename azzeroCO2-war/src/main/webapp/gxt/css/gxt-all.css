@@ -2748,6 +2748,7 @@ td.x-grid3-hd-over .x-grid3-hd-inner, td.sort-desc .x-grid3-hd-inner, td.sort-as
     overflow: auto;
     zoom: 1;
     position: relative;
+    background-color:#313646;    /*SD*/
 }
 
 .x-grid3-cell-text, .x-grid3-hd-text {
@@ -6586,7 +6587,7 @@ body.ext-ie6.x-body-masked .x-window select {
 .ext-el-mask-msg div {
     background-color: white;
     border-color: #a3bad9;
-    color: #222;
+    color: #313646; /*#222;*/
     font: normal 11px tahoma, arial, helvetica, sans-serif;
 }
 
@@ -7648,7 +7649,7 @@ td.x-date-mp-sep {
 }
 
 a.x-menu-item {
-    color: #222;
+    color: #313646; /*#222;*/
 }
 
 .x-menu-item-active {
@@ -8062,7 +8063,7 @@ body.x-body-masked .x-window-plain .x-window-mc {
 }
 
 .x-accordion-hd {
-    color: #222;
+    color: #313646; /*#222;*/
     font-weight: normal;
     background-image: url(../images/default/panel/light-hd.gif);
 }

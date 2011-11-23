@@ -1186,7 +1186,7 @@ td.x-date-mp-sep {
 }
 
 a.x-menu-item {
-    color: #222;
+    color: #313646; /*#222;*/
 }
 
 .x-menu-item-active {
