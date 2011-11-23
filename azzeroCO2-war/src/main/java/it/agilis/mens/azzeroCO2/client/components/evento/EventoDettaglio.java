@@ -111,7 +111,7 @@ public class EventoDettaglio extends LayoutContainer {
         calcoloCardPanel.add(formTrasportoMerci, new BorderLayoutData(Style.LayoutRegion.CENTER));
         formPubblicazioniRilegate.setTitle("Pubblicazioni Rilegate");
         calcoloCardPanel.add(formPubblicazioniRilegate, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        formManifestiPiegevoliFogli.setTitle("Manifesti Piegevoli Fogli");
+        formManifestiPiegevoliFogli.setTitle("Manifesti Pieghevoli");
         calcoloCardPanel.add(formManifestiPiegevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         return calcoloCardPanel;
@@ -148,7 +148,7 @@ public class EventoDettaglio extends LayoutContainer {
                     //  DettaglioModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
-                    return eventoTab.getItems().get(i - 1).getTitle();
+                    return eventoTab.getSelectedItem().getTitle();
                 }
             }
         }
@@ -319,18 +319,20 @@ public class EventoDettaglio extends LayoutContainer {
     }
 
     public void showStep(RiepilogoModel tabToShow) {
-        if (posizioniLabel != 1) {
-            while (posizioniLabel != 0) {
-                String s = previusTab();
-                if (s != null && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
-                    return;
-                }
+        while (posizioniLabel > 0) {
+            String s = previusTab();
+            if (s != null && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
+                return;
             }
         }
+
         String s = "";
         while (posizioniText.size() - 4 >= posizioniLabel) {
-             s = nextTab();
-            if (s != null && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
+            s = nextTab();
+            if(s.equalsIgnoreCase("Conferma"))   {
+                return ;
+            }
+            if (s != null  && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
                 return;
             }
         }
@@ -345,9 +347,9 @@ public class EventoDettaglio extends LayoutContainer {
             formPernottamenti.clear();
         } else if (data.getOggetto().equalsIgnoreCase("Trasporto Merci")) {
             formTrasportoMerci.clear();
-        } else if (data.getOggetto().equalsIgnoreCase("Publicazioni rilegate")) {
+        } else if (data.getOggetto().toLowerCase().startsWith("Pubblicazioni rilegate".toLowerCase())) {
             formPubblicazioniRilegate.clear(true);
-        } else if (data.getOggetto().equalsIgnoreCase("Manifesti")) {
+        } else if (data.getOggetto().toLowerCase().startsWith("Manifesti".toLowerCase())) {
             formManifestiPiegevoliFogli.clear(true);
         }
     }

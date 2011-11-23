@@ -27,7 +27,7 @@ public class EventoConfermDialog extends Dialog {
         setHeading("Annulla Evento");
        // setButtons(Dialog.YESNO);
         setBodyStyleName("pad-text");
-        addText("Sei sicuro di voler annullare il calolo?");
+        addText("Sei sicuro di voler annullare il calcolo?");
         //getItem(0).getFocusSupport().setIgnore(true);
         setModal(true);
 

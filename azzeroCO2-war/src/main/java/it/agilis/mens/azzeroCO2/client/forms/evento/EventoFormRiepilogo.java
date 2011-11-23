@@ -145,7 +145,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
                     public void componentSelected(IconButtonEvent ce) {
                         store.remove(model);
                         Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
-                        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+                     //   Dispatcher.forwardEvent(EventoEvents.Riepilogo);
                     }
                 });
                 b.setToolTip("Elimina");
@@ -159,15 +159,15 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
 
-        grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
-        grid.getSelectionModel().addListener(Events.SelectionChange,
+       /* grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
+        grid.getSelectionModel().addListener(Events.CellDoubleClick,
                 new Listener<SelectionChangedEvent<RiepilogoModel>>() {
                     public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
                         if (be.getSelection().size() > 0) {
                             Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());
                         }
                     }
-                });
+                });*/
 
         grid.setBorders(true);
         //      grid.setAutoHeight(true);
