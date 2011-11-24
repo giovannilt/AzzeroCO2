@@ -329,11 +329,13 @@ public class EventoFormAcquisto extends LayoutContainer {
         }else{
             luogoEvento.setText(riepilogo.getDove());
         }
-        inizioEvento.setText(riepilogo.getInizio().toString());
-        fineEvento.setText(riepilogo.getFine().toString());
-
+        if(riepilogo.getInizio()!=null){
+            inizioEvento.setText(dateFormat.format(riepilogo.getInizio()));
+        }
+        if(riepilogo.getFine()!=null){
+            fineEvento.setText(dateFormat.format(riepilogo.getFine()));
+        }
     }
-
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
         return selectedModel;
     }
