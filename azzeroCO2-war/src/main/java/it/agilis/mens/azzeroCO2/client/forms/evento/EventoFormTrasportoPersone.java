@@ -34,6 +34,8 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
     private final ToolBar toolBar = new ToolBar();
     private final FormPanel panel = createGroupForm();
     private final FormBinding formBindings = new FormBinding(panel, true);
+    private Grid<TrasportoPersoneModel> grid;
+    private ContentPanel cpEst = new ContentPanel();
 
     public EventoFormTrasportoPersone() {
         this.trasportoPersoneModel.setMonitorChanges(true);
@@ -61,56 +63,11 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
         formBindings.setStore(grid.getStore());
 
-        /*  final FormPanel panelTutte = createGroupForm();
-      panelTutte.add(panelTutte);
-      panelTutte.setHeading("Tutte le Persone");*/
-
         ContentPanel cpCentre = new ContentPanel();
         cpCentre.setHeaderVisible(false);
         final CardLayout cardLayout = new CardLayout();
         cpCentre.setLayout(cardLayout);
-        // cpCentre.add(panelTutte);
         cpCentre.add(panel);
-        //    grid.setEnabled(false);
-        //    toolBar.setEnabled(false);
-
-        /*   ContentPanel radioContent = new ContentPanel();
-        radioContent.setHeaderVisible(false);
-        radioContent.setFrame(true);
-
-        Radio tutti = new Radio();
-        tutti.addListener(Events.OnClick, new Listener<BaseEvent>() {
-            public void handleEvent(BaseEvent be) {
-                Info.display("Info", "Categoria Tutte le persone Attiva");
-               // cardLayout.setActiveItem(panelTutte);
-               // formBindings.unbind();
-                grid.setEnabled(false);
-                toolBar.setEnabled(false);
-            }
-        });
-        tutti.setBoxLabel("Tutte le persone");
-        tutti.setValue(true);
-
-        Radio personalizzato = new Radio();
-        personalizzato.addListener(Events.OnClick, new Listener<BaseEvent>() {
-            public void handleEvent(BaseEvent be) {
-                Info.display("Info", "Categoria Personalizzate Attiva");
-                panel.setHeading("Aggiungi una Categoria o Personalizza quelle esistenti");
-                cardLayout.setActiveItem(panel);
-                panel.setEnabled(false);
-                grid.setEnabled(true);
-                toolBar.setEnabled(true);
-            }
-        });
-        personalizzato.setBoxLabel("Personalizzato");
-
-        RadioGroup radioGroup = new RadioGroup();
-        radioGroup.add(tutti);
-        radioGroup.add(personalizzato);
-        radioContent.add(radioGroup);*/
-
-
-
 
         ContentPanel textContent = new ContentPanel();
         textContent.setHeaderVisible(false);
@@ -118,34 +75,19 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
         Text testo = new Text(" Scegli 'Tutte le persone' per calcolare le emissioni di tutte le persone che si sono spostate per l'evento.<br><br>Se invece vuoi dettagliare i trasporti per categoria di persone, non compilare 'Tutte le persone' ma usa le altre categorie disponibili o creane nuove.");
         testo.setStyleAttribute("font-size", "9pt");
-
-
-
-        // testo.setStyleAttribute("background-color","#2F3645");
         textContent.add(testo);
 
 
-        // testo.setStyleAttribute("background-color","#2F3645");
-        textContent.add(testo);
-
-
-
-
-        ContentPanel cpEst = new ContentPanel();
         cpEst.setFrame(false);
         cpEst.setHeading("Trasporto persone");
 
         cpEst.setLayout(new RowLayout(Orientation.VERTICAL));
-
-        //  cpEst.add(radioContent, new RowData(1, 0.10, new Margins(0, 0, 0, 0)));
-        //cpEst.add(grid, new RowData(1, 1, new Margins(0, 0, 0, 0)));
         cpEst.add(textContent, new RowData(1, .35, new Margins(0, 0, 0, 0)));
         cpEst.add(grid, new RowData(1, .65, new Margins(0, 0, 0, 0)));
 
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-        //cp.add(cpEst, new RowData(.35, .98, new Margins(0, 0, 0, 0)));
         cp.add(cpEst, new RowData(.35, .98));
         cp.add(panel, new RowData(.65, 1));
 
@@ -544,7 +486,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         TextField<String> text = new TextField<String>();
         text.setAllowBlank(false);
         column.setEditor(new CellEditor(text));
-        column.setWidth(50);
+        column.setWidth(150);
         configs.add(column);
 
         column = new ColumnConfig();
@@ -571,7 +513,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                 ToolButton b = new ToolButton("x-tool-close", new SelectionListener<IconButtonEvent>() {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
-                        if (trasportoPersoneModel.getModels().size()==1) {
+                        if (trasportoPersoneModel.getModels().size() == 1) {
                             Info.display("Info", "<ul><li>Impossibile Eliminare tutte le categorie </li></ul>");
                         } else {
                             Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
@@ -597,7 +539,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
         final ColumnModel cm = new ColumnModel(configs);
-        final Grid<TrasportoPersoneModel> grid = new Grid<TrasportoPersoneModel>(trasportoPersoneModel, cm);
+        grid = new Grid<TrasportoPersoneModel>(trasportoPersoneModel, cm);
 
         grid.setAutoExpandColumn("categoria");
         grid.setBorders(true);
@@ -631,6 +573,9 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         if (setDefault) {
             setDefault();
         }
+
+        cpEst.layout(true);
+
     }
 
     private void setDefault() {
@@ -663,6 +608,8 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         if (trasportoPersoneModel.size() == 0) {
             setDefault();
         }
+     //   grid.getSelectionModel().select(1, true);
+        cpEst.layout(true);
     }
 }
 
