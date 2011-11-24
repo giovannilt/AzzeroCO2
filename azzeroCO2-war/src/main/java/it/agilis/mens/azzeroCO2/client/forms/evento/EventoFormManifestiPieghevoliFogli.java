@@ -324,7 +324,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
                 ManifestiPieghevoliFogliModel cate = new ManifestiPieghevoliFogliModel();
                 cate.setCategoria("NuovaCategoria");
                 re.stopEditing(false);
-                manifestiPieghevoliFogliModel.insert(cate, 0);
+                manifestiPieghevoliFogliModel.insert(cate, manifestiPieghevoliFogliModel.getModels().size());
                 re.startEditing(manifestiPieghevoliFogliModel.indexOf(cate), true);
             }
         });

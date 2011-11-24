@@ -522,7 +522,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                 TrasportoPersoneModel cate = new TrasportoPersoneModel();
                 cate.setCategoria("Nuova Categoria");
                 re.stopEditing(false);
-                trasportoPersoneModel.insert(cate, 0);
+                trasportoPersoneModel.insert(cate, trasportoPersoneModel.getModels().size());
                 re.startEditing(trasportoPersoneModel.indexOf(cate), true);
             }
 
