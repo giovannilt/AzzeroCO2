@@ -513,7 +513,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                 ToolButton b = new ToolButton("x-tool-close", new SelectionListener<IconButtonEvent>() {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
-                        if (trasportoPersoneModel.getModels().size() == 1) {
+                        if (trasportoPersoneModel.getModels().size()==1) {
                             Info.display("Info", "<ul><li>Impossibile Eliminare tutte le categorie </li></ul>");
                         } else {
                             Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
