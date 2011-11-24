@@ -4439,7 +4439,7 @@ a.x-menu-item {
     padding: 5px 3px 4px 5px;
     border: 1px solid;
     line-height: 15px;
-    background: transparent repeat-x 0 -1px;
+    /*background: transparent repeat-x 0 -1px;  */
 }
 
 .x-panel-body {
@@ -4505,7 +4505,8 @@ a.x-menu-item {
 }
 
 .x-panel-tl {
-    background: transparent no-repeat 0 0;
+    /*background: transparent no-repeat 0 0; */
+
     padding-left: 6px;
     zoom: 1;
     border-bottom: 1px solid;
@@ -6664,9 +6665,9 @@ body.ext-ie6.x-body-masked .x-window select {
 }
 
 ul.x-tab-strip-top {
-    background-color: #cedff5;
-    background-image: url(../images/default/tabs/tab-strip-bg.gif);
-    border-bottom-color: #8db2e3;
+    background-color: #3F4757;
+    /*background-image: url(../images/default/tabs/tab-strip-bg.gif); */
+    border-bottom-color: #3F4757;
 }
 
 ul.x-tab-strip-bottom {
@@ -6700,7 +6701,8 @@ ul.x-tab-strip-bottom {
 }
 
 .x-tab-strip-top .x-tab-right, .x-tab-strip-top .x-tab-left, .x-tab-strip-top .x-tab-strip-inner {
-    background-image: url(../images/default/tabs/tabs-sprite.gif);
+    /*background-image: url(../images/default/tabs/tabs-sprite.gif); */
+    background-color:#3F4757;
 }
 
 .x-tab-strip-bottom .x-tab-right {
@@ -6982,9 +6984,9 @@ ul.x-tab-strip-bottom {
 }
 
 .x-toolbar {
-    border-color: #a9bfd3;
-    background-color: #d0def0;
-    background-image: url(../images/default/toolbar/bg.gif);
+    border-color: #3F4757;
+    background-color: #3F4757;
+    /*background-image: url(../images/default/toolbar/bg.gif); */
 }
 
 .x-toolbar td, .x-toolbar span, .x-toolbar input, .x-toolbar div, .x-toolbar select, .x-toolbar label {

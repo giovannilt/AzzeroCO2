@@ -86,13 +86,13 @@ body {
 }
 
 .x-tab-panel-header, .x-tab-panel-footer {
-    border-color: #313646; /*#222;*/
+    border-color: #3F4757; /*#222;*/
 }
 
 ul.x-tab-strip-top {
-    background-color: #343843;
-    background-image: url(../images/tabs/tab-strip-bg.gif);
-    border-bottom-color: #343d4e;
+    background-color: #3F4757;
+    /*background-image: url(../images/tabs/tab-strip-bg.gif); */
+    border-bottom-color: #3F4757;
 }
 
 ul.x-tab-strip-bottom {
@@ -102,7 +102,7 @@ ul.x-tab-strip-bottom {
 }
 
 .x-tab-panel-header-plain .x-tab-strip-spacer, .x-tab-panel-footer-plain .x-tab-strip-spacer {
-    border-color: #313646; /*#222;*/
+    border-color: #3F4757; /*#222;*/
     background-color: #e18325;
 }
 
@@ -117,7 +117,7 @@ ul.x-tab-strip-bottom {
 }
 
 .x-tab-strip-active span.x-tab-strip-text {
-    color: black;
+    color: white;
     font-weight: bold;
 }
 
@@ -126,7 +126,8 @@ ul.x-tab-strip-bottom {
 }
 
 .x-tab-strip-top .x-tab-right, .x-tab-strip-top .x-tab-left, .x-tab-strip-top .x-tab-strip-inner {
-    background-image: url(../images/tabs/tabs-sprite.gif);
+    /*background-image: url(../images/tabs/tabs-sprite.gif);  */
+    background-color:#3F4757;
 }
 
 .x-tab-strip-bottom .x-tab-right {
@@ -511,9 +512,9 @@ ul.x-tab-strip-bottom {
 }
 
 .x-toolbar {
-    border-color: #313646; /*#18181A;*/
-    background-color: #393d4e;
-    background-image: url(../images/toolbar/bg.gif);
+    border-color: #3F4757; /*#18181A;*/
+    background-color: #3F4757;
+    /*background-image: url(../images/toolbar/bg.gif);  */
 }
 
 .x-toolbar td, .x-toolbar span, .x-toolbar input, .x-toolbar div, .x-toolbar select, .x-toolbar label {
@@ -1548,9 +1549,9 @@ a.x-menu-item {
     font-size: 14px;
     /*font-family: tahoma, arial, verdana, sans-serif; Serena 07/11/2011   */
     font-family: arial;
-    border-color: #313646; /*#18181A;*/
+    border-color: #3F4757; /*#18181A;*/
 
-    background-image: url(../images/panel/white-top-bottom.gif);          sd*/
+    background-image: url(../images/panel/white-top-bottom.gif);          /*sd*/
 }
 
 .x-panel-body {
@@ -1565,7 +1566,7 @@ a.x-menu-item {
 }
 
 .x-panel-bbar .x-toolbar, .x-panel-tbar .x-toolbar {
-    border-color: #223;
+    border-color: #3F4757;
 }
 
 .x-panel-tbar-noheader .x-toolbar, .x-panel-mc .x-panel-tbar .x-toolbar {
@@ -1573,11 +1574,11 @@ a.x-menu-item {
 }
 
 .x-panel-body-noheader, .x-panel-mc .x-panel-body {
-    border-top-color: #223;
+    border-top-color: #3F4757;
 }
 
 .x-panel-tl .x-panel-header {
-    color: fff;
+
     /*font: bold 14px tahoma, arial, verdana, sans-serif;  Serena 07/11/2011 */
     font: bold 14px arial;
 }
@@ -1750,7 +1751,7 @@ body.x-body-masked .x-window-plain .x-window-mc {
 }
 
 .x-panel-noborder .x-panel-header-noborder {
-    border-bottom-color: #343d4e;
+    border-bottom-color: #3F4757;
 }
 
 .x-panel-noborder .x-panel-tbar-noborder .x-toolbar {
