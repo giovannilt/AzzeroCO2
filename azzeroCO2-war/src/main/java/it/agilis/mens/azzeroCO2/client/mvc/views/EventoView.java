@@ -27,6 +27,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.List;
@@ -77,11 +78,11 @@ public class EventoView extends View {
             setRiassunto(riepilogo);
         } else if (event.getType().equals(EventoEvents.PreviousText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
-            south.setTextLeft(event.<String>getData());
+            south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo);
         } else if (event.getType().equals(EventoEvents.NextText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
-            south.setTextRigth(event.<String>getData());
+            south.setTextRigth(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo);
         } else if (event.getType().equals(EventoEvents.ShowStep)) {
             eventoDettaglio.showStep(event.<RiepilogoModel>getData());
@@ -93,17 +94,24 @@ public class EventoView extends View {
     }
 
     public void setRiassunto(DettaglioModel riepilogo) {
-        west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo));
-        String nome= riepilogo.getNome()!=null ? riepilogo.getNome() : "Evento";
-        String dove= riepilogo.getDove()!=null ? riepilogo.getDove() : "";
+
+        if (riepilogo.getPagamentoModel() != null &&
+                riepilogo.getPagamentoModel().getEsito() != null) {
+
+            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo), Esito.valueOf(riepilogo.getPagamentoModel().getEsito()));
+        }else{
+            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo), Esito.WAITING);
+        }
+        String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Evento";
+        String dove = riepilogo.getDove() != null ? riepilogo.getDove() : "";
 
         if (riepilogo.getInizio() != null
                 && riepilogo.getFine() != null) {
             String dal = "<br>dal " + dateFormat.format(riepilogo.getInizio());
             String a = " al " + dateFormat.format(riepilogo.getFine());
-            west.setTitle(nome +"<br>"+ dove + dal + a);
+            west.setTitle(nome + "<br>" + dove + dal + a);
         } else {
-            west.setTitle(nome+"<br>"+ dove);
+            west.setTitle(nome + "<br>" + dove);
         }
     }
 

@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text totaleText = new Text("Totale KG/CO2");
     private Text totale = new Text("0.00");
+    private Esito esito = Esito.WAITING;
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -142,9 +144,11 @@ public class EventoFormRiepilogo extends LayoutContainer {
                 ToolButton b = new ToolButton("x-tool-close", new SelectionListener<IconButtonEvent>() {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
-                        store.remove(model);
-                        Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
-                        setTotale();
+                        if (!Esito.PAGATO.equals(esito)) {
+                            store.remove(model);
+                            Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
+                            setTotale();
+                        }
                     }
                 });
                 b.setToolTip("Elimina");
@@ -159,7 +163,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
 
         /* grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
-grid.getSelectionModel().addListener(Events.CellDoubleClick,
+           grid.getSelectionModel().addListener(Events.CellDoubleClick,
         new Listener<SelectionChangedEvent<RiepilogoModel>>() {
             public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
                 if (be.getSelection().size() > 0) {
@@ -175,13 +179,14 @@ grid.getSelectionModel().addListener(Events.CellDoubleClick,
         return grid;
     }
 
-    public void setEventoRiepilogoInStore(List<RiepilogoModel> models) {
+    public void setEventoRiepilogoInStore(List<RiepilogoModel> models, Esito esito) {
         for (RiepilogoModel r : store.getModels()) {
             store.remove(r);
         }
         this.store.add(models);
 
         setTotale();
+        this.esito = esito;
     }
 
     private void setTotale() {
@@ -189,10 +194,7 @@ grid.getSelectionModel().addListener(Events.CellDoubleClick,
         for (RiepilogoModel r : store.getModels()) {
             t += r.getKgCO2();
         }
-
         final NumberFormat number = NumberFormat.getFormat("0.00");
-
-
         totale.setText(number.format(t));
     }
 

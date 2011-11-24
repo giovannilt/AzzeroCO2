@@ -21,6 +21,7 @@ import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +38,12 @@ public class EventoWest extends LayoutContainer {
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Evento");
     private final String oggettoDiDefault="Non hai ancora inserito </br> nessuna attivita'";
+    private Esito esito;
 
     public EventoWest() {
         RiepilogoModel model = new RiepilogoModel();
         model.setOggetto(oggettoDiDefault);
         store.add(model);
-
     }
 
     @Override
@@ -140,7 +141,9 @@ public class EventoWest extends LayoutContainer {
                 new Listener<SelectionChangedEvent<RiepilogoModel>>() {
                     public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
                         if (be.getSelection().size() > 0) {
-                            Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());
+                            if(!Esito.PAGATO.equals(esito)){
+                                Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());
+                            }
                         }
                     }
                 });
@@ -151,13 +154,14 @@ public class EventoWest extends LayoutContainer {
     }
 
 
-    public void setInStore(List<RiepilogoModel> model) {
+    public void setInStore(List<RiepilogoModel> model, Esito esito) {
         store.removeAll();
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
             m.setOggetto("Non hai ancora inserito </br> nessuna attivita'");
             store.add(m);
         } else {
+             this.esito=esito;
             store.add(model);
         }
     }
@@ -171,7 +175,7 @@ public class EventoWest extends LayoutContainer {
     }
 
     public void clean(){
-        setInStore(null);
+        setInStore(null, Esito.WAITING);
         setTitle(null);
     }
 }

@@ -139,6 +139,15 @@ public class PagamentoModel extends BaseModel {
     public void setKgCO2(Double kgCO2) {
         set("kgCO2", kgCO2);
     }
+
+    public Long getId() {
+        return get("id");
+    }
+
+    public void setId(Long id) {
+        set("id", id);
+    }
+
      public String getEsito() {
         return get("esito");
     }

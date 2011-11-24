@@ -169,6 +169,7 @@ public class EventoController extends BaseController {
     private String getTotaleDaPagare(DettaglioModel model ) {
         List<RiepilogoModel> eventoRiepilogoModels = eventoView.riepilogo(getCoefficientiMAP());
 
+
         double totale = 0;
         for (RiepilogoModel r : eventoRiepilogoModels) {
             totale += r.getKgCO2();

@@ -13,6 +13,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensaz
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.ArrayList;
@@ -283,8 +284,14 @@ public class EventoDettaglio extends LayoutContainer {
     }
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
-        eventoFormRiepilogo.setEventoRiepilogoInStore(eventoRiepilogoModels);
-        eventoFormAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo());
+        DettaglioModel riepilogo = riepilogo();
+        Esito esito = Esito.WAITING;
+        if (riepilogo.getPagamentoModel() != null &&
+                riepilogo.getPagamentoModel().getEsito() != null) {
+            esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());
+        }
+        eventoFormRiepilogo.setEventoRiepilogoInStore(eventoRiepilogoModels, esito);
+        eventoFormAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo);
     }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
@@ -329,10 +336,10 @@ public class EventoDettaglio extends LayoutContainer {
         String s = "";
         while (posizioniText.size() - 4 >= posizioniLabel) {
             s = nextTab();
-            if(s.equalsIgnoreCase("Conferma"))   {
-                return ;
+            if (s.equalsIgnoreCase("Conferma")) {
+                return;
             }
-            if (s != null  && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
+            if (s != null && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
                 return;
             }
         }

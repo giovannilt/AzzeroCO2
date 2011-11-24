@@ -109,7 +109,7 @@ public class EventoFormEnergia extends LayoutContainer {
         label.setWidth(100);
         c.add(label);
         c.add(energiaElettrica, flex);
-        c.add(new LabelField("Kw/h"), flex);
+        c.add(new LabelField("Kwh"), flex);
         panel.add(c, new FormData("100%"));
 
         LayoutContainer c3 = new LayoutContainer();

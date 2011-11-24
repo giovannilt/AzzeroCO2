@@ -534,14 +534,15 @@ public class Utils {
         }
         PagamentoModel ricevuta = new PagamentoModel();
 
-
-        //TODO DA DEFINIRE....
-        ricevuta.setEsito(Esito.WAITING.toString());
+        ricevuta.setId(ricevutaDiPagamento.getId());
+        ricevuta.setEsito(it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito.values()[ricevutaDiPagamento.getESITO().ordinal()].toString());
         ricevuta.setMERCHANT_ID(ricevutaDiPagamento.getMERCHANT_ID());
         ricevuta.setDIVISA(ricevutaDiPagamento.getDIVISA());
         ricevuta.setIMPORTO(ricevutaDiPagamento.getIMPORTO());
         ricevuta.setMAC(ricevutaDiPagamento.getMAC());
         ricevuta.setORDER_ID(ricevutaDiPagamento.getORDER_ID());
+
+// TODO FINIRE.....
 
         return ricevuta;
     }
