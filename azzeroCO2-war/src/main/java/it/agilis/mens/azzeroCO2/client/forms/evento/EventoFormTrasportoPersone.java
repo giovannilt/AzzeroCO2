@@ -120,7 +120,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         testo.setStyleAttribute("font-size", "9pt");
 
 
-
         // testo.setStyleAttribute("background-color","#2F3645");
         textContent.add(testo);
 
