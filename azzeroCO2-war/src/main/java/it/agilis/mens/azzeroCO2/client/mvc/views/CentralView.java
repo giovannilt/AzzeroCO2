@@ -17,13 +17,14 @@ import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.*;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
-import it.agilis.mens.azzeroCO2.shared.Profile;
+import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -287,11 +288,11 @@ public class CentralView extends View {
                     LayoutContainer rigo = new LayoutContainer();
                     rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-                    benvenuto = new Text("Benvenuto ");
+                    benvenuto = new Text("Ad oggi hai compensato NUMBER Kg di CO2");
                     benvenuto.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
                     benvenuto.setBounds(30, 30, 250, 180);
 
-                    rigo.add(benvenuto, new RowData(1, 1, new Margins(4, 1, 4, 1)));
+                    rigo.add(benvenuto, new RowData(1, 1, new Margins(10, 10, 10, 10)));
                     logInLogOut.add(rigo);
 
                 }
@@ -323,11 +324,13 @@ public class CentralView extends View {
 
     }
 
-    public void enableDisableLoginForm(Profile profile) {
+    public void enableDisableLoginForm(UserInfoModel userInfoModel) {
+
+        final NumberFormat number = NumberFormat.getFormat("0.00");
         CardLayout layout1 = (CardLayout) logInLogOut.getLayout();
         if (layout1.getActiveItem() instanceof FormPanel) {
             layout1.setActiveItem(logInLogOut.getItem(1));
-            benvenuto.setText(benvenuto.getText() + " " + profile.name());
+            benvenuto.setText(benvenuto.getText().replaceFirst("NUMBER", number.format(userInfoModel.getKCO2Compensati())));
         } else {
             layout1.setActiveItem(logInLogOut.getItem(0));
         }

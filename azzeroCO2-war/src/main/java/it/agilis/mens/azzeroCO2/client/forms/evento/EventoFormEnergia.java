@@ -81,7 +81,7 @@ public class EventoFormEnergia extends LayoutContainer {
             }
         });
 
-        HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
+   //     HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         LayoutContainer c2 = new LayoutContainer();
         HBoxLayout layout2 = new HBoxLayout();
         layout2.setPadding(new Padding(10));
@@ -90,7 +90,7 @@ public class EventoFormEnergia extends LayoutContainer {
 
         LabelField widget = new LabelField("Inserisci nei relativi campi la qualita' di energia utilizzata per realizzare l'evento.");
         widget.setStyleAttribute("font-weight", "bolder");
-        c2.add(widget, flex);
+        c2.add(widget);
 
         panel.add(c2);
 
@@ -108,8 +108,10 @@ public class EventoFormEnergia extends LayoutContainer {
         LabelField label = new LabelField("Energia Elettrica ");
         label.setWidth(100);
         c.add(label);
-        c.add(energiaElettrica, flex);
-        c.add(new LabelField("Kwh"), flex);
+        c.add(energiaElettrica);
+        LabelField kwh = new LabelField("Kwh");
+        kwh.setStyleAttribute("font-size", "11px");
+        c.add(kwh, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
         panel.add(c, new FormData("100%"));
 
         LayoutContainer c3 = new LayoutContainer();
@@ -120,7 +122,7 @@ public class EventoFormEnergia extends LayoutContainer {
 
         LabelField note = new LabelField("Non riempire in caso di energia da fonti rinnovabili.</br></br></br>");
         note.setStyleAttribute("font-style", "italic");
-        c3.add(note, flex);
+        c3.add(note);
 
         panel.add(c3);
 
@@ -138,8 +140,10 @@ public class EventoFormEnergia extends LayoutContainer {
         label = new LabelField("Gas Metano ");
         label.setWidth(100);
         cGas.add(label);
-        cGas.add(gasMetano, flex);
-        cGas.add(new LabelField("m<sup>3</sup>"), flex);
+        cGas.add(gasMetano);
+        LabelField widget1 = new LabelField("m<sup>3</sup>");
+        widget1.setStyleAttribute("font-size","11px");
+        cGas.add(widget1, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
 
         panel.add(cGas, new FormData("100%"));
 
@@ -157,8 +161,10 @@ public class EventoFormEnergia extends LayoutContainer {
         label = new LabelField("Gasolio ");
         label.setWidth(100);
         cGasoline.add(label);
-        cGasoline.add(gasolio, flex);
-        cGasoline.add(new LabelField("Litri"), flex);
+        cGasoline.add(gasolio);
+        LabelField litri = new LabelField("Litri");
+        litri.setStyleAttribute("font-size","11px");
+        cGasoline.add(litri, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
 
 
         panel.add(cGasoline, new FormData("100%"));

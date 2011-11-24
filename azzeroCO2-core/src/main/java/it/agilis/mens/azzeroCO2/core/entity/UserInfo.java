@@ -19,7 +19,7 @@ public class UserInfo implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @OneToMany (fetch= FetchType.LAZY)
+    @OneToMany (fetch= FetchType.EAGER)
     private List<Ordine> ordini;
 
     private String userName;

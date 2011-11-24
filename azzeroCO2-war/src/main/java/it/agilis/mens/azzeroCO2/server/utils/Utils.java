@@ -9,18 +9,16 @@ package it.agilis.mens.azzeroCO2.server.utils;
  */
 
 import it.agilis.mens.azzeroCO2.core.entity.*;
-import it.agilis.mens.azzeroCO2.core.entity.Esito;
-import it.agilis.mens.azzeroCO2.core.entity.Profile;
+import it.agilis.mens.azzeroCO2.core.register.impl.Email;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
-import it.agilis.mens.azzeroCO2.shared.*;
+import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
-import it.agilis.mens.azzeroCO2.shared.model.pagamento.*;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.core.register.impl.Email;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,8 +102,12 @@ public class Utils {
         userInfoModel.setId(userInfo.getId());
         userInfoModel.setProvincia(userInfo.getProvincia());
 
+        double kco2Compensati=0.0;
+        for(Ordine o: userInfo.getOrdini()){
+          kco2Compensati+= o.getKgCo2();
+        }
+        userInfoModel.setKCO2Compensati(kco2Compensati);
         userInfoModel.setProfilo(userInfo.getProfile().ordinal());
-
         userInfoModel.setId(userInfo.getId());
 
         return userInfoModel;
