@@ -254,6 +254,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
 
         TextField<String> text = new TextField<String>();
         text.setAllowBlank(false);
+         column.setWidth(160);
         column.setEditor(new CellEditor(text));
         configs.add(column);
 
@@ -309,7 +310,8 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         final ColumnModel cm = new ColumnModel(configs);
         final Grid<ManifestiPieghevoliFogliModel> grid = new Grid<ManifestiPieghevoliFogliModel>(manifestiPieghevoliFogliModel, cm);
 
-        grid.setAutoExpandColumn("categoria");
+      //  grid.setAutoExpandColumn("categoria");
+        grid.setColumnResize(true);
         grid.setBorders(true);
         grid.addPlugin(re);
         grid.setHideHeaders(true);
@@ -350,6 +352,9 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         this.manifestiPieghevoliFogliModel.add(manifestiPieghevoliFogliModel);
         if (manifestiPieghevoliFogliModel.size() == 0) {
             setDefault();
+        }
+        if (grid != null) {
+            grid.getSelectionModel().select(manifestiPieghevoliFogliModel.get(0), true);
         }
 
     }

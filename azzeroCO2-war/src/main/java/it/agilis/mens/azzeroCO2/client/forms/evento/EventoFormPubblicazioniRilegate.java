@@ -335,6 +335,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
 
         TextField<String> text = new TextField<String>();
         text.setAllowBlank(false);
+        column.setWidth(160);
         column.setEditor(new CellEditor(text));
         configs.add(column);
 
@@ -390,7 +391,8 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         final ColumnModel cm = new ColumnModel(configs);
         final Grid<PubblicazioniRilegateModel> grid = new Grid<PubblicazioniRilegateModel>(pubblicazioniRilegateModel, cm);
 
-        grid.setAutoExpandColumn("categoria");
+        // grid.setAutoExpandColumn("categoria");
+        grid.setColumnResize(true);
         grid.setBorders(true);
         grid.addPlugin(re);
         grid.setHideHeaders(true);
@@ -431,6 +433,9 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         if (pubblicazioniRilegateModel.size() == 0) {
             setDefault();
         }
+        if (grid != null) {
+            grid.getSelectionModel().select(pubblicazioniRilegateModel.get(0), true);
+        }
     }
 
     private void setDefault() {
@@ -447,12 +452,10 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
         libro.setCategoria("Libro");
 
 
-
         pubblicazioniRilegateModel.add(catalogo);
         pubblicazioniRilegateModel.add(bilancio);
         pubblicazioniRilegateModel.add(report);
         pubblicazioniRilegateModel.add(libro);
-
 
 
         formBindings.bind(catalogo);

@@ -108,10 +108,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                 });
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-
-
         grid.getSelectionModel().select(0, true);
-
         add(cp, centerData);
     }
 
@@ -430,31 +427,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             layoutKm9000input.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km9000input.setLayout(layoutKm9000input);
 
-            /*Image bus9000 = new Image(AzzeroCO2Resources.INSTANCE.bus());
-            NumberField busKm9000 = new NumberField();
-            busKm9000.setName("busKm9000");
-            busKm9000.setWidth(60);
-            busKm9000.setRegex("[0-9]+");
-            busKm9000.getMessages().setRegexText("Inserisci un numero intero");
-            busKm9000.setPropertyEditorType(Integer.class);
-
-            Image automobile9000 = new Image(AzzeroCO2Resources.INSTANCE.automobile());
-            NumberField autoKm9000 = new NumberField();
-            autoKm9000.setName("autoKm9000");
-            autoKm9000.setWidth(60);
-            autoKm9000.setRegex("[0-9]+");
-            autoKm9000.getMessages().setRegexText("Inserisci un numero intero");
-            autoKm9000.setPropertyEditorType(Integer.class);
-
-            Image treno9000 = new Image(AzzeroCO2Resources.INSTANCE.treno());
-            NumberField trenoKm9000 = new NumberField();
-            trenoKm9000.setName("trenoKm9000");
-            trenoKm9000.setWidth(60);
-            trenoKm9000.setRegex("[0-9]+");
-            trenoKm9000.getMessages().setRegexText("Inserisci un numero intero");
-            trenoKm9000.setPropertyEditorType(Integer.class);
-            */
-
             Image aereo9000 = new Image(AzzeroCO2Resources.INSTANCE.aereo());
             NumberField aereoKm9000 = new NumberField();
             aereoKm9000.setName("aereoKm9000");
@@ -463,12 +435,6 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             aereoKm9000.getMessages().setRegexText("Inserisci un numero intero");
             aereoKm9000.setPropertyEditorType(Integer.class);
 
-            //km9000input.add(bus9000);
-            //km9000input.add(busKm9000, flex);
-            //km9000input.add(automobile9000);
-            //km9000input.add(autoKm9000, flex);
-            //km9000input.add(treno9000);
-            //km9000input.add(trenoKm9000, flex);
             km9000input.add(aereo9000);
             km9000input.add(aereoKm9000, flex);
             formPanel.add(km9000input);
@@ -486,7 +452,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         TextField<String> text = new TextField<String>();
         text.setAllowBlank(false);
         column.setEditor(new CellEditor(text));
-        column.setWidth(150);
+        column.setWidth(160);
         configs.add(column);
 
         column = new ColumnConfig();
@@ -513,7 +479,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
                 ToolButton b = new ToolButton("x-tool-close", new SelectionListener<IconButtonEvent>() {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
-                        if (trasportoPersoneModel.getModels().size()==1) {
+                        if (trasportoPersoneModel.getModels().size() == 1) {
                             Info.display("Info", "<ul><li>Impossibile Eliminare tutte le categorie </li></ul>");
                         } else {
                             Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
@@ -541,7 +507,8 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         final ColumnModel cm = new ColumnModel(configs);
         grid = new Grid<TrasportoPersoneModel>(trasportoPersoneModel, cm);
 
-        grid.setAutoExpandColumn("categoria");
+      //  grid.setAutoExpandColumn("categoria");
+        grid.setColumnResize(true);
         grid.setBorders(true);
         grid.addPlugin(re);
         grid.setHideHeaders(true);
@@ -567,14 +534,14 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
 
     public void clear(boolean setDefault) {
-        for (TrasportoPersoneModel m : this.trasportoPersoneModel.getModels()) {
-            this.trasportoPersoneModel.remove(m);
+
+        trasportoPersoneModel.removeAll();
+        if (grid != null) {
+            grid.getSelectionModel().bind(trasportoPersoneModel);
         }
         if (setDefault) {
             setDefault();
         }
-
-        cpEst.layout(true);
 
     }
 
@@ -596,6 +563,9 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         trasportoPersoneModel.add(tpmStaff);
         trasportoPersoneModel.add(tpmFornitori);
         formBindings.bind(tpm);
+        if (grid != null) {
+            grid.getSelectionModel().bind(trasportoPersoneModel);
+        }
     }
 
     public ArrayList<TrasportoPersoneModel> getTrasportoPersoneModel() {
@@ -608,8 +578,9 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         if (trasportoPersoneModel.size() == 0) {
             setDefault();
         }
-     //   grid.getSelectionModel().select(1, true);
-        cpEst.layout(true);
+        if (grid != null) {
+            grid.getSelectionModel().select(trasportoPersoneModel.get(0), true);
+        }
     }
 }
 
