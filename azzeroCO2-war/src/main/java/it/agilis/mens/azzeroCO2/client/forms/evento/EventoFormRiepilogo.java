@@ -78,7 +78,6 @@ public class EventoFormRiepilogo extends LayoutContainer {
         totale.setStyleAttribute("color", "#D38131");
         c.add(totale, new HBoxLayoutData(new Margins(0, 20, 0, 0)));
 
-
         cpEst.add(c, new RowData(1, 0.05));
 
         // TODO MIGLIORARE
@@ -145,7 +144,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
                     public void componentSelected(IconButtonEvent ce) {
                         store.remove(model);
                         Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
-                     //   Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+                        setTotale();
                     }
                 });
                 b.setToolTip("Elimina");
@@ -159,15 +158,15 @@ public class EventoFormRiepilogo extends LayoutContainer {
 
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
 
-       /* grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
-        grid.getSelectionModel().addListener(Events.CellDoubleClick,
-                new Listener<SelectionChangedEvent<RiepilogoModel>>() {
-                    public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
-                        if (be.getSelection().size() > 0) {
-                            Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());
-                        }
-                    }
-                });*/
+        /* grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
+grid.getSelectionModel().addListener(Events.CellDoubleClick,
+        new Listener<SelectionChangedEvent<RiepilogoModel>>() {
+            public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
+                if (be.getSelection().size() > 0) {
+                    Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());
+                }
+            }
+        });*/
 
         grid.setBorders(true);
         //      grid.setAutoHeight(true);
@@ -182,6 +181,10 @@ public class EventoFormRiepilogo extends LayoutContainer {
         }
         this.store.add(models);
 
+        setTotale();
+    }
+
+    private void setTotale() {
         double t = 0;
         for (RiepilogoModel r : store.getModels()) {
             t += r.getKgCO2();
