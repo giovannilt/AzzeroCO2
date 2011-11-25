@@ -16,6 +16,8 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 /**
  * Created by IntelliJ IDEA.
@@ -98,34 +100,45 @@ public class EventoSouth extends LayoutContainer {
     }
 
 
-    public void setTextLeft(String left_t) {
-
-        if (left_t.length() == 0) {
-            left.setEnabled(false);
+    public void setTextLeft(String left_t, DettaglioModel riepilogo) {
+        if (riepilogo.getPagamentoModel() != null
+                && riepilogo.getPagamentoModel().getEsito() != null
+                && riepilogo.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
             left.setVisible(false);
             leftText.setVisible(false);
-
         } else {
-            left.setEnabled(true);
-            left.setVisible(true);
-            leftText.setVisible(true);
-        }
-        leftText.setText(left_t);
-        c.layout(true);
+            if (left_t.length() == 0) {
+                left.setEnabled(false);
+                left.setVisible(false);
+                leftText.setVisible(false);
 
+            } else {
+                left.setEnabled(true);
+                left.setVisible(true);
+                leftText.setVisible(true);
+            }
+            leftText.setText(left_t);
+        }
+        c.layout(true);
     }
 
-    public void setTextRigth(String right_t) {
-        if (right_t.length() == 0) {
-            right.setEnabled(false);
+    public void setTextRigth(String right_t, DettaglioModel riepilogo) {
+        if (riepilogo.getPagamentoModel() != null
+                && riepilogo.getPagamentoModel().getEsito() != null
+                && riepilogo.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
             right.setVisible(false);
-
+            rigthText.setVisible(false);
         } else {
-            right.setEnabled(true);
-            right.setVisible(true);
+            if (right_t.length() == 0) {
+                right.setEnabled(false);
+                right.setVisible(false);
+            } else {
+                right.setEnabled(true);
+                right.setVisible(true);
 
+            }
+            rigthText.setText(right_t);
         }
-        rigthText.setText(right_t);
         c.layout(true);
     }
 

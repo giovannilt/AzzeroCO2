@@ -18,8 +18,6 @@ public class AzzeroCO2 implements EntryPoint {
         Registry.register(AzzeroCO2Constants.HUSTON_SERVICE, GWT.<Object>create(HustonService.class));
 
         Dispatcher dispatcher = Dispatcher.get();
-
-
         dispatcher.addController(new AzzeroCO2Controller());
 
         dispatcher.addController(new LoginController());

@@ -404,7 +404,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 PubblicazioniRilegateModel cate = new PubblicazioniRilegateModel();
                 cate.setCategoria("Nuova Categoria");
                 re.stopEditing(false);
-                pubblicazioniRilegateModel.insert(cate, 0);
+                pubblicazioniRilegateModel.insert(cate, pubblicazioniRilegateModel.getModels().size());
                 re.startEditing(pubblicazioniRilegateModel.indexOf(cate), true);
             }
         });

@@ -13,7 +13,7 @@ public class UserInfoModel extends BaseModel {
 
 
     public String getUserName() {
-         return get("userName");
+        return get("userName");
     }
 
     public void setUserName(String userName) {
@@ -21,23 +21,23 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getPassword() {
-        return  get("password");
+        return get("password");
     }
 
     public void setPassword(String password) {
-       set("password", password);
+        set("password", password);
     }
 
     public String getRepassword() {
-        return  get("repassword");
+        return get("repassword");
     }
 
     public void setRepassword(String repassword) {
-       set("repassword", repassword);
+        set("repassword", repassword);
     }
 
     public String getNome() {
-         return get("nome");
+        return get("nome");
     }
 
     public void setNome(String nome) {
@@ -45,7 +45,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getCognome() {
-         return get("cognome");
+        return get("cognome");
     }
 
     public void setCognome(String cognome) {
@@ -53,7 +53,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getRagioneSoc() {
-         return get("ragioneSociale");
+        return get("ragioneSociale");
     }
 
     public void setRagioneSoc(String ragioneSociale) {
@@ -61,7 +61,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getIndirizzo() {
-         return  get("indirizzo");
+        return get("indirizzo");
     }
 
     public void setIndirizzo(String indirizzo) {
@@ -69,7 +69,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getCitta() {
-         return  get("citta");
+        return get("citta");
     }
 
     public void setCitta(String citta) {
@@ -77,7 +77,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getProvincia() {
-         return  get("provincia");
+        return get("provincia");
     }
 
     public void setProvincia(String provincia) {
@@ -85,7 +85,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getCap() {
-         return  get("cap");
+        return get("cap");
     }
 
     public void setCap(String cap) {
@@ -93,7 +93,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getTelefono() {
-         return  get("telefono");
+        return get("telefono");
     }
 
     public void setTelefono(String telefono) {
@@ -101,7 +101,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getFax() {
-         return get("fax");
+        return get("fax");
     }
 
     public void setFax(String fax) {
@@ -109,7 +109,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getCellulare() {
-         return get("cellulare");
+        return get("cellulare");
     }
 
     public void setCellulare(String cellulare) {
@@ -117,7 +117,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getEmail() {
-         return  get("email");
+        return get("email");
     }
 
     public void setEmail(String email) {
@@ -125,7 +125,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getReemail() {
-         return  get("reemail");
+        return get("reemail");
     }
 
     public void setReemail(String reemail) {
@@ -133,7 +133,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public String getPivaCF() {
-         return  get("pivaCF");
+        return get("pivaCF");
     }
 
     public void setPivaCF(String pivaCF) {
@@ -141,7 +141,7 @@ public class UserInfoModel extends BaseModel {
     }
 
     public Integer getProfilo() {
-         return  get("profile");
+        return get("profile");
     }
 
     public void setProfilo(Integer profile) {
@@ -149,10 +149,18 @@ public class UserInfoModel extends BaseModel {
     }
 
     public void setId(Long id) {
-          set("id", id);
-    }
-    public Long getId(){
-        return  get("id");
+        set("id", id);
     }
 
+    public Long getId() {
+        return get("id");
+    }
+
+    public void setKCO2Compensati(Double KCO2Compensati) {
+        set("KCO2Compensati", KCO2Compensati);
+    }
+
+    public Double getKCO2Compensati() {
+        return get("KCO2Compensati");
+    }
 }

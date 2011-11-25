@@ -11,11 +11,11 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
  */
 public class RiepilogoModel extends BaseModelData {
 
-   public int getIndex() {
-       return (Integer) get("index");
-   }
+    public int getIndex() {
+        return (Integer) get("index");
+    }
 
-    public void setIndex(int index){
+    public void setIndex(int index) {
         set("index", index);
     }
 
@@ -42,7 +42,5 @@ public class RiepilogoModel extends BaseModelData {
     public void setKgCO2(Double kgCO2) {
         set("kgCO2", kgCO2);
     }
-
-
 }
 
