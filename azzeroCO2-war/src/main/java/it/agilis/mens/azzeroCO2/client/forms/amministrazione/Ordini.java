@@ -55,14 +55,11 @@ public class Ordini extends LayoutContainer {
         final NumberFormat number = NumberFormat.getFormat("0.00");
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-
         ColumnConfig column = new ColumnConfig("ordineId", "Num. Ordine", 100);
         configs.add(column);
 
-
         column = new ColumnConfig("nome", "Descrizione", 200);
         configs.add(column);
-
 
         column = new ColumnConfig("lastUpdate", "Ultima Modifica", 120);
         column.setDateTimeFormat(DateTimeFormat.getFormat("dd.MM.y HH:mm"));
