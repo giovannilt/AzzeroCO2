@@ -33,7 +33,7 @@
             <version>${gwtVersion}</version>
             <scope>runtime</scope>
         </dependency>
-       <!-- <dependency>
+        <!-- <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-dev</artifactId>
             <version>${gwtVersion}</version>
@@ -51,6 +51,11 @@
             <artifactId>gxt</artifactId>
             <version>${gxt.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.gxt-multi-upload</groupId>
+            <artifactId>gxt-multi-upload</artifactId>
+            <version>0.1</version>
         </dependency>
 
         <dependency>
@@ -90,6 +95,36 @@
             <version>1.2.1</version>
             <!-- <scope>runtime</scope>-->
         </dependency>
+
+        <!-- Jackson JSON API -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+          <!-- Jackson JSON API FINE -->
+       <!-- FileUpload libraries -->
+        <dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.4</version>
+		</dependency>
+       <!-- FileUpload libraries FINE-->
         <dependency>
             <groupId>c3p0</groupId>
             <artifactId>c3p0</artifactId>
@@ -104,6 +139,7 @@
             <groupId>hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>1.8.0.10</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>httpunit</groupId>
@@ -185,7 +221,7 @@
                 <configuration>
                     <prefix>git</prefix>
                     <dateFormat>dd.MM.yyyy '@' HH:mm:ss z</dateFormat>
-                    <verbose>true</verbose>
+                    <verbose>false</verbose>
                     <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
                 </configuration>
             </plugin>

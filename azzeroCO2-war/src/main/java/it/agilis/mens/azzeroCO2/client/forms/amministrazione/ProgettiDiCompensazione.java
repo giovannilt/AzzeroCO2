@@ -1,12 +1,13 @@
 package it.agilis.mens.azzeroCO2.client.forms.amministrazione;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.event.ButtonEvent;
-import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
+import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
@@ -17,6 +18,9 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
+import gxt.multiupload.MultiUploadPresenter;
+import gxt.multiupload.MultiUploadView;
+import it.agilis.mens.azzeroCO2.client.components.amministrazione.FileUploadGrid;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 
@@ -33,7 +37,7 @@ import java.util.List;
 public class ProgettiDiCompensazione extends LayoutContainer {
 
     final ListStore<ProgettoDiCompensazioneModel> store = new ListStore<ProgettoDiCompensazioneModel>();
-
+    private static final String UPLOAD_URL = "upload";
 
     protected ProgettoDiCompensazioneModel createProgetto() {
         ProgettoDiCompensazioneModel progetto = new ProgettoDiCompensazioneModel();
@@ -65,20 +69,47 @@ public class ProgettiDiCompensazione extends LayoutContainer {
     }
 
     private ContentPanel createCentre() {
+        GridCellRenderer<ProgettoDiCompensazioneModel> buttonRenderer = new GridCellRenderer<ProgettoDiCompensazioneModel>() {
+
+            private boolean init;
+
+            public Object render(final ProgettoDiCompensazioneModel model, String property, ColumnData config, final int rowIndex,
+                                 final int colIndex, ListStore<ProgettoDiCompensazioneModel> store, Grid<ProgettoDiCompensazioneModel> grid) {
+                if (!init) {
+                    init = true;
+                    grid.addListener(Events.ColumnResize, new Listener<GridEvent<ProgettoDiCompensazioneModel>>() {
+
+                        public void handleEvent(GridEvent<ProgettoDiCompensazioneModel> be) {
+                            for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
+                                if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
+                                        && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
+                                    ((BoxComponent) be.getGrid().getView().getWidget(i, be.getColIndex())).setWidth(be.getWidth() - 10);
+
+
+                                }
+                            }
+                        }
+                    });
+                }
+                Button b = new Button((String) model.get(property), new SelectionListener<ButtonEvent>() {
+                    @Override
+                    public void componentSelected(ButtonEvent ce) {
+                        MultiUploadView view = new MultiUploadView(new FileUploadGrid());
+                        view.getFormPanel().setAction(UPLOAD_URL);
+                        MultiUploadPresenter presenter = new MultiUploadPresenter(view);
+                        presenter.go();
+                        Info.display("CIAO", "<ul><li> CIAO </li></ul>");
+                    }
+                });
+                b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
+                b.setToolTip("Click for upload");
+
+                return b;
+            }
+        };
+
+
         ContentPanel centre = new ContentPanel();
-
-        /*    // add paging support for a local collection of models
-                PagingModelMemoryProxy proxy = new PagingModelMemoryProxy(ProgettoDiCompensazioneModel.class);
-
-                // loader
-                PagingLoader<PagingLoadResult<ModelData>> loader = new BasePagingLoader<PagingLoadResult<ModelData>>(proxy);
-                loader.setRemoteSort(true);
-
-                final PagingToolBar toolBar = new PagingToolBar(10);
-                toolBar.bind(loader);
-
-                loader.load(0, 10);
-        */
 
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
@@ -86,10 +117,9 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         column.setEditor(new CellEditor(new TextField<String>()));
         configs.add(column);
 
-        //column = new ColumnConfig("kgCO2", "Kg CO2", 300);
-        //column.setAlignment(Style.HorizontalAlignment.RIGHT);
-        //column.setEditor(new CellEditor(new NumberField()));
-        //configs.add(column);
+        column = new ColumnConfig("Upload File", 100);
+        column.setRenderer(buttonRenderer);
+        configs.add(column);
 
         column = new ColumnConfig("prezzo", "Prezzo kg/CO2", 100);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
