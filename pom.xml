@@ -22,6 +22,7 @@
     <modules>
         <module>azzeroCO2-war</module>
         <module>azzeroCO2-core</module>
+        <module>gxt-multi-upload</module>
     </modules>
 
     <properties>
@@ -33,8 +34,9 @@
         <maven.compiler.target>1.6</maven.compiler.target>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 
-        <gwtVersion>2.4.0</gwtVersion>
+        <gwt.version>2.4.0</gwt.version>
         <gxt.version>2.2.5</gxt.version>
+        <java.version>1.6</java.version>
 
         <loccount.fileExcludePatterns>log</loccount.fileExcludePatterns>
         <loccount.dirExcludePatterns>**/target/**</loccount.dirExcludePatterns>

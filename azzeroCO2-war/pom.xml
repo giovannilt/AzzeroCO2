@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/maven-v4_0_0.xsd">
 
     <!-- POM file generated with GWT webAppCreator -->
     <modelVersion>4.0.0</modelVersion>
@@ -26,11 +27,16 @@
             <artifactId>azzeroCO2-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>AzzeroCO2</groupId>
+            <artifactId>gxt-multi-upload</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
-            <version>${gwtVersion}</version>
+            <version>${gwt.version}</version>
             <scope>runtime</scope>
         </dependency>
         <!-- <dependency>
@@ -42,7 +48,7 @@
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
-            <version>${gwtVersion}</version>
+            <version>${gwt.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -51,11 +57,6 @@
             <artifactId>gxt</artifactId>
             <version>${gxt.version}</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.gxt-multi-upload</groupId>
-            <artifactId>gxt-multi-upload</artifactId>
-            <version>0.1</version>
         </dependency>
 
         <dependency>
@@ -97,34 +98,34 @@
         </dependency>
 
         <!-- Jackson JSON API -->
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>1.5.5</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.5.5</version>
-		</dependency>
-          <!-- Jackson JSON API FINE -->
-       <!-- FileUpload libraries -->
         <dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.4</version>
-		</dependency>
-       <!-- FileUpload libraries FINE-->
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+        <!-- Jackson JSON API FINE -->
+        <!-- FileUpload libraries -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <!-- FileUpload libraries FINE-->
         <dependency>
             <groupId>c3p0</groupId>
             <artifactId>c3p0</artifactId>
@@ -174,11 +175,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.17</version>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.jersey.glassfish.v3.osgi</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-            <version>1.1.5</version>
         </dependency>
 
 

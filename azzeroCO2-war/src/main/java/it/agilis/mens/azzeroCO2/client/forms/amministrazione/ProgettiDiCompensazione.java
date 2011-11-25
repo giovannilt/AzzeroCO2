@@ -7,7 +7,6 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
@@ -20,6 +19,7 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
 import gxt.multiupload.MultiUploadPresenter;
 import gxt.multiupload.MultiUploadView;
+import gxt.multiupload.model.FileUploadModel;
 import it.agilis.mens.azzeroCO2.client.components.amministrazione.FileUploadGrid;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -94,11 +94,19 @@ public class ProgettiDiCompensazione extends LayoutContainer {
                 Button b = new Button((String) model.get(property), new SelectionListener<ButtonEvent>() {
                     @Override
                     public void componentSelected(ButtonEvent ce) {
-                        MultiUploadView view = new MultiUploadView(new FileUploadGrid());
+                        ListStore<FileUploadModel> fileUploadModelListStore = new ListStore<FileUploadModel>();
+
+                        FileUploadModel fileUploadModel= new FileUploadModel();
+
+                        fileUploadModel.setIdProgetto(model.getId());
+                        fileUploadModel.setName("Immagine1");
+                        fileUploadModelListStore.add(fileUploadModel);
+
+                        MultiUploadView view = new MultiUploadView(new FileUploadGrid(fileUploadModelListStore));
                         view.getFormPanel().setAction(UPLOAD_URL);
+                        view.getFormPanel();
                         MultiUploadPresenter presenter = new MultiUploadPresenter(view);
                         presenter.go();
-                        Info.display("CIAO", "<ul><li> CIAO </li></ul>");
                     }
                 });
                 b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);

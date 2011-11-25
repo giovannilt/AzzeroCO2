@@ -16,8 +16,8 @@ public class FileUploadGrid extends EditorGrid<Model> {
 	private static final String STATE = "State";
 	private static final ColumnModel columnModel = createColumnsModel();
 	
-	public FileUploadGrid() {
-		super(new ListStore<FileUploadModel>(), columnModel);
+	public FileUploadGrid(ListStore<FileUploadModel> fileUploadModelListStore) {
+		super(fileUploadModelListStore, columnModel);
 		getView().setForceFit(true);
 		getView().setAutoFill(true);
 		getView().setShowDirtyCells(false);
