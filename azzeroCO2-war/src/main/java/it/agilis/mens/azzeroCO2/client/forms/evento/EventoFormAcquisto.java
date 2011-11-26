@@ -41,6 +41,7 @@ import java.util.List;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
+
 public class EventoFormAcquisto extends LayoutContainer {
     private ContentPanel east = new ContentPanel();
     private ContentPanel centre = new ContentPanel();
