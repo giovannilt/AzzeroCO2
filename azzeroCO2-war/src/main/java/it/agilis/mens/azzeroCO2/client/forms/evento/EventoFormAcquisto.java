@@ -322,6 +322,7 @@ public class EventoFormAcquisto extends LayoutContainer {
                 if(model.getImageUrl()!=null && !"".equalsIgnoreCase(model.getImageUrl())) {
                      String baseUrl= GWT.getHostPageBaseURL().replace(GWT.getModuleName(), "azzeroCO2_IMG");
                     b.setUrl(baseUrl+ model.getImageUrl());
+                    b.setUrl(GWT.getHostPageBaseURL() + model.getImageUrl());
                 }
                 return b;
             }
