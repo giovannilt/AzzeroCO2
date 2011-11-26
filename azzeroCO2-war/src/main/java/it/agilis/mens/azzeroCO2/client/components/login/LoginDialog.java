@@ -79,7 +79,7 @@ public class LoginDialog extends Dialog {
     protected void createButtons() {
         super.createButtons();
         status = new Status();
-        status.setBusy("please wait...");
+        status.setBusy("Attendere prego...");
         status.hide();
         status.setAutoWidth(true);
         getButtonBar().add(status);

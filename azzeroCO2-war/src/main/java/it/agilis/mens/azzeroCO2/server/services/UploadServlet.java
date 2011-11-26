@@ -69,11 +69,12 @@ public class UploadServlet extends HttpServlet {
             while (iter.hasNext()) {
                 FileItemStream item = iter.next();
 
+                processFileItem(request, model, item);
+
                 File file = new File(propertiesManager.getImageSource() + item.getName());
-                log.info(file.getAbsolutePath());
+//                log.info(file.getAbsolutePath());
                 flow(item.openStream(), new FileOutputStream(file), new byte[1024]);
 
-                processFileItem(request, model, item);
             }
         } catch (Exception e) {
             model.setState(UploadState.ERROR.name());
@@ -101,17 +102,25 @@ public class UploadServlet extends HttpServlet {
 
     private void checkFileSizeLimit(HttpServletRequest request) throws FileExceedsLimitException {
         if (request.getContentLength() > MAX_FILE_SIZE) {
-            throw new FileExceedsLimitException("File (" + request.getContentLength() + " bytes)exceeds limit " + MAX_FILE_SIZE + " bytes.");
+            throw new FileExceedsLimitException("File (" + request.getContentLength() + " bytes) exceeds limit " + MAX_FILE_SIZE + " bytes.");
         }
     }
 
     private void flow(InputStream is, OutputStream os, byte[] buf) throws IOException {
-        int numRead;
-        while ((numRead = is.read(buf)) >= 0) {
-            os.write(buf, 0, numRead);
+        try {
+            int numRead;
+            while ((numRead = is.read(buf)) >= 0) {
+                os.write(buf, 0, numRead);
+            }
+        } finally {
+            if (os != null) {
+                os.flush();
+                os.close();
+            }
+            if (is != null) {
+                is.close();
+            }
         }
-        os.flush();
-        os.close();
-        is.close();
+
     }
 }
