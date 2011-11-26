@@ -11,6 +11,7 @@ public class PropertiesManager {
 
 
     private String imageSource;
+    private String externalUrlImage;
 
     public void setImageSource(String imageSource) {
         this.imageSource = imageSource;
@@ -18,5 +19,13 @@ public class PropertiesManager {
 
     public String getImageSource() {
         return imageSource;
+    }
+
+    public String getExternalUrlImage() {
+        return externalUrlImage;
+    }
+
+    public void setExternalUrlImage(String externalUrlImage) {
+        this.externalUrlImage = externalUrlImage;
     }
 }

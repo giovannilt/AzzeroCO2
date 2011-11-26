@@ -3,11 +3,13 @@ package it.agilis.mens.azzeroCO2.client.forms.evento;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
+import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
@@ -15,13 +17,16 @@ import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
-import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
-import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
-import com.extjs.gxt.ui.client.widget.grid.Grid;
+import com.extjs.gxt.ui.client.widget.grid.*;
+import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
@@ -279,12 +284,58 @@ public class EventoFormAcquisto extends LayoutContainer {
     }
 
     private Grid<ProgettoDiCompensazioneModel> createGrid() {
+
+        GridCellRenderer<ProgettoDiCompensazioneModel> buttonRenderer = new GridCellRenderer<ProgettoDiCompensazioneModel>() {
+
+            private boolean init;
+
+            public Object render(final ProgettoDiCompensazioneModel model, String property, ColumnData config, final int rowIndex,
+                                 final int colIndex, ListStore<ProgettoDiCompensazioneModel> store, Grid<ProgettoDiCompensazioneModel> grid) {
+                if (!init) {
+                    init = true;
+                    grid.addListener(Events.ColumnResize, new Listener<GridEvent<ProgettoDiCompensazioneModel>>() {
+
+                        public void handleEvent(GridEvent<ProgettoDiCompensazioneModel> be) {
+                            for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
+                                if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
+                                        && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
+                                    ((BoxComponent) be.getGrid().getView().getWidget(i, be.getColIndex())).setWidth(be.getWidth() - 10);
+                                }
+                            }
+                        }
+                    });
+                }
+
+                /*  Image b = new Image((String) model.get(property), new SelectionListener<ButtonEvent>() {
+                    @Override
+                    public void componentSelected(ButtonEvent ce) {
+
+                    }
+                });*/
+                final Image b = new Image();
+
+                b.addClickListener(new ClickListener() {
+                    public void onClick(Widget sender) {
+                        b.setVisibleRect(70, 0, 47, 110);
+                    }
+                });
+                b.setWidth("" + (grid.getColumnModel().getColumnWidth(colIndex) - 10) + "px");
+                b.setUrl(GWT.getHostPageBaseURL()+model.getImageUrl());
+
+                return b;
+            }
+
+
+        };
+
+
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
         ColumnConfig column = new ColumnConfig("nome", "Progetto", 100);
         configs.add(column);
 
         column = new ColumnConfig("Immagine", "Progetto", 210);
+        column.setRenderer(buttonRenderer);
         configs.add(column);
 
 

@@ -10,6 +10,7 @@ import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.core.register.impl.EmailSender;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
+import it.agilis.mens.azzeroCO2.server.PropertiesManager;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
 import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
@@ -56,6 +57,18 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
     public void setGitRepoState(GitRepositoryState gitRepoState) {
         this.gitRepoState = gitRepoState;
+    }
+
+    @Autowired
+    @Qualifier("propertiesManager")
+    private PropertiesManager propertiesManager;
+
+    public PropertiesManager getPropertiesManager() {
+        return propertiesManager;
+    }
+
+    public void setPropertiesManager(PropertiesManager propertiesManager) {
+        this.propertiesManager = propertiesManager;
     }
 
     @Override

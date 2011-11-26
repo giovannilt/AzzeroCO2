@@ -57,4 +57,11 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
     public void setId(Long id){
         set("id", id) ;
     }
+
+    public void setImageUrl(String imageUrl) {
+        set("imageUrl", imageUrl) ;
+    }
+     public String getImageUrl() {
+        return get("imageUrl") ;
+    }
 }

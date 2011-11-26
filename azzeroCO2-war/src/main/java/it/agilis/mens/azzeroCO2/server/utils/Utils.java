@@ -102,9 +102,9 @@ public class Utils {
         userInfoModel.setId(userInfo.getId());
         userInfoModel.setProvincia(userInfo.getProvincia());
 
-        double kco2Compensati=0.0;
-        for(Ordine o: userInfo.getOrdini()){
-          kco2Compensati+= o.getKgCo2();
+        double kco2Compensati = 0.0;
+        for (Ordine o : userInfo.getOrdini()) {
+            kco2Compensati += o.getKgCo2();
         }
         userInfoModel.setKCO2Compensati(kco2Compensati);
         userInfoModel.setProfilo(userInfo.getProfile().ordinal());
@@ -184,9 +184,9 @@ public class Utils {
         ProgettoDiCompensazioneModel pcm = new ProgettoDiCompensazioneModel();
         pcm.setId(pc.getId());
         pcm.setAttivo(pc.getAttivo());
-        //pcm.setKgCO2(pc.getKgCo2());
         pcm.setNome(pc.getNome());
         pcm.setPrezzo(pc.getPrezzo());
+        pcm.setImageUrl( pc.getImg());
         return pcm;
 
     }
@@ -384,6 +384,7 @@ public class Utils {
         DettaglioModel dm = new DettaglioModel();
 
         dm.setLastUpdate(o.getLastUpdate());
+
 
         dm.setProgettoDiCompensazioneModel(getProgettoDiCompensazioneModel(o.getProgettoCompensazione()));
 
