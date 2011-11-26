@@ -314,12 +314,19 @@ public class EventoFormAcquisto extends LayoutContainer {
                     }
                 });
                 b.setWidth("" + (grid.getColumnModel().getColumnWidth(colIndex) - 10) + "px");
+
                 if (model.getImageUrl() != null && !"".equalsIgnoreCase(model.getImageUrl())) {
                     String baseUrl = GWT.getHostPageBaseURL().replace(GWT.getModuleName(), "ImmaginiProgetti");
                     b.setUrl(baseUrl + model.getImageUrl());
                     b.setUrl(GWT.getHostPageBaseURL() + model.getImageUrl());
                 }else{
                     b.setVisible(false);
+				}
+				
+                if(model.getImageUrl()!=null && !"".equalsIgnoreCase(model.getImageUrl())) {
+                     String baseUrl= GWT.getHostPageBaseURL().replace(GWT.getModuleName(), "azzeroCO2_IMG");
+                    b.setUrl(baseUrl+ model.getImageUrl());
+                    b.setUrl(GWT.getHostPageBaseURL() + model.getImageUrl());
                 }
                 return b;
             }
