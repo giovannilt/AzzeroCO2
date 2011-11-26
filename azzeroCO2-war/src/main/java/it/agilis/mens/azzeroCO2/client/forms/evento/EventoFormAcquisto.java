@@ -305,23 +305,21 @@ public class EventoFormAcquisto extends LayoutContainer {
                         }
                     });
                 }
-
-                /*  Image b = new Image((String) model.get(property), new SelectionListener<ButtonEvent>() {
-                    @Override
-                    public void componentSelected(ButtonEvent ce) {
-
-                    }
-                });*/
                 final Image b = new Image();
                 b.addClickListener(new ClickListener() {
                     public void onClick(Widget sender) {
-                     //   b.setVisibleRect(70, 0, 47, 110);
+
+                        // TODO: aprire finestra di info su progetto...
+                        //   b.setVisibleRect(70, 0, 47, 110);
                     }
                 });
                 b.setWidth("" + (grid.getColumnModel().getColumnWidth(colIndex) - 10) + "px");
-                if(model.getImageUrl()!=null && !"".equalsIgnoreCase(model.getImageUrl())) {
-                     String baseUrl= GWT.getHostPageBaseURL().replace(GWT.getModuleName(), "azzeroCO2_IMG");
-                    b.setUrl(baseUrl+ model.getImageUrl());
+                if (model.getImageUrl() != null && !"".equalsIgnoreCase(model.getImageUrl())) {
+                    String baseUrl = GWT.getHostPageBaseURL().replace(GWT.getModuleName(), "ImmaginiProgetti");
+                    b.setUrl(baseUrl + model.getImageUrl());
+                    b.setUrl(GWT.getHostPageBaseURL() + model.getImageUrl());
+                }else{
+                    b.setVisible(false);
                 }
                 return b;
             }
