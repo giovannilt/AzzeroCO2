@@ -1,4 +1,4 @@
-package gxt.multiupload.listener;
+package it.agilis.mens.azzeroCO2.client.components.uploadFiles.listener;
 
 /**
  * Listener for observing failure of file upload.

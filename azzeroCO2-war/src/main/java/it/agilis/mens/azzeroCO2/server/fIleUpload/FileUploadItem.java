@@ -16,9 +16,9 @@ public class FileUploadItem implements Serializable {
 		this.name = name;
 		this.state = state;
 		this.message = message;
-	}
+    }
 
-	public void setName(String name) {
+    public void setName(String name) {
 		this.name = name;
 	}
 

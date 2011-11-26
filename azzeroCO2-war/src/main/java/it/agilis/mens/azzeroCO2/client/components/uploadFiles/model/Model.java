@@ -1,8 +1,8 @@
-package gxt.multiupload.model;
+package it.agilis.mens.azzeroCO2.client.components.uploadFiles.model;
 
 import com.extjs.gxt.ui.client.data.ModelData;
 
-import gxt.multiupload.UploadState;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.UploadState;
 
 /**
  * This model represents item in file upload grid.
@@ -50,7 +50,7 @@ public interface Model extends ModelData {
 	 * @return id Progetto.
 	 */
     public Long getIdProgetto();
-	
+
 	/**
 	 * Sets the user friendly message about file state.
 	 * 
@@ -64,5 +64,6 @@ public interface Model extends ModelData {
 	 * @return message.
 	 */
 	public String getMessage();
-	
+
+    void setIdProgetto(Long idProgetto);
 }

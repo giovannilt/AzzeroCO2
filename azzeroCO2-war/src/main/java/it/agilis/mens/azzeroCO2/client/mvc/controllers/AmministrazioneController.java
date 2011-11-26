@@ -4,6 +4,7 @@ import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.model.Model;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.views.AmministrazioneView;
@@ -26,7 +27,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class AmministrazioneController extends BaseController {
-   private AmministrazioneView amministrazioneView = new AmministrazioneView(this);
+    private AmministrazioneView amministrazioneView = new AmministrazioneView(this);
 
     public AmministrazioneController() {
         registerEventTypes(AzzeroCO2Events.Init);
@@ -55,19 +56,39 @@ public class AmministrazioneController extends BaseController {
             };
             hustonService.saveCoefficienti(coefficienteModels, aCallback);
         } else if (event.getType().equals(AmministrazioneEvents.SaveProgrammiDiCompensazione)) {
-            List<ProgettoDiCompensazioneModel> progettoDiCompensazioneModels = event.getData();
-            HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
-            AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
-                public void onFailure(Throwable caught) {
-                    Info.display("Error", "Errore impossibile connettersi al server");
-                }
 
-                @Override
-                public void onSuccess(Boolean result) {
-                    Info.display("Info", "ProgettiDiCompensazione Salvati");
-                }
-            };
-            hustonService.saveProgettiDiCompensazione(progettoDiCompensazioneModels, aCallback);
+            if (event.getData() instanceof Model) {
+                Model m = event.getData();
+
+
+                HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
+                AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
+                    public void onFailure(Throwable caught) {
+                        Info.display("Error", "Errore impossibile connettersi al server");
+                    }
+
+                    @Override
+                    public void onSuccess(Boolean result) {
+                        Info.display("Info", "ProgettiDiCompensazione Salvati");
+                    }
+                };
+                hustonService.associaIDProgettoDiCompensazioneImmagine(m.getIdProgetto(), m.getName(), aCallback);
+
+            } else {
+                List<ProgettoDiCompensazioneModel> progettoDiCompensazioneModels = event.getData();
+                HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
+                AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
+                    public void onFailure(Throwable caught) {
+                        Info.display("Error", "Errore impossibile connettersi al server");
+                    }
+
+                    @Override
+                    public void onSuccess(Boolean result) {
+                        Info.display("Info", "ProgettiDiCompensazione Salvati");
+                    }
+                };
+                hustonService.saveProgettiDiCompensazione(progettoDiCompensazioneModels, aCallback);
+            }
 
         } else if (event.getType().equals(AmministrazioneEvents.SaveCoupons)) {
             List<CouponModel> coupons = event.getData();
@@ -84,16 +105,16 @@ public class AmministrazioneController extends BaseController {
             };
             hustonService.saveCoupons(coupons, aCallback);
         } else if (event.getType().equals(AmministrazioneEvents.ShowAmministrazione)) {
-         //   if (getUserInfoModel() != null && getUserInfoModel().getProfilo() != null && getUserInfoModel().getProfilo().equalsIgnoreCase("Administrator")) {
-                getCoefficienti();
-                getCoupons();
-                getProgettiDiCompensazione();
-       //     }
+            //   if (getUserInfoModel() != null && getUserInfoModel().getProfilo() != null && getUserInfoModel().getProfilo().equalsIgnoreCase("Administrator")) {
+            getCoefficienti();
+            getCoupons();
+            getProgettiDiCompensazione();
+            //     }
             getOrdini();
             amministrazioneView.setUserInfo(getUserInfoModel());
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
-             amministrazioneView.setUserInfo((UserInfoModel) event.getData());
+            amministrazioneView.setUserInfo((UserInfoModel) event.getData());
         } else {
             forwardToView(amministrazioneView, event);
         }
@@ -159,6 +180,6 @@ public class AmministrazioneController extends BaseController {
             }
         };
 
-        hustonService.getListOfProgettoDiCompensazione(true , aCallback);
+        hustonService.getListOfProgettoDiCompensazione(true, aCallback);
     }
 }

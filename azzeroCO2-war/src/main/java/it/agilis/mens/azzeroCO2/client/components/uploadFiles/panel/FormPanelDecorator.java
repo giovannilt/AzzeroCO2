@@ -1,4 +1,4 @@
-package gxt.multiupload.panel;
+package it.agilis.mens.azzeroCO2.client.components.uploadFiles.panel;
 
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteHandler;

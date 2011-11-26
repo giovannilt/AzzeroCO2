@@ -1,4 +1,4 @@
-package gxt.multiupload;
+package it.agilis.mens.azzeroCO2.client.components.uploadFiles;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.Constants;

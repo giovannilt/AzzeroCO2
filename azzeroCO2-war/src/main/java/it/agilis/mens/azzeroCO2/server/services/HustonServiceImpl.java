@@ -289,4 +289,15 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
         }
         return true;
     }
+
+    @Override
+    public boolean associaIDProgettoDiCompensazioneImmagine(Long idProgetto, String nomeImmagine) {
+          try {
+            azzeroCO2Register.associaIDProgettoDiCompensazioneImmagine(idProgetto, nomeImmagine);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

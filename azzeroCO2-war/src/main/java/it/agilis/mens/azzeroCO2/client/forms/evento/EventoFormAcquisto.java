@@ -60,7 +60,7 @@ public class EventoFormAcquisto extends LayoutContainer {
     private Grid<ProgettoDiCompensazioneModel> grid;
     private FormPanel form = createForm();
 
-    private DateTimeFormat dateFormat= DateTimeFormat.getFormat("dd.MM.y");
+    private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
 
     public EventoFormAcquisto() {
         grid = createGrid();
@@ -166,10 +166,10 @@ public class EventoFormAcquisto extends LayoutContainer {
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
 
                 LabelField label = new LabelField("Kg/CO2");
-             //   label.setWidth(220);
+                //   label.setWidth(220);
                 c.setHeight(50);
-                c.add(label, new FillData(2,20,2,0));
-                c.add(kcO2Evento, new FillData(2,0,2,50));
+                c.add(label, new FillData(2, 20, 2, 0));
+                c.add(kcO2Evento, new FillData(2, 0, 2, 50));
 
                 panel.add(c, new FormData("100%"));
             }
@@ -206,8 +206,8 @@ public class EventoFormAcquisto extends LayoutContainer {
 
                 LabelField label = new LabelField("€ x Kg/CO2 ");
 
-                c.add(label, new FillData(2,20,2,0));
-                c.add(euroPerKCo2Progetto, new FillData(2,0,2,50));
+                c.add(label, new FillData(2, 20, 2, 0));
+                c.add(euroPerKCo2Progetto, new FillData(2, 0, 2, 50));
 
                 panel.add(c, new FormData("100%"));
             }
@@ -224,7 +224,7 @@ public class EventoFormAcquisto extends LayoutContainer {
                 totale.setStyleAttribute("color", "#FF9933");
                 totale.setStyleAttribute("font-size", "16px");
 
-                c.add(totale, new FillData(2,0,2,50));
+                c.add(totale, new FillData(2, 0, 2, 50));
 
                 panel.add(c, new FormData("100%"));
             }
@@ -234,9 +234,9 @@ public class EventoFormAcquisto extends LayoutContainer {
                 c.setHeight(30);
                 LabelField label = new LabelField("Hai Un Coupon? ");
 
-                c.add(label, new FillData(2,20,2,0));
+                c.add(label, new FillData(2, 20, 2, 0));
                 TextField<String> coupon = new TextField<String>();
-                c.add(coupon, new FillData(0,0,0,0));
+                c.add(coupon, new FillData(0, 0, 0, 0));
                 panel.add(c, new FormData("100%"));
             }
 
@@ -246,36 +246,34 @@ public class EventoFormAcquisto extends LayoutContainer {
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
 
                 com.extjs.gxt.ui.client.widget.button.Button ricalcola;
-                ricalcola=new com.extjs.gxt.ui.client.widget.button.Button("Calcola sconto");
+                ricalcola = new com.extjs.gxt.ui.client.widget.button.Button("Calcola sconto");
                 //TODO fare funzionare sto pulsantone di calcolo del coupon
                 c.add(ricalcola);
                 panel.add(c); //, new FormData("100%"));
             }
 
 
-
-
             /*{
-                LayoutContainer c = new LayoutContainer();
-                c.setHeight(190);
-                c.setWidth(290);
-                c.setStyleAttribute("background-color", "#FF9933");
-                VBoxLayout layout = new VBoxLayout();
-                layout.setPadding(new Padding(2));
-                layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.LEFT);
-                c.setLayout(layout);
+               LayoutContainer c = new LayoutContainer();
+               c.setHeight(190);
+               c.setWidth(290);
+               c.setStyleAttribute("background-color", "#FF9933");
+               VBoxLayout layout = new VBoxLayout();
+               layout.setPadding(new Padding(2));
+               layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.LEFT);
+               c.setLayout(layout);
 
-                totaleKC02Label.setStyleAttribute("font-size", "18px");
-                totaleKC02Label.setStyleAttribute("color", "#2F3645");
-                totaleKC02Label.setWidth("");
-                c.add(totaleKC02Label, new VBoxLayoutData(new Margins(5, 0, 10, 0)));
-                LabelField label = new LabelField("AzzeroCO2 puo' offrirti consulenza <br> per la riduzione delle emissioni <br>Chiamaci !!");
-                label.setStyleAttribute("font-size", "16px");
-                label.setStyleAttribute("color", "#2F3645");
-                //label.setWidth(290);
-                c.add(label, new VBoxLayoutData(new Margins(15, 0, 5, 0)));
-                panel.add(c, new FormData("100%"));
-            } */
+               totaleKC02Label.setStyleAttribute("font-size", "18px");
+               totaleKC02Label.setStyleAttribute("color", "#2F3645");
+               totaleKC02Label.setWidth("");
+               c.add(totaleKC02Label, new VBoxLayoutData(new Margins(5, 0, 10, 0)));
+               LabelField label = new LabelField("AzzeroCO2 puo' offrirti consulenza <br> per la riduzione delle emissioni <br>Chiamaci !!");
+               label.setStyleAttribute("font-size", "16px");
+               label.setStyleAttribute("color", "#2F3645");
+               //label.setWidth(290);
+               c.add(label, new VBoxLayoutData(new Margins(15, 0, 5, 0)));
+               panel.add(c, new FormData("100%"));
+           } */
         }
         return panel;
     }
@@ -283,7 +281,10 @@ public class EventoFormAcquisto extends LayoutContainer {
     private Grid<ProgettoDiCompensazioneModel> createGrid() {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("nome", "Progetto", 310);
+        ColumnConfig column = new ColumnConfig("nome", "Progetto", 100);
+        configs.add(column);
+
+        column = new ColumnConfig("Immagine", "Progetto", 210);
         configs.add(column);
 
 
@@ -324,18 +325,19 @@ public class EventoFormAcquisto extends LayoutContainer {
         kcO2Evento.setText(number.format(totale));
         totaleKC02Label.setText(number.format(totale) + " kg/CO2?");
         titoloEvento.setText(riepilogo.getNome());
-        if(riepilogo.getInizio()!=null && riepilogo.getFine()!=null){
-            luogoEvento.setText(riepilogo.getDove() + "<br>dal "+dateFormat.format(riepilogo.getInizio()) + " al "+dateFormat.format(riepilogo.getFine()) );
-        }else{
+        if (riepilogo.getInizio() != null && riepilogo.getFine() != null) {
+            luogoEvento.setText(riepilogo.getDove() + "<br>dal " + dateFormat.format(riepilogo.getInizio()) + " al " + dateFormat.format(riepilogo.getFine()));
+        } else {
             luogoEvento.setText(riepilogo.getDove());
         }
-        if(riepilogo.getInizio()!=null){
+        if (riepilogo.getInizio() != null) {
             inizioEvento.setText(dateFormat.format(riepilogo.getInizio()));
         }
-        if(riepilogo.getFine()!=null){
+        if (riepilogo.getFine() != null) {
             fineEvento.setText(dateFormat.format(riepilogo.getFine()));
         }
     }
+
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
         return selectedModel;
     }

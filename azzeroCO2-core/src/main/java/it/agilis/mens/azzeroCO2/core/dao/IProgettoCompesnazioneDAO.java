@@ -16,4 +16,6 @@ public interface IProgettoCompesnazioneDAO {
     List<ProgettoCompensazione> getListOfProgettoDiCompensazione(ProgettoCompensazioneCriteria criteria);
 
     void save(ProgettoCompensazione progettoCompensazione) throws Exception;
+
+    void associaIDProgettoDiCompensazioneImmagine(Long idProgetto, String nomeImmagine) throws Exception;
 }

@@ -1,4 +1,4 @@
-package gxt.multiupload;
+package it.agilis.mens.azzeroCO2.client.components.uploadFiles;
 
 /**
  * Presenter interface within MVP pattern.<br>

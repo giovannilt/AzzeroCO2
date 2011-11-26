@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.server.services;
 
+import it.agilis.mens.azzeroCO2.server.PropertiesManager;
 import it.agilis.mens.azzeroCO2.server.fIleUpload.FileExceedsLimitException;
 import it.agilis.mens.azzeroCO2.server.fIleUpload.FileUploadItem;
 import it.agilis.mens.azzeroCO2.server.fIleUpload.UploadState;
@@ -7,7 +8,13 @@ import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +31,30 @@ import java.util.logging.Logger;
  */
 public class UploadServlet extends HttpServlet {
     private static final String ENCODING = "utf-8";
-    private static final long MAX_FILE_SIZE = 1024 * 1024 * 2; // DUE MEGA
+    private static final long MAX_FILE_SIZE = 1024 * 100; // 100 k
     private static final Logger log = Logger.getLogger(UploadServlet.class.getName());
-    private static final String PATH_TO_SAVE="";
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        WebApplicationContext ctx = WebApplicationContextUtils
+                .getRequiredWebApplicationContext(config.getServletContext());
+        AutowireCapableBeanFactory beanFactory = ctx
+                .getAutowireCapableBeanFactory();
+        beanFactory.autowireBean(this);
+    }
+
+    @Autowired
+    @Qualifier("propertiesManager")
+    private PropertiesManager propertiesManager;
+
+    public PropertiesManager getPropertiesManager() {
+        return propertiesManager;
+    }
+
+    public void setPropertiesManager(PropertiesManager propertiesManager) {
+        this.propertiesManager = propertiesManager;
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,7 +69,7 @@ public class UploadServlet extends HttpServlet {
             while (iter.hasNext()) {
                 FileItemStream item = iter.next();
 
-                File file = new File(PATH_TO_SAVE+item.getName());
+                File file = new File(propertiesManager.getImageSource() + item.getName());
                 log.info(file.getAbsolutePath());
                 flow(item.openStream(), new FileOutputStream(file), new byte[1024]);
 

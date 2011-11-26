@@ -55,5 +55,7 @@ public interface HustonService extends RemoteService {
     void savePagamento(PagamentoModel pagamentoModel);
 
     boolean saveUserInfo(UserInfoModel data);
+
+    boolean associaIDProgettoDiCompensazioneImmagine(Long idProgetto, String name);
 }
 

@@ -1,4 +1,4 @@
-package gxt.multiupload.icons;
+package it.agilis.mens.azzeroCO2.client.components.uploadFiles.icons;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;

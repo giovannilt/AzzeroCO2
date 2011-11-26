@@ -170,4 +170,8 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     public void saveRicevuta(SellaRicevutaDiPagamento ricevuta) throws Exception {
         pagamentoDAO.salvaRicevuta(ricevuta);
     }
+
+    public void associaIDProgettoDiCompensazioneImmagine(Long idProgetto, String nomeImmagine) throws Exception {
+        progettoCompensazioneDAO.associaIDProgettoDiCompensazioneImmagine(idProgetto, nomeImmagine);
+    }
 }

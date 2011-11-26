@@ -4,8 +4,8 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
-import gxt.multiupload.model.FileUploadModel;
-import gxt.multiupload.model.Model;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.model.FileUploadModel;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.model.Model;
 
 import java.util.ArrayList;
 import java.util.List;

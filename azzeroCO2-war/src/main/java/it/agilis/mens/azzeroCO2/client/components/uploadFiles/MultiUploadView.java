@@ -1,21 +1,6 @@
-package gxt.multiupload;
+package it.agilis.mens.azzeroCO2.client.components.uploadFiles;
 
-import gxt.multiupload.icons.UploadIcons;
-import gxt.multiupload.model.FileUploadModel;
-import gxt.multiupload.model.Model;
-import gxt.multiupload.panel.FilePanelDecorator;
-import gxt.multiupload.panel.FileStackPanel;
-import gxt.multiupload.panel.FormPanelDecorator;
-import gxt.multiupload.panel.UploadFormPanel;
-import gxt.multiupload.utils.MultiUploadUtils;
-
-import com.extjs.gxt.ui.client.data.BeanModel;
-import com.extjs.gxt.ui.client.event.ButtonEvent;
-import com.extjs.gxt.ui.client.event.Events;
-import com.extjs.gxt.ui.client.event.FieldEvent;
-import com.extjs.gxt.ui.client.event.GridEvent;
-import com.extjs.gxt.ui.client.event.Listener;
-import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.store.StoreEvent;
 import com.extjs.gxt.ui.client.store.StoreListener;
 import com.extjs.gxt.ui.client.widget.Window;
@@ -31,6 +16,14 @@ import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.FormPanel;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.icons.UploadIcons;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.model.FileUploadModel;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.model.Model;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.panel.FilePanelDecorator;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.panel.FileStackPanel;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.panel.FormPanelDecorator;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.panel.UploadFormPanel;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.utils.MultiUploadUtils;
 
 public class MultiUploadView extends Window implements MultiUploadPresenter.Display {
 
@@ -43,7 +36,7 @@ public class MultiUploadView extends Window implements MultiUploadPresenter.Disp
 	private ToolBar toolBar;
 	private Listener<FieldEvent> addClickListener;
 
-	public MultiUploadView(Grid<Model> grid) {
+  	public MultiUploadView(Grid<Model> grid) {
 		setBodyBorder(true);
 		setWidth(550);
 		setHeight(300);
@@ -62,6 +55,7 @@ public class MultiUploadView extends Window implements MultiUploadPresenter.Disp
 		setBottomComponent(createToolbar());
 		add(createFormPanel());
 		add(createFilePanel());
+
 	}
 	
 	public FileUploadModel parseModel(String json) {
@@ -69,8 +63,7 @@ public class MultiUploadView extends Window implements MultiUploadPresenter.Disp
 		String name = getPropertyValue(jsonObject, FileUploadModel.NAME);
 		String state = getPropertyValue(jsonObject, FileUploadModel.STATE);
 		String message = getPropertyValue(jsonObject, FileUploadModel.MESSAGE);
-		String id = getPropertyValue(jsonObject, FileUploadModel.ID_PROGETTO);
-		return new FileUploadModel(name, UploadState.valueOf(state), message, id);
+		return new FileUploadModel(name, UploadState.valueOf(state), message);
 	}
 	
 	public void exchangeAddButton() {
@@ -125,8 +118,6 @@ public class MultiUploadView extends Window implements MultiUploadPresenter.Disp
 	public String getCurrentFile() {
 		return addButton.getValue();
 	}
-
-
 	
 	@Override
 	public void setUploadButtonListener(SelectionListener<ButtonEvent> listener) {
@@ -166,9 +157,8 @@ public class MultiUploadView extends Window implements MultiUploadPresenter.Disp
 		toolBar = new ToolBar();
 		toolBar.setBorders(false);
 		toolBar.add(createAddButton());
-		//toolBar.add(createRemoveButton());
 		toolBar.add(createUploadButton());
-		return toolBar;
+        return toolBar;
 	}
 
 	private FileUploadField createAddButton() {
@@ -194,7 +184,7 @@ public class MultiUploadView extends Window implements MultiUploadPresenter.Disp
 	private Button createUploadButton() {
 		uploadButton = new Button(UploadConstants.INSTANCE.upload());
 		uploadButton.setIcon(UploadIcons.INSTANCE.upload());
-	//	uploadButton.disable();
+		uploadButton.disable();
 		return uploadButton;
 	}
 

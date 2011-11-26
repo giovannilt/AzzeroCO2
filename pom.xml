@@ -22,7 +22,6 @@
     <modules>
         <module>azzeroCO2-war</module>
         <module>azzeroCO2-core</module>
-        <module>gxt-multi-upload</module>
     </modules>
 
     <properties>

@@ -1,4 +1,4 @@
-package gxt.multiupload.utils;
+package it.agilis.mens.azzeroCO2.client.components.uploadFiles.utils;
 
 public class MultiUploadUtils {
 

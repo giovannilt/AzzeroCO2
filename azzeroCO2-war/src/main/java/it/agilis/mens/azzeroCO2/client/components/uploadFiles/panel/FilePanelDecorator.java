@@ -1,4 +1,4 @@
-package gxt.multiupload.panel;
+package it.agilis.mens.azzeroCO2.client.components.uploadFiles.panel;
 
 import com.google.gwt.dom.client.InputElement;
 

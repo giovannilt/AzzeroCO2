@@ -17,9 +17,9 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
-import gxt.multiupload.MultiUploadPresenter;
-import gxt.multiupload.MultiUploadView;
-import gxt.multiupload.model.FileUploadModel;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.MultiUploadPresenter;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.MultiUploadView;
+import it.agilis.mens.azzeroCO2.client.components.uploadFiles.model.FileUploadModel;
 import it.agilis.mens.azzeroCO2.client.components.amministrazione.FileUploadGrid;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -96,16 +96,10 @@ public class ProgettiDiCompensazione extends LayoutContainer {
                     public void componentSelected(ButtonEvent ce) {
                         ListStore<FileUploadModel> fileUploadModelListStore = new ListStore<FileUploadModel>();
 
-                        FileUploadModel fileUploadModel= new FileUploadModel();
-
-                        fileUploadModel.setIdProgetto(model.getId());
-                        fileUploadModel.setName("Immagine1");
-                        fileUploadModelListStore.add(fileUploadModel);
-
                         MultiUploadView view = new MultiUploadView(new FileUploadGrid(fileUploadModelListStore));
                         view.getFormPanel().setAction(UPLOAD_URL);
                         view.getFormPanel();
-                        MultiUploadPresenter presenter = new MultiUploadPresenter(view);
+                        MultiUploadPresenter presenter = new MultiUploadPresenter(view, model.getId());
                         presenter.go();
                     }
                 });

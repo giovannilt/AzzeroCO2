@@ -20,9 +20,15 @@ public class ProgettoCompesnazioneDAO extends DAOSupport implements IProgettoCom
         return (List<ProgettoCompensazione>) getList(criteria.getDetachedCriteria(), true);
     }
 
-      @Override
+    @Override
     public void save(ProgettoCompensazione progettoCompensazione) throws Exception {
-
         saveObject(progettoCompensazione);
+    }
+
+    @Override
+    public void associaIDProgettoDiCompensazioneImmagine(Long idProgetto, String nomeImmagine) throws Exception {
+        ProgettoCompensazione p = (ProgettoCompensazione) getObjectById(ProgettoCompensazione.class, idProgetto);
+        p.setImg(nomeImmagine);
+        saveObject(p);
     }
 }
