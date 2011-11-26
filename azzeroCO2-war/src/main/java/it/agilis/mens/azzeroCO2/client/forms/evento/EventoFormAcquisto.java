@@ -318,7 +318,6 @@ public class EventoFormAcquisto extends LayoutContainer {
                 if (model.getImageUrl() != null && !"".equalsIgnoreCase(model.getImageUrl())) {
                     String baseUrl = GWT.getHostPageBaseURL().replace(GWT.getModuleName(), "ImmaginiProgetti");
                     b.setUrl(baseUrl + model.getImageUrl());
-                    b.setUrl(GWT.getHostPageBaseURL() + model.getImageUrl());
                 }else{
                     b.setVisible(false);
 				}
@@ -330,11 +329,7 @@ public class EventoFormAcquisto extends LayoutContainer {
                 }
                 return b;
             }
-
-
         };
-
-
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
         ColumnConfig column = new ColumnConfig("nome", "Progetto", 100);
