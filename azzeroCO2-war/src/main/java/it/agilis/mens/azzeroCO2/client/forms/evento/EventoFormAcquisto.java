@@ -313,14 +313,13 @@ public class EventoFormAcquisto extends LayoutContainer {
                     }
                 });*/
                 final Image b = new Image();
-
                 b.addClickListener(new ClickListener() {
                     public void onClick(Widget sender) {
                         b.setVisibleRect(70, 0, 47, 110);
                     }
                 });
                 b.setWidth("" + (grid.getColumnModel().getColumnWidth(colIndex) - 10) + "px");
-                b.setUrl(GWT.getHostPageBaseURL()+model.getImageUrl());
+                b.setUrl(GWT.getHostPageBaseURL() + model.getImageUrl());
 
                 return b;
             }
