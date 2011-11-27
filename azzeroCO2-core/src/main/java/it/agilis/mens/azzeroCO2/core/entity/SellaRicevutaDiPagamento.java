@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.core.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,11 +24,21 @@ public class SellaRicevutaDiPagamento {
     private String IMPORTO;
     private String DIVISA;
     private String MAC;
-    private Esito ESITO;
+    private Esito  ESITO;
     private String TIPO_PAGAMENTO;
     private String ABI;
     private String ITEMS;
     private String COD_AUT;
+
+    private Date lastUpdate;
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
 
     public String getTIPO_PAGAMENTO() {
         return TIPO_PAGAMENTO;

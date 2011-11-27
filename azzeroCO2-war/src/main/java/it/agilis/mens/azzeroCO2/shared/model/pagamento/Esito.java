@@ -23,6 +23,12 @@ public enum Esito {
         }
 
     },
+    ANNULLATO {
+        @Override
+        public String toString() {
+            return "ANNULLATO";
+        }
+    },
     PAGAMENTO_NON_AVVENUTO {
         @Override
         public String toString() {

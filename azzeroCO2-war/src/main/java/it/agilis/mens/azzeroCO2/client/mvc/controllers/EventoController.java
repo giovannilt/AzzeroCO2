@@ -70,7 +70,7 @@ public class EventoController extends BaseController {
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(EventoEvents.InAttesaDiConfermaPagamento)) {
             final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo());
-
+            final Boolean risultato= new Boolean(true);
             final AsyncCallback<Boolean> asyncCallback = new AsyncCallback<Boolean>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server " + caught);
@@ -82,6 +82,8 @@ public class EventoController extends BaseController {
                         Info.display("Info", "Pagamento Avvenuto con sucesso");
                         //     Dispatcher.forwardEvent();
 
+                    }  else{
+                       // settare in annullato ....
                     }
                 }
             };
