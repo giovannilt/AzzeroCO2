@@ -285,7 +285,7 @@ public class EventoDettaglio extends LayoutContainer {
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
         DettaglioModel riepilogo = riepilogo();
-        Esito esito = Esito.WAITING;
+        Esito esito = Esito.IN_PAGAMENTO;
         if (riepilogo.getPagamentoModel() != null &&
                 riepilogo.getPagamentoModel().getEsito() != null) {
             esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());

@@ -36,6 +36,7 @@ public class PagamentoModel extends BaseModel {
 
         setMAC(AzzerroCO2UtilsClientHelper.getMAC_MD5(this));
 
+        setEsito(Esito.IN_PAGAMENTO.toString());
 
     }
 

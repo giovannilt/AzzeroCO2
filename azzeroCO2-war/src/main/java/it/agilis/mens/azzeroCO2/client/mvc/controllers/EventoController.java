@@ -70,6 +70,7 @@ public class EventoController extends BaseController {
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(EventoEvents.InAttesaDiConfermaPagamento)) {
             final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo());
+
             final AsyncCallback<Boolean> asyncCallback = new AsyncCallback<Boolean>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server " + caught);
@@ -77,18 +78,21 @@ public class EventoController extends BaseController {
 
                 @Override
                 public void onSuccess(Boolean result) {
-                    Info.display("Info", "Pagamento Avvenuto con sucesso");
+                    if(result){
+                        Info.display("Info", "Pagamento Avvenuto con sucesso");
+                   //     Dispatcher.forwardEvent();
+                    }
                 }
             };
 
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 10; i++) {
                 Timer timer = new Timer() {
                     public void run() {
                         getHustonService().isPagato(riepilogo, asyncCallback);
                     }
                 };
-                timer.schedule(60000); // aspetto un minuto e rifaccio la query verso il db per capire se l'omino ha pagato oppure no
-
+                timer.schedule(30000); // aspetto un minuto e rifaccio la query verso il db per capire se l'omino ha pagato oppure no
+                 Info.display("Info", "Tentativo "+i);
             }
             Info.display("Info", "Finiti i 2 tentativi Pagamento NON AVVENUTO");
 

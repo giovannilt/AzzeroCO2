@@ -16,19 +16,20 @@ public enum Esito {
         }
 
     },
-    KO {
+    IN_PAGAMENTO {
         @Override
         public String toString() {
-            return "KO";
+            return "IN_PAGAMENTO";
         }
 
     },
-    WAITING {
+    PAGAMENTO_NON_AVVENUTO {
         @Override
         public String toString() {
-            return "WAITING";
+            return "PAGAMENTO_NON_AVVENUTO";
         }
 
-    }
+    };
+
 }
 

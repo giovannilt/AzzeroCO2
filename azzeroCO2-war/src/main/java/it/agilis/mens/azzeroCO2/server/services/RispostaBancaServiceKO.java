@@ -83,7 +83,7 @@ public class RispostaBancaServiceKO extends HttpServlet {
                 algorithm.update(controllo.toLowerCase().getBytes());
 
                 if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toLowerCase())) {
-                    ricevuta.setEsito(Esito.KO);
+                    ricevuta.setEsito(Esito.PAGAMENTO_NON_AVVENUTO);
                     azzeroCO2Register.saveRicevuta(ricevuta);
                 } else {
                     // MEN IN THE MIDDEL STANNO PROVANDO UN ATTACCO....

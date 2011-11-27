@@ -26,7 +26,33 @@ public class SellaRicevutaDiPagamento {
     private String MAC;
     private String PROG_ID;
     private Esito ESITO;
+    private String TIPO_PAGAMENTO;
+    private String ABI;
+    private String ITEMS;
 
+    public String getTIPO_PAGAMENTO() {
+        return TIPO_PAGAMENTO;
+    }
+
+    public void setTIPO_PAGAMENTO(String TIPO_PAGAMENTO) {
+        this.TIPO_PAGAMENTO = TIPO_PAGAMENTO;
+    }
+
+    public String getABI() {
+        return ABI;
+    }
+
+    public void setABI(String ABI) {
+        this.ABI = ABI;
+    }
+
+    public String getITEMS() {
+        return ITEMS;
+    }
+
+    public void setITEMS(String ITEMS) {
+        this.ITEMS = ITEMS;
+    }
 
     public Long getId() {
         return id;
@@ -107,4 +133,6 @@ public class SellaRicevutaDiPagamento {
     public Esito getESITO() {
         return ESITO;
     }
+
+
 }

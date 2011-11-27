@@ -175,7 +175,7 @@ public class EventoWest extends LayoutContainer {
     }
 
     public void clean(){
-        setInStore(null, Esito.WAITING);
+        setInStore(null, Esito.IN_PAGAMENTO);
         setTitle(null);
     }
 }

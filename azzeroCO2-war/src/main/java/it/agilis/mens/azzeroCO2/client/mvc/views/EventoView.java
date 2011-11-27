@@ -100,7 +100,7 @@ public class EventoView extends View {
 
             west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo), Esito.valueOf(riepilogo.getPagamentoModel().getEsito()));
         }else{
-            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo), Esito.WAITING);
+            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo), Esito.IN_PAGAMENTO);
         }
         String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Evento";
         String dove = riepilogo.getDove() != null ? riepilogo.getDove() : "";

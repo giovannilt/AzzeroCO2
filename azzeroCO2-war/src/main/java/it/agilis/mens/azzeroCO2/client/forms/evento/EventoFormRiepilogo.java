@@ -37,7 +37,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text totaleText = new Text("Totale KG/CO2");
     private Text totale = new Text("0.00");
-    private Esito esito = Esito.WAITING;
+    private Esito esito = Esito.IN_PAGAMENTO;
 
     @Override
     protected void onRender(Element parent, int index) {

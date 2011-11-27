@@ -539,13 +539,18 @@ public class Utils {
 
         ricevuta.setId(ricevutaDiPagamento.getId());
         ricevuta.setEsito(it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito.values()[ricevutaDiPagamento.getESITO().ordinal()].toString());
+
         ricevuta.setMERCHANT_ID(ricevutaDiPagamento.getMERCHANT_ID());
         ricevuta.setDIVISA(ricevutaDiPagamento.getDIVISA());
+
         ricevuta.setIMPORTO(ricevutaDiPagamento.getIMPORTO());
         ricevuta.setMAC(ricevutaDiPagamento.getMAC());
         ricevuta.setORDER_ID(ricevutaDiPagamento.getORDER_ID());
 
-// TODO FINIRE.....
+        ricevuta.setTIPO_PAGAMENTO(ricevutaDiPagamento.getTIPO_PAGAMENTO());
+
+        ricevuta.setABI(ricevutaDiPagamento.getABI());
+        ricevuta.setITEMS(ricevutaDiPagamento.getITEMS());
 
         return ricevuta;
     }
@@ -566,14 +571,20 @@ public class Utils {
         }
         SellaRicevutaDiPagamento ricevuta = new SellaRicevutaDiPagamento();
 
-        //TODO Settare L'esito CORRETTO
-        ricevuta.setEsito(Esito.WAITING);
+          ricevuta.setId(pagamentoModel.getId());
+        ricevuta.setEsito(Esito.valueOf(pagamentoModel.getEsito()));
+
         ricevuta.setMERCHANT_ID(pagamentoModel.getMERCHANT_ID());
         ricevuta.setDIVISA(pagamentoModel.getDIVISA());
+
         ricevuta.setIMPORTO(pagamentoModel.getIMPORTO());
         ricevuta.setMAC(pagamentoModel.getMAC());
-        ricevuta.setORDER_ID(pagamentoModel.getORDER_ID());
 
+        ricevuta.setORDER_ID(pagamentoModel.getORDER_ID());
+        ricevuta.setTIPO_PAGAMENTO(pagamentoModel.getTIPO_PAGAMENTO());
+
+        ricevuta.setABI(pagamentoModel.getABI());
+        ricevuta.setITEMS(pagamentoModel.getITEMS());
 
         return ricevuta;
 
