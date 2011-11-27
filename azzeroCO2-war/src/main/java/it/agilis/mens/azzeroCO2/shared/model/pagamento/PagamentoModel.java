@@ -32,7 +32,7 @@ public class PagamentoModel extends BaseModel {
         setITEMS("pagamentoCalcolatore^Pagamento online della propria impronta di CO2^1^" + importo + "^EUR");  // DA COMPLETARE CON IMPORTO ED ^EUR
         setURLOK(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBancaOK");
         setURLKO(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBancaKO");
-        setURLACK(GWT.getHostPageBaseURL() +"azzeroCO2/rispostaBancaOK");
+        setURLACK(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBancaOK");
 
         setMAC(AzzerroCO2UtilsClientHelper.getMAC_MD5(this));
 
@@ -149,7 +149,7 @@ public class PagamentoModel extends BaseModel {
         set("id", id);
     }
 
-     public String getEsito() {
+    public String getEsito() {
         return get("esito");
     }
 

@@ -81,19 +81,17 @@ public class EventoController extends BaseController {
                     if (result) {
                         Info.display("Info", "Pagamento Avvenuto con sucesso");
                         //     Dispatcher.forwardEvent();
+
                     }
                 }
             };
+            final Timer timer = new Timer() {
+                public void run() {
+                    getHustonService().isPagato(riepilogo, asyncCallback);
+                }
+            };
+            timer.schedule(60000); // aspetto un minuto e rifaccio la query verso il db per capire se l'omino ha pagato oppure no
 
-            for (int i = 0; i < 10; i++) {
-                Timer timer = new Timer() {
-                    public void run() {
-                        getHustonService().isPagato(riepilogo, asyncCallback);
-                    }
-                };
-                timer.schedule(60000); // aspetto un minuto e rifaccio la query verso il db per capire se l'omino ha pagato oppure no
-                Info.display("Info", "Tentativo " + i);
-            }
             Info.display("Info", "Finiti i 2 tentativi Pagamento NON AVVENUTO");
 
             // Pagamento non AVVENUTO
@@ -212,7 +210,6 @@ public class EventoController extends BaseController {
 
     private String getTotaleDaPagare(DettaglioModel model) {
         List<RiepilogoModel> eventoRiepilogoModels = eventoView.riepilogo(getCoefficientiMAP());
-
 
         double totale = 0;
         for (RiepilogoModel r : eventoRiepilogoModels) {

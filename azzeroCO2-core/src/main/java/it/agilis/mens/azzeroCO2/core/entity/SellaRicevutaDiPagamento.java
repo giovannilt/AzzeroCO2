@@ -20,15 +20,14 @@ public class SellaRicevutaDiPagamento {
     private String TRANSACTION_ID;
     private String MERCHANT_ID;
     private String ORDER_ID;
-    private String COD_AUT;
     private String IMPORTO;
     private String DIVISA;
     private String MAC;
-    private String PROG_ID;
     private Esito ESITO;
     private String TIPO_PAGAMENTO;
     private String ABI;
     private String ITEMS;
+    private String COD_AUT;
 
     public String getTIPO_PAGAMENTO() {
         return TIPO_PAGAMENTO;
@@ -118,16 +117,8 @@ public class SellaRicevutaDiPagamento {
         this.MAC = MAC;
     }
 
-    public String getPROG_ID() {
-        return PROG_ID;
-    }
-
-    public void setPROG_ID(String PROG_ID) {
-        this.PROG_ID = PROG_ID;
-    }
-
     public void setEsito(Esito esito) {
-        this.ESITO=esito;
+        this.ESITO = esito;
     }
 
     public Esito getESITO() {
