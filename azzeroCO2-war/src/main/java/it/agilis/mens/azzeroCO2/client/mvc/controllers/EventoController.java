@@ -78,9 +78,9 @@ public class EventoController extends BaseController {
 
                 @Override
                 public void onSuccess(Boolean result) {
-                    if(result){
+                    if (result) {
                         Info.display("Info", "Pagamento Avvenuto con sucesso");
-                   //     Dispatcher.forwardEvent();
+                        //     Dispatcher.forwardEvent();
                     }
                 }
             };
@@ -91,13 +91,12 @@ public class EventoController extends BaseController {
                         getHustonService().isPagato(riepilogo, asyncCallback);
                     }
                 };
-                timer.schedule(30000); // aspetto un minuto e rifaccio la query verso il db per capire se l'omino ha pagato oppure no
-                 Info.display("Info", "Tentativo "+i);
+                timer.schedule(60000); // aspetto un minuto e rifaccio la query verso il db per capire se l'omino ha pagato oppure no
+                Info.display("Info", "Tentativo " + i);
             }
             Info.display("Info", "Finiti i 2 tentativi Pagamento NON AVVENUTO");
 
             // Pagamento non AVVENUTO
-
 
         } else if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
             eventoView.showRiepilogo();
@@ -144,14 +143,16 @@ public class EventoController extends BaseController {
                 eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
             }
         } else if (event.getType().equals(EventoEvents.Conferma)) {
-            //save();
             DettaglioModel model = eventoView.getRiepilogo();
             model.setPagamentoModel(new PagamentoModel(getTotaleDaPagare(model)));
-
-            save();
-
+            List<RiepilogoModel> riepilogoModels = eventoView.riepilogo(getCoefficientiMAP());
+            double totale = 0;
+            for (RiepilogoModel r : riepilogoModels) {
+                totale += r.getKgCO2();
+            }
+            totale = model.getProgettoDiCompensazioneModel().getPrezzo() * totale;
+            model.setPagamentoModel(new PagamentoModel(number.format(totale)));
             Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
-
         } else if (event.getType().equals(EventoEvents.CaricaProgettiDiCompensazione)) {
             if (getProgettiDiCompensazioneList().size() == 0) {
                 setProgettiDiCompensazione();
@@ -166,36 +167,46 @@ public class EventoController extends BaseController {
             setUserInfoModel((UserInfoModel) event.getData());
             eventoView.setUserInfo(getUserInfoModel());
         } else if (event.getType().equals(EventoEvents.Save)) {
-            save();
+            DettaglioModel model = (DettaglioModel) event.getData();
+            if (model != null) {
+                save(model);
+            } else {
+                save(null);
+            }
         } else {
             forwardToView(eventoView, event);
         }
     }
 
-    private void save() {
+    private void save(DettaglioModel model) {
         if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
             Dispatcher.forwardEvent(LoginEvents.ShowForm);
-        } else {
-            final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo());
-            if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
-                Info.display("Warning", "Nome Evento Mancante");
-            } else {
-                AsyncCallback<DettaglioVTO> dettaglio = new AsyncCallback<DettaglioVTO>() {
-                    public void onFailure(Throwable caught) {
-                        Info.display("Error", "Errore impossibile connettersi al server " + caught);
-                    }
+        } else if (model == null) {
+            saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo()));
+        } else if (model != null) {
+            saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
+        }
+    }
 
-                    @Override
-                    public void onSuccess(DettaglioVTO result) {
-                        if (result != null) {
-                            DettaglioModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
-                            eventoView.setDettaglioModel(model);
-                            Info.display("Info", "Evento " + riepilogo.getNome() + " salvato con successo.");
-                        }
+    private void saveVTO(final DettaglioVTO riepilogo) {
+        if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
+            Info.display("Warning", "Nome Evento Mancante");
+        } else {
+            AsyncCallback<DettaglioVTO> dettaglio = new AsyncCallback<DettaglioVTO>() {
+                public void onFailure(Throwable caught) {
+                    Info.display("Error", "Errore impossibile connettersi al server " + caught);
+                }
+
+                @Override
+                public void onSuccess(DettaglioVTO result) {
+                    if (result != null) {
+                        DettaglioModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
+                        eventoView.setDettaglioModel(model);
+                        Info.display("Info", "Evento " + riepilogo.getNome() + " salvato con successo.");
                     }
-                };
-                getHustonService().saveOrdine(riepilogo, dettaglio);
-            }
+                }
+            };
+            getHustonService().saveOrdine(riepilogo, dettaglio);
         }
     }
 

@@ -5,7 +5,7 @@ import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
 import it.agilis.mens.azzeroCO2.client.components.PagamentoSella;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
-import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -39,7 +39,7 @@ public class PagamentoSellaView extends View {
     }
 
 
-    public void setPagamentoModel(PagamentoModel pagamentoModel) {
-        pagamentoSellaDialog.setModel(pagamentoModel);
+    public void setPagamentoModel(DettaglioModel model) {
+        pagamentoSellaDialog.setModel(model);
     }
 }

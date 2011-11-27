@@ -13,6 +13,7 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 
 
@@ -26,8 +27,9 @@ import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 public class PagamentoSella extends Dialog {
 
     private FormPanel form;
-    private PagamentoModel model = new PagamentoModel("0.0");
+    private PagamentoModel pagamentoModel = new PagamentoModel("0.0");
     private FormBinding binding;
+    private DettaglioModel dettaglioModel;
 
     public PagamentoSella() {
         FormLayout layout = new FormLayout();
@@ -39,7 +41,7 @@ public class PagamentoSella extends Dialog {
         setButtons("");
         form = new FormPanel();
         binding = new FormBinding(form, true);
-        binding.bind(model);
+        binding.bind(pagamentoModel);
         setBlinkModal(true);
         setResizable(false);
         setOnEsc(false);
@@ -138,22 +140,23 @@ public class PagamentoSella extends Dialog {
                 form.submit();
                 //submit.disable();
                 //submit.setVisible(false);
+
+                Dispatcher.forwardEvent(EventoEvents.Save, dettaglioModel);
             }
         });
         addButton(submit);
     }
 
     public PagamentoModel getModel() {
-        return model;
+        return pagamentoModel;
     }
 
-    public void setModel(PagamentoModel model) {
-        this.model = model;
+    public void setModel(DettaglioModel model) {
+        this.dettaglioModel = model;
+        this.pagamentoModel = model.getPagamentoModel();
         binding = new FormBinding(form, true);
         binding.bind(model);
-
     }
-
 
     public Text getTesto() {
         Text testo = new Text("</br>" +
