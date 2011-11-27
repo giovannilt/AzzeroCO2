@@ -4,6 +4,7 @@ import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.i18n.client.NumberFormat;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
@@ -62,13 +63,41 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.ShowRiepilogo);
         registerEventTypes(EventoEvents.ShowStep);
         registerEventTypes(EventoEvents.ClearStep);
+        registerEventTypes(EventoEvents.InAttesaDiConfermaPagamento);
     }
 
     @Override
     public void handleEvent(AppEvent event) {
-        if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
+        if (event.getType().equals(EventoEvents.InAttesaDiConfermaPagamento)) {
+            final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo());
+            final AsyncCallback<Boolean> asyncCallback = new AsyncCallback<Boolean>() {
+                public void onFailure(Throwable caught) {
+                    Info.display("Error", "Errore impossibile connettersi al server " + caught);
+                }
+
+                @Override
+                public void onSuccess(Boolean result) {
+                    Info.display("Info", "Pagamento Avvenuto con sucesso");
+                }
+            };
+
+            for (int i = 0; i < 2; i++) {
+                Timer timer = new Timer() {
+                    public void run() {
+                        getHustonService().isPagato(riepilogo, asyncCallback);
+                    }
+                };
+                timer.schedule(60000); // aspetto un minuto e rifaccio la query verso il db per capire se l'omino ha pagato oppure no
+
+            }
+            Info.display("Info", "Finiti i 2 tentativi Pagamento NON AVVENUTO");
+
+            // Pagamento non AVVENUTO
+
+
+        } else if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
             eventoView.showRiepilogo();
-        }else if (event.getType().equals(EventoEvents.LoadEvento)) {
+        } else if (event.getType().equals(EventoEvents.LoadEvento)) {
             setCoefficienti();
             setProgettiDiCompensazione();
             eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
@@ -166,7 +195,7 @@ public class EventoController extends BaseController {
         }
     }
 
-    private String getTotaleDaPagare(DettaglioModel model ) {
+    private String getTotaleDaPagare(DettaglioModel model) {
         List<RiepilogoModel> eventoRiepilogoModels = eventoView.riepilogo(getCoefficientiMAP());
 
 
@@ -174,8 +203,8 @@ public class EventoController extends BaseController {
         for (RiepilogoModel r : eventoRiepilogoModels) {
             totale += r.getKgCO2();
         }
-        ProgettoDiCompensazioneModel p= model.getProgettoDiCompensazioneModel();
-        totale= totale * (p!=null ? p.getPrezzo() : 0);
+        ProgettoDiCompensazioneModel p = model.getProgettoDiCompensazioneModel();
+        totale = totale * (p != null ? p.getPrezzo() : 0);
 
         //TODO SUI CUPON
         // model.getCouponModel();

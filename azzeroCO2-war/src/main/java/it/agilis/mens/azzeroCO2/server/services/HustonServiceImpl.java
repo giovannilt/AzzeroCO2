@@ -5,6 +5,7 @@ import it.agilis.mens.azzeroCO2.client.services.HustonService;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.core.criteria.ProgettoCompensazioneCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
+import it.agilis.mens.azzeroCO2.core.entity.Esito;
 import it.agilis.mens.azzeroCO2.core.entity.Ordine;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
@@ -313,4 +314,19 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
         }
         return true;
     }
+
+    @Override
+    public boolean isPagato(DettaglioVTO riepilogo) {
+        try {
+            Ordine o = azzeroCO2Register.getOrdineDAO().getOrdine(riepilogo.getOrdineId());
+            if(o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO)){
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+
 }

@@ -43,4 +43,9 @@ public class OrdineDAO extends DAOSupport implements IOrdineDAO  {
     public Ordine save(Ordine o) throws Exception {
         return (Ordine) saveObject(o);
     }
+
+    @Override
+    public Ordine getOrdine(Long ordineId) {
+        return (Ordine) getObjectById(Ordine.class, ordineId);
+    }
 }

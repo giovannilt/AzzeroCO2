@@ -17,4 +17,7 @@ public interface IOrdineDAO {
     List<Ordine> getListOfOrdini(OrdineCriteria ordineCriteria);
 
     Ordine save(Ordine o) throws Exception;
+
+    Ordine getOrdine(Long ordineId);
+
 }

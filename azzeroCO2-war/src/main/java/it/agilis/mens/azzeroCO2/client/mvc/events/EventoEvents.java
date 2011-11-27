@@ -30,6 +30,6 @@ public class EventoEvents {
     public static final EventType Conferma = new EventType();
 
     public static final EventType SentEmailConferma = new EventType();
-
+    public static final EventType InAttesaDiConfermaPagamento = new EventType();
 
 }
