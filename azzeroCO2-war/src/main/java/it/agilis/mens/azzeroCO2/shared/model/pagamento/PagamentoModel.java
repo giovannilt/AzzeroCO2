@@ -45,6 +45,22 @@ public class PagamentoModel extends BaseModel {
         return _return;
     }
 
+    public void setLastUpdate(Date lastUpdate) {
+        set("lastUpdate", lastUpdate);
+    }
+
+    public Date getLastUpdate() {
+        return get("lastUpdate");
+    }
+
+    public void setUpdateFromBanca(Date updateFromBanca) {
+        set("updateFromBanca", updateFromBanca);
+    }
+
+    public Date getUpdateFromBanca() {
+        return get("updateFromBanca");
+    }
+
     public String getTIPO_PAGAMENTO() {
         return get("TIPO_PAGAMENTO");
     }

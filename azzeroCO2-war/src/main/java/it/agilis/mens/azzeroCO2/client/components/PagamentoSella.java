@@ -44,8 +44,8 @@ public class PagamentoSella extends Dialog {
         binding.bind(pagamentoModel);
         setBlinkModal(true);
         setResizable(false);
-        setOnEsc(false);
-        setClosable(false);
+        //  setOnEsc(false);
+        //  setClosable(false);
         setHeight(300);
         setWidth(400);
 
@@ -164,5 +164,10 @@ public class PagamentoSella extends Dialog {
 
 
         return testo;
+    }
+
+    @Override
+    protected void onHide() {
+        super.onHide();
     }
 }

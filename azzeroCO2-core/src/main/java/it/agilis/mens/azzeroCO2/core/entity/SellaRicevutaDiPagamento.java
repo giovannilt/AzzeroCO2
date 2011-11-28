@@ -31,6 +31,15 @@ public class SellaRicevutaDiPagamento {
     private String COD_AUT;
 
     private Date lastUpdate;
+    private Date updateFromBanca;
+
+    public Date getUpdateFromBanca() {
+        return updateFromBanca;
+    }
+
+    public void setUpdateFromBanca(Date updateFromBanca) {
+        this.updateFromBanca = updateFromBanca;
+    }
 
     public Date getLastUpdate() {
         return lastUpdate;

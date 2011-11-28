@@ -22,6 +22,7 @@ import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -70,33 +71,16 @@ public class EventoController extends BaseController {
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(EventoEvents.InAttesaDiConfermaPagamento)) {
             final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo());
-            final Boolean risultato= new Boolean(true);
-            final AsyncCallback<Boolean> asyncCallback = new AsyncCallback<Boolean>() {
-                public void onFailure(Throwable caught) {
-                    Info.display("Error", "Errore impossibile connettersi al server " + caught);
-                }
 
-                @Override
-                public void onSuccess(Boolean result) {
-                    if (result) {
-                        Info.display("Info", "Pagamento Avvenuto con sucesso");
-                        //     Dispatcher.forwardEvent();
-
-                    }  else{
-                       // settare in annullato ....
-                    }
-                }
-            };
             final Timer timer = new Timer() {
                 public void run() {
+                    MyAsyncCallback asyncCallback = new MyAsyncCallback();
                     getHustonService().isPagato(riepilogo, asyncCallback);
+                    asyncCallback.setTimer(this);
                 }
             };
-            timer.schedule(60000); // aspetto un minuto e rifaccio la query verso il db per capire se l'omino ha pagato oppure no
+            timer.schedule(20000); // aspetto un minuto e rifaccio la query verso il db per capire se l'omino ha pagato oppure no
 
-            Info.display("Info", "Finiti i 2 tentativi Pagamento NON AVVENUTO");
-
-            // Pagamento non AVVENUTO
 
         } else if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
             eventoView.showRiepilogo();
@@ -144,7 +128,9 @@ public class EventoController extends BaseController {
             }
         } else if (event.getType().equals(EventoEvents.Conferma)) {
             DettaglioModel model = eventoView.getRiepilogo();
-            model.setPagamentoModel(new PagamentoModel(getTotaleDaPagare(model)));
+            PagamentoModel pagamentoModel = new PagamentoModel(getTotaleDaPagare(model));
+            pagamentoModel.setLastUpdate(new Date());
+            model.setPagamentoModel(pagamentoModel);
             List<RiepilogoModel> riepilogoModels = eventoView.riepilogo(getCoefficientiMAP());
             double totale = 0;
             for (RiepilogoModel r : riepilogoModels) {
@@ -226,4 +212,34 @@ public class EventoController extends BaseController {
         return number.format(totale);
     }
 
+
+    class MyAsyncCallback implements AsyncCallback<Boolean> {
+        private Timer timer ;
+
+
+        public void onFailure(Throwable caught) {
+            Info.display("Error", "Errore impossibile connettersi al server " + caught);
+        }
+
+        @Override
+        public void onSuccess(Boolean result) {
+            if (result) {
+                Info.display("Info", "Pagamento Avvenuto con sucesso");
+                Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
+                eventoView.showConferma();
+            } else {
+                Info.display("Info", "NON PAGATO");
+                getTimer().schedule(20000);
+            }
+
+        }
+
+        public void setTimer(Timer timer) {
+            this.timer=timer;
+        }
+
+        public Timer getTimer() {
+            return timer;
+        }
+    }
 }

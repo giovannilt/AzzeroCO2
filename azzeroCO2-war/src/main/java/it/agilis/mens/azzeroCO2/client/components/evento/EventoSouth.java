@@ -106,6 +106,7 @@ public class EventoSouth extends LayoutContainer {
                 && riepilogo.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
             left.setVisible(false);
             leftText.setVisible(false);
+
         } else {
             if (left_t.length() == 0) {
                 left.setEnabled(false);
@@ -132,9 +133,11 @@ public class EventoSouth extends LayoutContainer {
             if (right_t.length() == 0) {
                 right.setEnabled(false);
                 right.setVisible(false);
+                rigthText.setVisible(false);
             } else {
                 right.setEnabled(true);
                 right.setVisible(true);
+                rigthText.setVisible(true);
 
             }
             rigthText.setText(right_t);

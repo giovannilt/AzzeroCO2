@@ -27,7 +27,7 @@ public abstract class BaseController extends Controller {
     private UserInfoModel userInfoModel;
     private Map<String, CoefficienteModel> coefficientiMAP = new HashMap<String, CoefficienteModel>();
     private List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList = new ArrayList<ProgettoDiCompensazioneModel>();
-    private String info="";
+    private String info = "";
 
     public UserInfoModel getUserInfoModel() {
         return userInfoModel;
@@ -50,6 +50,7 @@ public abstract class BaseController extends Controller {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Errore impossibile connettersi al server");
             }
+
             @Override
             public void onSuccess(Map<String, CoefficienteModel> result) {
                 coefficientiMAP.clear();
@@ -58,11 +59,13 @@ public abstract class BaseController extends Controller {
         };
         hustonService.getCoefficienti(aCallback);
     }
-    public void setProgettiDiCompensazione(){
+
+    public void setProgettiDiCompensazione() {
         AsyncCallback<List<ProgettoDiCompensazioneModel>> aCallback = new AsyncCallback<List<ProgettoDiCompensazioneModel>>() {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Errore impossibile connettersi al server");
             }
+
             @Override
             public void onSuccess(List<ProgettoDiCompensazioneModel> result) {
                 progettiDiCompensazioneList.clear();
@@ -72,14 +75,15 @@ public abstract class BaseController extends Controller {
         hustonService.getListOfProgettoDiCompensazione(false, aCallback);
     }
 
-     public void setInfo() {
+    public void setInfo() {
         AsyncCallback<GitRepositoryStateModel> aCallback = new AsyncCallback<GitRepositoryStateModel>() {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Errore impossibile connettersi al server");
             }
+
             @Override
             public void onSuccess(GitRepositoryStateModel result) {
-               info= result.toString();
+                info = result.toString();
             }
         };
         hustonService.checkGitRevision(aCallback);
@@ -105,12 +109,12 @@ public abstract class BaseController extends Controller {
         return info;
     }
 
-    public void sentMail(EMailVTO d){
-        EMailVTO data= new EMailVTO();
+    public void sentMail(EMailVTO d) {
+        EMailVTO data = new EMailVTO();
         data.setBody("@TEST@");
         data.setFromUser("giovanniltHD@gmail.com");
         data.setSubject("-TEST-");
-        data.setToUser(Arrays.asList("serena.dimaida@gmail.com","giovannilt@gmail.com"));
+        data.setToUser(Arrays.asList("serena.dimaida@gmail.com", "giovannilt@gmail.com"));
 
         AsyncCallback<Void> aCallback = new AsyncCallback<Void>() {
             public void onFailure(Throwable caught) {
@@ -125,4 +129,9 @@ public abstract class BaseController extends Controller {
         };
         hustonService.sentMail(data, aCallback);
     }
+
+
+
+
+
 }

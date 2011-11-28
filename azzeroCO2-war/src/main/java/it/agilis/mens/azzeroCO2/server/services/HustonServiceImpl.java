@@ -319,13 +319,10 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     public boolean isPagato(DettaglioVTO riepilogo) {
         try {
             Ordine o = azzeroCO2Register.getOrdineDAO().getOrdine(riepilogo.getOrdineId());
-            if(o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO)){
-                return true;
-            }
+            return o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO);
         } catch (Exception e) {
             return false;
         }
-        return true;
     }
 
 

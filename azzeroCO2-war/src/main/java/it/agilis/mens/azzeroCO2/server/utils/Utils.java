@@ -186,7 +186,7 @@ public class Utils {
         pcm.setAttivo(pc.getAttivo());
         pcm.setNome(pc.getNome());
         pcm.setPrezzo(pc.getPrezzo());
-        pcm.setImageUrl( pc.getImg());
+        pcm.setImageUrl(pc.getImg());
         return pcm;
 
     }
@@ -552,6 +552,9 @@ public class Utils {
         ricevuta.setABI(ricevutaDiPagamento.getABI());
         ricevuta.setITEMS(ricevutaDiPagamento.getITEMS());
 
+        ricevuta.setLastUpdate(ricevutaDiPagamento.getLastUpdate());
+        ricevuta.setUpdateFromBanca(ricevutaDiPagamento.getUpdateFromBanca());
+
         return ricevuta;
     }
 
@@ -571,7 +574,7 @@ public class Utils {
         }
         SellaRicevutaDiPagamento ricevuta = new SellaRicevutaDiPagamento();
 
-          ricevuta.setId(pagamentoModel.getId());
+        ricevuta.setId(pagamentoModel.getId());
         ricevuta.setEsito(Esito.valueOf(pagamentoModel.getEsito()));
 
         ricevuta.setMERCHANT_ID(pagamentoModel.getMERCHANT_ID());
@@ -585,6 +588,9 @@ public class Utils {
 
         ricevuta.setABI(pagamentoModel.getABI());
         ricevuta.setITEMS(pagamentoModel.getITEMS());
+
+        ricevuta.setLastUpdate(pagamentoModel.getLastUpdate());
+        ricevuta.setUpdateFromBanca(pagamentoModel.getUpdateFromBanca());
 
         return ricevuta;
 

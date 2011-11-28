@@ -28,7 +28,6 @@ public class PagamentoController extends BaseController {
             forwardToView(pagamentroView, event);
             DettaglioModel model = (DettaglioModel) event.getData();
             pagamentroView.setPagamentoModel(model);
-
         } else {
             forwardToView(pagamentroView, event);
         }

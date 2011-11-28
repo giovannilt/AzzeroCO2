@@ -360,4 +360,14 @@ public class EventoDettaglio extends LayoutContainer {
             formManifestiPiegevoliFogli.clear(true);
         }
     }
+
+    public void showConferma() {
+        eventoTab.getSelectedItem().disable();
+        posizioniLabel++;
+        eventoTab.getItems().get(eventoTab.getItems().size() - 1).setEnabled(true);
+        eventoTab.setSelection(eventoTab.getItems().get(eventoTab.getItems().size() - 1));
+        Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+        Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+        //  nextTab();
+    }
 }

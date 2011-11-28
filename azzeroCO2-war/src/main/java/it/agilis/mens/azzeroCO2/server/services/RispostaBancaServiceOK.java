@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -79,6 +80,7 @@ public class RispostaBancaServiceOK extends HttpServlet {
             if (ricevuta != null) {
                 ricevuta.setTRANSACTION_ID(TRANSACTION_ID);
                 ricevuta.setCOD_AUT(COD_AUT);
+                ricevuta.setUpdateFromBanca(new Date());
                 try {
                     MessageDigest algorithm = MessageDigest.getInstance("MD5");
                     algorithm.reset();

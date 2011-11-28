@@ -204,4 +204,10 @@ public class EventoView extends View {
     public void showRiepilogo() {
         eventoDettaglio.showRiepilogo();
     }
+
+    public void showConferma() {
+        eventoDettaglio.showConferma();
+    }
+
+
 }
