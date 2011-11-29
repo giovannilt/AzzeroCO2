@@ -95,7 +95,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
         final NumberFormat number = NumberFormat.getFormat("0.00");
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("index", "", 20);
+        ColumnConfig column = new ColumnConfig("index", "", 23);
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
@@ -159,21 +159,8 @@ public class EventoFormRiepilogo extends LayoutContainer {
         configs.add(column);
 
         ColumnModel cm = new ColumnModel(configs);
-
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
-
-        /* grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
-           grid.getSelectionModel().addListener(Events.CellDoubleClick,
-        new Listener<SelectionChangedEvent<RiepilogoModel>>() {
-            public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
-                if (be.getSelection().size() > 0) {
-                    Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());
-                }
-            }
-        });*/
-
         grid.setBorders(true);
-        //      grid.setAutoHeight(true);
         grid.setHeight(350);
 
         return grid;

@@ -39,36 +39,19 @@ public class Amministrazione extends LayoutContainer {
     private TabItem couponTab = new TabItem("Coupon");
     private TabItem coefficientiTab = new TabItem("Coefficienti di calcolo");
     private TabItem programmiTab = new TabItem("Progetti di compensazione");
-
+    private TabItem ordiniTab = new TabItem("I tuoi calcoli");
+    private TabItem userTab = new TabItem("Utente");
 
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
-
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        TabItem ordiniTab = new TabItem("I tuoi calcoli");
         ordiniTab.add(ordiniForm);
-        amministrazioneTab.add(ordiniTab);
-
-
         couponTab.add(couponForm);
-        amministrazioneTab.add(couponTab);
-
-
         coefficientiTab.add(coefficentiForm);
-        amministrazioneTab.add(coefficientiTab);
-
-
         programmiTab.add(progettiDiCompensazioneForm);
-        amministrazioneTab.add(programmiTab);
-
-
-        TabItem userTab = new TabItem("Utente");
         userTab.add(userInfoForm);
-        amministrazioneTab.add(userTab);
-
-
         add(amministrazioneTab, new RowData(1, 1));
     }
 
@@ -93,17 +76,22 @@ public class Amministrazione extends LayoutContainer {
 
     public void setUserInfo(UserInfoModel userInfoModel) {
         this.userInfoModel = userInfoModel;
-         userInfoForm.setUserInStore(userInfoModel);
+        userInfoForm.setUserInStore(userInfoModel);
+        amministrazioneTab.add(ordiniTab);
+        amministrazioneTab.add(userTab);
+
         if (userInfoModel != null &&
                 userInfoModel.getProfilo() != null &&
                 (userInfoModel.getProfilo().intValue() == Profile.Administrator.ordinal()
                         || userInfoModel.getProfilo().intValue() == Profile.SuperAdministrator.ordinal()
                 )) {
 
+            amministrazioneTab.add(couponTab);
+            amministrazioneTab.add(coefficientiTab);
+            amministrazioneTab.add(programmiTab);
             //ALL VISIBLE
-        } else {
-        // TODO nascondere le tab che non si devono vedere
         }
+        amministrazioneTab.setSelection(ordiniTab);
     }
 }
 

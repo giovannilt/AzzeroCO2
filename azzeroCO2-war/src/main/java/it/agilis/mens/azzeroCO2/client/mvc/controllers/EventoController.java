@@ -14,7 +14,6 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
@@ -126,16 +125,16 @@ public class EventoController extends BaseController {
             }
         } else if (event.getType().equals(EventoEvents.Conferma)) {
             DettaglioModel model = eventoView.getRiepilogo();
-            PagamentoModel pagamentoModel = new PagamentoModel(getTotaleDaPagare(model));
+
+            double kgCO2 = getTotaleKgCO2(model);
+
+            // TODO Calcolare il totale togliendo lo sconto COUPON
+
+            PagamentoModel pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
             pagamentoModel.setLastUpdate(new Date());
+            pagamentoModel.setKgCO2(kgCO2);
             model.setPagamentoModel(pagamentoModel);
-            List<RiepilogoModel> riepilogoModels = eventoView.riepilogo(getCoefficientiMAP());
-            double totale = 0;
-            for (RiepilogoModel r : riepilogoModels) {
-                totale += r.getKgCO2();
-            }
-            totale = model.getProgettoDiCompensazioneModel().getPrezzo() * totale;
-            model.setPagamentoModel(new PagamentoModel(number.format(totale)));
+
             Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
         } else if (event.getType().equals(EventoEvents.CaricaProgettiDiCompensazione)) {
             if (getProgettiDiCompensazioneList().size() == 0) {
@@ -149,8 +148,8 @@ public class EventoController extends BaseController {
             setUserInfoModel((UserInfoModel) event.getData());
             eventoView.setUserInfo(getUserInfoModel());
         } else if (event.getType().equals(EventoEvents.Save)) {
-            DettaglioModel model = (DettaglioModel) event.getData();
-            if (model != null) {
+            if (event.getData() instanceof DettaglioModel) {
+                DettaglioModel model = (DettaglioModel) event.getData();
                 save(model);
             } else {
                 save(null);
@@ -192,25 +191,17 @@ public class EventoController extends BaseController {
         }
     }
 
-    private String getTotaleDaPagare(DettaglioModel model) {
+    private double getTotaleKgCO2(DettaglioModel model) {
         List<RiepilogoModel> eventoRiepilogoModels = eventoView.riepilogo(getCoefficientiMAP());
-
         double totale = 0;
         for (RiepilogoModel r : eventoRiepilogoModels) {
             totale += r.getKgCO2();
         }
-        ProgettoDiCompensazioneModel p = model.getProgettoDiCompensazioneModel();
-        totale = totale * (p != null ? p.getPrezzo() : 0);
-
-        //TODO SUI CUPON
-        // model.getCouponModel();
-
-        return number.format(totale);
+        return totale;
     }
 
-
     class MyAsyncCallback implements AsyncCallback<DettaglioVTO> {
-        private Timer timer ;
+        private Timer timer;
 
         public void onFailure(Throwable caught) {
             Info.display("Error", "Errore impossibile connettersi al server " + caught);
@@ -218,7 +209,7 @@ public class EventoController extends BaseController {
 
         @Override
         public void onSuccess(DettaglioVTO result) {
-            if (result!=null) {
+            if (result != null) {
                 Info.display("Info", "Pagamento Avvenuto con sucesso");
                 Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
                 eventoView.showConferma();
@@ -233,7 +224,7 @@ public class EventoController extends BaseController {
         }
 
         public void setTimer(Timer timer) {
-            this.timer=timer;
+            this.timer = timer;
         }
 
         public Timer getTimer() {

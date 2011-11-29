@@ -43,11 +43,6 @@ public class Ordine {
     @OneToMany (cascade ={CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<TrasportoPersone> trasportoPersone;
 
-    private Date dataOrdine;
-    private Boolean editable;
-    private Double kgCo2;
-    private Double valoreCompensazione;
-
     @OneToOne (cascade ={CascadeType.ALL}, fetch = FetchType.EAGER)
     private SellaRicevutaDiPagamento ricevutaDiPagamento;
 
@@ -131,38 +126,6 @@ public class Ordine {
 
     public void setTrasportoPersone(List<TrasportoPersone> trasportoPersone) {
         this.trasportoPersone = trasportoPersone;
-    }
-
-    public Date getDataOrdine() {
-        return dataOrdine;
-    }
-
-    public void setDataOrdine(Date dataOrdine) {
-        this.dataOrdine = dataOrdine;
-    }
-
-    public Boolean getEditable() {
-        return editable;
-    }
-
-    public void setEditable(Boolean editable) {
-        this.editable = editable;
-    }
-
-    public Double getKgCo2() {
-        return kgCo2;
-    }
-
-    public void setKgCo2(Double kgCo2) {
-        this.kgCo2 = kgCo2;
-    }
-
-    public Double getValoreCompensazione() {
-        return valoreCompensazione;
-    }
-
-    public void setValoreCompensazione(Double valoreCompensazione) {
-        this.valoreCompensazione = valoreCompensazione;
     }
 
     public TrasportoMerci getTrasportoMerci() {

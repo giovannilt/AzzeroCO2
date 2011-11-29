@@ -30,8 +30,19 @@ public class SellaRicevutaDiPagamento {
     private String ITEMS;
     private String COD_AUT;
 
+    private double kgCO2;
+
     private Date lastUpdate;
     private Date updateFromBanca;
+
+
+    public double getKgCO2() {
+        return kgCO2;
+    }
+
+    public void setKgCO2(double kgCO2) {
+        this.kgCO2 = kgCO2;
+    }
 
     public Date getUpdateFromBanca() {
         return updateFromBanca;

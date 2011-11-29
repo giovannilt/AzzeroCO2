@@ -138,9 +138,6 @@ public class PagamentoSella extends Dialog {
             public void componentSelected(ButtonEvent ce) {
                 Dispatcher.forwardEvent(EventoEvents.InAttesaDiConfermaPagamento);
                 form.submit();
-                //submit.disable();
-                //submit.setVisible(false);
-
                 Dispatcher.forwardEvent(EventoEvents.Save, dettaglioModel);
             }
         });

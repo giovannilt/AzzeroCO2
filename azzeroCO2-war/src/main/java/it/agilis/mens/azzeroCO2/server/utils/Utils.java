@@ -104,7 +104,9 @@ public class Utils {
 
         double kco2Compensati = 0.0;
         for (Ordine o : userInfo.getOrdini()) {
-            kco2Compensati += o.getKgCo2();
+            if (o.getRicevutaDiPagamento() != null && o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO)) {
+                kco2Compensati += o.getRicevutaDiPagamento().getKgCO2();
+            }
         }
         userInfoModel.setKCO2Compensati(kco2Compensati);
         userInfoModel.setProfilo(userInfo.getProfile().ordinal());
@@ -553,6 +555,8 @@ public class Utils {
         ricevuta.setLastUpdate(ricevutaDiPagamento.getLastUpdate());
         ricevuta.setUpdateFromBanca(ricevutaDiPagamento.getUpdateFromBanca());
 
+        ricevuta.setKgCO2(ricevutaDiPagamento.getKgCO2());
+
         return ricevuta;
     }
 
@@ -589,6 +593,8 @@ public class Utils {
 
         ricevuta.setLastUpdate(pagamentoModel.getLastUpdate());
         ricevuta.setUpdateFromBanca(pagamentoModel.getUpdateFromBanca());
+
+        ricevuta.setKgCO2(pagamentoModel.getKgCO2());
 
         return ricevuta;
 
