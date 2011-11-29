@@ -20,4 +20,5 @@ public interface IOrdineDAO {
 
     Ordine getOrdine(Long ordineId);
 
+    Ordine getOrdineEager(Long ordineId);
 }

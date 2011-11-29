@@ -12,7 +12,6 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
-import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -58,7 +57,6 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.NextText);
         registerEventTypes(EventoEvents.Conferma);
 
-        registerEventTypes(EventoEvents.SentEmailConferma);
         registerEventTypes(EventoEvents.ShowConfermDialog);
         registerEventTypes(EventoEvents.ShowInfoDialog);
         registerEventTypes(EventoEvents.ShowRiepilogo);
@@ -147,8 +145,6 @@ public class EventoController extends BaseController {
 
         } else if (event.getType().equals(EventoEvents.CaricaCoefficienti)) {
             setCoefficienti();
-        } else if (event.getType().equals(EventoEvents.SentEmailConferma)) {
-            sentMail((EMailVTO) event.getData());
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
             eventoView.setUserInfo(getUserInfoModel());
@@ -213,20 +209,22 @@ public class EventoController extends BaseController {
     }
 
 
-    class MyAsyncCallback implements AsyncCallback<Boolean> {
+    class MyAsyncCallback implements AsyncCallback<DettaglioVTO> {
         private Timer timer ;
-
 
         public void onFailure(Throwable caught) {
             Info.display("Error", "Errore impossibile connettersi al server " + caught);
         }
 
         @Override
-        public void onSuccess(Boolean result) {
-            if (result) {
+        public void onSuccess(DettaglioVTO result) {
+            if (result!=null) {
                 Info.display("Info", "Pagamento Avvenuto con sucesso");
                 Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
                 eventoView.showConferma();
+
+                sentMail();
+
             } else {
                 Info.display("Info", "NON PAGATO");
                 getTimer().schedule(20000);

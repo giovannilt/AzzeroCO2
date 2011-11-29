@@ -104,6 +104,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
                     }
                 });
                 b.setText((String) model.get(property)==null || "".equalsIgnoreCase((String) model.get(property))? "Set IMG":(String) model.get(property));
+                b.setStyleAttribute("background-color","#00ff00;");
                 b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
                 b.setToolTip("Click for upload");
 
@@ -120,7 +121,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         column.setEditor(new CellEditor(new TextField<String>()));
         configs.add(column);
 
-        column = new ColumnConfig("imageUrl", "Upload File", 100);
+        column = new ColumnConfig("imageUrl", "Upload File", 300);
         column.setRenderer(buttonRenderer);
         configs.add(column);
 
@@ -164,10 +165,6 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         saveButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                /*List<CouponModel> coupons = new ArrayList<CouponModel>();
-                for (Record r : store.getModifiedRecords()) {
-                    coupons.add((CouponModel) r.getModel());
-                }*/
                 Dispatcher.forwardEvent(AmministrazioneEvents.SaveProgrammiDiCompensazione, store.getModels());
 
             }

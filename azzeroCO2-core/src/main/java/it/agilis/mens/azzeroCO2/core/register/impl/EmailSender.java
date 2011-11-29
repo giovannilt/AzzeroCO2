@@ -79,7 +79,8 @@ public class EmailSender implements IEmailSender {
         props.put("mail.debug", "true");
         props.put("mail.smtp.port", port);
         props.put("mail.smtp.socketFactory.port", port);
-        props.put("mail.smtp.socketFactory.class", SSL_FACTORY);
+        props.put("mail.smtp.starttls.enable","true");
+     //   props.put("mail.smtp.socketFactory.class", SSL_FACTORY);
         props.put("mail.smtp.socketFactory.fallback", "false");
 
         Session session = Session.getDefaultInstance(props,

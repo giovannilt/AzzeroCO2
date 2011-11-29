@@ -109,29 +109,47 @@ public abstract class BaseController extends Controller {
         return info;
     }
 
-    public void sentMail(EMailVTO d) {
+    public void sentMail() {
         EMailVTO data = new EMailVTO();
-        data.setBody("@TEST@");
-        data.setFromUser("giovanniltHD@gmail.com");
-        data.setSubject("-TEST-");
-        data.setToUser(Arrays.asList("serena.dimaida@gmail.com", "giovannilt@gmail.com"));
+        data.setBody(gitTEXT);
+
+        data.setFromUser("no-reply@azzeroco2.it");
+        data.setSubject("- Email ... TEST -");
+        data.setToUser(Arrays.asList(userInfoModel.getEmail(),"serena.dimaida@gmail.com", "giovannilt@gmail.com"));
 
         AsyncCallback<Void> aCallback = new AsyncCallback<Void>() {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Errore impossibile connettersi al server.");
             }
-
             @Override
             public void onSuccess(Void aVoid) {
                 Info.display("Info", "Email Inviata Con successo.");
             }
-
         };
         hustonService.sentMail(data, aCallback);
     }
 
 
-
-
-
+    String gitTEXT="" +
+            "                              ,-._.-._.-._.-._.-.\n" +
+            "                              `-.             ,-'\n" +
+            " .----------------------.       |             |\n" +
+            "|                        |      |             |\n" +
+            "|     EMAIL SPEDITA      |      |             |\n" +
+            "|                        |      |             |\n" +
+            "|                        |     ,';\".________.-.\n" +
+            "|                        |     ;';_'         )]\n" +
+            "|                        |    ;             `-|\n" +
+            "|                        `.    `T-            |\n" +
+            " `----------------------._ \\    |             |\n" +
+            "                          `-;   |             |\n" +
+            "                                |..________..-|\n" +
+            "                               /\\/ |________..|\n" +
+            "                          ,'`./  >,(           |\n" +
+            "                          \\_.-|_/,-/   ii  |   |\n" +
+            "                           `.\"' `-/  .-\"\"\"||    |\n" +
+            "                            /`^\"-;   |    ||____|\n" +
+            "                           /     /   `.__/  | ||\n" +
+            "                                /           | ||\n" +
+            "                                            | ||";
 }

@@ -295,7 +295,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
     @Override
     public boolean saveUserInfo(UserInfoModel userInfoModel) {
-         try {
+        try {
             azzeroCO2Register.saveUserInfo(Utils.getUserInfo(userInfoModel));
         } catch (Exception e) {
             e.printStackTrace();
@@ -306,7 +306,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
     @Override
     public boolean associaIDProgettoDiCompensazioneImmagine(Long idProgetto, String nomeImmagine) {
-          try {
+        try {
             azzeroCO2Register.associaIDProgettoDiCompensazioneImmagine(idProgetto, nomeImmagine);
         } catch (Exception e) {
             e.printStackTrace();
@@ -316,12 +316,20 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public boolean isPagato(DettaglioVTO riepilogo) {
+    public DettaglioVTO isPagato(DettaglioVTO riepilogo) {
         try {
-            Ordine o = azzeroCO2Register.getOrdineDAO().getOrdine(riepilogo.getOrdineId());
-            return o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO);
+            Ordine o = azzeroCO2Register.getOrdineDAO().getOrdineEager(riepilogo.getOrdineId());
+
+            if (o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO)) {
+                DettaglioModel dettaglioModel1 = Utils.getDettaglioModel(o);
+                return AzzerroCO2UtilsClientHelper.getDettaglioVTO(dettaglioModel1);
+            } else {
+                return null;
+            }
+
+
         } catch (Exception e) {
-            return false;
+            return null;
         }
     }
 

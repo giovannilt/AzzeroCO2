@@ -384,8 +384,6 @@ public class Utils {
         DettaglioModel dm = new DettaglioModel();
 
         dm.setLastUpdate(o.getLastUpdate());
-
-
         dm.setProgettoDiCompensazioneModel(getProgettoDiCompensazioneModel(o.getProgettoCompensazione()));
 
         dm.setPagamentoModel(getPagamentoModel(o.getRicevutaDiPagamento()));

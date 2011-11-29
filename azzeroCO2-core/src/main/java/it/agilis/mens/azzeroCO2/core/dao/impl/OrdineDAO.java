@@ -19,14 +19,14 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Transactional
-public class OrdineDAO extends DAOSupport implements IOrdineDAO  {
+public class OrdineDAO extends DAOSupport implements IOrdineDAO {
 
-     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-    public List<Ordine> getListOfOrdini(OrdineCriteria ordineCriteria){
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public List<Ordine> getListOfOrdini(OrdineCriteria ordineCriteria) {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Ordine.class, "ordine");
 
         List<Ordine> list = (List<Ordine>) getList(detachedCriteria, true);
-        for(Ordine o:list){
+        for (Ordine o : list) {
             Hibernate.initialize(o.getProgettoCompensazione());
             Hibernate.initialize(o.getTrasportoPersone());
             Hibernate.initialize(o.getTrasportoMerci());
@@ -47,5 +47,18 @@ public class OrdineDAO extends DAOSupport implements IOrdineDAO  {
     @Override
     public Ordine getOrdine(Long ordineId) {
         return (Ordine) getObjectById(Ordine.class, ordineId);
+    }
+
+    @Override
+    public Ordine getOrdineEager(Long ordineId) {
+        Ordine o = (Ordine) getObjectById(Ordine.class, ordineId);
+        Hibernate.initialize(o.getEvento());
+        Hibernate.initialize(o.getProgettoCompensazione());
+        Hibernate.initialize(o.getTrasportoPersone());
+        Hibernate.initialize(o.getTrasportoMerci());
+        Hibernate.initialize(o.getPubblicazioni());
+        Hibernate.initialize(o.getCoupon());
+        Hibernate.initialize(o.getEvento());
+        return o;
     }
 }

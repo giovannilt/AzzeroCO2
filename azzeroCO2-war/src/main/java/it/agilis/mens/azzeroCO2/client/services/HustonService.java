@@ -58,6 +58,6 @@ public interface HustonService extends RemoteService {
 
     boolean associaIDProgettoDiCompensazioneImmagine(Long idProgetto, String name);
 
-    boolean isPagato(DettaglioVTO riepilogo);
+    DettaglioVTO isPagato(DettaglioVTO riepilogo);
 }
 
