@@ -79,7 +79,7 @@ body {
 }
 
 .x-tab-panel-header, .x-tab-panel-footer {
-    background-color: #e18325;
+    background-color:gray;
     border-color: #8db2e3;
     overflow: hidden;
     zoom: 1;
@@ -1587,7 +1587,15 @@ a.x-menu-item {
     background-image: url(../images/panel/top-bottom.gif);
 }
 
-.x-panel-tl, .x-panel-tr, .x-panel-bl, .x-panel-br {
+.x-panel-bl, .x-panel-br {
+    /*background-image: url(../images/panel/corners-sprite.gif);
+    border-bottom-color: #222224; */
+    background-color:#3F4757;
+    border-bottom-color:#EC8B00;
+
+}
+
+.x-panel-tl, .x-panel-tr {
     /*background-image: url(../images/panel/corners-sprite.gif);
     border-bottom-color: #222224; */
     background-color:#3F4757;
