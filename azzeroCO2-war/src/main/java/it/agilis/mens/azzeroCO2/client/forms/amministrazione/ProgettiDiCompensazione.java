@@ -103,6 +103,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
                         presenter.go();
                     }
                 });
+                b.setText((String) model.get(property)==null || "".equalsIgnoreCase((String) model.get(property))? "Set IMG":(String) model.get(property));
                 b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
                 b.setToolTip("Click for upload");
 
@@ -119,7 +120,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         column.setEditor(new CellEditor(new TextField<String>()));
         configs.add(column);
 
-        column = new ColumnConfig("Upload File", 100);
+        column = new ColumnConfig("imageUrl", "Upload File", 100);
         column.setRenderer(buttonRenderer);
         configs.add(column);
 

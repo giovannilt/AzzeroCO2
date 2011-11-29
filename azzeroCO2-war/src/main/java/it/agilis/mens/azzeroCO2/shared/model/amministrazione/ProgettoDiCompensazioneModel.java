@@ -31,7 +31,6 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
         set("nome", nome);
     }
 
-
     /*public Double getKgCO2() {
     /    return get("kgCO2");
     }
@@ -54,14 +53,16 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
     public Long getId() {
         return get("id");
     }
-    public void setId(Long id){
-        set("id", id) ;
+
+    public void setId(Long id) {
+        set("id", id);
     }
 
     public void setImageUrl(String imageUrl) {
-        set("imageUrl", imageUrl) ;
+        set("imageUrl", imageUrl);
     }
-     public String getImageUrl() {
-        return get("imageUrl") ;
+
+    public String getImageUrl() {
+        return get("imageUrl");
     }
 }
