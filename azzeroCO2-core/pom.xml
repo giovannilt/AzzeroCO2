@@ -18,6 +18,12 @@
     <properties>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.artofsolving.jodconverter</groupId>
+            <artifactId>jodconverter-core</artifactId>
+            <version>3.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- hibernate framework -->
         <dependency>
             <groupId>org.hibernate.java-persistence</groupId>
@@ -41,11 +47,6 @@
             <artifactId>hibernate-core</artifactId>
             <version>3.5.6-Final</version>
         </dependency>
-        <!--  <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-            <version>3.5.6-Final</version>
-        </dependency>-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-commons-annotations</artifactId>
@@ -66,39 +67,16 @@
             <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        <!-- <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>--><!--
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
-            <version>${spring.version}</version>
-        </dependency>-->
-        <!--     <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjtools</artifactId>
-            <version>1.6.2</version>
-        </dependency>-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.14</version>
         </dependency>
-        <!--
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.7</version>
-            <scope>test</scope>
-        </dependency>-->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.openoffice</groupId>
             <artifactId>juh</artifactId>
