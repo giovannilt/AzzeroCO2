@@ -4,11 +4,13 @@ import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import it.agilis.mens.azzeroCO2.client.components.EventoCompensatoDialog;
 import it.agilis.mens.azzeroCO2.client.components.uploadFiles.model.Model;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.views.AmministrazioneView;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
+import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
@@ -28,6 +30,8 @@ import java.util.Map;
  */
 public class AmministrazioneController extends BaseController {
     private AmministrazioneView amministrazioneView = new AmministrazioneView(this);
+    private EventoCompensatoDialog eventoCompensatoDialog= new EventoCompensatoDialog();
+
 
     public AmministrazioneController() {
         registerEventTypes(AzzeroCO2Events.Init);
@@ -37,11 +41,18 @@ public class AmministrazioneController extends BaseController {
         registerEventTypes(AmministrazioneEvents.SaveCoupons);
         registerEventTypes(AmministrazioneEvents.SaveCoefficienti);
         registerEventTypes(AmministrazioneEvents.SaveProgrammiDiCompensazione);
+        registerEventTypes(AmministrazioneEvents.ShowEventoCompensatoDialog);
     }
 
     @Override
     public void handleEvent(AppEvent event) {
-        if (event.getType().equals(AmministrazioneEvents.SaveCoefficienti)) {
+        if (event.getType().equals(AmministrazioneEvents.ShowEventoCompensatoDialog)) {
+            DettaglioModel dettaglioModel = event.getData();
+            eventoCompensatoDialog.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(dettaglioModel));
+            eventoCompensatoDialog.setTotale(dettaglioModel.getPagamentoModel().getKgCO2());
+            eventoCompensatoDialog.show();
+
+        }else if (event.getType().equals(AmministrazioneEvents.SaveCoefficienti)) {
             List<CoefficienteModel> coefficienteModels = event.getData();
             HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
             AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {

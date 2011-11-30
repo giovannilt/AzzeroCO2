@@ -80,6 +80,17 @@ public class EventoController extends BaseController {
 
 
         } else if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
+            if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
+                setCoefficienti();
+                if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
+                    Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 001");
+                }
+            }
+            if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
+                Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 002");
+            } else {
+                eventoView.riepilogo(getCoefficientiMAP());
+            }
             eventoView.showRiepilogo();
         } else if (event.getType().equals(EventoEvents.LoadEvento)) {
             setCoefficienti();
@@ -92,7 +103,6 @@ public class EventoController extends BaseController {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
                 }
-
                 @Override
                 public void onSuccess(List<TipoDiCartaModel> result) {
                     if (result != null) {
@@ -213,14 +223,11 @@ public class EventoController extends BaseController {
                 Info.display("Info", "Pagamento Avvenuto con sucesso");
                 Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
                 eventoView.showConferma();
-
                 sentMail();
-
             } else {
                 Info.display("Info", "NON PAGATO");
                 getTimer().schedule(20000);
             }
-
         }
 
         public void setTimer(Timer timer) {

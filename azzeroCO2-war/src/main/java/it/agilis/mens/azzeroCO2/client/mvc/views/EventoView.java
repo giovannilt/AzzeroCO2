@@ -49,7 +49,7 @@ public class EventoView extends View {
     private ContentPanel center = new ContentPanel();
     private EventoSouth south = new EventoSouth();
     private EventoWest west = new EventoWest();
-    private UserInfoModel userInfoModel;
+    private EventoNorth north = new EventoNorth();
 
     private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
 
@@ -99,7 +99,7 @@ public class EventoView extends View {
                 riepilogo.getPagamentoModel().getEsito() != null) {
 
             west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo), Esito.valueOf(riepilogo.getPagamentoModel().getEsito()));
-        }else{
+        } else {
             west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo), Esito.IN_PAGAMENTO);
         }
         String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Evento";
@@ -137,7 +137,8 @@ public class EventoView extends View {
         northData.setHideCollapseTool(false);
         northData.setSplit(false);
         northData.setMargins(new Margins(0, 0, 0, 0));
-        evento.add(new EventoNorth(), northData);
+
+        evento.add(north, northData);
 
 
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 250);
@@ -197,7 +198,6 @@ public class EventoView extends View {
     }
 
     public void setUserInfo(UserInfoModel userInfoModel) {
-        this.userInfoModel = userInfoModel;
         eventoDettaglio.setUserInfoModel(userInfoModel);
     }
 
@@ -208,6 +208,5 @@ public class EventoView extends View {
     public void showConferma() {
         eventoDettaglio.showConferma();
     }
-
 
 }

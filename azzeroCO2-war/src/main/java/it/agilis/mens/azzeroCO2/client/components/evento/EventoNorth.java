@@ -57,13 +57,12 @@ public class EventoNorth extends LayoutContainer {
 
                 Dispatcher.forwardEvent(EventoEvents.ShowConfermDialog);
 
-             //   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
-             //   Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
+                //   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                //   Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
             }
         });
         c.add(close, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
         c.setStyleAttribute("background-color", "#F89D00");
         add(c);
     }
-
 }

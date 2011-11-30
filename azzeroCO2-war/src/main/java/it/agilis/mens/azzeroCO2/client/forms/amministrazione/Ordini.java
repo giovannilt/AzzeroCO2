@@ -16,10 +16,12 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,8 +86,7 @@ public class Ordini extends LayoutContainer {
         column.setRenderer(new GridCellRenderer<DettaglioModel>() {
             public String render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex,
                                  ListStore<DettaglioModel> store, Grid<DettaglioModel> grid) {
-                if (model.getPagamentoModel() != null && model.getPagamentoModel().getKgCO2()!=null)
-                {
+                if (model.getPagamentoModel() != null && model.getPagamentoModel().getKgCO2() != null) {
                     return number.format(model.getPagamentoModel().getKgCO2());
                 } else {
                     return "-";
@@ -107,24 +108,28 @@ public class Ordini extends LayoutContainer {
             }
         });
         configs.add(column);
-
         ColumnModel cm = new ColumnModel(configs);
-
         Grid<DettaglioModel> grid = new Grid<DettaglioModel>(store, cm);
         grid.setBorders(true);
-        // grid.setAutoHeight(true);
         grid.setHeight(430);
-        //    centre.setBottomComponent(toolBar);
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,
                 new Listener<SelectionChangedEvent<DettaglioModel>>() {
                     public void handleEvent(SelectionChangedEvent<DettaglioModel> be) {
                         if (be.getSelection().size() > 0) {
-                            Dispatcher.forwardEvent(EventoEvents.LoadEvento, be.getSelectedItem());
-                            Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
-                            Dispatcher.forwardEvent(EventoEvents.ShowRiepilogo);
-                            Info.display("Info", "Uploading Evento... " + be.getSelectedItem().getNome());
+                            if (be.getSelectedItem().getPagamentoModel()!=null &&
+                                    be.getSelectedItem().getPagamentoModel().getEsito().equals(Esito.PAGATO.toString())) {
+                                Dispatcher.forwardEvent(AmministrazioneEvents.ShowEventoCompensatoDialog, be.getSelectedItem());
+
+                            }else{
+                                Dispatcher.forwardEvent(EventoEvents.LoadEvento, be.getSelectedItem());
+
+                                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
+                                Dispatcher.forwardEvent(EventoEvents.ShowRiepilogo);
+
+                                Info.display("Info", "Uploading Evento... " + be.getSelectedItem().getNome());
+                            }
                         }
                     }
                 });
