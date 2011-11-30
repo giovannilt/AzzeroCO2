@@ -1549,8 +1549,10 @@ a.x-menu-item {
     font-size: 14px;
     /*font-family: tahoma, arial, verdana, sans-serif; Serena 07/11/2011   */
     font-family: arial;
-    border-color: #3F4757; /*#18181A;*/
-
+    border-top-color: #3F4757;  /*#18181A;*/
+    border-left-color:#3F4757;
+    border-right-color:#3F4757;
+    border-bottom-color:orange;
     background-image: url(../images/panel/white-top-bottom.gif);          /*sd*/
 }
 
