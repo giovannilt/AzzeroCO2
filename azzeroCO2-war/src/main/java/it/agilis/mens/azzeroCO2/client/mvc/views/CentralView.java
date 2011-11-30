@@ -92,7 +92,7 @@ public class CentralView extends View {
 
         center.setScrollMode(Style.Scroll.AUTOX);
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
+        centerData.setMargins(new Margins(3,0,0,0));
         _return.add(center, centerData);
 
         {  // Primo Rigo "EVENTI"

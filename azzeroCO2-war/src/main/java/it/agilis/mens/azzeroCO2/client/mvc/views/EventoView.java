@@ -129,7 +129,7 @@ public class EventoView extends View {
         layout.setEnableState(false);
         evento.setHeaderVisible(false);
         evento.setLayout(layout);
-        evento.setStyleAttribute("padding", "1px");
+       // evento.setStyleAttribute("padding", "1px");
 
         BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 25);
         northData.setCollapsible(false);
@@ -155,7 +155,7 @@ public class EventoView extends View {
         {
             final BorderLayout layout2 = new BorderLayout();
             center.setLayout(layout2);
-            center.setStyleAttribute("padding", "1px");
+        //    center.setStyleAttribute("padding", "2px");
 
             BorderLayoutData center2Data = new BorderLayoutData(Style.LayoutRegion.CENTER);
             center2Data.setMargins(new Margins(0, 0, 0, 0));

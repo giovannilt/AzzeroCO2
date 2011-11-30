@@ -118,7 +118,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         centre.add(grid, new RowData(1, 1));
         centre.setHeading("Progetti Di Compensazione");
-        centre.setHeight(440);
+        centre.setHeight(443);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
