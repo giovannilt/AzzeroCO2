@@ -4472,7 +4472,7 @@ a.x-menu-item {
 
 .x-panel-tl .x-panel-header {
     padding: 5px 0 4px 0;
-    border: 0 none;
+    border: 5 none;
     background: transparent;
     line-height: 15px;
 }
