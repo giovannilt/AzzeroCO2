@@ -144,6 +144,7 @@ public class EventoFormAcquisto extends LayoutContainer {
             c.add(label);
 
             panel.add(c);
+
         }
         {
             {
