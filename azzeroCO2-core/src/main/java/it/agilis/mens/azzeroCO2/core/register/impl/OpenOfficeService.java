@@ -5,6 +5,7 @@ import org.artofsolving.jodconverter.office.DefaultOfficeManagerConfiguration;
 import org.artofsolving.jodconverter.office.OfficeManager;
 
 import java.io.File;
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,6 +17,24 @@ import java.io.File;
 public class OpenOfficeService {
 
     private static OfficeManager officeManager = new DefaultOfficeManagerConfiguration().buildOfficeManager();
+    private String certificatoTemplateODT;
+    private String certificatiFolder;
+
+    public void setCertificatoTemplateODT(String certificatoTemplateODT) {
+        this.certificatoTemplateODT = certificatoTemplateODT;
+    }
+
+    public String getCertificatoTemplateODT() {
+        return certificatoTemplateODT;
+    }
+
+    public void setCertificatiFolder(String certificatiFolder) {
+        this.certificatiFolder = certificatiFolder;
+    }
+
+    public String getCertificatiFolder() {
+        return certificatiFolder;
+    }
 
     static {
         officeManager.start();
@@ -28,23 +47,18 @@ public class OpenOfficeService {
     }
 
     public String creaPDF(String fileToConvert) {
+        File dir=new File(certificatiFolder);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
 
-        String fileToConverted= fileToConvert.replace(".odt",".pdf");
+        String fileToConverted =  certificatiFolder+ new Date().getTime() + ".pdf";
 
         OfficeDocumentConverter converter = new OfficeDocumentConverter(officeManager);
-        String template="/Users/giovannilt/Documents/MensAgilisProjects/AzzeroCO2/templateSource/CertificatoTemplate.";
-        converter.convert(new File(template+"odt"), new File(template+"pdf"));
-
+        converter.convert(new File(certificatoTemplateODT), new File(fileToConverted));
 
         return fileToConverted;
     }
 
 
-    public String creaODTFromTemplate(){
-        String odt= "";
-
-
-
-        return odt;
-    }
 }
