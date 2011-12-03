@@ -61,16 +61,6 @@ public class NorthPanel extends LayoutContainer {
             }
         });
 
-
-
-       Button  test = new Button("test");
-        test.addSelectionListener(new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(PagamentoSellaEvents.CreateCertificato, ce);
-
-            }
-        });
-
         home.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
@@ -103,7 +93,6 @@ public class NorthPanel extends LayoutContainer {
         c.add(amministrazione, layoutData);
 
         c.add(registrati, layoutData);
-        c.add(test, layoutData);
         c.add(login, layoutData);
         c.add(home, layoutData);
 
@@ -133,17 +122,14 @@ public class NorthPanel extends LayoutContainer {
         if (userInfoModel != null &&
                 userInfoModel.getProfilo() != null) {
             if (userInfoModel.getProfilo().intValue() == Profile.Administrator.ordinal()) {
-                // removeALL();
                 info.setVisible(false);
                 amministrazione.setVisible(true);
                 showLogout();
             } else if (userInfoModel.getProfilo().intValue() == Profile.SuperAdministrator.ordinal()) {
-                // removeALL();
                 info.setVisible(true);
                 amministrazione.setVisible(true);
                 showLogout();
             } else if (userInfoModel.getProfilo().intValue() == Profile.User.ordinal()) {
-                //   removeALL();
                 amministrazione.setVisible(true);
                 showLogout();
             } else {
