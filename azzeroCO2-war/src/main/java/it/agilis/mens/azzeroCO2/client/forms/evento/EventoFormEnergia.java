@@ -197,7 +197,6 @@ public class EventoFormEnergia extends LayoutContainer {
         formPanel.getBody().setStyleAttribute("border-style", "solid");
         formPanel.getBody().setStyleAttribute("border-top", "3px solid Orange");
         formPanel.getBody().setStyleAttribute("border-width", "3px 0");
-        formPanel.getBody().setStyleAttribute("height", "378px");
         formPanel.getBody().setStyleAttribute("margin-bottom", "0");
 
         //To change body of overridden methods use File | Settings | File Templates.
