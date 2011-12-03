@@ -33,6 +33,13 @@
     <bean id="openOfficeService" class="it.agilis.mens.azzeroCO2.core.register.impl.OpenOfficeService" scope="singleton"/>
 
 
+    <bean id="openOfficeService" class="it.agilis.mens.azzeroCO2.core.register.impl.OpenOfficeService"
+          scope="singleton">
+         <property name="certificatoTemplateODT" value="${azzeroCO2.certificatoTemplateODT}"/>
+         <property name="certificatiFolder" value="${azzeroCO2.certificatiFolder}"/>
+    </bean>
+
+
     <bean id="azzeroCO2Register" class="it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register">
         <property name="userInfoDAO">
             <ref local="userInfoDAO"/>
@@ -66,7 +73,7 @@
 
 
     <bean id="emailSender" class="it.agilis.mens.azzeroCO2.core.register.impl.EmailSender">
-          <property name="host" value="${azzeroCO2.smtpHost}"/>
+        <property name="host" value="${azzeroCO2.smtpHost}"/>
         <property name="port" value="${azzeroCO2.smtpPort}"/>
         <property name="username" value="${azzeroCO2.smtpUsername}"/>
         <property name="password" value="${azzeroCO2.smtpPassword}"/>

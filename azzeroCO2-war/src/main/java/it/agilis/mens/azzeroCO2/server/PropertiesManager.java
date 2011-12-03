@@ -9,9 +9,9 @@ package it.agilis.mens.azzeroCO2.server;
  */
 public class PropertiesManager {
 
-
     private String imageSource;
     private String externalUrlImage;
+    private String certificatiFolder;
 
     public void setImageSource(String imageSource) {
         this.imageSource = imageSource;
@@ -27,5 +27,13 @@ public class PropertiesManager {
 
     public void setExternalUrlImage(String externalUrlImage) {
         this.externalUrlImage = externalUrlImage;
+    }
+
+    public void setCertificatiFolder(String certificatiFolder) {
+        this.certificatiFolder = certificatiFolder;
+    }
+
+    public String getCertificatiFolder() {
+        return certificatiFolder;
     }
 }

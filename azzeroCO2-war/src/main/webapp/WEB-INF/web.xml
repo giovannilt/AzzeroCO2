@@ -24,7 +24,7 @@
     </servlet-mapping>
 
     <servlet>
-        <display-name>RispostaBancaKO</display-name>
+        <display-name>RispostaBancaOK</display-name>
         <servlet-name>rispostaBancaServletOK</servlet-name>
         <servlet-class>it.agilis.mens.azzeroCO2.server.services.RispostaBancaServiceOK</servlet-class>
         <load-on-startup>0</load-on-startup>
@@ -36,8 +36,10 @@
     </servlet-mapping>
 
     <servlet>
+        <display-name>RispostaBancaKO</display-name>
         <servlet-name>rispostaBancaServletKO</servlet-name>
         <servlet-class>it.agilis.mens.azzeroCO2.server.services.RispostaBancaServiceKO</servlet-class>
+        <load-on-startup>0</load-on-startup>
     </servlet>
 
     <servlet-mapping>
@@ -46,14 +48,26 @@
     </servlet-mapping>
 
     <servlet>
-		<servlet-name>uploadServlet</servlet-name>
-		<servlet-class>it.agilis.mens.azzeroCO2.server.services.UploadServlet</servlet-class>
-	</servlet>
+        <display-name>DownloadCertificato</display-name>
+        <servlet-name>downloadCertificato</servlet-name>
+        <servlet-class>it.agilis.mens.azzeroCO2.server.services.DownloadCertificato</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
 
-	<servlet-mapping>
-		<servlet-name>uploadServlet</servlet-name>
-		<url-pattern>/upload</url-pattern>
-	</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>downloadCertificato</servlet-name>
+        <url-pattern>/azzeroCO2/downloadCertificato</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>uploadServlet</servlet-name>
+        <servlet-class>it.agilis.mens.azzeroCO2.server.services.UploadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>uploadServlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
 
     <session-config>
         <session-timeout>60</session-timeout>

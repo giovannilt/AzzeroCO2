@@ -22,6 +22,7 @@ import com.sun.star.beans.PropertyVetoException;
 import com.sun.star.beans.UnknownPropertyException;
 import com.sun.star.beans.XPropertySet;
 import com.sun.star.container.NoSuchElementException;
+import com.sun.star.container.XEnumeration;
 import com.sun.star.lang.WrappedTargetException;
 import com.sun.star.lang.XComponent;
 import com.sun.star.text.XDependentTextField;
@@ -45,6 +46,7 @@ public class StandardConversionTask extends AbstractConversionTask {
     private Map<String, ?> defaultLoadProperties;
     private DocumentFormat inputFormat;
 
+
     public StandardConversionTask(File inputFile, File outputFile, DocumentFormat outputFormat) {
         super(inputFile, outputFile);
         this.outputFormat = outputFormat;
@@ -65,21 +67,31 @@ public class StandardConversionTask extends AbstractConversionTask {
 
             XTextFieldsSupplier fieldSupplier = (XTextFieldsSupplier)
                     UnoRuntime.queryInterface(XTextFieldsSupplier.class, document);
-            while (fieldSupplier.getTextFields().createEnumeration().hasMoreElements()) {
-                Object textField = fieldSupplier.getTextFields().createEnumeration().nextElement();
+            XEnumeration enumeration = fieldSupplier.getTextFields().createEnumeration();
+            while (enumeration.hasMoreElements()) {
+                Object o = enumeration.nextElement();
 
-                XDependentTextField dependentTextField = (XDependentTextField) UnoRuntime.queryInterface(XDependentTextField.class, textField);
-
-
+                XDependentTextField dependentTextField = (XDependentTextField) UnoRuntime.queryInterface(XDependentTextField.class, o);
                 XPropertySet propertySet = dependentTextField.getTextFieldMaster();
                 String name = (String) propertySet.getPropertyValue("Name");
 
-               propertySet.setPropertyValue("Content", name + "--->Esticazzzi");
-          }
+                if (name.equalsIgnoreCase("KgCO2")) {
+                    XPropertySet loXPropertySet = UnoRuntime.queryInterface(XPropertySet.class, dependentTextField);
+                    loXPropertySet.setPropertyValue("Content", "1000000");
+                    loXPropertySet.setPropertyValue("Hint", "fieldHint");
+                }  else  if (name.equalsIgnoreCase("NomeAzienda")) {
+                    XPropertySet loXPropertySet = UnoRuntime.queryInterface(XPropertySet.class, dependentTextField);
+                    loXPropertySet.setPropertyValue("Content", "FINTUS ");
+                    loXPropertySet.setPropertyValue("Hint", "fieldHint");
+                }  else  if (name.equalsIgnoreCase("NomeEvento")) {
+                    XPropertySet loXPropertySet = UnoRuntime.queryInterface(XPropertySet.class, dependentTextField);
+                    loXPropertySet.setPropertyValue("Content", "AMMAZZIAMO GLI ANIMALI");
+                    loXPropertySet.setPropertyValue("Hint", "fieldHint");
+                }
+            }
 
             if (refreshable != null) {
                 refreshable.refresh();
-
             }
         } catch (Exception e) {
             e.printStackTrace();
