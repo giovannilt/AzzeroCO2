@@ -59,7 +59,7 @@ public class EventoFormAcquisto extends LayoutContainer {
 
 
     private LabelField kcO2Evento = new LabelField("Kg C02");
-    private final LabelField titoloProgettoScelto = new LabelField("ProgettoScelto");
+    private final LabelField titoloProgettoScelto = new LabelField("Progetto scelto");
     private final LabelField euroPerKCo2Progetto = new LabelField(" 0.00");
     private final LabelField totale = new LabelField(" 0.00");
     private ProgettoDiCompensazioneModel selectedModel;
@@ -84,7 +84,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         setStyleAttribute("padding", "0px");
 
         VerticalPanel vp = new VerticalPanel();
-        vp.setHeight(622);
+        vp.setHeight(411);
         vp.add(form);
         east.add(vp);
 
@@ -118,7 +118,10 @@ public class EventoFormAcquisto extends LayoutContainer {
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         centre.add(grid, new RowData(1, 1));
         centre.setHeading("Progetti Di Compensazione");
-        centre.setHeight(443);
+        centre.setHeight(438);
+        //east.setHeight(23);
+        centre.setStyleAttribute("background-color","#3F4757");
+        east.setStyleAttribute("background-color","#3F4757");
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -411,6 +414,25 @@ public class EventoFormAcquisto extends LayoutContainer {
                 break;
             }
         }
+    }
+
+    @Override
+    protected void onAfterLayout() {
+        super.onAfterLayout();
+        centre.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        centre.getBody().setStyleAttribute("border-style", "solid");
+        centre.getBody().setStyleAttribute("border-top", "3px solid orange");
+        centre.getBody().setStyleAttribute("border-width", "3px 0");
+        centre.getBody().setStyleAttribute("margin", "0");
+
+
+        east.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        east.getBody().setStyleAttribute("border-style", "solid");
+        east.getBody().setStyleAttribute("border-top", "3px solid orange");
+        east.getBody().setStyleAttribute("border-width", "3px 0");
+        east.getBody().setStyleAttribute("margin-bottom", "0");
+
+        //To change body of overridden methods use File | Settings | File Templates.
     }
 
 

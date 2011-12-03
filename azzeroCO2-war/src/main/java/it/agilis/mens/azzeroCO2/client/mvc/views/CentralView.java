@@ -87,7 +87,19 @@ public class CentralView extends View {
         _return.setLayout(layoutBorder);
         _return.setStyleAttribute("padding", "1px");
 
-        ContentPanel center = new ContentPanel();
+        ContentPanel center = new ContentPanel(){
+                        @Override
+                        protected void onLoad(){
+                            super.onLoad();
+                            //getBody().setStyleAttribute("border-bottom", "3px solid orange");
+                            getBody().setStyleAttribute("border-style", "solid");
+                            getBody().setStyleAttribute("border-top", "3px solid orange");
+                            getBody().setStyleAttribute("border-width", "3px 0");
+                            //getBody().setStyleAttribute("margin-bottom", "0");
+
+                            //To change body of overridden methods use File | Settings | File Templates.
+                        }
+                    };
         center.setHeading("Compensa le emissioni delle tue attività");
 
         center.setScrollMode(Style.Scroll.AUTOX);
