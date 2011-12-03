@@ -52,6 +52,8 @@ public class EventoFormEnergia extends LayoutContainer {
         cp.add(formPanel, new RowData(1, 1));
 
 
+        //  cp.setStyleAttribute("padding0 10px;
+
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
     }
@@ -81,7 +83,7 @@ public class EventoFormEnergia extends LayoutContainer {
             }
         });
 
-   //     HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
+        //     HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         LayoutContainer c2 = new LayoutContainer();
         HBoxLayout layout2 = new HBoxLayout();
         layout2.setPadding(new Padding(10));
@@ -142,7 +144,7 @@ public class EventoFormEnergia extends LayoutContainer {
         cGas.add(label);
         cGas.add(gasMetano);
         LabelField widget1 = new LabelField("m<sup>3</sup>");
-        widget1.setStyleAttribute("font-size","11px");
+        widget1.setStyleAttribute("font-size", "11px");
         cGas.add(widget1, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
 
         panel.add(cGas, new FormData("100%"));
@@ -163,7 +165,7 @@ public class EventoFormEnergia extends LayoutContainer {
         cGasoline.add(label);
         cGasoline.add(gasolio);
         LabelField litri = new LabelField("Litri");
-        litri.setStyleAttribute("font-size","11px");
+        litri.setStyleAttribute("font-size", "11px");
         cGasoline.add(litri, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
 
 
@@ -185,6 +187,20 @@ public class EventoFormEnergia extends LayoutContainer {
     public void setEnergiaModel(EnergiaModel energiaModel) {
         this.energiaModel = energiaModel;
         binding.bind(energiaModel);
+    }
+
+    @Override
+    protected void onShow() {
+        super.onShow();
+
+        formPanel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        formPanel.getBody().setStyleAttribute("border-style", "solid");
+        formPanel.getBody().setStyleAttribute("border-top", "3px solid Orange");
+        formPanel.getBody().setStyleAttribute("border-width", "3px 0");
+        formPanel.getBody().setStyleAttribute("height", "378px");
+        formPanel.getBody().setStyleAttribute("margin-bottom", "0");
+
+        //To change body of overridden methods use File | Settings | File Templates.
     }
 }
 
