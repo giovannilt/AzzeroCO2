@@ -333,5 +333,12 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
         }
     }
 
+    @Override
+    public String creaCertificatoInPDF() {
+
+        azzeroCO2Register.creaCertificatoPDF();
+        return null;
+    }
+
 
 }

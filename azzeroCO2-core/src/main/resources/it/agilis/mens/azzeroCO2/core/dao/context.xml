@@ -30,6 +30,8 @@
     <bean id="sellaRicevutaDiPagamentoDAO" class="it.agilis.mens.azzeroCO2.core.dao.impl.SellaRicevutaDiPagamentoDAO">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="openOfficeService" class="it.agilis.mens.azzeroCO2.core.register.impl.OpenOfficeService" scope="singleton"/>
+
 
     <bean id="azzeroCO2Register" class="it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register">
         <property name="userInfoDAO">
@@ -54,6 +56,8 @@
         <property name="pagamentoDAO">
             <ref local="sellaRicevutaDiPagamentoDAO"/>
         </property>
+        <property name="openOfficeService" ref="openOfficeService"/>
+
     </bean>
 
     <!-- **************** -->
