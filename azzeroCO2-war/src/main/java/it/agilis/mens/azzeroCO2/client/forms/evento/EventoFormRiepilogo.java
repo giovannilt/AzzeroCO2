@@ -38,6 +38,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
     private Text totaleText = new Text("Totale KG/CO2");
     private Text totale = new Text("0.00");
     private Esito esito = Esito.IN_PAGAMENTO;
+    private ContentPanel cp = new ContentPanel();
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -46,7 +47,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
         BorderLayout layout_C = new BorderLayout();
         setLayout(layout_C);
 
-        ContentPanel cp = new ContentPanel();
+
         cp.setFrame(true);
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
@@ -89,6 +90,18 @@ public class EventoFormRiepilogo extends LayoutContainer {
         add(cp, centerData);
 
     }
+        protected void onAfterLayout() {
+        super.onAfterLayout();
+        cp.getBody().setStyleAttribute("border-bottom","3px solid orange");
+        cp.getBody().setStyleAttribute("border-style", "solid");
+        //cp.getBody().setStyleAttribute("border-top", "3px solid orange");
+        cp.getBody().setStyleAttribute("border-width", "3px 0");
+        cp.getBody().setStyleAttribute("margin-bottom", "0");
+
+
+        //To change body of overridden methods use File | Settings | File Templates.
+    }
+
 
     private Grid<RiepilogoModel> createGrid() {
 
@@ -189,6 +202,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
     public void clear() {
         store.removeAll();
     }
+
 
 }
 

@@ -38,7 +38,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
     private final FormPanel panel = createGroupForm();
     private final FormBinding formBindings = new FormBinding(panel, true);
     private final Grid<ManifestiPieghevoliFogliModel> grid = createGrid();
-
+    private ContentPanel cpEst = new ContentPanel();
     public EventoFormManifestiPieghevoliFogli() {
         setDefault();
     }
@@ -73,7 +73,7 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         textContent.add(note);
 
 
-        ContentPanel cpEst = new ContentPanel();
+
         cpEst.setFrame(false);
         cpEst.setHeading("Manifesti, pieghevoli, fogli");
         cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
@@ -121,6 +121,24 @@ public class EventoFormManifestiPieghevoliFogli extends LayoutContainer {
         add(cp, centerData);
         grid.getSelectionModel().select(0, true);
     }
+    @Override
+    protected void onLoad() {
+        super.onLoad();
+        toolBar.setStyleAttribute("border-bottom", "3px solid orange");
+        cpEst.getBody().setStyleAttribute("border-style", "solid");
+        cpEst.getBody().setStyleAttribute("border-top", "3px solid orange");
+        cpEst.getBody().setStyleAttribute("border-width", "3px 0");
+        cpEst.getBody().setStyleAttribute("margin-bottom", "0");
+        panel.getBody().setStyleAttribute("border-bottom","3px solid orange");
+        panel.getBody().setStyleAttribute("border-style", "solid");
+        panel.getBody().setStyleAttribute("border-top", "3px solid orange");
+        panel.getBody().setStyleAttribute("border-width", "3px 0");
+        panel.getBody().setStyleAttribute("margin-bottom", "0");
+
+
+        //To change body of overridden methods use File | Settings | File Templates.
+    }
+
 
     private FormPanel createGroupForm() {
         FormPanel panel = new FormPanel();

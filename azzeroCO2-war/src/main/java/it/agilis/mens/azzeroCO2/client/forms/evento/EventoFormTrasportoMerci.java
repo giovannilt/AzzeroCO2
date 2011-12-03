@@ -384,5 +384,18 @@ public class EventoFormTrasportoMerci extends LayoutContainer {
         binding.bind(trasportoMerciModel);
     }
 
+        @Override
+    protected void onLoad() {
+        super.onLoad();
+        panel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        panel.getBody().setStyleAttribute("border-style", "solid");
+        panel.getBody().setStyleAttribute("border-top", "3px solid orange");
+        panel.getBody().setStyleAttribute("border-width", "3px 0");
+        panel.getBody().setStyleAttribute("margin-bottom", "0");
+
+        //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+
 }
 

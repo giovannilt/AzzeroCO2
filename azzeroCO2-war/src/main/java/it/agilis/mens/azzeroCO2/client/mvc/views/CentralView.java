@@ -92,7 +92,7 @@ public class CentralView extends View {
 
         center.setScrollMode(Style.Scroll.AUTOX);
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(3,0,0,0));
+        centerData.setMargins(new Margins(3, 0, 0, 0));
         _return.add(center, centerData);
 
         {  // Primo Rigo "EVENTI"
@@ -215,7 +215,21 @@ public class CentralView extends View {
                 logInLogOut.setLayout(new CardLayout());
 
                 {
-                    final FormPanel login = new FormPanel();
+                    final FormPanel login = new FormPanel() {
+                        @Override
+                        protected void onLoad() {
+                            super.onLoad();
+                            //getBody().setStyleAttribute("border-bottom", "3px solid orange");
+                            getBody().setStyleAttribute("border-style", "solid");
+                            getBody().setStyleAttribute("border-top", "3px solid #22729E");
+                            getBody().setStyleAttribute("border-width", "3px 0");
+                            //getBody().setStyleAttribute("margin-bottom", "0");
+
+                            //To change body of overridden methods use File | Settings | File Templates.
+                        }
+                    };
+                    login.getHeader().setStyleAttribute("font-color","white");
+
                     LayoutContainer rigo = new LayoutContainer();
                     rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
@@ -226,6 +240,8 @@ public class CentralView extends View {
                         public void componentKeyUp(ComponentEvent event) {
                             //  validate();
                         }
+
+
                     };
 
                     LabelField label = new LabelField("Utente: ");
@@ -284,6 +300,7 @@ public class CentralView extends View {
                     login.addButton(registstra);
                     logInLogOut.add(login);
                 }
+
                 {
                     LayoutContainer rigo = new LayoutContainer();
                     rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
@@ -299,7 +316,20 @@ public class CentralView extends View {
                 c.add(logInLogOut, new RowData(1, 0.3, new Margins(1, 1, 1, 1)));
             }
             {
-                ContentPanel compensazione = new ContentPanel();
+                ContentPanel compensazione = new ContentPanel(){
+                @Override
+                        protected void onLoad() {
+                            super.onLoad();
+                            //getBody().setStyleAttribute("border-bottom", "3px solid orange");
+                            getBody().setStyleAttribute("border-style", "solid");
+                            getBody().setStyleAttribute("border-top", "3px solid #22729E");
+                            getBody().setStyleAttribute("border-width", "3px 0");
+                            //getBody().setStyleAttribute("margin-bottom", "0");
+
+                            //To change body of overridden methods use File | Settings | File Templates.
+                        }                                       };
+
+
                 compensazione.setHeading("Cos'e' la compensazione?");
                 VBoxLayout layoutCompensazione = new VBoxLayout();
                 layoutCompensazione.setPadding(new Padding(5));
@@ -347,4 +377,6 @@ public class CentralView extends View {
         Dispatcher.forwardEvent(new AppEvent(AzzeroCO2Events.CentralPanelReady,
                 centralPanel));
     }
+
+
 }

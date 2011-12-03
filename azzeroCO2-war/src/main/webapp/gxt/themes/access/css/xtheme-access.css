@@ -1552,7 +1552,7 @@ a.x-menu-item {
     border-top-color: #3F4757;  /*#18181A;*/
     border-left-color:#3F4757;
     border-right-color:#3F4757;
-    border-bottom-color:orange;
+    border-bottom-color:#3F4757;/*orange;*/
     background-image: url(../images/panel/white-top-bottom.gif);          /*sd*/
 }
 

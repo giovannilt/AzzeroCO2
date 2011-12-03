@@ -111,6 +111,23 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         grid.getSelectionModel().select(0, true);
         add(cp, centerData);
     }
+        @Override
+    protected void onLoad() {
+        super.onLoad();
+        toolBar.setStyleAttribute("border-bottom", "3px solid orange");
+        cpEst.getBody().setStyleAttribute("border-style", "solid");
+        cpEst.getBody().setStyleAttribute("border-top", "3px solid orange");
+        cpEst.getBody().setStyleAttribute("border-width", "3px 0");
+        cpEst.getBody().setStyleAttribute("margin-bottom", "0");
+        panel.getBody().setStyleAttribute("border-bottom","3px solid orange");
+        panel.getBody().setStyleAttribute("border-style", "solid");
+        panel.getBody().setStyleAttribute("border-top", "3px solid orange");
+        panel.getBody().setStyleAttribute("border-width", "3px 0");
+        panel.getBody().setStyleAttribute("margin-bottom", "0");
+
+
+        //To change body of overridden methods use File | Settings | File Templates.
+    }
 
     private FormPanel createGroupForm() {
 
@@ -167,6 +184,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             formPanel.add(c2);
 
         }
+
         {
             LayoutContainer km60 = new LayoutContainer();
             HBoxLayout layoutRigaKm60 = new HBoxLayout();
@@ -439,8 +457,11 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             km9000input.add(aereoKm9000, flex);
             formPanel.add(km9000input);
         }
+
+
         return formPanel;
     }
+
 
     private Grid<TrasportoPersoneModel> createGrid() {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
@@ -495,6 +516,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
 
                 return b;
             }
+
         });
         column.setWidth(50);
         configs.add(column);
@@ -533,6 +555,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
     }
 
 
+
     public void clear(boolean setDefault) {
 
         trasportoPersoneModel.removeAll();
@@ -566,6 +589,9 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
         if (grid != null) {
             grid.getSelectionModel().bind(trasportoPersoneModel);
         }
+
+
+
     }
 
     public ArrayList<TrasportoPersoneModel> getTrasportoPersoneModel() {
@@ -582,5 +608,8 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
             grid.getSelectionModel().select(trasportoPersoneModel.get(0), true);
         }
     }
+
+
+
 }
 
