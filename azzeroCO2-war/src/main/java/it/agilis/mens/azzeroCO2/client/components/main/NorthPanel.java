@@ -61,6 +61,16 @@ public class NorthPanel extends LayoutContainer {
             }
         });
 
+
+
+       Button  test = new Button("test");
+        test.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                Dispatcher.forwardEvent(PagamentoSellaEvents.CreateCertificato, ce);
+
+            }
+        });
+
         home.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
@@ -93,6 +103,7 @@ public class NorthPanel extends LayoutContainer {
         c.add(amministrazione, layoutData);
 
         c.add(registrati, layoutData);
+        c.add(test, layoutData);
         c.add(login, layoutData);
         c.add(home, layoutData);
 
