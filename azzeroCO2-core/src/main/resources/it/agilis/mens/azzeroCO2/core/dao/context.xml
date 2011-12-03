@@ -30,6 +30,7 @@
     <bean id="sellaRicevutaDiPagamentoDAO" class="it.agilis.mens.azzeroCO2.core.dao.impl.SellaRicevutaDiPagamentoDAO">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
     <bean id="openOfficeService" class="it.agilis.mens.azzeroCO2.core.register.impl.OpenOfficeService"
           scope="singleton">
          <property name="certificatoTemplateODT" value="${azzeroCO2.certificatoTemplateODT}"/>
