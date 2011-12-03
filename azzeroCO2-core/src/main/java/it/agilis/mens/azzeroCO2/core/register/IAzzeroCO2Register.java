@@ -45,5 +45,7 @@ public interface IAzzeroCO2Register {
 
     List<Ordine> getListOfOrdini(UserInfo userInfo);
 
+
+
 }
 
