@@ -324,8 +324,10 @@ public class CentralView extends View {
                     benvenuto.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
 
                     benvenuto.setBounds(30, 30, 250, 180);
-                    benvenuto.setStyleAttribute("padding-top","28");
+                    benvenuto.setStyleAttribute("padding-top","10");
+                    benvenuto.setStyleAttribute("font-size","14px");
                     benvenuto.setStyleAttribute("border-top","3px solid");
+                    benvenuto.setStyleAttribute("border-color","#22729E");
 
 
                     rigo.add(benvenuto, new RowData(1, 1, new Margins(29, 10, 10, 10)));

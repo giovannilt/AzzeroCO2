@@ -267,7 +267,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(numeroDiPagine, flex);
-                c.add(new LabelField("Numero di Pagine"), flex);
+                c.add(new LabelField("Numero di pagine"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -334,7 +334,7 @@ public class EventoFormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(grammatura, flex);
-                c.add(new LabelField("Grammatura Copertina"), flex);
+                c.add(new LabelField("Grammatura copertina"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
