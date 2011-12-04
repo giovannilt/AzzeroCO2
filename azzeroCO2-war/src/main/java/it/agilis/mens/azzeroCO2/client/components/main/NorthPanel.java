@@ -92,9 +92,11 @@ public class NorthPanel extends LayoutContainer {
         c.add(info, layoutData);
         c.add(amministrazione, layoutData);
 
-        c.add(registrati, layoutData);
-        c.add(login, layoutData);
         c.add(home, layoutData);
+        c.add(login, layoutData);
+        c.add(registrati, layoutData);
+
+
 
         add(c, new FlowData(1));
 
