@@ -257,7 +257,9 @@ public class EventoFormAcquisto extends LayoutContainer {
                 com.extjs.gxt.ui.client.widget.button.Button ricalcola;
                 ricalcola = new com.extjs.gxt.ui.client.widget.button.Button("Calcola sconto");
                 //TODO fare funzionare sto pulsantone di calcolo del coupon
+                ricalcola.setStyleAttribute("padding-top","10px");
                 c.add(ricalcola);
+
                 panel.add(c); //, new FormData("100%"));
             }
 

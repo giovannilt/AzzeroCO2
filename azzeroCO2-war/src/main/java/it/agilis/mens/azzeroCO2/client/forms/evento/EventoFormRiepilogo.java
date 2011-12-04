@@ -10,15 +10,18 @@ import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
-import com.extjs.gxt.ui.client.widget.button.ToolButton;
+import com.extjs.gxt.ui.client.widget.button.*;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
@@ -108,7 +111,7 @@ public class EventoFormRiepilogo extends LayoutContainer {
         final NumberFormat number = NumberFormat.getFormat("0.00");
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("index", "", 23);
+        ColumnConfig column = new ColumnConfig("index", "", 24);
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
@@ -117,10 +120,10 @@ public class EventoFormRiepilogo extends LayoutContainer {
         });
         column.setSortable(true);
         configs.add(column);
-        column = new ColumnConfig("oggetto", "Oggetto", 160);
+        column = new ColumnConfig("oggetto", "Oggetto", 230);
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 346);
+        column = new ColumnConfig("dettagli", "Dettagli", 236);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
@@ -165,10 +168,31 @@ public class EventoFormRiepilogo extends LayoutContainer {
                     }
                 });
                 b.setToolTip("Elimina");
-                return b;
+
+                ContentPanel cp=new ContentPanel();
+                cp.setSize(50,34);
+                cp.setHeaderVisible(false);
+                cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+                cp.add(b,new RowData(0.5,1));
+
+
+
+                Button edit=new Button("modifica", new SelectionListener<ButtonEvent>(){
+
+                    @Override
+                    public void componentSelected(ButtonEvent buttonEvent) {
+                        Dispatcher.forwardEvent(EventoEvents.ShowStep, model);
+                    }
+                });
+                edit.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.modifica()));
+                edit.setIconAlign(Style.IconAlign.TOP);
+
+                 cp.add(edit,new RowData(0.5,1));
+
+                return cp;
             }
         });
-        column.setWidth(50);
+        column.setWidth(85);
         configs.add(column);
 
         ColumnModel cm = new ColumnModel(configs);

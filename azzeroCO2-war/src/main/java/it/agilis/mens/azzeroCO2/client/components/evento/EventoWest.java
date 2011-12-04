@@ -83,7 +83,7 @@ public class EventoWest extends LayoutContainer {
 
     private Grid<RiepilogoModel> createGrid() {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
-        ColumnConfig column = new ColumnConfig("img", "img", 23);
+        ColumnConfig column = new ColumnConfig("img", "img", 24);
         //column.setWidth(30);
 
 
