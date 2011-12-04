@@ -78,8 +78,18 @@ body {
     background-color: #ccc;
 }
 
-.x-tab-panel-header, .x-tab-panel-footer {
+.x-tab-panel-footer {
     background-color:gray;
+
+    padding-bottom:1px;
+    border-color: #8db2e3;
+    overflow: hidden;
+    zoom: 1;
+}
+.x-tab-panel-header {
+    background-color:gray;
+
+
     border-color: #8db2e3;
     overflow: hidden;
     zoom: 1;
@@ -1540,11 +1550,30 @@ a.x-menu-item {
     border-color: #313646; /*#18181A;*/
 }
 
+
+
+
+.x-panel-header-white {
+    /*color: #fff !important; */
+    color: white !important;/* !important;*/
+
+    padding-bottom:12px;
+    font-weight: bold;
+    font-size: 14px;
+    /*font-family: tahoma, arial, verdana, sans-serif; Serena 07/11/2011   */
+    font-family: arial;
+    border-top-color: #3F4757;  /*#18181A;*/
+    border-left-color:#3F4757;
+    border-right-color:#3F4757;
+    border-bottom-color:#3F4757;/*orange;*/
+    background-image: url(../images/panel/white-top-bottom.gif);          /*sd*/
+}
+
 .x-panel-header {
     /*color: #fff !important; */
-    color: #C68108 !important;
+    color: orange !important;/* !important;*/
 
-
+    padding-bottom:7px;
     font-weight: bold;
     font-size: 14px;
     /*font-family: tahoma, arial, verdana, sans-serif; Serena 07/11/2011   */

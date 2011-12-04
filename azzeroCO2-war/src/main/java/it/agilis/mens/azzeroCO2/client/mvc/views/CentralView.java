@@ -240,14 +240,17 @@ public class CentralView extends View {
                             //To change body of overridden methods use File | Settings | File Templates.
                         }
                     };
-                    login.getHeader().setStyleAttribute("font-color","white");
 
                     LayoutContainer rigo = new LayoutContainer();
                     rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
                     login.setLayout(new RowLayout(Style.Orientation.VERTICAL));
                     //  login.setWidth(290);
+                    //login.getHeader().setTextStyle("x-panel-header-white");
                     login.setHeading("Login");
+                    login.getHeader().setStyleName("x-panel-header-white");
+
+                    //login.getHeader().setStyleAttribute("font-color","white !important");
                     KeyListener keyListener = new KeyListener() {
                         public void componentKeyUp(ComponentEvent event) {
                             //  validate();
@@ -343,13 +346,16 @@ public class CentralView extends View {
 
 
                 compensazione.setHeading("Cos'e' la compensazione?");
+                compensazione.getHeader().setStyleName("x-panel-header-white");
                 VBoxLayout layoutCompensazione = new VBoxLayout();
                 layoutCompensazione.setPadding(new Padding(5));
                 layoutCompensazione.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
                 compensazione.setLayout(layoutCompensazione);
 
                 Text testo = new Text("La combustione di fonti energetiche fossili (carbone, benzina, cherosene) sprigiona biossido di carbonio (CO2). Il CO2 è il maggior responsabile dei gas ad effetto serra provocati dall’uomo. Blabla blabla bla bla blal");
-                testo.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+                testo.setStyleAttribute("font-family", "arial");
+                testo.setStyleAttribute("font-color","white");
+                testo.setStyleAttribute("font-size","14px");
                 testo.setBounds(250, 250, 250, 180);
                 Image azzeroCO2Stemp = new Image(AzzeroCO2Resources.INSTANCE.azzeroCO2Stemp());
                 azzeroCO2Stemp.setAltText("AzzeroCO2");

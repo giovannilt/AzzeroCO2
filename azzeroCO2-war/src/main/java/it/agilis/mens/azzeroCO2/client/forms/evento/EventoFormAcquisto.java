@@ -84,7 +84,7 @@ public class EventoFormAcquisto extends LayoutContainer {
         setStyleAttribute("padding", "0px");
 
         VerticalPanel vp = new VerticalPanel();
-        vp.setHeight(411);
+        vp.setHeight(408);
         vp.add(form);
         east.add(vp);
 
