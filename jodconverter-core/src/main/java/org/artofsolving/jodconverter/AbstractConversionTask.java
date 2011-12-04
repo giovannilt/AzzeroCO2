@@ -30,6 +30,7 @@ import com.sun.star.lang.XComponent;
 import com.sun.star.task.ErrorCodeIOException;
 import com.sun.star.util.CloseVetoException;
 import com.sun.star.util.XCloseable;
+import org.artofsolving.jodconverter.document.DocumentFormat;
 import org.artofsolving.jodconverter.office.OfficeContext;
 import org.artofsolving.jodconverter.office.OfficeException;
 import org.artofsolving.jodconverter.office.OfficeTask;
@@ -41,17 +42,26 @@ import static org.artofsolving.jodconverter.office.OfficeUtils.*;
 
 public abstract class AbstractConversionTask implements OfficeTask {
 
-    private final File inputFile;
-    private final File outputFile;
+    private File inputFile;
+    private File outputFile;
 
     public AbstractConversionTask(File inputFile, File outputFile) {
         this.inputFile = inputFile;
         this.outputFile = outputFile;
     }
 
+    public AbstractConversionTask() {
+    }
+
     protected abstract Map<String,?> getLoadProperties(File inputFile);
 
     protected abstract Map<String,?> getStoreProperties(File outputFile, XComponent document);
+
+    abstract void setDefaultLoadProperties(Map<String, ?> defaultLoadProperties);
+
+    abstract void setInputFormat(DocumentFormat inputFormat);
+
+    abstract void setOutputFormat(DocumentFormat outputFormat);
 
     public void execute(OfficeContext context) throws OfficeException {
         XComponent document = null;

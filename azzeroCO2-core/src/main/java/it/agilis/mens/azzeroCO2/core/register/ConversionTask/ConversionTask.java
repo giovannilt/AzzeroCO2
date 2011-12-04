@@ -16,7 +16,7 @@
 // Public License along with JODConverter.  If not, see
 // <http://www.gnu.org/licenses/>.
 //
-package org.artofsolving.jodconverter;
+package it.agilis.mens.azzeroCO2.core.register.ConversionTask;
 
 import com.sun.star.beans.PropertyVetoException;
 import com.sun.star.beans.UnknownPropertyException;
@@ -29,6 +29,9 @@ import com.sun.star.text.XDependentTextField;
 import com.sun.star.text.XTextFieldsSupplier;
 import com.sun.star.uno.UnoRuntime;
 import com.sun.star.util.XRefreshable;
+import it.agilis.mens.azzeroCO2.core.entity.Ordine;
+import org.artofsolving.jodconverter.AbstractConversionTask;
+import org.artofsolving.jodconverter.OfficeDocumentUtils;
 import org.artofsolving.jodconverter.document.DocumentFamily;
 import org.artofsolving.jodconverter.document.DocumentFormat;
 import org.artofsolving.jodconverter.office.OfficeException;
@@ -39,15 +42,19 @@ import java.util.Map;
 
 import static org.artofsolving.jodconverter.office.OfficeUtils.cast;
 
-public class StandardConversionTask extends AbstractConversionTask {
+public abstract class ConversionTask extends AbstractConversionTask {
 
     private DocumentFormat outputFormat;
 
     private Map<String, ?> defaultLoadProperties;
     private DocumentFormat inputFormat;
+    private Ordine ordine;
 
+     public ConversionTask(Ordine ordine) {
+        this.ordine = ordine;
+    }
 
-    public StandardConversionTask(File inputFile, File outputFile, DocumentFormat outputFormat) {
+    public ConversionTask(File inputFile, File outputFile, DocumentFormat outputFormat) {
         super(inputFile, outputFile);
         this.outputFormat = outputFormat;
     }
@@ -60,7 +67,6 @@ public class StandardConversionTask extends AbstractConversionTask {
         this.inputFormat = inputFormat;
     }
 
-    @Override
     public void setOutputFormat(DocumentFormat outputFormat) {
         this.outputFormat = outputFormat;
     }
@@ -80,19 +86,16 @@ public class StandardConversionTask extends AbstractConversionTask {
                 XPropertySet propertySet = dependentTextField.getTextFieldMaster();
                 String name = (String) propertySet.getPropertyValue("Name");
 
+                XPropertySet loXPropertySet = UnoRuntime.queryInterface(XPropertySet.class, dependentTextField);
+
                 if (name.equalsIgnoreCase("KgCO2")) {
-                    XPropertySet loXPropertySet = UnoRuntime.queryInterface(XPropertySet.class, dependentTextField);
-                    loXPropertySet.setPropertyValue("Content", "1000000");
-                    loXPropertySet.setPropertyValue("Hint", "fieldHint");
+                    loXPropertySet.setPropertyValue("Content", ordine.getRicevutaDiPagamento().getKgCO2());
                 } else if (name.equalsIgnoreCase("NomeAzienda")) {
-                    XPropertySet loXPropertySet = UnoRuntime.queryInterface(XPropertySet.class, dependentTextField);
-                    loXPropertySet.setPropertyValue("Content", "FINTUS ");
-                    loXPropertySet.setPropertyValue("Hint", "fieldHint");
+                    loXPropertySet.setPropertyValue("Content", ordine.getUtente().getNome());
                 } else if (name.equalsIgnoreCase("NomeEvento")) {
-                    XPropertySet loXPropertySet = UnoRuntime.queryInterface(XPropertySet.class, dependentTextField);
-                    loXPropertySet.setPropertyValue("Content", "AMMAZZIAMO GLI ANIMALI");
-                    loXPropertySet.setPropertyValue("Hint", "fieldHint");
+                    loXPropertySet.setPropertyValue("Content", ordine.getEvento().getNome());
                 }
+                loXPropertySet.setPropertyValue("Hint", "fieldHint");
             }
 
             if (refreshable != null) {

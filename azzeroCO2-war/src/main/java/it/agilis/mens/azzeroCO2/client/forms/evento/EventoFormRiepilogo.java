@@ -10,18 +10,17 @@ import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
-import com.extjs.gxt.ui.client.widget.button.*;
+import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
-import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
@@ -93,9 +92,10 @@ public class EventoFormRiepilogo extends LayoutContainer {
         add(cp, centerData);
 
     }
-        protected void onAfterLayout() {
+
+    protected void onAfterLayout() {
         super.onAfterLayout();
-        cp.getBody().setStyleAttribute("border-bottom","3px solid orange");
+        cp.getBody().setStyleAttribute("border-bottom", "3px solid orange");
         cp.getBody().setStyleAttribute("border-style", "solid");
         //cp.getBody().setStyleAttribute("border-top", "3px solid orange");
         cp.getBody().setStyleAttribute("border-width", "3px 0");
@@ -169,25 +169,21 @@ public class EventoFormRiepilogo extends LayoutContainer {
                 });
                 b.setToolTip("Elimina");
 
-                ContentPanel cp=new ContentPanel();
-                cp.setSize(50,34);
-                cp.setHeaderVisible(false);
+                LayoutContainer cp = new LayoutContainer();
+                cp.setSize(36, 36);
                 cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-                cp.add(b,new RowData(0.5,1));
+                cp.add(b, new RowData(-1, 0.5));
 
-
-
-                Button edit=new Button("modifica", new SelectionListener<ButtonEvent>(){
-
-                    @Override
+                Button edit = new Button("", new SelectionListener<ButtonEvent>() {
+                     @Override
                     public void componentSelected(ButtonEvent buttonEvent) {
                         Dispatcher.forwardEvent(EventoEvents.ShowStep, model);
                     }
                 });
                 edit.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.modifica()));
-                edit.setIconAlign(Style.IconAlign.TOP);
-
-                 cp.add(edit,new RowData(0.5,1));
+                edit.setSize(20,20);
+                //edit.setIconAlign(Style.IconAlign.TOP);
+                cp.add(edit, new RowData(-1, 0.5));
 
                 return cp;
             }

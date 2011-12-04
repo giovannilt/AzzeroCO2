@@ -35,6 +35,15 @@ public class SellaRicevutaDiPagamento {
     private Date lastUpdate;
     private Date updateFromBanca;
 
+    private String certificatoPDF;
+
+    public String getCertificatoPDF() {
+        return certificatoPDF;
+    }
+
+    public void setCertificatoPDF(String certificatoPDF) {
+        this.certificatoPDF = certificatoPDF;
+    }
 
     public double getKgCO2() {
         return kgCO2;

@@ -76,8 +76,7 @@ public class EventoController extends BaseController {
                     asyncCallback.setTimer(this);
                 }
             };
-            timer.schedule(20000); // aspetto un minuto e rifaccio la query verso il db per capire se l'omino ha pagato oppure no
-
+            timer.schedule(10000);
 
         } else if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
             if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
@@ -103,6 +102,7 @@ public class EventoController extends BaseController {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
                 }
+
                 @Override
                 public void onSuccess(List<TipoDiCartaModel> result) {
                     if (result != null) {
@@ -139,13 +139,17 @@ public class EventoController extends BaseController {
             double kgCO2 = getTotaleKgCO2(model);
 
             // TODO Calcolare il totale togliendo lo sconto COUPON
+            if (model.getProgettoDiCompensazioneModel() != null) {
+                PagamentoModel pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
+                pagamentoModel.setLastUpdate(new Date());
+                pagamentoModel.setKgCO2(kgCO2);
+                model.setPagamentoModel(pagamentoModel);
 
-            PagamentoModel pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
-            pagamentoModel.setLastUpdate(new Date());
-            pagamentoModel.setKgCO2(kgCO2);
-            model.setPagamentoModel(pagamentoModel);
+                Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
+            }else{
+                Info.display("Info", "Seleziona il Progetto di compensazione");
+            }
 
-            Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
         } else if (event.getType().equals(EventoEvents.CaricaProgettiDiCompensazione)) {
             if (getProgettiDiCompensazioneList().size() == 0) {
                 setProgettiDiCompensazione();
@@ -222,11 +226,14 @@ public class EventoController extends BaseController {
             if (result != null) {
                 Info.display("Info", "Pagamento Avvenuto con sucesso");
                 Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
-                eventoView.showConferma();
-                sentMail();
+
+
+
+                eventoView.showConferma(result);
+                sentMail(result);
             } else {
                 Info.display("Info", "NON PAGATO");
-                getTimer().schedule(20000);
+                getTimer().schedule(10000);
             }
         }
 

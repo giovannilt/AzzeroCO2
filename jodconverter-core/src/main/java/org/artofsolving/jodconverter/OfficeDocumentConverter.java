@@ -18,10 +18,7 @@
 //
 package org.artofsolving.jodconverter;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.sun.star.document.UpdateDocMode;
 import org.apache.commons.io.FilenameUtils;
 import org.artofsolving.jodconverter.document.DefaultDocumentFormatRegistry;
 import org.artofsolving.jodconverter.document.DocumentFormat;
@@ -29,14 +26,17 @@ import org.artofsolving.jodconverter.document.DocumentFormatRegistry;
 import org.artofsolving.jodconverter.office.OfficeException;
 import org.artofsolving.jodconverter.office.OfficeManager;
 
-import com.sun.star.document.UpdateDocMode;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OfficeDocumentConverter {
 
     private final OfficeManager officeManager;
     private final DocumentFormatRegistry formatRegistry;
+    private AbstractConversionTask task;
 
-    private Map<String,?> defaultLoadProperties = createDefaultLoadProperties();
+    private Map<String, ?> defaultLoadProperties = createDefaultLoadProperties();
 
     public OfficeDocumentConverter(OfficeManager officeManager) {
         this(officeManager, new DefaultDocumentFormatRegistry());
@@ -47,8 +47,8 @@ public class OfficeDocumentConverter {
         this.formatRegistry = formatRegistry;
     }
 
-    private Map<String,Object> createDefaultLoadProperties() {
-        Map<String,Object> loadProperties = new HashMap<String,Object>();
+    private Map<String, Object> createDefaultLoadProperties() {
+        Map<String, Object> loadProperties = new HashMap<String, Object>();
         loadProperties.put("Hidden", true);
         loadProperties.put("ReadOnly", true);
         loadProperties.put("UpdateDocMode", UpdateDocMode.QUIET_UPDATE);
@@ -76,6 +76,17 @@ public class OfficeDocumentConverter {
         conversionTask.setDefaultLoadProperties(defaultLoadProperties);
         conversionTask.setInputFormat(inputFormat);
         officeManager.execute(conversionTask);
+    }
+
+    public void convert(File inputFile, File outputFile, AbstractConversionTask task) throws OfficeException {
+         String inputExtension = FilenameUtils.getExtension(inputFile.getName());
+        DocumentFormat inputFormat = formatRegistry.getFormatByExtension(inputExtension);
+        String outputExtension = FilenameUtils.getExtension(outputFile.getName());
+        DocumentFormat outputFormat = formatRegistry.getFormatByExtension(outputExtension);
+        task.setOutputFormat(outputFormat);
+        task.setDefaultLoadProperties(defaultLoadProperties);
+        task.setInputFormat(inputFormat);
+        officeManager.execute(task);
     }
 
 }

@@ -319,8 +319,9 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     public DettaglioVTO isPagato(DettaglioVTO riepilogo) {
         try {
             Ordine o = azzeroCO2Register.getOrdineDAO().getOrdineEager(riepilogo.getOrdineId());
-
             if (o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO)) {
+                o.getRicevutaDiPagamento().setCertificatoPDF( creaCertificatoInPDF(o));
+                azzeroCO2Register.saveOrUpdateOrdine(o);
                 DettaglioModel dettaglioModel1 = Utils.getDettaglioModel(o);
                 return AzzerroCO2UtilsClientHelper.getDettaglioVTO(dettaglioModel1);
             } else {
@@ -333,11 +334,8 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
         }
     }
 
-    @Override
-    public String creaCertificatoInPDF() {
-
-        azzeroCO2Register.creaCertificatoPDF();
-        return null;
+    private String creaCertificatoInPDF(Ordine o) {
+       return azzeroCO2Register.creaCertificatoPDF(o);
     }
 
 

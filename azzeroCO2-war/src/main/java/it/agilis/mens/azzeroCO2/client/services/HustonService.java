@@ -60,6 +60,5 @@ public interface HustonService extends RemoteService {
 
     DettaglioVTO isPagato(DettaglioVTO riepilogo);
 
-    String creaCertificatoInPDF();
 }
 

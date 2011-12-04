@@ -193,4 +193,13 @@ public class PagamentoModel extends BaseModel {
         return _return;
 
     }
+
+    public String getCertificatoPDF() {
+        return get("certificatoPDF");
+    }
+
+    public void setCertificatoPDF(String certificatoPDF){
+        set("certificatoPDF",certificatoPDF);
+    }
 }
+
