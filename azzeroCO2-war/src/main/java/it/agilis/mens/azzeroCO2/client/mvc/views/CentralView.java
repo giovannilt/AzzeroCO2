@@ -322,9 +322,14 @@ public class CentralView extends View {
 
                     benvenuto = new Text("Ad oggi hai compensato NUMBER Kg di CO2");
                     benvenuto.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
-                    benvenuto.setBounds(30, 30, 250, 180);
 
-                    rigo.add(benvenuto, new RowData(1, 1, new Margins(10, 10, 10, 10)));
+                    benvenuto.setBounds(30, 30, 250, 180);
+                    benvenuto.setStyleAttribute("padding-top","28");
+                    benvenuto.setStyleAttribute("border-top","3px solid");
+
+
+                    rigo.add(benvenuto, new RowData(1, 1, new Margins(29, 10, 10, 10)));
+                    //benvenuto.setStyleAttribute("top","29px");
                     logInLogOut.add(rigo);
 
                 }
@@ -346,6 +351,7 @@ public class CentralView extends View {
 
 
                 compensazione.setHeading("Cos'e' la compensazione?");
+                compensazione.setStyleAttribute("padding-top","20");
                 compensazione.getHeader().setStyleName("x-panel-header-white");
                 VBoxLayout layoutCompensazione = new VBoxLayout();
                 layoutCompensazione.setPadding(new Padding(5));
