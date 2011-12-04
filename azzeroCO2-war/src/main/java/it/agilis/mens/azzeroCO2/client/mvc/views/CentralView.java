@@ -177,7 +177,6 @@ public class CentralView extends View {
             pubblicazione.setSize(212, 200);//(213, 210);
             c.add(pubblicazione, layoutData);
 
-
             Button web = new Button("Un sito web");
             web.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unSitoWeb()));
             web.setIconAlign(Style.IconAlign.TOP);

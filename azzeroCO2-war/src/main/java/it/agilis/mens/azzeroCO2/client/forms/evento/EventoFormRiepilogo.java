@@ -10,15 +10,15 @@ import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
-import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.AbstractImagePrototype;
+import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -170,10 +170,21 @@ public class EventoFormRiepilogo extends LayoutContainer {
                 b.setToolTip("Elimina");
 
                 LayoutContainer cp = new LayoutContainer();
-                cp.setSize(36, 36);
+                cp.setSize(34, 34);
                 cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
                 cp.add(b, new RowData(-1, 0.5));
 
+
+                final Image edit = new Image();
+                edit.addClickListener(new ClickListener() {
+                    public void onClick(Widget sender) {
+                        Dispatcher.forwardEvent(EventoEvents.ShowStep, model);
+                    }
+                });
+                edit.setSize("22px","22px");
+                edit.setUrl(AzzeroCO2Resources.INSTANCE.modifica().getURL());
+
+                /*
                 Button edit = new Button("", new SelectionListener<ButtonEvent>() {
                      @Override
                     public void componentSelected(ButtonEvent buttonEvent) {
@@ -181,7 +192,8 @@ public class EventoFormRiepilogo extends LayoutContainer {
                     }
                 });
                 edit.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.modifica()));
-                edit.setSize(20,20);
+                edit.setSize(22,22);
+                edit.setBorders(false);*/
                 //edit.setIconAlign(Style.IconAlign.TOP);
                 cp.add(edit, new RowData(-1, 0.5));
 
