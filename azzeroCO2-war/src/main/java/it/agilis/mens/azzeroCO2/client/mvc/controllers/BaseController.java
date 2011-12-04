@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.widget.Info;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
@@ -11,6 +12,7 @@ import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
+import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 
 import java.util.*;
 
@@ -109,18 +111,21 @@ public abstract class BaseController extends Controller {
         return info;
     }
 
-    public void sentMail() {
+    public void sentMail(DettaglioVTO result) {
         EMailVTO data = new EMailVTO();
-        data.setBody(gitTEXT);
+        data.setBody(result.getNome()+ " /n " +
+                "" + GWT.getModuleBaseURL()+"/downloadCertificato?certificato="+result.getPagamentoModel().getCertificatoPDF()+
+                "");
 
         data.setFromUser("no-reply@azzeroco2.it");
-        data.setSubject("- Email ... TEST -");
-        data.setToUser(Arrays.asList(userInfoModel.getEmail(),"serena.dimaida@gmail.com", "giovannilt@gmail.com"));
+        data.setSubject("Evento Compensato " + result.getNome());
+        data.setToUser(Arrays.asList(userInfoModel.getEmail(), "serena.dimaida@gmail.com", "giovannilt@gmail.com"));
 
         AsyncCallback<Void> aCallback = new AsyncCallback<Void>() {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Errore impossibile connettersi al server.");
             }
+
             @Override
             public void onSuccess(Void aVoid) {
                 Info.display("Info", "Email Inviata Con successo.");
@@ -130,26 +135,4 @@ public abstract class BaseController extends Controller {
     }
 
 
-    String gitTEXT="" +
-            "                              ,-._.-._.-._.-._.-.</br>" +
-            "                              `-.             ,-'</br>" +
-            " .----------------------.       |             |</br>" +
-            "|                        |      |             |</br>" +
-            "|     EMAIL SPEDITA      |      |             |</br>" +
-            "|                        |      |             |</br>" +
-            "|                        |     ,';\".________.-.</br>" +
-            "|                        |     ;';_'         )]</br>" +
-            "|                        |    ;             `-|</br>" +
-            "|                        `.    `T-            |</br>" +
-            " `----------------------._ \\    |             |</br>" +
-            "                          `-;   |             |</br>" +
-            "                                |..________..-|</br>" +
-            "                               /\\/ |________..|</br>" +
-            "                          ,'`./  >,(           |</br>" +
-            "                          \\_.-|_/,-/   ii  |   |</br>" +
-            "                           `.\"' `-/  .-\"\"\"||    |</br>" +
-            "                            /`^\"-;   |    ||____|</br>" +
-            "                           /     /   `.__/  | ||</br>" +
-            "                                /           | ||</br>" +
-            "                                            | ||";
 }

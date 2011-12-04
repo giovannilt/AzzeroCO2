@@ -185,7 +185,7 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         progettoCompensazioneDAO.associaIDProgettoDiCompensazioneImmagine(idProgetto, nomeImmagine);
     }
 
-    public void creaCertificatoPDF() {
-        openOfficeService.creaPDF("");
+    public String creaCertificatoPDF(Ordine ordine) {
+       return openOfficeService.creaPDF(ordine);
     }
 }

@@ -29,6 +29,7 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
+import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 
 import java.util.List;
 import java.util.Map;
@@ -205,8 +206,8 @@ public class EventoView extends View {
         eventoDettaglio.showRiepilogo();
     }
 
-    public void showConferma() {
-        eventoDettaglio.showConferma();
+    public void showConferma(DettaglioVTO result) {
+        eventoDettaglio.showConferma(result);
     }
 
 }

@@ -537,6 +537,8 @@ public class Utils {
         }
         PagamentoModel ricevuta = new PagamentoModel();
 
+        ricevuta.setCertificatoPDF(ricevutaDiPagamento.getCertificatoPDF());
+
         ricevuta.setId(ricevutaDiPagamento.getId());
         ricevuta.setEsito(it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito.values()[ricevutaDiPagamento.getESITO().ordinal()].toString());
 

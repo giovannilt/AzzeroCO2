@@ -25,7 +25,7 @@ import org.artofsolving.jodconverter.office.OfficeException;
 
 import static org.artofsolving.jodconverter.office.OfficeUtils.cast;
 
-class OfficeDocumentUtils {
+public class OfficeDocumentUtils {
 
     private OfficeDocumentUtils() {
         throw new AssertionError("utility class must not be instantiated");
