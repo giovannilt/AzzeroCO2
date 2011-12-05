@@ -79,7 +79,7 @@ public class OfficeDocumentConverter {
     }
 
     public void convert(File inputFile, File outputFile, AbstractConversionTask task) throws OfficeException {
-         String inputExtension = FilenameUtils.getExtension(inputFile.getName());
+        String inputExtension = FilenameUtils.getExtension(inputFile.getName());
         DocumentFormat inputFormat = formatRegistry.getFormatByExtension(inputExtension);
         String outputExtension = FilenameUtils.getExtension(outputFile.getName());
         DocumentFormat outputFormat = formatRegistry.getFormatByExtension(outputExtension);

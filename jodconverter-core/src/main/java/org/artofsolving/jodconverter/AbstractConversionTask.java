@@ -53,15 +53,15 @@ public abstract class AbstractConversionTask implements OfficeTask {
     public AbstractConversionTask() {
     }
 
-    protected abstract Map<String,?> getLoadProperties(File inputFile);
+    public abstract Map<String, ?> getLoadProperties(File inputFile);
 
-    protected abstract Map<String,?> getStoreProperties(File outputFile, XComponent document);
+    public abstract Map<String, ?> getStoreProperties(File outputFile, XComponent document);
 
-    abstract void setDefaultLoadProperties(Map<String, ?> defaultLoadProperties);
+    public abstract void setDefaultLoadProperties(Map<String, ?> defaultLoadProperties);
 
-    abstract void setInputFormat(DocumentFormat inputFormat);
+    public abstract void setInputFormat(DocumentFormat inputFormat);
 
-    abstract void setOutputFormat(DocumentFormat outputFormat);
+    public abstract void setOutputFormat(DocumentFormat outputFormat);
 
     public void execute(OfficeContext context) throws OfficeException {
         XComponent document = null;
@@ -94,19 +94,19 @@ public abstract class AbstractConversionTask implements OfficeTask {
             throw new OfficeException("input document not found");
         }
         XComponentLoader loader = cast(XComponentLoader.class, context.getService(SERVICE_DESKTOP));
-        Map<String,?> loadProperties = getLoadProperties(inputFile);
+        Map<String, ?> loadProperties = getLoadProperties(inputFile);
         XComponent document = null;
         try {
             document = loader.loadComponentFromURL(toUrl(inputFile), "_blank", 0, toUnoProperties(loadProperties));
         } catch (IllegalArgumentException illegalArgumentException) {
             throw new OfficeException("could not load document: " + inputFile.getName(), illegalArgumentException);
         } catch (ErrorCodeIOException errorCodeIOException) {
-            throw new OfficeException("could not load document: "  + inputFile.getName() + "; errorCode: " + errorCodeIOException.ErrCode, errorCodeIOException);
+            throw new OfficeException("could not load document: " + inputFile.getName() + "; errorCode: " + errorCodeIOException.ErrCode, errorCodeIOException);
         } catch (IOException ioException) {
-            throw new OfficeException("could not load document: "  + inputFile.getName(), ioException);
+            throw new OfficeException("could not load document: " + inputFile.getName(), ioException);
         }
         if (document == null) {
-            throw new OfficeException("could not load document: "  + inputFile.getName());
+            throw new OfficeException("could not load document: " + inputFile.getName());
         }
         return document;
     }
@@ -114,18 +114,18 @@ public abstract class AbstractConversionTask implements OfficeTask {
     /**
      * Override to modify the document after it has been loaded and before it gets
      * saved in the new format.
-     * <p>
+     * <p/>
      * Does nothing by default.
-     * 
+     *
      * @param document
      * @throws OfficeException
      */
     protected void modifyDocument(XComponent document) throws OfficeException, NoSuchElementException, WrappedTargetException, UnknownPropertyException, IllegalArgumentException, PropertyVetoException {
-    	// noop
+        // noop
     }
 
     private void storeDocument(XComponent document, File outputFile) throws OfficeException {
-        Map<String,?> storeProperties = getStoreProperties(outputFile, document);
+        Map<String, ?> storeProperties = getStoreProperties(outputFile, document);
         if (storeProperties == null) {
             throw new OfficeException("unsupported conversion");
         }

@@ -1,21 +1,3 @@
-//
-// JODConverter - Java OpenDocument Converter
-// Copyright 2004-2011 Mirko Nasato and contributors
-//
-// JODConverter is free software: you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public License
-// as published by the Free Software Foundation, either version 3 of
-// the License, or (at your option) any later version.
-//
-// JODConverter is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General
-// Public License along with JODConverter.  If not, see
-// <http://www.gnu.org/licenses/>.
-//
 package it.agilis.mens.azzeroCO2.core.register.ConversionTask;
 
 import com.sun.star.beans.PropertyVetoException;
@@ -42,7 +24,7 @@ import java.util.Map;
 
 import static org.artofsolving.jodconverter.office.OfficeUtils.cast;
 
-public abstract class ConversionTask extends AbstractConversionTask {
+public class ConversionTask extends AbstractConversionTask {
 
     private DocumentFormat outputFormat;
 
@@ -107,7 +89,7 @@ public abstract class ConversionTask extends AbstractConversionTask {
     }
 
     @Override
-    protected Map<String, ?> getLoadProperties(File inputFile) {
+    public Map<String, ?> getLoadProperties(File inputFile) {
         Map<String, Object> loadProperties = new HashMap<String, Object>();
         if (defaultLoadProperties != null) {
             loadProperties.putAll(defaultLoadProperties);
@@ -119,7 +101,7 @@ public abstract class ConversionTask extends AbstractConversionTask {
     }
 
     @Override
-    protected Map<String, ?> getStoreProperties(File outputFile, XComponent document) {
+    public Map<String, ?> getStoreProperties(File outputFile, XComponent document) {
         DocumentFamily family = OfficeDocumentUtils.getDocumentFamily(document);
         return outputFormat.getStoreProperties(family);
     }

@@ -10,15 +10,15 @@ import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
+import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -168,39 +168,49 @@ public class EventoFormRiepilogo extends LayoutContainer {
                     }
                 });
                 b.setToolTip("Elimina");
+                return b;
+            }
+        });
+        column.setWidth(45);
+        configs.add(column);
 
-                LayoutContainer cp = new LayoutContainer();
-                cp.setSize(34, 34);
-                cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-                cp.add(b, new RowData(-1, 0.5));
 
+        column = new ColumnConfig();
+        column.setRowHeader(false);
+        column.setId("Modifica");
+        column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
+            private boolean init;
 
-                final Image edit = new Image();
-                edit.addClickListener(new ClickListener() {
-                    public void onClick(Widget sender) {
-                        Dispatcher.forwardEvent(EventoEvents.ShowStep, model);
-                    }
-                });
-                edit.setSize("22px","22px");
-                edit.setUrl(AzzeroCO2Resources.INSTANCE.modifica().getURL());
+            public Object render(final RiepilogoModel model, String property, ColumnData config, final int rowIndex,
+                                 final int colIndex, final ListStore<RiepilogoModel> store, Grid<RiepilogoModel> grid) {
+                if (!init) {
+                    init = true;
+                    grid.addListener(Events.ColumnResize, new Listener<GridEvent<RiepilogoModel>>() {
+                        public void handleEvent(GridEvent<RiepilogoModel> be) {
+                            for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
+                                if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
+                                        && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
+                                    ((BoxComponent) be.getGrid().getView().getWidget(i, be.getColIndex())).setWidth(be.getWidth() - 10);
+                                }
+                            }
+                        }
+                    });
+                }
 
-                /*
                 Button edit = new Button("", new SelectionListener<ButtonEvent>() {
-                     @Override
+                    @Override
                     public void componentSelected(ButtonEvent buttonEvent) {
                         Dispatcher.forwardEvent(EventoEvents.ShowStep, model);
                     }
                 });
-                edit.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.modifica()));
-                edit.setSize(22,22);
-                edit.setBorders(false);*/
-                //edit.setIconAlign(Style.IconAlign.TOP);
-                cp.add(edit, new RowData(-1, 0.5));
 
-                return cp;
+                edit.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.modifica()));
+                edit.setAutoWidth(false);
+                edit.setIconAlign(Style.IconAlign.LEFT);
+                return edit;
             }
         });
-        column.setWidth(85);
+        column.setWidth(45);
         configs.add(column);
 
         ColumnModel cm = new ColumnModel(configs);

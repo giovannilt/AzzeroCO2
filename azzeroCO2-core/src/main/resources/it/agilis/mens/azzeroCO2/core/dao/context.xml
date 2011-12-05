@@ -31,10 +31,11 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="openOfficeService" class="it.agilis.mens.azzeroCO2.core.register.impl.OpenOfficeService"
+    <bean id="openOfficeService" class="it.agilis.mens.azzeroCO2.core.register.impl.OpenOfficeService"  init-method="init"
           scope="singleton">
-         <property name="certificatoTemplateODT" value="${azzeroCO2.certificatoTemplateODT}"/>
+         <property name="certificatoTemplateODT" value="${azzeroCO2.certificatoTemplateODT}" />
          <property name="certificatiFolder" value="${azzeroCO2.certificatiFolder}"/>
+         <property name="serena" value="true"/>
     </bean>
 
 

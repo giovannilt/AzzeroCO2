@@ -104,7 +104,7 @@ public class StandardConversionTask extends AbstractConversionTask {
     }
 
     @Override
-    protected Map<String, ?> getLoadProperties(File inputFile) {
+    public Map<String, ?> getLoadProperties(File inputFile) {
         Map<String, Object> loadProperties = new HashMap<String, Object>();
         if (defaultLoadProperties != null) {
             loadProperties.putAll(defaultLoadProperties);
@@ -116,7 +116,7 @@ public class StandardConversionTask extends AbstractConversionTask {
     }
 
     @Override
-    protected Map<String, ?> getStoreProperties(File outputFile, XComponent document) {
+    public Map<String, ?> getStoreProperties(File outputFile, XComponent document) {
         DocumentFamily family = OfficeDocumentUtils.getDocumentFamily(document);
         return outputFormat.getStoreProperties(family);
     }

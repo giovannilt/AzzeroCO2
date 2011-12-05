@@ -96,7 +96,7 @@ public interface AzzeroCO2Resources extends ClientBundle {
     ImageResource checkIcon();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/modifica.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 16, height = 16)
+    @ImageResource.ImageOptions(flipRtl = true, width = 22, height = 22)
     ImageResource modifica();
 
 

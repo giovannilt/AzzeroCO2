@@ -2,9 +2,7 @@ package it.agilis.mens.azzeroCO2.core.register.impl;
 
 import it.agilis.mens.azzeroCO2.core.entity.Ordine;
 import it.agilis.mens.azzeroCO2.core.register.ConversionTask.ConversionTask;
-import org.apache.commons.io.FilenameUtils;
 import org.artofsolving.jodconverter.OfficeDocumentConverter;
-import org.artofsolving.jodconverter.document.DocumentFormat;
 import org.artofsolving.jodconverter.office.DefaultOfficeManagerConfiguration;
 import org.artofsolving.jodconverter.office.OfficeManager;
 
@@ -23,6 +21,7 @@ public class OpenOfficeService {
     private static OfficeManager officeManager = new DefaultOfficeManagerConfiguration().buildOfficeManager();
     private String certificatoTemplateODT;
     private String certificatiFolder;
+    private boolean serena;
 
     public void setCertificatoTemplateODT(String certificatoTemplateODT) {
         this.certificatoTemplateODT = certificatoTemplateODT;
@@ -40,9 +39,6 @@ public class OpenOfficeService {
         return certificatiFolder;
     }
 
-    static {
-        officeManager.start();
-    }
 
     @Override
     protected void finalize() throws Throwable {
@@ -51,8 +47,8 @@ public class OpenOfficeService {
     }
 
     public String creaPDF(Ordine ordine) {
-        File dir=new File(certificatiFolder);
-        if(!dir.exists()){
+        File dir = new File(certificatiFolder);
+        if (!dir.exists()) {
             dir.mkdirs();
         }
 
@@ -61,13 +57,27 @@ public class OpenOfficeService {
 
         OfficeDocumentConverter converter = new OfficeDocumentConverter(officeManager);
 
-        File inputFile =new File(certificatoTemplateODT);
+        File inputFile = new File(certificatoTemplateODT);
 
-        ConversionTask task= new  ConversionTask(ordine);
+        ConversionTask task = new ConversionTask(ordine);
         converter.convert(inputFile, new File(fileToConverted), task);
 
         return nomeFile;
     }
 
+
+    public boolean isSerena() {
+        return serena;
+    }
+
+    public void setSerena(boolean serena) {
+        this.serena = serena;
+    }
+
+    public void init() {
+        if (isSerena()) {
+            officeManager.start();
+        }
+    }
 
 }

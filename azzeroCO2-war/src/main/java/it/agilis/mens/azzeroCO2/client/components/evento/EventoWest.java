@@ -126,7 +126,7 @@ public class EventoWest extends LayoutContainer {
         grid = new Grid<RiepilogoModel>(store, cm);
         grid.setAutoHeight(true);
         grid.setHeight(400);
-        grid.setWidth(243);
+        grid.setWidth(244);
         //     grid.setStripeRows(true);
         grid.setHideHeaders(true);
         grid.setStyleAttribute("backgroundColor", "#E9E9E9");
