@@ -35,6 +35,7 @@ public class SitoWeb extends LayoutContainer {
     private SitoWebForm sitoWebForm = new SitoWebForm();
 
 
+
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
     private final EventoFormAcquisto eventoFormAcquisto = new EventoFormAcquisto();
     private final EventoFormConferma eventoFormConferma = new EventoFormConferma();
