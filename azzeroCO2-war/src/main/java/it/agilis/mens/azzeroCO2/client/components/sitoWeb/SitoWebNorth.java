@@ -1,5 +1,8 @@
 package it.agilis.mens.azzeroCO2.client.components.sitoWeb;
 
+import com.extjs.gxt.ui.client.event.IconButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.Html;
@@ -9,6 +12,7 @@ import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,15 +33,46 @@ public class SitoWebNorth extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.TOP);
         c.setLayout(layout);
 
-        c.add(new Html("<p style=\"padding:1px;\">Compensa un sito web</p>"));
+        c.add(new Html("<p style=\"padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:#000000;\">Compensa un sito web</p>"));
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         flex.setFlex(1);
         c.add(new Text(), flex);
-        c.add(new ToolButton("x-tool-save"), new HBoxLayoutData(new Margins(0, 5, 0, 0)));
-        c.add(new ToolButton("x-tool-close"), new HBoxLayoutData(new Margins(0, 5, 0, 0)));
 
+
+        ToolButton save = new ToolButton("x-tool-save");
+        save.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                Dispatcher.forwardEvent(EventoEvents.Save, "Save"); //TODO mettere l'evento save del sito
+            }
+        });
+        c.add(save, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
+
+        ToolButton close = new ToolButton("x-tool-close");
+
+        close.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+
+                Dispatcher.forwardEvent(EventoEvents.ShowConfermDialog);  //TODO verificare questo event
+
+                //   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                //   Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
+            }
+        });
+        c.add(close, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
+        c.setStyleAttribute("background-color", "#F89D00");
         add(c);
     }
+
+
+
+
+
+
+
+
+
 
 }
