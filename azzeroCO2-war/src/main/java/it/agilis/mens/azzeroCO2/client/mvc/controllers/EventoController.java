@@ -46,16 +46,12 @@ public class EventoController extends BaseController {
         registerEventTypes(AzzeroCO2Events.LoggedIn);
         registerEventTypes(EventoEvents.Riepilogo);
         registerEventTypes(EventoEvents.Acquisto);
-
         registerEventTypes(EventoEvents.LoadEvento);
-
         registerEventTypes(EventoEvents.CaricaCoefficienti);
         registerEventTypes(EventoEvents.CaricaProgettiDiCompensazione);
-
         registerEventTypes(EventoEvents.PreviousText);
         registerEventTypes(EventoEvents.NextText);
         registerEventTypes(EventoEvents.Conferma);
-
         registerEventTypes(EventoEvents.ShowConfermDialog);
         registerEventTypes(EventoEvents.ShowInfoDialog);
         registerEventTypes(EventoEvents.ShowRiepilogo);
@@ -77,32 +73,22 @@ public class EventoController extends BaseController {
                 }
             };
             timer.schedule(10000);
-
         } else if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
-            if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
-                setCoefficienti();
-                if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
-                    Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 001");
-                }
-            }
-            if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
-                Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 002");
-            } else {
-                eventoView.riepilogo(getCoefficientiMAP());
-            }
+            setCoefficentitoEventoView();
             eventoView.showRiepilogo();
+        } else if (event.getType().equals(EventoEvents.Riepilogo)) {
+            setCoefficentitoEventoView();
         } else if (event.getType().equals(EventoEvents.LoadEvento)) {
             setCoefficienti();
             setProgettiDiCompensazione();
             eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
             eventoView.setDettaglioModel((DettaglioModel) event.getData());
-            eventoView.setRiassunto((DettaglioModel) event.getData());
+            eventoView.setRiassunto((DettaglioModel) event.getData(), true);
         } else if (event.getType().equals(AzzeroCO2Events.Init)) {
             AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
                 }
-
                 @Override
                 public void onSuccess(List<TipoDiCartaModel> result) {
                     if (result != null) {
@@ -110,20 +96,9 @@ public class EventoController extends BaseController {
                     }
                 }
             };
+            setCoefficienti();
             getHustonService().getTipoDiCarta(tipoDiCartaCallBack);
             forwardToView(eventoView, event);
-        } else if (event.getType().equals(EventoEvents.Riepilogo)) {
-            if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
-                setCoefficienti();
-                if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
-                    Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 001");
-                }
-            }
-            if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
-                Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 002");
-            } else {
-                eventoView.riepilogo(getCoefficientiMAP());
-            }
         } else if (event.getType().equals(EventoEvents.Acquisto)) {
             if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
                 Dispatcher.forwardEvent(LoginEvents.ShowForm);
@@ -144,18 +119,15 @@ public class EventoController extends BaseController {
                 pagamentoModel.setLastUpdate(new Date());
                 pagamentoModel.setKgCO2(kgCO2);
                 model.setPagamentoModel(pagamentoModel);
-
                 Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
             } else {
                 Info.display("Info", "Seleziona il Progetto di compensazione");
             }
-
         } else if (event.getType().equals(EventoEvents.CaricaProgettiDiCompensazione)) {
             if (getProgettiDiCompensazioneList().size() == 0) {
                 setProgettiDiCompensazione();
             }
             eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
-
         } else if (event.getType().equals(EventoEvents.CaricaCoefficienti)) {
             setCoefficienti();
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
@@ -205,6 +177,20 @@ public class EventoController extends BaseController {
         }
     }
 
+    private void setCoefficentitoEventoView() {
+        if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
+            setCoefficienti();
+            if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
+                Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 001");
+            }
+        }
+        if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
+            Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 002");
+        } else {
+            eventoView.riepilogo(getCoefficientiMAP());
+        }
+    }
+
     private double getTotaleKgCO2(DettaglioModel model) {
         List<RiepilogoModel> eventoRiepilogoModels = eventoView.riepilogo(getCoefficientiMAP());
         double totale = 0;
@@ -244,4 +230,6 @@ public class EventoController extends BaseController {
             return timer;
         }
     }
+
+
 }
