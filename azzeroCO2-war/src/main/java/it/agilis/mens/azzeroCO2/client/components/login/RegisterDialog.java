@@ -144,7 +144,7 @@ public class RegisterDialog extends Dialog {
         ragioneSoc.getMessages().setMinLengthText("Ragione sociale troppo breve");
 
         ragioneSoc.setFieldLabel("Rag. sociale");
-        ragioneSoc.setName("ragioneSoc");
+        ragioneSoc.setName("ragioneSociale");
         ragioneSoc.addKeyListener(keyListener);
         ragioneSoc.setLabelStyle("white-space:nowrap");
         ragioneSoc.setLabelStyle("width:150");
@@ -199,7 +199,7 @@ public class RegisterDialog extends Dialog {
         partitaIvaCF = new TextField<String>();
         partitaIvaCF.setMinLength(11);
         partitaIvaCF.setMaxLength(17);
-        partitaIvaCF.setName("partitaIvaCF");
+        partitaIvaCF.setName("pivaCF");
         partitaIvaCF.getMessages().setMinLengthText("La partita iva deve essere lunga 11 cifre e il codice fiscale 17 caratteri");
         partitaIvaCF.setFieldLabel("P.Iva/CF");
         partitaIvaCF.addKeyListener(keyListener);

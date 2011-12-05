@@ -72,7 +72,7 @@ public class EventoController extends BaseController {
             final Timer timer = new Timer() {
                 public void run() {
                     MyAsyncCallback asyncCallback = new MyAsyncCallback();
-                    getHustonService().isPagato(riepilogo, asyncCallback);
+                    getHustonService().isPagato(riepilogo, getUserInfoModel(), asyncCallback);
                     asyncCallback.setTimer(this);
                 }
             };
@@ -146,7 +146,7 @@ public class EventoController extends BaseController {
                 model.setPagamentoModel(pagamentoModel);
 
                 Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
-            }else{
+            } else {
                 Info.display("Info", "Seleziona il Progetto di compensazione");
             }
 
@@ -201,7 +201,7 @@ public class EventoController extends BaseController {
                     }
                 }
             };
-            getHustonService().saveOrdine(riepilogo, dettaglio);
+            getHustonService().saveOrdine(riepilogo, getUserInfoModel(), dettaglio);
         }
     }
 
@@ -226,7 +226,6 @@ public class EventoController extends BaseController {
             if (result != null) {
                 Info.display("Info", "Pagamento Avvenuto con sucesso");
                 Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
-
 
 
                 eventoView.showConferma(result);

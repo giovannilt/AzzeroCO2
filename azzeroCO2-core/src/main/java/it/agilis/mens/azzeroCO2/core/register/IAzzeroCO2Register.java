@@ -27,7 +27,7 @@ public interface IAzzeroCO2Register {
 
     void saveProgettiCompensazione(List<ProgettoCompensazione> progettiDiCompensazione) throws Exception;
 
-    Ordine saveOrUpdateOrdine(Ordine o) throws Exception;
+    Ordine saveOrUpdateOrdine(Ordine o, UserInfo userInfo) throws Exception;
 
 
     List<Coupon> getListOfCoupon() throws Exception;

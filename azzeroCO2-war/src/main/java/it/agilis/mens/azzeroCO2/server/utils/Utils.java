@@ -64,7 +64,7 @@ public class Utils {
         userInfo.setUserName(registrazioneModel.getUserName());
         userInfo.setNome(registrazioneModel.getNome());
         userInfo.setCognome(registrazioneModel.getCognome());
-        userInfo.setRagSociale(registrazioneModel.getRagioneSoc());
+        userInfo.setRagSociale(registrazioneModel.getRagioneSociale());
         userInfo.setIndirizzo(registrazioneModel.getIndirizzo());
         userInfo.setCitta(registrazioneModel.getCitta());
         userInfo.setProvincia(registrazioneModel.getProvincia());
@@ -98,7 +98,7 @@ public class Utils {
         userInfoModel.setPivaCF(userInfo.getpIvaCF());
         userInfoModel.setPassword(userInfo.getPassword());
         userInfoModel.setTelefono(userInfo.getTelefono());
-        userInfoModel.setRagioneSoc(userInfo.getRagSociale());
+        userInfoModel.setRagioneSociale(userInfo.getRagSociale());
         userInfoModel.setId(userInfo.getId());
         userInfoModel.setProvincia(userInfo.getProvincia());
 

@@ -48,7 +48,7 @@ public interface HustonService extends RemoteService {
 
     GitRepositoryStateModel checkGitRevision();
 
-    DettaglioVTO saveOrdine(DettaglioVTO riepilogo);
+    DettaglioVTO saveOrdine(DettaglioVTO riepilogo, UserInfoModel userInfoModel);
 
     void sentMail(EMailVTO email);
 
@@ -58,7 +58,7 @@ public interface HustonService extends RemoteService {
 
     boolean associaIDProgettoDiCompensazioneImmagine(Long idProgetto, String name);
 
-    DettaglioVTO isPagato(DettaglioVTO riepilogo);
+    DettaglioVTO isPagato(DettaglioVTO riepilogo, UserInfoModel userInfoModel);
 
 }
 

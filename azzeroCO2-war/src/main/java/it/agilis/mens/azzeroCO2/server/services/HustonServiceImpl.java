@@ -255,12 +255,12 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public DettaglioVTO saveOrdine(DettaglioVTO evento) {
+    public DettaglioVTO saveOrdine(DettaglioVTO evento, UserInfoModel user) {
         try {
             DettaglioModel dettaglioModel = AzzerroCO2UtilsClientHelper.getDettaglioModel(evento);
             Ordine ordine = Utils.getOrdine(dettaglioModel);
 
-            Ordine o = azzeroCO2Register.saveOrUpdateOrdine(ordine);
+            Ordine o = azzeroCO2Register.saveOrUpdateOrdine(ordine, Utils.getUserInfo(user));
 
             DettaglioModel dettaglioModel1 = Utils.getDettaglioModel(o);
             DettaglioVTO dettaglioVTO = AzzerroCO2UtilsClientHelper.getDettaglioVTO(dettaglioModel1);
@@ -316,12 +316,12 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public DettaglioVTO isPagato(DettaglioVTO riepilogo) {
+    public DettaglioVTO isPagato(DettaglioVTO riepilogo, UserInfoModel userInfoModel) {
         try {
             Ordine o = azzeroCO2Register.getOrdineDAO().getOrdineEager(riepilogo.getOrdineId());
             if (o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO)) {
                 o.getRicevutaDiPagamento().setCertificatoPDF(creaCertificatoInPDF(o));
-                azzeroCO2Register.saveOrUpdateOrdine(o);
+                azzeroCO2Register.saveOrUpdateOrdine(o, Utils.getUserInfo(userInfoModel));
                 DettaglioModel dettaglioModel1 = Utils.getDettaglioModel(o);
                 return AzzerroCO2UtilsClientHelper.getDettaglioVTO(dettaglioModel1);
             } else {

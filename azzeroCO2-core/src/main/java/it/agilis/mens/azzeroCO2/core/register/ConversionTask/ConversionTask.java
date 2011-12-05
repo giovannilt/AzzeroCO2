@@ -19,6 +19,7 @@ import org.artofsolving.jodconverter.document.DocumentFormat;
 import org.artofsolving.jodconverter.office.OfficeException;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,18 +28,14 @@ import static org.artofsolving.jodconverter.office.OfficeUtils.cast;
 public class ConversionTask extends AbstractConversionTask {
 
     private DocumentFormat outputFormat;
-
-    private Map<String, ?> defaultLoadProperties;
     private DocumentFormat inputFormat;
+    private Map<String, ?> defaultLoadProperties;
+
     private Ordine ordine;
 
-     public ConversionTask(Ordine ordine) {
-        this.ordine = ordine;
-    }
-
-    public ConversionTask(File inputFile, File outputFile, DocumentFormat outputFormat) {
+    public ConversionTask(File inputFile, File outputFile, Ordine ordine) {
         super(inputFile, outputFile);
-        this.outputFormat = outputFormat;
+        this.ordine = ordine;
     }
 
     public void setDefaultLoadProperties(Map<String, ?> defaultLoadProperties) {
@@ -46,6 +43,7 @@ public class ConversionTask extends AbstractConversionTask {
     }
 
     public void setInputFormat(DocumentFormat inputFormat) {
+
         this.inputFormat = inputFormat;
     }
 
@@ -71,7 +69,12 @@ public class ConversionTask extends AbstractConversionTask {
                 XPropertySet loXPropertySet = UnoRuntime.queryInterface(XPropertySet.class, dependentTextField);
 
                 if (name.equalsIgnoreCase("KgCO2")) {
-                    loXPropertySet.setPropertyValue("Content", ordine.getRicevutaDiPagamento().getKgCO2());
+                    DecimalFormat decimalFormat = new DecimalFormat("0.00");
+                    String co2= decimalFormat.format( ordine.getRicevutaDiPagamento().getKgCO2()) + " kg";
+                    if(ordine.getRicevutaDiPagamento().getKgCO2()>1000){
+                         co2=  decimalFormat.format( ordine.getRicevutaDiPagamento().getKgCO2() /1000) +  "Ton";
+                    }
+                    loXPropertySet.setPropertyValue("Content", co2);
                 } else if (name.equalsIgnoreCase("NomeAzienda")) {
                     loXPropertySet.setPropertyValue("Content", ordine.getUtente().getNome());
                 } else if (name.equalsIgnoreCase("NomeEvento")) {
@@ -105,6 +108,4 @@ public class ConversionTask extends AbstractConversionTask {
         DocumentFamily family = OfficeDocumentUtils.getDocumentFamily(document);
         return outputFormat.getStoreProperties(family);
     }
-
-
 }

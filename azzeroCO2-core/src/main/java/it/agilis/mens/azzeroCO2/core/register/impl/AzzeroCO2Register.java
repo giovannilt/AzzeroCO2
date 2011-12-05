@@ -171,9 +171,9 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     }
 
     @Override
-    public Ordine saveOrUpdateOrdine(Ordine o) throws Exception {
-
+    public Ordine saveOrUpdateOrdine(Ordine o, UserInfo userInfo) throws Exception {
         o.setLastUpdate(new Date());
+        o.setUtente(userInfo);
         return ordineDAO.save(o);
     }
 
@@ -186,6 +186,6 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     }
 
     public String creaCertificatoPDF(Ordine ordine) {
-       return openOfficeService.creaPDF(ordine);
+        return openOfficeService.creaPDF(ordine);
     }
 }
