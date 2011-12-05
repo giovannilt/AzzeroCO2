@@ -35,7 +35,7 @@
           scope="singleton">
          <property name="certificatoTemplateODT" value="${azzeroCO2.certificatoTemplateODT}" />
          <property name="certificatiFolder" value="${azzeroCO2.certificatiFolder}"/>
-         <property name="serena" value="true"/>
+         <property name="serena" value="${azzeroCO2.serena}"/>
     </bean>
 
 
