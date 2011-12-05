@@ -114,7 +114,7 @@ public abstract class BaseController extends Controller {
     public void sentMail(DettaglioVTO result) {
         EMailVTO data = new EMailVTO();
         data.setBody(result.getNome()+ " /n " +
-                "" + GWT.getModuleBaseURL()+"/downloadCertificato?certificato="+result.getPagamentoModel().getCertificatoPDF()+
+                "" + GWT.getModuleBaseURL()+"downloadCertificato?certificato="+result.getPagamentoModel().getCertificatoPDF()+
                 "");
 
         data.setFromUser("no-reply@azzeroco2.it");

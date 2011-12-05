@@ -59,7 +59,7 @@ public class OpenOfficeService {
 
         File inputFile = new File(certificatoTemplateODT);
 
-        ConversionTask task = new ConversionTask(ordine);
+        ConversionTask task = new ConversionTask(inputFile,  new File(fileToConverted), ordine);
         converter.convert(inputFile, new File(fileToConverted), task);
 
         return nomeFile;

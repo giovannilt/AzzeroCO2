@@ -36,7 +36,7 @@ public class UserInfo extends LayoutContainer {
     protected TextField<String> repassword;
     protected TextField<String> nome;
     protected TextField<String> cognome;
-    protected TextField<String> ragioneSoc;
+    protected TextField<String> ragioneSociale;
     protected TextField<String> indirizzo;
     protected TextField<String> citta;
     protected TextField<String> provincia;
@@ -140,15 +140,15 @@ public class UserInfo extends LayoutContainer {
         cognome.setLabelStyle("width:150");
         formPanel.add(cognome);
 
-        ragioneSoc = new TextField<String>();
-        ragioneSoc.setMinLength(2);
-        ragioneSoc.getMessages().setMinLengthText("Ragione sociale troppo breve");
+        ragioneSociale = new TextField<String>();
+        ragioneSociale.setMinLength(2);
+        ragioneSociale.getMessages().setMinLengthText("Ragione sociale troppo breve");
 
-        ragioneSoc.setFieldLabel("Rag. sociale");
-        ragioneSoc.setName("ragSociale");
-        ragioneSoc.addKeyListener(keyListener);
-        ragioneSoc.setLabelStyle("width:150");
-        formPanel.add(ragioneSoc);
+        ragioneSociale.setFieldLabel("Rag. sociale");
+        ragioneSociale.setName("ragioneSociale");
+        ragioneSociale.addKeyListener(keyListener);
+        ragioneSociale.setLabelStyle("width:150");
+        formPanel.add(ragioneSociale);
 
         indirizzo = new TextField<String>();
         indirizzo.setMinLength(2);
@@ -288,7 +288,7 @@ public class UserInfo extends LayoutContainer {
                         && hasValue(cap)
                         && hasValue(indirizzo)
                         && hasValue(provincia)
-                        && ((hasValue(nome) && hasValue(cognome)) || hasValue(ragioneSoc))
+                        && ((hasValue(nome) && hasValue(cognome)) || hasValue(ragioneSociale))
                         && email.getValue().equals(reemail.getValue())
                         && password.getValue().equals(repassword.getValue())
         );

@@ -52,11 +52,11 @@ public class UserInfoModel extends BaseModel {
         set("cognome", cognome);
     }
 
-    public String getRagioneSoc() {
+    public String getRagioneSociale() {
         return get("ragioneSociale");
     }
 
-    public void setRagioneSoc(String ragioneSociale) {
+    public void setRagioneSociale(String ragioneSociale) {
         set("ragioneSociale", ragioneSociale);
     }
 
