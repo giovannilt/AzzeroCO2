@@ -10,7 +10,6 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoDettaglio;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoNorth;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoSouth;
@@ -52,7 +51,6 @@ public class EventoView extends View {
     private EventoWest west = new EventoWest();
     private EventoNorth north = new EventoNorth();
 
-    private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
 
     public EventoView(Controller controller) {
         super(controller);
@@ -68,23 +66,23 @@ public class EventoView extends View {
         } else if (eventType.equals(EventoEvents.ClearStep)) {
             eventoDettaglio.clearStep((RiepilogoModel) event.getData());
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
-            setRiassunto(riepilogo);
+            setRiassunto(riepilogo, false);
         } else if (eventType.equals(EventoEvents.ClearPanel)) {
             eventoDettaglio.clearPanel();
             west.clean();
         } else if (eventType.equals(EventoEvents.Previous)) {
             onPrevius(event);
-        } else if (eventType.equals(EventoEvents.Riepilogo)) {
+        } /*else if (eventType.equals(EventoEvents.Riepilogo)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             setRiassunto(riepilogo);
-        } else if (event.getType().equals(EventoEvents.PreviousText)) {
+        }*/ else if (event.getType().equals(EventoEvents.PreviousText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
-            setRiassunto(riepilogo);
+            setRiassunto(riepilogo, event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"));
         } else if (event.getType().equals(EventoEvents.NextText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData(), getRiepilogo());
-            setRiassunto(riepilogo);
+            setRiassunto(riepilogo, event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"));
         } else if (event.getType().equals(EventoEvents.ShowStep)) {
             eventoDettaglio.showStep(event.<RiepilogoModel>getData());
         } else if (event.getType().equals(EventoEvents.ShowInfoDialog)) {
@@ -94,25 +92,16 @@ public class EventoView extends View {
         }
     }
 
-    public void setRiassunto(DettaglioModel riepilogo) {
-
-        if (riepilogo.getPagamentoModel() != null &&
-                riepilogo.getPagamentoModel().getEsito() != null) {
-
-            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo), Esito.valueOf(riepilogo.getPagamentoModel().getEsito()));
+    public void setRiassunto(DettaglioModel riepilogo, boolean isRiepilogo) {
+        if (isRiepilogo) {
+            west.isInRiepilogo(riepilogo);
         } else {
-            west.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo), Esito.IN_PAGAMENTO);
-        }
-        String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Evento";
-        String dove = riepilogo.getDove() != null ? riepilogo.getDove() : "";
-
-        if (riepilogo.getInizio() != null
-                && riepilogo.getFine() != null) {
-            String dal = "<br>dal " + dateFormat.format(riepilogo.getInizio());
-            String a = " al " + dateFormat.format(riepilogo.getFine());
-            west.setTitle(nome + "<br>" + dove + dal + a);
-        } else {
-            west.setTitle(nome + "<br>" + dove);
+            if (riepilogo.getPagamentoModel() != null &&
+                    riepilogo.getPagamentoModel().getEsito() != null) {
+                west.setInStore(riepilogo, Esito.valueOf(riepilogo.getPagamentoModel().getEsito()));
+            } else {
+                west.setInStore(riepilogo, Esito.IN_PAGAMENTO);
+            }
         }
     }
 
@@ -130,7 +119,7 @@ public class EventoView extends View {
         layout.setEnableState(false);
         evento.setHeaderVisible(false);
         evento.setLayout(layout);
-       // evento.setStyleAttribute("padding", "1px");
+        // evento.setStyleAttribute("padding", "1px");
 
         BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 25);
         northData.setCollapsible(false);
@@ -156,7 +145,7 @@ public class EventoView extends View {
         {
             final BorderLayout layout2 = new BorderLayout();
             center.setLayout(layout2);
-        //    center.setStyleAttribute("padding", "2px");
+            //    center.setStyleAttribute("padding", "2px");
 
             BorderLayoutData center2Data = new BorderLayoutData(Style.LayoutRegion.CENTER);
             center2Data.setMargins(new Margins(0, 0, 0, 0));

@@ -121,6 +121,11 @@ public abstract class BaseController extends Controller {
         data.setSubject("Evento Compensato " + result.getNome());
         data.setToUser(Arrays.asList(userInfoModel.getEmail(), "serena.dimaida@gmail.com", "giovannilt@gmail.com"));
 
+        /**
+         *  • marketing@azzeroco2.it
+         *  • info@azzeroco2.it
+         * */
+
         AsyncCallback<Void> aCallback = new AsyncCallback<Void>() {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Errore impossibile connettersi al server.");

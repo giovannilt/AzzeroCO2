@@ -16,11 +16,14 @@ import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.VBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.VBoxLayoutData;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
@@ -37,8 +40,11 @@ public class EventoWest extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Evento");
-    private final String oggettoDiDefault="Non hai ancora inserito </br> nessuna attivita'";
+    private final String oggettoDiDefault = "Non hai ancora inserito </br> nessuna attivita'";
     private Esito esito;
+
+    private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
+
 
     public EventoWest() {
         RiepilogoModel model = new RiepilogoModel();
@@ -73,7 +79,7 @@ public class EventoWest extends LayoutContainer {
         title.setStyleAttribute("vertical-align ", "middle");
         title.setWidth(250);
         title.setHeight(60);
-        title.setStyleAttribute("font-size","14px");
+        title.setStyleAttribute("font-size", "14px");
 
 
         panel.setStyleAttribute("backgroundColor", "#E9E9E9");
@@ -93,7 +99,7 @@ public class EventoWest extends LayoutContainer {
             public Object render(ModelData model, String property, ColumnData config, int rowIndex, int colIndex, ListStore listStore, Grid grid) {
                 config.style += "background-color: silver;";
                 List<RiepilogoModel> r = listStore.getModels();
-                if(r.size()==1 && r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)){
+                if (r.size() == 1 && r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)) {
                     return null;
                 }
 
@@ -141,7 +147,7 @@ public class EventoWest extends LayoutContainer {
                 new Listener<SelectionChangedEvent<RiepilogoModel>>() {
                     public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
                         if (be.getSelection().size() > 0) {
-                            if(!Esito.PAGATO.equals(esito)){
+                            if (!Esito.PAGATO.equals(esito)) {
                                 Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());
                             }
                         }
@@ -154,28 +160,47 @@ public class EventoWest extends LayoutContainer {
     }
 
 
-    public void setInStore(List<RiepilogoModel> model, Esito esito) {
+    public void setInStore(DettaglioModel riepilogo, Esito esito) {
+        List<RiepilogoModel> model = CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo);
         store.removeAll();
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
             m.setOggetto("Non hai ancora inserito </br> nessuna attivita'");
             store.add(m);
         } else {
-             this.esito=esito;
+            this.esito = esito;
             store.add(model);
         }
+        setTitle(riepilogo);
     }
 
-    public void setTitle(String title) {
-        if (title == null || "".equalsIgnoreCase(title)) {
-            this.title.setText("Evento");
-        } else {
-            this.title.setText(title);
+    public void setTitle(DettaglioModel riepilogo) {
+        if (riepilogo != null) {
+            String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Evento";
+            String dove = riepilogo.getDove() != null ? riepilogo.getDove() : "";
+
+            if (riepilogo.getInizio() != null
+                    && riepilogo.getFine() != null) {
+                String dal = "<br>dal " + dateFormat.format(riepilogo.getInizio());
+                String a = " al " + dateFormat.format(riepilogo.getFine());
+                this.title.setText(nome + "<br>" + dove + dal + a);
+            } else {
+                this.title.setText(nome + "<br>" + dove);
+            }
         }
     }
 
-    public void clean(){
+    public void clean() {
         setInStore(null, Esito.IN_PAGAMENTO);
-        setTitle(null);
+        this.title.setTitle(".....");
+    }
+
+    public void isInRiepilogo(DettaglioModel riepilogo) {
+        setTitle(riepilogo);
+        store.removeAll();
+        RiepilogoModel m = new RiepilogoModel();
+
+
+        store.add(m);
     }
 }
