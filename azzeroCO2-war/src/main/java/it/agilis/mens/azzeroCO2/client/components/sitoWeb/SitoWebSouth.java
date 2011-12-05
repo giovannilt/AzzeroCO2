@@ -30,7 +30,7 @@ import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 public class SitoWebSouth extends LayoutContainer {
 
     private Text leftText = new Text("");
-        private Text rigthText = new Text("Energia");
+        private Text rigthText = new Text("Riepilogo");
 
         private Button left = new Button();
         private Button right = new Button();

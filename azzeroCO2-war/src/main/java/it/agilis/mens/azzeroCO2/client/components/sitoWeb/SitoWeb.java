@@ -35,7 +35,6 @@ public class SitoWeb extends LayoutContainer {
     private SitoWebForm sitoWebForm = new SitoWebForm();
 
 
-
     private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
     private final EventoFormAcquisto eventoFormAcquisto = new EventoFormAcquisto();
     private final EventoFormConferma eventoFormConferma = new EventoFormConferma();
@@ -79,8 +78,6 @@ public class SitoWeb extends LayoutContainer {
         posizioniText.add(Arrays.asList("Riepilogo", "Conferma"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("Scegli progetto di compensazione", ""));                                  // CONFERMA
     }
-
-
 
 
     public String previusTab(AppEvent event) {
@@ -131,9 +128,8 @@ public class SitoWeb extends LayoutContainer {
                     sitoWebTab.getItems().get(i).setEnabled(true);
                     sitoWebTab.setSelection(sitoWebTab.getItems().get(i));
 
-                    if (!sitoWebTab.getItems().get(i).getText().equalsIgnoreCase("Calcolo")) {
-                        posizioniLabel++;
-                    }
+                    posizioniLabel++;
+
                     if (posizioniLabel == 0) {
                         posizioniLabel++;
                     }
@@ -162,7 +158,6 @@ public class SitoWeb extends LayoutContainer {
         }
 
 
-
         for (TabItem item : sitoWebTab.getItems()) {
 
         }
@@ -175,7 +170,7 @@ public class SitoWeb extends LayoutContainer {
         //eventoModel.setProgettoDiCompensazioneModel(eventoFormAcquisto.getProgettoDiCompensazioneModel());
 
         //return eventoModel;
-    return null;
+        return null;
     }
 
     public void restore(DettaglioModel eventoModel) {
@@ -183,7 +178,6 @@ public class SitoWeb extends LayoutContainer {
 
         eventoFormAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
     }
-
 
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
@@ -207,12 +201,12 @@ public class SitoWeb extends LayoutContainer {
 
     public void showRiepilogo() {
         if (posizioniLabel != 1) {
-            
+
         }
         for (TabItem item : sitoWebTab.getItems()) {
 
         }
-        
+
         Dispatcher.forwardEvent(EventoEvents.Riepilogo);
     }
 
@@ -237,14 +231,14 @@ public class SitoWeb extends LayoutContainer {
     }
 
 
-
     public void showConferma(DettaglioVTO result) {
         sitoWebTab.getSelectedItem().disable();
         posizioniLabel++;
         sitoWebTab.getItems().get(sitoWebTab.getItems().size() - 1).setEnabled(true);
         sitoWebTab.setSelection(sitoWebTab.getItems().get(sitoWebTab.getItems().size() - 1));
         Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-        Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));}
+        Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+    }
 
 
 }

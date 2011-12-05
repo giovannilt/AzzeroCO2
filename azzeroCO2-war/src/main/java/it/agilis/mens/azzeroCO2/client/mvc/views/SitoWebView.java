@@ -69,7 +69,7 @@ public class SitoWebView extends View {
         sitoWebpanel.add(new SitoWebNorth(), northData);
 
 
-        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 150);
+        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 250);
         westData.setCollapsible(false);
         westData.setFloatable(false);
         westData.setHideCollapseTool(false);
@@ -88,7 +88,7 @@ public class SitoWebView extends View {
             center2Data.setMargins(new Margins(0, 0, 0, 0));
             center.add(sitoWeb, center2Data);
 
-            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 15);
+            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 33);
             southData.setMargins(new Margins(0, 0, 0, 0));
             center.add(south, southData);
         }
