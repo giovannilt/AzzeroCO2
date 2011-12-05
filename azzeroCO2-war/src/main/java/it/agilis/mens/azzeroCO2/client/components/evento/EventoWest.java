@@ -199,7 +199,8 @@ public class EventoWest extends LayoutContainer {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
-
+        m.setOggetto("Hai Terminato il Calcolo! </br>" +
+                "Se vuoi modifica i dati inseriti, clicca sulla voce relativa.");
 
         store.add(m);
     }
