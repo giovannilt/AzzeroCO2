@@ -92,7 +92,7 @@ public class EventoDettaglio extends LayoutContainer {
         posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Riepilogo"));           // Manifesti Piegevoli e Fogli
         posizioniText.add(Arrays.asList("Manifesti piegevoli e fogli", "Scegli progetto di compensazione"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Conferma"));                         // ACQUISTO
-        posizioniText.add(Arrays.asList("Scegli progetto di compensazione", ""));                                  // CONFERMA
+        posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
     }
 
 

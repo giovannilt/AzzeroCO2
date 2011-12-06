@@ -82,7 +82,7 @@ public class EventoView extends View {
         } else if (event.getType().equals(EventoEvents.NextText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData(), getRiepilogo());
-            setRiassunto(riepilogo, event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"));
+            setRiassunto(riepilogo, event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Scegli progetto di compensazione"));
         } else if (event.getType().equals(EventoEvents.ShowStep)) {
             eventoDettaglio.showStep(event.<RiepilogoModel>getData());
         } else if (event.getType().equals(EventoEvents.ShowInfoDialog)) {
