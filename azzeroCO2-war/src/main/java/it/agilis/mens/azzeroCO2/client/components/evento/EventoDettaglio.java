@@ -91,7 +91,7 @@ public class EventoDettaglio extends LayoutContainer {
         posizioniText.add(Arrays.asList("Trasporto merci", "Manifesti piegevoli e fogli"));// Pubblicazioni rilegate
         posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Riepilogo"));           // Manifesti Piegevoli e Fogli
         posizioniText.add(Arrays.asList("Manifesti piegevoli e fogli", "Scegli progetto di compensazione"));       // RIEPILOGO
-        posizioniText.add(Arrays.asList("Riepilogo", "Conferma"));                         // ACQUISTO
+        posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
     }
 
@@ -183,7 +183,6 @@ public class EventoDettaglio extends LayoutContainer {
                 if (i < eventoTab.getItems().size()) {
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
                         Dispatcher.forwardEvent(EventoEvents.Conferma);
-                        // Dispatcher.forwardEvent(EventoEvents.SentEmailConferma);
                         return eventoTab.getItems().get(i).getText();
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
@@ -337,7 +336,7 @@ public class EventoDettaglio extends LayoutContainer {
         String s = "";
         while (posizioniText.size() - 4 >= posizioniLabel) {
             s = nextTab();
-            if (s.equalsIgnoreCase("Conferma")) {
+            if (s.equalsIgnoreCase("Vai al pagamento")) {
                 return;
             }
             if (s != null && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {

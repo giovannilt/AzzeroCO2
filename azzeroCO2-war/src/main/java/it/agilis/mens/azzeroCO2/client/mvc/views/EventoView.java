@@ -66,7 +66,7 @@ public class EventoView extends View {
         } else if (eventType.equals(EventoEvents.ClearStep)) {
             eventoDettaglio.clearStep((RiepilogoModel) event.getData());
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
-            setRiassunto(riepilogo, false);
+            setRiassunto(riepilogo, false, false, false);
         } else if (eventType.equals(EventoEvents.ClearPanel)) {
             eventoDettaglio.clearPanel();
             west.clean();
@@ -78,11 +78,19 @@ public class EventoView extends View {
         }*/ else if (event.getType().equals(EventoEvents.PreviousText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
-            setRiassunto(riepilogo, event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"));
+            setRiassunto(riepilogo,
+                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti piegevoli e fogli") ,
+                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"),
+                    event.<String>getData() != null && event.<String>getData().length() == 0
+            );
         } else if (event.getType().equals(EventoEvents.NextText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData(), getRiepilogo());
-            setRiassunto(riepilogo, event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Scegli progetto di compensazione"));
+            setRiassunto(riepilogo,
+                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Scegli progetto di compensazione"),
+                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Vai al pagamento") ,
+                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("torna alla home")
+            );
         } else if (event.getType().equals(EventoEvents.ShowStep)) {
             eventoDettaglio.showStep(event.<RiepilogoModel>getData());
         } else if (event.getType().equals(EventoEvents.ShowInfoDialog)) {
@@ -92,9 +100,13 @@ public class EventoView extends View {
         }
     }
 
-    public void setRiassunto(DettaglioModel riepilogo, boolean isRiepilogo) {
+    public void setRiassunto(DettaglioModel riepilogo, boolean isRiepilogo, boolean isScegliProgettoCompensazione, boolean isConferma) {
         if (isRiepilogo) {
             west.isInRiepilogo(riepilogo);
+        } else if (isScegliProgettoCompensazione) {
+            west.isScegliProgettoCompensazione(riepilogo);
+        } else if (isConferma) {
+            west.isInConferma(riepilogo);
         } else {
             if (riepilogo.getPagamentoModel() != null &&
                     riepilogo.getPagamentoModel().getEsito() != null) {
@@ -103,6 +115,7 @@ public class EventoView extends View {
                 west.setInStore(riepilogo, Esito.IN_PAGAMENTO);
             }
         }
+
     }
 
 
