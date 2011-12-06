@@ -110,14 +110,25 @@ public class SitoWebForm extends LayoutContainer {
         visitatoriField.setWidth(80);
         visitatoriField.setPropertyEditorType(Integer.class);
 
+        LayoutContainer c3 = new LayoutContainer();
+        HBoxLayout layout3 = new HBoxLayout();
+        layout3.setPadding(new Padding(5));
+        layout3.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+        c3.setLayout(layout3);
+
+        LabelField suggerimenti = new LabelField("</br>Questo dato è facilmente reperibile dalle statistiche di traffico del sito in analisi.");
+        suggerimenti.setStyleAttribute("color", "gray");
+        suggerimenti.setStyleAttribute("form-variant","normal");
+
         visitatori.add(new LabelField("visitatori"), flex);
         visitatori.add(visitatoriField, flex);
 
         c1.add(istruzioni, flex);
         panel.add(c1);
 
-
+        c3.add(suggerimenti,flex);
         panel.add(visitatori, new FormData("100%"));
+        panel.add(suggerimenti,new FormData("100%"));
         return panel;
     }
 
