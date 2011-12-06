@@ -16,8 +16,6 @@ import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
 
 /**
@@ -121,14 +119,14 @@ public class SitoWebForm extends LayoutContainer {
         suggerimenti.setStyleAttribute("form-variant","normal");
 
         visitatori.add(new LabelField("visitatori"), flex);
-        visitatori.add(visitatoriField, flex);
+        visitatori.add(visitatoriField);
 
-        c1.add(istruzioni, flex);
+        c1.add(istruzioni);
         panel.add(c1);
 
-        c3.add(suggerimenti,flex);
+        c3.add(suggerimenti);
         panel.add(visitatori, new FormData("100%"));
-        panel.add(suggerimenti,new FormData("100%"));
+        panel.add(c3,new FormData("100%"));
         return panel;
     }
 
