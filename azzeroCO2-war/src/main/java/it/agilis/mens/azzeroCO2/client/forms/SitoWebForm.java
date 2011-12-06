@@ -64,7 +64,7 @@ public class SitoWebForm extends LayoutContainer {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
 
-        panel.setHeading("ICompensazione sito web");
+        panel.setHeading("Compensazione sito web");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
         ToolButton tool1 = new ToolButton("x-tool-help");
@@ -93,7 +93,7 @@ public class SitoWebForm extends LayoutContainer {
         layout1.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c1.setLayout(layout1);
 
-        LabelField istruzioni = new LabelField("Insirisci il numero di utenti che annualmente visitano il tuo sito web.<br> ");
+        LabelField istruzioni = new LabelField("Insirisci il numero di utenti che annualmente visitano il tuo sito web. ");
         istruzioni.setStyleAttribute("font-weight", "bolder");
 
 
@@ -106,11 +106,11 @@ public class SitoWebForm extends LayoutContainer {
         NumberField visitatoriField = new NumberField();
         visitatoriField.setRegex("[0-9]+");
         visitatoriField.getMessages().setRegexText("Sito web");
-        visitatoriField.setName("Numero di visitatori annu");
-        visitatori.setWidth(60);
+        visitatoriField.setName("visitatori");
+        visitatoriField.setWidth(80);
         visitatoriField.setPropertyEditorType(Integer.class);
 
-        visitatori.add(new LabelField("Numero di visitatori annu"), flex);
+        visitatori.add(new LabelField("visitatori"), flex);
         visitatori.add(visitatoriField, flex);
 
         c1.add(istruzioni, flex);

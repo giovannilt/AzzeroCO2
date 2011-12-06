@@ -16,6 +16,7 @@ import java.util.Date;
  */
 public class PagamentoModel extends BaseModel {
     public static final String key = "8C4796853CD664B2F6AC00C13B268108";
+    private String conoscoCO2;
 
     public PagamentoModel() {
     }
@@ -200,6 +201,10 @@ public class PagamentoModel extends BaseModel {
 
     public void setCertificatoPDF(String certificatoPDF){
         set("certificatoPDF",certificatoPDF);
+    }
+
+    public String getConoscoCO2() {
+        return conoscoCO2;
     }
 }
 
