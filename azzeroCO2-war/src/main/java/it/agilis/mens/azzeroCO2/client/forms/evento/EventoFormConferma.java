@@ -9,9 +9,11 @@ import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.layout.*;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,8 +24,18 @@ import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
  */
 public class EventoFormConferma extends LayoutContainer {
 
-    ContentPanel east = new ContentPanel();
-    ContentPanel centre = new ContentPanel();
+    private ContentPanel east = new ContentPanel();
+    private ContentPanel centre = new ContentPanel();
+    private String haiCompensatoText = "Hai Compensato ";
+    private Text haiCompensato = new Text(haiCompensatoText);
+
+    private String attestatoDiComensazioneText = GWT.getModuleBaseURL() + "downloadCertificato?certificato=";//+result.getPagamentoModel().getCertificatoPDF();
+    private LabelField attestatoDiComensazione = new LabelField(attestatoDiComensazioneText);
+
+    private String schedaProgettoText = GWT.getModuleBaseURL() + "downloadCertificato?certificato=";//+result.getPagamentoModel().getCertificatoPDF();
+    private LabelField schedaProgetto = new LabelField(schedaProgettoText);
+
+    private final Image immagine = new Image();
 
 
     @Override
@@ -85,9 +97,9 @@ public class EventoFormConferma extends LayoutContainer {
                 Image check = new Image(AzzeroCO2Resources.INSTANCE.check());
                 check.setAltText("Bus");
                 c.add(check);
-                LabelField label = new LabelField("Attestato di Compensazione.");
-                label.setWidth(300);
-                c.add(label);
+
+                attestatoDiComensazione.setWidth(300);
+                c.add(attestatoDiComensazione);
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -100,9 +112,9 @@ public class EventoFormConferma extends LayoutContainer {
                 Image check = new Image(AzzeroCO2Resources.INSTANCE.check());
                 check.setAltText("Bus");
                 c.add(check);
-                LabelField label = new LabelField("Scheda Forestazione Italiana.");
-                label.setWidth(300);
-                c.add(label);
+
+                schedaProgetto.setWidth(300);
+                c.add(schedaProgetto);
                 panel.add(c, new FormData("100%"));
             }
 
@@ -149,11 +161,10 @@ public class EventoFormConferma extends LayoutContainer {
         row.setHeight(75);
         row.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        Text label = new Text("Hai Compensato 2.540 Kg di CO2 pintando 3.745 nuovi alberi!!");
-        label.setBorders(true);
+        haiCompensato.setBorders(true);
 
         row.add(new Image(AzzeroCO2Resources.INSTANCE.check()), new RowData(-1, 1, new Margins(4)));
-        row.add(label, new RowData(1, 1, new Margins(4, 0, 4, 0)));
+        row.add(haiCompensato, new RowData(1, 1, new Margins(4, 0, 4, 0)));
 
         centre.add(row, new RowData(1, -1, new Margins(4)));
 
@@ -161,8 +172,7 @@ public class EventoFormConferma extends LayoutContainer {
         row.setHeaderVisible(false);
         row.setHeight(335);
         row.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-
-        row.add(new Image(AzzeroCO2Resources.INSTANCE.fotoAlbero()), new RowData(-1, 1, new Margins(4)));
+        row.add(immagine, new RowData(-1, 1, new Margins(4)));
 
         centre.add(row, new RowData(1, 1, new Margins(4, 0, 4, 0)));
     }
@@ -170,7 +180,21 @@ public class EventoFormConferma extends LayoutContainer {
     public void clear() {
     }
 
+    public void setDettaglioModel(DettaglioModel model) {
+        if (model != null && model.getPagamentoModel() != null) {
 
+            haiCompensatoText += model.getPagamentoModel().getKgCO2() + " kgCO2! ";
+            attestatoDiComensazioneText += model.getPagamentoModel().getCertificatoPDF();
+            schedaProgettoText += "...";
+
+            /*if (model.getImageUrl() != null && !"".equalsIgnoreCase(model.getImageUrl())) {
+                String baseUrl = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti");
+                immagine.setUrl(baseUrl + model.getImageUrl());
+            }*/
+
+        }
+
+    }
 
 
 }

@@ -23,6 +23,7 @@ public class EmailSender implements IEmailSender {
     private String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
     private String username;
     private String password;
+    private boolean debug = false;
 
     public String getHost() {
         return host;
@@ -64,14 +65,11 @@ public class EmailSender implements IEmailSender {
         this.password = password;
     }
 
-    public void sendMail(Email email) throws MessagingException , IOException {
-
-        String recipients[]= email.getToUser();
-        String subject=email.getSubject();
-        String message=email.getBody(true);
-        String from=email.getFromUser();
-
-        boolean debug = true;
+    public void sendMail(Email email) throws MessagingException, IOException {
+        String recipients[] = email.getToUser();
+        String subject = email.getSubject();
+        String message = email.getBody(true);
+        String from = email.getFromUser();
 
         Properties props = new Properties();
         props.put("mail.smtp.host", host);
@@ -79,8 +77,7 @@ public class EmailSender implements IEmailSender {
         props.put("mail.debug", "true");
         props.put("mail.smtp.port", port);
         props.put("mail.smtp.socketFactory.port", port);
-        props.put("mail.smtp.starttls.enable","true");
-     //   props.put("mail.smtp.socketFactory.class", SSL_FACTORY);
+        props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.socketFactory.fallback", "false");
 
         Session session = Session.getDefaultInstance(props,
@@ -88,7 +85,6 @@ public class EmailSender implements IEmailSender {
 
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);
-                       // return new PasswordAuthentication("giovannilthd@gmail.com", "liberitutti");
                     }
                 });
 
@@ -103,8 +99,6 @@ public class EmailSender implements IEmailSender {
             addressTo[i] = new InternetAddress(recipients[i]);
         }
         msg.setRecipients(Message.RecipientType.TO, addressTo);
-
-
         msg.setSubject(subject);
         msg.setContent(message, "text/plain");
         Transport.send(msg);

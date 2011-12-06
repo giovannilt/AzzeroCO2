@@ -42,9 +42,6 @@ public interface AzzeroCO2Resources extends ClientBundle {
     @ImageResource.ImageOptions(flipRtl = true, width = 100, height = 100)
     ImageResource azzeroCO2Stemp();
 
-    @Source("it/agilis/mens/azzeroCO2/client/icons/foto-alberi-1.png")
-    @ImageResource.ImageOptions(flipRtl = true, width = 450, height = 450)
-    ImageResource fotoAlbero();
 
     @Source("it/agilis/mens/azzeroCO2/client/imgs/Aereo.png")
     @ImageResource.ImageOptions(flipRtl = true)

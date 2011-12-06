@@ -41,10 +41,19 @@ public class EventoWest extends LayoutContainer {
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Evento");
     private final String oggettoDiDefault = "Non hai ancora inserito </br> nessuna attivita'";
+    private final String riepilogoString = "Hai Terminato il Calcolo! </br>" +
+            "Se vuoi modifica i dati inseriti,</br>" +
+            " clicca sulla voce relativa.";
+    private final String ProgettoDiCompensazione = "Scegli un progetto di </br>" +
+            "compensazione.</br>" +
+            "Controlla il preventivo e </br>" +
+            "accedi al sistema di </br>" +
+            "pagamento.";
+    private final String Conferma = "Il Percorso e' finito!";
+
+
     private Esito esito;
-
     private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
-
 
     public EventoWest() {
         RiepilogoModel model = new RiepilogoModel();
@@ -95,7 +104,12 @@ public class EventoWest extends LayoutContainer {
             public Object render(ModelData model, String property, ColumnData config, int rowIndex, int colIndex, ListStore listStore, Grid grid) {
                 config.style += "background-color: silver;";
                 List<RiepilogoModel> r = listStore.getModels();
-                if (r.size() == 1 && r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)) {
+                if (r.size() == 1 &&
+                        (r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)
+                        || r.get(0).getOggetto().equalsIgnoreCase(ProgettoDiCompensazione)
+                        || r.get(0).getOggetto().equalsIgnoreCase(riepilogoString)
+                        || r.get(0).getOggetto().equalsIgnoreCase(Conferma)
+                                                )) {
                     return null;
                 }
 
@@ -189,9 +203,8 @@ public class EventoWest extends LayoutContainer {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
-        m.setOggetto("Hai Terminato il Calcolo! </br>" +
-                "Se vuoi modifica i dati inseriti,</br>" +
-                " clicca sulla voce relativa.");
+
+        m.setOggetto(riepilogoString);
         store.add(m);
     }
 
@@ -199,11 +212,8 @@ public class EventoWest extends LayoutContainer {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
-        m.setOggetto("Scegli un progetto di </br>" +
-                "compensazione.</br>" +
-                "Controlla il preventivo e </br>" +
-                "accedi al sistema di </br>" +
-                "pagamento.");
+
+        m.setOggetto(ProgettoDiCompensazione);
         store.add(m);
     }
 
@@ -211,7 +221,8 @@ public class EventoWest extends LayoutContainer {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
-        m.setOggetto("Il Percorso e' finito!");
+
+        m.setOggetto(Conferma);
         store.add(m);
     }
 }

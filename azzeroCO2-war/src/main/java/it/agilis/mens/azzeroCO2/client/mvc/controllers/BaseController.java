@@ -119,7 +119,7 @@ public abstract class BaseController extends Controller {
 
         data.setFromUser("no-reply@azzeroco2.it");
         data.setSubject("Evento Compensato " + result.getNome());
-        data.setToUser(Arrays.asList(userInfoModel.getEmail(), "serena.dimaida@gmail.com", "giovannilt@gmail.com"));
+        data.setToUser(Arrays.asList(userInfoModel.getEmail() /*",serena.dimaida@gmail.com", "giovannilt@gmail.com"*/));
 
         /**
          *  • marketing@azzeroco2.it
