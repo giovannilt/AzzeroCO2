@@ -1,14 +1,22 @@
 package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
+import com.extjs.gxt.ui.client.binding.FormBinding;
+import com.extjs.gxt.ui.client.event.IconButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,47 +27,124 @@ import com.google.gwt.user.client.Element;
  */
 public class ConoscoCO2Form extends LayoutContainer {
 
-    private FormPanel panel = new FormPanel();
+        private NottiModel nottiModel = new NottiModel();
+    private FormBinding binding = null;
+    private FormPanel formPanel;
+
+    public ConoscoCO2Form() {
+        formPanel = createForm();
+        binding = new FormBinding(formPanel, true);
+        binding.bind(nottiModel);
+
+    }
 
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        setLayout(new BorderLayout());
-        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
-        add(panel, centerData);
-            panel.setFrame(true);
-        createColumnForm();
+        BorderLayout layout = new BorderLayout();
+        setLayout(layout);
 
+        ContentPanel cp = new ContentPanel();
+        cp.setFrame(true);
+        cp.setHeaderVisible(false);
+        cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+
+        cp.add(formPanel, new RowData(1, 1));
+
+
+        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        add(cp, centerData);
     }
 
 
-    private void createColumnForm() {
-        FormData formData = new FormData("100%");
-        panel.setHeading("Kg CO2");
-        panel.setHeight(650);
+    private FormPanel createForm() {
+        FormPanel panel = new FormPanel();
+        panel.setFrame(true);
+
+        panel.setHeading("Compensa le tue emissioni");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
+        ToolButton tool1 = new ToolButton("x-tool-help");
+        panel.getHeader().addTool(tool1);
+        tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+            }
+        });
+        ToolButton tool = new ToolButton("x-tool-refresh");
+        panel.getHeader().addTool(tool);
+        tool.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+            @Override
+            public void componentSelected(IconButtonEvent ce) {
+                clear();
+            }
+        });
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
-        LayoutContainer kgCO2 = new LayoutContainer();
-        HBoxLayout layoutKgCO2 = new HBoxLayout();
-        layoutKgCO2.setPadding(new Padding(10));
-        layoutKgCO2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
-        kgCO2.setLayout(layoutKgCO2);
 
-        NumberField kgCO2Field = new NumberField();
-        kgCO2Field.setWidth(60);
+        LayoutContainer c1 = new LayoutContainer();
+        HBoxLayout layout1 = new HBoxLayout();
+        layout1.setPadding(new Padding(5));
+        layout1.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        c1.setLayout(layout1);
+
+        LabelField istruzioni = new LabelField("Insirisci i Kg di CO2 che hai emesso.");
+        istruzioni.setStyleAttribute("font-weight", "bolder");
 
 
-        kgCO2.add(new LabelField("Kg di CO2"), flex);
-        kgCO2.add(kgCO2Field, flex);
+        LayoutContainer visitatori = new LayoutContainer();
+        HBoxLayout layoutVisitatori = new HBoxLayout();
+        layoutVisitatori.setPadding(new Padding(10));
+        layoutVisitatori.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+        visitatori.setLayout(layoutVisitatori);
 
-        panel.add(kgCO2, new FormData("100%"));
+        NumberField visitatoriField = new NumberField();
+        visitatoriField.setRegex("[0-9]+");
+        visitatoriField.getMessages().setRegexText("Conosco la CO2");
+        visitatoriField.setName("Kg CO2");
+        visitatoriField.setWidth(80);
+        visitatoriField.setPropertyEditorType(Integer.class);
 
+        visitatori.add(new LabelField("Kg CO2"), flex);
+        visitatori.add(visitatoriField, flex);
+
+        c1.add(istruzioni, flex);
+        panel.add(c1);
+
+
+        panel.add(visitatori, new FormData("100%"));
+        return panel;
+    }
+
+    public void clear() {
+        binding.clear();
+        nottiModel = new NottiModel();
+        binding.bind(nottiModel);
 
     }
 
+    public NottiModel getNottiModel() {
+        return nottiModel;
+    }
+
+    public void setNottiModel(NottiModel nottiModel) {
+        this.nottiModel = nottiModel;
+        binding.bind(nottiModel);
+    }
+        @Override
+    protected void onLoad() {
+        super.onLoad();
+        formPanel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        formPanel.getBody().setStyleAttribute("border-style", "solid");
+        formPanel.getBody().setStyleAttribute("border-top", "3px solid orange");
+        formPanel.getBody().setStyleAttribute("border-width", "3px 0");
+        formPanel.getBody().setStyleAttribute("margin-bottom", "0");
+
+        //To change body of overridden methods use File | Settings | File Templates.
+    }
+    
+    
 }
