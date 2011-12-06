@@ -15,7 +15,9 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
@@ -67,7 +69,6 @@ public class EventoSouth extends LayoutContainer {
         });
         c.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
 
-
         flex.setFlex(1);
         c.add(leftText, flex);
 
@@ -93,7 +94,11 @@ public class EventoSouth extends LayoutContainer {
         right.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(new AppEvent(EventoEvents.Next, ce));
+                if (rigthText.getText().equalsIgnoreCase("torna alla home")) {
+                   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                } else {
+                    Dispatcher.forwardEvent(new AppEvent(EventoEvents.Next, ce));
+                }
             }
         });
         add(c);
@@ -112,7 +117,6 @@ public class EventoSouth extends LayoutContainer {
                 left.setEnabled(false);
                 left.setVisible(false);
                 leftText.setVisible(false);
-
             } else {
                 left.setEnabled(true);
                 left.setVisible(true);

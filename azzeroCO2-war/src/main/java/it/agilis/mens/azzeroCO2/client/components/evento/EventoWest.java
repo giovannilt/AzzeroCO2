@@ -200,7 +200,17 @@ public class EventoWest extends LayoutContainer {
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
         m.setOggetto("Hai Terminato il Calcolo! </br>" +
-                "Se vuoi modifica i dati inseriti, clicca sulla voce relativa.");
+                "Se vuoi modifica i dati inseriti,</br>" +
+                " clicca sulla voce relativa.");
+
+        store.add(m);
+    }
+
+    public void isInConferma(DettaglioModel riepilogo) {
+        setTitle(riepilogo);
+        store.removeAll();
+        RiepilogoModel m = new RiepilogoModel();
+        m.setOggetto("Il Percorso e' finito.");
 
         store.add(m);
     }
