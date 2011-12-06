@@ -83,7 +83,7 @@ public class EventoController extends BaseController {
             setProgettiDiCompensazione();
             eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
             eventoView.setDettaglioModel((DettaglioModel) event.getData());
-            eventoView.setRiassunto((DettaglioModel) event.getData(), true);
+            eventoView.setRiassunto((DettaglioModel) event.getData(), true, false, false);
         } else if (event.getType().equals(AzzeroCO2Events.Init)) {
             AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
                 public void onFailure(Throwable caught) {

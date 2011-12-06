@@ -81,7 +81,6 @@ public class EventoWest extends LayoutContainer {
         title.setHeight(60);
         title.setStyleAttribute("font-size", "14px");
 
-
         panel.setStyleAttribute("backgroundColor", "#E9E9E9");
         add(panel, flex);
 
@@ -90,9 +89,6 @@ public class EventoWest extends LayoutContainer {
     private Grid<RiepilogoModel> createGrid() {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
         ColumnConfig column = new ColumnConfig("img", "img", 24);
-        //column.setWidth(30);
-
-
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setRenderer(new GridCellRenderer() {
             @Override
@@ -125,22 +121,16 @@ public class EventoWest extends LayoutContainer {
             }
         });
         configs.add(column);
-
-
         ColumnModel cm = new ColumnModel(configs);
 
         grid = new Grid<RiepilogoModel>(store, cm);
         grid.setAutoHeight(true);
         grid.setHeight(400);
         grid.setWidth(244);
-        //     grid.setStripeRows(true);
         grid.setHideHeaders(true);
         grid.setStyleAttribute("backgroundColor", "#E9E9E9");
         grid.disableTextSelection(true);
         grid.setTrackMouseOver(false);
-        //   grid.setLoadMask(true);
-        //grid.setBorders(false);
-
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,
@@ -202,7 +192,18 @@ public class EventoWest extends LayoutContainer {
         m.setOggetto("Hai Terminato il Calcolo! </br>" +
                 "Se vuoi modifica i dati inseriti,</br>" +
                 " clicca sulla voce relativa.");
+        store.add(m);
+    }
 
+    public void isScegliProgettoCompensazione(DettaglioModel riepilogo) {
+        setTitle(riepilogo);
+        store.removeAll();
+        RiepilogoModel m = new RiepilogoModel();
+        m.setOggetto("Scegli un progetto di </br>" +
+                "compensazione.</br>" +
+                "Controlla il preventivo e </br>" +
+                "accedi al sistema di </br>" +
+                "pagamento.");
         store.add(m);
     }
 
@@ -210,8 +211,7 @@ public class EventoWest extends LayoutContainer {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
-        m.setOggetto("Il Percorso e' finito.");
-
+        m.setOggetto("Il Percorso e' finito!");
         store.add(m);
     }
 }
