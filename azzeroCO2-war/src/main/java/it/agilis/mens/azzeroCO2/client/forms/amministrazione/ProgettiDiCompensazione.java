@@ -103,8 +103,8 @@ public class ProgettiDiCompensazione extends LayoutContainer {
                         presenter.go();
                     }
                 });
-                b.setText((String) model.get(property)==null || "".equalsIgnoreCase((String) model.get(property))? "Click to upload":(String) model.get(property));
-                b.setStyleAttribute("background-color","#00ff00;");
+                b.setText((String) model.get(property) == null || "".equalsIgnoreCase((String) model.get(property)) ? "Click to upload" : (String) model.get(property));
+                b.setStyleAttribute("background-color", "#00ff00;");
                 b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
                 b.setToolTip("Click for upload");
 
@@ -121,11 +121,11 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         column.setEditor(new CellEditor(new TextField<String>()));
         configs.add(column);
 
-        column = new ColumnConfig("imageUrl", "Upload Immagine", 300);
+        column = new ColumnConfig("imageUrl", "Upload Immagine", 150);
         column.setRenderer(buttonRenderer);
         configs.add(column);
 
-         column = new ColumnConfig("pdfUrl", "Upload PDF", 300);
+        column = new ColumnConfig("pdfUrl", "Upload PDF", 150);
         column.setRenderer(buttonRenderer);
         configs.add(column);
 

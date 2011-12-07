@@ -30,10 +30,10 @@ public class FormConferma extends LayoutContainer {
     private Text haiCompensato = new Text(haiCompensatoText);
 
     private String attestatoDiComensazioneText = GWT.getModuleBaseURL() + "downloadCertificato?certificato=";//+result.getPagamentoModel().getCertificatoPDF();
-    private LabelField attestatoDiComensazione = new LabelField(attestatoDiComensazioneText);
+    private Text attestatoDiComensazione = new Text();
 
     private String schedaProgettoText = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti");
-    private LabelField schedaProgetto = new LabelField(schedaProgettoText);
+    private Text schedaProgetto = new Text();
 
     private final Image immagine = new Image();
 
@@ -189,7 +189,7 @@ public class FormConferma extends LayoutContainer {
             attestatoDiComensazioneText = "<a target=\"_blank\" href=\"" +
                     attestatoDiComensazioneText + ">Attestato di Compensazione</a>";
 
-            attestatoDiComensazione.(attestatoDiComensazioneText);
+            attestatoDiComensazione.setText(attestatoDiComensazioneText);
 
             schedaProgettoText += "<a target=\"_blank\" href=\"" +
                     model.getProgettoDiCompensazioneModel().getPdfUrl() + ">Scheda progetto.</a>";

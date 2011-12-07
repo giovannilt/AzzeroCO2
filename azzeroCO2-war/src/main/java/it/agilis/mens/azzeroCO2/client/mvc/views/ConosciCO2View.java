@@ -14,7 +14,6 @@ import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2North;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2South;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2West;
-
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.ConosciCO2Events;

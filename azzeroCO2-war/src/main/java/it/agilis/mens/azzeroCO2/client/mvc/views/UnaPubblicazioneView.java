@@ -11,14 +11,13 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoDettaglio;
-import it.agilis.mens.azzeroCO2.client.components.evento.EventoNorth;
-import it.agilis.mens.azzeroCO2.client.components.evento.EventoSouth;
-import it.agilis.mens.azzeroCO2.client.components.evento.EventoWest;
 import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoConfermDialog;
 import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoInfoDialog;
+import it.agilis.mens.azzeroCO2.client.components.pubblicazione.PubblicazioneNorth;
+import it.agilis.mens.azzeroCO2.client.components.pubblicazione.PubblicazioneSouth;
+import it.agilis.mens.azzeroCO2.client.components.pubblicazione.PubblicazioneWest;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
@@ -49,9 +48,9 @@ public class UnaPubblicazioneView extends View {
 
     private EventoDettaglio eventoDettaglio = new EventoDettaglio();
     private ContentPanel center = new ContentPanel();
-    private EventoSouth south = new EventoSouth();
-    private EventoWest west = new EventoWest();
-    private EventoNorth north = new EventoNorth();
+    private PubblicazioneSouth south = new PubblicazioneSouth();
+    private PubblicazioneWest west = new PubblicazioneWest();
+    private PubblicazioneNorth north = new PubblicazioneNorth();
 
 
     public UnaPubblicazioneView(Controller controller) {
@@ -74,10 +73,7 @@ public class UnaPubblicazioneView extends View {
             west.clean();
         } else if (eventType.equals(PubblicazioniEvents.Previous)) {
             onPrevius(event);
-        } /*else if (eventType.equals(EventoEvents.Riepilogo)) {
-            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
-            setRiassunto(riepilogo);
-        }*/ else if (event.getType().equals(PubblicazioniEvents.PreviousText)) {
+        } else if (event.getType().equals(PubblicazioniEvents.PreviousText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
