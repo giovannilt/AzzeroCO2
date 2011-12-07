@@ -29,6 +29,7 @@ public class ProgettoCompensazione {
     private String img;
     private Boolean attivo;
     private double kgCo2;
+    private String pdf;
 
     public Long getId() {
         return id;
@@ -84,5 +85,13 @@ public class ProgettoCompensazione {
 
     public void setKgCo2(double kgCo2) {
         this.kgCo2 = kgCo2;
+    }
+
+    public String getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
     }
 }

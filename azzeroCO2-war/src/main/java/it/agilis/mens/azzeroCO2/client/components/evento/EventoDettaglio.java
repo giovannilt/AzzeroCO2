@@ -84,7 +84,7 @@ public class EventoDettaglio extends LayoutContainer {
 
         add(eventoTab, new RowData(1, 1));
 
-        posizioniText.add(Arrays.asList("", "Energia"));                                   // DETTAGLIO
+        posizioniText.add(Arrays.asList(".", "Energia"));                                   // DETTAGLIO
         posizioniText.add(Arrays.asList("Dettaglio", "Trasporto persone"));                 // ENERGIA
         posizioniText.add(Arrays.asList("Energia", "Pernottamenti"));                      // TRASPORTO PERSONE
         posizioniText.add(Arrays.asList("Trasporto persone", "Trasporto Merci"));          // Pernottamenti
@@ -365,6 +365,7 @@ public class EventoDettaglio extends LayoutContainer {
     public void showConferma(DettaglioVTO result) {
         eventoTab.getSelectedItem().disable();
         posizioniLabel++;
+         formConferma.setDettaglioModel(result);
         eventoTab.getItems().get(eventoTab.getItems().size() - 1).setEnabled(true);
         eventoTab.setSelection(eventoTab.getItems().get(eventoTab.getItems().size() - 1));
         Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));

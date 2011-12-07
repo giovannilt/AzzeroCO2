@@ -31,7 +31,7 @@ import java.util.logging.Logger;
  */
 public class UploadServlet extends HttpServlet {
     private static final String ENCODING = "utf-8";
-    private static final long MAX_FILE_SIZE = 1024 * 100; // 100 k
+    private static final long MAX_FILE_SIZE = 1024 * 5000; // 5000 k
     private static final Logger log = Logger.getLogger(UploadServlet.class.getName());
 
     @Override

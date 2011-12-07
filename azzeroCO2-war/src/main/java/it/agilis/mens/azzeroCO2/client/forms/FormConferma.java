@@ -13,7 +13,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 
 /**
  * Created by IntelliJ IDEA.
@@ -32,7 +32,7 @@ public class FormConferma extends LayoutContainer {
     private String attestatoDiComensazioneText = GWT.getModuleBaseURL() + "downloadCertificato?certificato=";//+result.getPagamentoModel().getCertificatoPDF();
     private LabelField attestatoDiComensazione = new LabelField(attestatoDiComensazioneText);
 
-    private String schedaProgettoText = GWT.getModuleBaseURL() + "downloadCertificato?certificato=";//+result.getPagamentoModel().getCertificatoPDF();
+    private String schedaProgettoText = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti");
     private LabelField schedaProgetto = new LabelField(schedaProgettoText);
 
     private final Image immagine = new Image();
@@ -180,22 +180,24 @@ public class FormConferma extends LayoutContainer {
     public void clear() {
     }
 
-    public void setDettaglioModel(DettaglioModel model) {
+    public void setDettaglioModel(DettaglioVTO model) {
         if (model != null && model.getPagamentoModel() != null) {
-
             haiCompensatoText += model.getPagamentoModel().getKgCO2() + " kgCO2! ";
+            haiCompensato.setText(haiCompensatoText);
+
             attestatoDiComensazioneText += model.getPagamentoModel().getCertificatoPDF();
-            schedaProgettoText += "...";
+            attestatoDiComensazioneText = "<a target=\"_blank\" href=\"" +
+                    attestatoDiComensazioneText + ">Attestato di Compensazione</a>";
 
-            /*if (model.getImageUrl() != null && !"".equalsIgnoreCase(model.getImageUrl())) {
-                String baseUrl = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti");
-                immagine.setUrl(baseUrl + model.getImageUrl());
-            }*/
+            attestatoDiComensazione.(attestatoDiComensazioneText);
 
+            schedaProgettoText += "<a target=\"_blank\" href=\"" +
+                    model.getProgettoDiCompensazioneModel().getPdfUrl() + ">Scheda progetto.</a>";
+            schedaProgetto.setText(schedaProgettoText);
+
+            String baseUrl = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti");
+            immagine.setUrl(baseUrl + model.getProgettoDiCompensazioneModel().getImageUrl());
         }
-
     }
-
-
 }
 
