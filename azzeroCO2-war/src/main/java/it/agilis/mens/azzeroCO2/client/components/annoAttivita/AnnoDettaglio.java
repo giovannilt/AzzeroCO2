@@ -29,7 +29,7 @@ import java.util.List;
  * Time: 23:09
  * To change this template use File | Settings | File Templates.
  */
-public class AnnoDettaglio  extends LayoutContainer{
+public class AnnoDettaglio extends LayoutContainer {
 
     private final TabPanel eventoTab = new TabPanel();
     private AnnoFormDettaglio formDettaglio = new AnnoFormDettaglio();
@@ -41,6 +41,8 @@ public class AnnoDettaglio  extends LayoutContainer{
     private final FormTrasportoMerci formTrasportoMerci = new FormTrasportoMerci();
     private final FormPubblicazioniRilegate formPubblicazioniRilegate = new FormPubblicazioniRilegate();
     private final FormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new FormManifestiPieghevoliFogli();
+    private final FormBigliettiDaVisita formBigliettiDaVisita = new FormBigliettiDaVisita();
+    private final FormSitoWeb formSitoWeb = new FormSitoWeb();
 
     private final FormRiepilogo formRiepilogo = new FormRiepilogo();
     private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
@@ -58,7 +60,7 @@ public class AnnoDettaglio  extends LayoutContainer{
         TabItem dettaglio = new TabItem("Dettaglio");
         dettaglio.setLayout(new BorderLayout());
         dettaglio.add(formDettaglio, new BorderLayoutData(Style.LayoutRegion.CENTER));
-       // dettaglio.setEnabled(true);
+        // dettaglio.setEnabled(true);
         eventoTab.add(dettaglio);
 
         TabItem calcolo = new TabItem("Calcolo");
@@ -88,16 +90,18 @@ public class AnnoDettaglio  extends LayoutContainer{
 
         add(eventoTab, new RowData(1, 1));
 
-        posizioniText.add(Arrays.asList("", "Energia"));                                   // DETTAGLIO
-        posizioniText.add(Arrays.asList("Dettaglio", "Trasporto persone"));                 // ENERGIA
-        posizioniText.add(Arrays.asList("Energia", "Pernottamenti"));                      // TRASPORTO PERSONE
-        posizioniText.add(Arrays.asList("Trasporto persone", "Trasporto Merci"));          // Pernottamenti
-        posizioniText.add(Arrays.asList("Pernottamenti", "Pubblicazioni rilegate"));       // Trasporto Merci
-        posizioniText.add(Arrays.asList("Trasporto merci", "Manifesti piegevoli e fogli"));// Pubblicazioni rilegate
-        posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Riepilogo"));           // Manifesti Piegevoli e Fogli
-        posizioniText.add(Arrays.asList("Manifesti piegevoli e fogli", "Scegli progetto di compensazione"));       // RIEPILOGO
-        posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
-        posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
+        posizioniText.add(Arrays.asList(".", "Energia"));
+        posizioniText.add(Arrays.asList("Dettaglio", "Trasporto persone"));
+        posizioniText.add(Arrays.asList("Energia", "Pernottamenti"));
+        posizioniText.add(Arrays.asList("Trasporto persone", "Trasporto Merci"));
+        posizioniText.add(Arrays.asList("Pernottamenti", "Pubblicazioni rilegate"));
+        posizioniText.add(Arrays.asList("Trasporto merci", "Manifesti piegevoli e fogli"));
+        posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Biglietti da visita e cartelline"));
+        posizioniText.add(Arrays.asList("Manifesti piegevoli e fogli", "Sito"));
+        posizioniText.add(Arrays.asList("Miglietti da visita e cartelline", "Riepilogo"));
+        posizioniText.add(Arrays.asList("Sito", "Scegli progetto di compensazione"));
+        posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));
+        posizioniText.add(Arrays.asList("", "torna alla home"));
 
     }
 
@@ -124,6 +128,13 @@ public class AnnoDettaglio  extends LayoutContainer{
         calcoloCardPanel.add(formPubblicazioniRilegate, new BorderLayoutData(Style.LayoutRegion.CENTER));
         formManifestiPiegevoliFogli.setTitle("Manifesti Pieghevoli");
         calcoloCardPanel.add(formManifestiPiegevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
+
+        formBigliettiDaVisita.setTitle("Biglietti da visita e cartelline");
+        calcoloCardPanel.add(formBigliettiDaVisita, new BorderLayoutData(Style.LayoutRegion.CENTER));
+
+        formSitoWeb.setTitle("Sito Web");
+        calcoloCardPanel.add(formSitoWeb, new BorderLayoutData(Style.LayoutRegion.CENTER));
+
 
         return calcoloCardPanel;
     }
