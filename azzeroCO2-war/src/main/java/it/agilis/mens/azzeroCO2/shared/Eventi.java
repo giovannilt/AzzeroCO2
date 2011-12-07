@@ -26,7 +26,7 @@ public enum Eventi {
     ANNO_DI_ATTIVITA{
         @Override
 		public String toString() {
-            return "Anno Di Attivita'";
+            return "Anno Di Attivita";
         }
 
     },

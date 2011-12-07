@@ -19,6 +19,7 @@ import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoInfoDialo
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -61,21 +62,21 @@ public class UnAnnoDiAttivitaView extends View {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
-        } else if (eventType.equals(EventoEvents.Next)) {
+        } else if (eventType.equals(UnAnnoDiAttivitaEvents.Next)) {
             onNext(event);
-        } else if (eventType.equals(EventoEvents.ClearStep)) {
+        } else if (eventType.equals(UnAnnoDiAttivitaEvents.ClearStep)) {
             annoDettaglio.clearStep((RiepilogoModel) event.getData());
             DettaglioModel riepilogo = annoDettaglio.riepilogo();
             setRiassunto(riepilogo, false, false, false);
-        } else if (eventType.equals(EventoEvents.ClearPanel)) {
+        } else if (eventType.equals(UnAnnoDiAttivitaEvents.ClearPanel)) {
             annoDettaglio.clearPanel();
             west.clean();
-        } else if (eventType.equals(EventoEvents.Previous)) {
+        } else if (eventType.equals(UnAnnoDiAttivitaEvents.Previous)) {
             onPrevius(event);
         } /*else if (eventType.equals(EventoEvents.Riepilogo)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             setRiassunto(riepilogo);
-        }*/ else if (event.getType().equals(EventoEvents.PreviousText)) {
+        }*/ else if (event.getType().equals(UnAnnoDiAttivitaEvents.PreviousText)) {
             DettaglioModel riepilogo = annoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
@@ -83,7 +84,7 @@ public class UnAnnoDiAttivitaView extends View {
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"),
                     event.<String>getData() != null && event.<String>getData().length() == 0
             );
-        } else if (event.getType().equals(EventoEvents.NextText)) {
+        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.NextText)) {
             DettaglioModel riepilogo = annoDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
@@ -91,11 +92,11 @@ public class UnAnnoDiAttivitaView extends View {
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Vai al pagamento") ,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("torna alla home")
             );
-        } else if (event.getType().equals(EventoEvents.ShowStep)) {
+        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.ShowStep)) {
             annoDettaglio.showStep(event.<RiepilogoModel>getData());
-        } else if (event.getType().equals(EventoEvents.ShowInfoDialog)) {
+        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.ShowInfoDialog)) {
             eventoInfoDialog.show();
-        } else if (event.getType().equals(EventoEvents.ShowConfermDialog)) {
+        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.ShowConfermDialog)) {
             eventoConfermDialog.show();
         }
     }
@@ -128,9 +129,7 @@ public class UnAnnoDiAttivitaView extends View {
     }
 
     private void onInit(AppEvent event) {
-        unAnnoDiAttivita.setTitle(Eventi.ANNO_DI_ATTIVITA.name());
-        Dispatcher.forwardEvent(new AppEvent(CentralEvents.UnAnnoDiAttivitaPanelReady,
-        unAnnoDiAttivita));
+
 
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
@@ -175,10 +174,9 @@ public class UnAnnoDiAttivitaView extends View {
         center.setHeaderVisible(false);
         unAnnoDiAttivita.add(center, centerData);
 
-        unAnnoDiAttivita.setTitle(Eventi.EVENTO.name());
-        Dispatcher.forwardEvent(new AppEvent(CentralEvents.EventoPanelReady,
-                unAnnoDiAttivita));
-
+        unAnnoDiAttivita.setTitle(Eventi.ANNO_DI_ATTIVITA.name());
+        Dispatcher.forwardEvent(new AppEvent(CentralEvents.UnAnnoDiAttivitaPanelReady,
+        unAnnoDiAttivita));
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {

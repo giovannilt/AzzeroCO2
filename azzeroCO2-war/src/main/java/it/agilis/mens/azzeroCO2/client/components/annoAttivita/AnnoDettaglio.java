@@ -5,8 +5,10 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.forms.annoAttivita.AnnoFormDettaglio;
 import it.agilis.mens.azzeroCO2.client.forms.evento.*;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -31,7 +33,7 @@ import java.util.List;
 public class AnnoDettaglio  extends LayoutContainer{
 
     private final TabPanel eventoTab = new TabPanel();
-    private EventoFormDettaglio formDettaglio = new EventoFormDettaglio();
+    private AnnoFormDettaglio formDettaglio = new AnnoFormDettaglio();
 
     private final EventoFormEnergia formEnergia = new EventoFormEnergia();
     private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone();
@@ -139,7 +141,7 @@ public class AnnoDettaglio  extends LayoutContainer{
                                 layout.setActiveItem(calcolo.getItem(j - 1));
                                 posizioniLabel--;
                                 //  DettaglioModel riepilogo = riepilogo();
-                                Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+                                Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                                 Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                                 return layout.getActiveItem().getTitle();
                             }
@@ -152,8 +154,8 @@ public class AnnoDettaglio  extends LayoutContainer{
                     eventoTab.setSelection(eventoTab.getItems().get(i - 1));
                     posizioniLabel--;
                     //  DettaglioModel riepilogo = riepilogo();
-                    Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-                    Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return eventoTab.getSelectedItem().getTitle();
                 }
             }
@@ -177,8 +179,8 @@ public class AnnoDettaglio  extends LayoutContainer{
                             if (j < calcolo.getItems().size()) {
                                 layout.setActiveItem(calcolo.getItem(j));
                                 posizioniLabel++;
-                                Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-                                Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+                                Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+                                Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                                 return layout.getActiveItem().getTitle();
                             }
                         }
@@ -186,17 +188,17 @@ public class AnnoDettaglio  extends LayoutContainer{
                 }
                 if (i < eventoTab.getItems().size()) {
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
-                        Dispatcher.forwardEvent(EventoEvents.Conferma);
+                        Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.Conferma);
                         return eventoTab.getItems().get(i).getText();
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
-                        Dispatcher.forwardEvent(EventoEvents.Acquisto);
+                        Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.Acquisto);
                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return eventoTab.getItems().get(i).getText();
                         }
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
-                        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+                        Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.Riepilogo);
                     }
 
                     item.setEnabled(false);
@@ -211,8 +213,8 @@ public class AnnoDettaglio  extends LayoutContainer{
                         posizioniLabel++;
                     }
 
-                    Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-                    Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return eventoTab.getItems().get(i).getText();
                 }
             }
@@ -326,7 +328,7 @@ public class AnnoDettaglio  extends LayoutContainer{
         while (posizioniLabel != 7) {
             nextTab();
         }
-        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+        Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.Riepilogo);
     }
 
     public void showStep(RiepilogoModel tabToShow) {
@@ -370,8 +372,8 @@ public class AnnoDettaglio  extends LayoutContainer{
         posizioniLabel++;
         eventoTab.getItems().get(eventoTab.getItems().size() - 1).setEnabled(true);
         eventoTab.setSelection(eventoTab.getItems().get(eventoTab.getItems().size() - 1));
-        Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-        Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+        Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+        Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
     }
 }
 
