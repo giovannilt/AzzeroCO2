@@ -79,16 +79,16 @@ public class EventoView extends View {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
-                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti piegevoli e fogli") ,
+                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti piegevoli e fogli"),
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"),
-                    event.<String>getData() != null && event.<String>getData().length() == 0
+                    false
             );
         } else if (event.getType().equals(EventoEvents.NextText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Scegli progetto di compensazione"),
-                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Vai al pagamento") ,
+                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Vai al pagamento"),
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("torna alla home")
             );
         } else if (event.getType().equals(EventoEvents.ShowStep)) {

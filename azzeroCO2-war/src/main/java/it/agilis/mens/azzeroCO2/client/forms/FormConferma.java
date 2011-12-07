@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.client.forms.evento;
+package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.util.Margins;
@@ -22,7 +22,7 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoFormConferma extends LayoutContainer {
+public class FormConferma extends LayoutContainer {
 
     private ContentPanel east = new ContentPanel();
     private ContentPanel centre = new ContentPanel();

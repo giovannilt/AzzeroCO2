@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.client.forms.evento;
+package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.Style.Orientation;
@@ -29,7 +29,7 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventoFormTrasportoPersone extends LayoutContainer {
+public class FormTrasportoPersone extends LayoutContainer {
     private ListStore<TrasportoPersoneModel> trasportoPersoneModel = new ListStore<TrasportoPersoneModel>();
     private final ToolBar toolBar = new ToolBar();
     private final FormPanel panel = createGroupForm();
@@ -37,7 +37,7 @@ public class EventoFormTrasportoPersone extends LayoutContainer {
     private Grid<TrasportoPersoneModel> grid;
     private ContentPanel cpEst = new ContentPanel();
 
-    public EventoFormTrasportoPersone() {
+    public FormTrasportoPersone() {
         this.trasportoPersoneModel.setMonitorChanges(true);
         setDefault();
 

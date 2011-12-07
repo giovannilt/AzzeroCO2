@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.client.forms.evento;
+package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
@@ -26,13 +26,13 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoFormEnergia extends LayoutContainer {
+public class FormEnergia extends LayoutContainer {
 
     private EnergiaModel energiaModel = new EnergiaModel();
     private FormBinding binding = null;
     private FormPanel formPanel;
 
-    public EventoFormEnergia() {
+    public FormEnergia() {
         formPanel = createForm();
         binding = new FormBinding(formPanel, true);
         binding.bind(energiaModel);
