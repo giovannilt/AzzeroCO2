@@ -66,17 +66,17 @@ public class AnnoDettaglio  extends LayoutContainer{
         TabItem calcolo = new TabItem("Calcolo");
         createCalcoloTabs();
         calcolo.add(createCalcoloTabs(), new BorderLayoutData(Style.LayoutRegion.CENTER));
-        calcolo.setEnabled(false);
+     //   calcolo.setEnabled(false);
         eventoTab.add(calcolo);
 
         TabItem riepilogo = new TabItem("Riepilogo");
         riepilogo.add(eventoFormRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        riepilogo.setEnabled(false);
+      //  riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("Scegli progetto di compensazione");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        acquisto.setEnabled(false);
+      //  acquisto.setEnabled(false);
         eventoTab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");

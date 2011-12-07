@@ -58,17 +58,17 @@ public class SitoWeb extends LayoutContainer {
 
         TabItem riepilogo = new TabItem("Riepilogo");
         riepilogo.add(eventoFormRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        riepilogo.setEnabled(false);
+    //    riepilogo.setEnabled(false);
         sitoWebTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("Scegli progetto di compensazione");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        acquisto.setEnabled(false);
+    //    acquisto.setEnabled(false);
         sitoWebTab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");
         conferma.add(eventoFormConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        conferma.setEnabled(false);
+    //    conferma.setEnabled(false);
         sitoWebTab.add(conferma);
 
         add(sitoWebTab, new RowData(1, 1));
