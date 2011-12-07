@@ -16,7 +16,6 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
@@ -98,7 +97,7 @@ public class PubblicazioneSouth extends LayoutContainer {
                 if (rigthText.getText().equalsIgnoreCase("torna alla home")) {
                    Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
                 } else {
-                    Dispatcher.forwardEvent(new AppEvent(EventoEvents.Next, ce));
+                    Dispatcher.forwardEvent(new AppEvent(PubblicazioniEvents.Next, ce));
                 }
             }
         });

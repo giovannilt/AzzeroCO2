@@ -15,7 +15,7 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
@@ -64,7 +64,7 @@ public class SitoWebSouth extends LayoutContainer {
             left.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 @Override
                 public void componentSelected(ButtonEvent ce) {
-                    Dispatcher.forwardEvent(new AppEvent(EventoEvents.Previous, ce));
+                    Dispatcher.forwardEvent(new AppEvent(SitoWebEvents.Previous, ce));
                 }
             });
             c.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
@@ -95,7 +95,7 @@ public class SitoWebSouth extends LayoutContainer {
             right.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 @Override
                 public void componentSelected(ButtonEvent ce) {
-                    Dispatcher.forwardEvent(new AppEvent(EventoEvents.Next, ce));
+                    Dispatcher.forwardEvent(new AppEvent(SitoWebEvents.Next, ce));
                 }
             });
             add(c);

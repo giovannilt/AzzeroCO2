@@ -2,15 +2,13 @@ package it.agilis.mens.azzeroCO2.client.components.annoAttivita;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.TabItem;
-import com.extjs.gxt.ui.client.widget.TabPanel;
+import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.client.forms.annoAttivita.AnnoFormDettaglio;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
+import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
@@ -66,17 +64,17 @@ public class AnnoDettaglio  extends LayoutContainer{
         TabItem calcolo = new TabItem("Calcolo");
         createCalcoloTabs();
         calcolo.add(createCalcoloTabs(), new BorderLayoutData(Style.LayoutRegion.CENTER));
-     //   calcolo.setEnabled(false);
+        calcolo.setEnabled(false);
         eventoTab.add(calcolo);
 
         TabItem riepilogo = new TabItem("Riepilogo");
         riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
-      //  riepilogo.setEnabled(false);
+        riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("Scegli progetto di compensazione");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
-      //  acquisto.setEnabled(false);
+        acquisto.setEnabled(false);
         eventoTab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");
@@ -131,7 +129,7 @@ public class AnnoDettaglio  extends LayoutContainer{
     }
 
     public String previusTab() {
-       /* for (int i = eventoTab.getItems().size() - 1; i >= 0; i--) {
+        for (int i = eventoTab.getItems().size() - 1; i >= 0; i--) {
             TabItem item = eventoTab.getItems().get(i);
 
             if (eventoTab.getSelectedItem().getText().equalsIgnoreCase(item.getText())) {
@@ -147,7 +145,7 @@ public class AnnoDettaglio  extends LayoutContainer{
                                 posizioniLabel--;
                                 //  DettaglioModel riepilogo = riepilogo();
                                 Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-                                Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+                                Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                                 return layout.getActiveItem().getTitle();
                             }
                         }
@@ -164,12 +162,12 @@ public class AnnoDettaglio  extends LayoutContainer{
                     return eventoTab.getSelectedItem().getTitle();
                 }
             }
-        }*/
+        }
         return "";
     }
 
     public String nextTab() {
-       /* int i = 0;
+        int i = 0;
         for (TabItem item : eventoTab.getItems()) {
             i++;
             if (eventoTab.getSelectedItem().getText().equalsIgnoreCase(item.getText())) {
@@ -223,7 +221,7 @@ public class AnnoDettaglio  extends LayoutContainer{
                     return eventoTab.getItems().get(i).getText();
                 }
             }
-        }*/
+        }
         return "";
     }
 

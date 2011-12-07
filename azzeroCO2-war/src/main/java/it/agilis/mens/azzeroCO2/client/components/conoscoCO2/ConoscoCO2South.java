@@ -2,7 +2,6 @@ package it.agilis.mens.azzeroCO2.client.components.conoscoCO2;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
-import com.extjs.gxt.ui.client.event.IconButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
@@ -11,14 +10,12 @@ import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.ConosciCO2Events;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
@@ -31,8 +28,6 @@ import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
  * To change this template use File | Settings | File Templates.
  */
 public class ConoscoCO2South extends LayoutContainer {
-
-
 
     private Text leftText = new Text("");
         private Text rigthText = new Text("Riepilogo");
@@ -69,7 +64,7 @@ public class ConoscoCO2South extends LayoutContainer {
             left.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 @Override
                 public void componentSelected(ButtonEvent ce) {
-                    Dispatcher.forwardEvent(new AppEvent(EventoEvents.Previous, ce));
+                    Dispatcher.forwardEvent(new AppEvent(ConosciCO2Events.Previous, ce));
                 }
             });
             c.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
@@ -100,7 +95,7 @@ public class ConoscoCO2South extends LayoutContainer {
             right.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 @Override
                 public void componentSelected(ButtonEvent ce) {
-                    Dispatcher.forwardEvent(new AppEvent(EventoEvents.Next, ce));
+                    Dispatcher.forwardEvent(new AppEvent(ConosciCO2Events.Next, ce));
                 }
             });
             add(c);

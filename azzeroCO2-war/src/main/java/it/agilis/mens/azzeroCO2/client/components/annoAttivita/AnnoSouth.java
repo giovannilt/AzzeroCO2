@@ -16,7 +16,7 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
@@ -65,7 +65,7 @@ private Text leftText = new Text("");
         left.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(new AppEvent(EventoEvents.Previous, ce));
+                Dispatcher.forwardEvent(new AppEvent(UnAnnoDiAttivitaEvents.Previous, ce));
             }
         });
         c.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
@@ -98,7 +98,7 @@ private Text leftText = new Text("");
                 if (rigthText.getText().equalsIgnoreCase("torna alla home")) {
                    Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
                 } else {
-                    Dispatcher.forwardEvent(new AppEvent(EventoEvents.Next, ce));
+                    Dispatcher.forwardEvent(new AppEvent(UnAnnoDiAttivitaEvents.Next, ce));
                 }
             }
         });
