@@ -12,11 +12,9 @@ import com.extjs.gxt.ui.client.data.BaseModelData;
  */
 public class ProgettoDiCompensazioneModel extends BaseModelData {
 
-
     public Double getPrezzo() {
         return get("prezzo");
     }
-
 
     public void setPrezzo(Double prezzo) {
         set("prezzo", prezzo);
@@ -30,15 +28,6 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
     public void setNome(String nome) {
         set("nome", nome);
     }
-
-    /*public Double getKgCO2() {
-    /    return get("kgCO2");
-    }
-
-    public void setKgCO2(Double kgCO2) {
-        set("kgCO2", kgCO2);
-    } */
-
 
     public Boolean getAttivo() {
         return get("attivo");
@@ -64,5 +53,13 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
 
     public String getImageUrl() {
         return get("imageUrl");
+    }
+
+     public void setPdfUrl(String pdfUrl) {
+        set("pdfUrl", pdfUrl);
+    }
+
+    public String getPdfUrl() {
+        return get("pdfUrl");
     }
 }

@@ -189,6 +189,7 @@ public class Utils {
         pcm.setNome(pc.getNome());
         pcm.setPrezzo(pc.getPrezzo());
         pcm.setImageUrl(pc.getImg());
+        pcm.setPdfUrl(pc.getPdf());
         return pcm;
 
     }
@@ -213,6 +214,7 @@ public class Utils {
         pdc.setId(pdcm.getId());
         pdc.setNome(pdcm.getNome());
         pdc.setPrezzo(pdcm.getPrezzo());
+        pdc.setPdf(pdcm.getPdfUrl());
         return pdc;
 
     }

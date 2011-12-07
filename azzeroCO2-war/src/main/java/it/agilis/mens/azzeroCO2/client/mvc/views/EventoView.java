@@ -81,7 +81,7 @@ public class EventoView extends View {
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti piegevoli e fogli"),
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"),
-                    false
+                    event.<String>getData() != null && event.<String>getData().length() == 0
             );
         } else if (event.getType().equals(EventoEvents.NextText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
@@ -115,9 +115,7 @@ public class EventoView extends View {
                 west.setInStore(riepilogo, Esito.IN_PAGAMENTO);
             }
         }
-
     }
-
 
     private void onPrevius(AppEvent event) {
         eventoDettaglio.previusTab();
