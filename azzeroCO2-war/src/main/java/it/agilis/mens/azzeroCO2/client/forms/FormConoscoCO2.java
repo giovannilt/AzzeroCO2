@@ -27,7 +27,7 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
  */
 public class FormConoscoCO2 extends LayoutContainer {
 
-        private NottiModel nottiModel = new NottiModel();
+    private NottiModel nottiModel = new NottiModel();
     private FormBinding binding = null;
     private FormPanel formPanel;
 
@@ -134,7 +134,8 @@ public class FormConoscoCO2 extends LayoutContainer {
         this.nottiModel = nottiModel;
         binding.bind(nottiModel);
     }
-        @Override
+
+    @Override
     protected void onLoad() {
         super.onLoad();
         formPanel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
@@ -145,6 +146,6 @@ public class FormConoscoCO2 extends LayoutContainer {
 
         //To change body of overridden methods use File | Settings | File Templates.
     }
-    
-    
+
+
 }

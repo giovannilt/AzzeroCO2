@@ -8,11 +8,11 @@ import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.forms.ConoscoCO2Form;
+import it.agilis.mens.azzeroCO2.client.forms.FormConoscoCO2;
 
-import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormAcquisto;
-import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormConferma;
-import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormRiepilogo;
+import it.agilis.mens.azzeroCO2.client.forms.FormAcquisto;
+import it.agilis.mens.azzeroCO2.client.forms.FormConferma;
+import it.agilis.mens.azzeroCO2.client.forms.FormRiepilogo;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -37,12 +37,12 @@ public class ConoscoCO2 extends LayoutContainer {
 
 
     private final TabPanel conoscoCO2Tab = new TabPanel();
-    private final ConoscoCO2Form conoscoCO2Form = new ConoscoCO2Form();
+    private final FormConoscoCO2 conoscoCO2Form = new FormConoscoCO2();
 
 
-    private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
-    private final EventoFormAcquisto eventoFormAcquisto = new EventoFormAcquisto();
-    private final EventoFormConferma eventoFormConferma = new EventoFormConferma();
+    private final FormRiepilogo formRiepilogo = new FormRiepilogo();
+    private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
+    private final FormConferma formConferma = new FormConferma();
     private static int posizioniLabel = 1;
     private List<List<String>> posizioniText = new ArrayList<List<String>>();
     private UserInfoModel userInfoModel;
@@ -62,7 +62,7 @@ public class ConoscoCO2 extends LayoutContainer {
 
 
         TabItem riepilogo = new TabItem("Riepilogo");
-        riepilogo.add(eventoFormRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
+        riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
        // riepilogo.setEnabled(false);
         conoscoCO2Tab.add(riepilogo);
 
@@ -72,7 +72,7 @@ public class ConoscoCO2 extends LayoutContainer {
         conoscoCO2Tab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");
-        conferma.add(eventoFormConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
+        conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
       //  conferma.setEnabled(false);
         conoscoCO2Tab.add(conferma);
 
@@ -153,9 +153,9 @@ public class ConoscoCO2 extends LayoutContainer {
         conoscoCO2Form.setHeight(443);
         conoscoCO2Form.setWidth(691);
 
-        eventoFormRiepilogo.clear();
+        formRiepilogo.clear();
         eventoFormAcquisto.clear();
-        eventoFormConferma.clear();
+        formConferma.clear();
 
 
         if (posizioniLabel == 1) {
@@ -192,7 +192,7 @@ public class ConoscoCO2 extends LayoutContainer {
                 riepilogo.getPagamentoModel().getEsito() != null) {
             esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());
         }
-        eventoFormRiepilogo.setEventoRiepilogoInStore(eventoRiepilogoModels, esito);
+        formRiepilogo.setEventoRiepilogoInStore(eventoRiepilogoModels, esito);
         eventoFormAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo);
     }
 

@@ -112,7 +112,6 @@ public class EventoWest extends LayoutContainer {
                                                 )) {
                     return null;
                 }
-
                 return new Image(AzzeroCO2Resources.INSTANCE.checkIcon());//new ToolButton("x-tool-pin");
             }
         });

@@ -8,8 +8,8 @@ import com.extjs.gxt.ui.client.widget.TabItem;
 import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.client.forms.annoAttivita.AnnoFormDettaglio;
-import it.agilis.mens.azzeroCO2.client.forms.evento.*;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -37,16 +37,16 @@ public class AnnoDettaglio  extends LayoutContainer{
     private AnnoFormDettaglio formDettaglio = new AnnoFormDettaglio();
     //private EventoFormDettaglio formDettaglio = new EventoFormDettaglio();
 
-    private final EventoFormEnergia formEnergia = new EventoFormEnergia();
-    private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone();
-    private final EventoFormPernottamenti formPernottamenti = new EventoFormPernottamenti();
-    private final EventoFormTrasportoMerci formTrasportoMerci = new EventoFormTrasportoMerci();
-    private final EventoFormPubblicazioniRilegate formPubblicazioniRilegate = new EventoFormPubblicazioniRilegate();
-    private final EventoFormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new EventoFormManifestiPieghevoliFogli();
+    private final FormEnergia formEnergia = new FormEnergia();
+    private final FormTrasportoPersone formTrasportoPersone = new FormTrasportoPersone();
+    private final FormPernottamenti formPernottamenti = new FormPernottamenti();
+    private final FormTrasportoMerci formTrasportoMerci = new FormTrasportoMerci();
+    private final FormPubblicazioniRilegate formPubblicazioniRilegate = new FormPubblicazioniRilegate();
+    private final FormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new FormManifestiPieghevoliFogli();
 
-    private final EventoFormRiepilogo eventoFormRiepilogo = new EventoFormRiepilogo();
-    private final EventoFormAcquisto eventoFormAcquisto = new EventoFormAcquisto();
-    private final EventoFormConferma eventoFormConferma = new EventoFormConferma();
+    private final FormRiepilogo formRiepilogo = new FormRiepilogo();
+    private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
+    private final FormConferma formConferma = new FormConferma();
     private static int posizioniLabel = 1;
     private List<List<String>> posizioniText = new ArrayList<List<String>>();
     private UserInfoModel userInfoModel;
@@ -70,7 +70,7 @@ public class AnnoDettaglio  extends LayoutContainer{
         eventoTab.add(calcolo);
 
         TabItem riepilogo = new TabItem("Riepilogo");
-        riepilogo.add(eventoFormRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
+        riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
       //  riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
@@ -80,13 +80,13 @@ public class AnnoDettaglio  extends LayoutContainer{
         eventoTab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");
-        conferma.add(eventoFormConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
+        conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
         conferma.setEnabled(false);
         eventoTab.add(conferma);
 
         // TODO PORCO DEMONIO ALLE COSE DINAMICHE...
 
-        eventoTab.setSize(700,470);
+        eventoTab.setSize(700, 470);
 
         add(eventoTab, new RowData(1, 1));
 
@@ -236,9 +236,9 @@ public class AnnoDettaglio  extends LayoutContainer{
         formPubblicazioniRilegate.clear(true);
         formManifestiPiegevoliFogli.clear(true);
 
-        eventoFormRiepilogo.clear();
+        formRiepilogo.clear();
         eventoFormAcquisto.clear();
-        eventoFormConferma.clear();
+        formConferma.clear();
 
 
         if (posizioniLabel == 1) {
@@ -252,7 +252,7 @@ public class AnnoDettaglio  extends LayoutContainer{
         for (TabItem item : eventoTab.getItems()) {
             if (item.getText().equalsIgnoreCase("Calcolo")) {
                 ContentPanel calcolo = (ContentPanel) item.getItem(0);
-                EventoFormEnergia formEnergia = (EventoFormEnergia) calcolo.getItem(0);
+                FormEnergia formEnergia = (FormEnergia) calcolo.getItem(0);
                 formEnergia.layout(true);
 
                 // TODO BETTER
@@ -301,7 +301,7 @@ public class AnnoDettaglio  extends LayoutContainer{
                 riepilogo.getPagamentoModel().getEsito() != null) {
             esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());
         }
-        eventoFormRiepilogo.setEventoRiepilogoInStore(eventoRiepilogoModels, esito);
+        formRiepilogo.setEventoRiepilogoInStore(eventoRiepilogoModels, esito);
         eventoFormAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo);
     }
 
@@ -322,7 +322,7 @@ public class AnnoDettaglio  extends LayoutContainer{
         for (TabItem item : eventoTab.getItems()) {
             if (item.getText().equalsIgnoreCase("Calcolo")) {
                 ContentPanel calcolo = (ContentPanel) item.getItem(0);
-                EventoFormEnergia formEnergia = (EventoFormEnergia) calcolo.getItem(0);
+                FormEnergia formEnergia = (FormEnergia) calcolo.getItem(0);
                 formEnergia.layout(true);
 
                 // TODO BETTER
