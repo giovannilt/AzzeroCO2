@@ -18,7 +18,6 @@ import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoConfermDi
 import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoInfoDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
@@ -116,9 +115,7 @@ public class UnAnnoDiAttivitaView extends View {
                 west.setInStore(riepilogo, Esito.IN_PAGAMENTO);
             }
         }
-
     }
-
 
     private void onPrevius(AppEvent event) {
         annoDettaglio.previusTab();
@@ -129,8 +126,6 @@ public class UnAnnoDiAttivitaView extends View {
     }
 
     private void onInit(AppEvent event) {
-
-
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
         unAnnoDiAttivita.setHeaderVisible(false);
@@ -145,7 +140,6 @@ public class UnAnnoDiAttivitaView extends View {
 
         unAnnoDiAttivita.add(north, northData);
 
-
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 250);
         westData.setCollapsible(false);
         westData.setFloatable(false);
@@ -153,14 +147,12 @@ public class UnAnnoDiAttivitaView extends View {
         westData.setSplit(false);
         westData.setMargins(new Margins(0, 0, 0, 0));
 
-
         unAnnoDiAttivita.add(west, westData);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         {
             final BorderLayout layout2 = new BorderLayout();
             center.setLayout(layout2);
-            //    center.setStyleAttribute("padding", "2px");
 
             BorderLayoutData center2Data = new BorderLayoutData(Style.LayoutRegion.CENTER);
             center2Data.setMargins(new Margins(0, 0, 0, 0));
@@ -175,8 +167,7 @@ public class UnAnnoDiAttivitaView extends View {
         unAnnoDiAttivita.add(center, centerData);
 
         unAnnoDiAttivita.setTitle(Eventi.ANNO_DI_ATTIVITA.name());
-        Dispatcher.forwardEvent(new AppEvent(CentralEvents.UnAnnoDiAttivitaPanelReady,
-        unAnnoDiAttivita));
+        Dispatcher.forwardEvent(new AppEvent(CentralEvents.UnAnnoDiAttivitaPanelReady, unAnnoDiAttivita));
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {

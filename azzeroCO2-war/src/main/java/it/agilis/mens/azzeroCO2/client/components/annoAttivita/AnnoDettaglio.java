@@ -2,14 +2,15 @@ package it.agilis.mens.azzeroCO2.client.components.annoAttivita;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
-import com.extjs.gxt.ui.client.widget.*;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.TabItem;
+import com.extjs.gxt.ui.client.widget.TabPanel;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.annoAttivita.AnnoFormDettaglio;
 import it.agilis.mens.azzeroCO2.client.forms.evento.*;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
-import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
@@ -34,6 +35,7 @@ public class AnnoDettaglio  extends LayoutContainer{
 
     private final TabPanel eventoTab = new TabPanel();
     private AnnoFormDettaglio formDettaglio = new AnnoFormDettaglio();
+    //private EventoFormDettaglio formDettaglio = new EventoFormDettaglio();
 
     private final EventoFormEnergia formEnergia = new EventoFormEnergia();
     private final EventoFormTrasportoPersone formTrasportoPersone = new EventoFormTrasportoPersone();
@@ -49,8 +51,6 @@ public class AnnoDettaglio  extends LayoutContainer{
     private List<List<String>> posizioniText = new ArrayList<List<String>>();
     private UserInfoModel userInfoModel;
 
-
-
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
@@ -60,7 +60,7 @@ public class AnnoDettaglio  extends LayoutContainer{
         TabItem dettaglio = new TabItem("Dettaglio");
         dettaglio.setLayout(new BorderLayout());
         dettaglio.add(formDettaglio, new BorderLayoutData(Style.LayoutRegion.CENTER));
-
+       // dettaglio.setEnabled(true);
         eventoTab.add(dettaglio);
 
         TabItem calcolo = new TabItem("Calcolo");
@@ -84,6 +84,10 @@ public class AnnoDettaglio  extends LayoutContainer{
         conferma.setEnabled(false);
         eventoTab.add(conferma);
 
+        // TODO PORCO DEMONIO ALLE COSE DINAMICHE...
+
+        eventoTab.setSize(700,470);
+
         add(eventoTab, new RowData(1, 1));
 
         posizioniText.add(Arrays.asList("", "Energia"));                                   // DETTAGLIO
@@ -96,6 +100,7 @@ public class AnnoDettaglio  extends LayoutContainer{
         posizioniText.add(Arrays.asList("Manifesti piegevoli e fogli", "Scegli progetto di compensazione"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
+
     }
 
     private void setLayout(RowLayout rowLayout) {
@@ -126,7 +131,7 @@ public class AnnoDettaglio  extends LayoutContainer{
     }
 
     public String previusTab() {
-        for (int i = eventoTab.getItems().size() - 1; i >= 0; i--) {
+       /* for (int i = eventoTab.getItems().size() - 1; i >= 0; i--) {
             TabItem item = eventoTab.getItems().get(i);
 
             if (eventoTab.getSelectedItem().getText().equalsIgnoreCase(item.getText())) {
@@ -159,12 +164,12 @@ public class AnnoDettaglio  extends LayoutContainer{
                     return eventoTab.getSelectedItem().getTitle();
                 }
             }
-        }
+        }*/
         return "";
     }
 
     public String nextTab() {
-        int i = 0;
+       /* int i = 0;
         for (TabItem item : eventoTab.getItems()) {
             i++;
             if (eventoTab.getSelectedItem().getText().equalsIgnoreCase(item.getText())) {
@@ -218,7 +223,7 @@ public class AnnoDettaglio  extends LayoutContainer{
                     return eventoTab.getItems().get(i).getText();
                 }
             }
-        }
+        }*/
         return "";
     }
 

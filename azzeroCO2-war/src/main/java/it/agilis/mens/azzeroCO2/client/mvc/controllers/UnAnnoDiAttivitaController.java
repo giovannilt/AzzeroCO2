@@ -7,7 +7,6 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.*;
-import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
 import it.agilis.mens.azzeroCO2.client.mvc.views.UnAnnoDiAttivitaView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.Profile;
@@ -30,8 +29,7 @@ import java.util.List;
  */
 public class UnAnnoDiAttivitaController extends BaseController {
 
-
-    private final UnAnnoDiAttivitaView annoView = new UnAnnoDiAttivitaView(this);
+     private final UnAnnoDiAttivitaView annoView = new UnAnnoDiAttivitaView(this);
     private final NumberFormat number = NumberFormat.getFormat("0.00");
 
 
@@ -229,11 +227,6 @@ public class UnAnnoDiAttivitaController extends BaseController {
             return timer;
         }
     }
-
-
-
-
-
 
 
 }

@@ -11,7 +11,6 @@ import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
@@ -29,7 +28,7 @@ public class AnnoFormDettaglio extends LayoutContainer {
     private FormPanel formPanel;
 
     public AnnoFormDettaglio() {
-        formPanel = createForm();
+        createForm();
         binding = new FormBinding(formPanel, true);
         binding.bind(dettaglioModel);
     }
@@ -52,17 +51,17 @@ public class AnnoFormDettaglio extends LayoutContainer {
     }
 
 
-    private FormPanel createForm() {
-        FormPanel panel = new FormPanel();
-        panel.setSize(100,100);
-        panel.setFrame(true);
-        panel.setHeading("Dettagli attività");
+    private void createForm() {
+        formPanel = new FormPanel();
 
-        panel.setButtonAlign(Style.HorizontalAlignment.CENTER);
-        panel.setLayout(new ColumnLayout());
+        formPanel.setFrame(true);
+        formPanel.setHeading("Dettagli attività");
 
-         ToolButton tool1 = new ToolButton("x-tool-help");
-        panel.getHeader().addTool(tool1);
+        formPanel.setButtonAlign(Style.HorizontalAlignment.CENTER);
+        formPanel.setLayout(new ColumnLayout());
+
+        ToolButton tool1 = new ToolButton("x-tool-help");
+        formPanel.getHeader().addTool(tool1);
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
@@ -70,7 +69,7 @@ public class AnnoFormDettaglio extends LayoutContainer {
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");
-        panel.getHeader().addTool(tool);
+        formPanel.getHeader().addTool(tool);
         tool.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
@@ -120,10 +119,10 @@ public class AnnoFormDettaglio extends LayoutContainer {
         dataFine.setName("fine");
         right.add(dataFine);
 
-        panel.add(left, new ColumnData(.5));
-        panel.add(right, new ColumnData(.5));
+        formPanel.add(left, new ColumnData(.5));
+        formPanel.add(right, new ColumnData(.5));
 
-        return panel;
+       // return formPanel;
     }
 
 
@@ -135,7 +134,7 @@ public class AnnoFormDettaglio extends LayoutContainer {
             dettaglioModel = new DettaglioModel();
             binding.bind(dettaglioModel);
         } catch (Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -160,7 +159,6 @@ public class AnnoFormDettaglio extends LayoutContainer {
 
         //To change body of overridden methods use File | Settings | File Templates.
     }
-
 
 
 }

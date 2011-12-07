@@ -144,6 +144,9 @@ public class CentralView extends View {
                     Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
                     Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.ANNO_DI_ATTIVITA);
+
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, "Energia");
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, "");
                 }
             });
             //unAnno.setSize(320, 280);
@@ -230,8 +233,6 @@ public class CentralView extends View {
                             getBody().setStyleAttribute("border-style", "solid");
                             getBody().setStyleAttribute("border-top", "3px solid #22729E");
                             getBody().setStyleAttribute("border-width", "3px 0");
-                            //getBody().setStyleAttribute("margin-bottom", "0");
-                           //To change body of overridden methods use File | Settings | File Templates.
                         }
                     };
 

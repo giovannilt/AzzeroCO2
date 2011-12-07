@@ -142,7 +142,6 @@ public class EventoView extends View {
 
         evento.add(north, northData);
 
-
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 250);
         westData.setCollapsible(false);
         westData.setFloatable(false);
@@ -150,14 +149,12 @@ public class EventoView extends View {
         westData.setSplit(false);
         westData.setMargins(new Margins(0, 0, 0, 0));
 
-
         evento.add(west, westData);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         {
             final BorderLayout layout2 = new BorderLayout();
             center.setLayout(layout2);
-            //    center.setStyleAttribute("padding", "2px");
 
             BorderLayoutData center2Data = new BorderLayoutData(Style.LayoutRegion.CENTER);
             center2Data.setMargins(new Margins(0, 0, 0, 0));
@@ -172,9 +169,7 @@ public class EventoView extends View {
         evento.add(center, centerData);
 
         evento.setTitle(Eventi.EVENTO.name());
-        Dispatcher.forwardEvent(new AppEvent(CentralEvents.EventoPanelReady,
-                evento));
-
+        Dispatcher.forwardEvent(new AppEvent(CentralEvents.EventoPanelReady, evento));
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
