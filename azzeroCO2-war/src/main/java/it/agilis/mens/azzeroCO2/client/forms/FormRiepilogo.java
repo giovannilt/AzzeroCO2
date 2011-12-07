@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.client.forms.evento;
+package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.event.*;
@@ -34,7 +34,7 @@ import java.util.List;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoFormRiepilogo extends LayoutContainer {
+public class FormRiepilogo extends LayoutContainer {
 
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text totaleText = new Text("Totale KG/CO2");

@@ -25,13 +25,13 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
  * Time: 12:08 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ConoscoCO2Form extends LayoutContainer {
+public class FormPernottamenti extends LayoutContainer {
 
-        private NottiModel nottiModel = new NottiModel();
+    private NottiModel nottiModel = new NottiModel();
     private FormBinding binding = null;
     private FormPanel formPanel;
 
-    public ConoscoCO2Form() {
+    public FormPernottamenti() {
         formPanel = createForm();
         binding = new FormBinding(formPanel, true);
         binding.bind(nottiModel);
@@ -62,7 +62,7 @@ public class ConoscoCO2Form extends LayoutContainer {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
 
-        panel.setHeading("Compensa le tue emissioni");
+        panel.setHeading("Pernottamenti");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
         ToolButton tool1 = new ToolButton("x-tool-help");
@@ -91,31 +91,31 @@ public class ConoscoCO2Form extends LayoutContainer {
         layout1.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c1.setLayout(layout1);
 
-        LabelField istruzioni = new LabelField("Insirisci i Kg di CO2 che hai emesso.");
+        LabelField istruzioni = new LabelField("Inserisci il numero di notti in hotel che l'evento ha reso necessarie<br> ");
         istruzioni.setStyleAttribute("font-weight", "bolder");
 
 
-        LayoutContainer visitatori = new LayoutContainer();
-        HBoxLayout layoutVisitatori = new HBoxLayout();
-        layoutVisitatori.setPadding(new Padding(10));
-        layoutVisitatori.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
-        visitatori.setLayout(layoutVisitatori);
+        LayoutContainer notti = new LayoutContainer();
+        HBoxLayout layoutNotti = new HBoxLayout();
+        layoutNotti.setPadding(new Padding(10));
+        layoutNotti.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+        notti.setLayout(layoutNotti);
 
-        NumberField visitatoriField = new NumberField();
-        visitatoriField.setRegex("[0-9]+");
-        visitatoriField.getMessages().setRegexText("Conosco la CO2");
-        visitatoriField.setName("Kg CO2");
-        visitatoriField.setWidth(80);
-        visitatoriField.setPropertyEditorType(Integer.class);
+        NumberField numeroNotti = new NumberField();
+        numeroNotti.setRegex("[0-9]+");
+        numeroNotti.getMessages().setRegexText("Inserisci un numero intero");
+        numeroNotti.setName("notti");
+        numeroNotti.setWidth(60);
+        numeroNotti.setPropertyEditorType(Integer.class);
 
-        visitatori.add(new LabelField("Kg CO2"), flex);
-        visitatori.add(visitatoriField, flex);
+        notti.add(new LabelField("notti"), flex);
+        notti.add(numeroNotti, flex);
 
         c1.add(istruzioni, flex);
         panel.add(c1);
 
 
-        panel.add(visitatori, new FormData("100%"));
+        panel.add(notti, new FormData("100%"));
         return panel;
     }
 
@@ -145,6 +145,4 @@ public class ConoscoCO2Form extends LayoutContainer {
 
         //To change body of overridden methods use File | Settings | File Templates.
     }
-    
-    
 }

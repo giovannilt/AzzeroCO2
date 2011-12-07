@@ -25,13 +25,13 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
  * Time: 12:08 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SitoWebForm extends LayoutContainer {
+public class FormSitoWeb extends LayoutContainer {
 
     private NottiModel nottiModel = new NottiModel();
     private FormBinding binding = null;
     private FormPanel formPanel;
 
-    public SitoWebForm() {
+    public FormSitoWeb() {
         formPanel = createForm();
         binding = new FormBinding(formPanel, true);
         binding.bind(nottiModel);

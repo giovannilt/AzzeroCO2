@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.client.forms.evento;
+package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
@@ -42,7 +42,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 
-public class EventoFormAcquisto extends LayoutContainer {
+public class FormAcquisto extends LayoutContainer {
     private ContentPanel east = new ContentPanel();
     private ContentPanel centre = new ContentPanel();
     private ListStore<ProgettoDiCompensazioneModel> store = new ListStore<ProgettoDiCompensazioneModel>();
@@ -68,7 +68,7 @@ public class EventoFormAcquisto extends LayoutContainer {
 
     private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
 
-    public EventoFormAcquisto() {
+    public FormAcquisto() {
         grid = createGrid();
         binding = new FormBinding(form, true);
         binding.setStore(grid.getStore());
