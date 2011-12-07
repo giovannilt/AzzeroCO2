@@ -30,6 +30,7 @@ public class AzzeroCO2 implements EntryPoint {
         dispatcher.addController(new ConosciCO2Controller());
         dispatcher.addController(new SitoWebController());
         dispatcher.addController(new NorthController());
+        dispatcher.addController(new PubblicazioniController());
 
         dispatcher.dispatch(AzzeroCO2Events.Init);
         dispatcher.dispatch(AzzeroCO2Events.UIReady);

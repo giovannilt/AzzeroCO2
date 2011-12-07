@@ -1,21 +1,18 @@
 package it.agilis.mens.azzeroCO2.client.components.pubblicazione;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormDettaglio;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
@@ -83,7 +80,6 @@ public class Pubblicazione extends LayoutContainer {
 
 
         posizioniText.add(Arrays.asList("", "Manifesti piegevoli e fogli"));// Pubblicazioni rilegate
-
         posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Biglietti da visita e cartelline"));
         posizioniText.add(Arrays.asList("Manifesti piegevoli e fogli", "Riepilogo"));           // Manifesti Piegevoli e Fogli
         posizioniText.add(Arrays.asList("Biglietti da visita e cartelline", "Scegli progetto di compensazione"));       // RIEPILOGO
