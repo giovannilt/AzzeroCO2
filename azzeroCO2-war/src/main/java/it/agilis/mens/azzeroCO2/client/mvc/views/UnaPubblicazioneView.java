@@ -10,9 +10,9 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import it.agilis.mens.azzeroCO2.client.components.evento.EventoDettaglio;
 import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoConfermDialog;
 import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoInfoDialog;
+import it.agilis.mens.azzeroCO2.client.components.pubblicazione.Pubblicazione;
 import it.agilis.mens.azzeroCO2.client.components.pubblicazione.PubblicazioneNorth;
 import it.agilis.mens.azzeroCO2.client.components.pubblicazione.PubblicazioneSouth;
 import it.agilis.mens.azzeroCO2.client.components.pubblicazione.PubblicazioneWest;
@@ -46,7 +46,7 @@ public class UnaPubblicazioneView extends View {
     private EventoConfermDialog eventoConfermDialog = new EventoConfermDialog();
     private EventoInfoDialog eventoInfoDialog = new EventoInfoDialog();
 
-    private EventoDettaglio eventoDettaglio = new EventoDettaglio();
+    private Pubblicazione pubblicazioneDettaglio = new Pubblicazione();
     private ContentPanel center = new ContentPanel();
     private PubblicazioneSouth south = new PubblicazioneSouth();
     private PubblicazioneWest west = new PubblicazioneWest();
@@ -65,16 +65,16 @@ public class UnaPubblicazioneView extends View {
         } else if (eventType.equals(PubblicazioniEvents.Next)) {
             onNext(event);
         } else if (eventType.equals(PubblicazioniEvents.ClearStep)) {
-            eventoDettaglio.clearStep((RiepilogoModel) event.getData());
-            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
+            pubblicazioneDettaglio.clearStep((RiepilogoModel) event.getData());
+            DettaglioModel riepilogo = pubblicazioneDettaglio.riepilogo();
             setRiassunto(riepilogo, false, false, false);
         } else if (eventType.equals(PubblicazioniEvents.ClearPanel)) {
-            eventoDettaglio.clearPanel();
+            pubblicazioneDettaglio.clearPanel();
             west.clean();
         } else if (eventType.equals(PubblicazioniEvents.Previous)) {
             onPrevius(event);
         } else if (event.getType().equals(PubblicazioniEvents.PreviousText)) {
-            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
+            DettaglioModel riepilogo = pubblicazioneDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti piegevoli e fogli"),
@@ -82,7 +82,7 @@ public class UnaPubblicazioneView extends View {
                     false
             );
         } else if (event.getType().equals(PubblicazioniEvents.NextText)) {
-            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
+            DettaglioModel riepilogo = pubblicazioneDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Scegli progetto di compensazione"),
@@ -90,7 +90,7 @@ public class UnaPubblicazioneView extends View {
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("torna alla home")
             );
         } else if (event.getType().equals(PubblicazioniEvents.ShowStep)) {
-            eventoDettaglio.showStep(event.<RiepilogoModel>getData());
+            pubblicazioneDettaglio.showStep(event.<RiepilogoModel>getData());
         } else if (event.getType().equals(PubblicazioniEvents.ShowInfoDialog)) {
             eventoInfoDialog.show();
         } else if (event.getType().equals(PubblicazioniEvents.ShowConfermDialog)) {
@@ -118,11 +118,11 @@ public class UnaPubblicazioneView extends View {
 
 
     private void onPrevius(AppEvent event) {
-        eventoDettaglio.previusTab();
+        pubblicazioneDettaglio.previusTab();
     }
 
     private void onNext(AppEvent event) {
-        eventoDettaglio.nextTab();
+        pubblicazioneDettaglio.nextTab();
     }
 
     private void onInit(AppEvent event) {
@@ -156,7 +156,7 @@ public class UnaPubblicazioneView extends View {
 
             BorderLayoutData center2Data = new BorderLayoutData(Style.LayoutRegion.CENTER);
             center2Data.setMargins(new Margins(0, 0, 0, 0));
-            center.add(eventoDettaglio, center2Data);
+            center.add(pubblicazioneDettaglio, center2Data);
 
             BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 33);
             southData.setMargins(new Margins(0, 0, 0, 0));
@@ -171,37 +171,37 @@ public class UnaPubblicazioneView extends View {
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
-        eventoDettaglio.setTipoDiCarta(tipoDiCartaModels);
+        pubblicazioneDettaglio.setTipoDiCarta(tipoDiCartaModels);
     }
 
     public List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
-        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti);
-        eventoDettaglio.setEventoRiepilogoInStore(list);
+        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(pubblicazioneDettaglio.riepilogo(), coefficienti);
+        pubblicazioneDettaglio.setEventoRiepilogoInStore(list);
         return list;
     }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
-        eventoDettaglio.setProgettiDiCompensazione(progettiDiCompensazioneList);
+        pubblicazioneDettaglio.setProgettiDiCompensazione(progettiDiCompensazioneList);
     }
 
     public DettaglioModel getRiepilogo() {
-        return eventoDettaglio.riepilogo();
+        return pubblicazioneDettaglio.riepilogo();
     }
 
     public void setDettaglioModel(DettaglioModel result) {
-        eventoDettaglio.restore(result);
+        pubblicazioneDettaglio.restore(result);
     }
 
     public void setUserInfo(UserInfoModel userInfoModel) {
-        eventoDettaglio.setUserInfoModel(userInfoModel);
+        pubblicazioneDettaglio.setUserInfoModel(userInfoModel);
     }
 
     public void showRiepilogo() {
-        eventoDettaglio.showRiepilogo();
+        pubblicazioneDettaglio.showRiepilogo();
     }
 
     public void showConferma(DettaglioVTO result) {
-        eventoDettaglio.showConferma(result);
+        pubblicazioneDettaglio.showConferma(result);
     }
 
 }
