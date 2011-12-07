@@ -29,7 +29,7 @@ import java.util.List;
  * Time: 23:09
  * To change this template use File | Settings | File Templates.
  */
-public class AnnoDettaglio  extends LayoutContainer{
+public class AnnoDettaglio extends LayoutContainer {
 
     private final TabPanel eventoTab = new TabPanel();
     private AnnoFormDettaglio formDettaglio = new AnnoFormDettaglio();
@@ -41,6 +41,8 @@ public class AnnoDettaglio  extends LayoutContainer{
     private final FormTrasportoMerci formTrasportoMerci = new FormTrasportoMerci();
     private final FormPubblicazioniRilegate formPubblicazioniRilegate = new FormPubblicazioniRilegate();
     private final FormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new FormManifestiPieghevoliFogli();
+    private final FormBigliettiDaVisita formBigliettiDaVisita = new FormBigliettiDaVisita();
+    private final FormSitoWeb formSitoWeb = new FormSitoWeb();
 
     private final FormRiepilogo formRiepilogo = new FormRiepilogo();
     private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
@@ -58,7 +60,7 @@ public class AnnoDettaglio  extends LayoutContainer{
         TabItem dettaglio = new TabItem("Dettaglio");
         dettaglio.setLayout(new BorderLayout());
         dettaglio.add(formDettaglio, new BorderLayoutData(Style.LayoutRegion.CENTER));
-       // dettaglio.setEnabled(true);
+        // dettaglio.setEnabled(true);
         eventoTab.add(dettaglio);
 
         TabItem calcolo = new TabItem("Calcolo");
@@ -124,6 +126,13 @@ public class AnnoDettaglio  extends LayoutContainer{
         calcoloCardPanel.add(formPubblicazioniRilegate, new BorderLayoutData(Style.LayoutRegion.CENTER));
         formManifestiPiegevoliFogli.setTitle("Manifesti Pieghevoli");
         calcoloCardPanel.add(formManifestiPiegevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
+
+        formBigliettiDaVisita.setTitle("Biglietti da visita e cartelline");
+        calcoloCardPanel.add(formBigliettiDaVisita, new BorderLayoutData(Style.LayoutRegion.CENTER));
+
+        formSitoWeb.setTitle("Sito Web");
+        calcoloCardPanel.add(formSitoWeb, new BorderLayoutData(Style.LayoutRegion.CENTER));
+
 
         return calcoloCardPanel;
     }

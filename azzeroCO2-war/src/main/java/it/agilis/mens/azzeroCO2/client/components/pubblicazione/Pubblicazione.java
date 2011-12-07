@@ -35,6 +35,7 @@ public class Pubblicazione extends LayoutContainer {
 
     private final FormPubblicazioniRilegate formPubblicazioniRilegate = new FormPubblicazioniRilegate();
     private final FormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new FormManifestiPieghevoliFogli();
+    private final FormBigliettiDaVisita formBigliettiDaVisita = new FormBigliettiDaVisita();
 
     private final FormRiepilogo formRiepilogo = new FormRiepilogo();
     private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
@@ -97,8 +98,12 @@ public class Pubblicazione extends LayoutContainer {
 
         formPubblicazioniRilegate.setTitle("Pubblicazioni Rilegate");
         calcoloCardPanel.add(formPubblicazioniRilegate, new BorderLayoutData(Style.LayoutRegion.CENTER));
+
         formManifestiPiegevoliFogli.setTitle("Manifesti Pieghevoli");
         calcoloCardPanel.add(formManifestiPiegevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
+
+        formBigliettiDaVisita.setTitle("Biglietti da visita e cartelline");
+        calcoloCardPanel.add(formBigliettiDaVisita, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         return calcoloCardPanel;
     }
