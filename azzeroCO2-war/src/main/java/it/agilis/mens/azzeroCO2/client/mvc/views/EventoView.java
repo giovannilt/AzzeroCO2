@@ -158,7 +158,7 @@ public class EventoView extends View {
             center2Data.setMargins(new Margins(0, 0, 0, 0));
             center.add(eventoDettaglio, center2Data);
 
-            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 33);
+            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 36);
             southData.setMargins(new Margins(0, 0, 0, 0));
             center.setStyleAttribute("background-color", "#313646");
             center.add(south, southData);
