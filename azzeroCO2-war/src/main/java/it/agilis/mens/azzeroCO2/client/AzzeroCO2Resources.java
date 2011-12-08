@@ -35,7 +35,7 @@ public interface AzzeroCO2Resources extends ClientBundle {
     ImageResource unSitoWeb();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/Check.png")
-    @ImageResource.ImageOptions(flipRtl = true)
+    @ImageResource.ImageOptions(flipRtl = true, width=25, height = 25)
     ImageResource check();
 
     @Source("it/agilis/mens/azzeroCO2/client/icons/AzzeroCO2Stemp.png")
