@@ -32,7 +32,7 @@ public class AnnoNorth extends LayoutContainer  {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.TOP);
         c.setLayout(layout);
 
-        c.add(new Html("<p style=\"padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:#000000;\">Compensa un Evento </p>"));
+        c.add(new Html("<p style=\"padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:#000000;\">Compensa un anno di attività </p>"));
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         flex.setFlex(1);
