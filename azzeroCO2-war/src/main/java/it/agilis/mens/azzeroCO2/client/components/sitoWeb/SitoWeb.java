@@ -3,14 +3,19 @@ package it.agilis.mens.azzeroCO2.client.components.sitoWeb;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
-import com.extjs.gxt.ui.client.widget.*;
-import com.extjs.gxt.ui.client.widget.layout.*;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.TabItem;
+import com.extjs.gxt.ui.client.widget.TabPanel;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.RowData;
+import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.FormAcquisto;
 import it.agilis.mens.azzeroCO2.client.forms.FormConferma;
 import it.agilis.mens.azzeroCO2.client.forms.FormRiepilogo;
 import it.agilis.mens.azzeroCO2.client.forms.FormSitoWeb;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -38,7 +43,7 @@ public class SitoWeb extends LayoutContainer {
 
 
     private final FormRiepilogo formRiepilogo = new FormRiepilogo();
-    private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
+    private final FormAcquisto formAcquisto = new FormAcquisto();
     private final FormConferma formConferma = new FormConferma();
     private static int posizioniLabel = 1;
     private List<List<String>> posizioniText = new ArrayList<List<String>>();
@@ -64,7 +69,7 @@ public class SitoWeb extends LayoutContainer {
         sitoWebTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("Scegli progetto di compensazione");
-        acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
+        acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         sitoWebTab.add(acquisto);
 
@@ -95,8 +100,8 @@ public class SitoWeb extends LayoutContainer {
                     sitoWebTab.setSelection(sitoWebTab.getItems().get(i - 1));
                     posizioniLabel--;
                     //  DettaglioModel riepilogo = riepilogo();
-                    Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-                    Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+                    Dispatcher.forwardEvent(SitoWebEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+                    Dispatcher.forwardEvent(SitoWebEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return sitoWebTab.getSelectedItem().getTitle();
                 }
             }
@@ -112,18 +117,17 @@ public class SitoWeb extends LayoutContainer {
 
                 if (i < sitoWebTab.getItems().size()) {
                     if (sitoWebTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
-                        Dispatcher.forwardEvent(EventoEvents.Conferma);
-                        // Dispatcher.forwardEvent(EventoEvents.SentEmailConferma);
+                        Dispatcher.forwardEvent(SitoWebEvents.Conferma);
                         return sitoWebTab.getItems().get(i).getText();
                     }
                     if (sitoWebTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
-                        Dispatcher.forwardEvent(EventoEvents.Acquisto);
+                        Dispatcher.forwardEvent(SitoWebEvents.Acquisto);
                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return sitoWebTab.getItems().get(i).getText();
                         }
                     }
                     if (sitoWebTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
-                        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+                        Dispatcher.forwardEvent(SitoWebEvents.Riepilogo);
                     }
 
                     item.setEnabled(false);
@@ -137,8 +141,8 @@ public class SitoWeb extends LayoutContainer {
                         posizioniLabel++;
                     }
 
-                    Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-                    Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+                    Dispatcher.forwardEvent(SitoWebEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+                    Dispatcher.forwardEvent(SitoWebEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return sitoWebTab.getItems().get(i).getText();
                 }
             }
@@ -152,7 +156,7 @@ public class SitoWeb extends LayoutContainer {
         sitoWebForm.setWidth(691);
 
         formRiepilogo.clear();
-        eventoFormAcquisto.clear();
+        formAcquisto.clear();
         formConferma.clear();
 
 
@@ -167,19 +171,16 @@ public class SitoWeb extends LayoutContainer {
     }
 
     public DettaglioModel riepilogo() {
-        //DettaglioModel eventoModel = sitoWebForm.getDettaglioModel();
-
-
-        //eventoModel.setProgettoDiCompensazioneModel(eventoFormAcquisto.getProgettoDiCompensazioneModel());
-
-        //return eventoModel;
-        return null;
+        //TODO ... . . . . .
+        DettaglioModel eventoModel =null;//sitoWebForm.getDettaglioModel();
+        eventoModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
+        return eventoModel;
     }
 
     public void restore(DettaglioModel eventoModel) {
         //sitoWebForm.setDettaglioModel(eventoModel);
 
-        eventoFormAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
+        formAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
     }
 
 
@@ -191,11 +192,11 @@ public class SitoWeb extends LayoutContainer {
             esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());
         }
         formRiepilogo.setEventoRiepilogoInStore(eventoRiepilogoModels, esito);
-        eventoFormAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo);
+        formAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo);
     }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
-        eventoFormAcquisto.setInStore(progettiDiCompensazioneList);
+        formAcquisto.setInStore(progettiDiCompensazioneList);
     }
 
     public void setUserInfoModel(UserInfoModel userInfoModel) {
@@ -210,7 +211,7 @@ public class SitoWeb extends LayoutContainer {
 
         }
 
-        Dispatcher.forwardEvent(EventoEvents.Riepilogo);
+        Dispatcher.forwardEvent(SitoWebEvents.Riepilogo);
     }
 
     public void showStep(RiepilogoModel tabToShow) {
@@ -239,8 +240,8 @@ public class SitoWeb extends LayoutContainer {
         posizioniLabel++;
         sitoWebTab.getItems().get(sitoWebTab.getItems().size() - 1).setEnabled(true);
         sitoWebTab.setSelection(sitoWebTab.getItems().get(sitoWebTab.getItems().size() - 1));
-        Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
-        Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
+        Dispatcher.forwardEvent(SitoWebEvents.NextText, posizioniText.get(posizioniLabel).get(1));
+        Dispatcher.forwardEvent(SitoWebEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
     }
 
 

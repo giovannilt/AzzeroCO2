@@ -72,10 +72,7 @@ public class EventoView extends View {
             west.clean();
         } else if (eventType.equals(EventoEvents.Previous)) {
             onPrevius(event);
-        } /*else if (eventType.equals(EventoEvents.Riepilogo)) {
-            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
-            setRiassunto(riepilogo);
-        }*/ else if (event.getType().equals(EventoEvents.PreviousText)) {
+        } else if (event.getType().equals(EventoEvents.PreviousText)) {
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
