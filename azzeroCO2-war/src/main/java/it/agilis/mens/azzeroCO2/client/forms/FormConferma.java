@@ -6,7 +6,6 @@ import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
-import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.core.client.GWT;
@@ -80,10 +79,10 @@ public class FormConferma extends LayoutContainer {
 
         createEast();
         east.setHeading("Download");
-        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.EAST, 303);
+        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.EAST, 250);
         westData.setMargins(new Margins(0));
         east.setHeight(434);
-        east.setWidth(274);
+        east.setWidth(250);
         //east.setStyleAttribute("border-bottom-color","orange");
         //east.setStyleAttribute("padding-bottom","3px");
         //east.setStyleAttribute("border-bottom-width","3px");
@@ -92,26 +91,19 @@ public class FormConferma extends LayoutContainer {
 
         createCentre();
         centre.setHeading("Conferma");
-        centre.setHeight(434);
-        centre.setWidth(1396);
+        centre.setHeight(436);
+      //  centre.setWidth(400);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
+      //  centerData.setMargins(new Margins(0));
         add(centre, centerData);
 
     }
 
 
     private void createEast() {
-        FormPanel panel = new FormPanel();
-        panel.setFrame(true);
-        panel.setHeaderVisible(false);
-
-        panel.setHeight(412);
-        panel.setWidth(1310);
-        panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
+        east.setFrame(true);
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
-
 
         {  // DESCRIZIONE
             LayoutContainer c = new LayoutContainer();
@@ -123,7 +115,7 @@ public class FormConferma extends LayoutContainer {
             label.setStyleAttribute("font-size", "16px");
             c.add(label, flex);
 
-            panel.add(c);
+            east.add(c);
         }
         {
             {
@@ -136,10 +128,8 @@ public class FormConferma extends LayoutContainer {
                 Image check = new Image(AzzeroCO2Resources.INSTANCE.check());
                 check.setAltText("Bus");
                 c.add(check);
-
-            //    attestatoDiComensazione.setWidth(300);
                 c.add(attestatoDiComensazione);
-                panel.add(c, new FormData("100%"));
+                east.add(c, new FormData("100%"));
             }
             {
                 LayoutContainer c = new LayoutContainer();
@@ -151,10 +141,8 @@ public class FormConferma extends LayoutContainer {
                 Image check = new Image(AzzeroCO2Resources.INSTANCE.check());
                 check.setAltText("Bus");
                 c.add(check);
-
-           //     schedaProgetto.setWidth(300);
                 c.add(schedaProgetto);
-                panel.add(c, new FormData("100%"));
+                east.add(c, new FormData("100%"));
             }
 
             {    // PROGETTO SCELTO
@@ -169,7 +157,7 @@ public class FormConferma extends LayoutContainer {
                 label.setWidth(300);
                 c.add(label);
 
-                panel.add(c, new FormData("100%"));
+                east.add(c, new FormData("100%"));
             }
             {
                 LayoutContainer c = new LayoutContainer();
@@ -180,14 +168,12 @@ public class FormConferma extends LayoutContainer {
 
                 Image azzeroCO2Stemp = new Image(AzzeroCO2Resources.INSTANCE.azzeroCO2Stemp());
                 azzeroCO2Stemp.setAltText("AzzeroCO2");
-
                 c.add(azzeroCO2Stemp);
-
-                panel.add(c);
+                east.add(c);
             }
 
         }
-        east.add(panel);
+       // east.add(panel);
     }
 
 
@@ -209,9 +195,9 @@ public class FormConferma extends LayoutContainer {
 
         row = new ContentPanel();
         row.setHeaderVisible(false);
-        row.setHeight(335);
+      //  row.setHeight(335);
         row.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-        row.add(immagine, new RowData(-1, 1, new Margins(4)));
+        row.add(immagine, new RowData(1, 1));
 
         centre.add(row, new RowData(1, 1, new Margins(4, 0, 4, 0)));
     }
