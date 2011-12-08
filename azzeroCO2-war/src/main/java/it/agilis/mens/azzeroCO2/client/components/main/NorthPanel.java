@@ -7,7 +7,6 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.layout.BoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowData;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
@@ -15,6 +14,7 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.*;
@@ -39,7 +39,7 @@ public class NorthPanel extends LayoutContainer {
     private HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
     private Button home = new Button("Home");
 
-    private LabelField nome = new LabelField();
+    private HTML nome = new HTML();
 
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
@@ -145,7 +145,7 @@ public class NorthPanel extends LayoutContainer {
             if (userInfoModel!=null &&
                     userInfoModel.getNome().length()>0 &&
                     !userInfoModel.getNome().equalsIgnoreCase("Guest")) {
-                nome.setText("FANCULIZZATI Strunz: " + userInfoModel.getNome());
+                nome.setHTML("<p style='padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:white;'>Benvenuto " + userInfoModel.getNome() + "</p>");
             }
             c.layout(true);
         }

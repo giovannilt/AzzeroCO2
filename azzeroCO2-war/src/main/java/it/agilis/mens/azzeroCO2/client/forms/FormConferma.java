@@ -11,6 +11,7 @@ import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
@@ -59,11 +60,11 @@ public class FormConferma extends LayoutContainer {
     private String haiCompensatoText = "Hai Compensato ";
     private Text haiCompensato = new Text(haiCompensatoText);
 
-    private String attestatoDiComensazioneText = GWT.getModuleBaseURL() + "downloadCertificato?certificato=";//+result.getPagamentoModel().getCertificatoPDF();
-    private Text attestatoDiComensazione = new Text();
+    private String attestatoDiComensazioneText = GWT.getModuleBaseURL() + "downloadCertificato?certificato=";
+    private HTML attestatoDiComensazione = new HTML();
 
-    private String schedaProgettoText = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti");
-    private Text schedaProgetto = new Text();
+    private String schedaProgettoText;
+    private HTML schedaProgetto = new HTML();
 
     private final Image immagine = new Image();
 
@@ -136,7 +137,7 @@ public class FormConferma extends LayoutContainer {
                 check.setAltText("Bus");
                 c.add(check);
 
-                attestatoDiComensazione.setWidth(300);
+            //    attestatoDiComensazione.setWidth(300);
                 c.add(attestatoDiComensazione);
                 panel.add(c, new FormData("100%"));
             }
@@ -151,7 +152,7 @@ public class FormConferma extends LayoutContainer {
                 check.setAltText("Bus");
                 c.add(check);
 
-                schedaProgetto.setWidth(300);
+           //     schedaProgetto.setWidth(300);
                 c.add(schedaProgetto);
                 panel.add(c, new FormData("100%"));
             }
@@ -224,14 +225,14 @@ public class FormConferma extends LayoutContainer {
             haiCompensato.setText(haiCompensatoText);
 
             attestatoDiComensazioneText += model.getPagamentoModel().getCertificatoPDF();
-            attestatoDiComensazioneText = "<a target=\"_blank\" href=\"" +
-                    attestatoDiComensazioneText + ">Attestato di Compensazione</a>";
+            attestatoDiComensazioneText = "<a target='_blank' href='" +
+                    attestatoDiComensazioneText +"'><p style='padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:white;'>Attestato di Compensazione</p></a>";
 
-            attestatoDiComensazione.setText(attestatoDiComensazioneText);
+            attestatoDiComensazione.setHTML(attestatoDiComensazioneText);
 
-            schedaProgettoText += "<a target=\"_blank\" href=\"" +
-                    model.getProgettoDiCompensazioneModel().getPdfUrl() + ">Scheda progetto.</a>";
-            schedaProgetto.setText(schedaProgettoText);
+            schedaProgettoText =  GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti")+ model.getProgettoDiCompensazioneModel().getPdfUrl();
+            schedaProgettoText =  "<a target='_blank' href='" + schedaProgettoText + "'><p style='padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:white;'>Scheda progetto.</p></a>";
+            schedaProgetto.setHTML(schedaProgettoText);
 
             String baseUrl = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti");
             immagine.setUrl(baseUrl + model.getProgettoDiCompensazioneModel().getImageUrl());
