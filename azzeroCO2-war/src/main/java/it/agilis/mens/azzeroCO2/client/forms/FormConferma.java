@@ -51,6 +51,9 @@ public class FormConferma extends LayoutContainer {
         east.setHeading("Download");
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.EAST, 300);
         westData.setMargins(new Margins(0));
+        //east.setStyleAttribute("border-bottom-color","orange");
+        //east.setStyleAttribute("padding-bottom","3px");
+        //east.setStyleAttribute("border-bottom-width","3px");
         east.setAutoHeight(true);
         add(east, westData);
 
@@ -62,6 +65,7 @@ public class FormConferma extends LayoutContainer {
         add(centre, centerData);
 
     }
+
 
     private void createEast() {
         FormPanel panel = new FormPanel();
@@ -198,6 +202,23 @@ public class FormConferma extends LayoutContainer {
             String baseUrl = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti");
             immagine.setUrl(baseUrl + model.getProgettoDiCompensazioneModel().getImageUrl());
         }
+    }
+        @Override
+    protected void onLoad() {
+        super.onLoad();
+        //toolBar.setStyleAttribute("border-bottom", "3px solid orange");
+     //   east.getBody().setStyleAttribute("border-style", "solid");
+     //   east.getBody().setStyleAttribute("border-top", "3px solid orange");
+    //    east.getBody().setStyleAttribute("border-width", "3px 0");
+    //    east.getBody().setStyleAttribute("margin-bottom", "0");
+    //    centre.getBody().setStyleAttribute("border-bottom","3px solid orange");
+    //    centre.getBody().setStyleAttribute("border-style", "solid");
+    //    centre.getBody().setStyleAttribute("border-top", "3px solid orange");
+    //    centre.getBody().setStyleAttribute("border-width", "3px 0");
+    //    centre.getBody().setStyleAttribute("margin-bottom", "0");
+
+
+        //To change body of overridden methods use File | Settings | File Templates.
     }
 }
 

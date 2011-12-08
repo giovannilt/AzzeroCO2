@@ -90,18 +90,20 @@ public class AnnoDettaglio extends LayoutContainer {
 
         add(eventoTab, new RowData(1, 1));
 
-        posizioniText.add(Arrays.asList(".", "Energia"));
-        posizioniText.add(Arrays.asList("Dettaglio", "Trasporto persone"));
-        posizioniText.add(Arrays.asList("Energia", "Pernottamenti"));
-        posizioniText.add(Arrays.asList("Trasporto persone", "Trasporto Merci"));
-        posizioniText.add(Arrays.asList("Pernottamenti", "Pubblicazioni rilegate"));
-        posizioniText.add(Arrays.asList("Trasporto merci", "Manifesti piegevoli e fogli"));
-        posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Biglietti da visita e cartelline"));
+        posizioniText.add(Arrays.asList("", "Energia"));                                   // DETTAGLIO
+        posizioniText.add(Arrays.asList("Dettaglio", "Trasporto persone"));                 // ENERGIA
+        posizioniText.add(Arrays.asList("Energia", "Pernottamenti"));                      // TRASPORTO PERSONE
+        posizioniText.add(Arrays.asList("Trasporto persone", "Trasporto Merci"));          // Pernottamenti
+        posizioniText.add(Arrays.asList("Pernottamenti", "Pubblicazioni rilegate"));       // Trasporto Merci
+        posizioniText.add(Arrays.asList("Trasporto merci", "Manifesti piegevoli e fogli"));// Pubblicazioni rilegate
+        posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Biglietti da visita e cartelline"));           // Manifesti Piegevoli e Fogli
         posizioniText.add(Arrays.asList("Manifesti piegevoli e fogli", "Sito"));
-        posizioniText.add(Arrays.asList("Miglietti da visita e cartelline", "Riepilogo"));
-        posizioniText.add(Arrays.asList("Sito", "Scegli progetto di compensazione"));
-        posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));
-        posizioniText.add(Arrays.asList("", "torna alla home"));
+        posizioniText.add(Arrays.asList("Biglietti da visita e cartelline","Riepilogo"));           // Manifesti Piegevoli e Fogli
+
+
+        posizioniText.add(Arrays.asList("Sito", "Scegli progetto di compensazione"));// RIEPILOGO
+        posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
+        posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
 
     }
 

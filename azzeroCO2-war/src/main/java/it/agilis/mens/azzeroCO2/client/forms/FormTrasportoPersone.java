@@ -73,7 +73,9 @@ public class FormTrasportoPersone extends LayoutContainer {
         textContent.setHeaderVisible(false);
         textContent.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
+
         Text testo = new Text(" Scegli 'Tutte le persone' per calcolare le emissioni di tutte le persone che si sono spostate per l'evento.<br><br>Se invece vuoi dettagliare i trasporti per categoria di persone, non compilare 'Tutte le persone' ma usa le altre categorie disponibili o creane nuove.");
+        //testo.setStyleAttribute("padding-top","10px");
         testo.setStyleAttribute("font-size", "9pt");
         textContent.add(testo);
 

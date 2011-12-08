@@ -79,50 +79,58 @@ public class AnnoFormDettaglio extends LayoutContainer {
 
         LayoutContainer left = new LayoutContainer();
         left.setStyleAttribute("paddingRight", "10px");
+        left.setStyleAttribute("paddingTop", "20px");
+
         FormLayout layout = new FormLayout();
         layout.setLabelAlign(FormPanel.LabelAlign.LEFT);
         left.setLayout(layout);
 
+
+
+        LabelField widget = new LabelField("Inserisci i dettagli dell'attività");
+        widget.setStyleAttribute("font-weight", "bolder");
+        formPanel.add(widget);
+
         TextField<String> nomeEvento = new TextField<String>();
         nomeEvento.setFieldLabel("Nome dell'attività");
+        nomeEvento.setLabelStyle("width:150");
+        nomeEvento.setStyleAttribute("padding-bottom","35px");
         nomeEvento.setName("nome");
+
         left.add(nomeEvento);
 
-        DateField dataInizio = new DateField();
-        dataInizio.setFieldLabel("Data inizio");
+        TextField<String> anno = new TextField<String>();
+        anno.setFieldLabel("Anno");
+        anno.setLabelStyle("width:150");
 
-        dataInizio.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
-        dataInizio.setName("inizio");
-        left.add(dataInizio);
-        //   dataInizio.set
+        anno.setStyleAttribute("padding-bottom","35px");
+        anno.setName("anno");
+        left.add(anno);
+
+
+
+        TextField<String> dove = new TextField<String>();
+        dove.setFieldLabel("Dove");
+        dove.setLabelStyle("width:150");
+
+        dove.setStyleAttribute("padding-bottom","35px");
+        dove.setName("dove");
+        left.add(dove);
+
+
 
         TextArea note = new TextArea();
         note.setPreventScrollbars(true);
+        note.setLabelStyle("width:150");
+
+        note.setStyleAttribute("padding-bottom","35px");
         note.setFieldLabel("Note");
         note.setName("note");
         left.add(note);
 
-        LayoutContainer right = new LayoutContainer();
-        right.setStyleAttribute("paddingLeft", "10px");
-        layout = new FormLayout();
-        layout.setLabelAlign(FormPanel.LabelAlign.LEFT);
-        right.setLayout(layout);
+        left.setWidth(600);
+        formPanel.add(left);
 
-        TextField<String> dove = new TextField<String>();
-        dove.setFieldLabel("Dove");
-        dove.setName("dove");
-        right.add(dove);
-
-        DateField dataFine = new DateField();
-        dataFine.setFieldLabel("Data fine");
-        dataFine.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
-        dataFine.setName("fine");
-        right.add(dataFine);
-
-        formPanel.add(left, new ColumnData(.5));
-        formPanel.add(right, new ColumnData(.5));
-
-       // return formPanel;
     }
 
 

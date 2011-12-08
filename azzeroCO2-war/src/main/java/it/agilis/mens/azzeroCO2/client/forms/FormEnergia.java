@@ -92,6 +92,7 @@ public class FormEnergia extends LayoutContainer {
 
         LabelField widget = new LabelField("Inserisci nei relativi campi la qualita' di energia utilizzata per realizzare l'evento.");
         widget.setStyleAttribute("font-weight", "bolder");
+
         c2.add(widget);
 
         panel.add(c2);
@@ -105,7 +106,7 @@ public class FormEnergia extends LayoutContainer {
         NumberField energiaElettrica = new NumberField();
         energiaElettrica.setWidth(60);
         energiaElettrica.setName("energiaElettrica");
-        // energiaElettrica.setPropertyEditorType(Integer.class);
+        //energiaElettrica.setPropertyEditorType(Integer.class);
 
         LabelField label = new LabelField("Energia Elettrica ");
         label.setWidth(100);

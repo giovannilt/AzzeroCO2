@@ -80,9 +80,9 @@ public class ConoscoCO2 extends LayoutContainer {
 
         posizioniText.add(Arrays.asList("", "Riepilogo"));                                   // DETTAGLIO
         posizioniText.add(Arrays.asList("Conosco la CO2", "Scegli progetto di compensazione"));       // RIEPILOGO
-        posizioniText.add(Arrays.asList("Riepilogo", "Conferma"));                         // ACQUISTO
-        posizioniText.add(Arrays.asList("Scegli progetto di compensazione", ""));                                  // CONFERMA
-    }
+        posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
+                posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
+         }
 
 
     public String previusTab(AppEvent event) {

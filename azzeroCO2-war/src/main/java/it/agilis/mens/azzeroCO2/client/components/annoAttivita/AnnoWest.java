@@ -39,7 +39,7 @@ import java.util.List;
 public class AnnoWest extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
-    private Text title = new Text("Evento");
+    private Text title = new Text("Anno di attività");
     private final String oggettoDiDefault = "Non hai ancora inserito </br> nessuna attivita'";
     private Esito esito;
 
@@ -166,7 +166,7 @@ public class AnnoWest extends LayoutContainer {
 
     public void setTitle(DettaglioModel riepilogo) {
         if (riepilogo != null) {
-            String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Evento";
+            String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Un Anno di Atticvità";
             String dove = riepilogo.getDove() != null ? riepilogo.getDove() : "";
 
             if (riepilogo.getInizio() != null

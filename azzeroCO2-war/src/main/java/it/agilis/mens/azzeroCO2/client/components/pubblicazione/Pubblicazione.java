@@ -50,16 +50,16 @@ public class Pubblicazione extends LayoutContainer {
 
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        TabItem dettaglio = new TabItem("Dettaglio");
-        dettaglio.setLayout(new BorderLayout());
-        dettaglio.add(formDettaglio, new BorderLayoutData(Style.LayoutRegion.CENTER));
+        //TabItem dettaglio = new TabItem("Dettaglio");
+        //dettaglio.setLayout(new BorderLayout());
+        //dettaglio.add(formDettaglio, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
-        pubblicazioneoTab.add(dettaglio);
+        //pubblicazioneoTab.add(dettaglio);
 
         TabItem calcolo = new TabItem("Calcolo");
         createCalcoloTabs();
         calcolo.add(createCalcoloTabs(), new BorderLayoutData(Style.LayoutRegion.CENTER));
-        calcolo.setEnabled(false);
+        calcolo.setEnabled(true);
         pubblicazioneoTab.add(calcolo);
 
         TabItem riepilogo = new TabItem("Riepilogo");
