@@ -96,8 +96,12 @@ public class AnnoDettaglio extends LayoutContainer {
         posizioniText.add(Arrays.asList("Trasporto persone", "Trasporto Merci"));          // Pernottamenti
         posizioniText.add(Arrays.asList("Pernottamenti", "Pubblicazioni rilegate"));       // Trasporto Merci
         posizioniText.add(Arrays.asList("Trasporto merci", "Manifesti piegevoli e fogli"));// Pubblicazioni rilegate
-        posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Riepilogo"));           // Manifesti Piegevoli e Fogli
-        posizioniText.add(Arrays.asList("Manifesti piegevoli e fogli", "Scegli progetto di compensazione"));       // RIEPILOGO
+        posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Biglietti da visita e cartelline"));           // Manifesti Piegevoli e Fogli
+        posizioniText.add(Arrays.asList("Manifesti piegevoli e fogli", "Sito"));
+        posizioniText.add(Arrays.asList("Biglietti da visita e cartelline","Riepilogo"));           // Manifesti Piegevoli e Fogli
+
+
+        posizioniText.add(Arrays.asList("Sito", "Scegli progetto di compensazione"));// RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
 

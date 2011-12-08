@@ -38,9 +38,9 @@ public class FormBigliettiDaVisita extends LayoutContainer {
     private final FormPanel panel = createGroupForm();
     private final FormBinding formBindings = new FormBinding(panel, true);
     private final Grid<ManifestiPieghevoliFogliModel> grid = createGrid();
-    private ContentPanel cpEst = new ContentPanel();
+    //private ContentPanel cpEst = new ContentPanel();
     public FormBigliettiDaVisita() {
-        setDefault();
+        //setDefault();
     }
 
     @SuppressWarnings("rawtypes")
@@ -73,7 +73,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
         textContent.add(note);
 
 
-
+        /*
         cpEst.setFrame(false);
         cpEst.setHeading("Manifesti, pieghevoli, fogli");
         cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
@@ -83,10 +83,11 @@ public class FormBigliettiDaVisita extends LayoutContainer {
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
         cp.add(cpEst, new RowData(.35, .98));
-        cp.add(panel, new RowData(.65, 1));
+        */
+        cp.add(panel, new RowData(1, 1));
 
-        panel.setHeading(manifestiPieghevoliFogliModel.getModels().get(0).getCategoria());
-
+        //panel.setHeading(manifestiPieghevoliFogliModel.getModels().get(0).getCategoria());
+        panel.setHeading("Biglietti da visita e cartelline");
         ToolButton tool1 = new ToolButton("x-tool-help");
         panel.getHeader().addTool(tool1);
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
@@ -125,10 +126,12 @@ public class FormBigliettiDaVisita extends LayoutContainer {
     protected void onLoad() {
         super.onLoad();
         toolBar.setStyleAttribute("border-bottom", "3px solid orange");
+        /*
         cpEst.getBody().setStyleAttribute("border-style", "solid");
         cpEst.getBody().setStyleAttribute("border-top", "3px solid orange");
         cpEst.getBody().setStyleAttribute("border-width", "3px 0");
         cpEst.getBody().setStyleAttribute("margin-bottom", "0");
+        */
         panel.getBody().setStyleAttribute("border-bottom","3px solid orange");
         panel.getBody().setStyleAttribute("border-style", "solid");
         panel.getBody().setStyleAttribute("border-top", "3px solid orange");
@@ -154,7 +157,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
             layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
             c2.setLayout(layout2);
 
-            LabelField istruzioni = new LabelField("Definisci le caratteristiche.");
+            LabelField istruzioni = new LabelField("Definisci le caratteristiche della pubblicazione.");
             istruzioni.setStyleAttribute("font-weight", "bolder");
             c2.add(istruzioni, flex);
 
@@ -168,22 +171,18 @@ public class FormBigliettiDaVisita extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                NumberField altezza = new NumberField();
-                altezza.setWidth(60);
-                altezza.setName("altezza");
+                NumberField tiraturaBiglietti = new NumberField();
+                tiraturaBiglietti.setWidth(60);
+                tiraturaBiglietti.setName("altezza");
 
-                LabelField label = new LabelField("Formato Aperto ");
+                LabelField label = new LabelField("Biglietti da visita ");
                 label.setWidth(100);
                 c.add(label);
-                c.add(altezza, flex);
-                c.add(new LabelField("Altezza (cm)"), flex);
+                c.add(tiraturaBiglietti, flex);
+                c.add(new LabelField("tiratura"), flex);
 
-                NumberField larghezza = new NumberField();
-                larghezza.setWidth(60);
-                larghezza.setName("larghezza");
 
-                c.add(larghezza, flex);
-                c.add(new LabelField("Larghezza (cm)"), flex);
+
 
                 panel.add(c, new FormData("100%"));
             }
@@ -206,13 +205,14 @@ public class FormBigliettiDaVisita extends LayoutContainer {
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
                 tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
-                LabelField label = new LabelField("Materiale ");
+                LabelField label = new LabelField(" ");//("Materiale ");
                 label.setWidth(100);
                 c.add(label);
                 c.add(tipoDiCarta, flex);
 
                 panel.add(c, new FormData("100%"));
             }
+
             {
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
@@ -249,11 +249,55 @@ public class FormBigliettiDaVisita extends LayoutContainer {
                 tiratura.getMessages().setRegexText("Inserisci un numero intero");
                 tiratura.setPropertyEditorType(Integer.class);
 
-                LabelField label = new LabelField("Tiratura ");
+                LabelField label = new LabelField("Cartelline ");
                 label.setWidth(100);
                 c.add(label);
                 c.add(tiratura, flex);
-                c.add(new LabelField("Copie"), flex);
+                c.add(new LabelField("Tiratura"), flex);
+                c.setStyleAttribute("padding-top","50px");
+                panel.add(c, new FormData("100%"));
+            }
+            {
+                LayoutContainer c = new LayoutContainer();
+                HBoxLayout layout = new HBoxLayout();
+                layout.setPadding(new Padding(10));
+                layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+                c.setLayout(layout);
+
+                ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
+                tipoDiCarta.setEmptyText("Seleziona tipo di carta");
+                tipoDiCarta.setToolTip("TipoDiCarta");
+                tipoDiCarta.setDisplayField("parametro");
+                tipoDiCarta.setWidth(200);
+                tipoDiCarta.setDisplayField("nome");
+                tipoDiCarta.setName("tipoDiCarta");
+                tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
+                tipoDiCarta.setStore(tipoDiCartaModelListStore);
+
+                LabelField label = new LabelField(" ");//("Materiale ");
+                label.setWidth(100);
+                c.add(label);
+                c.add(tipoDiCarta, flex);
+
+                panel.add(c, new FormData("100%"));
+            }
+
+            {
+                LayoutContainer c = new LayoutContainer();
+                HBoxLayout layout = new HBoxLayout();
+                layout.setPadding(new Padding(10));
+                layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+                c.setLayout(layout);
+
+                NumberField grammatura = new NumberField();
+                grammatura.setWidth(60);
+                grammatura.setName("grammatura");
+
+                LabelField label = new LabelField("");
+                label.setWidth(100);
+                c.add(label);
+                c.add(grammatura, flex);
+                c.add(new LabelField("Grammatura"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -357,7 +401,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
             this.manifestiPieghevoliFogliModel.remove(m);
         }
         if (setDefault) {
-            setDefault();
+            //setDefault();
         }
     }
 
@@ -369,7 +413,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
         clear(false);
         this.manifestiPieghevoliFogliModel.add(manifestiPieghevoliFogliModel);
         if (manifestiPieghevoliFogliModel.size() == 0) {
-            setDefault();
+            //setDefault();
         }
         if (grid != null) {
             grid.getSelectionModel().select(manifestiPieghevoliFogliModel.get(0), true);
@@ -377,25 +421,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
 
     }
 
-    private void setDefault() {
-        ManifestiPieghevoliFogliModel manifesti = new ManifestiPieghevoliFogliModel();
-        manifesti.setCategoria("Manifesti");
 
-
-        ManifestiPieghevoliFogliModel pieghevoli = new ManifestiPieghevoliFogliModel();
-        pieghevoli.setCategoria("Pieghevoli");
-
-        ManifestiPieghevoliFogliModel fogli = new ManifestiPieghevoliFogliModel();
-        fogli.setCategoria("Fogli");
-
-
-
-        manifestiPieghevoliFogliModel.add(manifesti);
-        manifestiPieghevoliFogliModel.add(pieghevoli);
-        manifestiPieghevoliFogliModel.add(fogli);
-
-        formBindings.bind(manifesti);
-    }
 
     public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {
         tipoDiCartaModelListStore.add(tipoDiCarta);
