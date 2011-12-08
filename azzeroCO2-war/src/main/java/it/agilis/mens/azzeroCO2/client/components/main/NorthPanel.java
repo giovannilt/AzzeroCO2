@@ -7,7 +7,11 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.layout.*;
+import com.extjs.gxt.ui.client.widget.form.LabelField;
+import com.extjs.gxt.ui.client.widget.layout.BoxLayout;
+import com.extjs.gxt.ui.client.widget.layout.FlowData;
+import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
+import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
@@ -33,9 +37,9 @@ public class NorthPanel extends LayoutContainer {
     private Button info = new Button();
     private LayoutContainer c = new LayoutContainer();
     private HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
-    private UserInfoModel userInfoModel;
     private Button home = new Button("Home");
 
+    private LabelField nome = new LabelField();
 
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
@@ -89,13 +93,14 @@ public class NorthPanel extends LayoutContainer {
         });
         login.setWidth(70);
 
+
+        c.add(nome, layoutData);
         c.add(info, layoutData);
         c.add(amministrazione, layoutData);
 
         c.add(home, layoutData);
         c.add(login, layoutData);
         c.add(registrati, layoutData);
-
 
 
         add(c, new FlowData(1));
@@ -120,7 +125,6 @@ public class NorthPanel extends LayoutContainer {
     }
 
     public void setUserInfo(UserInfoModel userInfoModel) {
-        this.userInfoModel = userInfoModel;
         if (userInfoModel != null &&
                 userInfoModel.getProfilo() != null) {
             if (userInfoModel.getProfilo().intValue() == Profile.Administrator.ordinal()) {
@@ -137,6 +141,11 @@ public class NorthPanel extends LayoutContainer {
             } else {
                 info.setVisible(false);
                 amministrazione.setVisible(false);
+            }
+            if (userInfoModel!=null &&
+                    userInfoModel.getNome().length()>0 &&
+                    !userInfoModel.getNome().equalsIgnoreCase("Guest")) {
+                nome.setText("FANCULIZZATI Strunz: " + userInfoModel.getNome());
             }
             c.layout(true);
         }

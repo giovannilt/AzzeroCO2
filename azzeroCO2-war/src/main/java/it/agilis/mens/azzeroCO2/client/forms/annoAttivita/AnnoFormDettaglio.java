@@ -85,8 +85,6 @@ public class AnnoFormDettaglio extends LayoutContainer {
         layout.setLabelAlign(FormPanel.LabelAlign.LEFT);
         left.setLayout(layout);
 
-
-
         LabelField widget = new LabelField("Inserisci i dettagli dell'attività");
         widget.setStyleAttribute("font-weight", "bolder");
         formPanel.add(widget);
@@ -107,8 +105,6 @@ public class AnnoFormDettaglio extends LayoutContainer {
         anno.setName("anno");
         left.add(anno);
 
-
-
         TextField<String> dove = new TextField<String>();
         dove.setFieldLabel("Dove");
         dove.setLabelStyle("width:150");
@@ -116,8 +112,6 @@ public class AnnoFormDettaglio extends LayoutContainer {
         dove.setStyleAttribute("padding-bottom","35px");
         dove.setName("dove");
         left.add(dove);
-
-
 
         TextArea note = new TextArea();
         note.setPreventScrollbars(true);
