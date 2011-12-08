@@ -24,8 +24,36 @@ import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
  */
 public class FormConferma extends LayoutContainer {
 
-    private ContentPanel east = new ContentPanel();
-    private ContentPanel centre = new ContentPanel();
+    private ContentPanel east = new ContentPanel() {
+        @Override
+        protected void onLoad() {
+            super.onLoad();
+            east.getBody().setStyleAttribute("border-style", "solid");
+            east.getBody().setStyleAttribute("border-top", "3px solid orange");
+            east.getBody().setStyleAttribute("border-width", "3px 0");
+            east.getBody().setStyleAttribute("margin-bottom", "0");
+            centre.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+            centre.getBody().setStyleAttribute("border-style", "solid");
+            centre.getBody().setStyleAttribute("border-top", "3px solid orange");
+            centre.getBody().setStyleAttribute("border-width", "3px 0");
+            centre.getBody().setStyleAttribute("margin-bottom", "0");
+        }
+    };
+    private ContentPanel centre = new ContentPanel() {
+        @Override
+        protected void onLoad() {
+            super.onLoad();
+            east.getBody().setStyleAttribute("border-style", "solid");
+            east.getBody().setStyleAttribute("border-top", "3px solid orange");
+            east.getBody().setStyleAttribute("border-width", "3px 0");
+            east.getBody().setStyleAttribute("margin-bottom", "0");
+            centre.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+            centre.getBody().setStyleAttribute("border-style", "solid");
+            centre.getBody().setStyleAttribute("border-top", "3px solid orange");
+            centre.getBody().setStyleAttribute("border-width", "3px 0");
+            centre.getBody().setStyleAttribute("margin-bottom", "0");
+        }
+    };
     private String haiCompensatoText = "Hai Compensato ";
     private Text haiCompensato = new Text(haiCompensatoText);
 
@@ -49,8 +77,10 @@ public class FormConferma extends LayoutContainer {
 
         createEast();
         east.setHeading("Download");
-        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.EAST, 300);
+        BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.EAST, 303);
         westData.setMargins(new Margins(0));
+        east.setHeight(406);
+        east.setWidth(300);
         //east.setStyleAttribute("border-bottom-color","orange");
         //east.setStyleAttribute("padding-bottom","3px");
         //east.setStyleAttribute("border-bottom-width","3px");
@@ -59,7 +89,7 @@ public class FormConferma extends LayoutContainer {
 
         createCentre();
         centre.setHeading("Conferma");
-        centre.setHeight(440);
+        centre.setHeight(406);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -74,7 +104,7 @@ public class FormConferma extends LayoutContainer {
         panel.setHeaderVisible(false);
 
         panel.setHeight(412);
-        panel.setWidth(300);
+        panel.setWidth(406);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
@@ -204,22 +234,7 @@ public class FormConferma extends LayoutContainer {
             immagine.setUrl(baseUrl + model.getProgettoDiCompensazioneModel().getImageUrl());
         }
     }
-        @Override
-    protected void onLoad() {
-        super.onLoad();
-        //toolBar.setStyleAttribute("border-bottom", "3px solid orange");
-     //   east.getBody().setStyleAttribute("border-style", "solid");
-     //   east.getBody().setStyleAttribute("border-top", "3px solid orange");
-    //    east.getBody().setStyleAttribute("border-width", "3px 0");
-    //    east.getBody().setStyleAttribute("margin-bottom", "0");
-    //    centre.getBody().setStyleAttribute("border-bottom","3px solid orange");
-    //    centre.getBody().setStyleAttribute("border-style", "solid");
-    //    centre.getBody().setStyleAttribute("border-top", "3px solid orange");
-    //    centre.getBody().setStyleAttribute("border-width", "3px 0");
-    //    centre.getBody().setStyleAttribute("margin-bottom", "0");
 
 
-        //To change body of overridden methods use File | Settings | File Templates.
-    }
 }
 

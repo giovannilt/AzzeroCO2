@@ -95,7 +95,7 @@ public class PubblicazioneSouth extends LayoutContainer {
             @Override
             public void componentSelected(ButtonEvent ce) {
                 if (rigthText.getText().equalsIgnoreCase("torna alla home")) {
-                   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                    Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
                 } else {
                     Dispatcher.forwardEvent(new AppEvent(PubblicazioniEvents.Next, ce));
                 }
@@ -113,7 +113,7 @@ public class PubblicazioneSouth extends LayoutContainer {
             leftText.setVisible(false);
 
         } else {
-            if (left_t.length() == 0) {
+            if (left_t.length() == 0 || left_t.equalsIgnoreCase(".")) {
                 left.setEnabled(false);
                 left.setVisible(false);
                 leftText.setVisible(false);
