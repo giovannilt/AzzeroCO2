@@ -32,6 +32,8 @@ public class FormConferma extends LayoutContainer {
             east.getBody().setStyleAttribute("border-top", "3px solid orange");
             east.getBody().setStyleAttribute("border-width", "3px 0");
             east.getBody().setStyleAttribute("margin-bottom", "0");
+            east.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+
             centre.getBody().setStyleAttribute("border-bottom", "3px solid orange");
             centre.getBody().setStyleAttribute("border-style", "solid");
             centre.getBody().setStyleAttribute("border-top", "3px solid orange");
@@ -79,17 +81,18 @@ public class FormConferma extends LayoutContainer {
         east.setHeading("Download");
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.EAST, 303);
         westData.setMargins(new Margins(0));
-        east.setHeight(406);
-        east.setWidth(300);
+        east.setHeight(434);
+        east.setWidth(274);
         //east.setStyleAttribute("border-bottom-color","orange");
         //east.setStyleAttribute("padding-bottom","3px");
         //east.setStyleAttribute("border-bottom-width","3px");
-        east.setAutoHeight(true);
+        //east.setAutoHeight(true);
         add(east, westData);
 
         createCentre();
         centre.setHeading("Conferma");
-        centre.setHeight(406);
+        centre.setHeight(434);
+        centre.setWidth(1396);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -104,7 +107,7 @@ public class FormConferma extends LayoutContainer {
         panel.setHeaderVisible(false);
 
         panel.setHeight(412);
-        panel.setWidth(406);
+        panel.setWidth(1310);
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
 
