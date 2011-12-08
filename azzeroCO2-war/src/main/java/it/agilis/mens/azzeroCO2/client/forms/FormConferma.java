@@ -30,29 +30,17 @@ public class FormConferma extends LayoutContainer {
             super.onLoad();
             east.getBody().setStyleAttribute("border-style", "solid");
             east.getBody().setStyleAttribute("border-top", "3px solid orange");
-            east.getBody().setStyleAttribute("border-width", "3px 0");
             east.getBody().setStyleAttribute("margin-bottom", "0");
             east.getBody().setStyleAttribute("border-bottom", "3px solid orange");
-
-            centre.getBody().setStyleAttribute("border-bottom", "3px solid orange");
-            centre.getBody().setStyleAttribute("border-style", "solid");
-            centre.getBody().setStyleAttribute("border-top", "3px solid orange");
-            centre.getBody().setStyleAttribute("border-width", "3px 0");
-            centre.getBody().setStyleAttribute("margin-bottom", "0");
-        }
+     }
     };
     private ContentPanel centre = new ContentPanel() {
         @Override
         protected void onLoad() {
             super.onLoad();
-            east.getBody().setStyleAttribute("border-style", "solid");
-            east.getBody().setStyleAttribute("border-top", "3px solid orange");
-            east.getBody().setStyleAttribute("border-width", "3px 0");
-            east.getBody().setStyleAttribute("margin-bottom", "0");
             centre.getBody().setStyleAttribute("border-bottom", "3px solid orange");
             centre.getBody().setStyleAttribute("border-style", "solid");
             centre.getBody().setStyleAttribute("border-top", "3px solid orange");
-            centre.getBody().setStyleAttribute("border-width", "3px 0");
             centre.getBody().setStyleAttribute("margin-bottom", "0");
         }
     };
@@ -80,8 +68,8 @@ public class FormConferma extends LayoutContainer {
         createEast();
         east.setHeading("Download");
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.EAST, 250);
-        westData.setMargins(new Margins(0));
-        east.setHeight(434);
+      //  westData.setMargins(new Margins(0));
+        east.setHeight(440);
         east.setWidth(250);
         //east.setStyleAttribute("border-bottom-color","orange");
         //east.setStyleAttribute("padding-bottom","3px");
@@ -195,7 +183,6 @@ public class FormConferma extends LayoutContainer {
 
         row = new ContentPanel();
         row.setHeaderVisible(false);
-      //  row.setHeight(335);
         row.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         row.add(immagine, new RowData(1, 1));
 
