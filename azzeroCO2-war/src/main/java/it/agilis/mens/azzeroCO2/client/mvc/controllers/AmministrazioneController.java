@@ -30,7 +30,7 @@ import java.util.Map;
  */
 public class AmministrazioneController extends BaseController {
     private AmministrazioneView amministrazioneView = new AmministrazioneView(this);
-    private EventoCompensatoDialog eventoCompensatoDialog= new EventoCompensatoDialog();
+    private EventoCompensatoDialog eventoCompensatoDialog = new EventoCompensatoDialog();
 
 
     public AmministrazioneController() {
@@ -52,7 +52,7 @@ public class AmministrazioneController extends BaseController {
             eventoCompensatoDialog.setTotale(dettaglioModel.getPagamentoModel().getKgCO2());
             eventoCompensatoDialog.show();
 
-        }else if (event.getType().equals(AmministrazioneEvents.SaveCoefficienti)) {
+        } else if (event.getType().equals(AmministrazioneEvents.SaveCoefficienti)) {
             List<CoefficienteModel> coefficienteModels = event.getData();
             HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
             AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
@@ -70,8 +70,6 @@ public class AmministrazioneController extends BaseController {
 
             if (event.getData() instanceof Model) {
                 Model m = event.getData();
-
-
                 HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
                 AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
                     public void onFailure(Throwable caught) {
@@ -83,8 +81,11 @@ public class AmministrazioneController extends BaseController {
                         Info.display("Info", "ProgettiDiCompensazione Salvati");
                     }
                 };
-                hustonService.associaIDProgettoDiCompensazioneImmagine(m.getIdProgetto(), m.getName(), aCallback);
-
+                if (m.getIMGorPDF().equalsIgnoreCase("IMG")) {
+                    hustonService.associaIDProgettoDiCompensazioneImmagine(m.getIdProgetto(), m.getName(), aCallback);
+                } else {
+                    hustonService.associaIDProgettoDiCompensazionePDF(m.getIdProgetto(), m.getName(), aCallback);
+                }
             } else {
                 List<ProgettoDiCompensazioneModel> progettoDiCompensazioneModels = event.getData();
                 HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);

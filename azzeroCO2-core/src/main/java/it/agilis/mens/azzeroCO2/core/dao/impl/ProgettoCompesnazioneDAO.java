@@ -31,4 +31,11 @@ public class ProgettoCompesnazioneDAO extends DAOSupport implements IProgettoCom
         p.setImg(nomeImmagine);
         saveObject(p);
     }
+
+    @Override
+    public void associaIDProgettoDiCompensazionePDF(Long idProgetto, String nomePDF) throws Exception {
+         ProgettoCompensazione p = (ProgettoCompensazione) getObjectById(ProgettoCompensazione.class, idProgetto);
+        p.setPdf(nomePDF);
+        saveObject(p);
+    }
 }

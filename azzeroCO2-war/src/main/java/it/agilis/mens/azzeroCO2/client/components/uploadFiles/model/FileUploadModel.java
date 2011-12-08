@@ -61,8 +61,16 @@ public class FileUploadModel extends BaseModel implements IsSerializable, Model 
         set("idProgetto", idProgetto);
     }
 
-    public Long getIdProgetto(){
+    public Long getIdProgetto() {
         return get("idProgetto");
+    }
+
+    public String getIMGorPDF() {
+        return get("IMGorPDF");
+    }
+
+    public void setIMGorPDF(String IMGorPDF) {
+        set("IMGorPDF", IMGorPDF);
     }
 
 

@@ -188,4 +188,8 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     public String creaCertificatoPDF(Ordine ordine) {
         return openOfficeService.creaPDF(ordine);
     }
+
+    public void associaIDProgettoDiCompensazionePDF(Long idProgetto, String nomePDF) throws Exception {
+        progettoCompensazioneDAO.associaIDProgettoDiCompensazionePDF(idProgetto, nomePDF);
+    }
 }

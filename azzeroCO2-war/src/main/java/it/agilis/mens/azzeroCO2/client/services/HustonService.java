@@ -60,5 +60,6 @@ public interface HustonService extends RemoteService {
 
     DettaglioVTO isPagato(DettaglioVTO riepilogo, UserInfoModel userInfoModel);
 
+    boolean associaIDProgettoDiCompensazionePDF(Long idProgetto, String name);
 }
 

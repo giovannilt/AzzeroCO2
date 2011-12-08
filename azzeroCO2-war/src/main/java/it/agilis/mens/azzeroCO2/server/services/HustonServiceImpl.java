@@ -316,6 +316,17 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
+    public boolean associaIDProgettoDiCompensazionePDF(Long idProgetto, String nomePDF) {
+        try {
+            azzeroCO2Register.associaIDProgettoDiCompensazionePDF(idProgetto, nomePDF);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public DettaglioVTO isPagato(DettaglioVTO riepilogo, UserInfoModel userInfoModel) {
         try {
             Ordine o = azzeroCO2Register.getOrdineDAO().getOrdineEager(riepilogo.getOrdineId());

@@ -15,55 +15,23 @@ import it.agilis.mens.azzeroCO2.client.components.uploadFiles.UploadState;
  */
 public interface Model extends ModelData {
 
-	/**
-	 * Sets the filename.
-	 * 
-	 * @param name filename.
-	 */
-	public void setName(String name);
+	void setName(String name);
 
-	/**
-	 * Gets the filename.
-	 * 
-	 * @return filename.
-	 */
-	public String getName();
-	
-	/**
-	 * Sets the file state.
-	 * 
-	 * @param state file state.
-	 */
-	public void setState(UploadState state);
+	String getName();
 
-	/**
-	 * Gets the file state.
-	 * 
-	 * @return file state.
-	 */
-	public UploadState getState();
+	void setState(UploadState state);
 
+	UploadState getState();
 
-	/**
-	 * Gets id Progetto.
-	 *
-	 * @return id Progetto.
-	 */
-    public Long getIdProgetto();
+    Long getIdProgetto();
 
-	/**
-	 * Sets the user friendly message about file state.
-	 * 
-	 * @param message.
-	 */
-	public void setMessage(String message);
+	void setMessage(String message);
 
-	/**
-	 * Gets the user friendly message about file state.
-	 * 
-	 * @return message.
-	 */
-	public String getMessage();
+	String getMessage();
 
     void setIdProgetto(Long idProgetto);
+
+    String getIMGorPDF();
+
+    void setIMGorPDF(String IMGorPDF);
 }

@@ -32,6 +32,7 @@ public class MultiUploadPresenter implements Presenter {
     private List<FileAddedListener> fileAddedListeners = new ArrayList<FileAddedListener>();
 
     private Long idProgetto;
+    private String IMGorPDF;
 
     public interface Display {
         public void setAddButtonListener(Listener<FieldEvent> listener);
@@ -63,9 +64,10 @@ public class MultiUploadPresenter implements Presenter {
         public void close();
     }
 
-    public MultiUploadPresenter(Display display, Long idProgetto) {
+    public MultiUploadPresenter(Display display, Long idProgetto, String IMGorPDF) {
         this.display = display;
         this.idProgetto = idProgetto;
+        this.IMGorPDF = IMGorPDF;
     }
 
     public void addFileAddedListener(FileAddedListener listener) {
@@ -172,6 +174,7 @@ public class MultiUploadPresenter implements Presenter {
         if (model.getState().equals(UploadState.OK)) {
             notifyFileUploadSucceedListener(model.getName());
             model.setIdProgetto(idProgetto);
+            model.setIMGorPDF(IMGorPDF);
 
             Dispatcher.forwardEvent(AmministrazioneEvents.SaveProgrammiDiCompensazione, model);
             display.close();

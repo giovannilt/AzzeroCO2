@@ -69,7 +69,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
     }
 
     private ContentPanel createCentre() {
-        GridCellRenderer<ProgettoDiCompensazioneModel> buttonRenderer = new GridCellRenderer<ProgettoDiCompensazioneModel>() {
+        GridCellRenderer<ProgettoDiCompensazioneModel> buttonRendererIMG = new GridCellRenderer<ProgettoDiCompensazioneModel>() {
 
             private boolean init;
 
@@ -95,11 +95,10 @@ public class ProgettiDiCompensazione extends LayoutContainer {
                     @Override
                     public void componentSelected(ButtonEvent ce) {
                         ListStore<FileUploadModel> fileUploadModelListStore = new ListStore<FileUploadModel>();
-
                         MultiUploadView view = new MultiUploadView(new FileUploadGrid(fileUploadModelListStore));
                         view.getFormPanel().setAction(UPLOAD_URL);
-                        view.getFormPanel();
-                        MultiUploadPresenter presenter = new MultiUploadPresenter(view, model.getId());
+                      //  view.getFormPanel();
+                        MultiUploadPresenter presenter = new MultiUploadPresenter(view, model.getId(), "IMG");
                         presenter.go();
                     }
                 });
@@ -112,6 +111,47 @@ public class ProgettiDiCompensazione extends LayoutContainer {
             }
         };
 
+        GridCellRenderer<ProgettoDiCompensazioneModel> buttonRendererPDF = new GridCellRenderer<ProgettoDiCompensazioneModel>() {
+
+            private boolean init;
+
+            public Object render(final ProgettoDiCompensazioneModel model, String property, ColumnData config, final int rowIndex,
+                                 final int colIndex, ListStore<ProgettoDiCompensazioneModel> store, Grid<ProgettoDiCompensazioneModel> grid) {
+                if (!init) {
+                    init = true;
+                    grid.addListener(Events.ColumnResize, new Listener<GridEvent<ProgettoDiCompensazioneModel>>() {
+
+                        public void handleEvent(GridEvent<ProgettoDiCompensazioneModel> be) {
+                            for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
+                                if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
+                                        && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
+                                    ((BoxComponent) be.getGrid().getView().getWidget(i, be.getColIndex())).setWidth(be.getWidth() - 10);
+
+
+                                }
+                            }
+                        }
+                    });
+                }
+                Button b = new Button((String) model.get(property), new SelectionListener<ButtonEvent>() {
+                    @Override
+                    public void componentSelected(ButtonEvent ce) {
+                        ListStore<FileUploadModel> fileUploadModelListStore = new ListStore<FileUploadModel>();
+                        MultiUploadView view = new MultiUploadView(new FileUploadGrid(fileUploadModelListStore));
+                        view.getFormPanel().setAction(UPLOAD_URL);
+                      //  view.getFormPanel();
+                        MultiUploadPresenter presenter = new MultiUploadPresenter(view, model.getId(), "PDF");
+                        presenter.go();
+                    }
+                });
+                b.setText((String) model.get(property) == null || "".equalsIgnoreCase((String) model.get(property)) ? "Click to upload" : (String) model.get(property));
+                b.setStyleAttribute("background-color", "#00ff00;");
+                b.setWidth(grid.getColumnModel().getColumnWidth(colIndex) - 10);
+                b.setToolTip("Click for upload");
+
+                return b;
+            }
+        };
 
         ContentPanel centre = new ContentPanel();
 
@@ -122,11 +162,11 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         configs.add(column);
 
         column = new ColumnConfig("imageUrl", "Upload Immagine", 150);
-        column.setRenderer(buttonRenderer);
+        column.setRenderer(buttonRendererIMG);
         configs.add(column);
 
         column = new ColumnConfig("pdfUrl", "Upload PDF", 150);
-        column.setRenderer(buttonRenderer);
+        column.setRenderer(buttonRendererPDF);
         configs.add(column);
 
         column = new ColumnConfig("prezzo", "Prezzo kg/CO2", 100);
