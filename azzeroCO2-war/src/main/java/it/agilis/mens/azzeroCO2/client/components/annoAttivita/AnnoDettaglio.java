@@ -71,17 +71,17 @@ public class AnnoDettaglio extends LayoutContainer {
 
         TabItem riepilogo = new TabItem("Riepilogo");
         riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        riepilogo.setEnabled(false);
+       // riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("Scegli progetto di compensazione");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        acquisto.setEnabled(false);
+       // acquisto.setEnabled(false);
         eventoTab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");
         conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        conferma.setEnabled(false);
+        //conferma.setEnabled(false);
         eventoTab.add(conferma);
 
         // TODO PORCO DEMONIO ALLE COSE DINAMICHE...

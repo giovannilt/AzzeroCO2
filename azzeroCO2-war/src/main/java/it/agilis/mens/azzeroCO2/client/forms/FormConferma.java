@@ -59,6 +59,7 @@ public class FormConferma extends LayoutContainer {
 
         createCentre();
         centre.setHeading("Conferma");
+        centre.setHeight(440);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));

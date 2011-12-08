@@ -86,7 +86,7 @@ public class FormRiepilogo extends LayoutContainer {
         cpEst.add(c, new RowData(1, 0.05));
 
         // TODO MIGLIORARE
-        cp.setHeight(443);
+        cp.setHeight(440);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
@@ -100,9 +100,6 @@ public class FormRiepilogo extends LayoutContainer {
         //cp.getBody().setStyleAttribute("border-top", "3px solid orange");
         cp.getBody().setStyleAttribute("border-width", "3px 0");
         cp.getBody().setStyleAttribute("margin-bottom", "0");
-
-
-        //To change body of overridden methods use File | Settings | File Templates.
     }
 
 

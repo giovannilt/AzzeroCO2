@@ -112,13 +112,14 @@ public class FormAcquisto extends LayoutContainer {
         east.getHeader().addTool(new ToolButton("x-tool-help"));
         east.getHeader().addTool(new ToolButton("x-tool-refresh"));
         westData.setMargins(new Margins(0));
-        east.setAutoHeight(true);
+        //east.setAutoHeight(true)
+        east.setHeight(435);
         add(east, westData);
 
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         centre.add(grid, new RowData(1, 1));
         centre.setHeading("Progetti Di Compensazione");
-        centre.setHeight(438);
+        centre.setHeight(435);
         //east.setHeight(23);
         centre.setStyleAttribute("background-color","#3F4757");
         east.setStyleAttribute("background-color","#3F4757");
