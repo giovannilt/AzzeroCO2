@@ -63,17 +63,17 @@ public class ConoscoCO2 extends LayoutContainer {
 
         TabItem riepilogo = new TabItem("Riepilogo");
         riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
-       // riepilogo.setEnabled(false);
+        riepilogo.setEnabled(false);
         conoscoCO2Tab.add(riepilogo);
 
         TabItem acquisto = new TabItem("Scegli progetto di compensazione");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
-      //  acquisto.setEnabled(false);
+        acquisto.setEnabled(false);
         conoscoCO2Tab.add(acquisto);
 
         TabItem conferma = new TabItem("Conferma");
         conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
-      //  conferma.setEnabled(false);
+       conferma.setEnabled(false);
         conoscoCO2Tab.add(conferma);
 
         add(conoscoCO2Tab, new RowData(1, 1));
