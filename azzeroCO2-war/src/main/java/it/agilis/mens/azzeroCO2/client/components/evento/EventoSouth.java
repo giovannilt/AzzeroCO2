@@ -113,7 +113,7 @@ public class EventoSouth extends LayoutContainer {
             leftText.setVisible(false);
 
         } else {
-            if (left_t.length() == 0) {
+            if (left_t.length() == 0 || left_t.equalsIgnoreCase(".")) {
                 left.setEnabled(false);
                 left.setVisible(false);
                 leftText.setVisible(false);

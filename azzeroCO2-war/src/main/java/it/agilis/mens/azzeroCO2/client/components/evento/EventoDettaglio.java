@@ -79,7 +79,7 @@ public class EventoDettaglio extends LayoutContainer {
 
         TabItem conferma = new TabItem("Conferma");
         conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        conferma.setEnabled(false);
+   //     conferma.setEnabled(false);
         eventoTab.add(conferma);
 
         add(eventoTab, new RowData(1, 1));
