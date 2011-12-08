@@ -40,7 +40,7 @@ import java.util.List;
 public class PubblicazioneWest extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
-    private Text title = new Text("Evento");
+    private Text title = new Text("Pubblicazioni");
     private final String oggettoDiDefault = "Non hai ancora inserito </br> nessuna attivita'";
     private final String riepilogoString = "Hai Terminato il Calcolo! </br>" +
             "Se vuoi modifica i dati inseriti,</br>" +
