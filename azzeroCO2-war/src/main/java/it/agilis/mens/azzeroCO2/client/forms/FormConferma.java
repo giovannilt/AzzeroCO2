@@ -142,7 +142,7 @@ public class FormConferma extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                LabelField label = new LabelField("Riceverai Via EMAIl il marchio<br>di avvenuta compensazione.");
+                LabelField label = new LabelField("Riceverai via email il marchio<br>di avvenuta compensazione.");
                 label.setStyleAttribute("font-size", "16px");
                 label.setWidth(300);
                 c.add(label);

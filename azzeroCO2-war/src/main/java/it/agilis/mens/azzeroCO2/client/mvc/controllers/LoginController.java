@@ -43,6 +43,7 @@ public class LoginController extends BaseController {
                 public void onSuccess(UserInfoModel result) {
                     if (result != null) {
                         Info.display("Info", "Benvenuto " + result.getNome());
+
                         if(loginView !=null){
                             loginView.hide();
                         }
