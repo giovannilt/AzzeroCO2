@@ -103,9 +103,11 @@ public class Utils {
         userInfoModel.setProvincia(userInfo.getProvincia());
 
         double kco2Compensati = 0.0;
-        for (Ordine o : userInfo.getOrdini()) {
-            if (o.getRicevutaDiPagamento() != null && o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO)) {
-                kco2Compensati += o.getRicevutaDiPagamento().getKgCO2();
+        if (userInfo.getOrdini() != null) {
+            for (Ordine o : userInfo.getOrdini()) {
+                if (o.getRicevutaDiPagamento() != null && o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO)) {
+                    kco2Compensati += o.getRicevutaDiPagamento().getKgCO2();
+                }
             }
         }
         userInfoModel.setKCO2Compensati(kco2Compensati);

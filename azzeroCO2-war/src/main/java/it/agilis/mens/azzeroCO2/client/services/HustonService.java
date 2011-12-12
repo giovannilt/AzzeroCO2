@@ -26,7 +26,7 @@ public interface HustonService extends RemoteService {
 
     Boolean saveCoefficienti(List<CoefficienteModel> coefficienteModels) throws IllegalArgumentException;
 
-    Boolean createNewUser(UserInfoModel registrazioneModeli) throws IllegalArgumentException;
+    UserInfoModel createNewUser(UserInfoModel registrazioneModeli) throws IllegalArgumentException;
 
     UserInfoModel getUserInfo(String userInfo, String password) throws IllegalArgumentException;
 

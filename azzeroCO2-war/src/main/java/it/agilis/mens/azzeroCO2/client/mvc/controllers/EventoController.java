@@ -16,6 +16,7 @@ import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
@@ -34,7 +35,6 @@ public class EventoController extends BaseController {
 
     private final EventoView eventoView = new EventoView(this);
     private final NumberFormat number = NumberFormat.getFormat("0.00");
-
 
     public EventoController() {
         registerEventTypes(AzzeroCO2Events.Init);
@@ -65,6 +65,19 @@ public class EventoController extends BaseController {
         if (event.getType().equals(EventoEvents.InAttesaDiConfermaPagamento)) {
             final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo());
 
+            if (riepilogo.getId() == null) {
+                getHustonService().saveOrdine(riepilogo, getUserInfoModel(), new AsyncCallback<DettaglioVTO>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        Info.display("Error", "Errore impossibile connettersi al server");
+                    }
+
+                    @Override
+                    public void onSuccess(DettaglioVTO dettaglioVTO) {
+                        riepilogo.setId(dettaglioVTO.getId());
+                    }
+                });
+            }
             final Timer timer = new Timer() {
                 public void run() {
                     MyAsyncCallback asyncCallback = new MyAsyncCallback();
@@ -89,6 +102,7 @@ public class EventoController extends BaseController {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
                 }
+
                 @Override
                 public void onSuccess(List<TipoDiCartaModel> result) {
                     if (result != null) {
@@ -209,10 +223,9 @@ public class EventoController extends BaseController {
 
         @Override
         public void onSuccess(DettaglioVTO result) {
-            if (result != null) {
+            if (result != null && result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
                 Info.display("Info", "Pagamento Avvenuto con sucesso");
                 Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
-
 
                 eventoView.showConferma(result);
                 sentMail(result);
@@ -229,6 +242,8 @@ public class EventoController extends BaseController {
         public Timer getTimer() {
             return timer;
         }
+
+
     }
 
 
