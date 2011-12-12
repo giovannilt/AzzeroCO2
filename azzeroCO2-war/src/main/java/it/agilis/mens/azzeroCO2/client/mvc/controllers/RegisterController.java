@@ -45,28 +45,32 @@ public class RegisterController extends BaseController {
                 public void onSuccess(Boolean result) {
                     if (result) {
                         Info.display("Info", "Username salvato.");
-                     //   view.hideStatus();
-                    }else{
+
+                    } else {
                         Info.display("Error", "Errore nel salvataggio.");
                     }
                 }
             };
             UserInfoModel data = (UserInfoModel) event.getData();
-          //  data.setProfilo(Profile.User.ordinal());
+            //  data.setProfilo(Profile.User.ordinal());
             getHustonService().saveUserInfo(data, aCallback);
         } else if (event.getType().equals(RegisterEvents.DoRegistration)) {
-            AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
+            AsyncCallback<UserInfoModel> aCallback = new AsyncCallback<UserInfoModel>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore nella creazione dell'utente");
                 }
 
                 @Override
-                public void onSuccess(Boolean result) {
-                    if (result) {
+                public void onSuccess(UserInfoModel result) {
+                    if (result!=null) {
                         Dispatcher.forwardEvent(RegisterEvents.HideForm);
                         Dispatcher.forwardEvent(LoginEvents.ShowLogOut);
                         Info.display("Info", "Utente Creato con sucesso");
                         view.hideStatus();
+
+                        AppEvent event = new AppEvent(AzzeroCO2Events.LoggedIn);
+                        event.setData(result);
+                        Dispatcher.forwardEvent(event);
                     } else {
                         Info.display("Error", "Username gia' registrato.");
                         view.hideStatus();

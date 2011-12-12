@@ -128,8 +128,8 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     }
 
     @Override
-    public void saveUserInfo(UserInfo userInfo) throws Exception {
-        userInfoDAO.save(userInfo);
+    public UserInfo saveUserInfo(UserInfo userInfo) throws Exception {
+       return userInfoDAO.save(userInfo);
     }
 
     public UserInfo getUserInfo(String userName) {

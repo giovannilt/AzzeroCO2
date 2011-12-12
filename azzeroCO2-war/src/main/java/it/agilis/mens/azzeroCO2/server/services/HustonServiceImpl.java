@@ -177,18 +177,17 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public Boolean createNewUser(UserInfoModel userInfoModel) throws IllegalArgumentException {
+    public UserInfoModel createNewUser(UserInfoModel userInfoModel) throws IllegalArgumentException {
         try {
             UserInfo ui = azzeroCO2Register.getUserInfo(userInfoModel.getUserName());
             if (ui != null) {
-                return false;
+                return null;
             }
-            azzeroCO2Register.saveUserInfo(Utils.getUserInfo(userInfoModel));
+           return  Utils.getUserInfoModel(azzeroCO2Register.saveUserInfo(Utils.getUserInfo(userInfoModel)));
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
-        return true;
     }
 
     @Override
@@ -329,16 +328,21 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     @Override
     public DettaglioVTO isPagato(DettaglioVTO riepilogo, UserInfoModel userInfoModel) {
         try {
-            Ordine o = azzeroCO2Register.getOrdineDAO().getOrdineEager(riepilogo.getOrdineId());
+            Ordine o = null;
+            if (riepilogo.getOrdineId() == null) {
+                DettaglioModel dettaglioModel = AzzerroCO2UtilsClientHelper.getDettaglioModel(riepilogo);
+                o = azzeroCO2Register.saveOrUpdateOrdine(Utils.getOrdine(dettaglioModel), Utils.getUserInfo(userInfoModel));
+            } else {
+                o = azzeroCO2Register.getOrdineDAO().getOrdineEager(riepilogo.getOrdineId());
+            }
+
             if (o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO)) {
                 o.getRicevutaDiPagamento().setCertificatoPDF(creaCertificatoInPDF(o));
                 azzeroCO2Register.saveOrUpdateOrdine(o, Utils.getUserInfo(userInfoModel));
-                DettaglioModel dettaglioModel1 = Utils.getDettaglioModel(o);
-                return AzzerroCO2UtilsClientHelper.getDettaglioVTO(dettaglioModel1);
-            } else {
-                return null;
             }
 
+            DettaglioModel dettaglioModel1 = Utils.getDettaglioModel(o);
+            return AzzerroCO2UtilsClientHelper.getDettaglioVTO(dettaglioModel1);
 
         } catch (Exception e) {
             e.printStackTrace();

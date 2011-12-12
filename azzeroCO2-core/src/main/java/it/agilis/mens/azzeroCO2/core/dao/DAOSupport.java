@@ -87,9 +87,8 @@ public class DAOSupport extends HibernateDaoSupport {
                     throws Exception {
                 hibernateTemplate.setFlushMode(HibernateAccessor.FLUSH_EAGER);
 
-                hibernateTemplate.merge(entity);
+                return hibernateTemplate.merge(entity);
 
-                return entity;
             }
         });
     }

@@ -16,8 +16,8 @@ import java.util.List;
  */
 public class UserInfoDAO extends DAOSupport implements IUserInfoDAO {
     @Override
-    public void save(UserInfo userInfo) throws Exception {
-        saveObject(userInfo);
+    public UserInfo save(UserInfo userInfo) throws Exception {
+        return (UserInfo) saveObject(userInfo);
     }
 
     @Override

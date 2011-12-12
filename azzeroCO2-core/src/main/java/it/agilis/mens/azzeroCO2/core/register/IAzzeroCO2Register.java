@@ -22,7 +22,7 @@ public interface IAzzeroCO2Register {
 
     void saveCoefficienti(List<Coefficiente> coefficienti) throws Exception;
 
-    void saveUserInfo(UserInfo userInfo) throws Exception;
+    UserInfo saveUserInfo(UserInfo userInfo) throws Exception;
 
 
     void saveProgettiCompensazione(List<ProgettoCompensazione> progettiDiCompensazione) throws Exception;
