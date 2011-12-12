@@ -63,29 +63,15 @@ public class EventoController extends BaseController {
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(EventoEvents.InAttesaDiConfermaPagamento)) {
-            final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo());
-
-            if (riepilogo.getId() == null) {
-                getHustonService().saveOrdine(riepilogo, getUserInfoModel(), new AsyncCallback<DettaglioVTO>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        Info.display("Error", "Errore impossibile connettersi al server");
-                    }
-
-                    @Override
-                    public void onSuccess(DettaglioVTO dettaglioVTO) {
-                        riepilogo.setId(dettaglioVTO.getId());
-                    }
-                });
-            }
             final Timer timer = new Timer() {
                 public void run() {
                     MyAsyncCallback asyncCallback = new MyAsyncCallback();
-                    getHustonService().isPagato(riepilogo, getUserInfoModel(), asyncCallback);
+                    getHustonService().isPagato(AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo()), getUserInfoModel(), asyncCallback);
                     asyncCallback.setTimer(this);
                 }
             };
             timer.schedule(10000);
+
         } else if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
             setCoefficentitoEventoView();
             eventoView.showRiepilogo();
@@ -223,15 +209,21 @@ public class EventoController extends BaseController {
 
         @Override
         public void onSuccess(DettaglioVTO result) {
-            if (result != null && result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
-                Info.display("Info", "Pagamento Avvenuto con sucesso");
-                Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
+            if (result != null) {
+                if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
+                    Info.display("Info", "Pagamento Avvenuto con sucesso");
+                    Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
 
-                eventoView.showConferma(result);
-                sentMail(result);
-            } else {
-                Info.display("Info", "NON PAGATO");
-                getTimer().schedule(10000);
+                    eventoView.showConferma(result);
+                    sentMail(result);
+                } else {
+                    Info.display("Info", "NON PAGATO");
+                    getTimer().schedule(10000);
+                }
+                DettaglioModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
+                eventoView.setDettaglioModel(model);
+            }else{
+                Info.display("Error", "Errore impossibile connettersi al server ERRORE DI SISTEMA");
             }
         }
 
