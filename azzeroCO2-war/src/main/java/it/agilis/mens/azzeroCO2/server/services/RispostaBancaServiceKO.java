@@ -7,7 +7,11 @@ import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +32,26 @@ public class RispostaBancaServiceKO extends HttpServlet {
     @Autowired
     @Qualifier("azzeroCO2Register")
     private AzzeroCO2Register azzeroCO2Register;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        WebApplicationContext ctx = WebApplicationContextUtils
+                .getRequiredWebApplicationContext(config.getServletContext());
+        AutowireCapableBeanFactory beanFactory = ctx
+                .getAutowireCapableBeanFactory();
+        beanFactory.autowireBean(this);
+    }
+
+//http://62.149.166.148/azzeroCO2/azzeroCO2/rispostaBancaOK?
+    // TRANSACTION_ID=84D9357D362F49CF86FFCADFDE9757AE&
+    // MERCHANT_ID=396870600001&
+    // ORDER_ID=AZZEROCO2.1323719666948&
+    // COD_AUT=T04396&
+    // IMPORTO=0,19&
+    // DIVISA=EUR&
+    // MAC=7363B5815A7F7282496781ED0E4821AB
+
 
     private static final String PAGE_TOP = ""
             + "<html>"
@@ -53,7 +77,7 @@ public class RispostaBancaServiceKO extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -80,9 +104,9 @@ public class RispostaBancaServiceKO extends HttpServlet {
                 algorithm.reset();
 
                 String controllo = TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key;
-                algorithm.update(controllo.toLowerCase().getBytes());
+                algorithm.update(controllo.toUpperCase().getBytes());
 
-                if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toLowerCase())) {
+                if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toUpperCase())) {
                     ricevuta.setEsito(Esito.PAGAMENTO_NON_AVVENUTO);
                     azzeroCO2Register.saveRicevuta(ricevuta);
                 } else {
@@ -96,8 +120,8 @@ public class RispostaBancaServiceKO extends HttpServlet {
                 e.printStackTrace();
                 out.println(PAGE_TOP + "<tr><td>Errore nella ricezione dei dati. -1</td></tr>" + PAGE_BOTTOM);
             }
-        }  else{
-             out.println(PAGE_TOP + "<tr><td>Errore nella ricezione dei dati. -2</td></tr>" + PAGE_BOTTOM);
+        } else {
+            out.println(PAGE_TOP + "<tr><td>Errore nella ricezione dei dati. -2</td></tr>" + PAGE_BOTTOM);
         }
     }
 }

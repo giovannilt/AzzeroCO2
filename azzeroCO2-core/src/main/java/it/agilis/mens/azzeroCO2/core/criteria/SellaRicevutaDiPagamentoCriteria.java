@@ -20,7 +20,7 @@ public class SellaRicevutaDiPagamentoCriteria implements Serializable, Selection
     public DetachedCriteria getDetachedCriteria() {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(SellaRicevutaDiPagamento.class, "SellaRicevutaDiPagamento");
         if (orderId != null && orderId.length() > 0) {
-            detachedCriteria.add(Restrictions.eq("orderId", getOrderId()).ignoreCase());
+            detachedCriteria.add(Restrictions.eq("ORDER_ID", getOrderId()).ignoreCase());
         }
         return detachedCriteria;
     }

@@ -7,7 +7,11 @@ import it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +34,15 @@ public class RispostaBancaServiceOK extends HttpServlet {
     @Qualifier("azzeroCO2Register")
     private AzzeroCO2Register azzeroCO2Register;
 
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        WebApplicationContext ctx = WebApplicationContextUtils
+                .getRequiredWebApplicationContext(config.getServletContext());
+        AutowireCapableBeanFactory beanFactory = ctx
+                .getAutowireCapableBeanFactory();
+        beanFactory.autowireBean(this);
+    }
 
     private static final String PAGE_TOP = ""
             + "<html>"
@@ -86,13 +99,13 @@ public class RispostaBancaServiceOK extends HttpServlet {
                     algorithm.reset();
 
                     String controllo = TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key;
-                    algorithm.update(controllo.toLowerCase().getBytes());
+                    algorithm.update(controllo.toUpperCase().getBytes());
 
-                    if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toLowerCase())) {
+                    if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toUpperCase())) {
                         ricevuta.setEsito(Esito.PAGATO);
                         azzeroCO2Register.saveRicevuta(ricevuta);
                     } else {
-                        // MEN IN THE MIDDEL STANNO PROVANDO UN ATTACCO....
+                       out.println(PAGE_TOP + "<tr><td>MD5 non corrispondente.+3</td></tr>" + PAGE_BOTTOM);
                     }
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
