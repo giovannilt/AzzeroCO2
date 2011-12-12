@@ -10,6 +10,7 @@ import it.agilis.mens.azzeroCO2.shared.vto.ManifestiPieghevoliFogliVTO;
 import it.agilis.mens.azzeroCO2.shared.vto.PubblicazioniRilegateVTO;
 import it.agilis.mens.azzeroCO2.shared.vto.TipoDiCartaVTO;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -208,33 +209,67 @@ public class AzzerroCO2UtilsClientHelper {
 
     public static String getMAC_MD5(PagamentoModel model) {
         String s = model.getMERCHANT_ID() + model.getORDER_ID() + model.getIMPORTO() + model.getDIVISA() + model.getABI() + model.getITEMS() + model.key;
-        s = s.toLowerCase();
+        s = s.toUpperCase();
 
-        return encodeMD5(s);
-    }
-
-    private static String encodeMD5(String stringToEncode) {
-
-        byte[] uniqueKey = stringToEncode.getBytes();
-
-        byte[] hash = null;
         try {
-            hash = MessageDigest.getInstance("MD5").digest(uniqueKey);
+            return encodeMD5(s);
         } catch (NoSuchAlgorithmException e) {
-            throw new Error("no MD5 support in this VM");
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
-        StringBuffer hashString = new StringBuffer();
-        for (int i = 0; i < hash.length; ++i) {
-            String hex = Integer.toHexString(hash[i]);
-            if (hex.length() == 1) {
-                hashString.append('0');
-                hashString.append(hex.charAt(hex.length() - 1));
-            } else {
-                hashString.append(hex.substring(hex.length() - 2));
-            }
-        }
-
-        return hashString.toString();
-
+        return "ERROR";
     }
+
+    private static String encodeMD5(String stringToEncode) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest md;
+        md = MessageDigest.getInstance("MD5");
+        byte[] md5hash = new byte[32];
+        md.update(stringToEncode.getBytes("iso-8859-1"), 0, stringToEncode.length());
+        md5hash = md.digest();
+        return convertToHex(md5hash);
+    }
+
+    private static String convertToHex(byte[] data) {
+        StringBuffer buf = new StringBuffer();
+        for (int i = 0; i < data.length; i++) {
+            int halfbyte = (data[i] >>> 4) & 0x0F;
+            int two_halfs = 0;
+            do {
+                if ((0 <= halfbyte) && (halfbyte <= 9))
+                    buf.append((char) ('0' + halfbyte));
+                else
+                    buf.append((char) ('a' + (halfbyte - 10)));
+                halfbyte = data[i] & 0x0F;
+            } while (two_halfs++ < 1);
+        }
+        return buf.toString();
+    }
+
 }
+
+/*  private static String encodeMD5(String stringToEncode) {
+
+    byte[] uniqueKey = stringToEncode.getBytes();
+
+    byte[] hash = null;
+    try {
+        hash = MessageDigest.getInstance("MD5").digest(uniqueKey);
+    } catch (NoSuchAlgorithmException e) {
+        throw new Error("no MD5 support in this VM");
+    }
+    StringBuffer hashString = new StringBuffer();
+    for (int i = 0; i < hash.length; ++i) {
+        String hex = Integer.toHexString(hash[i]);
+        if (hex.length() == 1) {
+            hashString.append('0');
+            hashString.append(hex.charAt(hex.length() - 1));
+        } else {
+            hashString.append(hex.substring(hex.length() - 2));
+        }
+    }
+
+    return hashString.toString();
+
+}*/
+

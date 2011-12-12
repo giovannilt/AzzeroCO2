@@ -58,71 +58,72 @@ public class PagamentoSella extends Dialog {
 
         form.setAction("https://www.payment.fccrt.it/CheckOutEGIPSy.asp");
         form.setHeaderVisible(false);
+        form.setMethod(FormPanel.Method.POST);
 
         TextField<String> TIPO_PAGAMENTO = new TextField<String>();
         TIPO_PAGAMENTO.setValue("CC");
         TIPO_PAGAMENTO.setName("TIPO_PAGAMENTO");
-        TIPO_PAGAMENTO.setVisible(false);
+    //    TIPO_PAGAMENTO.setVisible(false);
         form.add(TIPO_PAGAMENTO);
 
         TextField<String> MERCHANT_ID = new TextField<String>();   //" value="396870600001"/
         MERCHANT_ID.setValue("396870600001");
         MERCHANT_ID.setName("MERCHANT_ID");
-        MERCHANT_ID.setVisible(false);
+    //    MERCHANT_ID.setVisible(false);
         form.add(MERCHANT_ID);
 
         TextField<String> ORDER_ID = new TextField<String>(); //      " value="<?=$ORDER_ID?>"/>
         ORDER_ID.setName("ORDER_ID");
-        ORDER_ID.setVisible(false);
+    //    ORDER_ID.setVisible(false);
         form.add(ORDER_ID);
 
         TextField<String> IMPORTO = new TextField<String>(); //      " value="<?=$IMPORTO?>"/>
         IMPORTO.setName("IMPORTO");
-        IMPORTO.setVisible(false);
+     //   IMPORTO.setVisible(false);
         form.add(IMPORTO);
 
         TextField<String> DIVISA = new TextField<String>();
         DIVISA.setName("DIVISA");
         DIVISA.setValue("EUR");
 
-        DIVISA.setVisible(false);
+    ////    DIVISA.setVisible(false);
         form.add(DIVISA);
 
         TextField<String> ABI = new TextField<String>();   //    " value="03599"/>
         ABI.setValue("03599");
         ABI.setName("ABI");
-        ABI.setVisible(false);
+     //   ABI.setVisible(false);
         form.add(ABI);
 
         TextField<String> ITEMS = new TextField<String>();  //     " value="<?=$ITEMS?>"/>
         ITEMS.setValue("....");
         ITEMS.setName("ITEMS");
-        ITEMS.setVisible(false);
+     //   ITEMS.setVisible(false);
         form.add(ITEMS);
 
         TextField<String> URLOK = new TextField<String>();
         URLOK.setValue("....");
         URLOK.setName("URLOK");
-        URLOK.setVisible(false);
+    //    URLOK.setVisible(false);
         form.add(URLOK);
 
         TextField<String> URLKO = new TextField<String>();
         URLKO.setValue("....");
         URLKO.setName("URLKO");
-        URLKO.setVisible(false);
+  //      URLKO.setVisible(false);
         form.add(URLKO);
 
         TextField<String> URLACK = new TextField<String>();
         URLACK.setValue("....");
         URLACK.setName("URLACK");
 
-        URLACK.setVisible(false);
+   //     URLACK.setVisible(false);
         form.add(URLACK);
 
         TextField<String> MAC = new TextField<String>();   //    " value="<?=$codiceMAC?>"/>
         MAC.setValue("....");
         MAC.setName("MAC");
-        MAC.setVisible(false);
+     //   MAC.setVisible(false);
         form.add(MAC);
 
 
@@ -152,7 +153,7 @@ public class PagamentoSella extends Dialog {
         this.dettaglioModel = model;
         this.pagamentoModel = model.getPagamentoModel();
         binding = new FormBinding(form, true);
-        binding.bind(model);
+        binding.bind(pagamentoModel);
     }
 
     public Text getTesto() {

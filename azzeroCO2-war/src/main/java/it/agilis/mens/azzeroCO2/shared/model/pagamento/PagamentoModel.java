@@ -23,6 +23,8 @@ public class PagamentoModel extends BaseModel {
 
     public PagamentoModel(String importo) {
 
+        importo = importo.replace(',', '.');
+
         setTIPO_PAGAMENTO("CC");
         setMERCHANT_ID("396870600001");
         setORDER_ID(generateID());
@@ -30,12 +32,12 @@ public class PagamentoModel extends BaseModel {
         setIMPORTO(importo);
         setDIVISA("EUR");
         setABI("03599");
-        setITEMS("pagamentoCalcolatore^Pagamento online della propria impronta di CO2^1^" + importo + "^EUR");  // DA COMPLETARE CON IMPORTO ED ^EUR
+        setITEMS("pagamentoCalcolatore^Pagamento online della propria impronta di CO2^1^" + importo + "^EUR;".toUpperCase());  // DA COMPLETARE CON IMPORTO ED ^EUR
         setURLOK(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBancaOK");
         setURLKO(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBancaKO");
-        setURLACK(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBancaOK");
+        setURLACK(GWT.getHostPageBaseURL() + "azzeroCO2/rispostaBancaKO");
 
-        setMAC(AzzerroCO2UtilsClientHelper.getMAC_MD5(this));
+        setMAC(AzzerroCO2UtilsClientHelper.getMAC_MD5(this).toUpperCase());
 
         setEsito(Esito.IN_PAGAMENTO.toString());
 
@@ -91,6 +93,7 @@ public class PagamentoModel extends BaseModel {
     }
 
     public void setIMPORTO(String IMPORTO) {
+        IMPORTO = IMPORTO.replace(',', '.');
         set("IMPORTO", IMPORTO);
     }
 
@@ -115,6 +118,7 @@ public class PagamentoModel extends BaseModel {
     }
 
     public void setITEMS(String ITEMS) {
+        ITEMS= ITEMS.toUpperCase();
         set("ITEMS", ITEMS);
     }
 
@@ -199,8 +203,8 @@ public class PagamentoModel extends BaseModel {
         return get("certificatoPDF");
     }
 
-    public void setCertificatoPDF(String certificatoPDF){
-        set("certificatoPDF",certificatoPDF);
+    public void setCertificatoPDF(String certificatoPDF) {
+        set("certificatoPDF", certificatoPDF);
     }
 
     public String getConoscoCO2() {
