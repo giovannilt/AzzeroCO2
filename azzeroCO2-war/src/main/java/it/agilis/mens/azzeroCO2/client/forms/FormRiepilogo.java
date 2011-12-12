@@ -112,11 +112,11 @@ public class FormRiepilogo extends LayoutContainer {
         });
         column.setSortable(true);
         configs.add(column);
-        column = new ColumnConfig("oggetto", "Oggetto", 230);
+        column = new ColumnConfig("oggetto", "Oggetto", 270);
 
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 200);
+        column = new ColumnConfig("dettagli", "Dettagli", 280);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
