@@ -212,6 +212,11 @@ public class AzzerroCO2UtilsClientHelper {
         return encodeMD5(s);
     }
 
+    public static String getMAC_MD5(String toMd5) {
+
+        return encodeMD5(toMd5);
+    }
+
     private static String encodeMD5(String stringToEncode) {
         byte[] uniqueKey = stringToEncode.getBytes();
         byte[] hash;

@@ -9,6 +9,7 @@ import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
@@ -31,9 +32,9 @@ public class FormConferma extends LayoutContainer {
             east.getBody().setStyleAttribute("border-style", "solid");
             east.getBody().setStyleAttribute("border-top", "3px solid orange");
             east.getBody().setStyleAttribute("margin-bottom", "0");
-            east.getBody().setStyleAttribute("padding-top","1px");
+            east.getBody().setStyleAttribute("padding-top", "1px");
             east.getBody().setStyleAttribute("border-bottom", "3px solid orange");
-     }
+        }
     };
     private ContentPanel centre = new ContentPanel() {
         @Override
@@ -43,7 +44,7 @@ public class FormConferma extends LayoutContainer {
             centre.getBody().setStyleAttribute("border-style", "solid");
             centre.getBody().setStyleAttribute("border-top", "3px solid orange");
             centre.getBody().setStyleAttribute("margin-bottom", "0");
-            centre.getHeader().setStyleAttribute("border-right-width","15px") ;
+            centre.getHeader().setStyleAttribute("border-right-width", "15px");
         }
     };
     private String haiCompensatoText = "Hai Compensato ";
@@ -70,7 +71,7 @@ public class FormConferma extends LayoutContainer {
         createEast();
         east.setHeading("Download");
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.EAST, 250);
-      //  westData.setMargins(new Margins(0));
+        //  westData.setMargins(new Margins(0));
         east.setHeight(439);
         east.setWidth(250);
         //east.setStyleAttribute("border-bottom-color","orange");
@@ -82,10 +83,10 @@ public class FormConferma extends LayoutContainer {
         createCentre();
         centre.setHeading("Conferma");
         centre.setHeight(434);
-      //  centre.setWidth(400);
+        //  centre.setWidth(400);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-      //  centerData.setMargins(new Margins(0));
+        //  centerData.setMargins(new Margins(0));
         add(centre, centerData);
 
     }
@@ -163,7 +164,7 @@ public class FormConferma extends LayoutContainer {
             }
 
         }
-       // east.add(panel);
+        // east.add(panel);
     }
 
 
@@ -196,8 +197,9 @@ public class FormConferma extends LayoutContainer {
 
     public void setDettaglioModel(DettaglioVTO model) {
         if (model != null && model.getPagamentoModel() != null) {
-            haiCompensatoText += model.getPagamentoModel().getKgCO2() + " kgCO2! ";
-            haiCompensato.setText(haiCompensatoText);
+            if (model.getPagamentoModel() != null) {
+
+                NumberFormat numberFormat= NumberFormat.getFormat("0,00");
 
             attestatoDiComensazioneText += model.getPagamentoModel().getCertificatoPDF();
             attestatoDiComensazioneText = "<a target='_blank' href='" +
