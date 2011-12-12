@@ -5,7 +5,6 @@ import it.agilis.mens.azzeroCO2.core.dao.DAOSupport;
 import it.agilis.mens.azzeroCO2.core.dao.IOrdineDAO;
 import it.agilis.mens.azzeroCO2.core.entity.Ordine;
 import org.hibernate.Hibernate;
-import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,9 +22,9 @@ public class OrdineDAO extends DAOSupport implements IOrdineDAO {
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public List<Ordine> getListOfOrdini(OrdineCriteria ordineCriteria) {
-        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Ordine.class, "ordine");
+      //  DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Ordine.class, "ordine");
 
-        List<Ordine> list = (List<Ordine>) getList(detachedCriteria, true);
+        List<Ordine> list = (List<Ordine>) getList(ordineCriteria.getDetachedCriteria(), true);
         for (Ordine o : list) {
             Hibernate.initialize(o.getProgettoCompensazione());
             Hibernate.initialize(o.getTrasportoPersone());

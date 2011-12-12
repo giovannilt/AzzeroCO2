@@ -30,7 +30,7 @@ import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
  */
 public class EventoSouth extends LayoutContainer {
     private Text leftText = new Text(".");
-    private Text rigthText = new Text("Energia");
+    private Text rigthText = new Text(".");
 
     private Button left = new Button();
     private Button right = new Button();

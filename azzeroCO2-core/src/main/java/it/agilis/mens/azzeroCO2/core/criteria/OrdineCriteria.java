@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.criteria;
 
+import it.agilis.mens.azzeroCO2.core.entity.Ordine;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
@@ -18,10 +19,9 @@ public class OrdineCriteria implements Serializable, SelectionCriteria {
 
     @Override
     public DetachedCriteria getDetachedCriteria() {
-        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserInfo.class, "UserInfo");
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Ordine.class, "Ordine");
         if (userInfo != null) {
-            checkFieldEq(detachedCriteria, "userInfo", userInfo);
-
+            checkFieldEq(detachedCriteria, "utente", userInfo);
         }
         return detachedCriteria;
     }

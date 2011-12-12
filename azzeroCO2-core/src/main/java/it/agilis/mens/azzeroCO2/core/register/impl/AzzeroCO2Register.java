@@ -133,7 +133,11 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     }
 
     public UserInfo getUserInfo(String userName) {
-        return userInfoDAO.findUserInfo(userName);
+        UserInfo userInfo = userInfoDAO.findUserInfo(userName);
+        OrdineCriteria ordineCriteria = new OrdineCriteria();
+        ordineCriteria.setUserInfo(userInfo);
+        userInfo.setOrdini(ordineDAO.getListOfOrdini(ordineCriteria));
+        return userInfo;
     }
 
     @Override
