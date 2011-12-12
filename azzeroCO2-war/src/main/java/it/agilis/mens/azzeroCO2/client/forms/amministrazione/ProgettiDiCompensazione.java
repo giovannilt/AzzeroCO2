@@ -42,6 +42,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
     protected ProgettoDiCompensazioneModel createProgetto() {
         ProgettoDiCompensazioneModel progetto = new ProgettoDiCompensazioneModel();
         progetto.setNome("Nuovo Progetto");
+        progetto.setDescrizione("Descrizione");
         progetto.setAttivo(false);
         progetto.setPrezzo(0.00);
         //progetto.setKgCO2(0.00);
@@ -158,6 +159,10 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
         ColumnConfig column = new ColumnConfig("nome", "Progetto", 200);
+        column.setEditor(new CellEditor(new TextField<String>()));
+        configs.add(column);
+
+        column = new ColumnConfig("descrizione", "Descrizione", 200);
         column.setEditor(new CellEditor(new TextField<String>()));
         configs.add(column);
 

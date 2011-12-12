@@ -334,17 +334,42 @@ public class FormAcquisto extends LayoutContainer {
         };
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("nome", "Progetto", 100);
-        configs.add(column);
-
-        column = new ColumnConfig("Immagine", "Progetto", 210);
+        ColumnConfig column = new ColumnConfig("Immagine", "Progetto", 100);
         column.setRenderer(buttonRenderer);
         configs.add(column);
 
+        column = new ColumnConfig("nome", "Progetto", 250);
+        column.setRenderer(new GridCellRenderer<ProgettoDiCompensazioneModel>() {
+
+            private boolean init;
+
+            public Object render(final ProgettoDiCompensazioneModel model, String property, ColumnData config, final int rowIndex,
+                                 final int colIndex, ListStore<ProgettoDiCompensazioneModel> store, Grid<ProgettoDiCompensazioneModel> grid) {
+                if (!init) {
+                    init = true;
+                    grid.addListener(Events.ColumnResize, new Listener<GridEvent<ProgettoDiCompensazioneModel>>() {
+                        public void handleEvent(GridEvent<ProgettoDiCompensazioneModel> be) {
+                            for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
+                                if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
+                                        && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
+                                    ((BoxComponent) be.getGrid().getView().getWidget(i, be.getColIndex())).setWidth(be.getWidth() - 10);
+                                }
+                            }
+                        }
+                    });
+                }
+                String descr= model.getDescrizione()!=null || model.getDescrizione().length()>0 ? model.getDescrizione() : "";
+                return model.getNome()+" </br> "+descr;
+            }
+        });
+        configs.add(column);
+
+       /* column = new ColumnConfig("descrizione", "Descrizione", 100);
+        configs.add(column);
 
         column = new ColumnConfig("prezzo", "Euro", 60);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
-        configs.add(column);
+        configs.add(column);*/
 
         ColumnModel cm = new ColumnModel(configs);
 

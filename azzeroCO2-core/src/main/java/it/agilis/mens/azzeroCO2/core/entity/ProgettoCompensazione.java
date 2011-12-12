@@ -25,7 +25,8 @@ public class ProgettoCompensazione {
     private Ordine ordine;
 
     private String nome;
-    private Double  prezzo;
+    private String descrizione;
+    private Double prezzo;
     private String img;
     private Boolean attivo;
     private double kgCo2;
@@ -33,6 +34,14 @@ public class ProgettoCompensazione {
 
     public Long getId() {
         return id;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
     public void setId(Long id) {

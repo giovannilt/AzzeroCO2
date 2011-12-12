@@ -29,15 +29,21 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
         set("nome", nome);
     }
 
+    public String getDescrizione() {
+        return get("descrizione");
+    }
+
+    public void setDescrizione(String descrizione) {
+        set("descrizione", descrizione);
+    }
+
     public Boolean getAttivo() {
         return get("attivo");
     }
 
-
     public void setAttivo(Boolean attivo) {
         set("attivo", attivo);
     }
-
 
     public Long getId() {
         return get("id");
@@ -55,7 +61,7 @@ public class ProgettoDiCompensazioneModel extends BaseModelData {
         return get("imageUrl");
     }
 
-     public void setPdfUrl(String pdfUrl) {
+    public void setPdfUrl(String pdfUrl) {
         set("pdfUrl", pdfUrl);
     }
 

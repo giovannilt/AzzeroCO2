@@ -189,6 +189,7 @@ public class Utils {
         pcm.setId(pc.getId());
         pcm.setAttivo(pc.getAttivo());
         pcm.setNome(pc.getNome());
+        pcm.setDescrizione(pc.getDescrizione());
         pcm.setPrezzo(pc.getPrezzo());
         pcm.setImageUrl(pc.getImg());
         pcm.setPdfUrl(pc.getPdf());
@@ -199,7 +200,6 @@ public class Utils {
     public static List<ProgettoCompensazione> getProgettiDiCompensazioneList(List<ProgettoDiCompensazioneModel> progettiDiCompensaziones) {
         List<ProgettoCompensazione> _return = new ArrayList<ProgettoCompensazione>();
         for (ProgettoDiCompensazioneModel pdcm : progettiDiCompensaziones) {
-
             _return.add(getProgettoDiCompensazione(pdcm));
         }
         return _return;
@@ -214,9 +214,11 @@ public class Utils {
 
         pdc.setAttivo(pdcm.getAttivo());
         pdc.setId(pdcm.getId());
+        pdc.setDescrizione(pdcm.getDescrizione());
         pdc.setNome(pdcm.getNome());
         pdc.setPrezzo(pdcm.getPrezzo());
         pdc.setPdf(pdcm.getPdfUrl());
+        pdc.setImg(pdcm.getImageUrl());
         return pdc;
 
     }

@@ -101,7 +101,6 @@ public class AmministrazioneController extends BaseController {
                 };
                 hustonService.saveProgettiDiCompensazione(progettoDiCompensazioneModels, aCallback);
             }
-
         } else if (event.getType().equals(AmministrazioneEvents.SaveCoupons)) {
             List<CouponModel> coupons = event.getData();
             HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
