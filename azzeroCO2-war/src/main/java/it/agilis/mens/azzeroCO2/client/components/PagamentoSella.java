@@ -153,6 +153,7 @@ public class PagamentoSella extends Dialog {
         this.dettaglioModel = model;
         this.pagamentoModel = model.getPagamentoModel();
         binding = new FormBinding(form, true);
+       // pagamentoModel.init();
         binding.bind(pagamentoModel);
     }
 

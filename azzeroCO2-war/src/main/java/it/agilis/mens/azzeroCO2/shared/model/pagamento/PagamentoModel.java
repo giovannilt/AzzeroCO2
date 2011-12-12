@@ -27,7 +27,7 @@ public class PagamentoModel extends BaseModel {
 
         setTIPO_PAGAMENTO("CC");
         setMERCHANT_ID("396870600001");
-        setORDER_ID(generateID());
+        setORDER_ID("AZZEROCO2." + new Date().getTime());
 
         setIMPORTO(importo);
         setDIVISA("EUR");
@@ -41,11 +41,6 @@ public class PagamentoModel extends BaseModel {
 
         setEsito(Esito.IN_PAGAMENTO.toString());
 
-    }
-
-    private String generateID() {
-        String _return = "AZZEROCO2.";// + new Date().getTime();
-        return _return;
     }
 
     public void setLastUpdate(Date lastUpdate) {
