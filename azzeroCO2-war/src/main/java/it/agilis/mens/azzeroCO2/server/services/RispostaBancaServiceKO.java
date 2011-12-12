@@ -89,7 +89,7 @@ public class RispostaBancaServiceKO extends HttpServlet {
         String IMPORTO = request.getParameter("IMPORTO");          //
         String DIVISA = request.getParameter("DIVISA");           //(nel nostro caso "EUR")
         String MAC = request.getParameter("MAC");                //(codice di controllo da usare tra poco)
-        String PROG_ID = request.getParameter("PROG_ID");       //(il codice dell'oggetto, nel nostro esempio mi pare "pagamentoCalcolatore"
+       // String PROG_ID = request.getParameter("PROG_ID");       //(il codice dell'oggetto, nel nostro esempio mi pare "pagamentoCalcolatore"
 
         SellaRicevutaDiPagamentoCriteria criteria = new SellaRicevutaDiPagamentoCriteria();
         criteria.setOrderId(ORDER_ID);
@@ -110,8 +110,7 @@ public class RispostaBancaServiceKO extends HttpServlet {
                     ricevuta.setEsito(Esito.PAGAMENTO_NON_AVVENUTO);
                     azzeroCO2Register.saveRicevuta(ricevuta);
                 } else {
-                    // MEN IN THE MIDDEL STANNO PROVANDO UN ATTACCO....
-
+                    out.println(PAGE_TOP + "<tr><td>MD5 non corrispondente.+3</td></tr>" + PAGE_BOTTOM);
                 }
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
