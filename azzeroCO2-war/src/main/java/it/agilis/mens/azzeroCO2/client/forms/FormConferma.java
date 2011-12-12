@@ -201,12 +201,12 @@ public class FormConferma extends LayoutContainer {
 
             attestatoDiComensazioneText += model.getPagamentoModel().getCertificatoPDF();
             attestatoDiComensazioneText = "<a target='_blank' href='" +
-                    attestatoDiComensazioneText +"'><p style='padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:white;'>Attestato di Compensazione</p></a>";
+                    attestatoDiComensazioneText +"'><p style='padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:white;'>Attestato di compensazione</p></a>";
 
             attestatoDiComensazione.setHTML(attestatoDiComensazioneText);
 
             schedaProgettoText =  GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti")+ model.getProgettoDiCompensazioneModel().getPdfUrl();
-            schedaProgettoText =  "<a target='_blank' href='" + schedaProgettoText + "'><p style='padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:white;'>Scheda progetto.</p></a>";
+            schedaProgettoText =  "<a target='_blank' href='" + schedaProgettoText + "'><p style='padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:white;'>Scheda progetto</p></a>";
             schedaProgetto.setHTML(schedaProgettoText);
 
             String baseUrl = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti");
