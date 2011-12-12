@@ -12,6 +12,7 @@ import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
+import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
@@ -120,7 +121,7 @@ public class FormRiepilogo extends LayoutContainer {
         column = new ColumnConfig("oggetto", "Oggetto", 230);
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 236);
+        column = new ColumnConfig("dettagli", "Dettagli", 200);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
@@ -133,7 +134,7 @@ public class FormRiepilogo extends LayoutContainer {
         });
         configs.add(column);
 
-        column = new ColumnConfig();
+        column = new ColumnConfig("","",20);
         column.setRowHeader(false);
         column.setId("Cancella");
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
@@ -168,7 +169,7 @@ public class FormRiepilogo extends LayoutContainer {
                 return b;
             }
         });
-        column.setWidth(45);
+        column.setWidth(20);
         configs.add(column);
 
 
@@ -194,21 +195,30 @@ public class FormRiepilogo extends LayoutContainer {
                     });
                 }
 
-                Button edit = new Button("", new SelectionListener<ButtonEvent>() {
+                //Button edit = new Button("", new SelectionListener<ButtonEvent>() {
+                //Button edit = new Button("modifica", new SelectionListener<ButtonEvent>() {
+                LabelField edit = new LabelField("modifica");
+
+                SelectionListener<FieldEvent> sc=new SelectionListener<FieldEvent>() {
+
+
                     @Override
-                    public void componentSelected(ButtonEvent buttonEvent) {
+                    public void componentSelected(FieldEvent fieldEvent) {
                         Dispatcher.forwardEvent(EventoEvents.ShowStep, model);
                     }
-                });
+                };
 
-                edit.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.modifica()));
+                //TODO NON LO SO FARE!!!! edit.addListener(EventoEvents.ShowStep,sc);
+                //edit.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.modifica()));
                 edit.setAutoWidth(false);
-                edit.setStyleAttribute("position","absolute");
-                edit.setIconAlign(Style.IconAlign.LEFT);
+
+                //edit.setStyleAttribute("position","absolute");
+                edit.setStyleAttribute("text-align","center");
+                //edit.setIconAlign(Style.IconAlign.LEFT);
                 return edit;
             }
         });
-        column.setWidth(45);
+        column.setWidth(100);
         configs.add(column);
 
         ColumnModel cm = new ColumnModel(configs);
