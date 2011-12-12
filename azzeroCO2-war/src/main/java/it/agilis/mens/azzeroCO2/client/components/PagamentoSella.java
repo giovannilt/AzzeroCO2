@@ -160,8 +160,6 @@ public class PagamentoSella extends Dialog {
     public Text getTesto() {
         Text testo = new Text("</br>" +
                 "A pagamento avvenuto le verra' inviata una e-mail di conferma con la certificazione....</br>");
-
-
         return testo;
     }
 

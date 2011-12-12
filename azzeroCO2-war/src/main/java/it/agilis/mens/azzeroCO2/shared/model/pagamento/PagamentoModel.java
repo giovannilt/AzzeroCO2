@@ -23,7 +23,7 @@ public class PagamentoModel extends BaseModel {
 
     public PagamentoModel(String importo) {
 
-        importo = importo.replace(',', '.');
+     //   importo = importo.replace(',', '.');
 
         setTIPO_PAGAMENTO("CC");
         setMERCHANT_ID("396870600001");
@@ -88,7 +88,7 @@ public class PagamentoModel extends BaseModel {
     }
 
     public void setIMPORTO(String IMPORTO) {
-        IMPORTO = IMPORTO.replace(',', '.');
+       // IMPORTO = IMPORTO.replace(',', '.');
         set("IMPORTO", IMPORTO);
     }
 
