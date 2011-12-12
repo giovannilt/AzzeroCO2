@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.server.services;
 
+import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.core.criteria.SellaRicevutaDiPagamentoCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.Esito;
 import it.agilis.mens.azzeroCO2.core.entity.SellaRicevutaDiPagamento;
@@ -103,10 +104,14 @@ public class RispostaBancaServiceKO extends HttpServlet {
                 MessageDigest algorithm = MessageDigest.getInstance("MD5");
                 algorithm.reset();
 
-                String controllo = TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key;
+                /*String controllo = TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key;
                 algorithm.update(controllo.toUpperCase().getBytes());
 
                 if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toUpperCase())) {
+               */
+                String theMd5= AzzerroCO2UtilsClientHelper.getMAC_MD5((TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key).toUpperCase() );
+
+                if(theMd5.equalsIgnoreCase(MAC)){
                     ricevuta.setEsito(Esito.PAGAMENTO_NON_AVVENUTO);
                     azzeroCO2Register.saveRicevuta(ricevuta);
                 } else {
