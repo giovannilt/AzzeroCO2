@@ -31,6 +31,7 @@ public class FormConferma extends LayoutContainer {
             east.getBody().setStyleAttribute("border-style", "solid");
             east.getBody().setStyleAttribute("border-top", "3px solid orange");
             east.getBody().setStyleAttribute("margin-bottom", "0");
+            east.getBody().setStyleAttribute("padding-top","1px");
             east.getBody().setStyleAttribute("border-bottom", "3px solid orange");
      }
     };
@@ -42,6 +43,7 @@ public class FormConferma extends LayoutContainer {
             centre.getBody().setStyleAttribute("border-style", "solid");
             centre.getBody().setStyleAttribute("border-top", "3px solid orange");
             centre.getBody().setStyleAttribute("margin-bottom", "0");
+            centre.getHeader().setStyleAttribute("border-right-width","15px") ;
         }
     };
     private String haiCompensatoText = "Hai Compensato ";
@@ -69,7 +71,7 @@ public class FormConferma extends LayoutContainer {
         east.setHeading("Download");
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.EAST, 250);
       //  westData.setMargins(new Margins(0));
-        east.setHeight(440);
+        east.setHeight(439);
         east.setWidth(250);
         //east.setStyleAttribute("border-bottom-color","orange");
         //east.setStyleAttribute("padding-bottom","3px");
@@ -79,7 +81,7 @@ public class FormConferma extends LayoutContainer {
 
         createCentre();
         centre.setHeading("Conferma");
-        centre.setHeight(436);
+        centre.setHeight(434);
       //  centre.setWidth(400);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
@@ -140,7 +142,7 @@ public class FormConferma extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
 
-                LabelField label = new LabelField("Riceverai Via EMAIl il marchio<br>di avvenuta compensazione.");
+                LabelField label = new LabelField("Riceverai via email il marchio<br>di avvenuta compensazione.");
                 label.setStyleAttribute("font-size", "16px");
                 label.setWidth(300);
                 c.add(label);

@@ -320,6 +320,7 @@ public class CentralView extends View {
 
                     benvenuto.setBounds(30, 30, 250, 180);
                     benvenuto.setStyleAttribute("padding-top","10");
+                    benvenuto.setStyleAttribute("padding-left","12px");
                     benvenuto.setStyleAttribute("font-size","14px");
                     benvenuto.setStyleAttribute("border-top","3px solid");
                     benvenuto.setStyleAttribute("border-color","#22729E");

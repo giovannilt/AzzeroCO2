@@ -145,7 +145,7 @@ public class NorthPanel extends LayoutContainer {
             if (userInfoModel!=null &&
                     userInfoModel.getNome().length()>0 &&
                     !userInfoModel.getNome().equalsIgnoreCase("Guest")) {
-                nome.setHTML("<p style='padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:white;'>Benvenuto " + userInfoModel.getNome() + "</p>");
+                nome.setHTML("<p style='margin-top:2px;font-style:italic;font-size:13px;font-family:arial;color:orange;'>Benvenuto " + userInfoModel.getNome() + "</p>");
             }
             c.layout(true);
         }
