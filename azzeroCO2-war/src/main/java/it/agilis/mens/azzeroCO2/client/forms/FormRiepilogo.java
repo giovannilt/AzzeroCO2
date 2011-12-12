@@ -203,6 +203,7 @@ public class FormRiepilogo extends LayoutContainer {
 
                 edit.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.modifica()));
                 edit.setAutoWidth(false);
+                edit.setStyleAttribute("position","absolute");
                 edit.setIconAlign(Style.IconAlign.LEFT);
                 return edit;
             }
