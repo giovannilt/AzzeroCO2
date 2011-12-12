@@ -6,19 +6,13 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.BoxComponent;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.Text;
-import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
-import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
@@ -119,6 +113,7 @@ public class FormRiepilogo extends LayoutContainer {
         column.setSortable(true);
         configs.add(column);
         column = new ColumnConfig("oggetto", "Oggetto", 230);
+
         configs.add(column);
 
         column = new ColumnConfig("dettagli", "Dettagli", 200);
@@ -134,7 +129,7 @@ public class FormRiepilogo extends LayoutContainer {
         });
         configs.add(column);
 
-        column = new ColumnConfig("","",20);
+        column = new ColumnConfig("", "", 20);
         column.setRowHeader(false);
         column.setId("Cancella");
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
@@ -173,59 +168,19 @@ public class FormRiepilogo extends LayoutContainer {
         column.setWidth(20);
         configs.add(column);
 
-
-        column = new ColumnConfig();
-        column.setRowHeader(false);
-        column.setId("Modifica");
-        column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
-            private boolean init;
-
-            public Object render(final RiepilogoModel model, String property, ColumnData config, final int rowIndex,
-                                 final int colIndex, final ListStore<RiepilogoModel> store, Grid<RiepilogoModel> grid) {
-                if (!init) {
-                    init = true;
-                    grid.addListener(Events.ColumnResize, new Listener<GridEvent<RiepilogoModel>>() {
-                        public void handleEvent(GridEvent<RiepilogoModel> be) {
-                            for (int i = 0; i < be.getGrid().getStore().getCount(); i++) {
-                                if (be.getGrid().getView().getWidget(i, be.getColIndex()) != null
-                                        && be.getGrid().getView().getWidget(i, be.getColIndex()) instanceof BoxComponent) {
-                                    ((BoxComponent) be.getGrid().getView().getWidget(i, be.getColIndex())).setWidth(be.getWidth() - 10);
-                                }
-                            }
-                        }
-                    });
-                }
-
-                //Button edit = new Button("", new SelectionListener<ButtonEvent>() {
-                //Button edit = new Button("modifica", new SelectionListener<ButtonEvent>() {
-                LabelField edit = new LabelField("modifica");
-
-                SelectionListener<FieldEvent> sc=new SelectionListener<FieldEvent>() {
-
-
-                    @Override
-                    public void componentSelected(FieldEvent fieldEvent) {
-                        Dispatcher.forwardEvent(EventoEvents.ShowStep, model);
-                    }
-                };
-
-                //TODO NON LO SO FARE!!!! edit.addListener(EventoEvents.ShowStep,sc);
-                //edit.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.modifica()));
-                edit.setAutoWidth(false);
-
-                //edit.setStyleAttribute("position","absolute");
-                edit.setStyleAttribute("text-align","center");
-                //edit.setIconAlign(Style.IconAlign.LEFT);
-                return edit;
-            }
-        });
-        column.setWidth(100);
-        configs.add(column);
-
         ColumnModel cm = new ColumnModel(configs);
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
         grid.setHeight(350);
+
+        grid.addListener(Events.CellClick, new Listener<GridEvent>() {
+            public void handleEvent(GridEvent be) {
+                if (be.getType() == Events.CellClick) {
+                    Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getModel());
+
+                }
+            }
+        });
 
         return grid;
     }
