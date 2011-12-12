@@ -46,9 +46,10 @@ public class PagamentoSella extends Dialog {
         setResizable(false);
         //  setOnEsc(false);
         //  setClosable(false);
-        setHeight(300);
-        setWidth(400);
-
+        setHeight(500);
+        setWidth(550);
+        setHeading("Informazioni sul processo di pagamento");
+        setStyleAttribute("padding","0px");
         add(getForm());
         add(getTesto());
         createButtons();
@@ -134,7 +135,7 @@ public class PagamentoSella extends Dialog {
     protected void createButtons() {
         super.createButtons();
         getButtonBar().add(new FillToolItem());
-        final Button submit = new Button("Procedi Con il Pagamento");
+        final Button submit = new Button("Procedi con il pagamento");
         submit.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 Dispatcher.forwardEvent(EventoEvents.InAttesaDiConfermaPagamento);
@@ -158,7 +159,7 @@ public class PagamentoSella extends Dialog {
     }
 
     public Text getTesto() {
-        Text testo = new Text("Premendo il tasto procedi con il pagamento verrai reindirizzato in modo automatico alla pagina di cassa sul server sicuro (SSL) della banca con la quale operiamo.</br>In questa pagina dovranno essere inseriti i codici della tua carta di credito. Tutte le informazioni inserite nella pagina di cassa vengono trasmesse in modalità sicura, cioè utilizzando un sistema di cifratura dei dati basato sul protocollo SSL, direttamente ed esclusivamente, ai server della banca.</br>A questo punto i tuoi dati verranno elaborati dalla banca, terminato il processo di pagamento PREMI IL TASTO FINE e verrai reindirizzato nuovamente sul nostro sito. Se la transazione ha avuto esito positivo, verrai reindirizzato ad una pagina di conferma dell'avvenuto pagamento altrimenti, se la transazione ha avuto esito negativo (o è stata annullata), verrà visualizzato un messaggio di avviso su ciò che si è verificato.</br>L'ordine viene evaso se la transazione bancaria ha esito positivo. Accertati di aver ricevuto l'email di conferma dell'avvenuta transazione da parte della banca nonché le certificazioni di AzzeroCO2 e, qualora l'esito sia negativo, ti invitiamo a riprovare, rieffettuando l'ordine e controllando l'esattezza dei dati inseriti (Visa/Mastercard).</br></br>NB: RICORDATI DI PREMERE IL PULSANTE FINE SULLA PAGINA DELLA BANCA ALLA FINE DEL PROCESSO. SOLO IN QUESTO MODO AZZEROCO2 RICEVERA' CONFERMA DELL'AVVENUTO PAGAMENTO.</br>");
+        Text testo = new Text("Premendo il tasto procedi con il pagamento verrai reindirizzato in modo automatico alla pagina di cassa sul server sicuro (SSL) della banca con la quale operiamo.</br>In questa pagina dovranno essere inseriti i codici della tua carta di credito.</br> Tutte le informazioni inserite nella pagina di cassa vengono trasmesse in modalità sicura, cioè utilizzando un sistema di cifratura dei dati basato sul protocollo SSL, direttamente ed esclusivamente, ai server della banca.</br>A questo punto i tuoi dati verranno elaborati dalla banca, terminato il processo di pagamento PREMI IL TASTO FINE e verrai reindirizzato nuovamente sul nostro sito.</br> Se la transazione ha avuto esito positivo, verrai reindirizzato ad una pagina di conferma dell'avvenuto pagamento altrimenti, se la transazione ha avuto esito negativo (o è stata annullata), verrà visualizzato un messaggio di avviso su ciò che si è verificato.</br>L'ordine viene evaso se la transazione bancaria ha esito positivo.</br>Accertati di aver ricevuto l'email di conferma dell'avvenuta transazione da parte della banca nonché la certificazione di AzzeroCO2 e, qualora l'esito sia negativo, ti invitiamo a riprovare, rieffettuando l'ordine e controllando l'esattezza dei dati inseriti (Visa/Mastercard).</br></br>NB: RICORDATI DI PREMERE IL PULSANTE FINE SULLA PAGINA DELLA BANCA ALLA FINE DEL PROCESSO. SOLO IN QUESTO MODO AZZEROCO2 RICEVERA' CONFERMA DELL'AVVENUTO PAGAMENTO.</br>");
 
 
         return testo;
