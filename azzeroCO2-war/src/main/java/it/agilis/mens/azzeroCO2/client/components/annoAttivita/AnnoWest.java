@@ -190,8 +190,8 @@ public class AnnoWest extends LayoutContainer {
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
         m.setOggetto("Hai Terminato il Calcolo! </br>" +
-                "Se vuoi modifica i dati inseriti,</br>" +
-                " clicca sulla voce relativa.");
+                "Se vuoi modifica i dati inseriti</br>" +
+                " cliccando sulla voce relativa.");
         store.add(m);
     }
 
