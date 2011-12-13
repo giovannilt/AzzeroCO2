@@ -87,7 +87,7 @@ public class RegisterDialog extends Dialog {
         };
 
         userName = new TextField<String>();
-        userName.setFieldLabel("Username");
+        userName.setFieldLabel("Username*");
         userName.setName("userName");
         userName.setMinLength(6);
         userName.getMessages().setMinLengthText("la username deve essere di almeno 6 caratteri");
@@ -100,7 +100,7 @@ public class RegisterDialog extends Dialog {
         password.setMinLength(6);
         password.getMessages().setMinLengthText("la password deve essere di almeno 6 caratteri");
         password.setPassword(true);
-        password.setFieldLabel("Password");
+        password.setFieldLabel("Password*");
         password.setName("password");
         password.addKeyListener(keyListener);
         password.setLabelStyle("width:150");
@@ -111,7 +111,7 @@ public class RegisterDialog extends Dialog {
         repassword.setMinLength(6);
         repassword.getMessages().setMinLengthText("Ripeti la password");
         repassword.setPassword(true);
-        repassword.setFieldLabel("Ripeti password");
+        repassword.setFieldLabel("Ripeti password*");
         repassword.setName("repassword");
         repassword.addKeyListener(keyListener);
         repassword.setLabelStyle("white-space:nowrap");
@@ -123,7 +123,7 @@ public class RegisterDialog extends Dialog {
         nome.setMinLength(2);
         nome.getMessages().setMinLengthText("Nome troppo breve");
 
-        nome.setFieldLabel("Nome");
+        nome.setFieldLabel("Nome*");
         nome.setName("nome");
         nome.addKeyListener(keyListener);
         nome.setLabelStyle("width:150");
@@ -133,7 +133,7 @@ public class RegisterDialog extends Dialog {
         cognome.setMinLength(2);
         cognome.getMessages().setMinLengthText("Cognome troppo breve");
 
-        cognome.setFieldLabel("Cognome");
+        cognome.setFieldLabel("Cognome*");
         cognome.setName("cognome");
         cognome.addKeyListener(keyListener);
         cognome.setLabelStyle("width:150");
@@ -143,10 +143,10 @@ public class RegisterDialog extends Dialog {
         ragioneSoc.setMinLength(2);
         ragioneSoc.getMessages().setMinLengthText("Ragione sociale troppo breve");
 
-        ragioneSoc.setFieldLabel("Rag. sociale");
+        ragioneSoc.setFieldLabel("Rag. sociale*");
         ragioneSoc.setName("ragioneSociale");
         ragioneSoc.addKeyListener(keyListener);
-        ragioneSoc.setLabelStyle("white-space:nowrap");
+        //ragioneSoc.setLabelStyle("white-space:nowrap");
         ragioneSoc.setLabelStyle("width:150");
 
         formPanel.add(ragioneSoc);
@@ -155,7 +155,7 @@ public class RegisterDialog extends Dialog {
         indirizzo.setMinLength(2);
         indirizzo.getMessages().setMinLengthText("Indirizzo troppo breve");
 
-        indirizzo.setFieldLabel("Indirizzo");
+        indirizzo.setFieldLabel("Indirizzo*");
         indirizzo.setName("indirizzo");
         indirizzo.addKeyListener(keyListener);
         indirizzo.setLabelStyle("width:150");
@@ -166,7 +166,7 @@ public class RegisterDialog extends Dialog {
         citta.setMinLength(2);
         citta.getMessages().setMinLengthText("Nome città troppo breve");
 
-        citta.setFieldLabel("Città");
+        citta.setFieldLabel("Città*");
         citta.setName("citta");
         citta.addKeyListener(keyListener);
         citta.setLabelStyle("width:150");
@@ -178,7 +178,7 @@ public class RegisterDialog extends Dialog {
         provincia.setMaxLength(2);
         provincia.getMessages().setMaxLengthText("Inserisci la sigla della provincia");
 
-        provincia.setFieldLabel("Provincia");
+        provincia.setFieldLabel("Provincia*");
         provincia.setName("provincia");
         provincia.addKeyListener(keyListener);
         provincia.setLabelStyle("width:150");
@@ -190,7 +190,7 @@ public class RegisterDialog extends Dialog {
         cap.getMessages().setMinLengthText("Il CAP deve essere di 5 cifre");
         cap.setRegex("[0-9]+");
         cap.getMessages().setRegexText("Inserisci 5 cifre");
-        cap.setFieldLabel("CAP");
+        cap.setFieldLabel("CAP*");
         cap.setName("cap");
         cap.addKeyListener(keyListener);
         cap.setLabelStyle("width:150");
@@ -199,7 +199,7 @@ public class RegisterDialog extends Dialog {
         partitaIvaCF = new TextField<String>();
         partitaIvaCF.setMinLength(11);
         partitaIvaCF.setMaxLength(17);
-        partitaIvaCF.setName("pivaCF");
+        partitaIvaCF.setName("pivaCF*");
         partitaIvaCF.getMessages().setMinLengthText("La partita iva deve essere lunga 11 cifre e il codice fiscale 17 caratteri");
         partitaIvaCF.setFieldLabel("P.Iva/CF");
         partitaIvaCF.addKeyListener(keyListener);
@@ -209,7 +209,7 @@ public class RegisterDialog extends Dialog {
         telefono = new TextField<String>();
         telefono.setMinLength(2);
         telefono.getMessages().setMinLengthText("Numero troppo corto");
-        telefono.setFieldLabel("Telefono");
+        telefono.setFieldLabel("Telefono*");
         telefono.setName("telefono");
         telefono.addKeyListener(keyListener);
         telefono.setRegex("[0-9]+");
@@ -231,7 +231,7 @@ public class RegisterDialog extends Dialog {
         cellulare = new TextField<String>();
         cellulare.setMinLength(2);
         cellulare.getMessages().setMinLengthText("Numero cellulare troppo breve");
-        cellulare.setFieldLabel("Cellulare");
+        cellulare.setFieldLabel("Cellulare*");
         cellulare.setName("cellulare");
         cellulare.addKeyListener(keyListener);
         cellulare.setRegex("^[0-9]+");
@@ -241,7 +241,7 @@ public class RegisterDialog extends Dialog {
 
         email = new TextField<String>();
         email.setMinLength(2);
-        email.setFieldLabel("Email");
+        email.setFieldLabel("Email*");
         email.setName("email");
         email.addKeyListener(keyListener);
         email.setRegex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
@@ -252,7 +252,7 @@ public class RegisterDialog extends Dialog {
 
         reemail = new TextField<String>();
         reemail.setMinLength(2);
-        reemail.setFieldLabel("Ripeti email");
+        reemail.setFieldLabel("Ripeti email*");
         reemail.setName("reemail");
         reemail.addKeyListener(keyListener);
         reemail.setRegex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");

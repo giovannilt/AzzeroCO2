@@ -359,6 +359,7 @@ public class FormAcquisto extends LayoutContainer {
                     });
                 }
                 String descr= model.getDescrizione()!=null || model.getDescrizione().length()>0 ? model.getDescrizione() : "";
+                grid.setStyleAttribute("white-space","normal");
                 return model.getNome()+" </br> "+descr;
             }
         });
