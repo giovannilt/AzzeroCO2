@@ -197,7 +197,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
 
                 ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
                 tipoDiCarta.setEmptyText("Seleziona tipo di carta");
-                tipoDiCarta.setToolTip("TipoDiCarta");
+               // tipoDiCarta.setToolTip("TipoDiCarta");
                 tipoDiCarta.setDisplayField("parametro");
                 tipoDiCarta.setWidth(200);
                 tipoDiCarta.setDisplayField("nome");
@@ -266,7 +266,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
 
                 ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
                 tipoDiCarta.setEmptyText("Seleziona tipo di carta");
-                tipoDiCarta.setToolTip("TipoDiCarta");
+              //  tipoDiCarta.setToolTip("TipoDiCarta");
                 tipoDiCarta.setDisplayField("parametro");
                 tipoDiCarta.setWidth(200);
                 tipoDiCarta.setDisplayField("nome");
