@@ -1712,7 +1712,8 @@ a.x-menu-item {
 }
 
 .x-window-tr {
-    background-image: url(../images/window/right-corners.png);
+    /*background-image: url(../images/window/right-corners.png);  */
+    background-color:#3F4757;
 }
 
 .x-window-bc {
@@ -1724,7 +1725,8 @@ a.x-menu-item {
 }
 
 .x-window-br {
-    background-image: url(../images/window/right-corners.png);
+    /*background-image: url(../images/window/right-corners.png); */
+    background-color:#3F4757;
 }
 
 .x-window-mc {
