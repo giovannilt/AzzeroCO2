@@ -25,6 +25,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -338,7 +339,7 @@ public class FormAcquisto extends LayoutContainer {
         column.setRenderer(buttonRenderer);
         configs.add(column);
 
-        column = new ColumnConfig("nome", "Descrizione", 290);
+        column = new ColumnConfig("nome", "Descrizione", 289);
         column.setRenderer(new GridCellRenderer<ProgettoDiCompensazioneModel>() {
 
             private boolean init;
@@ -360,7 +361,9 @@ public class FormAcquisto extends LayoutContainer {
                 }
                 String descr= model.getDescrizione()!=null || model.getDescrizione().length()>0 ? model.getDescrizione() : "";
                 grid.setStyleAttribute("white-space","normal");
-                return model.getNome()+" </br> "+descr;
+
+                return new HTML("<table><tbody><tr><td>"+model.getNome()+"</td></tr>" +
+                        "<tr><td style='font-size:9px;'>"+descr+"</td></tr></tbody></table>");
             }
         });
         configs.add(column);
