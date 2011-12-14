@@ -8,13 +8,20 @@ import com.extjs.gxt.ui.client.event.KeyListener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.IconHelper;
+import com.extjs.gxt.ui.client.util.Margins;
+import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.Dialog;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Status;
+import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.layout.BoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
+import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
+import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import it.agilis.mens.azzeroCO2.client.mvc.events.RegisterEvents;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -58,7 +65,7 @@ public class RegisterDialog extends Dialog {
         binding.bind(registrazioneModel);
 
         FormLayout layout = new FormLayout();
-        layout.setLabelWidth(150);
+        layout.setLabelWidth(200);
         layout.setDefaultWidth(155);
         setLayout(layout);
         setButtons("");
@@ -263,12 +270,21 @@ public class RegisterDialog extends Dialog {
 
         CheckBox privacy =new CheckBox();
         privacy.setValue(true);
-        privacy.setFieldLabel("Autorizzo il trattamento dei dati personali ai sensi del D. lgs. 196/03");
-        privacy.setLabelStyle("font-size:9");
-        privacy.setLabelStyle("width:180");
-        formPanel.add(privacy);
+        Text autorizzo= new Text("<table><tbody><tr><td style='font-size:9px;'>Autorizzo il trattamento dei dati personali ai sensi del D. lgs. 196/03</td></tr></tbody></table>");
 
+        HBoxLayout layout = new HBoxLayout();
+        layout.setPadding(new Padding(1));
+        layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        layout.setPack(BoxLayout.BoxLayoutPack.END);
 
+        LayoutContainer cp= new LayoutContainer();
+        cp.setLayout(layout);
+
+        HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 0, 0, 0));
+
+        cp.add(privacy, layoutData);
+        cp.add(autorizzo, layoutData);
+        formPanel.add(cp);
 
         setFocusWidget(userName);
         return formPanel;

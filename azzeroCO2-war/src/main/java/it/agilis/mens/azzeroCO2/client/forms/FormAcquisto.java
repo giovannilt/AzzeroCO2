@@ -264,29 +264,6 @@ public class FormAcquisto extends LayoutContainer {
 
                 panel.add(c); //, new FormData("100%"));
             }
-
-
-            /*{
-               LayoutContainer c = new LayoutContainer();
-               c.setHeight(190);
-               c.setWidth(290);
-               c.setStyleAttribute("background-color", "#FF9933");
-               VBoxLayout layout = new VBoxLayout();
-               layout.setPadding(new Padding(2));
-               layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.LEFT);
-               c.setLayout(layout);
-
-               totaleKC02Label.setStyleAttribute("font-size", "18px");
-               totaleKC02Label.setStyleAttribute("color", "#2F3645");
-               totaleKC02Label.setWidth("");
-               c.add(totaleKC02Label, new VBoxLayoutData(new Margins(5, 0, 10, 0)));
-               LabelField label = new LabelField("AzzeroCO2 puo' offrirti consulenza <br> per la riduzione delle emissioni <br>Chiamaci !!");
-               label.setStyleAttribute("font-size", "16px");
-               label.setStyleAttribute("color", "#2F3645");
-               //label.setWidth(290);
-               c.add(label, new VBoxLayoutData(new Margins(15, 0, 5, 0)));
-               panel.add(c, new FormData("100%"));
-           } */
         }
         return panel;
     }
@@ -341,9 +318,7 @@ public class FormAcquisto extends LayoutContainer {
 
         column = new ColumnConfig("nome", "Descrizione", 289);
         column.setRenderer(new GridCellRenderer<ProgettoDiCompensazioneModel>() {
-
             private boolean init;
-
             public Object render(final ProgettoDiCompensazioneModel model, String property, ColumnData config, final int rowIndex,
                                  final int colIndex, ListStore<ProgettoDiCompensazioneModel> store, Grid<ProgettoDiCompensazioneModel> grid) {
                 if (!init) {
@@ -457,17 +432,12 @@ public class FormAcquisto extends LayoutContainer {
         centre.getBody().setStyleAttribute("border-width", "3px 0");
         centre.getBody().setStyleAttribute("margin", "0");
 
-
         east.getBody().setStyleAttribute("border-bottom", "3px solid orange");
         east.getBody().setStyleAttribute("border-style", "solid");
         east.getBody().setStyleAttribute("border-top", "3px solid orange");
         east.getBody().setStyleAttribute("border-width", "3px 0");
         east.getBody().setStyleAttribute("margin-bottom", "0");
-
-        //To change body of overridden methods use File | Settings | File Templates.
     }
-
-
 }
 
 
