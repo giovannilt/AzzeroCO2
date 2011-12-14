@@ -17,7 +17,6 @@ import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
@@ -65,15 +64,12 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
         Text testo = new Text(" Si tratta di pubblicazioni non rilegate. <br><br>");
         testo.setStyleAttribute("font-size", "9pt");
 
-
         Text note = new Text("Puoi inserire più di un formato. ");
         note.setStyleAttribute("font-size", "9pt");
         note.setStyleAttribute("font-style", "italic");
 
         textContent.add(testo);
         textContent.add(note);
-
-
 
         cpEst.setFrame(false);
         cpEst.setHeading("Manifesti, pieghevoli, fogli");
