@@ -176,14 +176,35 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(altezza, flex);
-                c.add(new LabelField("Altezza (cm)"), flex);
+                c.add(new LabelField("altezza (cm)"), flex);
+
+                //NumberField larghezza = new NumberField();
+                //larghezza.setWidth(60);
+                //larghezza.setName("larghezza");
+
+                //c.add(larghezza, flex);
+                //c.add(new LabelField("larghezza (cm)"), flex);
+
+                panel.add(c, new FormData("100%"));
+            }
+            {
+                LayoutContainer c = new LayoutContainer();
+                HBoxLayout layout = new HBoxLayout();
+                layout.setPadding(new Padding(10));
+                layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+                c.setLayout(layout);
+
+
+                LabelField label = new LabelField(" ");
+                label.setWidth(100);
+                c.add(label);
 
                 NumberField larghezza = new NumberField();
                 larghezza.setWidth(60);
                 larghezza.setName("larghezza");
 
                 c.add(larghezza, flex);
-                c.add(new LabelField("Larghezza (cm)"), flex);
+                c.add(new LabelField("larghezza (cm)"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -228,7 +249,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(grammatura, flex);
-                c.add(new LabelField("Grammatura"), flex);
+                c.add(new LabelField("grammatura"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -253,7 +274,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(tiratura, flex);
-                c.add(new LabelField("Copie"), flex);
+                c.add(new LabelField("copie"), flex);
 
                 panel.add(c, new FormData("100%"));
             }

@@ -34,7 +34,7 @@ public class Pubblicazione extends LayoutContainer {
     private EventoFormDettaglio formDettaglio = new EventoFormDettaglio();
 
     private final FormPubblicazioniRilegate formPubblicazioniRilegate = new FormPubblicazioniRilegate();
-    private final FormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new FormManifestiPieghevoliFogli();
+    private final FormManifestiPieghevoliFogli formManifestipieghevoliFogli = new FormManifestiPieghevoliFogli();
     private final FormBigliettiDaVisita formBigliettiDaVisita = new FormBigliettiDaVisita();
 
     private final FormRiepilogo formRiepilogo = new FormRiepilogo();
@@ -80,9 +80,9 @@ public class Pubblicazione extends LayoutContainer {
         add(pubblicazioneoTab, new RowData(1, 1));
 
 
-        posizioniText.add(Arrays.asList(".", "Manifesti piegevoli e fogli"));// Pubblicazioni rilegate
+        posizioniText.add(Arrays.asList(".", "Manifesti pieghevoli e fogli"));// Pubblicazioni rilegate
         posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Biglietti da visita e cartelline"));
-        posizioniText.add(Arrays.asList("Manifesti piegevoli e fogli", "Riepilogo"));           // Manifesti Piegevoli e Fogli
+        posizioniText.add(Arrays.asList("Manifesti pieghevoli e fogli", "Riepilogo"));           // Manifesti pieghevoli e Fogli
         posizioniText.add(Arrays.asList("Biglietti da visita e cartelline", "Scegli progetto di compensazione"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
@@ -99,8 +99,8 @@ public class Pubblicazione extends LayoutContainer {
         formPubblicazioniRilegate.setTitle("Pubblicazioni Rilegate");
         calcoloCardPanel.add(formPubblicazioniRilegate, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
-        formManifestiPiegevoliFogli.setTitle("Manifesti Pieghevoli");
-        calcoloCardPanel.add(formManifestiPiegevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
+        formManifestipieghevoliFogli.setTitle("Manifesti Pieghevoli");
+        calcoloCardPanel.add(formManifestipieghevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         formBigliettiDaVisita.setTitle("Biglietti da visita e cartelline");
         calcoloCardPanel.add(formBigliettiDaVisita, new BorderLayoutData(Style.LayoutRegion.CENTER));
@@ -208,7 +208,7 @@ public class Pubblicazione extends LayoutContainer {
     public void clearPanel() {
         formDettaglio.clear();
         formPubblicazioniRilegate.clear(true);
-        formManifestiPiegevoliFogli.clear(true);
+        formManifestipieghevoliFogli.clear(true);
 
         formRiepilogo.clear();
         eventoFormAcquisto.clear();
@@ -240,7 +240,7 @@ public class Pubblicazione extends LayoutContainer {
         DettaglioModel eventoModel = formDettaglio.getDettaglioModel();
 
         eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
-        eventoModel.setManifestiPieghevoliFogliModel(formManifestiPiegevoliFogli.getManifestiPieghevoliFogliModel());
+        eventoModel.setManifestiPieghevoliFogliModel(formManifestipieghevoliFogli.getManifestiPieghevoliFogliModel());
 
         eventoModel.setProgettoDiCompensazioneModel(eventoFormAcquisto.getProgettoDiCompensazioneModel());
 
@@ -250,14 +250,14 @@ public class Pubblicazione extends LayoutContainer {
     public void restore(DettaglioModel eventoModel) {
         formDettaglio.setDettaglioModel(eventoModel);
         formPubblicazioniRilegate.setPubblicazioniRilegateModel(eventoModel.getPubblicazioniRilegateModel());
-        formManifestiPiegevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
+        formManifestipieghevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
 
         eventoFormAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
         formPubblicazioniRilegate.setTipoDiCartaModel(tipoDiCartaModels);
-        formManifestiPiegevoliFogli.setTipoDiCartaModel(tipoDiCartaModels);
+        formManifestipieghevoliFogli.setTipoDiCartaModel(tipoDiCartaModels);
     }
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
@@ -326,7 +326,7 @@ public class Pubblicazione extends LayoutContainer {
         if (data.getOggetto().toLowerCase().startsWith("Pubblicazioni rilegate".toLowerCase())) {
             formPubblicazioniRilegate.clear(true);
         } else if (data.getOggetto().toLowerCase().startsWith("Manifesti".toLowerCase())) {
-            formManifestiPiegevoliFogli.clear(true);
+            formManifestipieghevoliFogli.clear(true);
         }
     }
 

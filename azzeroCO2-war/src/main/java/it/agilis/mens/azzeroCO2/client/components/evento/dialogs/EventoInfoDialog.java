@@ -27,6 +27,8 @@ public class EventoInfoDialog  extends Dialog {
 
     }
 
+
+
     @Override
     protected void createButtons() {
 

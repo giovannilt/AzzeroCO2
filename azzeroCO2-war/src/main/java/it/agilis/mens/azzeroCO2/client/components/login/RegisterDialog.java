@@ -11,6 +11,7 @@ import com.extjs.gxt.ui.client.util.IconHelper;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.Status;
 import com.extjs.gxt.ui.client.widget.button.Button;
+import com.extjs.gxt.ui.client.widget.form.CheckBox;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
@@ -209,7 +210,7 @@ public class RegisterDialog extends Dialog {
         telefono = new TextField<String>();
         telefono.setMinLength(2);
         telefono.getMessages().setMinLengthText("Numero troppo corto");
-        telefono.setFieldLabel("Telefono*");
+        telefono.setFieldLabel("Telefono");
         telefono.setName("telefono");
         telefono.addKeyListener(keyListener);
         telefono.setRegex("[0-9]+");
@@ -231,7 +232,7 @@ public class RegisterDialog extends Dialog {
         cellulare = new TextField<String>();
         cellulare.setMinLength(2);
         cellulare.getMessages().setMinLengthText("Numero cellulare troppo breve");
-        cellulare.setFieldLabel("Cellulare*");
+        cellulare.setFieldLabel("Cellulare");
         cellulare.setName("cellulare");
         cellulare.addKeyListener(keyListener);
         cellulare.setRegex("^[0-9]+");
@@ -259,6 +260,14 @@ public class RegisterDialog extends Dialog {
         reemail.getMessages().setRegexText("Ripeti emil");
         reemail.setLabelStyle("width:150");
         formPanel.add(reemail);
+
+        CheckBox privacy =new CheckBox();
+        privacy.setValue(true);
+        privacy.setFieldLabel("Autorizzo il trattamento dei dati personali ai sensi del D. lgs. 196/03");
+        privacy.setLabelStyle("font-size:9");
+        privacy.setLabelStyle("width:180");
+        formPanel.add(privacy);
+
 
 
         setFocusWidget(userName);

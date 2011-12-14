@@ -74,7 +74,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         textContent.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
 
-        Text testo = new Text(" Scegli 'Tutte le persone' per calcolare le emissioni di tutte le persone che si sono spostate per l'evento.<br><br>Se invece vuoi dettagliare i trasporti per categoria di persone, non compilare 'Tutte le persone' ma usa le altre categorie disponibili o creane nuove.");
+        Text testo = new Text(" Scegli 'Tutte le persone' per calcolare le emissioni di tutte le persone che si sono spostate per l'evento.</br></br>Se invece vuoi dettagliare i trasporti per categoria di persone usa le altre categorie disponibili o creane di nuove.");
         //testo.setStyleAttribute("padding-top","10px");
         testo.setStyleAttribute("font-size", "9pt");
         textContent.add(testo);
@@ -572,15 +572,15 @@ public class FormTrasportoPersone extends LayoutContainer {
 
     private void setDefault() {
         TrasportoPersoneModel tpm = new TrasportoPersoneModel();
-        tpm.setCategoria("Tutte le persone");
+        tpm.setCategoria("tutte le persone");
         TrasportoPersoneModel tpmRealtori = new TrasportoPersoneModel();
-        tpmRealtori.setCategoria("Relatori");
+        tpmRealtori.setCategoria("relatori");
         TrasportoPersoneModel tpmStaff = new TrasportoPersoneModel();
-        tpmStaff.setCategoria("Staff");
+        tpmStaff.setCategoria("staff");
         TrasportoPersoneModel tpmSpettatori = new TrasportoPersoneModel();
-        tpmSpettatori.setCategoria("Spettatori");
+        tpmSpettatori.setCategoria("spettatori");
         TrasportoPersoneModel tpmFornitori = new TrasportoPersoneModel();
-        tpmFornitori.setCategoria("Fornitori");
+        tpmFornitori.setCategoria("fornitori");
 
         trasportoPersoneModel.add(tpm);
         trasportoPersoneModel.add(tpmRealtori);

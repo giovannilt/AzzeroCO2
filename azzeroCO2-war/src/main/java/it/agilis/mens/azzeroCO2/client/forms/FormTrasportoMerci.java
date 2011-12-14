@@ -90,9 +90,9 @@ public class FormTrasportoMerci extends LayoutContainer {
         c2.setLayout(layout2);
 
         LabelField istruzione=new LabelField("Inserisci il numero di tonnellate di merce per chilometraggio a mezzo di trasporto. </br>");
-        LabelField note =new LabelField("Il trasporto viene calcolato su medie di chilometraggio");
+        //LabelField note =new LabelField("Il trasporto viene calcolato su medie di chilometraggio");
         istruzione.setStyleAttribute("font-weight","bold");
-        note.setStyleAttribute("font-style","italic");
+        //note.setStyleAttribute("font-style","italic");
 
         c2.add(istruzione, flex);
         panel.add(c2);
@@ -102,7 +102,7 @@ public class FormTrasportoMerci extends LayoutContainer {
         layout3.setPadding(new Padding(2));
         layout3.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c3.setLayout(layout3);
-        c3.add(note,flex);
+        //c3.add(note,flex);
         panel.add(c3);
 
 

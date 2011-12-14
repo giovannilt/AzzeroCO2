@@ -40,7 +40,7 @@ public class EventoDettaglio extends LayoutContainer {
     private final FormPernottamenti formPernottamenti = new FormPernottamenti();
     private final FormTrasportoMerci formTrasportoMerci = new FormTrasportoMerci();
     private final FormPubblicazioniRilegate formPubblicazioniRilegate = new FormPubblicazioniRilegate();
-    private final FormManifestiPieghevoliFogli formManifestiPiegevoliFogli = new FormManifestiPieghevoliFogli();
+    private final FormManifestiPieghevoliFogli formManifestipieghevoliFogli = new FormManifestiPieghevoliFogli();
 
     private final FormRiepilogo formRiepilogo = new FormRiepilogo();
     private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
@@ -89,9 +89,9 @@ public class EventoDettaglio extends LayoutContainer {
         posizioniText.add(Arrays.asList("Energia", "Pernottamenti"));                      // TRASPORTO PERSONE
         posizioniText.add(Arrays.asList("Trasporto persone", "Trasporto Merci"));          // Pernottamenti
         posizioniText.add(Arrays.asList("Pernottamenti", "Pubblicazioni rilegate"));       // Trasporto Merci
-        posizioniText.add(Arrays.asList("Trasporto merci", "Manifesti piegevoli e fogli"));// Pubblicazioni rilegate
-        posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Riepilogo"));           // Manifesti Piegevoli e Fogli
-        posizioniText.add(Arrays.asList("Manifesti piegevoli e fogli", "Scegli progetto di compensazione"));       // RIEPILOGO
+        posizioniText.add(Arrays.asList("Trasporto merci", "Manifesti pieghevoli e fogli"));// Pubblicazioni rilegate
+        posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Riepilogo"));           // Manifesti pieghevoli e Fogli
+        posizioniText.add(Arrays.asList("Manifesti pieghevoli e fogli", "Scegli progetto di compensazione"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
     }
@@ -114,8 +114,8 @@ public class EventoDettaglio extends LayoutContainer {
         calcoloCardPanel.add(formTrasportoMerci, new BorderLayoutData(Style.LayoutRegion.CENTER));
         formPubblicazioniRilegate.setTitle("Pubblicazioni Rilegate");
         calcoloCardPanel.add(formPubblicazioniRilegate, new BorderLayoutData(Style.LayoutRegion.CENTER));
-        formManifestiPiegevoliFogli.setTitle("Manifesti Pieghevoli");
-        calcoloCardPanel.add(formManifestiPiegevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
+        formManifestipieghevoliFogli.setTitle("Manifesti Pieghevoli");
+        calcoloCardPanel.add(formManifestipieghevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         return calcoloCardPanel;
     }
@@ -224,7 +224,7 @@ public class EventoDettaglio extends LayoutContainer {
         formPernottamenti.clear();
         formTrasportoMerci.clear();
         formPubblicazioniRilegate.clear(true);
-        formManifestiPiegevoliFogli.clear(true);
+        formManifestipieghevoliFogli.clear(true);
 
         formRiepilogo.clear();
         eventoFormAcquisto.clear();
@@ -260,7 +260,7 @@ public class EventoDettaglio extends LayoutContainer {
         eventoModel.setTrasportoMerciModel(formTrasportoMerci.getTrasportoMerciModel());
 
         eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
-        eventoModel.setManifestiPieghevoliFogliModel(formManifestiPiegevoliFogli.getManifestiPieghevoliFogliModel());
+        eventoModel.setManifestiPieghevoliFogliModel(formManifestipieghevoliFogli.getManifestiPieghevoliFogliModel());
 
         eventoModel.setProgettoDiCompensazioneModel(eventoFormAcquisto.getProgettoDiCompensazioneModel());
 
@@ -274,14 +274,14 @@ public class EventoDettaglio extends LayoutContainer {
         formPernottamenti.setNottiModel(eventoModel.getNottiModel());
         formTrasportoMerci.setTrasportoMerciModel(eventoModel.getTrasportoMerciModel() == null ? new TrasportoMerciModel() : eventoModel.getTrasportoMerciModel());
         formPubblicazioniRilegate.setPubblicazioniRilegateModel(eventoModel.getPubblicazioniRilegateModel());
-        formManifestiPiegevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
+        formManifestipieghevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
 
         eventoFormAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
         formPubblicazioniRilegate.setTipoDiCartaModel(tipoDiCartaModels);
-        formManifestiPiegevoliFogli.setTipoDiCartaModel(tipoDiCartaModels);
+        formManifestipieghevoliFogli.setTipoDiCartaModel(tipoDiCartaModels);
     }
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
@@ -358,7 +358,7 @@ public class EventoDettaglio extends LayoutContainer {
         } else if (data.getOggetto().toLowerCase().startsWith("Pubblicazioni rilegate".toLowerCase())) {
             formPubblicazioniRilegate.clear(true);
         } else if (data.getOggetto().toLowerCase().startsWith("Manifesti".toLowerCase())) {
-            formManifestiPiegevoliFogli.clear(true);
+            formManifestipieghevoliFogli.clear(true);
         }
     }
 

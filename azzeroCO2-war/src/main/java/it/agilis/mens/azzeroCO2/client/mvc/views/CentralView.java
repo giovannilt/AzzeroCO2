@@ -356,7 +356,7 @@ public class CentralView extends View {
                 layoutCompensazione.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
                 compensazione.setLayout(layoutCompensazione);
 
-                Text testo = new Text("La combustione di fonti energetiche fossili (carbone, benzina, cherosene) sprigiona biossido di carbonio (CO2). Il CO2 è il maggior responsabile dei gas ad effetto serra provocati dall’uomo. Blabla blabla bla bla blal");
+                Text testo = new Text("Compensare significa ridurre la quantità di CO2 che viene immessa in atmosfera tramite interventi di forestazione  o generando  energia da fonti rinnovabili. Nel primo caso la CO2 viene assorbita dagli alberi, nel secondo non viene prodotta.");
                 testo.setStyleAttribute("font-family", "arial");
                 testo.setStyleAttribute("font-color","white");
                 testo.setStyleAttribute("font-size","14px");

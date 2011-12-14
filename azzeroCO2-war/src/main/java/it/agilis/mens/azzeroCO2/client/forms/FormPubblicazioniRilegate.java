@@ -179,7 +179,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(altezza, flex);
-                c.add(new LabelField("Altezza (cm)"), flex);
+                c.add(new LabelField("altezza (cm)"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -198,7 +198,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(larghezza, flex);
-                c.add(new LabelField("Larghezza (cm)"), flex);
+                c.add(new LabelField("larghezza (cm)"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -242,7 +242,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(grammatura, flex);
-                c.add(new LabelField("Grammatura"), flex);
+                c.add(new LabelField("grammatura"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -263,11 +263,11 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 numeroDiPagine.getMessages().setRegexText("Inserisci un numero intero");
                 numeroDiPagine.setPropertyEditorType(Integer.class);
 
-                LabelField label = new LabelField("Quantita' ");
+                LabelField label = new LabelField("Quantità ");
                 label.setWidth(100);
                 c.add(label);
                 c.add(numeroDiPagine, flex);
-                c.add(new LabelField("Numero di pagine"), flex);
+                c.add(new LabelField("numero di pagine"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -289,7 +289,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(tiratura, flex);
-                c.add(new LabelField("Tiratura"), flex);
+                c.add(new LabelField("tiratura"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -334,7 +334,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(100);
                 c.add(label);
                 c.add(grammatura, flex);
-                c.add(new LabelField("Grammatura copertina"), flex);
+                c.add(new LabelField("grammatura copertina"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -458,16 +458,16 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
 
     private void setDefault() {
         PubblicazioniRilegateModel catalogo = new PubblicazioniRilegateModel();
-        catalogo.setCategoria("Catalogo");
+        catalogo.setCategoria("catalogo");
 
         PubblicazioniRilegateModel bilancio = new PubblicazioniRilegateModel();
-        bilancio.setCategoria("Bilancio");
+        bilancio.setCategoria("bilancio");
 
         PubblicazioniRilegateModel report = new PubblicazioniRilegateModel();
-        report.setCategoria("Report");
+        report.setCategoria("report");
 
         PubblicazioniRilegateModel libro = new PubblicazioniRilegateModel();
-        libro.setCategoria("Libro");
+        libro.setCategoria("libro");
 
 
         pubblicazioniRilegateModel.add(catalogo);

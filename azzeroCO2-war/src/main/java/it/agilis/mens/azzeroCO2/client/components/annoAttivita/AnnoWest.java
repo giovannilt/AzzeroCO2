@@ -40,7 +40,7 @@ public class AnnoWest extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Anno di attività");
-    private final String oggettoDiDefault = "Non hai ancora inserito </br> nessuna attivita'";
+    private final String oggettoDiDefault = "Non hai ancora inserito </br> nessuna attività";
     private Esito esito;
 
     private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
@@ -155,7 +155,7 @@ public class AnnoWest extends LayoutContainer {
         store.removeAll();
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
-            m.setOggetto("Non hai ancora inserito </br> nessuna attivita'");
+            m.setOggetto("Non hai ancora inserito </br> nessuna attività");
             store.add(m);
         } else {
             this.esito = esito;
@@ -189,7 +189,7 @@ public class AnnoWest extends LayoutContainer {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
-        m.setOggetto("Hai Terminato il Calcolo! </br>" +
+        m.setOggetto("Hai terminato il calcolo! </br>" +
                 "Se vuoi modifica i dati inseriti</br>" +
                 " cliccando sulla voce relativa.");
         store.add(m);

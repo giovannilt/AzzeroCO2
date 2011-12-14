@@ -586,7 +586,7 @@ public class CalcoliHelper {
             if (co2 > 0) {
                 _rm.setKgCO2(co2);
                 _rm.setOggetto("Pubblicazioni rilegate / </br>" + prm.getCategoria());
-                _rm.setDettagli(formato + "</br>" + materiale + "</br>" + pagine + "</br>" + tiratura);
+                _rm.setDettagli(formato  + materiale  + pagine  + tiratura);
                 _return.add(_rm);
             }
         }
@@ -630,7 +630,7 @@ public class CalcoliHelper {
             }
 
             if (co2 > 0) {
-                _rm.setDettagli(formato + "</br>" + materiale + "</br>" + pagine + "</br>" + tiratura);
+                _rm.setDettagli(formato  + materiale  + pagine  + tiratura);
                 _rm.setKgCO2(co2);
                 _return.add(_rm);
             }

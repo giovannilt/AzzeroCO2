@@ -90,7 +90,7 @@ public class FormEnergia extends LayoutContainer {
         layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
         c2.setLayout(layout2);
 
-        LabelField widget = new LabelField("Inserisci nei relativi campi la qualita' di energia utilizzata per realizzare l'evento.");
+        LabelField widget = new LabelField("Inserisci nei relativi campi la qualità di energia utilizzata per realizzare l'evento.");
         widget.setStyleAttribute("font-weight", "bolder");
 
         c2.add(widget);
@@ -112,7 +112,7 @@ public class FormEnergia extends LayoutContainer {
         label.setWidth(100);
         c.add(label);
         c.add(energiaElettrica);
-        LabelField kwh = new LabelField("Kwh");
+        LabelField kwh = new LabelField("kwh");
         kwh.setStyleAttribute("font-size", "11px");
         kwh.setStyleAttribute("padding-left","3px");
         c.add(kwh, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
@@ -167,7 +167,7 @@ public class FormEnergia extends LayoutContainer {
         label.setWidth(100);
         cGasoline.add(label);
         cGasoline.add(gasolio);
-        LabelField litri = new LabelField("Litri");
+        LabelField litri = new LabelField("litri");
         litri.setStyleAttribute("font-size", "11px");
         litri.setStyleAttribute("padding-left","3px");
         cGasoline.add(litri, new HBoxLayoutData(new Margins(0, 5, 0, 0)));

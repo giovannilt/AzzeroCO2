@@ -41,7 +41,7 @@ public class PubblicazioneWest extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Pubblicazioni");
-    private final String oggettoDiDefault = "Non hai ancora inserito </br> nessuna attivita'";
+    private final String oggettoDiDefault = "Non hai ancora inserito </br> nessuna attività";
     private final String riepilogoString = "Hai Terminato il Calcolo! </br>" +
             "Se vuoi modifica i dati inseriti,</br>" +
             " clicca sulla voce relativa.";
@@ -169,7 +169,7 @@ public class PubblicazioneWest extends LayoutContainer {
         store.removeAll();
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
-            m.setOggetto("Non hai ancora inserito </br> nessuna attivita'");
+            m.setOggetto("Non hai ancora inserito </br> nessuna attività");
             store.add(m);
         } else {
             this.esito = esito;

@@ -116,7 +116,7 @@ public class FormRiepilogo extends LayoutContainer {
 
         configs.add(column);
 
-        column = new ColumnConfig("dettagli", "Dettagli", 280);
+        column = new ColumnConfig("dettagli", "Dettagli", 265);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
@@ -166,12 +166,14 @@ public class FormRiepilogo extends LayoutContainer {
             }
         });
         column.setWidth(20);
+
         configs.add(column);
 
         ColumnModel cm = new ColumnModel(configs);
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
         grid.setHeight(350);
+        grid.setStyleAttribute("border-style","solid");
 
         grid.addListener(Events.CellClick, new Listener<GridEvent>() {
             public void handleEvent(GridEvent be) {
