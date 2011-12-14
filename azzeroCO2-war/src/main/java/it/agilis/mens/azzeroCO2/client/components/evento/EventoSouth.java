@@ -29,8 +29,8 @@ import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
  * To change this template use File | Settings | File Templates.
  */
 public class EventoSouth extends LayoutContainer {
-    private Text leftText = new Text(".");
-    private Text rigthText = new Text(".");
+    private Text leftText = new Text("");
+    private Text rigthText = new Text("Energia");
 
     private Button left = new Button();
     private Button right = new Button();

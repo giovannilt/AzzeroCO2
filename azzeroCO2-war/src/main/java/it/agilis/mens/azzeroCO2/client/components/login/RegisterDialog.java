@@ -365,10 +365,7 @@ public class RegisterDialog extends Dialog {
                         && email.getValue().equals(reemail.getValue())
                         && password.getValue().equals(repassword.getValue())
         );
-
-
     }
-
     public void hideStatus(){
         status.hide();
         getButtonBar().enable();

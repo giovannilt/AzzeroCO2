@@ -22,7 +22,6 @@ import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.client.components.InfoDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -129,7 +128,7 @@ public class CentralView extends View {
                     Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.EVENTO);
 
-                    Dispatcher.forwardEvent(EventoEvents.NextText, "Energia");
+                  //  Dispatcher.forwardEvent(EventoEvents.NextText, "Energia");
                   //  Dispatcher.forwardEvent(EventoEvents.PreviousText, ".");
 
                 }
@@ -148,7 +147,7 @@ public class CentralView extends View {
                     Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.ANNO_DI_ATTIVITA);
 
-                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, "Energia");
+                   // Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, "Energia");
                  //   Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, ".");
                 }
             });
