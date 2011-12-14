@@ -11,7 +11,7 @@ import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
 /**
@@ -65,7 +65,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Indica il nome il dove ed il quando e' avvenuto l'evento.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");

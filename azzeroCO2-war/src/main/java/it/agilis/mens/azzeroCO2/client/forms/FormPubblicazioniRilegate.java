@@ -16,7 +16,7 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 
@@ -94,7 +94,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog,"Si fa riferimento alle emissioni relative al ciclo di produzione di un grammo di carta.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");

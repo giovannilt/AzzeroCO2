@@ -15,7 +15,7 @@ import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
 
 /**
@@ -70,7 +70,7 @@ public class FormPernottamenti extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "È stata presa in considerazione una media dei consumi di energia e di acqua per stanza per notte.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");

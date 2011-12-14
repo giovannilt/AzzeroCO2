@@ -24,7 +24,7 @@ public class AzzeroCO2Controller extends BaseController {
         registerEventTypes(AzzeroCO2Events.CentralPanelReady);
         registerEventTypes(AzzeroCO2Events.NewsPanelReady);
         registerEventTypes(AzzeroCO2Events.LoggedIn);
-        registerEventTypes(AzzeroCO2Events.ShowInfo);
+        registerEventTypes(AzzeroCO2Events.ShowInfoDialog);
 
         registerEventTypes(LoginEvents.LogOut);
     }
@@ -37,11 +37,13 @@ public class AzzeroCO2Controller extends BaseController {
         } else if (event.getType().equals(AzzeroCO2Events.ShowInfo)) {
             azzeroCO2View.setInfo(getInfo());
             forwardToView(azzeroCO2View, event);
+        } else if (event.getType().equals(AzzeroCO2Events.ShowInfoDialog)) {
+            azzeroCO2View.setInfo((String) event.getData());
+            forwardToView(azzeroCO2View, event);
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
         } else {
             forwardToView(azzeroCO2View, event);
         }
     }
-
 }

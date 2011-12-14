@@ -14,7 +14,7 @@ public class EventoEvents {
     public static final EventType ClearStep = new EventType();
     public static final EventType ShowStep = new EventType();
     public static final EventType ShowRiepilogo = new EventType();
-    public static final EventType ShowInfoDialog = new EventType();
+   // public static final EventType ShowInfoDialog = new EventType();
     public static final EventType ShowConfermDialog = new EventType();
     public static final EventType ClearPanel = new EventType();
     public static final EventType Save = new EventType();

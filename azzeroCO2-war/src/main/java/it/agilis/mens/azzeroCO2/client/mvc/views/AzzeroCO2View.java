@@ -49,7 +49,7 @@ public class AzzeroCO2View extends View {
             onCentralPanelReady(event);
         } else if (eventType.equals(AzzeroCO2Events.NewsPanelReady)) {
             onNewsPanelReady(event);
-        } else if (eventType.equals(AzzeroCO2Events.ShowInfo)) {
+        } else if (eventType.equals(AzzeroCO2Events.ShowInfoDialog)) {
             infoDialog.show();
         }
 

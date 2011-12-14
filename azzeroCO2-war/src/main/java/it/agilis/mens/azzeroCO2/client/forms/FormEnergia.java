@@ -16,7 +16,7 @@ import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
 
 /**
@@ -71,7 +71,7 @@ public class FormEnergia extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Energia elettrica:  Il dato tiene conto di tutti i combustibili usati nelle centrali elettriche italiane.</br>Gas/gasolio: il dato tiene conto dell’uso del combustibile nei generatori domestici più utilizzati, sia unifamiliari che centralizzati.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");

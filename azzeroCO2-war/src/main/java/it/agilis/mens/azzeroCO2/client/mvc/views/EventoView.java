@@ -90,8 +90,6 @@ public class EventoView extends View {
             );
         } else if (event.getType().equals(EventoEvents.ShowStep)) {
             eventoDettaglio.showStep(event.<RiepilogoModel>getData());
-        } else if (event.getType().equals(EventoEvents.ShowInfoDialog)) {
-            eventoInfoDialog.show();
         } else if (event.getType().equals(EventoEvents.ShowConfermDialog)) {
             eventoConfermDialog.show();
         }

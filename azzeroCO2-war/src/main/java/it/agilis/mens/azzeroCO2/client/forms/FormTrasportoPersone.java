@@ -23,7 +23,7 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 
 import java.util.ArrayList;
@@ -141,7 +141,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(EventoEvents.ShowInfoDialog);
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Treno: si fa riferimento alle emissioni, ripartite per passeggero, dell’intero ciclo di vita del mezzo, delle rotaie e di tutti i componenti del sistema ferroviario. Le emissioni prodotte variano per tipo di treno e in base all’energia utilizzata per la sua costruzione e per la trazione.</br></br>Aereo: si fa riferimento alle emissioni, ripartite per passeggero, dell’intero ciclo di vita del mezzo e di tutti i componenti del sistema di trasporto aereo. Le emissioni prodotte variano per tipo di aereo e in base all’energia utilizzata per la sua costruzione e trazione.</br></br><<Auto, moto, autobus: si fa riferimento alle emissioni, ripartite per passeggero, di tutto il ciclo di vita del mezzo, delle strade e di tutte le componenti del trasporto su strada.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");

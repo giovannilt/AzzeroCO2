@@ -22,6 +22,7 @@ import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.client.components.InfoDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -63,6 +64,8 @@ public class CentralView extends View {
             onContentReady(event);
         } else if (eventType.equals(CentralEvents.AmministrazioneReady)) {
             onContentReady(event);
+
+
         } else if (eventType.equals(CentralEvents.ShowPanel)) {
             setActiveItem(event.<Eventi>getData());
         }
