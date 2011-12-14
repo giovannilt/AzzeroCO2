@@ -84,8 +84,9 @@ public class EventoFormDettaglio extends LayoutContainer {
         left.setLayout(layout);
 
         TextField<String> nomeEvento = new TextField<String>();
-        nomeEvento.setFieldLabel("Nome");
+        nomeEvento.setFieldLabel("Nome (*)");
         nomeEvento.setName("nome");
+
         left.add(nomeEvento);
 
         DateField dataInizio = new DateField();
@@ -101,6 +102,12 @@ public class EventoFormDettaglio extends LayoutContainer {
         note.setFieldLabel("Note");
         note.setName("note");
         left.add(note);
+
+        LabelField ps = new LabelField("(*) campo obbligatorio");
+
+        left.add(ps);
+
+
 
         LayoutContainer right = new LayoutContainer();
         right.setStyleAttribute("paddingLeft", "10px");
