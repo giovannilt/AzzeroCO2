@@ -99,28 +99,28 @@ public class EventoController extends BaseController {
             getHustonService().getTipoDiCarta(tipoDiCartaCallBack);
             forwardToView(eventoView, event);
         } else if (event.getType().equals(EventoEvents.Acquisto)) {
+            if (getProgettiDiCompensazioneList().size() == 0) {
+                setProgettiDiCompensazione();
+            }
+            eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
+        } else if (event.getType().equals(EventoEvents.Conferma)) {
             if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
                 Dispatcher.forwardEvent(LoginEvents.ShowForm);
             } else {
-                if (getProgettiDiCompensazioneList().size() == 0) {
-                    setProgettiDiCompensazione();
+                DettaglioModel model = eventoView.getRiepilogo();
+
+                double kgCO2 = getTotaleKgCO2(model);
+
+                // TODO Calcolare il totale togliendo lo sconto COUPON
+                if (model.getProgettoDiCompensazioneModel() != null) {
+                    PagamentoModel pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
+                    pagamentoModel.setLastUpdate(new Date());
+                    pagamentoModel.setKgCO2(kgCO2);
+                    model.setPagamentoModel(pagamentoModel);
+                    Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
+                } else {
+                    Info.display("Info", "Seleziona il Progetto di compensazione");
                 }
-                eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
-            }
-        } else if (event.getType().equals(EventoEvents.Conferma)) {
-            DettaglioModel model = eventoView.getRiepilogo();
-
-            double kgCO2 = getTotaleKgCO2(model);
-
-            // TODO Calcolare il totale togliendo lo sconto COUPON
-            if (model.getProgettoDiCompensazioneModel() != null) {
-                PagamentoModel pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
-                pagamentoModel.setLastUpdate(new Date());
-                pagamentoModel.setKgCO2(kgCO2);
-                model.setPagamentoModel(pagamentoModel);
-                Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
-            } else {
-                Info.display("Info", "Seleziona il Progetto di compensazione");
             }
         } else if (event.getType().equals(EventoEvents.CaricaProgettiDiCompensazione)) {
             if (getProgettiDiCompensazioneList().size() == 0) {
@@ -221,7 +221,7 @@ public class EventoController extends BaseController {
                 }
                 DettaglioModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                 eventoView.setDettaglioModel(model);
-            }else{
+            } else {
                 Info.display("Error", "Errore impossibile connettersi al server ERRORE DI SISTEMA");
             }
         }

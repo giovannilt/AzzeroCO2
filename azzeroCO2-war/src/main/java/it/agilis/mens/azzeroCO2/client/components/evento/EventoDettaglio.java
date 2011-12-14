@@ -6,7 +6,7 @@ import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
-import it.agilis.mens.azzeroCO2.client.forms.evento.*;
+import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormDettaglio;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -188,16 +188,16 @@ public class EventoDettaglio extends LayoutContainer {
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
                         Dispatcher.forwardEvent(EventoEvents.Acquisto);
-                        if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
+                    }
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Vai al pagamento")) {
+                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return eventoTab.getItems().get(i).getText();
                         }
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
                         Dispatcher.forwardEvent(EventoEvents.Riepilogo);
                     }
-
                     item.setEnabled(false);
-
                     eventoTab.getItems().get(i).setEnabled(true);
                     eventoTab.setSelection(eventoTab.getItems().get(i));
 
