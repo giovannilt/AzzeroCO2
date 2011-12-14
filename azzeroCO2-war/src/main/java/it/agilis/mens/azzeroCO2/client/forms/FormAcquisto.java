@@ -317,7 +317,7 @@ public class FormAcquisto extends LayoutContainer {
         column.setRenderer(buttonRenderer);
         configs.add(column);
 
-        column = new ColumnConfig("nome", "Descrizione", 289);
+        column = new ColumnConfig("nome", "Descrizione", 280);
         column.setRenderer(new GridCellRenderer<ProgettoDiCompensazioneModel>() {
             private boolean init;
 
