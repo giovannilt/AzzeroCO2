@@ -122,8 +122,8 @@ public class FormAcquisto extends LayoutContainer {
         centre.setHeading("Progetti di Compensazione");
         centre.setHeight(435);
         //east.setHeight(23);
-        centre.setStyleAttribute("background-color","#3F4757");
-        east.setStyleAttribute("background-color","#3F4757");
+        centre.setStyleAttribute("background-color", "#3F4757");
+        east.setStyleAttribute("background-color", "#3F4757");
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -259,7 +259,7 @@ public class FormAcquisto extends LayoutContainer {
                 com.extjs.gxt.ui.client.widget.button.Button ricalcola;
                 ricalcola = new com.extjs.gxt.ui.client.widget.button.Button("Calcola sconto");
                 //TODO fare funzionare sto pulsantone di calcolo del coupon
-                ricalcola.setStyleAttribute("padding-top","10px");
+                ricalcola.setStyleAttribute("padding-top", "10px");
                 c.add(ricalcola);
 
                 panel.add(c); //, new FormData("100%"));
@@ -303,9 +303,10 @@ public class FormAcquisto extends LayoutContainer {
                 if (model.getImageUrl() != null && !"".equalsIgnoreCase(model.getImageUrl())) {
                     String baseUrl = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti");
                     b.setUrl(baseUrl + model.getImageUrl());
-                }else{
+                } else {
                     b.setVisible(false);
-				}
+                }
+                config.style = "border-bottom:1px solid gray !important;";
 
                 return b;
             }
@@ -319,6 +320,7 @@ public class FormAcquisto extends LayoutContainer {
         column = new ColumnConfig("nome", "Descrizione", 289);
         column.setRenderer(new GridCellRenderer<ProgettoDiCompensazioneModel>() {
             private boolean init;
+
             public Object render(final ProgettoDiCompensazioneModel model, String property, ColumnData config, final int rowIndex,
                                  final int colIndex, ListStore<ProgettoDiCompensazioneModel> store, Grid<ProgettoDiCompensazioneModel> grid) {
                 if (!init) {
@@ -334,16 +336,17 @@ public class FormAcquisto extends LayoutContainer {
                         }
                     });
                 }
-                String descr= model.getDescrizione()!=null || model.getDescrizione().length()>0 ? model.getDescrizione() : "";
-                grid.setStyleAttribute("white-space","normal");
-
-                return new HTML("<table><tbody><tr><td>"+model.getNome()+"</td></tr>" +
-                        "<tr><td style='font-size:9px;'>"+descr+"</td></tr></tbody></table>");
+                String descr = model.getDescrizione() != null || model.getDescrizione().length() > 0 ? model.getDescrizione() : "";
+                grid.setStyleAttribute("white-space", "normal");
+                config.style = "border-bottom:1px solid gray !important;";
+                return new HTML("<table><tbody><tr><td>" + model.getNome() + "</td></tr>" +
+                        "<tr><td style='font-size:9px;'>" + descr + "</td></tr></tbody></table>");
             }
         });
         configs.add(column);
 
-       /* column = new ColumnConfig("descrizione", "Descrizione", 100);
+
+        /* column = new ColumnConfig("descrizione", "Descrizione", 100);
         configs.add(column);
 
         column = new ColumnConfig("prezzo", "Euro", 60);
