@@ -119,7 +119,7 @@ public class FormAcquisto extends LayoutContainer {
 
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         centre.add(grid, new RowData(1, 1));
-        centre.setHeading("Progetti Di Compensazione");
+        centre.setHeading("Progetti di Compensazione");
         centre.setHeight(435);
         //east.setHeight(23);
         centre.setStyleAttribute("background-color","#3F4757");
