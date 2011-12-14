@@ -65,7 +65,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Indica il nome il dove ed il quando e' avvenuto l'evento.");
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Indica il nome,luogo e data dell'evento.</br></br>Il nome dell'evento è obbligatorio.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");

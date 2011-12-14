@@ -71,7 +71,7 @@ public class FormEnergia extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Energia elettrica:  Il dato tiene conto di tutti i combustibili usati nelle centrali elettriche italiane.</br>Gas/gasolio: il dato tiene conto dell’uso del combustibile nei generatori domestici più utilizzati, sia unifamiliari che centralizzati.");
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Energia elettrica:  Il dato tiene conto di tutti i combustibili usati nelle centrali elettriche italiane.</br></br>Gas/gasolio: il dato tiene conto dell’uso del combustibile nei generatori domestici più utilizzati, sia unifamiliari che centralizzati.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");
