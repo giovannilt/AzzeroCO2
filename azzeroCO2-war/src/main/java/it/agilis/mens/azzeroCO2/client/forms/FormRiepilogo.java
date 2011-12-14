@@ -113,10 +113,23 @@ public class FormRiepilogo extends LayoutContainer {
         column.setSortable(true);
         configs.add(column);
         column = new ColumnConfig("oggetto", "Oggetto", 270);
-
+        column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
+            @Override
+            public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
+                config.style = "border-bottom:1px solid gray !important;";
+                return model.<Number>get(property);
+            }
+        });
         configs.add(column);
 
         column = new ColumnConfig("dettagli", "Dettagli", 265);
+        column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
+            @Override
+            public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
+                config.style = "border-bottom:1px solid gray !important;";
+                return model.<Number>get(property);
+            }
+        });
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
@@ -124,6 +137,7 @@ public class FormRiepilogo extends LayoutContainer {
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
+                config.style = "border-bottom:1px solid gray !important;";
                 return number.format(model.<Number>get(property));
             }
         });
@@ -137,6 +151,7 @@ public class FormRiepilogo extends LayoutContainer {
 
             public Object render(final RiepilogoModel model, String property, ColumnData config, final int rowIndex,
                                  final int colIndex, final ListStore<RiepilogoModel> store, Grid<RiepilogoModel> grid) {
+                config.style = "border-bottom:1px solid gray !important;";
                 if (!init) {
                     init = true;
                     grid.addListener(Events.ColumnResize, new Listener<GridEvent<RiepilogoModel>>() {
@@ -173,7 +188,7 @@ public class FormRiepilogo extends LayoutContainer {
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
         grid.setHeight(350);
-        grid.setStyleAttribute("border-style","solid");
+       // grid.setStyleAttribute("border-style","2px solid white !important");
 
         grid.addListener(Events.CellClick, new Listener<GridEvent>() {
             public void handleEvent(GridEvent be) {
