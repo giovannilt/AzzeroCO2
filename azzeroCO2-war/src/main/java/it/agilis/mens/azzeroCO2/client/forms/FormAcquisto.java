@@ -307,6 +307,7 @@ public class FormAcquisto extends LayoutContainer {
                     b.setVisible(false);
                 }
                 config.style = "border-bottom:1px solid gray !important;";
+                config.style="width:100px";
 
                 return b;
             }
