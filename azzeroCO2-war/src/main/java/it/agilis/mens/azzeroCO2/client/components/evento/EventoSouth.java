@@ -149,4 +149,11 @@ public class EventoSouth extends LayoutContainer {
         c.layout(true);
     }
 
+    public void clean() {
+        rigthText.setText("Energia");
+        rigthText.setVisible(true);
+        right.setVisible(true);
+        left.setVisible(false);
+        leftText.setVisible(false);
+    }
 }
