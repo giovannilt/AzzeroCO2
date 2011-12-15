@@ -119,7 +119,7 @@ public class FormAcquisto extends LayoutContainer {
 
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         centre.add(grid, new RowData(1, 1));
-        centre.setHeading("Progetti di Compensazione");
+        centre.setHeading("Progetti di compensazione");
         centre.setHeight(435);
         //east.setHeight(23);
         centre.setStyleAttribute("background-color", "#3F4757");
@@ -317,7 +317,7 @@ public class FormAcquisto extends LayoutContainer {
         column.setRenderer(buttonRenderer);
         configs.add(column);
 
-        column = new ColumnConfig("nome", "Descrizione", 289);
+        column = new ColumnConfig("nome", "Descrizione", 280);
         column.setRenderer(new GridCellRenderer<ProgettoDiCompensazioneModel>() {
             private boolean init;
 
