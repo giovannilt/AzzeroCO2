@@ -140,7 +140,6 @@ public class CentralView extends View {
             unAnno.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unAnnoDiAttivita()));
             unAnno.setIconAlign(Style.IconAlign.TOP);
 
-
             unAnno.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
