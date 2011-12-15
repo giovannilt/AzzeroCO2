@@ -68,7 +68,7 @@ public class EventoView extends View {
         } else if (eventType.equals(EventoEvents.ClearPanel)) {
             eventoDettaglio.clearPanel();
             west.clean();
-            south.clean();
+            south.setTextRigth("Energia", null);
         } else if (eventType.equals(EventoEvents.Previous)) {
             onPrevius(event);
         } else if (event.getType().equals(EventoEvents.PreviousText)) {

@@ -128,7 +128,7 @@ public class CentralView extends View {
                     Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.EVENTO);
 
-                  //  Dispatcher.forwardEvent(EventoEvents.NextText, "Energia");
+                    Dispatcher.forwardEvent(EventoEvents.NextText, "Energia");
                   //  Dispatcher.forwardEvent(EventoEvents.PreviousText, ".");
 
                 }
@@ -147,7 +147,7 @@ public class CentralView extends View {
                     Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.ANNO_DI_ATTIVITA);
 
-                   // Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, "Energia");
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, "Energia");
                  //   Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, ".");
                 }
             });
