@@ -112,7 +112,7 @@ public class FormEnergia extends LayoutContainer {
         label.setWidth(100);
         c.add(label);
         c.add(energiaElettrica);
-        LabelField kwh = new LabelField("kwh");
+        LabelField kwh = new LabelField("kWh");
         kwh.setStyleAttribute("font-size", "11px");
         kwh.setStyleAttribute("padding-left","3px");
         c.add(kwh, new HBoxLayoutData(new Margins(0, 5, 0, 0)));

@@ -118,7 +118,7 @@ public class FormSitoWeb extends LayoutContainer {
         suggerimenti.setStyleAttribute("color", "gray");
         suggerimenti.setStyleAttribute("form-variant","normal");
 
-        visitatori.add(new LabelField("visitatori"), flex);
+        visitatori.add(new LabelField("inserisci il numero di utenti"), flex);
         visitatori.add(visitatoriField);
 
         c1.add(istruzioni);

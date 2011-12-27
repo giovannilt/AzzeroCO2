@@ -56,23 +56,23 @@ public class Pubblicazione extends LayoutContainer {
 
         //pubblicazioneoTab.add(dettaglio);
 
-        TabItem calcolo = new TabItem("Calcolo");
+        TabItem calcolo = new TabItem("calcolo");
         createCalcoloTabs();
         calcolo.add(createCalcoloTabs(), new BorderLayoutData(Style.LayoutRegion.CENTER));
         calcolo.setEnabled(true);
         pubblicazioneoTab.add(calcolo);
 
-        TabItem riepilogo = new TabItem("Riepilogo");
+        TabItem riepilogo = new TabItem("riepilogo");
         riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
         riepilogo.setEnabled(false);
         pubblicazioneoTab.add(riepilogo);
 
-        TabItem acquisto = new TabItem("Scegli progetto di compensazione");
+        TabItem acquisto = new TabItem("scegli progetto di compensazione");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         pubblicazioneoTab.add(acquisto);
 
-        TabItem conferma = new TabItem("Conferma");
+        TabItem conferma = new TabItem("conferma");
         conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
         conferma.setEnabled(false);
         pubblicazioneoTab.add(conferma);
