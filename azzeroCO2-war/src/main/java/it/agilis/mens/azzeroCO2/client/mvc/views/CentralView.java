@@ -128,7 +128,7 @@ public class CentralView extends View {
                     Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.EVENTO);
 
-                  //  Dispatcher.forwardEvent(EventoEvents.NextText, "Energia");
+                    Dispatcher.forwardEvent(EventoEvents.NextText, "Energia");
                   //  Dispatcher.forwardEvent(EventoEvents.PreviousText, ".");
 
                 }
@@ -140,14 +140,13 @@ public class CentralView extends View {
             unAnno.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unAnnoDiAttivita()));
             unAnno.setIconAlign(Style.IconAlign.TOP);
 
-
             unAnno.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
                     Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
                     Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.ANNO_DI_ATTIVITA);
 
-                   // Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, "Energia");
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, "Energia");
                  //   Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, ".");
                 }
             });

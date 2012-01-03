@@ -15,7 +15,6 @@ import it.agilis.mens.azzeroCO2.client.components.evento.EventoNorth;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoSouth;
 import it.agilis.mens.azzeroCO2.client.components.evento.EventoWest;
 import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoConfermDialog;
-import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoInfoDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
@@ -43,7 +42,6 @@ import java.util.Map;
 public class EventoView extends View {
     private ContentPanel evento = new ContentPanel();
     private EventoConfermDialog eventoConfermDialog = new EventoConfermDialog();
-    private EventoInfoDialog eventoInfoDialog = new EventoInfoDialog();
 
     private EventoDettaglio eventoDettaglio = new EventoDettaglio();
     private ContentPanel center = new ContentPanel();
@@ -70,6 +68,7 @@ public class EventoView extends View {
         } else if (eventType.equals(EventoEvents.ClearPanel)) {
             eventoDettaglio.clearPanel();
             west.clean();
+            south.setTextRigth("Energia", null);
         } else if (eventType.equals(EventoEvents.Previous)) {
             onPrevius(event);
         } else if (event.getType().equals(EventoEvents.PreviousText)) {

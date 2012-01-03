@@ -11,7 +11,6 @@ import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoConfermDialog;
-import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoInfoDialog;
 import it.agilis.mens.azzeroCO2.client.components.pubblicazione.Pubblicazione;
 import it.agilis.mens.azzeroCO2.client.components.pubblicazione.PubblicazioneNorth;
 import it.agilis.mens.azzeroCO2.client.components.pubblicazione.PubblicazioneSouth;
@@ -44,7 +43,6 @@ public class UnaPubblicazioneView extends View {
 
     private ContentPanel pubblicazione = new ContentPanel();
     private EventoConfermDialog eventoConfermDialog = new EventoConfermDialog();
-    private EventoInfoDialog eventoInfoDialog = new EventoInfoDialog();
 
     private Pubblicazione pubblicazioneDettaglio = new Pubblicazione();
     private ContentPanel center = new ContentPanel();
@@ -91,8 +89,6 @@ public class UnaPubblicazioneView extends View {
             );
         } else if (event.getType().equals(PubblicazioniEvents.ShowStep)) {
             pubblicazioneDettaglio.showStep(event.<RiepilogoModel>getData());
-        } else if (event.getType().equals(PubblicazioniEvents.ShowInfoDialog)) {
-            eventoInfoDialog.show();
         } else if (event.getType().equals(PubblicazioniEvents.ShowConfermDialog)) {
             eventoConfermDialog.show();
         }

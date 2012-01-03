@@ -43,7 +43,6 @@ public class EventoSouth extends LayoutContainer {
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-
         layout.setPadding(new Padding(1));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c.setLayout(layout);
@@ -95,7 +94,7 @@ public class EventoSouth extends LayoutContainer {
             @Override
             public void componentSelected(ButtonEvent ce) {
                 if (rigthText.getText().equalsIgnoreCase("torna alla home")) {
-                   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                    Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
                 } else {
                     Dispatcher.forwardEvent(new AppEvent(EventoEvents.Next, ce));
                 }
@@ -128,7 +127,7 @@ public class EventoSouth extends LayoutContainer {
     }
 
     public void setTextRigth(String right_t, DettaglioModel riepilogo) {
-        if (riepilogo.getPagamentoModel() != null
+        if (riepilogo!=null && riepilogo.getPagamentoModel() != null
                 && riepilogo.getPagamentoModel().getEsito() != null
                 && riepilogo.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
             right.setVisible(false);
@@ -148,5 +147,4 @@ public class EventoSouth extends LayoutContainer {
         }
         c.layout(true);
     }
-
 }
