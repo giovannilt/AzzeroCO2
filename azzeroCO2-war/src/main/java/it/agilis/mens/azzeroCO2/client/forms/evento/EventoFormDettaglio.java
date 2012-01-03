@@ -2,10 +2,10 @@ package it.agilis.mens.azzeroCO2.client.forms.evento;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
-import com.extjs.gxt.ui.client.event.IconButtonEvent;
-import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
@@ -13,6 +13,8 @@ import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -89,8 +91,20 @@ public class EventoFormDettaglio extends LayoutContainer {
 
         left.add(nomeEvento);
 
-        DateField dataInizio = new DateField();
+        final DateField dataInizio = new DateField();
+        final DateField dataFine = new DateField();
+
         dataInizio.setFieldLabel("Data inizio");
+        dataInizio.addListener(Events.Change, new Listener<FieldEvent>() {
+            public void handleEvent(FieldEvent p_event) {
+                if(dataFine.getValue()!=null && p_event.getValue()!=null &&
+                        dataFine.getValue().before((Date)p_event.getValue())){
+                    Info.display("Info", "Data di inizio posteriore a data di fine.");
+                }
+
+               // Window.alert("change: " + p_event.value);
+            }
+        });
 
         dataInizio.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
         dataInizio.setName("inizio");
@@ -120,9 +134,19 @@ public class EventoFormDettaglio extends LayoutContainer {
         dove.setName("dove");
         right.add(dove);
 
-        DateField dataFine = new DateField();
+        
         dataFine.setFieldLabel("Data fine");
         dataFine.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
+        dataFine.addListener(Events.Change, new Listener<FieldEvent>() {
+            public void handleEvent(FieldEvent p_event) {
+                if(dataInizio.getValue()!=null && p_event.getValue()!=null &&
+                        dataInizio.getValue().after((Date)p_event.getValue())){
+                    Info.display("Info", "Data di inizio posteriore a data di fine.");
+                }
+
+                // Window.alert("change: " + p_event.value);
+            }
+        });
         dataFine.setName("fine");
         right.add(dataFine);
 
