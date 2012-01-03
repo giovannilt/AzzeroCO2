@@ -176,6 +176,7 @@ public class MultiUploadPresenter implements Presenter {
             model.setIdProgetto(idProgetto);
             model.setIMGorPDF(IMGorPDF);
             Dispatcher.forwardEvent(AmministrazioneEvents.SaveProgrammiDiCompensazione, model);
+
             display.close();
         } else {
             notifyFileUploadFailedListener(model.getName());

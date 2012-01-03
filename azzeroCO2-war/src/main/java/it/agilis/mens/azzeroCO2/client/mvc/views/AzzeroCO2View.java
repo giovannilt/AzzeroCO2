@@ -109,5 +109,6 @@ public class AzzeroCO2View extends View {
 
     public void setInfo(String info) {
         infoDialog.setInfo(info);
+        infoDialog.show();
     }
 }

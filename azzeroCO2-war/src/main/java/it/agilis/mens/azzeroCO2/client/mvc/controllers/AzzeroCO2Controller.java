@@ -37,7 +37,7 @@ public class AzzeroCO2Controller extends BaseController {
             forwardToView(azzeroCO2View, event);
         } else if (event.getType().equals(AzzeroCO2Events.ShowInfo)) {
             azzeroCO2View.setInfo(getInfo());
-            forwardToView(azzeroCO2View, event);
+        //    forwardToView(azzeroCO2View, event);
         } else if (event.getType().equals(AzzeroCO2Events.ShowInfoDialog)) {
             azzeroCO2View.setInfo((String) event.getData());
             forwardToView(azzeroCO2View, event);

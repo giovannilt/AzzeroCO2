@@ -187,6 +187,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         final RowEditor<ProgettoDiCompensazioneModel> re = new RowEditor<ProgettoDiCompensazioneModel>();
         re.getMessages().setSaveText("Salva");
         re.getMessages().setCancelText("Annulla");
+
         re.setClicksToEdit(EditorGrid.ClicksToEdit.TWO);
 
         ColumnModel cm = new ColumnModel(configs);

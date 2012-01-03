@@ -79,6 +79,7 @@ public class AmministrazioneController extends BaseController {
                     @Override
                     public void onSuccess(Boolean result) {
                         Info.display("Info", "ProgettiDiCompensazione Salvati");
+                        getProgettiDiCompensazione();
                     }
                 };
                 if (m.getIMGorPDF().equalsIgnoreCase("IMG")) {
@@ -122,7 +123,8 @@ public class AmministrazioneController extends BaseController {
             getProgettiDiCompensazione();
             //     }
             getOrdini();
-            amministrazioneView.setUserInfo(getUserInfoModel());
+           // amministrazioneView.setUserInfo(getUserInfoModel());
+
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
             amministrazioneView.setUserInfo((UserInfoModel) event.getData());
