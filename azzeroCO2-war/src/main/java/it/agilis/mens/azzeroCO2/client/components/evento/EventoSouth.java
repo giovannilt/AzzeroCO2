@@ -95,6 +95,8 @@ public class EventoSouth extends LayoutContainer {
             public void componentSelected(ButtonEvent ce) {
                 if (rigthText.getText().equalsIgnoreCase("torna alla home")) {
                     Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                    Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
+                    Dispatcher.forwardEvent(EventoEvents.NorthPanelShowButtons);
                 } else {
                     Dispatcher.forwardEvent(new AppEvent(EventoEvents.Next, ce));
                 }

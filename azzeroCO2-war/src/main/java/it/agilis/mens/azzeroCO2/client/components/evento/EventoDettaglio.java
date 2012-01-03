@@ -371,4 +371,5 @@ public class EventoDettaglio extends LayoutContainer {
         Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
         Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
     }
+
 }

@@ -68,6 +68,7 @@ public class NorthPanel extends LayoutContainer {
         home.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                Dispatcher.forwardEvent(EventoEvents.NorthPanelShowButtons);
             }
         });
         amministrazione.setVisible(false);

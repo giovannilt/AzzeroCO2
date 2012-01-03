@@ -57,6 +57,7 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.ShowStep);
         registerEventTypes(EventoEvents.ClearStep);
         registerEventTypes(EventoEvents.InAttesaDiConfermaPagamento);
+        registerEventTypes(EventoEvents.NorthPanelShowButtons);
     }
 
     @Override
@@ -216,6 +217,7 @@ public class EventoController extends BaseController {
                     Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
 
                     eventoView.showConferma(result);
+
                     sentMail(result);
                 } else {
                     if(numeroDiVolte>0){

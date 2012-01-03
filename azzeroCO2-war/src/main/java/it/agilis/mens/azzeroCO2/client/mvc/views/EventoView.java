@@ -61,6 +61,8 @@ public class EventoView extends View {
             onInit(event);
         } else if (eventType.equals(EventoEvents.Next)) {
             onNext(event);
+        } else if (eventType.equals(EventoEvents.NorthPanelShowButtons)) {
+            north.showButtons();
         } else if (eventType.equals(EventoEvents.ClearStep)) {
             eventoDettaglio.clearStep((RiepilogoModel) event.getData());
             DettaglioModel riepilogo = eventoDettaglio.riepilogo();
@@ -195,6 +197,7 @@ public class EventoView extends View {
     }
 
     public void showConferma(DettaglioVTO result) {
+        north.hideButtons();
         eventoDettaglio.showConferma(result);
     }
 
