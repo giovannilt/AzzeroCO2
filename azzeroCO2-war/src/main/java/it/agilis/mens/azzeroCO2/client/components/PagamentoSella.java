@@ -29,10 +29,12 @@ public class PagamentoSella extends Dialog {
     private FormPanel form;
     private PagamentoModel pagamentoModel = new PagamentoModel("0.0");
     private FormBinding binding;
-    private DettaglioModel dettaglioModel;
+    public final Button submit;
+
 
     public PagamentoSella() {
         FormLayout layout = new FormLayout();
+
         layout.setLabelWidth(200);
         layout.setDefaultWidth(600);
         setLayout(layout);
@@ -49,10 +51,22 @@ public class PagamentoSella extends Dialog {
         setHeight(500);
         setWidth(550);
         setHeading("Informazioni sul processo di pagamento");
-        setStyleAttribute("padding","0px");
+        setStyleAttribute("padding", "0px");
         add(getForm());
         add(getTesto());
         createButtons();
+
+        submit = new Button("Procedi con il pagamento");
+        submit.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                Dispatcher.forwardEvent(EventoEvents.InAttesaDiConfermaPagamento);
+                form.submit();
+                Dispatcher.forwardEvent(EventoEvents.Save, null);
+                submit.disable();
+            }
+        });
+        addButton(submit);
+
     }
 
     private FormPanel getForm() {
@@ -135,15 +149,7 @@ public class PagamentoSella extends Dialog {
     protected void createButtons() {
         super.createButtons();
         getButtonBar().add(new FillToolItem());
-        final Button submit = new Button("Procedi con il pagamento");
-        submit.addSelectionListener(new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(EventoEvents.InAttesaDiConfermaPagamento);
-                form.submit();
-                Dispatcher.forwardEvent(EventoEvents.Save, dettaglioModel);
-            }
-        });
-        addButton(submit);
+
     }
 
     public PagamentoModel getModel() {
@@ -151,10 +157,9 @@ public class PagamentoSella extends Dialog {
     }
 
     public void setModel(DettaglioModel model) {
-        this.dettaglioModel = model;
         this.pagamentoModel = model.getPagamentoModel();
         binding = new FormBinding(form, true);
-       // pagamentoModel.init();
+        // pagamentoModel.init();
         binding.bind(pagamentoModel);
     }
 
@@ -168,5 +173,9 @@ public class PagamentoSella extends Dialog {
     @Override
     protected void onHide() {
         super.onHide();
+    }
+
+    public void enableButton() {
+       submit.enable();
     }
 }

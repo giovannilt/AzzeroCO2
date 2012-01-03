@@ -62,11 +62,12 @@ public class EventoController extends BaseController {
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(EventoEvents.InAttesaDiConfermaPagamento)) {
+            final MyAsyncCallback asyncCallback = new MyAsyncCallback();
             final Timer timer = new Timer() {
                 public void run() {
-                    MyAsyncCallback asyncCallback = new MyAsyncCallback();
                     getHustonService().isPagato(AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo()), getUserInfoModel(), asyncCallback);
                     asyncCallback.setTimer(this);
+                    
                 }
             };
             timer.schedule(10000);
@@ -201,6 +202,7 @@ public class EventoController extends BaseController {
 
     class MyAsyncCallback implements AsyncCallback<DettaglioVTO> {
         private Timer timer;
+        private int numeroDiVolte=12;
 
         public void onFailure(Throwable caught) {
             Info.display("Error", "Errore impossibile connettersi al server " + caught);
@@ -216,8 +218,14 @@ public class EventoController extends BaseController {
                     eventoView.showConferma(result);
                     sentMail(result);
                 } else {
-                    Info.display("Info", "NON PAGATO");
-                    getTimer().schedule(10000);
+                    if(numeroDiVolte>0){
+                        Info.display("Info", "Non Ancora pagato");
+                        getTimer().schedule(10000);
+                        numeroDiVolte--;
+                    } else{
+                        Info.display("Info", "Evento non pagato, atteso pagamento per piu' di 2 minuti, si consiglia di ricaricare ");
+                        Dispatcher.forwardEvent(PagamentoSellaEvents.EnableButton);
+                    }
                 }
                 DettaglioModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                 eventoView.setDettaglioModel(model);
@@ -233,8 +241,6 @@ public class EventoController extends BaseController {
         public Timer getTimer() {
             return timer;
         }
-
-
     }
 
 

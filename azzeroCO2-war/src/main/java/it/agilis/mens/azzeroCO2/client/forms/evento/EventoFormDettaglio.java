@@ -154,7 +154,6 @@ public class EventoFormDettaglio extends LayoutContainer {
         binding.bind(dettaglioModel);
     }
 
-
     @Override
     protected void onLoad() {
         super.onLoad();
@@ -163,8 +162,6 @@ public class EventoFormDettaglio extends LayoutContainer {
         formPanel.getBody().setStyleAttribute("border-top", "3px solid orange");
         formPanel.getBody().setStyleAttribute("border-width", "3px 0");
         formPanel.getBody().setStyleAttribute("margin-bottom", "0");
-
-        //To change body of overridden methods use File | Settings | File Templates.
     }
 
 }

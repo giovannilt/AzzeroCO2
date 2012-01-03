@@ -20,6 +20,7 @@ public class PagamentoController extends BaseController {
         registerEventTypes(PagamentoSellaEvents.ShowForm);
         registerEventTypes(PagamentoSellaEvents.SubmitForm);
         registerEventTypes(PagamentoSellaEvents.CloseForm);
+        registerEventTypes(PagamentoSellaEvents.EnableButton);
     }
 
     public void handleEvent(AppEvent event) {

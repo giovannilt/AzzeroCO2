@@ -31,7 +31,9 @@ public class PagamentoSellaView extends View {
 
     @Override
     protected void handleEvent(AppEvent event) {
-        if (event.getType() == PagamentoSellaEvents.CloseForm) {
+        if (event.getType() == PagamentoSellaEvents.EnableButton) {
+            pagamentoSellaDialog.enableButton();
+        } else if (event.getType() == PagamentoSellaEvents.CloseForm) {
             pagamentoSellaDialog.hide();
         } else if (event.getType() == PagamentoSellaEvents.ShowForm) {
             pagamentoSellaDialog.show();

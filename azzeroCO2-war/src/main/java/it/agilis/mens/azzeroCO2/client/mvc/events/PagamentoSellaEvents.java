@@ -12,5 +12,6 @@ import com.extjs.gxt.ui.client.event.EventType;
 public class PagamentoSellaEvents {
     public static final EventType ShowForm = new EventType();
     public static final EventType SubmitForm = new EventType();
+    public static final EventType EnableButton = new EventType();
     public static final EventType CloseForm = new EventType();
 }
