@@ -6,7 +6,10 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.*;
+import com.extjs.gxt.ui.client.widget.BoxComponent;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.grid.ColumnData;
@@ -15,6 +18,7 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
@@ -170,9 +174,10 @@ public class FormRiepilogo extends LayoutContainer {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
                         if (!Esito.PAGATO.equals(esito)) {
-                            store.remove(model);
-                            Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
-                            setTotale();
+                            Dispatcher.forwardEvent(AzzeroCO2Events.ShowRiepilogoConfermDialog, model);
+                            //store.remove(model);
+                            //Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
+                            //setTotale();
                         }
                     }
                 });
@@ -226,7 +231,11 @@ public class FormRiepilogo extends LayoutContainer {
         store.removeAll();
     }
 
-
+     public void removeModel(RiepilogoModel model) {
+         store.remove(model);
+         Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
+         setTotale();
+     }
 }
 
 

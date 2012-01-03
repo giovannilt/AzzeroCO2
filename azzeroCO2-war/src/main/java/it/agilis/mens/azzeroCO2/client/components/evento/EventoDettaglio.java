@@ -42,7 +42,7 @@ public class EventoDettaglio extends LayoutContainer {
     private final FormPubblicazioniRilegate formPubblicazioniRilegate = new FormPubblicazioniRilegate();
     private final FormManifestiPieghevoliFogli formManifestipieghevoliFogli = new FormManifestiPieghevoliFogli();
 
-    private final FormRiepilogo formRiepilogo = new FormRiepilogo();
+    public final FormRiepilogo formRiepilogo = new FormRiepilogo();
     private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
     private final FormConferma formConferma = new FormConferma();
     private static int posizioniLabel = 1;

@@ -58,6 +58,7 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.ClearStep);
         registerEventTypes(EventoEvents.InAttesaDiConfermaPagamento);
         registerEventTypes(EventoEvents.NorthPanelShowButtons);
+        registerEventTypes(EventoEvents.RemoveModel);
     }
 
     @Override

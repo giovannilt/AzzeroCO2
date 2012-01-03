@@ -5,9 +5,8 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
-import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 
 
 /**
@@ -17,14 +16,16 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
  * Time: 1:31 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoConfermDialog extends Dialog {
+public class RiepilogoConfermDialog extends Dialog {
 
     protected Button ok;
     protected Button cancel;
 
-    public EventoConfermDialog() {
+    private RiepilogoModel model;
 
-        setHeading("Annulla Evento");
+    public RiepilogoConfermDialog() {
+
+        setHeading("Eliminare il Calcolo?");
        // setButtons(Dialog.YESNO);
         setBodyStyleName("pad-text");
         addText("Sei sicuro di voler annullare il calcolo?");
@@ -39,8 +40,7 @@ public class EventoConfermDialog extends Dialog {
         ok = new Button("Si");
         ok.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
-                Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
+                Dispatcher.forwardEvent(EventoEvents.RemoveModel, model);
                 hide();
             }
         });
@@ -55,5 +55,7 @@ public class EventoConfermDialog extends Dialog {
         addButton(cancel);
     }
 
-
+    public void setModel(RiepilogoModel model) {
+        this.model = model;
+    }
 }

@@ -15,7 +15,9 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.VBoxLayout;
 import com.google.gwt.user.client.ui.RootPanel;
 import it.agilis.mens.azzeroCO2.client.components.InfoDialog;
+import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.RiepilogoConfermDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
+import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 
 
 /**
@@ -29,6 +31,7 @@ public class AzzeroCO2View extends View {
     private final ContentPanel main = new ContentPanel();
     private final Viewport viewport = new Viewport();
     private InfoDialog infoDialog = new InfoDialog();
+    private RiepilogoConfermDialog riepilogoConfermaDialog = new RiepilogoConfermDialog();
 
     public AzzeroCO2View(Controller controller) {
         super(controller);
@@ -49,6 +52,9 @@ public class AzzeroCO2View extends View {
             onCentralPanelReady(event);
         } else if (eventType.equals(AzzeroCO2Events.NewsPanelReady)) {
             onNewsPanelReady(event);
+        } else if (eventType.equals(AzzeroCO2Events.ShowRiepilogoConfermDialog)) {
+            riepilogoConfermaDialog.setModel((RiepilogoModel) event.getData());
+            riepilogoConfermaDialog.show();
         } else if (eventType.equals(AzzeroCO2Events.ShowInfoDialog)) {
             infoDialog.show();
         }

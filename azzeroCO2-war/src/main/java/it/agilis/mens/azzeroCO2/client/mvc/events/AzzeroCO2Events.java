@@ -18,6 +18,7 @@ public class AzzeroCO2Events {
     public static final EventType NewsPanelReady = new EventType();
     public static final EventType LoggedIn = new EventType();
     public static final EventType ShowInfoDialog = new EventType();
+    public static final EventType ShowRiepilogoConfermDialog = new EventType();
     public static final EventType ShowInfo = new EventType();
 
 }

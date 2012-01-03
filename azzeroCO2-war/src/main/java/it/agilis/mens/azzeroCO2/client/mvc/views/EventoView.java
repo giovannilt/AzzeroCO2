@@ -59,6 +59,8 @@ public class EventoView extends View {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
+        } else if (eventType.equals(EventoEvents.RemoveModel)) {
+            eventoDettaglio.formRiepilogo.removeModel((RiepilogoModel) event.getData());
         } else if (eventType.equals(EventoEvents.Next)) {
             onNext(event);
         } else if (eventType.equals(EventoEvents.NorthPanelShowButtons)) {
