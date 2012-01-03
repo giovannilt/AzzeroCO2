@@ -76,8 +76,8 @@ private Text leftText = new Text("");
         leftText.setSize(200, 15);
         rigthText.setSize(250, 15);
         rigthText.setStyleAttribute("text-align", "right");
-        rigthText.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
-        leftText.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+        rigthText.setStyleAttribute("font-family", "arial");
+        leftText.setStyleAttribute("font-family", "arial");
         leftText.setStyleAttribute("font-size", "14px");
         rigthText.setStyleAttribute("font-size", "14px");
 

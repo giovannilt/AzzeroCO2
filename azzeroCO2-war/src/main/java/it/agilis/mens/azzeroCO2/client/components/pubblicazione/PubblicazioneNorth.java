@@ -33,7 +33,7 @@ public class PubblicazioneNorth extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.TOP);
         c.setLayout(layout);
 
-        c.add(new Html("<p style=\"padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:#000000;\">Compensa una pubblicazione </p>"));
+        c.add(new Html("<p style=\"padding:1px;font-family:arial;color:#000000;\">Compensa una pubblicazione </p>"));
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         flex.setFlex(1);

@@ -127,7 +127,7 @@ public class PubblicazioneWest extends LayoutContainer {
                 Text text = new Text((String) model.get(property));
                 text.setStyleAttribute("backgroundColor", "silver");
                 text.setStyleAttribute("color", "black");
-                text.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+                text.setStyleAttribute("font-family", "arial");
 
                 config.style += "background-color: silver;";
 

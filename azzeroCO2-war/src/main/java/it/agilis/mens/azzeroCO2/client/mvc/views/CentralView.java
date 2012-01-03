@@ -256,7 +256,7 @@ public class CentralView extends View {
                     };
 
                     LabelField label = new LabelField("Utente: ");
-                    label.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+                    label.setStyleAttribute("font-family", "arial");
                     label.setWidth(100);
 
                     final TextField<String> userName = new TextField<String>();
@@ -265,7 +265,7 @@ public class CentralView extends View {
                     userName.setName("userName");
                     userName.addKeyListener(keyListener);
 
-                    rigo.add(label, new RowData(0.3, 1, new Margins(4, 1, 4, 1)));
+                    rigo.add(label, new RowData(0.3, 1, new Margins(4, 1, 4, 10)));
                     rigo.add(userName, new RowData(0.7, 1, new Margins(4, 1, 4, 1)));
 
                     login.add(rigo, new RowData(1, 0.5));
@@ -274,7 +274,7 @@ public class CentralView extends View {
                     rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
                     label = new LabelField("Password: ");
-                    label.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+                    label.setStyleAttribute("font-family", "arial");
                     label.setWidth(100);
 
                     final TextField<String> password = new TextField<String>();
@@ -284,7 +284,7 @@ public class CentralView extends View {
                     password.setName("password");
                     password.addKeyListener(keyListener);
 
-                    rigo.add(label, new RowData(0.3, 1, new Margins(4, 1, 4, 1)));
+                    rigo.add(label, new RowData(0.3, 1, new Margins(4, 1, 4, 10)));
                     rigo.add(password, new RowData(0.7, 1, new Margins(4, 1, 4, 1)));
 
                     Button btn = new Button("Invia");
@@ -317,7 +317,7 @@ public class CentralView extends View {
                     rigo.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
                     benvenuto = new Text("Ad oggi hai compensato NUMBER Kg di CO2");
-                    benvenuto.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+                    benvenuto.setStyleAttribute("font-family", "arial");
 
                     benvenuto.setBounds(30, 30, 250, 180);
                     benvenuto.setStyleAttribute("padding-top","10");

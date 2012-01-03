@@ -33,7 +33,7 @@ public class ConoscoCO2North extends LayoutContainer {
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.TOP);
         c.setLayout(layout);
 
-        c.add(new Html("<p style=\"padding:1px;font-family:tahoma,arial,verdana,sans-serif;color:#000000;\">Conosco la CO2</p>"));
+        c.add(new Html("<p style=\"padding:1px;font-family:arial;color:#000000;\">Conosco la CO2</p>"));
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         flex.setFlex(1);

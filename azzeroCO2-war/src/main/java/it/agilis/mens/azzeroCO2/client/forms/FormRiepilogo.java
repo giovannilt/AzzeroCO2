@@ -72,12 +72,12 @@ public class FormRiepilogo extends LayoutContainer {
         c.add(totaleText, flex);
 
         totaleText.setSize(300, 15);
-        totaleText.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+        totaleText.setStyleAttribute("font-family", "arial");
         totaleText.setStyleAttribute("font-size", "14px");
         totaleText.setStyleAttribute("color", "#D38131");
         totale.setSize(250, 15);
         totale.setStyleAttribute("text-align", "right");
-        totale.setStyleAttribute("font-family", "tahoma,arial,verdana,sans-serif");
+        totale.setStyleAttribute("font-family", "arial");
         totale.setStyleAttribute("font-size", "14px");
         totale.setStyleAttribute("color", "#D38131");
         c.add(totale, new HBoxLayoutData(new Margins(0, 20, 0, 0)));

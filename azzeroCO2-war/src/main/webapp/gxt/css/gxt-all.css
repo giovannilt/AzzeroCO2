@@ -565,7 +565,7 @@ q:before, q:after {
 .x-date-left {
     background: transparent url(../images/default/shared/hd-sprite.gif) repeat-x scroll 0pt -83px;
     color: #FFFFFF;
-    font-family: "sans serif", tahoma, verdana, helvetica;
+    font-family: arial;
     font-size: 11px;
     font-size-adjust: none;
     font-stretch: normal;
@@ -587,7 +587,7 @@ q:before, q:after {
 }
 
 .x-progress {
-    font-family: tahoma, arial, helvetica, sans-serif;
+    font-family: arial;
 }
 
 .x-float-right {
@@ -3943,7 +3943,7 @@ td.x-date-mp-sep {
 .x-date-left {
     background: transparent url(../images/default/shared/hd-sprite.gif) repeat-x scroll 0pt -83px;
     color: #FFFFFF;
-    font-family: "sans serif", tahoma, verdana, helvetica;
+    font-family: arial;
     font-size: 11px;
     font-size-adjust: none;
     font-stretch: normal;
@@ -4294,7 +4294,7 @@ a.x-menu-item {
     border-width: 1px;
     margin: -2px -2px 0;
     color: #15428b;
-    font: bold 10px tahoma, arial, verdana, sans-serif;
+    font: bold 10px arial;
     display: block;
     padding: 3px;
 }
@@ -4312,7 +4312,7 @@ a.x-menu-item {
 
 .x-menubar-item {
     padding: 1px 8px;
-    font: 12px arial, verdana, sans-serif;
+    font: 12px arial;
 }
 
 .x-menubar-item-over {
@@ -5706,7 +5706,7 @@ body.ext-ie6.x-body-masked .x-window select {
     overflow: hidden;
     zoom: 1;
     color: black;
-    font: bold 13px tahoma, arial, verdana, sans-serif;
+    font: bold 13px arial;
     padding: 5px 3px 4px 5px;
     line-height: 15px;
     background: transparent url(../images/default/panel/white-top-bottom.gif) repeat-x 0 -1px;
@@ -6894,11 +6894,11 @@ ul.x-tab-strip-bottom {
 }
 
 .x-btn {
-    font: normal 11px tahoma, verdana, helvetica;
+    font: normal 11px arial;
 }
 
 .x-btn button {
-    font: normal 11px arial, tahoma, verdana, helvetica;
+    font: normal 11px aria;
     color: #333;
 }
 
@@ -7470,7 +7470,7 @@ td.x-grid3-hd-over .x-grid3-hd-inner, td.sort-desc .x-grid3-hd-inner, td.sort-as
 .x-date-middle, .x-date-left, .x-date-right {
     background-image: url(../images/default/shared/hd-sprite.gif);
     color: #fff;
-    font: bold 11px "sans serif", tahoma, verdana, helvetica;
+    font: bold 11px arial;
 }
 
 .x-date-middle .x-btn .x-btn-text {
@@ -7806,7 +7806,7 @@ a.x-menu-item {
     color: #3F4757;
     font-weight: bold;
     font-size: 11px;
-    font-family: tahoma, arial, verdana, sans-serif;
+    font-family: arial;
     border-color: #3F4757;
     background-image: url(../images/default/panel/white-top-bottom.gif);
 }
@@ -7832,7 +7832,7 @@ a.x-menu-item {
     color: #15428b;
     font-weight: bold;
     font-size: 11px;
-    font-family: tahoma, arial, verdana, sans-serif;
+    font-family: arial;
 }
 
 .x-panel-tc {
@@ -7896,7 +7896,7 @@ a.x-menu-item {
 
 .x-window-tl .x-window-header {
     color: #15428b;
-    font: bold 11px tahoma, arial, verdana, sans-serif;
+    font: bold 11px arial;
 }
 
 .x-window-tc {
