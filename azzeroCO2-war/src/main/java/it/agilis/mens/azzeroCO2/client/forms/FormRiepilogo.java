@@ -116,7 +116,7 @@ public class FormRiepilogo extends LayoutContainer {
         });
         column.setSortable(true);
         configs.add(column);
-        column = new ColumnConfig("oggetto", "Oggetto", 270);
+        column = new ColumnConfig("oggetto", "Oggetto",270 );
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
@@ -124,6 +124,7 @@ public class FormRiepilogo extends LayoutContainer {
                 return model.<Number>get(property);
             }
         });
+        column.setWidth(270);
         configs.add(column);
 
         column = new ColumnConfig("dettagli", "Dettagli", 265);
@@ -134,6 +135,7 @@ public class FormRiepilogo extends LayoutContainer {
                 return model.<Number>get(property);
             }
         });
+        column.setWidth(265);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
@@ -148,6 +150,7 @@ public class FormRiepilogo extends LayoutContainer {
                 return number.format(model.<Number>get(property));
             }
         });
+        column.setWidth(82);
         configs.add(column);
 
         column = new ColumnConfig("", "", 20);

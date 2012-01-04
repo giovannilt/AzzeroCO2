@@ -67,7 +67,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Indica il nome,luogo e data dell'evento.</br></br>Il nome dell'evento è obbligatorio.");
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Indica il nome, il luogo e la data dell'evento.</br></br>Il nome dell'evento è obbligatorio.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");
@@ -99,7 +99,7 @@ public class EventoFormDettaglio extends LayoutContainer {
             public void handleEvent(FieldEvent p_event) {
                 if(dataFine.getValue()!=null && p_event.getValue()!=null &&
                         dataFine.getValue().before((Date)p_event.getValue())){
-                    Info.display("Info", "Data di inizio posteriore a data di fine.");
+                    Info.display("Info", "La data di fine non puà precedere la data di inizio dell'evento..");
                 }
 
                // Window.alert("change: " + p_event.value);
@@ -141,7 +141,7 @@ public class EventoFormDettaglio extends LayoutContainer {
             public void handleEvent(FieldEvent p_event) {
                 if(dataInizio.getValue()!=null && p_event.getValue()!=null &&
                         dataInizio.getValue().after((Date)p_event.getValue())){
-                    Info.display("Info", "Data di inizio posteriore a data di fine.");
+                    Info.display("Info", "La data di fine non puà precedere la data di inizio dell'evento.");
                 }
             }
         });
