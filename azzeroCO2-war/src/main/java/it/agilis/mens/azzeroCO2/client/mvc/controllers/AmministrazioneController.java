@@ -48,8 +48,10 @@ public class AmministrazioneController extends BaseController {
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(AmministrazioneEvents.ShowEventoCompensatoDialog)) {
             DettaglioModel dettaglioModel = event.getData();
-            eventoCompensatoDialog.setInStore(CalcoliHelper.getListOfRiepilogoModelLazy(dettaglioModel));
+           
+            eventoCompensatoDialog.setInStore(CalcoliHelper.geListOfRiepilogoModel(dettaglioModel, amministrazioneView.getCoefficienti()));
             eventoCompensatoDialog.setTotale(dettaglioModel.getPagamentoModel().getKgCO2());
+            eventoCompensatoDialog.setDettaglioModel(dettaglioModel);
             eventoCompensatoDialog.show();
 
         } else if (event.getType().equals(AmministrazioneEvents.SaveCoefficienti)) {

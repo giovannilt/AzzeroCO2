@@ -141,8 +141,11 @@ public class FormRiepilogo extends LayoutContainer {
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
         column.setAlignment(Style.HorizontalAlignment.RIGHT);
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
+
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
+
+
                 config.style = "border-bottom:1px solid gray !important;";
                 return number.format(model.<Number>get(property));
             }

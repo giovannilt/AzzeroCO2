@@ -100,8 +100,8 @@ public class CalcoliHelper {
         return store;
     }
 
-    public static List<RiepilogoModel> geListOfRiepilogoModel(DettaglioModel eventoModel, Map<String, CoefficienteModel> c) {
-        coefficienti = c;
+    public static List<RiepilogoModel> geListOfRiepilogoModel(DettaglioModel eventoModel, Map<String, CoefficienteModel> coef) {
+        coefficienti = coef;
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
 
         //Caloclo ENERGIA

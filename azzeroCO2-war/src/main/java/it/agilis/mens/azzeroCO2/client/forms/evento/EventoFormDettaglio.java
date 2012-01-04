@@ -143,8 +143,6 @@ public class EventoFormDettaglio extends LayoutContainer {
                         dataInizio.getValue().after((Date)p_event.getValue())){
                     Info.display("Info", "Data di inizio posteriore a data di fine.");
                 }
-
-                // Window.alert("change: " + p_event.value);
             }
         });
         dataFine.setName("fine");
