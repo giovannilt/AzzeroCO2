@@ -36,11 +36,11 @@ public class UnAnnoDiAttivitaController extends BaseController {
     public UnAnnoDiAttivitaController() {
         registerEventTypes(AzzeroCO2Events.Init);
         registerEventTypes(AzzeroCO2Events.Error);
+        registerEventTypes(AzzeroCO2Events.LoggedIn);
         registerEventTypes(UnAnnoDiAttivitaEvents.Next);
         registerEventTypes(UnAnnoDiAttivitaEvents.Previous);
         registerEventTypes(UnAnnoDiAttivitaEvents.ClearPanel);
         registerEventTypes(UnAnnoDiAttivitaEvents.Save);
-        registerEventTypes(AzzeroCO2Events.LoggedIn);
         registerEventTypes(UnAnnoDiAttivitaEvents.Riepilogo);
         registerEventTypes(UnAnnoDiAttivitaEvents.Acquisto);
         registerEventTypes(UnAnnoDiAttivitaEvents.LoadEvento);
@@ -52,6 +52,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
         registerEventTypes(UnAnnoDiAttivitaEvents.ShowConfermDialog);
         registerEventTypes(UnAnnoDiAttivitaEvents.ShowInfoDialog);
         registerEventTypes(UnAnnoDiAttivitaEvents.ShowRiepilogo);
+        registerEventTypes(UnAnnoDiAttivitaEvents.GoToBegin);
         registerEventTypes(UnAnnoDiAttivitaEvents.ShowStep);
         registerEventTypes(UnAnnoDiAttivitaEvents.ClearStep);
         registerEventTypes(UnAnnoDiAttivitaEvents.InAttesaDiConfermaPagamento);

@@ -345,6 +345,12 @@ public class EventoDettaglio extends LayoutContainer {
             }
         }
     }
+    public void goToBegin(){
+        while(posizioniLabel>1){
+           previusTab();
+        }
+        previusTab();
+    }
 
     public void clearStep(RiepilogoModel data) {
         if (data.getOggetto().equalsIgnoreCase("Energia")) {

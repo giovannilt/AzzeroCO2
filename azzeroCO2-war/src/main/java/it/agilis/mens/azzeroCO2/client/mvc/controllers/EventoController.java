@@ -55,6 +55,7 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.ShowConfermDialog);
         registerEventTypes(EventoEvents.ShowRiepilogo);
         registerEventTypes(EventoEvents.ShowStep);
+        registerEventTypes(EventoEvents.GoToBegin);
         registerEventTypes(EventoEvents.ClearStep);
         registerEventTypes(EventoEvents.InAttesaDiConfermaPagamento);
         registerEventTypes(EventoEvents.NorthPanelShowButtons);

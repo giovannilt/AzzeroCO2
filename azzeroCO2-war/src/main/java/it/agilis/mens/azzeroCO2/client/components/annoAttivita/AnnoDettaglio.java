@@ -391,5 +391,12 @@ public class AnnoDettaglio extends LayoutContainer {
         Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
         Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
     }
+    public void goToBegin(){
+        while(posizioniLabel>1){
+            previusTab();
+        }
+        previusTab();
+    }
+
 }
 

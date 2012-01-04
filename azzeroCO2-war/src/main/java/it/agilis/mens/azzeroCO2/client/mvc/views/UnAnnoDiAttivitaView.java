@@ -59,6 +59,8 @@ public class UnAnnoDiAttivitaView extends View {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
+        } else if (eventType.equals(UnAnnoDiAttivitaEvents.GoToBegin)) {
+            annoDettaglio.goToBegin();
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.Next)) {
             onNext(event);
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.ClearStep)) {

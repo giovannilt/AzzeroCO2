@@ -61,6 +61,8 @@ public class EventoView extends View {
             onInit(event);
         } else if (eventType.equals(EventoEvents.RemoveModel)) {
             eventoDettaglio.formRiepilogo.removeModel((RiepilogoModel) event.getData());
+        } else if (eventType.equals(EventoEvents.GoToBegin)) {
+            eventoDettaglio.goToBegin();
         } else if (eventType.equals(EventoEvents.Next)) {
             onNext(event);
         } else if (eventType.equals(EventoEvents.NorthPanelShowButtons)) {
@@ -113,6 +115,10 @@ public class EventoView extends View {
                 west.setInStore(riepilogo, Esito.IN_PAGAMENTO);
             }
         }
+    }
+
+    public void goToBegin() {
+        eventoDettaglio.goToBegin();
     }
 
     private void onPrevius(AppEvent event) {
