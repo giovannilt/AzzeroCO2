@@ -35,6 +35,7 @@ import java.util.Map;
 public class AmministrazioneView extends View {
     private ContentPanel amministrazionePanel = new ContentPanel();
     private Amministrazione amministrazione = new Amministrazione();
+    private Map<String, CoefficienteModel> coefficienti;
 
     public AmministrazioneView(Controller controller) {
         super(controller);
@@ -72,6 +73,7 @@ public class AmministrazioneView extends View {
 
     public void setCoefficienti(Map<String, CoefficienteModel> coefficienti) {
        amministrazione.setCoefficienti(coefficienti);
+        this.coefficienti=coefficienti;
     }
     public void setCoupon(List<CouponModel> coupon) {
        amministrazione.setCoupon(coupon);
@@ -87,5 +89,9 @@ public class AmministrazioneView extends View {
 
     public void setUserInfo(UserInfoModel userInfoModel) {
         amministrazione.setUserInfo(userInfoModel);
+    }
+
+    public Map<String,CoefficienteModel> getCoefficienti() {
+        return coefficienti;
     }
 }
