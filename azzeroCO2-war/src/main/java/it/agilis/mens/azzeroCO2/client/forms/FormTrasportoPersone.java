@@ -120,7 +120,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         cpEst.getBody().setStyleAttribute("border-style", "solid");
         cpEst.getBody().setStyleAttribute("border-top", "3px solid orange");
         cpEst.getBody().setStyleAttribute("border-width", "3px 0");
-        cpEst.getBody().setStyleAttribute("margin-bottom", "0");
+        cpEst.getBody().setStyleAttribute("margin-bottom", "2");
         panel.getBody().setStyleAttribute("border-bottom","3px solid orange");
         panel.getBody().setStyleAttribute("border-style", "solid");
         panel.getBody().setStyleAttribute("border-top", "3px solid orange");
