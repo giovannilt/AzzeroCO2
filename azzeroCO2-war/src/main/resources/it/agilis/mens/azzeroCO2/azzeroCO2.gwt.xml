@@ -25,9 +25,11 @@
 
     <inherits name="com.google.gwt.resources.Resources" />
 
-
+    <extend-configuration-property name="document.compatMode" value="BackCompat"/>
 
     <extend-property name="locale" values="it"/>
+
+
 
 
 </module>
