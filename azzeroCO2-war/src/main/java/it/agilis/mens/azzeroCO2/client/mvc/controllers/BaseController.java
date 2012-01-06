@@ -4,6 +4,7 @@ import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
@@ -30,6 +31,8 @@ public abstract class BaseController extends Controller {
     private Map<String, CoefficienteModel> coefficientiMAP = new HashMap<String, CoefficienteModel>();
     private List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList = new ArrayList<ProgettoDiCompensazioneModel>();
     private String info = "";
+
+    protected final NumberFormat number = NumberFormat.getFormat("0.00");
 
     public UserInfoModel getUserInfoModel() {
         return userInfoModel;

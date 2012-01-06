@@ -3,7 +3,6 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Info;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
@@ -34,7 +33,6 @@ import java.util.List;
 public class EventoController extends BaseController {
 
     private final EventoView eventoView = new EventoView(this);
-    private final NumberFormat number = NumberFormat.getFormat("0.00");
 
     public EventoController() {
         registerEventTypes(AzzeroCO2Events.Init);
@@ -76,10 +74,10 @@ public class EventoController extends BaseController {
             timer.schedule(10000);
 
         } else if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
-            setCoefficentitoEventoView();
+            setCoefficientiEventoView();
             eventoView.showRiepilogo();
         } else if (event.getType().equals(EventoEvents.Riepilogo)) {
-            setCoefficentitoEventoView();
+            setCoefficientiEventoView();
         } else if (event.getType().equals(EventoEvents.LoadEvento)) {
             setCoefficienti();
             setProgettiDiCompensazione();
@@ -180,7 +178,7 @@ public class EventoController extends BaseController {
         }
     }
 
-    private void setCoefficentitoEventoView() {
+    private void setCoefficientiEventoView() {
         if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
             setCoefficienti();
             if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {

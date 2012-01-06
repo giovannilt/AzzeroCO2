@@ -16,7 +16,7 @@ import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
-import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
+import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,14 +27,14 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
  */
 public class FormConoscoCO2 extends LayoutContainer {
 
-    private NottiModel nottiModel = new NottiModel();
+    private ConoscoCO2Model conoscoCO2Model = new ConoscoCO2Model();
     private FormBinding binding = null;
     private FormPanel formPanel;
 
     public FormConoscoCO2() {
         formPanel = createForm();
         binding = new FormBinding(formPanel, true);
-        binding.bind(nottiModel);
+        binding.bind(conoscoCO2Model);
 
     }
 
@@ -121,18 +121,18 @@ public class FormConoscoCO2 extends LayoutContainer {
 
     public void clear() {
         binding.clear();
-        nottiModel = new NottiModel();
-        binding.bind(nottiModel);
+        conoscoCO2Model = new ConoscoCO2Model();
+        binding.bind(conoscoCO2Model);
 
     }
 
-    public NottiModel getNottiModel() {
-        return nottiModel;
+    public ConoscoCO2Model getConoscoCO2Model() {
+        return conoscoCO2Model;
     }
 
-    public void setNottiModel(NottiModel nottiModel) {
-        this.nottiModel = nottiModel;
-        binding.bind(nottiModel);
+    public void setConoscoCO2Model(ConoscoCO2Model conoscoCO2Model) {
+        this.conoscoCO2Model = conoscoCO2Model;
+        binding.bind(conoscoCO2Model);
     }
 
     @Override
@@ -143,8 +143,6 @@ public class FormConoscoCO2 extends LayoutContainer {
         formPanel.getBody().setStyleAttribute("border-top", "3px solid orange");
         formPanel.getBody().setStyleAttribute("border-width", "3px 0");
         formPanel.getBody().setStyleAttribute("margin-bottom", "0");
-
-        //To change body of overridden methods use File | Settings | File Templates.
     }
 
 

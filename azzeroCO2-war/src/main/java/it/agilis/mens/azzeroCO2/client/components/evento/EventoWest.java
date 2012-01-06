@@ -44,7 +44,7 @@ public class EventoWest extends LayoutContainer {
     private final String riepilogoString = "Hai terminato il calcolo! </br>" +
             "Se vuoi modifica i dati inseriti</br>" +
             " cliccando sulla voce relativa.";
-    private final String ProgettoDiCompensazione = "Scegli un progetto di </br>" +
+    private final String progettoDiCompensazione = "Scegli un progetto di </br>" +
             "compensazione.</br>" +
             "Controlla il preventivo e </br>" +
             "accedi al sistema di </br>" +
@@ -106,7 +106,7 @@ public class EventoWest extends LayoutContainer {
                 List<RiepilogoModel> r = listStore.getModels();
                 if (r.size() == 1 &&
                         (r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)
-                        || r.get(0).getOggetto().equalsIgnoreCase(ProgettoDiCompensazione)
+                        || r.get(0).getOggetto().equalsIgnoreCase(progettoDiCompensazione)
                         || r.get(0).getOggetto().equalsIgnoreCase(riepilogoString)
                         || r.get(0).getOggetto().equalsIgnoreCase(Conferma)
                                                 )) {
@@ -212,7 +212,7 @@ public class EventoWest extends LayoutContainer {
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
 
-        m.setOggetto(ProgettoDiCompensazione);
+        m.setOggetto(progettoDiCompensazione);
         store.add(m);
     }
 

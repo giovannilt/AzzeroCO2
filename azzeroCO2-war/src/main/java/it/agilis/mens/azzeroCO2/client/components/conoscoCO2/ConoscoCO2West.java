@@ -20,7 +20,9 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
@@ -40,6 +42,16 @@ public class ConoscoCO2West extends LayoutContainer {
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Conosco la CO2");
     private final String oggettoDiDefault="Compensa le tue emissioni";
+    private final String riepilogoString = "Hai terminato il calcolo! </br>" +
+            "Se vuoi modifica i dati inseriti</br>" +
+            " cliccando sulla voce relativa.";
+    private final String progettoDiCompensazione = "Scegli un progetto di </br>" +
+            "compensazione.</br>" +
+            "Controlla il preventivo e </br>" +
+            "accedi al sistema di </br>" +
+            "pagamento.";
+    private final String Conferma = "Il Percorso e' finito!";
+
     private Esito esito;
 
     public ConoscoCO2West() {
@@ -156,19 +168,23 @@ public class ConoscoCO2West extends LayoutContainer {
     }
 
 
-    public void setInStore(List<RiepilogoModel> model, Esito esito) {
+    public void setInStore(DettaglioModel riepilogo, Esito esito) {
         store.removeAll();
+        List<RiepilogoModel> model = CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo);
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
-            m.setOggetto("Compensa le tue emissioni");
+            m.setOggetto("Non hai ancora inserito </br> nessuna attività");
             store.add(m);
         } else {
-             this.esito=esito;
+            this.esito = esito;
             store.add(model);
         }
+        setTitle(riepilogo);
     }
 
-    public void setTitle(String title) {
+   public void setTitle(DettaglioModel riepilogo) {
+   String title = riepilogo.getNome() != null ? riepilogo.getNome() : "Compensa la CO2";
+
         if (title == null || "".equalsIgnoreCase(title)) {
             this.title.setText("Compensa la CO2");
         } else {
@@ -176,11 +192,38 @@ public class ConoscoCO2West extends LayoutContainer {
         }
     }
 
+
+
     public void clean(){
         setInStore(null, Esito.IN_PAGAMENTO);
-        setTitle(null);
+        this.title.setTitle(".....");
     }
 
+    public void isInRiepilogo(DettaglioModel riepilogo) {
+        setTitle(riepilogo);
+        store.removeAll();
+        RiepilogoModel m = new RiepilogoModel();
 
+        m.setOggetto(riepilogoString);
+        store.add(m);
+    }
+
+    public void isScegliProgettoCompensazione(DettaglioModel riepilogo) {
+        setTitle(riepilogo);
+        store.removeAll();
+        RiepilogoModel m = new RiepilogoModel();
+
+        m.setOggetto(progettoDiCompensazione);
+        store.add(m);
+    }
+
+    public void isInConferma(DettaglioModel riepilogo) {
+        setTitle(riepilogo);
+        store.removeAll();
+        RiepilogoModel m = new RiepilogoModel();
+
+        m.setOggetto(Conferma);
+        store.add(m);
+    }
 
 }

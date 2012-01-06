@@ -15,7 +15,7 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.client.mvc.events.ConosciCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
@@ -29,7 +29,7 @@ import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
  */
 public class ConoscoCO2South extends LayoutContainer {
 
-    private Text leftText = new Text("");
+    private Text leftText = new Text(".");
         private Text rigthText = new Text("Riepilogo");
 
         private Button left = new Button();
@@ -64,7 +64,7 @@ public class ConoscoCO2South extends LayoutContainer {
             left.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 @Override
                 public void componentSelected(ButtonEvent ce) {
-                    Dispatcher.forwardEvent(new AppEvent(ConosciCO2Events.Previous, ce));
+                    Dispatcher.forwardEvent(new AppEvent(ConoscoCO2Events.Previous, ce));
                 }
             });
             c.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
@@ -95,7 +95,7 @@ public class ConoscoCO2South extends LayoutContainer {
             right.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 @Override
                 public void componentSelected(ButtonEvent ce) {
-                    Dispatcher.forwardEvent(new AppEvent(ConosciCO2Events.Next, ce));
+                    Dispatcher.forwardEvent(new AppEvent(ConoscoCO2Events.Next, ce));
                 }
             });
             add(c);

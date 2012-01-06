@@ -21,6 +21,7 @@ import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
@@ -242,6 +243,8 @@ public class FormRiepilogo extends LayoutContainer {
          Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
          setTotale();
      }
+
+
 }
 
 
