@@ -148,6 +148,7 @@ public class ConoscoCO2View extends View {
     }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
+        conoscoCO2.setProgettiDiCompensazione(progettiDiCompensazioneList);
     }
 
     public OrdineModel getRiepilogo() {

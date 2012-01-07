@@ -60,7 +60,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         ContentPanel centre = createCentre();
         centre.setHeaderVisible(false);
         //   centre.setHeading("Programmi Di Compensazione");
-        centre.setHeight(477);
+        centre.setHeight(478);
         centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);

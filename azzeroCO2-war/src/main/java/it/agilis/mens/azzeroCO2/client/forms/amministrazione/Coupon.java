@@ -46,7 +46,7 @@ public class Coupon extends LayoutContainer {
         ContentPanel centre = createCentre(store);
         //  centre.setHeading("Coupon");
         centre.setHeaderVisible(false);
-        centre.setHeight(477);
+        centre.setHeight(478);
         centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);

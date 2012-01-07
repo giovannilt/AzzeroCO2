@@ -45,7 +45,7 @@ public class Ordini extends LayoutContainer {
         ContentPanel centre = createCentre();
         centre.setHeaderVisible(false);
         centre.setFrame(true);
-        centre.setHeight(477);
+        centre.setHeight(478);
         centre.setFrame(true);
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));

@@ -202,13 +202,13 @@ public class FormRiepilogo extends LayoutContainer {
         grid.addListener(Events.CellClick, new Listener<GridEvent>() {
             public void handleEvent(GridEvent be) {
                 if (be.getType() == Events.CellClick) {
-                    if (Eventi.EVENTO == Eventi.valueOf(((RiepilogoModel) getModel()).getEventi())) {
+                    if (Eventi.EVENTO == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
                         Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getModel());
-                    } else if (Eventi.CONOSCI_CO2 == Eventi.valueOf(((RiepilogoModel) getModel()).getEventi())) {
+                    } else if (Eventi.CONOSCI_CO2 == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
                         // Dispatcher.forwardEvent(ConoscoCO2Events.ShowStep, be.getModel());
-                    } else if (Eventi.ANNO_DI_ATTIVITA == Eventi.valueOf(((RiepilogoModel) getModel()).getEventi())) {
-                    } else if (Eventi.UNA_PUBBLICAZIONE == Eventi.valueOf(((RiepilogoModel) getModel()).getEventi())) {
-                    } else if (Eventi.WEB == Eventi.valueOf(((RiepilogoModel) getModel()).getEventi())) {
+                    } else if (Eventi.ANNO_DI_ATTIVITA == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
+                    } else if (Eventi.UNA_PUBBLICAZIONE == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
+                    } else if (Eventi.WEB == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
                     }
                 }
             }
