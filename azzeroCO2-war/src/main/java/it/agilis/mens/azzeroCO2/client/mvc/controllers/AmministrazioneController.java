@@ -12,6 +12,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.AmministrazioneView;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
@@ -49,7 +50,7 @@ public class AmministrazioneController extends BaseController {
         if (event.getType().equals(AmministrazioneEvents.ShowEventoCompensatoDialog)) {
             OrdineModel ordineModel = event.getData();
 
-            eventoCompensatoDialog.setInStore(CalcoliHelper.geListOfRiepilogoModel(ordineModel, amministrazioneView.getCoefficienti()));
+            eventoCompensatoDialog.setInStore(CalcoliHelper.geListOfRiepilogoModel(ordineModel, amministrazioneView.getCoefficienti(), Eventi.AMMINISTRAZIONE));
             eventoCompensatoDialog.setTotale(ordineModel.getPagamentoModel().getKgCO2());
             eventoCompensatoDialog.setOrdineModel(ordineModel);
             eventoCompensatoDialog.show();

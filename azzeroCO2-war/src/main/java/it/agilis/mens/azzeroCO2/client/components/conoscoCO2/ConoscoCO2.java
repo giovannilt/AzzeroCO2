@@ -18,7 +18,9 @@ import it.agilis.mens.azzeroCO2.client.forms.FormRiepilogo;
 import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
+import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 
@@ -34,11 +36,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class ConoscoCO2 extends LayoutContainer {
-
-
     private final TabPanel conoscoCO2Tab = new TabPanel();
     private final FormConoscoCO2 conoscoCO2Form = new FormConoscoCO2();
-
 
     private final FormRiepilogo formRiepilogo = new FormRiepilogo();
     private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
@@ -185,5 +184,16 @@ public class ConoscoCO2 extends LayoutContainer {
         conoscoCO2Tab.setSelection(conoscoCO2Tab.getItems().get(conoscoCO2Tab.getItems().size() - 1));
         Dispatcher.forwardEvent(ConoscoCO2Events.NextText, posizioniText.get(posizioniLabel).get(1));
         Dispatcher.forwardEvent(ConoscoCO2Events.PreviousText, posizioniText.get(posizioniLabel).get(0));
+    }
+
+    public void setConoscoCO2RiepilogoInStore(List<RiepilogoModel> riepilogoModels) {
+        OrdineModel riepilogo = riepilogo();
+        Esito esito = Esito.IN_PAGAMENTO;
+        if (riepilogo.getPagamentoModel() != null &&
+                riepilogo.getPagamentoModel().getEsito() != null) {
+            esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());
+        }
+        formRiepilogo.setRiepilogoInStore(riepilogoModels, esito);
+        eventoFormAcquisto.setRiepilogo(riepilogoModels, riepilogo);
     }
 }

@@ -11,12 +11,11 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  */
 public class ConoscoCO2Model extends BaseModel {
 
-    public void setConoscoCO2(Integer conoscoCO2) {
+    public void setConoscoCO2(Double conoscoCO2) {
         set("conoscoCO2", conoscoCO2);
     }
 
     public Double getConoscoCO2() {
         return get("conoscoCO2");
-
     }
 }

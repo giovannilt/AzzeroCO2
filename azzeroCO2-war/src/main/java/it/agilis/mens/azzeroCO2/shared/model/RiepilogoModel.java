@@ -42,5 +42,13 @@ public class RiepilogoModel extends BaseModelData {
     public void setKgCO2(Double kgCO2) {
         set("kgCO2", kgCO2);
     }
+
+    public void setEventi(String eventi) {
+        set("eventi", eventi);
+    }
+
+    public String getEventi() {
+        return get("eventi");
+    }
 }
 

@@ -191,7 +191,7 @@ public class SitoWeb extends LayoutContainer {
                 riepilogo.getPagamentoModel().getEsito() != null) {
             esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());
         }
-        formRiepilogo.setEventoRiepilogoInStore(eventoRiepilogoModels, esito);
+        formRiepilogo.setRiepilogoInStore(eventoRiepilogoModels, esito);
         formAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo);
     }
 

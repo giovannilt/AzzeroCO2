@@ -102,11 +102,11 @@ public class FormConoscoCO2 extends LayoutContainer {
         visitatori.setLayout(layoutVisitatori);
 
         NumberField visitatoriField = new NumberField();
-        visitatoriField.setRegex("[0-9]+");
+        // visitatoriField.setRegex("[0-9]+");
         visitatoriField.getMessages().setRegexText("Conosco la CO2");
-        visitatoriField.setName("Kg CO2");
+        visitatoriField.setName("conoscoCO2");
         visitatoriField.setWidth(80);
-        visitatoriField.setPropertyEditorType(Integer.class);
+        visitatoriField.setPropertyEditorType(Double.class);
 
         visitatori.add(new LabelField("Kg CO2"), flex);
         visitatori.add(visitatoriField, flex);
@@ -128,11 +128,6 @@ public class FormConoscoCO2 extends LayoutContainer {
 
     public ConoscoCO2Model getConoscoCO2Model() {
         return conoscoCO2Model;
-    }
-
-    public void setConoscoCO2Model(ConoscoCO2Model conoscoCO2Model) {
-        this.conoscoCO2Model = conoscoCO2Model;
-        binding.bind(conoscoCO2Model);
     }
 
     @Override

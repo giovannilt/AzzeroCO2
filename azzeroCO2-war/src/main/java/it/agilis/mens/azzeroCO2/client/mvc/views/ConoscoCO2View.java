@@ -17,6 +17,7 @@ import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2West;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
+import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -154,10 +155,10 @@ public class ConoscoCO2View extends View {
     }
 
 
-    public List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficientiMAP) {
-        List<RiepilogoModel> _return = null;
-
-        return _return;
+    public List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
+        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(conoscoCO2.riepilogo(), coefficienti, Eventi.CONOSCI_CO2);
+        conoscoCO2.setConoscoCO2RiepilogoInStore(list);
+        return list;
     }
 
     public void setUserInfo(UserInfoModel userInfoModel) {

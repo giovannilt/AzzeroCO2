@@ -291,7 +291,7 @@ public class EventoDettaglio extends LayoutContainer {
                 riepilogo.getPagamentoModel().getEsito() != null) {
             esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());
         }
-        formRiepilogo.setEventoRiepilogoInStore(eventoRiepilogoModels, esito);
+        formRiepilogo.setRiepilogoInStore(eventoRiepilogoModels, esito);
         eventoFormAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo);
     }
 

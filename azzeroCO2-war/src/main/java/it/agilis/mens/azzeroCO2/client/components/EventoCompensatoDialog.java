@@ -67,8 +67,6 @@ public class EventoCompensatoDialog extends Dialog {
 
         cpEst.add(createGrid(), new RowData(1, 1));
 
-        // TODO MIGLIORARE
-        //  cp.setHeight(300);
         cp.add(cpEst, new RowData(0.60, 1));
         cp.add(createResumeProject(), new RowData(0.40, 1));
         this.setHeight(440);

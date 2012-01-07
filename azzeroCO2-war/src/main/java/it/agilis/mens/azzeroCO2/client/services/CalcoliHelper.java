@@ -1,8 +1,10 @@
 package it.agilis.mens.azzeroCO2.client.services;
 
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
+import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 
 import java.util.ArrayList;
@@ -48,6 +50,18 @@ public class CalcoliHelper {
                 store.add(model);
             }
         }
+
+        if (eventoModel != null && eventoModel.getConoscoCO2Model() != null) {
+            if (eventoModel.getConoscoCO2Model().getConoscoCO2() != null &&
+                    eventoModel.getConoscoCO2Model().getConoscoCO2() > 0) {
+                model = new RiepilogoModel();
+                model.setDettagli("Conosco KgCO2");
+                model.setOggetto("Conosco KgCO2");
+                model.setIndex(1);
+                store.add(model);
+            }
+        }
+
         if (eventoModel != null && eventoModel.getNottiModel() != null) {
             if (eventoModel.getNottiModel().getNotti() > 0) {
                 model = new RiepilogoModel();
@@ -101,51 +115,88 @@ public class CalcoliHelper {
         return store;
     }
 
-    public static List<RiepilogoModel> geListOfRiepilogoModel(OrdineModel eventoModel, Map<String, CoefficienteModel> coef) {
+    public static List<RiepilogoModel> geListOfRiepilogoModel(OrdineModel eventoModel, Map<String, CoefficienteModel> coef, Eventi e) {
         coefficienti = coef;
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
 
         //Caloclo ENERGIA
         RiepilogoModel model = null;
         if (eventoModel != null && eventoModel.getEnergiaModel() != null) {
-            model = getEnergia(eventoModel.getEnergiaModel());
+            model = getEnergia(eventoModel.getEnergiaModel(), e);
             if (model != null) {
                 store.add(model);
             }
         }
-        List<RiepilogoModel> trasportoPersone = getTrasportoPersone(eventoModel.getTrasportoPersoneModel());
-        if (trasportoPersone != null) {
-
-            store.addAll(trasportoPersone);
+        ArrayList<TrasportoPersoneModel> trasportoPersoneModel = eventoModel.getTrasportoPersoneModel();
+        if (trasportoPersoneModel != null) {
+            List<RiepilogoModel> trasportoPersone = getTrasportoPersone(trasportoPersoneModel, e);
+            if (trasportoPersone != null) {
+                store.addAll(trasportoPersone);
+            }
         }
         if (eventoModel != null && eventoModel.getNottiModel() != null) {
-            model = getNotti(eventoModel.getNottiModel());
+            model = getNotti(eventoModel.getNottiModel(), e);
             if (model != null) {
                 store.add(model);
             }
         }
 
-        model = getTrasportoMerci(eventoModel.getTrasportoMerciModel());
-        if (model != null) {
-            store.add(model);
+        TrasportoMerciModel trasportoMerciModel = eventoModel.getTrasportoMerciModel();
+        if (trasportoMerciModel != null) {
+            model = getTrasportoMerci(trasportoMerciModel, e);
+            if (model != null) {
+                store.add(model);
+            }
         }
-        List<RiepilogoModel> pubblRil = getPubblRil(eventoModel.getPubblicazioniRilegateModel());
-
-        if (pubblRil != null) {
-            store.addAll(pubblRil);
+        List<PubblicazioniRilegateModel> pubblicazioniRilegateModel = eventoModel.getPubblicazioniRilegateModel();
+        if (pubblicazioniRilegateModel != null) {
+            List<RiepilogoModel> pubblRil = getPubblRil(pubblicazioniRilegateModel, e);
+            if (pubblRil != null) {
+                store.addAll(pubblRil);
+            }
         }
 
-        List<RiepilogoModel> pubblNonRil = getPubblNonRil(eventoModel.getManifestiPieghevoliFogliModel());
-        if (pubblNonRil != null) {
-            store.addAll(pubblNonRil);
+        List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel = eventoModel.getManifestiPieghevoliFogliModel();
+        if (manifestiPieghevoliFogliModel != null) {
+            List<RiepilogoModel> pubblNonRil = getPubblNonRil(manifestiPieghevoliFogliModel, e);
+            if (pubblNonRil != null) {
+                store.addAll(pubblNonRil);
+            }
         }
 
+        if (eventoModel.getConoscoCO2Model() != null) {
+            model = getConoscoCO2(eventoModel.getConoscoCO2Model(), e);
+            if (model != null) {
+                store.add(model);
+            }
+        }
 
         return store;
     }
 
-    private static RiepilogoModel getEnergia(EnergiaModel energiaModel) {
+    private static RiepilogoModel getConoscoCO2(ConoscoCO2Model conoscoCO2Model, Eventi e) {
+        RiepilogoModel _return = new RiepilogoModel();
+        _return.setEventi(e.name());
+        _return.setOggetto("Conosco CO2");
+        Double co2 = -1.0;
+        if (conoscoCO2Model.getConoscoCO2() != null && conoscoCO2Model.getConoscoCO2() > 0) {
+            String energiaDett = conoscoCO2Model.getConoscoCO2() + " KgCO2";
+            _return.setDettagli(energiaDett);
+            CoefficienteModel coefficienteModel = coefficienti.get("PERNOT");   // TODO: PRENDERE IL COEFFICIENTE GIUSTO
+            co2 = conoscoCO2Model.getConoscoCO2() * coefficienteModel.getValore();
+            _return.setKgCO2(co2);
+        }
+
+        if (co2 > 0) {
+            _return.setIndex(1);
+            return _return;
+        }
+        return null;
+    }
+
+    private static RiepilogoModel getEnergia(EnergiaModel energiaModel, Eventi e) {
         RiepilogoModel energia = new RiepilogoModel();
+        energia.setEventi(e.name());
 
         energia.setOggetto("Energia");
         String energia1 = "";
@@ -179,8 +230,9 @@ public class CalcoliHelper {
         return null;
     }
 
-    private static RiepilogoModel getNotti(NottiModel nottiModel) {
+    private static RiepilogoModel getNotti(NottiModel nottiModel, Eventi e) {
         RiepilogoModel notti = new RiepilogoModel();
+        notti.setEventi(e.name());
         notti.setOggetto("Pernottamenti");
         Double co2 = -1.0;
         if (nottiModel.getNotti() > 0) {
@@ -198,10 +250,11 @@ public class CalcoliHelper {
         return null;
     }
 
-    private static List<RiepilogoModel> getTrasportoPersone(List<TrasportoPersoneModel> trasportoPersoneModels) {
+    private static List<RiepilogoModel> getTrasportoPersone(List<TrasportoPersoneModel> trasportoPersoneModels, Eventi e) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
         for (TrasportoPersoneModel tpm : trasportoPersoneModels) {
             RiepilogoModel _rm = new RiepilogoModel();
+            _rm.setEventi(e.name());
             _rm.setOggetto("Trasporto Persone / " + tpm.getCategoria());
             String tp60Bus = "";
             String tp60Auto = "";
@@ -375,7 +428,7 @@ public class CalcoliHelper {
         return _return;
     }
 
-    private static RiepilogoModel getTrasportoMerci(TrasportoMerciModel trasportoMerciModel) {
+    private static RiepilogoModel getTrasportoMerci(TrasportoMerciModel trasportoMerciModel, Eventi e) {
         RiepilogoModel traspMerci = new RiepilogoModel();
 
         traspMerci.setOggetto("Trasporto Merci");
@@ -536,12 +589,12 @@ public class CalcoliHelper {
         return null;
     }
 
-    private static List<RiepilogoModel> getPubblRil(List<PubblicazioniRilegateModel> pubblRilModel) {
+    private static List<RiepilogoModel> getPubblRil(List<PubblicazioniRilegateModel> pubblRilModel, Eventi e) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
 
         for (PubblicazioniRilegateModel prm : pubblRilModel) {
             RiepilogoModel _rm = new RiepilogoModel();
-
+            _rm.setEventi(e.name());
             double co2 = 0;
             double co2Copertina = 0;
 
@@ -594,11 +647,11 @@ public class CalcoliHelper {
         return _return;
     }
 
-    private static List<RiepilogoModel> getPubblNonRil(List<ManifestiPieghevoliFogliModel> pubblNonRilModel) {
+    private static List<RiepilogoModel> getPubblNonRil(List<ManifestiPieghevoliFogliModel> pubblNonRilModel, Eventi e) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
         for (ManifestiPieghevoliFogliModel prm : pubblNonRilModel) {
             RiepilogoModel _rm = new RiepilogoModel();
-
+            _rm.setEventi(e.name());
             double co2 = 0;
 
             _rm.setOggetto("Manifesti, pieghevoli, fogli / / </br>" + prm.getCategoria());

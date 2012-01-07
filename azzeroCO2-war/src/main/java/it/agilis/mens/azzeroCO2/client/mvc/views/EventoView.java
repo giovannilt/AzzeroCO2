@@ -179,7 +179,7 @@ public class EventoView extends View {
     }
 
     public List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
-        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti);
+        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti, Eventi.EVENTO);
         eventoDettaglio.setEventoRiepilogoInStore(list);
         return list;
     }

@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
@@ -181,9 +182,6 @@ public class FormRiepilogo extends LayoutContainer {
                     public void componentSelected(IconButtonEvent ce) {
                         if (!Esito.PAGATO.equals(esito)) {
                             Dispatcher.forwardEvent(AzzeroCO2Events.ShowRiepilogoConfermDialog, model);
-                            //store.remove(model);
-                            //Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
-                            //setTotale();
                         }
                     }
                 });
@@ -204,8 +202,14 @@ public class FormRiepilogo extends LayoutContainer {
         grid.addListener(Events.CellClick, new Listener<GridEvent>() {
             public void handleEvent(GridEvent be) {
                 if (be.getType() == Events.CellClick) {
-                    Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getModel());
-
+                    if (Eventi.EVENTO == Eventi.valueOf(((RiepilogoModel) getModel()).getEventi())) {
+                        Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getModel());
+                    } else if (Eventi.CONOSCI_CO2 == Eventi.valueOf(((RiepilogoModel) getModel()).getEventi())) {
+                        // Dispatcher.forwardEvent(ConoscoCO2Events.ShowStep, be.getModel());
+                    } else if (Eventi.ANNO_DI_ATTIVITA == Eventi.valueOf(((RiepilogoModel) getModel()).getEventi())) {
+                    } else if (Eventi.UNA_PUBBLICAZIONE == Eventi.valueOf(((RiepilogoModel) getModel()).getEventi())) {
+                    } else if (Eventi.WEB == Eventi.valueOf(((RiepilogoModel) getModel()).getEventi())) {
+                    }
                 }
             }
         });
@@ -213,7 +217,7 @@ public class FormRiepilogo extends LayoutContainer {
         return grid;
     }
 
-    public void setEventoRiepilogoInStore(List<RiepilogoModel> models, Esito esito) {
+    public void setRiepilogoInStore(List<RiepilogoModel> models, Esito esito) {
         for (RiepilogoModel r : store.getModels()) {
             store.remove(r);
         }

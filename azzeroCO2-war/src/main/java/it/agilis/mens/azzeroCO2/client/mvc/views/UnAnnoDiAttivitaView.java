@@ -173,7 +173,7 @@ public class UnAnnoDiAttivitaView extends View {
     }
 
     public List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
-        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(annoDettaglio.riepilogo(), coefficienti);
+        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(annoDettaglio.riepilogo(), coefficienti, Eventi.ANNO_DI_ATTIVITA);
         annoDettaglio.setEventoRiepilogoInStore(list);
         return list;
     }
