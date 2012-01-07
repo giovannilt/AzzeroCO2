@@ -5,12 +5,15 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.client.mvc.events.*;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.ConoscoCO2View;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.Profile;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -90,7 +93,7 @@ public class ConoscoCO2Controller extends BaseController {
             if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
                 Dispatcher.forwardEvent(LoginEvents.ShowForm);
             } else {
-                DettaglioModel model = conoscoCO2View.getRiepilogo();
+                OrdineModel model = conoscoCO2View.getRiepilogo();
 
                 double kgCO2 = getTotaleKgCO2(model);
 
@@ -116,8 +119,8 @@ public class ConoscoCO2Controller extends BaseController {
             setUserInfoModel((UserInfoModel) event.getData());
             conoscoCO2View.setUserInfo(getUserInfoModel());
         } else if (event.getType().equals(ConoscoCO2Events.Save)) {
-            if (event.getData() instanceof DettaglioModel) {
-                DettaglioModel model = (DettaglioModel) event.getData();
+            if (event.getData() instanceof OrdineModel) {
+                OrdineModel model = (OrdineModel) event.getData();
                 save(model);
             } else {
                 save(null);
@@ -127,7 +130,7 @@ public class ConoscoCO2Controller extends BaseController {
         }
     }
 
-    private void save(DettaglioModel model) {
+    private void save(OrdineModel model) {
         if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
             Dispatcher.forwardEvent(LoginEvents.ShowForm);
         } else if (model == null) {
@@ -183,7 +186,7 @@ public class ConoscoCO2Controller extends BaseController {
                         Dispatcher.forwardEvent(PagamentoSellaEvents.EnableButton);
                     }
                 }
-                DettaglioModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
+                OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                 conoscoCO2View.setDettaglioModel(model);
             } else {
                 Info.display("Error", "Errore impossibile connettersi al server ERRORE DI SISTEMA");
@@ -213,7 +216,7 @@ public class ConoscoCO2Controller extends BaseController {
         }
     }
 
-    private double getTotaleKgCO2(DettaglioModel model) {
+    private double getTotaleKgCO2(OrdineModel model) {
         List<RiepilogoModel> eventoRiepilogoModels = conoscoCO2View.riepilogo(getCoefficientiMAP());
         double totale = 0;
         for (RiepilogoModel r : eventoRiepilogoModels) {

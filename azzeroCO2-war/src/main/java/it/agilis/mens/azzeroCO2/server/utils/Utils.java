@@ -13,6 +13,7 @@ import it.agilis.mens.azzeroCO2.core.register.impl.Email;
 import it.agilis.mens.azzeroCO2.server.GitRepositoryState;
 import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -172,8 +173,8 @@ public class Utils {
 
     }
 
-    public static List<DettaglioModel> getListOfOrdini(List<Ordine> listOfOrdini) {
-        List<DettaglioModel> _return = new ArrayList<DettaglioModel>();
+    public static List<OrdineModel> getListOfOrdini(List<Ordine> listOfOrdini) {
+        List<OrdineModel> _return = new ArrayList<OrdineModel>();
         for (Ordine o : listOfOrdini) {
             _return.add(getDettaglioModel(o));
         }
@@ -239,57 +240,57 @@ public class Utils {
         return _return;
     }
 
-    public static Ordine getOrdine(DettaglioModel dettaglioModel) {
+    public static Ordine getOrdine(OrdineModel ordineModel) {
         Ordine o = new Ordine();
-        o.setId(dettaglioModel.getOrdineId());
+        o.setId(ordineModel.getOrdineId());
 
-        o.setProgettoCompensazione(getProgettoDiCompensazione(dettaglioModel.getProgettoDiCompensazioneModel()));
+        o.setProgettoCompensazione(getProgettoDiCompensazione(ordineModel.getProgettoDiCompensazioneModel()));
 
         Evento e = new Evento();
-        e.setId(dettaglioModel.getId());
-        e.setNome(dettaglioModel.getNome());
-        e.setDove(dettaglioModel.getDove());
-        e.setInizio(dettaglioModel.getInizio());
-        e.setFine(dettaglioModel.getFine());
-        e.setNote(dettaglioModel.getNote());
+        e.setId(ordineModel.getId());
+        e.setNome(ordineModel.getNome());
+        e.setDove(ordineModel.getDove());
+        e.setInizio(ordineModel.getInizio());
+        e.setFine(ordineModel.getFine());
+        e.setNote(ordineModel.getNote());
 
-        o.setRicevutaDiPagamento(getRicevuta(dettaglioModel.getPagamentoModel()));
+        o.setRicevutaDiPagamento(getRicevuta(ordineModel.getPagamentoModel()));
 
-        if (dettaglioModel.getEnergiaModel() != null) {
-            e.setEnergiaElettrica(dettaglioModel.getEnergiaModel().getEnergiaElettrica());
-            e.setGas(dettaglioModel.getEnergiaModel().getGasMetano());
-            e.setGasolio(dettaglioModel.getEnergiaModel().getGasolio());
-            e.setPernottamenti(dettaglioModel.getNottiModel().getNotti());
+        if (ordineModel.getEnergiaModel() != null) {
+            e.setEnergiaElettrica(ordineModel.getEnergiaModel().getEnergiaElettrica());
+            e.setGas(ordineModel.getEnergiaModel().getGasMetano());
+            e.setGasolio(ordineModel.getEnergiaModel().getGasolio());
+            e.setPernottamenti(ordineModel.getNottiModel().getNotti());
         }
         o.setEvento(e);
 
-        if (dettaglioModel.getTrasportoMerciModel() != null) {
+        if (ordineModel.getTrasportoMerciModel() != null) {
             TrasportoMerci tm = new TrasportoMerci();
-            tm.setId(dettaglioModel.getTrasportoMerciModel().getId());
-            tm.setFurgone30(dettaglioModel.getTrasportoMerciModel().getFurgoneKm30());
-            tm.setFurgone150(dettaglioModel.getTrasportoMerciModel().getFurgoneKm150());
-            tm.setFurgone1500(dettaglioModel.getTrasportoMerciModel().getFurgoneKm1500());
-            tm.setFurgone500(dettaglioModel.getTrasportoMerciModel().getFurgoneKm500());
-            tm.setFurgone9000(dettaglioModel.getTrasportoMerciModel().getFurgoneKm9000());
-            tm.setTir30(dettaglioModel.getTrasportoMerciModel().getTirKm30());
-            tm.setTir150(dettaglioModel.getTrasportoMerciModel().getTirKm150());
-            tm.setTir1500(dettaglioModel.getTrasportoMerciModel().getTirKm1500());
-            tm.setTir500(dettaglioModel.getTrasportoMerciModel().getTirKm500());
-            tm.setTir9000(dettaglioModel.getTrasportoMerciModel().getTirKm9000());
-            tm.setTreno150(dettaglioModel.getTrasportoMerciModel().getTrenoKm150());
-            tm.setTreno1500(dettaglioModel.getTrasportoMerciModel().getTrenoKm1500());
-            tm.setTreno500(dettaglioModel.getTrasportoMerciModel().getTrenoKm500());
-            tm.setTreno9000(dettaglioModel.getTrasportoMerciModel().getTrenoKm9000());
-            tm.setNave1500(dettaglioModel.getTrasportoMerciModel().getNaveKm1500());
-            tm.setNave500(dettaglioModel.getTrasportoMerciModel().getNaveKm500());
-            tm.setNave9000(dettaglioModel.getTrasportoMerciModel().getNaveKm9000());
-            tm.setAereo1500(dettaglioModel.getTrasportoMerciModel().getAereoKm1500());
-            tm.setAereo9000(dettaglioModel.getTrasportoMerciModel().getAereoKm9000());
+            tm.setId(ordineModel.getTrasportoMerciModel().getId());
+            tm.setFurgone30(ordineModel.getTrasportoMerciModel().getFurgoneKm30());
+            tm.setFurgone150(ordineModel.getTrasportoMerciModel().getFurgoneKm150());
+            tm.setFurgone1500(ordineModel.getTrasportoMerciModel().getFurgoneKm1500());
+            tm.setFurgone500(ordineModel.getTrasportoMerciModel().getFurgoneKm500());
+            tm.setFurgone9000(ordineModel.getTrasportoMerciModel().getFurgoneKm9000());
+            tm.setTir30(ordineModel.getTrasportoMerciModel().getTirKm30());
+            tm.setTir150(ordineModel.getTrasportoMerciModel().getTirKm150());
+            tm.setTir1500(ordineModel.getTrasportoMerciModel().getTirKm1500());
+            tm.setTir500(ordineModel.getTrasportoMerciModel().getTirKm500());
+            tm.setTir9000(ordineModel.getTrasportoMerciModel().getTirKm9000());
+            tm.setTreno150(ordineModel.getTrasportoMerciModel().getTrenoKm150());
+            tm.setTreno1500(ordineModel.getTrasportoMerciModel().getTrenoKm1500());
+            tm.setTreno500(ordineModel.getTrasportoMerciModel().getTrenoKm500());
+            tm.setTreno9000(ordineModel.getTrasportoMerciModel().getTrenoKm9000());
+            tm.setNave1500(ordineModel.getTrasportoMerciModel().getNaveKm1500());
+            tm.setNave500(ordineModel.getTrasportoMerciModel().getNaveKm500());
+            tm.setNave9000(ordineModel.getTrasportoMerciModel().getNaveKm9000());
+            tm.setAereo1500(ordineModel.getTrasportoMerciModel().getAereoKm1500());
+            tm.setAereo9000(ordineModel.getTrasportoMerciModel().getAereoKm9000());
             o.setTrasportoMerci(tm);
         }
-        if (dettaglioModel.getTrasportoPersoneModel() != null && dettaglioModel.getTrasportoPersoneModel().size() > 0) {
+        if (ordineModel.getTrasportoPersoneModel() != null && ordineModel.getTrasportoPersoneModel().size() > 0) {
             List<TrasportoPersone> trasportoPersoneList = new ArrayList<TrasportoPersone>();
-            for (TrasportoPersoneModel tpm : dettaglioModel.getTrasportoPersoneModel()) {
+            for (TrasportoPersoneModel tpm : ordineModel.getTrasportoPersoneModel()) {
                 TrasportoPersone tp = new TrasportoPersone();
                 tp.setId(tpm.getId());
                 tp.setAereo1000(tpm.getAereoKm1000());
@@ -318,9 +319,9 @@ public class Utils {
             }
             o.setTrasportoPersone(trasportoPersoneList);
         }
-        if (dettaglioModel.getPubblicazioniRilegateModel() != null && dettaglioModel.getPubblicazioniRilegateModel().size() > 0) {
+        if (ordineModel.getPubblicazioniRilegateModel() != null && ordineModel.getPubblicazioniRilegateModel().size() > 0) {
             List<Pubblicazione> pubblicazioniRilegateList = new ArrayList<Pubblicazione>();
-            for (PubblicazioniRilegateModel prm : dettaglioModel.getPubblicazioniRilegateModel()) {
+            for (PubblicazioniRilegateModel prm : ordineModel.getPubblicazioniRilegateModel()) {
                 Pubblicazione pr = new Pubblicazione();
                 pr.setId(prm.getId());
                 pr.setAltezza(prm.getAltezza());
@@ -357,9 +358,9 @@ public class Utils {
                 o.getPubblicazioni().addAll(pubblicazioniRilegateList);
             }
         }
-        if (dettaglioModel.getManifestiPieghevoliFogliModel() != null && dettaglioModel.getManifestiPieghevoliFogliModel().size() > 0) {
+        if (ordineModel.getManifestiPieghevoliFogliModel() != null && ordineModel.getManifestiPieghevoliFogliModel().size() > 0) {
             List<Pubblicazione> pubblicazioniList = new ArrayList<Pubblicazione>();
-            for (ManifestiPieghevoliFogliModel pnrm : dettaglioModel.getManifestiPieghevoliFogliModel()) {
+            for (ManifestiPieghevoliFogliModel pnrm : ordineModel.getManifestiPieghevoliFogliModel()) {
                 Pubblicazione pnr = new Pubblicazione();
                 pnr.setId(pnrm.getId());
                 pnr.setAltezza(pnrm.getAltezza());
@@ -388,8 +389,8 @@ public class Utils {
         return o;
     }
 
-    public static DettaglioModel getDettaglioModel(Ordine o) {
-        DettaglioModel dm = new DettaglioModel();
+    public static OrdineModel getDettaglioModel(Ordine o) {
+        OrdineModel dm = new OrdineModel();
 
         dm.setLastUpdate(o.getLastUpdate());
         dm.setProgettoDiCompensazioneModel(getProgettoDiCompensazioneModel(o.getProgettoCompensazione()));

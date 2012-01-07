@@ -3,15 +3,18 @@ package it.agilis.mens.azzeroCO2.client.components.pubblicazione;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.*;
-import com.extjs.gxt.ui.client.widget.layout.*;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.CardLayout;
+import com.extjs.gxt.ui.client.widget.layout.RowData;
+import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormDettaglio;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -123,7 +126,7 @@ public class Pubblicazione extends LayoutContainer {
                             if (j > 0) {
                                 layout.setActiveItem(calcolo.getItem(j - 1));
                                 posizioniLabel--;
-                                //  DettaglioModel riepilogo = riepilogo();
+                                //  OrdineModel riepilogo = riepilogo();
                                 Dispatcher.forwardEvent(PubblicazioniEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                                 Dispatcher.forwardEvent(PubblicazioniEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                                 return layout.getActiveItem().getTitle();
@@ -136,7 +139,7 @@ public class Pubblicazione extends LayoutContainer {
                     pubblicazioneoTab.getItems().get(i - 1).setEnabled(true);
                     pubblicazioneoTab.setSelection(pubblicazioneoTab.getItems().get(i - 1));
                     posizioniLabel--;
-                    //  DettaglioModel riepilogo = riepilogo();
+                    //  OrdineModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(PubblicazioniEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(PubblicazioniEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return pubblicazioneoTab.getSelectedItem().getTitle();
@@ -236,8 +239,8 @@ public class Pubblicazione extends LayoutContainer {
         }
     }
 
-    public DettaglioModel riepilogo() {
-        DettaglioModel eventoModel = formDettaglio.getDettaglioModel();
+    public OrdineModel riepilogo() {
+        OrdineModel eventoModel = formDettaglio.getOrdineModel();
 
         eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
         eventoModel.setManifestiPieghevoliFogliModel(formManifestipieghevoliFogli.getManifestiPieghevoliFogliModel());
@@ -247,8 +250,8 @@ public class Pubblicazione extends LayoutContainer {
         return eventoModel;
     }
 
-    public void restore(DettaglioModel eventoModel) {
-        formDettaglio.setDettaglioModel(eventoModel);
+    public void restore(OrdineModel eventoModel) {
+        formDettaglio.setOrdineModel(eventoModel);
         formPubblicazioniRilegate.setPubblicazioniRilegateModel(eventoModel.getPubblicazioniRilegateModel());
         formManifestipieghevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
 
@@ -261,7 +264,7 @@ public class Pubblicazione extends LayoutContainer {
     }
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
-        DettaglioModel riepilogo = riepilogo();
+        OrdineModel riepilogo = riepilogo();
         Esito esito = Esito.IN_PAGAMENTO;
         if (riepilogo.getPagamentoModel() != null &&
                 riepilogo.getPagamentoModel().getEsito() != null) {

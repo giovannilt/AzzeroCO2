@@ -21,8 +21,8 @@ import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class ConoscoCO2West extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Conosco la CO2");
-    private final String oggettoDiDefault="Compensa le tue emissioni";
+    private final String oggettoDiDefault = "Compensa le tue emissioni";
     private final String riepilogoString = "Hai terminato il calcolo! </br>" +
             "Se vuoi modifica i dati inseriti</br>" +
             " cliccando sulla voce relativa.";
@@ -87,7 +87,7 @@ public class ConoscoCO2West extends LayoutContainer {
         title.setStyleAttribute("vertical-align ", "middle");
         title.setWidth(250);
         title.setHeight(60);
-        title.setStyleAttribute("font-size","14px");
+        title.setStyleAttribute("font-size", "14px");
 
 
         panel.setStyleAttribute("backgroundColor", "#E9E9E9");
@@ -107,7 +107,7 @@ public class ConoscoCO2West extends LayoutContainer {
             public Object render(ModelData model, String property, ColumnData config, int rowIndex, int colIndex, ListStore listStore, Grid grid) {
                 config.style += "background-color: silver;";
                 List<RiepilogoModel> r = listStore.getModels();
-                if(r.size()==1 && r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)){
+                if (r.size() == 1 && r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)) {
                     return null;
                 }
 
@@ -155,7 +155,7 @@ public class ConoscoCO2West extends LayoutContainer {
                 new Listener<SelectionChangedEvent<RiepilogoModel>>() {
                     public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
                         if (be.getSelection().size() > 0) {
-                            if(!Esito.PAGATO.equals(esito)){
+                            if (!Esito.PAGATO.equals(esito)) {
                                 Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());  //TODO che roba è
                             }
                         }
@@ -168,7 +168,7 @@ public class ConoscoCO2West extends LayoutContainer {
     }
 
 
-    public void setInStore(DettaglioModel riepilogo, Esito esito) {
+    public void setInStore(OrdineModel riepilogo, Esito esito) {
         store.removeAll();
         List<RiepilogoModel> model = CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo);
         if (model == null || model.size() == 0) {
@@ -182,8 +182,8 @@ public class ConoscoCO2West extends LayoutContainer {
         setTitle(riepilogo);
     }
 
-   public void setTitle(DettaglioModel riepilogo) {
-   String title = riepilogo.getNome() != null ? riepilogo.getNome() : "Compensa la CO2";
+    public void setTitle(OrdineModel riepilogo) {
+        String title = riepilogo.getNome() != null ? riepilogo.getNome() : "Compensa la CO2";
 
         if (title == null || "".equalsIgnoreCase(title)) {
             this.title.setText("Compensa la CO2");
@@ -193,13 +193,12 @@ public class ConoscoCO2West extends LayoutContainer {
     }
 
 
-
-    public void clean(){
+    public void clean() {
         setInStore(null, Esito.IN_PAGAMENTO);
         this.title.setTitle(".....");
     }
 
-    public void isInRiepilogo(DettaglioModel riepilogo) {
+    public void isInRiepilogo(OrdineModel riepilogo) {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
@@ -208,7 +207,7 @@ public class ConoscoCO2West extends LayoutContainer {
         store.add(m);
     }
 
-    public void isScegliProgettoCompensazione(DettaglioModel riepilogo) {
+    public void isScegliProgettoCompensazione(OrdineModel riepilogo) {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
@@ -217,7 +216,7 @@ public class ConoscoCO2West extends LayoutContainer {
         store.add(m);
     }
 
-    public void isInConferma(DettaglioModel riepilogo) {
+    public void isInConferma(OrdineModel riepilogo) {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();

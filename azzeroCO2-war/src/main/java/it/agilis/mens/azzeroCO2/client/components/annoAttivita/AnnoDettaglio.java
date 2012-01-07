@@ -9,9 +9,9 @@ import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.client.forms.annoAttivita.AnnoFormDettaglio;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
@@ -98,7 +98,7 @@ public class AnnoDettaglio extends LayoutContainer {
         posizioniText.add(Arrays.asList("Trasporto merci", "Manifesti pieghevoli e fogli"));// Pubblicazioni rilegate
         posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Biglietti da visita e cartelline"));           // Manifesti pieghevoli e Fogli
         posizioniText.add(Arrays.asList("Manifesti pieghevoli e fogli", "Sito"));
-        posizioniText.add(Arrays.asList("Biglietti da visita e cartelline","Riepilogo"));           // Manifesti pieghevoli e Fogli
+        posizioniText.add(Arrays.asList("Biglietti da visita e cartelline", "Riepilogo"));           // Manifesti pieghevoli e Fogli
 
 
         posizioniText.add(Arrays.asList("Sito", "Scegli progetto di compensazione"));// RIEPILOGO
@@ -156,7 +156,7 @@ public class AnnoDettaglio extends LayoutContainer {
                             if (j > 0) {
                                 layout.setActiveItem(calcolo.getItem(j - 1));
                                 posizioniLabel--;
-                                //  DettaglioModel riepilogo = riepilogo();
+                                //  OrdineModel riepilogo = riepilogo();
                                 Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                                 Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                                 return layout.getActiveItem().getTitle();
@@ -169,7 +169,7 @@ public class AnnoDettaglio extends LayoutContainer {
                     eventoTab.getItems().get(i - 1).setEnabled(true);
                     eventoTab.setSelection(eventoTab.getItems().get(i - 1));
                     posizioniLabel--;
-                    //  DettaglioModel riepilogo = riepilogo();
+                    //  OrdineModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return eventoTab.getSelectedItem().getTitle();
@@ -273,8 +273,8 @@ public class AnnoDettaglio extends LayoutContainer {
         }
     }
 
-    public DettaglioModel riepilogo() {
-        DettaglioModel eventoModel = formDettaglio.getDettaglioModel();
+    public OrdineModel riepilogo() {
+        OrdineModel eventoModel = formDettaglio.getOrdineModel();
         eventoModel.setEnergiaModel(formEnergia.getEnergiaModel());
         eventoModel.setTrasportoPersoneModel(formTrasportoPersone.getTrasportoPersoneModel());
         eventoModel.setNottiModel(formPernottamenti.getNottiModel());
@@ -288,8 +288,8 @@ public class AnnoDettaglio extends LayoutContainer {
         return eventoModel;
     }
 
-    public void restore(DettaglioModel eventoModel) {
-        formDettaglio.setDettaglioModel(eventoModel);
+    public void restore(OrdineModel eventoModel) {
+        formDettaglio.setOrdineModel(eventoModel);
         formEnergia.setEnergiaModel(eventoModel.getEnergiaModel());
         formTrasportoPersone.setTrasportoPersoneModel(eventoModel.getTrasportoPersoneModel());
         formPernottamenti.setNottiModel(eventoModel.getNottiModel());
@@ -306,7 +306,7 @@ public class AnnoDettaglio extends LayoutContainer {
     }
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
-        DettaglioModel riepilogo = riepilogo();
+        OrdineModel riepilogo = riepilogo();
         Esito esito = Esito.IN_PAGAMENTO;
         if (riepilogo.getPagamentoModel() != null &&
                 riepilogo.getPagamentoModel().getEsito() != null) {
@@ -391,8 +391,9 @@ public class AnnoDettaglio extends LayoutContainer {
         Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
         Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
     }
-    public void goToBegin(){
-        while(posizioniLabel>1){
+
+    public void goToBegin() {
+        while (posizioniLabel > 1) {
             previusTab();
         }
         previusTab();

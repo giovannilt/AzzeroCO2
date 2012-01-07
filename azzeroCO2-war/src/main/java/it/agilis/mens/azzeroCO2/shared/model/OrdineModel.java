@@ -1,8 +1,9 @@
-package it.agilis.mens.azzeroCO2.shared.model.evento;
+package it.agilis.mens.azzeroCO2.shared.model;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
+import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 
 import java.util.ArrayList;
@@ -16,9 +17,7 @@ import java.util.List;
  * Time: 12:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DettaglioModel extends BaseModel {
-
-    private Date lastUpdate;
+public class OrdineModel extends BaseModel {
 
     private EnergiaModel energiaModel;
     private ArrayList<TrasportoPersoneModel> trasportoPersoneModel;
@@ -31,8 +30,6 @@ public class DettaglioModel extends BaseModel {
 
     private PagamentoModel pagamentoModel;
 
-
-    // FORSE NO
     private ConoscoCO2Model conoscoCO2Model;
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
@@ -71,7 +68,7 @@ public class DettaglioModel extends BaseModel {
         set("dove", dove);
     }
 
-     public Date getLastUpdate() {
+    public Date getLastUpdate() {
         return (Date) get("lastUpdate");
     }
 
@@ -164,7 +161,7 @@ public class DettaglioModel extends BaseModel {
     }
 
     public void setConoscoCO2Model(ConoscoCO2Model conoscoCO2Model) {
-        this.conoscoCO2Model= conoscoCO2Model;
+        this.conoscoCO2Model = conoscoCO2Model;
     }
 
     public ConoscoCO2Model getConoscoCO2Model() {

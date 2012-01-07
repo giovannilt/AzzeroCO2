@@ -12,7 +12,7 @@ import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 
 import java.util.Date;
 
@@ -25,14 +25,14 @@ import java.util.Date;
  */
 public class EventoFormDettaglio extends LayoutContainer {
 
-    private DettaglioModel dettaglioModel = new DettaglioModel();
+    private OrdineModel ordineModel = new OrdineModel();
     private FormBinding binding = null;
     private FormPanel formPanel;
 
     public EventoFormDettaglio() {
         formPanel = createForm();
         binding = new FormBinding(formPanel, true);
-        binding.bind(dettaglioModel);
+        binding.bind(ordineModel);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         panel.setButtonAlign(Style.HorizontalAlignment.CENTER);
         panel.setLayout(new ColumnLayout());
 
-         ToolButton tool1 = new ToolButton("x-tool-help");
+        ToolButton tool1 = new ToolButton("x-tool-help");
         panel.getHeader().addTool(tool1);
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
@@ -97,12 +97,12 @@ public class EventoFormDettaglio extends LayoutContainer {
         dataInizio.setFieldLabel("Data inizio");
         dataInizio.addListener(Events.Change, new Listener<FieldEvent>() {
             public void handleEvent(FieldEvent p_event) {
-                if(dataFine.getValue()!=null && p_event.getValue()!=null &&
-                        dataFine.getValue().before((Date)p_event.getValue())){
+                if (dataFine.getValue() != null && p_event.getValue() != null &&
+                        dataFine.getValue().before((Date) p_event.getValue())) {
                     Info.display("Info", "La data di fine non puà precedere la data di inizio dell'evento..");
                 }
 
-               // Window.alert("change: " + p_event.value);
+                // Window.alert("change: " + p_event.value);
             }
         });
 
@@ -122,7 +122,6 @@ public class EventoFormDettaglio extends LayoutContainer {
         left.add(ps);
 
 
-
         LayoutContainer right = new LayoutContainer();
         right.setStyleAttribute("paddingLeft", "10px");
         layout = new FormLayout();
@@ -134,13 +133,13 @@ public class EventoFormDettaglio extends LayoutContainer {
         dove.setName("dove");
         right.add(dove);
 
-        
+
         dataFine.setFieldLabel("Data fine");
         dataFine.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
         dataFine.addListener(Events.Change, new Listener<FieldEvent>() {
             public void handleEvent(FieldEvent p_event) {
-                if(dataInizio.getValue()!=null && p_event.getValue()!=null &&
-                        dataInizio.getValue().after((Date)p_event.getValue())){
+                if (dataInizio.getValue() != null && p_event.getValue() != null &&
+                        dataInizio.getValue().after((Date) p_event.getValue())) {
                     Info.display("Info", "La data di fine non puà precedere la data di inizio dell'evento.");
                 }
             }
@@ -160,20 +159,20 @@ public class EventoFormDettaglio extends LayoutContainer {
             //  binding.unbind();
             binding.clear();
             formPanel.clear();
-            dettaglioModel = new DettaglioModel();
-            binding.bind(dettaglioModel);
+            ordineModel = new OrdineModel();
+            binding.bind(ordineModel);
         } catch (Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
-    public DettaglioModel getDettaglioModel() {
-        return dettaglioModel;
+    public OrdineModel getOrdineModel() {
+        return ordineModel;
     }
 
-    public void setDettaglioModel(DettaglioModel dettaglioModel) {
-        this.dettaglioModel = dettaglioModel;
-        binding.bind(dettaglioModel);
+    public void setOrdineModel(OrdineModel ordineModel) {
+        this.ordineModel = ordineModel;
+        binding.bind(ordineModel);
     }
 
     @Override

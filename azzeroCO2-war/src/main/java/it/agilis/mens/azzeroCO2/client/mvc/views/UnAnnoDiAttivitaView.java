@@ -20,10 +20,10 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -65,7 +65,7 @@ public class UnAnnoDiAttivitaView extends View {
             onNext(event);
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.ClearStep)) {
             annoDettaglio.clearStep((RiepilogoModel) event.getData());
-            DettaglioModel riepilogo = annoDettaglio.riepilogo();
+            OrdineModel riepilogo = annoDettaglio.riepilogo();
             setRiassunto(riepilogo, false, false, false);
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.ClearPanel)) {
             annoDettaglio.clearPanel();
@@ -73,22 +73,22 @@ public class UnAnnoDiAttivitaView extends View {
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.Previous)) {
             onPrevius(event);
         } /*else if (eventType.equals(EventoEvents.Riepilogo)) {
-            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
+            OrdineModel riepilogo = eventoDettaglio.riepilogo();
             setRiassunto(riepilogo);
         }*/ else if (event.getType().equals(UnAnnoDiAttivitaEvents.PreviousText)) {
-            DettaglioModel riepilogo = annoDettaglio.riepilogo();
+            OrdineModel riepilogo = annoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
-                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti pieghevoli e fogli") ,
+                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti pieghevoli e fogli"),
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"),
                     event.<String>getData() != null && event.<String>getData().length() == 0
             );
         } else if (event.getType().equals(UnAnnoDiAttivitaEvents.NextText)) {
-            DettaglioModel riepilogo = annoDettaglio.riepilogo();
+            OrdineModel riepilogo = annoDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Scegli progetto di compensazione"),
-                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Vai al pagamento") ,
+                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Vai al pagamento"),
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("torna alla home")
             );
         } else if (event.getType().equals(UnAnnoDiAttivitaEvents.ShowStep)) {
@@ -98,7 +98,7 @@ public class UnAnnoDiAttivitaView extends View {
         }
     }
 
-    public void setRiassunto(DettaglioModel riepilogo, boolean isRiepilogo, boolean isScegliProgettoCompensazione, boolean isConferma) {
+    public void setRiassunto(OrdineModel riepilogo, boolean isRiepilogo, boolean isScegliProgettoCompensazione, boolean isConferma) {
         if (isRiepilogo) {
             west.isInRiepilogo(riepilogo);
         } else if (isScegliProgettoCompensazione) {
@@ -182,11 +182,11 @@ public class UnAnnoDiAttivitaView extends View {
         annoDettaglio.setProgettiDiCompensazione(progettiDiCompensazioneList);
     }
 
-    public DettaglioModel getRiepilogo() {
+    public OrdineModel getRiepilogo() {
         return annoDettaglio.riepilogo();
     }
 
-    public void setDettaglioModel(DettaglioModel result) {
+    public void setDettaglioModel(OrdineModel result) {
         annoDettaglio.restore(result);
     }
 

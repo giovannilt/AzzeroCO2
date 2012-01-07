@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.client.services;
 
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
@@ -18,7 +19,7 @@ import java.util.Map;
 public class CalcoliHelper {
     private static Map<String, CoefficienteModel> coefficienti = null;
 
-    public static List<RiepilogoModel> getListOfRiepilogoModelLazy(DettaglioModel eventoModel) {
+    public static List<RiepilogoModel> getListOfRiepilogoModelLazy(OrdineModel eventoModel) {
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
         RiepilogoModel model = null;
         if (eventoModel != null && eventoModel.getEnergiaModel() != null) {
@@ -100,7 +101,7 @@ public class CalcoliHelper {
         return store;
     }
 
-    public static List<RiepilogoModel> geListOfRiepilogoModel(DettaglioModel eventoModel, Map<String, CoefficienteModel> coef) {
+    public static List<RiepilogoModel> geListOfRiepilogoModel(OrdineModel eventoModel, Map<String, CoefficienteModel> coef) {
         coefficienti = coef;
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
 
@@ -347,23 +348,23 @@ public class CalcoliHelper {
             co2 += tpm.getAereoKm9000() * coefficienteModelTPAEREE.getValore() * 9000;
 
             if (co2 > 0) {
-                String temp ="";
+                String temp = "";
                 if (tp60 != null && tp60.length() > 0) {
-                    temp = temp +  tp60+ "</br>";
+                    temp = temp + tp60 + "</br>";
                 }
 
 
                 if (tp300 != null && tp300.length() > 0) {
-                    temp = temp +  tp300+ "</br>";
+                    temp = temp + tp300 + "</br>";
                 }
                 if (tp1000 != null && tp1000.length() > 0) {
-                    temp = temp +  tp1000+ "</br>";
+                    temp = temp + tp1000 + "</br>";
                 }
                 if (tp3000 != null && tp3000.length() > 0) {
-                    temp = temp  + tp3000+ "</br>";
+                    temp = temp + tp3000 + "</br>";
                 }
                 if (tp9000 != null && tp9000.length() > 0) {
-                    temp = temp  + tp9000+ "</br>";
+                    temp = temp + tp9000 + "</br>";
                 }
                 //  _rm.setDettagli(tp60 + "</br>" + tp300 + "</br>" + tp1000 + "</br>" + tp3000 + "</br>" + tp9000);
                 _rm.setDettagli(temp);
@@ -510,23 +511,23 @@ public class CalcoliHelper {
         String europeo = "";
         String extraeuropeo = "";
         if (trasportoMerciModel.getFurgoneKm30() + trasportoMerciModel.getTirKm30() > 0) {
-            provinciale = "Distanza provinciale:</br>"+furgone30+tir30+ "</br>";
+            provinciale = "Distanza provinciale:</br>" + furgone30 + tir30 + "</br>";
         }
 
         if (trasportoMerciModel.getFurgoneKm150() + trasportoMerciModel.getTirKm150() + trasportoMerciModel.getTirKm150() > 0) {
-            regionale = "Distanza regionale:</br>"+furgone150+tir150+treno150+ "</br>";
+            regionale = "Distanza regionale:</br>" + furgone150 + tir150 + treno150 + "</br>";
         }
         if (trasportoMerciModel.getFurgoneKm500() + trasportoMerciModel.getTirKm500() + trasportoMerciModel.getTrenoKm500() + trasportoMerciModel.getNaveKm500() > 0) {
-            nazionale = "Distanza nazionale:</br>"+furgone500+tir500+treno500+nave500 +"</br>";
+            nazionale = "Distanza nazionale:</br>" + furgone500 + tir500 + treno500 + nave500 + "</br>";
         }
         if (trasportoMerciModel.getFurgoneKm1500() + trasportoMerciModel.getTirKm1500() + trasportoMerciModel.getTrenoKm1500() + trasportoMerciModel.getNaveKm1500() + trasportoMerciModel.getAereoKm1500() > 0) {
-            europeo = "Distanza europea:</br>"+furgone1500+tir1500+treno1500+nave1500+aereo1500+ "</br>";
+            europeo = "Distanza europea:</br>" + furgone1500 + tir1500 + treno1500 + nave1500 + aereo1500 + "</br>";
         }
         if (trasportoMerciModel.getFurgoneKm9000() + trasportoMerciModel.getTirKm9000() + trasportoMerciModel.getTrenoKm9000() + trasportoMerciModel.getNaveKm9000() + trasportoMerciModel.getAereoKm9000() > 0) {
-            extraeuropeo = "Distanza extra europea:</br>"+furgone9000+tir9000+treno9000+nave9000+aereo9000+ "</br>" ;
+            extraeuropeo = "Distanza extra europea:</br>" + furgone9000 + tir9000 + treno9000 + nave9000 + aereo9000 + "</br>";
         }
 
-        traspMerci.setDettagli(provinciale   + regionale  + nazionale   +  europeo  + extraeuropeo );
+        traspMerci.setDettagli(provinciale + regionale + nazionale + europeo + extraeuropeo);
 
         if (co2 > 0) {
             traspMerci.setKgCO2(co2);
@@ -586,7 +587,7 @@ public class CalcoliHelper {
             if (co2 > 0) {
                 _rm.setKgCO2(co2);
                 _rm.setOggetto("Pubblicazioni rilegate / </br>" + prm.getCategoria());
-                _rm.setDettagli(formato  + materiale  + pagine  + tiratura);
+                _rm.setDettagli(formato + materiale + pagine + tiratura);
                 _return.add(_rm);
             }
         }
@@ -630,7 +631,7 @@ public class CalcoliHelper {
             }
 
             if (co2 > 0) {
-                _rm.setDettagli(formato  + materiale  + pagine  + tiratura);
+                _rm.setDettagli(formato + materiale + pagine + tiratura);
                 _rm.setKgCO2(co2);
                 _return.add(_rm);
             }

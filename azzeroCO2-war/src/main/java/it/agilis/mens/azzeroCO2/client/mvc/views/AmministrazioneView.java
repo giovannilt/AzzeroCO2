@@ -15,10 +15,10 @@ import it.agilis.mens.azzeroCO2.client.components.amministrazione.Amministrazion
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.List;
@@ -72,18 +72,19 @@ public class AmministrazioneView extends View {
     }
 
     public void setCoefficienti(Map<String, CoefficienteModel> coefficienti) {
-       amministrazione.setCoefficienti(coefficienti);
-        this.coefficienti=coefficienti;
+        amministrazione.setCoefficienti(coefficienti);
+        this.coefficienti = coefficienti;
     }
+
     public void setCoupon(List<CouponModel> coupon) {
-       amministrazione.setCoupon(coupon);
+        amministrazione.setCoupon(coupon);
     }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazione) {
-       amministrazione.setProgettiDiCompensazione(progettiDiCompensazione);
+        amministrazione.setProgettiDiCompensazione(progettiDiCompensazione);
     }
 
-    public void setOrdini(List<DettaglioModel> ordini) {
+    public void setOrdini(List<OrdineModel> ordini) {
         amministrazione.setOrdini(ordini);
     }
 
@@ -91,7 +92,7 @@ public class AmministrazioneView extends View {
         amministrazione.setUserInfo(userInfoModel);
     }
 
-    public Map<String,CoefficienteModel> getCoefficienti() {
+    public Map<String, CoefficienteModel> getCoefficienti() {
         return coefficienti;
     }
 }

@@ -20,10 +20,10 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -64,7 +64,7 @@ public class UnaPubblicazioneView extends View {
             onNext(event);
         } else if (eventType.equals(PubblicazioniEvents.ClearStep)) {
             pubblicazioneDettaglio.clearStep((RiepilogoModel) event.getData());
-            DettaglioModel riepilogo = pubblicazioneDettaglio.riepilogo();
+            OrdineModel riepilogo = pubblicazioneDettaglio.riepilogo();
             setRiassunto(riepilogo, false, false, false);
         } else if (eventType.equals(PubblicazioniEvents.ClearPanel)) {
             pubblicazioneDettaglio.clearPanel();
@@ -72,7 +72,7 @@ public class UnaPubblicazioneView extends View {
         } else if (eventType.equals(PubblicazioniEvents.Previous)) {
             onPrevius(event);
         } else if (event.getType().equals(PubblicazioniEvents.PreviousText)) {
-            DettaglioModel riepilogo = pubblicazioneDettaglio.riepilogo();
+            OrdineModel riepilogo = pubblicazioneDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti pieghevoli e fogli"),
@@ -80,7 +80,7 @@ public class UnaPubblicazioneView extends View {
                     false
             );
         } else if (event.getType().equals(PubblicazioniEvents.NextText)) {
-            DettaglioModel riepilogo = pubblicazioneDettaglio.riepilogo();
+            OrdineModel riepilogo = pubblicazioneDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Scegli progetto di compensazione"),
@@ -94,7 +94,7 @@ public class UnaPubblicazioneView extends View {
         }
     }
 
-    public void setRiassunto(DettaglioModel riepilogo, boolean isRiepilogo, boolean isScegliProgettoCompensazione, boolean isConferma) {
+    public void setRiassunto(OrdineModel riepilogo, boolean isRiepilogo, boolean isScegliProgettoCompensazione, boolean isConferma) {
         if (isRiepilogo) {
             west.isInRiepilogo(riepilogo);
         } else if (isScegliProgettoCompensazione) {
@@ -180,11 +180,11 @@ public class UnaPubblicazioneView extends View {
         pubblicazioneDettaglio.setProgettiDiCompensazione(progettiDiCompensazioneList);
     }
 
-    public DettaglioModel getRiepilogo() {
+    public OrdineModel getRiepilogo() {
         return pubblicazioneDettaglio.riepilogo();
     }
 
-    public void setDettaglioModel(DettaglioModel result) {
+    public void setDettaglioModel(OrdineModel result) {
         pubblicazioneDettaglio.restore(result);
     }
 
