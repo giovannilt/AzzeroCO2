@@ -44,7 +44,7 @@ public class Coefficienti extends LayoutContainer {
 
         ContentPanel centre = createCentre();
         centre.setHeaderVisible(false);
-        centre.setHeight(477);
+        centre.setHeight(478);
         centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
