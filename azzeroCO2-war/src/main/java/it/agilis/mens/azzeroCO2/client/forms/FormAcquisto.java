@@ -28,9 +28,9 @@ import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -307,7 +307,7 @@ public class FormAcquisto extends LayoutContainer {
                     b.setVisible(false);
                 }
                 config.style = "border-bottom:1px solid gray !important;";
-                config.style="width:100px";
+                config.style = "width:100px";
 
                 return b;
             }
@@ -377,7 +377,7 @@ public class FormAcquisto extends LayoutContainer {
         select(selectedModel);
     }
 
-    public void setRiepilogo(List<RiepilogoModel> eventoRiepilogoModels, DettaglioModel riepilogo) {
+    public void setRiepilogo(List<RiepilogoModel> eventoRiepilogoModels, OrdineModel riepilogo) {
         double totale = 0;
         for (RiepilogoModel r : eventoRiepilogoModels) {
             totale += r.getKgCO2();

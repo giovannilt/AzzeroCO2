@@ -17,8 +17,8 @@ import it.agilis.mens.azzeroCO2.client.forms.FormConoscoCO2;
 import it.agilis.mens.azzeroCO2.client.forms.FormRiepilogo;
 import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
 import it.agilis.mens.azzeroCO2.shared.Profile;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 
@@ -96,7 +96,7 @@ public class ConoscoCO2 extends LayoutContainer {
                     conoscoCO2Tab.getItems().get(i - 1).setEnabled(true);
                     conoscoCO2Tab.setSelection(conoscoCO2Tab.getItems().get(i - 1));
                     posizioniLabel--;
-                    //  DettaglioModel riepilogo = riepilogo();
+                    //  OrdineModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(ConoscoCO2Events.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(ConoscoCO2Events.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return conoscoCO2Tab.getSelectedItem().getTitle();
@@ -157,8 +157,8 @@ public class ConoscoCO2 extends LayoutContainer {
         }
     }
 
-    public DettaglioModel riepilogo() {
-        DettaglioModel model = new DettaglioModel();
+    public OrdineModel riepilogo() {
+        OrdineModel model = new OrdineModel();
 
         model.setNome("ConoscoCO2");
 

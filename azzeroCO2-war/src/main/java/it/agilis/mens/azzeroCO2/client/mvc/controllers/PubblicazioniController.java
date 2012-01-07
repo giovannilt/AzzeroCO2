@@ -6,13 +6,15 @@ import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.client.mvc.events.*;
-import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.UnaPubblicazioneView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.Profile;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -79,13 +81,14 @@ public class PubblicazioniController extends BaseController {
             setCoefficienti();
             setProgettiDiCompensazione();
             pubblicazioneView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
-            pubblicazioneView.setDettaglioModel((DettaglioModel) event.getData());
-            pubblicazioneView.setRiassunto((DettaglioModel) event.getData(), true, false, false);
+            pubblicazioneView.setDettaglioModel((OrdineModel) event.getData());
+            pubblicazioneView.setRiassunto((OrdineModel) event.getData(), true, false, false);
         } else if (event.getType().equals(AzzeroCO2Events.Init)) {
             AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server");
                 }
+
                 @Override
                 public void onSuccess(List<TipoDiCartaModel> result) {
                     if (result != null) {
@@ -106,7 +109,7 @@ public class PubblicazioniController extends BaseController {
                 pubblicazioneView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
             }
         } else if (event.getType().equals(PubblicazioniEvents.Conferma)) {
-            DettaglioModel model = pubblicazioneView.getRiepilogo();
+            OrdineModel model = pubblicazioneView.getRiepilogo();
 
             double kgCO2 = getTotaleKgCO2(model);
 
@@ -131,8 +134,8 @@ public class PubblicazioniController extends BaseController {
             setUserInfoModel((UserInfoModel) event.getData());
             pubblicazioneView.setUserInfo(getUserInfoModel());
         } else if (event.getType().equals(PubblicazioniEvents.Save)) {
-            if (event.getData() instanceof DettaglioModel) {
-                DettaglioModel model = (DettaglioModel) event.getData();
+            if (event.getData() instanceof OrdineModel) {
+                OrdineModel model = (OrdineModel) event.getData();
                 save(model);
             } else {
                 save(null);
@@ -142,7 +145,7 @@ public class PubblicazioniController extends BaseController {
         }
     }
 
-    private void save(DettaglioModel model) {
+    private void save(OrdineModel model) {
         if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
             Dispatcher.forwardEvent(LoginEvents.ShowForm);
         } else if (model == null) {
@@ -164,7 +167,7 @@ public class PubblicazioniController extends BaseController {
                 @Override
                 public void onSuccess(DettaglioVTO result) {
                     if (result != null) {
-                        DettaglioModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
+                        OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         pubblicazioneView.setDettaglioModel(model);
                         Info.display("Info", "Evento " + riepilogo.getNome() + " salvato con successo.");
                     }
@@ -188,7 +191,7 @@ public class PubblicazioniController extends BaseController {
         }
     }
 
-    private double getTotaleKgCO2(DettaglioModel model) {
+    private double getTotaleKgCO2(OrdineModel model) {
         List<RiepilogoModel> eventoRiepilogoModels = pubblicazioneView.riepilogo(getCoefficientiMAP());
         double totale = 0;
         for (RiepilogoModel r : eventoRiepilogoModels) {
@@ -227,7 +230,6 @@ public class PubblicazioniController extends BaseController {
             return timer;
         }
     }
-
 
 
 }

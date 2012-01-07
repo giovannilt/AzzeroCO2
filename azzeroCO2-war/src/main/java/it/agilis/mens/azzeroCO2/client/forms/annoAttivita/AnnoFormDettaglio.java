@@ -8,11 +8,14 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
-import com.extjs.gxt.ui.client.widget.form.*;
+import com.extjs.gxt.ui.client.widget.form.FormPanel;
+import com.extjs.gxt.ui.client.widget.form.LabelField;
+import com.extjs.gxt.ui.client.widget.form.TextArea;
+import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,14 +26,14 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
  */
 public class AnnoFormDettaglio extends LayoutContainer {
 
-    private DettaglioModel dettaglioModel = new DettaglioModel();
+    private OrdineModel ordineModel = new OrdineModel();
     private FormBinding binding = null;
     private FormPanel formPanel;
 
     public AnnoFormDettaglio() {
         createForm();
         binding = new FormBinding(formPanel, true);
-        binding.bind(dettaglioModel);
+        binding.bind(ordineModel);
     }
 
     @Override
@@ -92,7 +95,7 @@ public class AnnoFormDettaglio extends LayoutContainer {
         TextField<String> nomeEvento = new TextField<String>();
         nomeEvento.setFieldLabel("Nome dell'attività");
         nomeEvento.setLabelStyle("width:150");
-        nomeEvento.setStyleAttribute("padding-bottom","35px");
+        nomeEvento.setStyleAttribute("padding-bottom", "35px");
         nomeEvento.setName("nome");
 
         left.add(nomeEvento);
@@ -101,7 +104,7 @@ public class AnnoFormDettaglio extends LayoutContainer {
         anno.setFieldLabel("Anno");
         anno.setLabelStyle("width:150");
 
-        anno.setStyleAttribute("padding-bottom","35px");
+        anno.setStyleAttribute("padding-bottom", "35px");
         anno.setName("anno");
         left.add(anno);
 
@@ -109,7 +112,7 @@ public class AnnoFormDettaglio extends LayoutContainer {
         dove.setFieldLabel("Dove");
         dove.setLabelStyle("width:150");
 
-        dove.setStyleAttribute("padding-bottom","35px");
+        dove.setStyleAttribute("padding-bottom", "35px");
         dove.setName("dove");
         left.add(dove);
 
@@ -117,7 +120,7 @@ public class AnnoFormDettaglio extends LayoutContainer {
         note.setPreventScrollbars(true);
         note.setLabelStyle("width:150");
 
-        note.setStyleAttribute("padding-bottom","35px");
+        note.setStyleAttribute("padding-bottom", "35px");
         note.setFieldLabel("Note");
         note.setName("note");
         left.add(note);
@@ -133,20 +136,20 @@ public class AnnoFormDettaglio extends LayoutContainer {
             //  binding.unbind();
             binding.clear();
             formPanel.clear();
-            dettaglioModel = new DettaglioModel();
-            binding.bind(dettaglioModel);
+            ordineModel = new OrdineModel();
+            binding.bind(ordineModel);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public DettaglioModel getDettaglioModel() {
-        return dettaglioModel;
+    public OrdineModel getOrdineModel() {
+        return ordineModel;
     }
 
-    public void setDettaglioModel(DettaglioModel dettaglioModel) {
-        this.dettaglioModel = dettaglioModel;
-        binding.bind(dettaglioModel);
+    public void setOrdineModel(OrdineModel ordineModel) {
+        this.ordineModel = ordineModel;
+        binding.bind(ordineModel);
     }
 
 

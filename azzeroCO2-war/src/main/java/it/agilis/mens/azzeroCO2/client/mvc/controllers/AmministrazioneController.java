@@ -12,10 +12,10 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.AmministrazioneView;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 
 import java.util.List;
@@ -47,11 +47,11 @@ public class AmministrazioneController extends BaseController {
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(AmministrazioneEvents.ShowEventoCompensatoDialog)) {
-            DettaglioModel dettaglioModel = event.getData();
-           
-            eventoCompensatoDialog.setInStore(CalcoliHelper.geListOfRiepilogoModel(dettaglioModel, amministrazioneView.getCoefficienti()));
-            eventoCompensatoDialog.setTotale(dettaglioModel.getPagamentoModel().getKgCO2());
-            eventoCompensatoDialog.setDettaglioModel(dettaglioModel);
+            OrdineModel ordineModel = event.getData();
+
+            eventoCompensatoDialog.setInStore(CalcoliHelper.geListOfRiepilogoModel(ordineModel, amministrazioneView.getCoefficienti()));
+            eventoCompensatoDialog.setTotale(ordineModel.getPagamentoModel().getKgCO2());
+            eventoCompensatoDialog.setOrdineModel(ordineModel);
             eventoCompensatoDialog.show();
 
         } else if (event.getType().equals(AmministrazioneEvents.SaveCoefficienti)) {
@@ -125,7 +125,7 @@ public class AmministrazioneController extends BaseController {
             getProgettiDiCompensazione();
             //     }
             getOrdini();
-           // amministrazioneView.setUserInfo(getUserInfoModel());
+            // amministrazioneView.setUserInfo(getUserInfoModel());
 
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
@@ -139,13 +139,13 @@ public class AmministrazioneController extends BaseController {
     // SETTANO
     private void getOrdini() {
         HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
-        AsyncCallback<List<DettaglioModel>> aCallback = new AsyncCallback<List<DettaglioModel>>() {
+        AsyncCallback<List<OrdineModel>> aCallback = new AsyncCallback<List<OrdineModel>>() {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Errore impossibile connettersi al server");
             }
 
             @Override
-            public void onSuccess(List<DettaglioModel> result) {
+            public void onSuccess(List<OrdineModel> result) {
                 amministrazioneView.setOrdini(result);
             }
         };

@@ -1,6 +1,6 @@
 package it.agilis.mens.azzeroCO2.client.services;
 
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
@@ -24,28 +24,28 @@ import java.util.List;
  */
 public class AzzerroCO2UtilsClientHelper {
 
-    public static DettaglioVTO getDettaglioVTO(DettaglioModel dettaglioModel) {
+    public static DettaglioVTO getDettaglioVTO(OrdineModel ordineModel) {
         DettaglioVTO dettaglioVTO = new DettaglioVTO();
 
-        dettaglioVTO.setNottiModel(dettaglioModel.getNottiModel());
-        dettaglioVTO.setEnergiaModel(dettaglioModel.getEnergiaModel());
-        dettaglioVTO.setTrasportoMerciModel(dettaglioModel.getTrasportoMerciModel());
-        dettaglioVTO.setTrasportoPersoneModel(dettaglioModel.getTrasportoPersoneModel());
-        dettaglioVTO.setProgettoDiCompensazioneModel(dettaglioModel.getProgettoDiCompensazioneModel());
+        dettaglioVTO.setNottiModel(ordineModel.getNottiModel());
+        dettaglioVTO.setEnergiaModel(ordineModel.getEnergiaModel());
+        dettaglioVTO.setTrasportoMerciModel(ordineModel.getTrasportoMerciModel());
+        dettaglioVTO.setTrasportoPersoneModel(ordineModel.getTrasportoPersoneModel());
+        dettaglioVTO.setProgettoDiCompensazioneModel(ordineModel.getProgettoDiCompensazioneModel());
 
-        dettaglioVTO.setSellaRicevutaDiPagamento(dettaglioModel.getPagamentoModel());
+        dettaglioVTO.setSellaRicevutaDiPagamento(ordineModel.getPagamentoModel());
 
-        dettaglioVTO.setDove(dettaglioModel.getDove());
-        dettaglioVTO.setFine(dettaglioModel.getFine());
-        dettaglioVTO.setId(dettaglioModel.getId());
-        dettaglioVTO.setInizio(dettaglioModel.getInizio());
-        dettaglioVTO.setNome(dettaglioModel.getNome());
-        dettaglioVTO.setNote(dettaglioModel.getNote());
-        dettaglioVTO.setOrdineId(dettaglioModel.getOrdineId());
+        dettaglioVTO.setDove(ordineModel.getDove());
+        dettaglioVTO.setFine(ordineModel.getFine());
+        dettaglioVTO.setId(ordineModel.getId());
+        dettaglioVTO.setInizio(ordineModel.getInizio());
+        dettaglioVTO.setNome(ordineModel.getNome());
+        dettaglioVTO.setNote(ordineModel.getNote());
+        dettaglioVTO.setOrdineId(ordineModel.getOrdineId());
 
 
-        dettaglioVTO.setManifestiPieghevoliFogliVTO(getManifestiPiegjevoliFogltioVTOList(dettaglioModel.getManifestiPieghevoliFogliModel()));
-        dettaglioVTO.setPubblicazioniRilegateVTO(getPubblicazioniRilegateVTOList(dettaglioModel.getPubblicazioniRilegateModel()));
+        dettaglioVTO.setManifestiPieghevoliFogliVTO(getManifestiPiegjevoliFogltioVTOList(ordineModel.getManifestiPieghevoliFogliModel()));
+        dettaglioVTO.setPubblicazioniRilegateVTO(getPubblicazioniRilegateVTOList(ordineModel.getPubblicazioniRilegateModel()));
 
         return dettaglioVTO;
 
@@ -116,30 +116,30 @@ public class AzzerroCO2UtilsClientHelper {
         return _return;
     }
 
-    public static DettaglioModel getDettaglioModel(DettaglioVTO dettaglioVTO) {
-        DettaglioModel dettaglioModel = new DettaglioModel();
+    public static OrdineModel getDettaglioModel(DettaglioVTO dettaglioVTO) {
+        OrdineModel ordineModel = new OrdineModel();
 
-        dettaglioModel.setEnergiaModel(dettaglioVTO.getEnergiaModel());
-        dettaglioModel.setTrasportoMerciModel(dettaglioVTO.getTrasportoMerciModel());
-        dettaglioModel.setTrasportoPersoneModel(dettaglioVTO.getTrasportoPersoneModel());
-        dettaglioModel.setNottiModel(dettaglioVTO.getNottiModel());
+        ordineModel.setEnergiaModel(dettaglioVTO.getEnergiaModel());
+        ordineModel.setTrasportoMerciModel(dettaglioVTO.getTrasportoMerciModel());
+        ordineModel.setTrasportoPersoneModel(dettaglioVTO.getTrasportoPersoneModel());
+        ordineModel.setNottiModel(dettaglioVTO.getNottiModel());
 
-        dettaglioModel.setDove(dettaglioVTO.getDove());
-        dettaglioModel.setFine(dettaglioVTO.getFine());
-        dettaglioModel.setId(dettaglioVTO.getId());
-        dettaglioModel.setInizio(dettaglioVTO.getInizio());
-        dettaglioModel.setNome(dettaglioVTO.getNome());
-        dettaglioModel.setNote(dettaglioVTO.getNote());
-        dettaglioModel.setOrdineId(dettaglioVTO.getOrdineId());
+        ordineModel.setDove(dettaglioVTO.getDove());
+        ordineModel.setFine(dettaglioVTO.getFine());
+        ordineModel.setId(dettaglioVTO.getId());
+        ordineModel.setInizio(dettaglioVTO.getInizio());
+        ordineModel.setNome(dettaglioVTO.getNome());
+        ordineModel.setNote(dettaglioVTO.getNote());
+        ordineModel.setOrdineId(dettaglioVTO.getOrdineId());
 
-        dettaglioModel.setPagamentoModel(dettaglioVTO.getPagamentoModel());
+        ordineModel.setPagamentoModel(dettaglioVTO.getPagamentoModel());
 
-        dettaglioModel.setManifestiPieghevoliFogliModel(getManifestiPiegjevoliFogltioModelList(dettaglioVTO.getManifestiPieghevoliFogliVTO()));
-        dettaglioModel.setPubblicazioniRilegateModel(getPubblicazioniRilegateModelList(dettaglioVTO.getPubblicazioniRilegateVTO()));
+        ordineModel.setManifestiPieghevoliFogliModel(getManifestiPiegjevoliFogltioModelList(dettaglioVTO.getManifestiPieghevoliFogliVTO()));
+        ordineModel.setPubblicazioniRilegateModel(getPubblicazioniRilegateModelList(dettaglioVTO.getPubblicazioniRilegateVTO()));
 
-        dettaglioModel.setProgettoDiCompensazioneModel(dettaglioVTO.getProgettoDiCompensazioneModel());
+        ordineModel.setProgettoDiCompensazioneModel(dettaglioVTO.getProgettoDiCompensazioneModel());
 
-        return dettaglioModel;
+        return ordineModel;
     }
 
     private static ArrayList<PubblicazioniRilegateModel> getPubblicazioniRilegateModelList(List<PubblicazioniRilegateVTO> pubblicazioniRilegateVTO) {

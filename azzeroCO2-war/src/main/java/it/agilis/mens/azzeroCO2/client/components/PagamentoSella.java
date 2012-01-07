@@ -13,7 +13,7 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 
 
@@ -156,7 +156,7 @@ public class PagamentoSella extends Dialog {
         return pagamentoModel;
     }
 
-    public void setModel(DettaglioModel model) {
+    public void setModel(OrdineModel model) {
         this.pagamentoModel = model.getPagamentoModel();
         binding = new FormBinding(form, true);
         // pagamentoModel.init();
@@ -176,6 +176,6 @@ public class PagamentoSella extends Dialog {
     }
 
     public void enableButton() {
-       submit.enable();
+        submit.enable();
     }
 }

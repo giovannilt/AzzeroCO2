@@ -17,9 +17,9 @@ import it.agilis.mens.azzeroCO2.client.forms.FormRiepilogo;
 import it.agilis.mens.azzeroCO2.client.forms.FormSitoWeb;
 import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
@@ -99,7 +99,7 @@ public class SitoWeb extends LayoutContainer {
                     sitoWebTab.getItems().get(i - 1).setEnabled(true);
                     sitoWebTab.setSelection(sitoWebTab.getItems().get(i - 1));
                     posizioniLabel--;
-                    //  DettaglioModel riepilogo = riepilogo();
+                    //  OrdineModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(SitoWebEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(SitoWebEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return sitoWebTab.getSelectedItem().getTitle();
@@ -170,22 +170,22 @@ public class SitoWeb extends LayoutContainer {
         }
     }
 
-    public DettaglioModel riepilogo() {
+    public OrdineModel riepilogo() {
         //TODO ... . . . . .
-        DettaglioModel eventoModel =null;//sitoWebForm.getDettaglioModel();
+        OrdineModel eventoModel = null;//sitoWebForm.getOrdineModel();
         eventoModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
         return eventoModel;
     }
 
-    public void restore(DettaglioModel eventoModel) {
-        //sitoWebForm.setDettaglioModel(eventoModel);
+    public void restore(OrdineModel eventoModel) {
+        //sitoWebForm.setOrdineModel(eventoModel);
 
         formAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
     }
 
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
-        DettaglioModel riepilogo = riepilogo();
+        OrdineModel riepilogo = riepilogo();
         Esito esito = Esito.IN_PAGAMENTO;
         if (riepilogo.getPagamentoModel() != null &&
                 riepilogo.getPagamentoModel().getEsito() != null) {

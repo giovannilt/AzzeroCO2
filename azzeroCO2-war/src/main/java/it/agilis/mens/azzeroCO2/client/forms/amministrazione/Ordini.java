@@ -20,7 +20,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ import java.util.List;
  */
 public class Ordini extends LayoutContainer {
 
-    private final ListStore<DettaglioModel> store = new ListStore<DettaglioModel>();
+    private final ListStore<OrdineModel> store = new ListStore<OrdineModel>();
 
     @Override
     protected void onRender(Element parent, int index) {
@@ -69,9 +69,9 @@ public class Ordini extends LayoutContainer {
 
         column = new ColumnConfig("euro", "Euro", 150);
         column.setAlignment((Style.HorizontalAlignment.RIGHT));
-        column.setRenderer(new GridCellRenderer<DettaglioModel>() {
-            public String render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex,
-                                 ListStore<DettaglioModel> store, Grid<DettaglioModel> grid) {
+        column.setRenderer(new GridCellRenderer<OrdineModel>() {
+            public String render(OrdineModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                                 ListStore<OrdineModel> store, Grid<OrdineModel> grid) {
                 if (model.getPagamentoModel() != null) {
                     return model.getPagamentoModel().getIMPORTO();
                 } else {
@@ -83,9 +83,9 @@ public class Ordini extends LayoutContainer {
 
         column = new ColumnConfig("kgCO2", "kgCO2", 150);
         column.setAlignment((Style.HorizontalAlignment.RIGHT));
-        column.setRenderer(new GridCellRenderer<DettaglioModel>() {
-            public String render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex,
-                                 ListStore<DettaglioModel> store, Grid<DettaglioModel> grid) {
+        column.setRenderer(new GridCellRenderer<OrdineModel>() {
+            public String render(OrdineModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                                 ListStore<OrdineModel> store, Grid<OrdineModel> grid) {
                 if (model.getPagamentoModel() != null && model.getPagamentoModel().getKgCO2() != null) {
                     return number.format(model.getPagamentoModel().getKgCO2());
                 } else {
@@ -97,9 +97,9 @@ public class Ordini extends LayoutContainer {
         configs.add(column);
 
         column = new ColumnConfig("compensato", "Status", 150);
-        column.setRenderer(new GridCellRenderer<DettaglioModel>() {
-            public String render(DettaglioModel model, String property, ColumnData config, int rowIndex, int colIndex,
-                                 ListStore<DettaglioModel> store, Grid<DettaglioModel> grid) {
+        column.setRenderer(new GridCellRenderer<OrdineModel>() {
+            public String render(OrdineModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                                 ListStore<OrdineModel> store, Grid<OrdineModel> grid) {
                 if (model.getPagamentoModel() != null && model.getPagamentoModel().getEsito() != null) {
                     return model.getPagamentoModel().getEsito().toString();
                 } else {
@@ -109,20 +109,20 @@ public class Ordini extends LayoutContainer {
         });
         configs.add(column);
         ColumnModel cm = new ColumnModel(configs);
-        Grid<DettaglioModel> grid = new Grid<DettaglioModel>(store, cm);
+        Grid<OrdineModel> grid = new Grid<OrdineModel>(store, cm);
         grid.setBorders(true);
         grid.setHeight(430);
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,
-                new Listener<SelectionChangedEvent<DettaglioModel>>() {
-                    public void handleEvent(SelectionChangedEvent<DettaglioModel> be) {
+                new Listener<SelectionChangedEvent<OrdineModel>>() {
+                    public void handleEvent(SelectionChangedEvent<OrdineModel> be) {
                         if (be.getSelection().size() > 0) {
-                            if (be.getSelectedItem().getPagamentoModel()!=null &&
+                            if (be.getSelectedItem().getPagamentoModel() != null &&
                                     be.getSelectedItem().getPagamentoModel().getEsito().equals(Esito.PAGATO.toString())) {
                                 Dispatcher.forwardEvent(AmministrazioneEvents.ShowEventoCompensatoDialog, be.getSelectedItem());
 
-                            }else{
+                            } else {
                                 Dispatcher.forwardEvent(EventoEvents.LoadEvento, be.getSelectedItem());
 
                                 Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
@@ -138,7 +138,7 @@ public class Ordini extends LayoutContainer {
         return centre;
     }
 
-    public void setOrdiniInStore(List<DettaglioModel> ordiniModels) {
+    public void setOrdiniInStore(List<OrdineModel> ordiniModels) {
         try {
             store.removeAll();
             store.add(ordiniModels);

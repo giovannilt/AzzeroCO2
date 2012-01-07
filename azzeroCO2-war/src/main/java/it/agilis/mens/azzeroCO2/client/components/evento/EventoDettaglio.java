@@ -9,9 +9,9 @@ import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormDettaglio;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
@@ -135,7 +135,7 @@ public class EventoDettaglio extends LayoutContainer {
                             if (j > 0) {
                                 layout.setActiveItem(calcolo.getItem(j - 1));
                                 posizioniLabel--;
-                                //  DettaglioModel riepilogo = riepilogo();
+                                //  OrdineModel riepilogo = riepilogo();
                                 Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                                 Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                                 return layout.getActiveItem().getTitle();
@@ -148,7 +148,7 @@ public class EventoDettaglio extends LayoutContainer {
                     eventoTab.getItems().get(i - 1).setEnabled(true);
                     eventoTab.setSelection(eventoTab.getItems().get(i - 1));
                     posizioniLabel--;
-                    //  DettaglioModel riepilogo = riepilogo();
+                    //  OrdineModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
                     return eventoTab.getSelectedItem().getTitle();
@@ -190,7 +190,7 @@ public class EventoDettaglio extends LayoutContainer {
                         Dispatcher.forwardEvent(EventoEvents.Acquisto);
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Vai al pagamento")) {
-                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
+                        if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return eventoTab.getItems().get(i).getText();
                         }
                     }
@@ -252,8 +252,8 @@ public class EventoDettaglio extends LayoutContainer {
         }
     }
 
-    public DettaglioModel riepilogo() {
-        DettaglioModel eventoModel = formDettaglio.getDettaglioModel();
+    public OrdineModel riepilogo() {
+        OrdineModel eventoModel = formDettaglio.getOrdineModel();
         eventoModel.setEnergiaModel(formEnergia.getEnergiaModel());
         eventoModel.setTrasportoPersoneModel(formTrasportoPersone.getTrasportoPersoneModel());
         eventoModel.setNottiModel(formPernottamenti.getNottiModel());
@@ -267,8 +267,8 @@ public class EventoDettaglio extends LayoutContainer {
         return eventoModel;
     }
 
-    public void restore(DettaglioModel eventoModel) {
-        formDettaglio.setDettaglioModel(eventoModel);
+    public void restore(OrdineModel eventoModel) {
+        formDettaglio.setOrdineModel(eventoModel);
         formEnergia.setEnergiaModel(eventoModel.getEnergiaModel());
         formTrasportoPersone.setTrasportoPersoneModel(eventoModel.getTrasportoPersoneModel());
         formPernottamenti.setNottiModel(eventoModel.getNottiModel());
@@ -285,7 +285,7 @@ public class EventoDettaglio extends LayoutContainer {
     }
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
-        DettaglioModel riepilogo = riepilogo();
+        OrdineModel riepilogo = riepilogo();
         Esito esito = Esito.IN_PAGAMENTO;
         if (riepilogo.getPagamentoModel() != null &&
                 riepilogo.getPagamentoModel().getEsito() != null) {
@@ -345,9 +345,10 @@ public class EventoDettaglio extends LayoutContainer {
             }
         }
     }
-    public void goToBegin(){
-        while(posizioniLabel>1){
-           previusTab();
+
+    public void goToBegin() {
+        while (posizioniLabel > 1) {
+            previusTab();
         }
         previusTab();
     }
@@ -371,7 +372,7 @@ public class EventoDettaglio extends LayoutContainer {
     public void showConferma(DettaglioVTO result) {
         eventoTab.getSelectedItem().disable();
         posizioniLabel++;
-         formConferma.setDettaglioModel(result);
+        formConferma.setDettaglioModel(result);
         eventoTab.getItems().get(eventoTab.getItems().size() - 1).setEnabled(true);
         eventoTab.setSelection(eventoTab.getItems().get(eventoTab.getItems().size() - 1));
         Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));

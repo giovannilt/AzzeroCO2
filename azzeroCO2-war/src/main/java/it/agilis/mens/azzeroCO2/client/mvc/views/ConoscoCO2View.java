@@ -18,10 +18,10 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
@@ -60,8 +60,8 @@ public class ConoscoCO2View extends View {
             conoscoCO2.nextTab();
         } else if (eventType.equals(ConoscoCO2Events.Previous)) {
             conoscoCO2.previusTab();
-        }else if (event.getType().equals(ConoscoCO2Events.PreviousText)) {
-            DettaglioModel riepilogo = conoscoCO2.riepilogo();
+        } else if (event.getType().equals(ConoscoCO2Events.PreviousText)) {
+            OrdineModel riepilogo = conoscoCO2.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti pieghevoli e fogli"),
@@ -69,7 +69,7 @@ public class ConoscoCO2View extends View {
                     event.<String>getData() != null && event.<String>getData().length() == 0
             );
         } else if (event.getType().equals(ConoscoCO2Events.NextText)) {
-            DettaglioModel riepilogo = conoscoCO2.riepilogo();
+            OrdineModel riepilogo = conoscoCO2.riepilogo();
             south.setTextRigth(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Scegli progetto di compensazione"),
@@ -79,7 +79,7 @@ public class ConoscoCO2View extends View {
         }
     }
 
-    public void setRiassunto(DettaglioModel riepilogo, boolean isRiepilogo, boolean isScegliProgettoCompensazione, boolean isConferma) {
+    public void setRiassunto(OrdineModel riepilogo, boolean isRiepilogo, boolean isScegliProgettoCompensazione, boolean isConferma) {
         if (isRiepilogo) {
             west.isInRiepilogo(riepilogo);
         } else if (isScegliProgettoCompensazione) {
@@ -149,7 +149,7 @@ public class ConoscoCO2View extends View {
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
     }
 
-    public DettaglioModel getRiepilogo() {
+    public OrdineModel getRiepilogo() {
         return conoscoCO2.riepilogo();
     }
 
@@ -165,7 +165,7 @@ public class ConoscoCO2View extends View {
     }
 
 
-    public void setDettaglioModel(DettaglioModel dettaglioModel) {
+    public void setDettaglioModel(OrdineModel ordineModel) {
     }
 
     public void showConferma(DettaglioVTO result) {

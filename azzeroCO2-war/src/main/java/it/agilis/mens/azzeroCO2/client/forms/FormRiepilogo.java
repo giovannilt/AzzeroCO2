@@ -21,7 +21,6 @@ import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
@@ -117,7 +116,7 @@ public class FormRiepilogo extends LayoutContainer {
         });
         column.setSortable(true);
         configs.add(column);
-        column = new ColumnConfig("oggetto", "Oggetto",270 );
+        column = new ColumnConfig("oggetto", "Oggetto", 270);
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
@@ -200,7 +199,7 @@ public class FormRiepilogo extends LayoutContainer {
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
         grid.setHeight(350);
-       // grid.setStyleAttribute("border-style","2px solid white !important");
+        // grid.setStyleAttribute("border-style","2px solid white !important");
 
         grid.addListener(Events.CellClick, new Listener<GridEvent>() {
             public void handleEvent(GridEvent be) {
@@ -238,11 +237,11 @@ public class FormRiepilogo extends LayoutContainer {
         store.removeAll();
     }
 
-     public void removeModel(RiepilogoModel model) {
-         store.remove(model);
-         Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
-         setTotale();
-     }
+    public void removeModel(RiepilogoModel model) {
+        store.remove(model);
+        Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
+        setTotale();
+    }
 
 
 }
