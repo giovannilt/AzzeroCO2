@@ -22,7 +22,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensaz
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -254,7 +254,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public DettaglioVTO saveOrdine(DettaglioVTO evento, UserInfoModel user) {
+    public OrdineVTO saveOrdine(OrdineVTO evento, UserInfoModel user) {
         try {
             OrdineModel ordineModel = AzzerroCO2UtilsClientHelper.getDettaglioModel(evento);
             Ordine ordine = Utils.getOrdine(ordineModel);
@@ -262,9 +262,9 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
             Ordine o = azzeroCO2Register.saveOrUpdateOrdine(ordine, Utils.getUserInfo(user));
 
             OrdineModel ordineModel1 = Utils.getDettaglioModel(o);
-            DettaglioVTO dettaglioVTO = AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel1);
+            OrdineVTO ordineVTO = AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel1);
 
-            return dettaglioVTO;
+            return ordineVTO;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -326,7 +326,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public DettaglioVTO isPagato(DettaglioVTO riepilogo, UserInfoModel userInfoModel) {
+    public OrdineVTO isPagato(OrdineVTO riepilogo, UserInfoModel userInfoModel) {
         try {
             Ordine o = null;
             if (riepilogo.getOrdineId() == null) {

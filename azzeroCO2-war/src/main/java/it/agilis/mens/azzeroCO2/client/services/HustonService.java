@@ -11,7 +11,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensaz
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.List;
 import java.util.Map;
@@ -48,7 +48,7 @@ public interface HustonService extends RemoteService {
 
     GitRepositoryStateModel checkGitRevision();
 
-    DettaglioVTO saveOrdine(DettaglioVTO riepilogo, UserInfoModel userInfoModel);
+    OrdineVTO saveOrdine(OrdineVTO riepilogo, UserInfoModel userInfoModel);
 
     void sentMail(EMailVTO email);
 
@@ -58,7 +58,7 @@ public interface HustonService extends RemoteService {
 
     boolean associaIDProgettoDiCompensazioneImmagine(Long idProgetto, String name);
 
-    DettaglioVTO isPagato(DettaglioVTO riepilogo, UserInfoModel userInfoModel);
+    OrdineVTO isPagato(OrdineVTO riepilogo, UserInfoModel userInfoModel);
 
     boolean associaIDProgettoDiCompensazionePDF(Long idProgetto, String name);
 }

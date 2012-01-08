@@ -16,7 +16,7 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -369,7 +369,7 @@ public class EventoDettaglio extends LayoutContainer {
         }
     }
 
-    public void showConferma(DettaglioVTO result) {
+    public void showConferma(OrdineVTO result) {
         eventoTab.getSelectedItem().disable();
         posizioniLabel++;
         formConferma.setDettaglioModel(result);

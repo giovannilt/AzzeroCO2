@@ -27,7 +27,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensaz
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.List;
 import java.util.Map;
@@ -198,7 +198,7 @@ public class UnAnnoDiAttivitaView extends View {
         annoDettaglio.showRiepilogo();
     }
 
-    public void showConferma(DettaglioVTO result) {
+    public void showConferma(OrdineVTO result) {
         annoDettaglio.showConferma(result);
     }
 

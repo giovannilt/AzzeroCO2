@@ -14,7 +14,7 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 /**
  * Created by IntelliJ IDEA.
@@ -195,7 +195,7 @@ public class FormConferma extends LayoutContainer {
     public void clear() {
     }
 
-    public void setDettaglioModel(DettaglioVTO model) {
+    public void setDettaglioModel(OrdineVTO model) {
         if (model != null && model.getPagamentoModel() != null) {
             if (model.getPagamentoModel() != null) {
 

@@ -13,7 +13,7 @@ import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.*;
 
@@ -114,10 +114,10 @@ public abstract class BaseController extends Controller {
         return info;
     }
 
-    public void sentMail(DettaglioVTO result) {
+    public void sentMail(OrdineVTO result) {
         EMailVTO data = new EMailVTO();
-        data.setBody(result.getNome()+ " /n " +
-                "" + GWT.getModuleBaseURL()+"downloadCertificato?certificato="+result.getPagamentoModel().getCertificatoPDF()+
+        data.setBody(result.getNome() + " /n " +
+                "" + GWT.getModuleBaseURL() + "downloadCertificato?certificato=" + result.getPagamentoModel().getCertificatoPDF() +
                 "");
 
         data.setFromUser("no-reply@azzeroco2.it");

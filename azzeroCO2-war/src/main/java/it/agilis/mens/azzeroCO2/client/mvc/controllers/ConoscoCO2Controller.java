@@ -18,7 +18,7 @@ import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.Date;
 import java.util.List;
@@ -73,7 +73,9 @@ public class ConoscoCO2Controller extends BaseController {
             final MyAsyncCallback asyncCallback = new MyAsyncCallback();
             final Timer timer = new Timer() {
                 public void run() {
-                    getHustonService().isPagato(AzzerroCO2UtilsClientHelper.getDettaglioVTO(conoscoCO2View.getRiepilogo()), getUserInfoModel(), asyncCallback);
+                    OrdineModel riepilogo = conoscoCO2View.getRiepilogo();
+                    riepilogo.setEventiType(Eventi.CONOSCI_CO2.name());
+                    getHustonService().isPagato(AzzerroCO2UtilsClientHelper.getDettaglioVTO(riepilogo), getUserInfoModel(), asyncCallback);
                     asyncCallback.setTimer(this);
 
                 }
@@ -98,7 +100,7 @@ public class ConoscoCO2Controller extends BaseController {
                 Dispatcher.forwardEvent(LoginEvents.ShowForm);
             } else {
                 OrdineModel model = conoscoCO2View.getRiepilogo();
-
+                model.setEventiType(Eventi.CONOSCI_CO2.name());
                 double kgCO2 = getTotaleKgCO2(model);
 
                 // TODO Calcolare il totale togliendo lo sconto COUPON
@@ -139,22 +141,27 @@ public class ConoscoCO2Controller extends BaseController {
         if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
             Dispatcher.forwardEvent(LoginEvents.ShowForm);
         } else if (model == null) {
-            saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(conoscoCO2View.getRiepilogo()));
+            OrdineModel riepilogo = conoscoCO2View.getRiepilogo();
+            riepilogo.setEventiType(Eventi.CONOSCI_CO2.name());
+            saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(riepilogo));
         } else if (model != null) {
+
+            model.setEventiType(Eventi.CONOSCI_CO2.name());
             saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
         }
     }
 
-    private void saveVTO(final DettaglioVTO riepilogo) {
-        AsyncCallback<DettaglioVTO> dettaglio = new AsyncCallback<DettaglioVTO>() {
+    private void saveVTO(final OrdineVTO riepilogo) {
+        AsyncCallback<OrdineVTO> dettaglio = new AsyncCallback<OrdineVTO>() {
             public void onFailure(Throwable caught) {
                 Info.display("Error", "Errore impossibile connettersi al server " + caught);
             }
 
             @Override
-            public void onSuccess(DettaglioVTO result) {
+            public void onSuccess(OrdineVTO result) {
                 if (result != null) {
-                    conoscoCO2View.setDettaglioModel(AzzerroCO2UtilsClientHelper.getDettaglioModel(result));
+                    OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
+                    conoscoCO2View.setDettaglioModel(model);
                     Info.display("Info", "Evento " + riepilogo.getNome() + " salvato con successo.");
                 }
             }
@@ -163,7 +170,7 @@ public class ConoscoCO2Controller extends BaseController {
 
     }
 
-    class MyAsyncCallback implements AsyncCallback<DettaglioVTO> {
+    class MyAsyncCallback implements AsyncCallback<OrdineVTO> {
         private Timer timer;
         private int numeroDiVolte = 12;
 
@@ -172,7 +179,7 @@ public class ConoscoCO2Controller extends BaseController {
         }
 
         @Override
-        public void onSuccess(DettaglioVTO result) {
+        public void onSuccess(OrdineVTO result) {
             if (result != null) {
                 if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
                     Info.display("Info", "Pagamento Avvenuto con sucesso");

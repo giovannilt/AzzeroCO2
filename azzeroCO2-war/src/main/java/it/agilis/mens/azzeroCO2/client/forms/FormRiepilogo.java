@@ -145,8 +145,6 @@ public class FormRiepilogo extends LayoutContainer {
 
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
-
-
                 config.style = "border-bottom:1px solid gray !important;";
                 return number.format(model.<Number>get(property));
             }
@@ -197,6 +195,7 @@ public class FormRiepilogo extends LayoutContainer {
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
         grid.setHeight(350);
+        grid.setAutoWidth(true);
         // grid.setStyleAttribute("border-style","2px solid white !important");
 
         grid.addListener(Events.CellClick, new Listener<GridEvent>() {
