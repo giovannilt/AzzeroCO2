@@ -121,7 +121,7 @@ public class FormRiepilogo extends LayoutContainer {
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
-                config.style = "border-bottom:1px solid gray !important;";
+                config.style += "border-bottom:1px solid gray !important;";
                 return model.<Number>get(property);
             }
         });
@@ -132,7 +132,7 @@ public class FormRiepilogo extends LayoutContainer {
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
-                config.style = "border-bottom:1px solid gray !important;";
+                config.style += "border-bottom:1px solid gray !important;";
                 return model.<Number>get(property);
             }
         });
@@ -147,7 +147,7 @@ public class FormRiepilogo extends LayoutContainer {
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
 
 
-                config.style = "border-bottom:1px solid gray !important;";
+                config.style += "border-bottom:1px solid gray !important;";
                 return number.format(model.<Number>get(property));
             }
         });
