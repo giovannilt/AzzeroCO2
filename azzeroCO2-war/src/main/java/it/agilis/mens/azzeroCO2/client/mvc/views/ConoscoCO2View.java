@@ -25,7 +25,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.List;
 import java.util.Map;
@@ -167,11 +167,17 @@ public class ConoscoCO2View extends View {
     }
 
 
-    public void setDettaglioModel(OrdineModel ordineModel) {
+    public void setDettaglioModel(OrdineModel result) {
+        conoscoCO2.restore(result);
     }
 
-    public void showConferma(DettaglioVTO result) {
-
-
+    public void showRiepilogo() {
+        conoscoCO2.showRiepilogo();
     }
+
+    public void showConferma(OrdineVTO result) {
+        nord.hideButtons();
+        conoscoCO2.showConferma(result);
+    }
+
 }

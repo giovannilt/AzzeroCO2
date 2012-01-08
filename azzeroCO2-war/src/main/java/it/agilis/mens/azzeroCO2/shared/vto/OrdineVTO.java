@@ -19,7 +19,7 @@ import java.util.Date;
  * Time: 7:50 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DettaglioVTO implements Serializable {
+public class OrdineVTO implements Serializable {
 
     private EnergiaModel energiaModel;
     private ArrayList<TrasportoPersoneModel> trasportoPersoneModel;

@@ -9,13 +9,14 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.client.mvc.views.UnAnnoDiAttivitaView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.Date;
 import java.util.List;
@@ -61,7 +62,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(UnAnnoDiAttivitaEvents.InAttesaDiConfermaPagamento)) {
-            final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(annoView.getRiepilogo());  //TODO da sistemare?
+            final OrdineVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(annoView.getRiepilogo());  //TODO da sistemare?
 
             final Timer timer = new Timer() {
                 public void run() {
@@ -109,7 +110,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
             }
         } else if (event.getType().equals(EventoEvents.Conferma)) {
             OrdineModel model = annoView.getRiepilogo();
-
+            model.setEventiType(Eventi.ANNO_DI_ATTIVITA.name());
             double kgCO2 = getTotaleKgCO2(model);
 
             // TODO Calcolare il totale togliendo lo sconto COUPON
@@ -154,17 +155,17 @@ public class UnAnnoDiAttivitaController extends BaseController {
         }
     }
 
-    private void saveVTO(final DettaglioVTO riepilogo) {
+    private void saveVTO(final OrdineVTO riepilogo) {
         if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
             Info.display("Warning", "Nome Evento Mancante");
         } else {
-            AsyncCallback<DettaglioVTO> dettaglio = new AsyncCallback<DettaglioVTO>() {
+            AsyncCallback<OrdineVTO> dettaglio = new AsyncCallback<OrdineVTO>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server " + caught);
                 }
 
                 @Override
-                public void onSuccess(DettaglioVTO result) {
+                public void onSuccess(OrdineVTO result) {
                     if (result != null) {
                         OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         annoView.setDettaglioModel(model);
@@ -199,7 +200,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
         return totale;
     }
 
-    class MyAsyncCallback implements AsyncCallback<DettaglioVTO> {
+    class MyAsyncCallback implements AsyncCallback<OrdineVTO> {
         private Timer timer;
 
         public void onFailure(Throwable caught) {
@@ -207,7 +208,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
         }
 
         @Override
-        public void onSuccess(DettaglioVTO result) {
+        public void onSuccess(OrdineVTO result) {
             if (result != null) {
                 Info.display("Info", "Pagamento Avvenuto con sucesso");
                 Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);

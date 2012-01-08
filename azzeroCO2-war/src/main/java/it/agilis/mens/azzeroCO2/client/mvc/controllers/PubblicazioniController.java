@@ -12,13 +12,14 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.UnaPubblicazioneView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.Date;
 import java.util.List;
@@ -62,7 +63,9 @@ public class PubblicazioniController extends BaseController {
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(PubblicazioniEvents.InAttesaDiConfermaPagamento)) {
-            final DettaglioVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(pubblicazioneView.getRiepilogo());
+            OrdineModel ordineModel = pubblicazioneView.getRiepilogo();
+            ordineModel.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
+            final OrdineVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel);
 
             final Timer timer = new Timer() {
                 public void run() {
@@ -110,10 +113,9 @@ public class PubblicazioniController extends BaseController {
             }
         } else if (event.getType().equals(PubblicazioniEvents.Conferma)) {
             OrdineModel model = pubblicazioneView.getRiepilogo();
-
+            model.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
             double kgCO2 = getTotaleKgCO2(model);
 
-            // TODO Calcolare il totale togliendo lo sconto COUPON
             if (model.getProgettoDiCompensazioneModel() != null) {
                 PagamentoModel pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
                 pagamentoModel.setLastUpdate(new Date());
@@ -149,23 +151,25 @@ public class PubblicazioniController extends BaseController {
         if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
             Dispatcher.forwardEvent(LoginEvents.ShowForm);
         } else if (model == null) {
-            saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(pubblicazioneView.getRiepilogo()));
+            OrdineModel ordineModel = pubblicazioneView.getRiepilogo();
+            ordineModel.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
+            saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel));
         } else if (model != null) {
             saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
         }
     }
 
-    private void saveVTO(final DettaglioVTO riepilogo) {
+    private void saveVTO(final OrdineVTO riepilogo) {
         if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
             Info.display("Warning", "Nome Evento Mancante");
         } else {
-            AsyncCallback<DettaglioVTO> dettaglio = new AsyncCallback<DettaglioVTO>() {
+            AsyncCallback<OrdineVTO> dettaglio = new AsyncCallback<OrdineVTO>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server " + caught);
                 }
 
                 @Override
-                public void onSuccess(DettaglioVTO result) {
+                public void onSuccess(OrdineVTO result) {
                     if (result != null) {
                         OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         pubblicazioneView.setDettaglioModel(model);
@@ -200,7 +204,7 @@ public class PubblicazioniController extends BaseController {
         return totale;
     }
 
-    class MyAsyncCallback implements AsyncCallback<DettaglioVTO> {
+    class MyAsyncCallback implements AsyncCallback<OrdineVTO> {
         private Timer timer;
 
         public void onFailure(Throwable caught) {
@@ -208,7 +212,7 @@ public class PubblicazioniController extends BaseController {
         }
 
         @Override
-        public void onSuccess(DettaglioVTO result) {
+        public void onSuccess(OrdineVTO result) {
             if (result != null) {
                 Info.display("Info", "Pagamento Avvenuto con sucesso");
                 Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);

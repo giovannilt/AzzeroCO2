@@ -22,7 +22,7 @@ import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,11 +36,14 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class ConoscoCO2 extends LayoutContainer {
+
+    private OrdineModel ordineModel = new OrdineModel();
+
     private final TabPanel conoscoCO2Tab = new TabPanel();
     private final FormConoscoCO2 conoscoCO2Form = new FormConoscoCO2();
 
     private final FormRiepilogo formRiepilogo = new FormRiepilogo();
-    private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
+    private final FormAcquisto formAcquisto = new FormAcquisto();
     private final FormConferma formConferma = new FormConferma();
     private static int posizioniLabel = 0;
     private List<List<String>> posizioniText = new ArrayList<List<String>>();
@@ -66,7 +69,7 @@ public class ConoscoCO2 extends LayoutContainer {
         conoscoCO2Tab.add(riepilogo);
 
         TabItem acquisto = new TabItem("scegli progetto di compensazione");
-        acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
+        acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         conoscoCO2Tab.add(acquisto);
 
@@ -147,7 +150,7 @@ public class ConoscoCO2 extends LayoutContainer {
         conoscoCO2Form.setWidth(691);
 
         formRiepilogo.clear();
-        eventoFormAcquisto.clear();
+        formAcquisto.clear();
         formConferma.clear();
 
         if (posizioniLabel == 1) {
@@ -156,27 +159,29 @@ public class ConoscoCO2 extends LayoutContainer {
     }
 
     public OrdineModel riepilogo() {
-        OrdineModel model = new OrdineModel();
-
-        model.setNome("ConoscoCO2");
-
-        model.setConoscoCO2Model(conoscoCO2Form.getConoscoCO2Model());
-
-        model.setProgettoDiCompensazioneModel(eventoFormAcquisto.getProgettoDiCompensazioneModel());
-
-        return model;
+        if (ordineModel == null) {
+            ordineModel.setNome("ConoscoCO2");
+        }
+        ordineModel.setConoscoCO2Model(conoscoCO2Form.getConoscoCO2Model());
+        ordineModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
+        return ordineModel;
     }
 
+    public void restore(OrdineModel ordineModel) {
+        formAcquisto.setProgettoDiCompensazione(ordineModel.getProgettoDiCompensazioneModel());
+        this.ordineModel = ordineModel;
+
+    }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
-        eventoFormAcquisto.setInStore(progettiDiCompensazioneList);
+        formAcquisto.setInStore(progettiDiCompensazioneList);
     }
 
     public void setUserInfoModel(UserInfoModel userInfoModel) {
         this.userInfoModel = userInfoModel;
     }
 
-    public void showConferma(DettaglioVTO result) {
+    public void showConferma(OrdineVTO result) {
         conoscoCO2Tab.getSelectedItem().disable();
         posizioniLabel++;
         conoscoCO2Tab.getItems().get(conoscoCO2Tab.getItems().size() - 1).setEnabled(true);
@@ -193,6 +198,10 @@ public class ConoscoCO2 extends LayoutContainer {
             esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());
         }
         formRiepilogo.setRiepilogoInStore(riepilogoModels, esito);
-        eventoFormAcquisto.setRiepilogo(riepilogoModels, riepilogo);
+        formAcquisto.setRiepilogo(riepilogoModels, riepilogo);
+    }
+
+    public void showRiepilogo() {
+        //To change body of created methods use File | Settings | File Templates.
     }
 }
