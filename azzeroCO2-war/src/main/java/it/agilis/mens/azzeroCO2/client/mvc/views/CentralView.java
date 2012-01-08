@@ -242,6 +242,7 @@ public class CentralView extends View {
                     //  login.setWidth(290);
                     //login.getHeader().setTextStyle("x-panel-header-white");
                     login.setHeading("Login");
+
                     login.getHeader().setStyleName("x-panel-header-white");
 
                     //login.getHeader().setStyleAttribute("font-color","white !important");

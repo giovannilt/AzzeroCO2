@@ -182,8 +182,7 @@ public class CalcoliHelper {
         if (conoscoCO2Model.getConoscoCO2() != null && conoscoCO2Model.getConoscoCO2() > 0) {
             String energiaDett = conoscoCO2Model.getConoscoCO2() + " KgCO2";
             _return.setDettagli(energiaDett);
-            CoefficienteModel coefficienteModel = coefficienti.get("PERNOT");   // TODO: PRENDERE IL COEFFICIENTE GIUSTO
-            co2 = conoscoCO2Model.getConoscoCO2() * coefficienteModel.getValore();
+            co2 = conoscoCO2Model.getConoscoCO2();
             _return.setKgCO2(co2);
         }
 
