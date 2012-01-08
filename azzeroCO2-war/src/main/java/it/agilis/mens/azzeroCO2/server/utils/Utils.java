@@ -17,6 +17,7 @@ import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -243,7 +244,10 @@ public class Utils {
     public static Ordine getOrdine(OrdineModel ordineModel) {
         Ordine o = new Ordine();
         o.setId(ordineModel.getOrdineId());
-
+        o.setEventiType(Eventi.valueOf(ordineModel.getEventiType()));
+        if (ordineModel.getConoscoCO2Model() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
+            o.setConoscoCO2(ordineModel.getConoscoCO2Model().getConoscoCO2());
+        }
         o.setProgettoCompensazione(getProgettoDiCompensazione(ordineModel.getProgettoDiCompensazioneModel()));
 
         Evento e = new Evento();
@@ -394,6 +398,12 @@ public class Utils {
 
         dm.setLastUpdate(o.getLastUpdate());
         dm.setProgettoDiCompensazioneModel(getProgettoDiCompensazioneModel(o.getProgettoCompensazione()));
+
+        if (o.getEventiType() == Eventi.CONOSCI_CO2) {
+            ConoscoCO2Model co2m = new ConoscoCO2Model();
+            co2m.setConoscoCO2(o.getConoscoCO2());
+            dm.setConoscoCO2Model(co2m);
+        }
 
         dm.setPagamentoModel(getPagamentoModel(o.getRicevutaDiPagamento()));
         dm.setOrdineId(o.getId());

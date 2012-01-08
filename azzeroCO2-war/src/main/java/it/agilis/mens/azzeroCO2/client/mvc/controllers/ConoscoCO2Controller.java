@@ -11,6 +11,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.ConoscoCO2View;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -84,6 +85,9 @@ public class ConoscoCO2Controller extends BaseController {
         } else if (event.getType().equals(AzzeroCO2Events.Init)) {
             setCoefficienti();
             forwardToView(conoscoCO2View, event);
+            if (getProgettiDiCompensazioneList().size() == 0) {
+                setProgettiDiCompensazione();
+            }
         } else if (event.getType().equals(ConoscoCO2Events.Acquisto)) {
             if (getProgettiDiCompensazioneList().size() == 0) {
                 setProgettiDiCompensazione();
@@ -121,6 +125,7 @@ public class ConoscoCO2Controller extends BaseController {
         } else if (event.getType().equals(ConoscoCO2Events.Save)) {
             if (event.getData() instanceof OrdineModel) {
                 OrdineModel model = (OrdineModel) event.getData();
+                model.setEventiType(Eventi.CONOSCI_CO2.name());
                 save(model);
             } else {
                 save(null);

@@ -19,6 +19,8 @@ import java.util.List;
  */
 public class OrdineModel extends BaseModel {
 
+    private String eventiType;
+
     private EnergiaModel energiaModel;
     private ArrayList<TrasportoPersoneModel> trasportoPersoneModel;
     private NottiModel nottiModel;
@@ -166,5 +168,13 @@ public class OrdineModel extends BaseModel {
 
     public ConoscoCO2Model getConoscoCO2Model() {
         return conoscoCO2Model;
+    }
+
+    public String getEventiType() {
+        return eventiType;
+    }
+
+    public void setEventiType(String eventiType) {
+        this.eventiType = eventiType;
     }
 }

@@ -11,6 +11,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -137,6 +138,7 @@ public class EventoController extends BaseController {
         } else if (event.getType().equals(EventoEvents.Save)) {
             if (event.getData() instanceof OrdineModel) {
                 OrdineModel model = (OrdineModel) event.getData();
+                model.setEventiType(Eventi.EVENTO.name());
                 save(model);
             } else {
                 save(null);

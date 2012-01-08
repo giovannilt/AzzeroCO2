@@ -110,7 +110,6 @@ public class ConoscoCO2 extends LayoutContainer {
         for (TabItem item : conoscoCO2Tab.getItems()) {
             i++;
             if (conoscoCO2Tab.getSelectedItem().getText().equalsIgnoreCase(item.getText())) {
-
                 if (i < conoscoCO2Tab.getItems().size()) {
                     if (conoscoCO2Tab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
                         Dispatcher.forwardEvent(ConoscoCO2Events.Conferma);

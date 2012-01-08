@@ -346,14 +346,6 @@ public class FormAcquisto extends LayoutContainer {
         });
         configs.add(column);
 
-
-        /* column = new ColumnConfig("descrizione", "Descrizione", 100);
-        configs.add(column);
-
-        column = new ColumnConfig("prezzo", "Euro", 60);
-        column.setAlignment(Style.HorizontalAlignment.RIGHT);
-        configs.add(column);*/
-
         ColumnModel cm = new ColumnModel(configs);
 
         Grid<ProgettoDiCompensazioneModel> grid = new Grid<ProgettoDiCompensazioneModel>(store, cm);

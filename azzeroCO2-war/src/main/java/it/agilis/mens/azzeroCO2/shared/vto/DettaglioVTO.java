@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.shared.vto;
 
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
@@ -25,7 +26,7 @@ public class DettaglioVTO implements Serializable {
     private NottiModel nottiModel;
     private TrasportoMerciModel trasportoMerciModel;
 
-    private  ArrayList<PubblicazioniRilegateVTO> pubblicazioniRilegateVTO;
+    private ArrayList<PubblicazioniRilegateVTO> pubblicazioniRilegateVTO;
     private ArrayList<ManifestiPieghevoliFogliVTO> manifestiPieghevoliFogliVTO;
     private String dove;
     private Date inizio;
@@ -36,6 +37,8 @@ public class DettaglioVTO implements Serializable {
     private Long ordineId;
     private ProgettoDiCompensazioneModel progettoDiCompensazioneModel;
     private PagamentoModel pagamentoModel;
+    private ConoscoCO2Model conoscoCO2Model;
+    private String eventiType;
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
         return progettoDiCompensazioneModel;
@@ -146,14 +149,31 @@ public class DettaglioVTO implements Serializable {
     }
 
     public void setProgettoDiCompensazioneModel(ProgettoDiCompensazioneModel progettoDiCompensazioneModel) {
-        this.progettoDiCompensazioneModel=progettoDiCompensazioneModel;
+        this.progettoDiCompensazioneModel = progettoDiCompensazioneModel;
     }
 
     public void setSellaRicevutaDiPagamento(PagamentoModel pagamentoModel) {
-        this.pagamentoModel=pagamentoModel;
+        this.pagamentoModel = pagamentoModel;
     }
 
     public PagamentoModel getPagamentoModel() {
         return pagamentoModel;
+    }
+
+    public void setConoscoCO2(ConoscoCO2Model conoscoCO2Model) {
+        this.conoscoCO2Model = conoscoCO2Model;
+    }
+
+    public ConoscoCO2Model getConoscoCO2Model() {
+        return conoscoCO2Model;
+    }
+
+    public String getEventiType() {
+        return eventiType;
+    }
+
+    public void setEventiType(String eventiType) {
+        this.eventiType = eventiType;
+
     }
 }

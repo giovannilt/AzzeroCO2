@@ -25,28 +25,40 @@ public class Ordine {
     @OneToOne
     private Sito sito;
 
-    @OneToOne(cascade ={ CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Evento evento;
 
-    @ManyToOne (fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private UserInfo utente;
 
     @OneToOne
     private ProgettoCompensazione progettoCompensazione;
 
-    @OneToMany (cascade ={CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Pubblicazione> pubblicazioni;
 
-    @OneToOne (cascade ={CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private TrasportoMerci trasportoMerci;
 
-    @OneToMany (cascade ={CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<TrasportoPersone> trasportoPersone;
 
-    @OneToOne (cascade ={CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private SellaRicevutaDiPagamento ricevutaDiPagamento;
 
+    private Eventi eventiType;
+
     private Date lastUpdate;
+
+    private Double conoscoCO2;
+
+    public Eventi getEventiType() {
+        return eventiType;
+    }
+
+    public void setEventiType(Eventi eventiType) {
+        this.eventiType = eventiType;
+    }
 
     public Date getLastUpdate() {
         return lastUpdate;
@@ -134,6 +146,14 @@ public class Ordine {
 
     public void setTrasportoMerci(TrasportoMerci trasportoMerci) {
         this.trasportoMerci = trasportoMerci;
+    }
+
+    public void setConoscoCO2(Double conoscoCO2) {
+        this.conoscoCO2 = conoscoCO2;
+    }
+
+    public Double getConoscoCO2() {
+        return conoscoCO2;
     }
 }
 

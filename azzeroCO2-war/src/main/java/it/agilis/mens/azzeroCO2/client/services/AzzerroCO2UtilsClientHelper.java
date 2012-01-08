@@ -27,11 +27,15 @@ public class AzzerroCO2UtilsClientHelper {
     public static DettaglioVTO getDettaglioVTO(OrdineModel ordineModel) {
         DettaglioVTO dettaglioVTO = new DettaglioVTO();
 
+        dettaglioVTO.setEventiType(ordineModel.getEventiType());
+
         dettaglioVTO.setNottiModel(ordineModel.getNottiModel());
         dettaglioVTO.setEnergiaModel(ordineModel.getEnergiaModel());
         dettaglioVTO.setTrasportoMerciModel(ordineModel.getTrasportoMerciModel());
         dettaglioVTO.setTrasportoPersoneModel(ordineModel.getTrasportoPersoneModel());
         dettaglioVTO.setProgettoDiCompensazioneModel(ordineModel.getProgettoDiCompensazioneModel());
+
+        dettaglioVTO.setConoscoCO2(ordineModel.getConoscoCO2Model());
 
         dettaglioVTO.setSellaRicevutaDiPagamento(ordineModel.getPagamentoModel());
 
@@ -119,10 +123,14 @@ public class AzzerroCO2UtilsClientHelper {
     public static OrdineModel getDettaglioModel(DettaglioVTO dettaglioVTO) {
         OrdineModel ordineModel = new OrdineModel();
 
+        ordineModel.setEventiType(dettaglioVTO.getEventiType());
+
+
         ordineModel.setEnergiaModel(dettaglioVTO.getEnergiaModel());
         ordineModel.setTrasportoMerciModel(dettaglioVTO.getTrasportoMerciModel());
         ordineModel.setTrasportoPersoneModel(dettaglioVTO.getTrasportoPersoneModel());
         ordineModel.setNottiModel(dettaglioVTO.getNottiModel());
+        ordineModel.setConoscoCO2Model(dettaglioVTO.getConoscoCO2Model());
 
         ordineModel.setDove(dettaglioVTO.getDove());
         ordineModel.setFine(dettaglioVTO.getFine());
