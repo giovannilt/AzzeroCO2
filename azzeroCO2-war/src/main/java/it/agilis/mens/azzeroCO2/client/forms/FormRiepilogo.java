@@ -125,7 +125,6 @@ public class FormRiepilogo extends LayoutContainer {
                 return model.<Number>get(property);
             }
         });
-        column.setWidth(270);
         configs.add(column);
 
         column = new ColumnConfig("dettagli", "Dettagli", 265);
@@ -136,7 +135,6 @@ public class FormRiepilogo extends LayoutContainer {
                 return model.<Number>get(property);
             }
         });
-        column.setWidth(265);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
@@ -145,13 +143,10 @@ public class FormRiepilogo extends LayoutContainer {
 
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
-
-
                 config.style += "border-bottom:1px solid gray !important;";
                 return number.format(model.<Number>get(property));
             }
         });
-        column.setWidth(82);
         configs.add(column);
 
         column = new ColumnConfig("", "", 20);
@@ -189,7 +184,6 @@ public class FormRiepilogo extends LayoutContainer {
                 return b;
             }
         });
-        column.setWidth(20);
 
         configs.add(column);
 
