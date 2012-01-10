@@ -112,7 +112,6 @@ public class EventoSouth extends LayoutContainer {
                 && riepilogo.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
             left.setVisible(false);
             leftText.setVisible(false);
-
         } else {
             if (left_t.length() == 0 || left_t.equalsIgnoreCase(".")) {
                 left.setEnabled(false);

@@ -188,7 +188,7 @@ public class CentralView extends View {
                 public void componentSelected(ButtonEvent ce) {
                     Dispatcher.forwardEvent(SitoWebEvents.CaricaCoefficienti);
                     Dispatcher.forwardEvent(SitoWebEvents.CaricaProgettiDiCompensazione);
-                 //   Dispatcher.forwardEvent(SitoWebEvents.NextText, "Riepilogo");
+                    Dispatcher.forwardEvent(SitoWebEvents.NextText, "Riepilogo");
                     Dispatcher.forwardEvent(SitoWebEvents.GoToBegin);
                     setActiveItem(Eventi.WEB);
                 }
@@ -204,7 +204,7 @@ public class CentralView extends View {
                 public void componentSelected(ButtonEvent ce) {
                     Dispatcher.forwardEvent(ConoscoCO2Events.CaricaCoefficienti);
                     Dispatcher.forwardEvent(ConoscoCO2Events.CaricaProgettiDiCompensazione);
-                  //  Dispatcher.forwardEvent(ConoscoCO2Events.NextText, "Riepilogo");
+                    Dispatcher.forwardEvent(ConoscoCO2Events.NextText, "Riepilogo");
                     Dispatcher.forwardEvent(ConoscoCO2Events.GoToBegin);
                     setActiveItem(Eventi.CONOSCI_CO2);
                 }

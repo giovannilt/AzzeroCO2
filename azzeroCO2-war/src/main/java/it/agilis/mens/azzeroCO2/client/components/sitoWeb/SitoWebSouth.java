@@ -45,7 +45,6 @@ public class SitoWebSouth extends LayoutContainer {
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-
         layout.setPadding(new Padding(1));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c.setLayout(layout);
@@ -70,7 +69,6 @@ public class SitoWebSouth extends LayoutContainer {
             }
         });
         c.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
-
 
         flex.setFlex(1);
         c.add(leftText, flex);
@@ -121,7 +119,6 @@ public class SitoWebSouth extends LayoutContainer {
                 left.setEnabled(false);
                 left.setVisible(false);
                 leftText.setVisible(false);
-
             } else {
                 left.setEnabled(true);
                 left.setVisible(true);
@@ -147,11 +144,15 @@ public class SitoWebSouth extends LayoutContainer {
                 right.setEnabled(true);
                 right.setVisible(true);
                 rigthText.setVisible(true);
-
+                rigthText.setEnabled(true);
             }
             rigthText.setText(right_t);
         }
         c.layout(true);
+       c.clearState();
+         c.repaint();
+        c.recalculate();
+        c.layout();
     }
 
 

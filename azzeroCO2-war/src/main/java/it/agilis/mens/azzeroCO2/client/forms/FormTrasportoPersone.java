@@ -113,7 +113,8 @@ public class FormTrasportoPersone extends LayoutContainer {
         grid.getSelectionModel().select(0, true);
         add(cp, centerData);
     }
-        @Override
+
+    @Override
     protected void onLoad() {
         super.onLoad();
         toolBar.setStyleAttribute("border-bottom", "3px solid orange");
@@ -121,7 +122,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         cpEst.getBody().setStyleAttribute("border-top", "3px solid orange");
         cpEst.getBody().setStyleAttribute("border-width", "3px 0");
         cpEst.getBody().setStyleAttribute("margin-bottom", "2");
-        panel.getBody().setStyleAttribute("border-bottom","3px solid orange");
+        panel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
         panel.getBody().setStyleAttribute("border-style", "solid");
         panel.getBody().setStyleAttribute("border-top", "3px solid orange");
         panel.getBody().setStyleAttribute("border-width", "3px 0");
@@ -531,7 +532,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         final ColumnModel cm = new ColumnModel(configs);
         grid = new Grid<TrasportoPersoneModel>(trasportoPersoneModel, cm);
 
-      //  grid.setAutoExpandColumn("categoria");
+        //  grid.setAutoExpandColumn("categoria");
         grid.setColumnResize(true);
         grid.setBorders(true);
         grid.addPlugin(re);
@@ -555,7 +556,6 @@ public class FormTrasportoPersone extends LayoutContainer {
 
         return grid;
     }
-
 
 
     public void clear(boolean setDefault) {
@@ -593,7 +593,6 @@ public class FormTrasportoPersone extends LayoutContainer {
         }
 
 
-
     }
 
     public ArrayList<TrasportoPersoneModel> getTrasportoPersoneModel() {
@@ -602,15 +601,17 @@ public class FormTrasportoPersone extends LayoutContainer {
 
     public void setTrasportoPersoneModel(List<TrasportoPersoneModel> trasportoPersoneModel) {
         clear(false);
-        this.trasportoPersoneModel.add(trasportoPersoneModel);
-        if (trasportoPersoneModel.size() == 0) {
-            setDefault();
-        }
-        if (grid != null) {
-            grid.getSelectionModel().select(trasportoPersoneModel.get(0), true);
+        if (trasportoPersoneModel != null) {
+            this.trasportoPersoneModel.add(trasportoPersoneModel);
+            if (trasportoPersoneModel.size() == 0) {
+                setDefault();
+            }
+            if (grid != null) {
+                grid.getSelectionModel().select(trasportoPersoneModel.get(0), true);
+            }
+
         }
     }
-
 
 
 }

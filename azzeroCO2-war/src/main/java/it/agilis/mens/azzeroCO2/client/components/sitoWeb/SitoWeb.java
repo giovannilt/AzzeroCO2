@@ -199,11 +199,14 @@ public class SitoWeb extends LayoutContainer {
         formRiepilogo.setRiepilogoInStore(riepilogoModels, esito);
         formAcquisto.setRiepilogo(riepilogoModels, riepilogo);
     }
+
     public void goToBegin() {
         while (posizioniLabel > 1) {
             previusTab();
         }
-        previusTab();
+        if (posizioniLabel > 0) {
+            previusTab();
+        }
     }
 
     public void showRiepilogo() {

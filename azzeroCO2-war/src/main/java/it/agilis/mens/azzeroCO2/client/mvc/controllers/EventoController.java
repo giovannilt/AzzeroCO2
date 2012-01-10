@@ -158,6 +158,7 @@ public class EventoController extends BaseController {
             riepilogo.setEventiType(Eventi.EVENTO.name());
             saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(riepilogo));
         } else if (model != null) {
+            model.setEventiType(Eventi.EVENTO.name());
             saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
         }
     }
