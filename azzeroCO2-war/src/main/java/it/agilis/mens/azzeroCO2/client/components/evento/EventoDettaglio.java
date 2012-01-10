@@ -8,6 +8,7 @@ import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormDettaglio;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -244,8 +245,6 @@ public class EventoDettaglio extends LayoutContainer {
                 ContentPanel calcolo = (ContentPanel) item.getItem(0);
                 FormEnergia formEnergia = (FormEnergia) calcolo.getItem(0);
                 formEnergia.layout(true);
-
-                // TODO BETTER
                 formEnergia.setWidth("691");
                 break;
             }
@@ -254,6 +253,7 @@ public class EventoDettaglio extends LayoutContainer {
 
     public OrdineModel riepilogo() {
         OrdineModel eventoModel = formDettaglio.getOrdineModel();
+        eventoModel.setEventiType(Eventi.EVENTO.name());
         eventoModel.setEnergiaModel(formEnergia.getEnergiaModel());
         eventoModel.setTrasportoPersoneModel(formTrasportoPersone.getTrasportoPersoneModel());
         eventoModel.setNottiModel(formPernottamenti.getNottiModel());

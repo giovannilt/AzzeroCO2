@@ -199,6 +199,12 @@ public class SitoWeb extends LayoutContainer {
         formRiepilogo.setRiepilogoInStore(riepilogoModels, esito);
         formAcquisto.setRiepilogo(riepilogoModels, riepilogo);
     }
+    public void goToBegin() {
+        while (posizioniLabel > 1) {
+            previusTab();
+        }
+        previusTab();
+    }
 
     public void showRiepilogo() {
         //To change body of created methods use File | Settings | File Templates.

@@ -426,18 +426,17 @@ public class Utils {
                 dm.setInizio(o.getEvento().getInizio());
                 dm.setFine(o.getEvento().getFine());
                 dm.setNote(o.getEvento().getNote());
+                EnergiaModel em = new EnergiaModel();
+                // CHECK id of EMM
+                em.setEnergiaElettrica(o.getEvento().getEnergiaElettrica());
+                em.setGasMetano(o.getEvento().getGas());
+                em.setGasolio(o.getEvento().getGasolio());
+                dm.setEnergiaModel(em);
+
+                NottiModel notti = new NottiModel();
+                notti.setNotti(o.getEvento().getPernottamenti());
+                dm.setNottiModel(notti);
             }
-            EnergiaModel em = new EnergiaModel();
-            // CHECK id of EMM
-            em.setEnergiaElettrica(o.getEvento().getEnergiaElettrica());
-            em.setGasMetano(o.getEvento().getGas());
-            em.setGasolio(o.getEvento().getGasolio());
-            dm.setEnergiaModel(em);
-
-            NottiModel notti = new NottiModel();
-            notti.setNotti(o.getEvento().getPernottamenti());
-            dm.setNottiModel(notti);
-
 
             if (o.getTrasportoMerci() != null) {
                 TrasportoMerciModel tm = new TrasportoMerciModel();

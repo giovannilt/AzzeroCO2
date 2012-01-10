@@ -73,7 +73,7 @@ public class CalcoliHelper {
             }
         }
 
-        if (eventoModel != null && eventoModel.getNottiModel() != null) {
+        if (eventoModel != null && eventoModel.getNottiModel() != null && eventoModel.getNottiModel().getNotti()!=null) {
             if (eventoModel.getNottiModel().getNotti() > 0) {
                 model = new RiepilogoModel();
                 model.setDettagli("Pernottamenti");

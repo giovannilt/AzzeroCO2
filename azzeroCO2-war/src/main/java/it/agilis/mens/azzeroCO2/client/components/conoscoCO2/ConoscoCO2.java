@@ -202,4 +202,11 @@ public class ConoscoCO2 extends LayoutContainer {
     public void showRiepilogo() {
         //To change body of created methods use File | Settings | File Templates.
     }
+
+    public void goToBegin() {
+        while (posizioniLabel > 1) {
+            previusTab();
+        }
+        previusTab();
+    }
 }

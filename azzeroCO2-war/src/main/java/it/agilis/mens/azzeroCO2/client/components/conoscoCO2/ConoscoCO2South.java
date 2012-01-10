@@ -15,7 +15,9 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
@@ -95,12 +97,16 @@ public class ConoscoCO2South extends LayoutContainer {
         right.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(new AppEvent(ConoscoCO2Events.Next, ce));
+                if (rigthText.getText().equalsIgnoreCase("torna alla home")) {
+                    Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                    Dispatcher.forwardEvent(ConoscoCO2Events.ClearPanel, Eventi.MAIN);
+                } else {
+                    Dispatcher.forwardEvent(new AppEvent(ConoscoCO2Events.Next, ce));
+                }
             }
         });
         add(c);
     }
-
 
     public void setTextLeft(String left_t, OrdineModel riepilogo) {
         if (riepilogo.getPagamentoModel() != null

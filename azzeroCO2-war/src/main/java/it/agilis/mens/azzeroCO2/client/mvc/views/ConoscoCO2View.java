@@ -14,9 +14,7 @@ import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2North;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2South;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2West;
-import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
-import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
@@ -57,6 +55,8 @@ public class ConoscoCO2View extends View {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
+        } else if (eventType.equals(ConoscoCO2Events.GoToBegin)) {
+            conoscoCO2.goToBegin();
         } else if (eventType.equals(ConoscoCO2Events.Next)) {
             conoscoCO2.nextTab();
         } else if (eventType.equals(ConoscoCO2Events.Previous)) {

@@ -50,7 +50,7 @@ public class ConoscoCO2North extends LayoutContainer {
             }
         });
         c.add(save, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
-
+         save.setVisible(false);
         //  ToolButton close = new ToolButton("x-tool-close");
 
         close.addSelectionListener(new SelectionListener<IconButtonEvent>() {
@@ -62,6 +62,7 @@ public class ConoscoCO2North extends LayoutContainer {
             }
         });
         c.add(close, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
+        close.setVisible(false);
         c.setStyleAttribute("background-color", "#F89D00");
         add(c);
     }

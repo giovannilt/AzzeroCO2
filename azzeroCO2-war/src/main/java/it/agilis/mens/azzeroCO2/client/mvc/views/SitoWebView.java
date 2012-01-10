@@ -56,6 +56,8 @@ public class SitoWebView extends View {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
+        } else if (eventType.equals(SitoWebEvents.GoToBegin)) {
+            sitoWeb.goToBegin();
         } else if (eventType.equals(SitoWebEvents.Next)) {
             sitoWeb.nextTab();
         } else if (eventType.equals(SitoWebEvents.Previous)) {

@@ -49,7 +49,7 @@ public class SitoWebNorth extends LayoutContainer {
             }
         });
         c.add(save, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
-
+        save.setVisible(false);
 
         close.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
@@ -60,6 +60,7 @@ public class SitoWebNorth extends LayoutContainer {
             }
         });
         c.add(close, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
+        close.setVisible(false);
         c.setStyleAttribute("background-color", "#F89D00");
         add(c);
     }

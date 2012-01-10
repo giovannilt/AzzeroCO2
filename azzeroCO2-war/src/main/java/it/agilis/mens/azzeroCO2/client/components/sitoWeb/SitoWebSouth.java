@@ -15,7 +15,9 @@ import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
@@ -95,7 +97,12 @@ public class SitoWebSouth extends LayoutContainer {
         right.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(new AppEvent(SitoWebEvents.Next, ce));
+                if (rigthText.getText().equalsIgnoreCase("torna alla home")) {
+                    Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                    Dispatcher.forwardEvent(SitoWebEvents.ClearPanel, Eventi.MAIN);
+                } else {
+                    Dispatcher.forwardEvent(new AppEvent(SitoWebEvents.Next, ce));
+                }
             }
         });
         add(c);

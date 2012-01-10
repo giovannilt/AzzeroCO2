@@ -141,8 +141,8 @@ public class CentralView extends View {
 
             unAnno.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
-                    Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
-                    Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.CaricaCoefficienti);
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.ANNO_DI_ATTIVITA);
                     Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, "Energia");
                     Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.GoToBegin);
@@ -171,9 +171,11 @@ public class CentralView extends View {
             pubblicazione.setIconAlign(Style.IconAlign.TOP);
             pubblicazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
-                    Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
-                    Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.CaricaCoefficienti);
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.UNA_PUBBLICAZIONE);
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, "Manifesti pieghevoli e fogli");
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.GoToBegin);
                 }
             });
             pubblicazione.setSize(212, 200);//(213, 210);
@@ -184,8 +186,10 @@ public class CentralView extends View {
             web.setIconAlign(Style.IconAlign.TOP);
             web.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
-                    Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
-                    Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
+                    Dispatcher.forwardEvent(SitoWebEvents.CaricaCoefficienti);
+                    Dispatcher.forwardEvent(SitoWebEvents.CaricaProgettiDiCompensazione);
+                 //   Dispatcher.forwardEvent(SitoWebEvents.NextText, "Riepilogo");
+                    Dispatcher.forwardEvent(SitoWebEvents.GoToBegin);
                     setActiveItem(Eventi.WEB);
                 }
             });
@@ -198,8 +202,10 @@ public class CentralView extends View {
             co2.setIconAlign(Style.IconAlign.TOP);
             co2.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
-                    Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
-                    Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
+                    Dispatcher.forwardEvent(ConoscoCO2Events.CaricaCoefficienti);
+                    Dispatcher.forwardEvent(ConoscoCO2Events.CaricaProgettiDiCompensazione);
+                  //  Dispatcher.forwardEvent(ConoscoCO2Events.NextText, "Riepilogo");
+                    Dispatcher.forwardEvent(ConoscoCO2Events.GoToBegin);
                     setActiveItem(Eventi.CONOSCI_CO2);
                 }
             });

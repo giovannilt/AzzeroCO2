@@ -58,13 +58,13 @@ public class EventoView extends View {
     protected void handleEvent(AppEvent event) {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
-            onInit(event);
+            onInit();
         } else if (eventType.equals(EventoEvents.RemoveModel)) {
             eventoDettaglio.formRiepilogo.removeModel((RiepilogoModel) event.getData());
         } else if (eventType.equals(EventoEvents.GoToBegin)) {
             eventoDettaglio.goToBegin();
         } else if (eventType.equals(EventoEvents.Next)) {
-            onNext(event);
+            onNext();
         } else if (eventType.equals(EventoEvents.NorthPanelShowButtons)) {
             north.showButtons();
         } else if (eventType.equals(EventoEvents.ClearStep)) {
@@ -76,7 +76,7 @@ public class EventoView extends View {
             west.clean();
             south.setTextRigth("Energia", null);
         } else if (eventType.equals(EventoEvents.Previous)) {
-            onPrevius(event);
+            onPrevius();
         } else if (event.getType().equals(EventoEvents.PreviousText)) {
             OrdineModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
@@ -117,19 +117,16 @@ public class EventoView extends View {
         }
     }
 
-    public void goToBegin() {
-        eventoDettaglio.goToBegin();
-    }
 
-    private void onPrevius(AppEvent event) {
+    private void onPrevius() {
         eventoDettaglio.previusTab();
     }
 
-    private void onNext(AppEvent event) {
+    private void onNext() {
         eventoDettaglio.nextTab();
     }
 
-    private void onInit(AppEvent event) {
+    private void onInit() {
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
         evento.setHeaderVisible(false);
