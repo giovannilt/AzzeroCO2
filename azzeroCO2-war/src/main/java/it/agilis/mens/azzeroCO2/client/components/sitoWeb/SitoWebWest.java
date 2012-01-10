@@ -39,10 +39,10 @@ public class SitoWebWest extends LayoutContainer {
     private final String riepilogoString = "Hai terminato il calcolo! </br>" +
             "Se vuoi modifica i dati inseriti</br>" +
             " cliccando sulla voce relativa.";
-    private final String progettoDiCompensazione = "Scegli un progetto di </br>" +
-            "compensazione.</br>" +
-            "Controlla il preventivo e </br>" +
-            "accedi al sistema di </br>" +
+    private final String progettoDiCompensazione = "Scegli un progetto di <br>" +
+            "compensazione.<br>" +
+            "Controlla il preventivo e <br>" +
+            "accedi al sistema di <br>" +
             "pagamento.";
     private final String Conferma = "Il Percorso e' finito!";
 

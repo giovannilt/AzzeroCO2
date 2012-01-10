@@ -35,13 +35,13 @@ public class ConoscoCO2West extends LayoutContainer {
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Conosco la CO2");
     private final String oggettoDiDefault = "Compensa le tue emissioni";
-    private final String riepilogoString = "Hai terminato il calcolo! </br>" +
-            "Se vuoi modifica i dati inseriti</br>" +
+    private final String riepilogoString = "Hai terminato il calcolo! <br>" +
+            "Se vuoi modifica i dati inseriti<br>" +
             " cliccando sulla voce relativa.";
-    private final String progettoDiCompensazione = "Scegli un progetto di </br>" +
-            "compensazione.</br>" +
-            "Controlla il preventivo e </br>" +
-            "accedi al sistema di </br>" +
+    private final String progettoDiCompensazione = "Scegli un progetto di <br>" +
+            "compensazione.<br>" +
+            "Controlla il preventivo e <br>" +
+            "accedi al sistema di <br>" +
             "pagamento.";
     private final String Conferma = "Il Percorso e' finito!";
 
