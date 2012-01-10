@@ -60,6 +60,7 @@ public class OrdineDAO extends DAOSupport implements IOrdineDAO {
         Hibernate.initialize(o.getEvento());
         Hibernate.initialize(o.getUtente());
         Hibernate.initialize(o.getRicevutaDiPagamento());
+        Hibernate.initialize(o.getSito());
         return o;
     }
 }
