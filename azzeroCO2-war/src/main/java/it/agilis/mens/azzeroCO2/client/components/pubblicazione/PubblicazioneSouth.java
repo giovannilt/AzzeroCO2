@@ -18,7 +18,7 @@ import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 /**
@@ -105,7 +105,7 @@ public class PubblicazioneSouth extends LayoutContainer {
     }
 
 
-    public void setTextLeft(String left_t, DettaglioModel riepilogo) {
+    public void setTextLeft(String left_t, OrdineModel riepilogo) {
         if (riepilogo.getPagamentoModel() != null
                 && riepilogo.getPagamentoModel().getEsito() != null
                 && riepilogo.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
@@ -127,7 +127,7 @@ public class PubblicazioneSouth extends LayoutContainer {
         c.layout(true);
     }
 
-    public void setTextRigth(String right_t, DettaglioModel riepilogo) {
+    public void setTextRigth(String right_t, OrdineModel riepilogo) {
         if (riepilogo.getPagamentoModel() != null
                 && riepilogo.getPagamentoModel().getEsito() != null
                 && riepilogo.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {

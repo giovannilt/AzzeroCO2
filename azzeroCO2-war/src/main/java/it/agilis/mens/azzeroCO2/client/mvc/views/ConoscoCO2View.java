@@ -10,27 +10,26 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import it.agilis.mens.azzeroCO2.client.components.annoAttivita.AnnoDettaglio;
-import it.agilis.mens.azzeroCO2.client.components.annoAttivita.AnnoNorth;
-import it.agilis.mens.azzeroCO2.client.components.annoAttivita.AnnoSouth;
-import it.agilis.mens.azzeroCO2.client.components.annoAttivita.AnnoWest;
-import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoConfermDialog;
+import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2;
+import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2North;
+import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2South;
+import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2West;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * Created by IntelliJ IDEA.
@@ -39,62 +38,45 @@ import java.util.Map;
  * Time: 11:40 PM
  * To change this template use File | Settings | File Templates.
  */
-public class UnAnnoDiAttivitaView extends View {
-    private ContentPanel unAnnoDiAttivita = new ContentPanel();
-    private EventoConfermDialog eventoConfermDialog = new EventoConfermDialog();
+public class ConoscoCO2View extends View {
+    private ContentPanel conoscoCO2panel = new ContentPanel();
 
-    private AnnoDettaglio annoDettaglio = new AnnoDettaglio();
+    private ConoscoCO2 conoscoCO2 = new ConoscoCO2();
     private ContentPanel center = new ContentPanel();
-    private AnnoSouth south = new AnnoSouth();
-    private AnnoWest west = new AnnoWest();
-    private AnnoNorth north = new AnnoNorth();
+    private ConoscoCO2South south = new ConoscoCO2South();
+    private ConoscoCO2West west = new ConoscoCO2West();
+    private ConoscoCO2North nord = new ConoscoCO2North();
 
-
-    public UnAnnoDiAttivitaView(Controller controller) {
+    public ConoscoCO2View(Controller controller) {
         super(controller);
     }
+
 
     @Override
     protected void handleEvent(AppEvent event) {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
-        } else if (eventType.equals(UnAnnoDiAttivitaEvents.GoToBegin)) {
-            annoDettaglio.goToBegin();
-        } else if (eventType.equals(UnAnnoDiAttivitaEvents.Next)) {
-            onNext(event);
-        } else if (eventType.equals(UnAnnoDiAttivitaEvents.ClearStep)) {
-            annoDettaglio.clearStep((RiepilogoModel) event.getData());
-            OrdineModel riepilogo = annoDettaglio.riepilogo();
-            setRiassunto(riepilogo, false, false, false);
-        } else if (eventType.equals(UnAnnoDiAttivitaEvents.ClearPanel)) {
-            annoDettaglio.clearPanel();
-            west.clean();
-        } else if (eventType.equals(UnAnnoDiAttivitaEvents.Previous)) {
-            onPrevius(event);
-        } /*else if (eventType.equals(EventoEvents.Riepilogo)) {
-            OrdineModel riepilogo = eventoDettaglio.riepilogo();
-            setRiassunto(riepilogo);
-        }*/ else if (event.getType().equals(UnAnnoDiAttivitaEvents.PreviousText)) {
-            OrdineModel riepilogo = annoDettaglio.riepilogo();
+        } else if (eventType.equals(ConoscoCO2Events.Next)) {
+            conoscoCO2.nextTab();
+        } else if (eventType.equals(ConoscoCO2Events.Previous)) {
+            conoscoCO2.previusTab();
+        } else if (event.getType().equals(ConoscoCO2Events.PreviousText)) {
+            OrdineModel riepilogo = conoscoCO2.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti pieghevoli e fogli"),
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"),
                     event.<String>getData() != null && event.<String>getData().length() == 0
             );
-        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.NextText)) {
-            OrdineModel riepilogo = annoDettaglio.riepilogo();
+        } else if (event.getType().equals(ConoscoCO2Events.NextText)) {
+            OrdineModel riepilogo = conoscoCO2.riepilogo();
             south.setTextRigth(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Scegli progetto di compensazione"),
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Vai al pagamento"),
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("torna alla home")
             );
-        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.ShowStep)) {
-            annoDettaglio.showStep(event.<RiepilogoModel>getData());
-        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.ShowConfermDialog)) {
-            eventoConfermDialog.show();
         }
     }
 
@@ -115,19 +97,13 @@ public class UnAnnoDiAttivitaView extends View {
         }
     }
 
-    private void onPrevius(AppEvent event) {
-        annoDettaglio.previusTab();
-    }
-
-    private void onNext(AppEvent event) {
-        annoDettaglio.nextTab();
-    }
 
     private void onInit(AppEvent event) {
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
-        unAnnoDiAttivita.setHeaderVisible(false);
-        unAnnoDiAttivita.setLayout(layout);
+        conoscoCO2panel.setHeaderVisible(false);
+        conoscoCO2panel.setLayout(layout);
+        conoscoCO2panel.setStyleAttribute("padding", "1px");
 
         BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 25);
         northData.setCollapsible(false);
@@ -136,7 +112,8 @@ public class UnAnnoDiAttivitaView extends View {
         northData.setSplit(false);
         northData.setMargins(new Margins(0, 0, 0, 0));
 
-        unAnnoDiAttivita.add(north, northData);
+        conoscoCO2panel.add(nord, northData);
+
 
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.WEST, 250);
         westData.setCollapsible(false);
@@ -145,61 +122,62 @@ public class UnAnnoDiAttivitaView extends View {
         westData.setSplit(false);
         westData.setMargins(new Margins(0, 0, 0, 0));
 
-        unAnnoDiAttivita.add(west, westData);
+
+        conoscoCO2panel.add(west, westData);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         {
             final BorderLayout layout2 = new BorderLayout();
             center.setLayout(layout2);
+            center.setStyleAttribute("padding", "1px");
 
             BorderLayoutData center2Data = new BorderLayoutData(Style.LayoutRegion.CENTER);
             center2Data.setMargins(new Margins(0, 0, 0, 0));
-            center.add(annoDettaglio, center2Data);
+            center.add(conoscoCO2, center2Data);
 
             BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 33);
             southData.setMargins(new Margins(0, 0, 0, 0));
-            center.setStyleAttribute("background-color", "#313646");
             center.add(south, southData);
         }
         center.setHeaderVisible(false);
-        unAnnoDiAttivita.add(center, centerData);
+        conoscoCO2panel.add(center, centerData);
 
-        unAnnoDiAttivita.setTitle(Eventi.ANNO_DI_ATTIVITA.name());
-        Dispatcher.forwardEvent(new AppEvent(CentralEvents.UnAnnoDiAttivitaPanelReady, unAnnoDiAttivita));
-    }
-
-    public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
-        annoDettaglio.setTipoDiCarta(tipoDiCartaModels);
-    }
-
-    public List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
-        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(annoDettaglio.riepilogo(), coefficienti, Eventi.ANNO_DI_ATTIVITA);
-        annoDettaglio.setEventoRiepilogoInStore(list);
-        return list;
+        conoscoCO2panel.setTitle(Eventi.CONOSCI_CO2.name());
+        Dispatcher.forwardEvent(new AppEvent(CentralEvents.ConosciCO2PanelReady,
+                conoscoCO2panel));
     }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
-        annoDettaglio.setProgettiDiCompensazione(progettiDiCompensazioneList);
+        conoscoCO2.setProgettiDiCompensazione(progettiDiCompensazioneList);
     }
 
     public OrdineModel getRiepilogo() {
-        return annoDettaglio.riepilogo();
+        return conoscoCO2.riepilogo();
     }
 
-    public void setDettaglioModel(OrdineModel result) {
-        annoDettaglio.restore(result);
+
+    public List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
+        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(conoscoCO2.riepilogo(), coefficienti, Eventi.CONOSCI_CO2);
+        conoscoCO2.setConoscoCO2RiepilogoInStore(list);
+        return list;
     }
 
     public void setUserInfo(UserInfoModel userInfoModel) {
-        annoDettaglio.setUserInfoModel(userInfoModel);
+        conoscoCO2.setUserInfoModel(userInfoModel);
+    }
+
+
+    public void setDettaglioModel(OrdineModel result) {
+        conoscoCO2.restore(result);
     }
 
     public void showRiepilogo() {
-        annoDettaglio.showRiepilogo();
+        conoscoCO2.showRiepilogo();
     }
 
     public void showConferma(OrdineVTO result) {
-        annoDettaglio.showConferma(result);
+        nord.hideButtons();
+        conoscoCO2.showConferma(result);
     }
 
 }

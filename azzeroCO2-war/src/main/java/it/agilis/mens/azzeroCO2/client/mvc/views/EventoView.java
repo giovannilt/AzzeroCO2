@@ -20,14 +20,14 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.List;
 import java.util.Map;
@@ -69,7 +69,7 @@ public class EventoView extends View {
             north.showButtons();
         } else if (eventType.equals(EventoEvents.ClearStep)) {
             eventoDettaglio.clearStep((RiepilogoModel) event.getData());
-            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
+            OrdineModel riepilogo = eventoDettaglio.riepilogo();
             setRiassunto(riepilogo, false, false, false);
         } else if (eventType.equals(EventoEvents.ClearPanel)) {
             eventoDettaglio.clearPanel();
@@ -78,7 +78,7 @@ public class EventoView extends View {
         } else if (eventType.equals(EventoEvents.Previous)) {
             onPrevius(event);
         } else if (event.getType().equals(EventoEvents.PreviousText)) {
-            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
+            OrdineModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti pieghevoli e fogli"),
@@ -86,7 +86,7 @@ public class EventoView extends View {
                     event.<String>getData() != null && event.<String>getData().length() == 0
             );
         } else if (event.getType().equals(EventoEvents.NextText)) {
-            DettaglioModel riepilogo = eventoDettaglio.riepilogo();
+            OrdineModel riepilogo = eventoDettaglio.riepilogo();
             south.setTextRigth(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Scegli progetto di compensazione"),
@@ -100,7 +100,7 @@ public class EventoView extends View {
         }
     }
 
-    public void setRiassunto(DettaglioModel riepilogo, boolean isRiepilogo, boolean isScegliProgettoCompensazione, boolean isConferma) {
+    public void setRiassunto(OrdineModel riepilogo, boolean isRiepilogo, boolean isScegliProgettoCompensazione, boolean isConferma) {
         if (isRiepilogo) {
             west.isInRiepilogo(riepilogo);
         } else if (isScegliProgettoCompensazione) {
@@ -179,7 +179,7 @@ public class EventoView extends View {
     }
 
     public List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
-        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti);
+        List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(eventoDettaglio.riepilogo(), coefficienti, Eventi.EVENTO);
         eventoDettaglio.setEventoRiepilogoInStore(list);
         return list;
     }
@@ -188,11 +188,11 @@ public class EventoView extends View {
         eventoDettaglio.setProgettiDiCompensazione(progettiDiCompensazioneList);
     }
 
-    public DettaglioModel getRiepilogo() {
+    public OrdineModel getRiepilogo() {
         return eventoDettaglio.riepilogo();
     }
 
-    public void setDettaglioModel(DettaglioModel result) {
+    public void setDettaglioModel(OrdineModel result) {
         eventoDettaglio.restore(result);
     }
 
@@ -204,7 +204,7 @@ public class EventoView extends View {
         eventoDettaglio.showRiepilogo();
     }
 
-    public void showConferma(DettaglioVTO result) {
+    public void showConferma(OrdineVTO result) {
         north.hideButtons();
         eventoDettaglio.showConferma(result);
     }

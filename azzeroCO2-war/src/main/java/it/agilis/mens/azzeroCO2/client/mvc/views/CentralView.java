@@ -242,6 +242,7 @@ public class CentralView extends View {
                     //  login.setWidth(290);
                     //login.getHeader().setTextStyle("x-panel-header-white");
                     login.setHeading("Login");
+                    login.getHeader().setStyleAttribute("padding-left","20px");
                     login.getHeader().setStyleName("x-panel-header-white");
 
                     //login.getHeader().setStyleAttribute("font-color","white !important");
@@ -348,7 +349,9 @@ public class CentralView extends View {
 
 
                 compensazione.setHeading("Cos'e' la compensazione?");
-                compensazione.setStyleAttribute("padding-top","20");
+                compensazione.setStyleAttribute("padding-top","40");
+                compensazione.getHeader().setStyleAttribute("padding-top","30px");
+                compensazione.getHeader().setStyleAttribute("padding-left","20px");
                 compensazione.getHeader().setStyleName("x-panel-header-white");
                 VBoxLayout layoutCompensazione = new VBoxLayout();
                 layoutCompensazione.setPadding(new Padding(5));

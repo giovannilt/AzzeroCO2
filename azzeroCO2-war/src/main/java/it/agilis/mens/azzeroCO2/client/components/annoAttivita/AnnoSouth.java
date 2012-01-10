@@ -18,7 +18,7 @@ import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 /**
@@ -30,7 +30,7 @@ import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
  */
 public class AnnoSouth extends LayoutContainer {
 
-private Text leftText = new Text("");
+    private Text leftText = new Text("");
     private Text rigthText = new Text("Energia");
 
     private Button left = new Button();
@@ -96,7 +96,7 @@ private Text leftText = new Text("");
             @Override
             public void componentSelected(ButtonEvent ce) {
                 if (rigthText.getText().equalsIgnoreCase("torna alla home")) {
-                   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                    Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
                 } else {
                     Dispatcher.forwardEvent(new AppEvent(UnAnnoDiAttivitaEvents.Next, ce));
                 }
@@ -106,7 +106,7 @@ private Text leftText = new Text("");
     }
 
 
-    public void setTextLeft(String left_t, DettaglioModel riepilogo) {
+    public void setTextLeft(String left_t, OrdineModel riepilogo) {
         if (riepilogo.getPagamentoModel() != null
                 && riepilogo.getPagamentoModel().getEsito() != null
                 && riepilogo.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
@@ -128,7 +128,7 @@ private Text leftText = new Text("");
         c.layout(true);
     }
 
-    public void setTextRigth(String right_t, DettaglioModel riepilogo) {
+    public void setTextRigth(String right_t, OrdineModel riepilogo) {
         if (riepilogo.getPagamentoModel() != null
                 && riepilogo.getPagamentoModel().getEsito() != null
                 && riepilogo.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {

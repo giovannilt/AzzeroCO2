@@ -3,7 +3,6 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Info;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
@@ -12,14 +11,15 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.EventoView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.Date;
 import java.util.List;
@@ -34,7 +34,6 @@ import java.util.List;
 public class EventoController extends BaseController {
 
     private final EventoView eventoView = new EventoView(this);
-    private final NumberFormat number = NumberFormat.getFormat("0.00");
 
     public EventoController() {
         registerEventTypes(AzzeroCO2Events.Init);
@@ -68,24 +67,26 @@ public class EventoController extends BaseController {
             final MyAsyncCallback asyncCallback = new MyAsyncCallback();
             final Timer timer = new Timer() {
                 public void run() {
-                    getHustonService().isPagato(AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo()), getUserInfoModel(), asyncCallback);
+                    OrdineModel riepilogo = eventoView.getRiepilogo();
+                    riepilogo.setEventiType(Eventi.EVENTO.name());
+                    getHustonService().isPagato(AzzerroCO2UtilsClientHelper.getDettaglioVTO(riepilogo), getUserInfoModel(), asyncCallback);
                     asyncCallback.setTimer(this);
-                    
+
                 }
             };
             timer.schedule(10000);
 
         } else if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
-            setCoefficentitoEventoView();
+            setCoefficientiEventoView();
             eventoView.showRiepilogo();
         } else if (event.getType().equals(EventoEvents.Riepilogo)) {
-            setCoefficentitoEventoView();
+            setCoefficientiEventoView();
         } else if (event.getType().equals(EventoEvents.LoadEvento)) {
             setCoefficienti();
             setProgettiDiCompensazione();
             eventoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
-            eventoView.setDettaglioModel((DettaglioModel) event.getData());
-            eventoView.setRiassunto((DettaglioModel) event.getData(), true, false, false);
+            eventoView.setDettaglioModel((OrdineModel) event.getData());
+            eventoView.setRiassunto((OrdineModel) event.getData(), true, false, false);
         } else if (event.getType().equals(AzzeroCO2Events.Init)) {
             AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
                 public void onFailure(Throwable caught) {
@@ -111,8 +112,8 @@ public class EventoController extends BaseController {
             if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
                 Dispatcher.forwardEvent(LoginEvents.ShowForm);
             } else {
-                DettaglioModel model = eventoView.getRiepilogo();
-
+                OrdineModel model = eventoView.getRiepilogo();
+                model.setEventiType(Eventi.EVENTO.name());
                 double kgCO2 = getTotaleKgCO2(model);
 
                 // TODO Calcolare il totale togliendo lo sconto COUPON
@@ -137,8 +138,9 @@ public class EventoController extends BaseController {
             setUserInfoModel((UserInfoModel) event.getData());
             eventoView.setUserInfo(getUserInfoModel());
         } else if (event.getType().equals(EventoEvents.Save)) {
-            if (event.getData() instanceof DettaglioModel) {
-                DettaglioModel model = (DettaglioModel) event.getData();
+            if (event.getData() instanceof OrdineModel) {
+                OrdineModel model = (OrdineModel) event.getData();
+                model.setEventiType(Eventi.EVENTO.name());
                 save(model);
             } else {
                 save(null);
@@ -148,29 +150,31 @@ public class EventoController extends BaseController {
         }
     }
 
-    private void save(DettaglioModel model) {
+    private void save(OrdineModel model) {
         if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
             Dispatcher.forwardEvent(LoginEvents.ShowForm);
         } else if (model == null) {
-            saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(eventoView.getRiepilogo()));
+            OrdineModel riepilogo = eventoView.getRiepilogo();
+            riepilogo.setEventiType(Eventi.EVENTO.name());
+            saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(riepilogo));
         } else if (model != null) {
             saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
         }
     }
 
-    private void saveVTO(final DettaglioVTO riepilogo) {
+    private void saveVTO(final OrdineVTO riepilogo) {
         if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
             Info.display("Warning", "Nome Evento Mancante");
         } else {
-            AsyncCallback<DettaglioVTO> dettaglio = new AsyncCallback<DettaglioVTO>() {
+            AsyncCallback<OrdineVTO> dettaglio = new AsyncCallback<OrdineVTO>() {
                 public void onFailure(Throwable caught) {
                     Info.display("Error", "Errore impossibile connettersi al server " + caught);
                 }
 
                 @Override
-                public void onSuccess(DettaglioVTO result) {
+                public void onSuccess(OrdineVTO result) {
                     if (result != null) {
-                        DettaglioModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
+                        OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         eventoView.setDettaglioModel(model);
                         Info.display("Info", "Evento " + riepilogo.getNome() + " salvato con successo.");
                     }
@@ -180,7 +184,7 @@ public class EventoController extends BaseController {
         }
     }
 
-    private void setCoefficentitoEventoView() {
+    private void setCoefficientiEventoView() {
         if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
             setCoefficienti();
             if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
@@ -194,7 +198,7 @@ public class EventoController extends BaseController {
         }
     }
 
-    private double getTotaleKgCO2(DettaglioModel model) {
+    private double getTotaleKgCO2(OrdineModel model) {
         List<RiepilogoModel> eventoRiepilogoModels = eventoView.riepilogo(getCoefficientiMAP());
         double totale = 0;
         for (RiepilogoModel r : eventoRiepilogoModels) {
@@ -203,16 +207,16 @@ public class EventoController extends BaseController {
         return totale;
     }
 
-    class MyAsyncCallback implements AsyncCallback<DettaglioVTO> {
+    class MyAsyncCallback implements AsyncCallback<OrdineVTO> {
         private Timer timer;
-        private int numeroDiVolte=12;
+        private int numeroDiVolte = 12;
 
         public void onFailure(Throwable caught) {
             Info.display("Error", "Errore impossibile connettersi al server " + caught);
         }
 
         @Override
-        public void onSuccess(DettaglioVTO result) {
+        public void onSuccess(OrdineVTO result) {
             if (result != null) {
                 if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
                     Info.display("Info", "Pagamento Avvenuto con sucesso");
@@ -222,16 +226,16 @@ public class EventoController extends BaseController {
 
                     sentMail(result);
                 } else {
-                    if(numeroDiVolte>0){
+                    if (numeroDiVolte > 0) {
                         Info.display("Info", "Non Ancora pagato");
                         getTimer().schedule(10000);
                         numeroDiVolte--;
-                    } else{
+                    } else {
                         Info.display("Info", "Evento non pagato, atteso pagamento per piu' di 2 minuti, si consiglia di ricaricare ");
                         Dispatcher.forwardEvent(PagamentoSellaEvents.EnableButton);
                     }
                 }
-                DettaglioModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
+                OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                 eventoView.setDettaglioModel(model);
             } else {
                 Info.display("Error", "Errore impossibile connettersi al server ERRORE DI SISTEMA");

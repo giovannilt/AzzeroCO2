@@ -20,12 +20,13 @@ import com.extjs.gxt.ui.client.widget.layout.VBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: giovannilt
@@ -37,7 +38,7 @@ public class SitoWebWest extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Sito web");
-    private final String oggettoDiDefault="Compensa le emissioni </br> del tuo sito web'";
+    private final String oggettoDiDefault = "Compensa le emissioni </br> del tuo sito web'";
     private Esito esito;
 
     public SitoWebWest() {
@@ -73,7 +74,7 @@ public class SitoWebWest extends LayoutContainer {
         title.setStyleAttribute("vertical-align ", "middle");
         title.setWidth(250);
         title.setHeight(60);
-        title.setStyleAttribute("font-size","14px");
+        title.setStyleAttribute("font-size", "14px");
 
 
         panel.setStyleAttribute("backgroundColor", "#E9E9E9");
@@ -93,7 +94,7 @@ public class SitoWebWest extends LayoutContainer {
             public Object render(ModelData model, String property, ColumnData config, int rowIndex, int colIndex, ListStore listStore, Grid grid) {
                 config.style += "background-color: silver;";
                 List<RiepilogoModel> r = listStore.getModels();
-                if(r.size()==1 && r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)){
+                if (r.size() == 1 && r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)) {
                     return null;
                 }
 
@@ -141,8 +142,8 @@ public class SitoWebWest extends LayoutContainer {
                 new Listener<SelectionChangedEvent<RiepilogoModel>>() {
                     public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
                         if (be.getSelection().size() > 0) {
-                            if(!Esito.PAGATO.equals(esito)){
-                                Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());  //TODO che roba è
+                            if (!Esito.PAGATO.equals(esito)) {
+                                Dispatcher.forwardEvent(SitoWebEvents.ShowStep, be.getSelectedItem());
                             }
                         }
                     }
@@ -161,7 +162,7 @@ public class SitoWebWest extends LayoutContainer {
             m.setOggetto("Compensa le emissioni </br> del tuo sito web");
             store.add(m);
         } else {
-             this.esito=esito;
+            this.esito = esito;
             store.add(model);
         }
     }
@@ -174,11 +175,10 @@ public class SitoWebWest extends LayoutContainer {
         }
     }
 
-    public void clean(){
+    public void clean() {
         setInStore(null, Esito.IN_PAGAMENTO);
         setTitle(null);
     }
-
 
 
 }

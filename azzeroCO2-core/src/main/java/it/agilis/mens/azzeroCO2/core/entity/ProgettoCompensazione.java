@@ -1,7 +1,9 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 
 /**
@@ -19,11 +21,8 @@ public class ProgettoCompensazione {
     @GeneratedValue
     private Long id;
 
-    @OneToMany
-    private List<Ordine> ordini;
-
     private String nome;
-    @Column(length=500)
+    @Column(length = 500)
     private String descrizione;
     private Double prezzo;
     private String img;
@@ -44,14 +43,6 @@ public class ProgettoCompensazione {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Ordine> getOrdini() {
-        return ordini;
-    }
-
-    public void setOrdini(List<Ordine> ordini) {
-        this.ordini = ordini;
     }
 
     public String getNome() {
@@ -85,7 +76,6 @@ public class ProgettoCompensazione {
     public void setAttivo(Boolean attivo) {
         this.attivo = attivo;
     }
-
 
 
     public String getPdf() {

@@ -1,8 +1,8 @@
 package it.agilis.mens.azzeroCO2.server.services;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import it.agilis.mens.azzeroCO2.client.services.HustonService;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
+import it.agilis.mens.azzeroCO2.client.services.HustonService;
 import it.agilis.mens.azzeroCO2.core.criteria.ProgettoCompensazioneCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.Esito;
@@ -15,14 +15,14 @@ import it.agilis.mens.azzeroCO2.server.PropertiesManager;
 import it.agilis.mens.azzeroCO2.server.utils.Utils;
 import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -130,7 +130,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public List<DettaglioModel> getListOfOrdini(UserInfoModel userInfoModel) {
+    public List<OrdineModel> getListOfOrdini(UserInfoModel userInfoModel) {
         try {
             return Utils.getListOfOrdini(azzeroCO2Register.getListOfOrdini(Utils.getUserInfo(userInfoModel)));
         } catch (Exception e) {
@@ -183,7 +183,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
             if (ui != null) {
                 return null;
             }
-           return  Utils.getUserInfoModel(azzeroCO2Register.saveUserInfo(Utils.getUserInfo(userInfoModel)));
+            return Utils.getUserInfoModel(azzeroCO2Register.saveUserInfo(Utils.getUserInfo(userInfoModel)));
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -254,17 +254,17 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public DettaglioVTO saveOrdine(DettaglioVTO evento, UserInfoModel user) {
+    public OrdineVTO saveOrdine(OrdineVTO evento, UserInfoModel user) {
         try {
-            DettaglioModel dettaglioModel = AzzerroCO2UtilsClientHelper.getDettaglioModel(evento);
-            Ordine ordine = Utils.getOrdine(dettaglioModel);
+            OrdineModel ordineModel = AzzerroCO2UtilsClientHelper.getDettaglioModel(evento);
+            Ordine ordine = Utils.getOrdine(ordineModel);
 
             Ordine o = azzeroCO2Register.saveOrUpdateOrdine(ordine, Utils.getUserInfo(user));
 
-            DettaglioModel dettaglioModel1 = Utils.getDettaglioModel(o);
-            DettaglioVTO dettaglioVTO = AzzerroCO2UtilsClientHelper.getDettaglioVTO(dettaglioModel1);
+            OrdineModel ordineModel1 = Utils.getDettaglioModel(o);
+            OrdineVTO ordineVTO = AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel1);
 
-            return dettaglioVTO;
+            return ordineVTO;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -326,12 +326,12 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public DettaglioVTO isPagato(DettaglioVTO riepilogo, UserInfoModel userInfoModel) {
+    public OrdineVTO isPagato(OrdineVTO riepilogo, UserInfoModel userInfoModel) {
         try {
             Ordine o = null;
             if (riepilogo.getOrdineId() == null) {
-                DettaglioModel dettaglioModel = AzzerroCO2UtilsClientHelper.getDettaglioModel(riepilogo);
-                o = azzeroCO2Register.saveOrUpdateOrdine(Utils.getOrdine(dettaglioModel), Utils.getUserInfo(userInfoModel));
+                OrdineModel ordineModel = AzzerroCO2UtilsClientHelper.getDettaglioModel(riepilogo);
+                o = azzeroCO2Register.saveOrUpdateOrdine(Utils.getOrdine(ordineModel), Utils.getUserInfo(userInfoModel));
             } else {
                 o = azzeroCO2Register.getOrdineDAO().getOrdineEager(riepilogo.getOrdineId());
             }
@@ -341,8 +341,8 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
                 azzeroCO2Register.saveOrUpdateOrdine(o, Utils.getUserInfo(userInfoModel));
             }
 
-            DettaglioModel dettaglioModel1 = Utils.getDettaglioModel(o);
-            return AzzerroCO2UtilsClientHelper.getDettaglioVTO(dettaglioModel1);
+            OrdineModel ordineModel1 = Utils.getDettaglioModel(o);
+            return AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel1);
 
         } catch (Exception e) {
             e.printStackTrace();

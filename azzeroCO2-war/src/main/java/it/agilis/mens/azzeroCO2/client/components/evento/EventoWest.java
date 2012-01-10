@@ -22,8 +22,8 @@ import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class EventoWest extends LayoutContainer {
     private final String riepilogoString = "Hai terminato il calcolo! </br>" +
             "Se vuoi modifica i dati inseriti</br>" +
             " cliccando sulla voce relativa.";
-    private final String ProgettoDiCompensazione = "Scegli un progetto di </br>" +
+    private final String progettoDiCompensazione = "Scegli un progetto di </br>" +
             "compensazione.</br>" +
             "Controlla il preventivo e </br>" +
             "accedi al sistema di </br>" +
@@ -106,10 +106,10 @@ public class EventoWest extends LayoutContainer {
                 List<RiepilogoModel> r = listStore.getModels();
                 if (r.size() == 1 &&
                         (r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)
-                        || r.get(0).getOggetto().equalsIgnoreCase(ProgettoDiCompensazione)
-                        || r.get(0).getOggetto().equalsIgnoreCase(riepilogoString)
-                        || r.get(0).getOggetto().equalsIgnoreCase(Conferma)
-                                                )) {
+                                || r.get(0).getOggetto().equalsIgnoreCase(progettoDiCompensazione)
+                                || r.get(0).getOggetto().equalsIgnoreCase(riepilogoString)
+                                || r.get(0).getOggetto().equalsIgnoreCase(Conferma)
+                        )) {
                     return null;
                 }
                 return new Image(AzzeroCO2Resources.INSTANCE.checkIcon());//new ToolButton("x-tool-pin");
@@ -163,7 +163,7 @@ public class EventoWest extends LayoutContainer {
     }
 
 
-    public void setInStore(DettaglioModel riepilogo, Esito esito) {
+    public void setInStore(OrdineModel riepilogo, Esito esito) {
         List<RiepilogoModel> model = CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo);
         store.removeAll();
         if (model == null || model.size() == 0) {
@@ -177,7 +177,7 @@ public class EventoWest extends LayoutContainer {
         setTitle(riepilogo);
     }
 
-    public void setTitle(DettaglioModel riepilogo) {
+    public void setTitle(OrdineModel riepilogo) {
         if (riepilogo != null) {
             String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Evento";
             String dove = riepilogo.getDove() != null ? riepilogo.getDove() : "";
@@ -198,7 +198,7 @@ public class EventoWest extends LayoutContainer {
         this.title.setTitle(".....");
     }
 
-    public void isInRiepilogo(DettaglioModel riepilogo) {
+    public void isInRiepilogo(OrdineModel riepilogo) {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
@@ -207,16 +207,16 @@ public class EventoWest extends LayoutContainer {
         store.add(m);
     }
 
-    public void isScegliProgettoCompensazione(DettaglioModel riepilogo) {
+    public void isScegliProgettoCompensazione(OrdineModel riepilogo) {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
 
-        m.setOggetto(ProgettoDiCompensazione);
+        m.setOggetto(progettoDiCompensazione);
         store.add(m);
     }
 
-    public void isInConferma(DettaglioModel riepilogo) {
+    public void isInConferma(OrdineModel riepilogo) {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();

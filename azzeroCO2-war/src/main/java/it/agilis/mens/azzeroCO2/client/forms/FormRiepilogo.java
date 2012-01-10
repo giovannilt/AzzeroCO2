@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
@@ -116,26 +117,24 @@ public class FormRiepilogo extends LayoutContainer {
         });
         column.setSortable(true);
         configs.add(column);
-        column = new ColumnConfig("oggetto", "Oggetto",270 );
+        column = new ColumnConfig("oggetto", "Oggetto", 270);
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
-                config.style = "border-bottom:1px solid gray !important;";
+                config.style += "border-bottom:1px solid gray !important;";
                 return model.<Number>get(property);
             }
         });
-        column.setWidth(270);
         configs.add(column);
 
         column = new ColumnConfig("dettagli", "Dettagli", 265);
         column.setRenderer(new GridCellRenderer<RiepilogoModel>() {
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
-                config.style = "border-bottom:1px solid gray !important;";
+                config.style += "border-bottom:1px solid gray !important;";
                 return model.<Number>get(property);
             }
         });
-        column.setWidth(265);
         configs.add(column);
 
         column = new ColumnConfig("kgCO2", "Kg/CO2", 82);
@@ -144,13 +143,10 @@ public class FormRiepilogo extends LayoutContainer {
 
             @Override
             public Object render(RiepilogoModel model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<RiepilogoModel> riepilogoModelListStore, Grid<RiepilogoModel> riepilogoModelGrid) {
-
-
-                config.style = "border-bottom:1px solid gray !important;";
+                config.style += "border-bottom:1px solid gray !important;";
                 return number.format(model.<Number>get(property));
             }
         });
-        column.setWidth(82);
         configs.add(column);
 
         column = new ColumnConfig("", "", 20);
@@ -181,9 +177,6 @@ public class FormRiepilogo extends LayoutContainer {
                     public void componentSelected(IconButtonEvent ce) {
                         if (!Esito.PAGATO.equals(esito)) {
                             Dispatcher.forwardEvent(AzzeroCO2Events.ShowRiepilogoConfermDialog, model);
-                            //store.remove(model);
-                            //Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
-                            //setTotale();
                         }
                     }
                 });
@@ -191,7 +184,6 @@ public class FormRiepilogo extends LayoutContainer {
                 return b;
             }
         });
-        column.setWidth(20);
 
         configs.add(column);
 
@@ -199,13 +191,19 @@ public class FormRiepilogo extends LayoutContainer {
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
         grid.setHeight(350);
-       // grid.setStyleAttribute("border-style","2px solid white !important");
+        // grid.setStyleAttribute("border-style","2px solid white !important");
 
         grid.addListener(Events.CellClick, new Listener<GridEvent>() {
             public void handleEvent(GridEvent be) {
                 if (be.getType() == Events.CellClick) {
-                    Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getModel());
-
+                    if (Eventi.EVENTO == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
+                        Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getModel());
+                    } else if (Eventi.CONOSCI_CO2 == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
+                        // Dispatcher.forwardEvent(ConoscoCO2Events.ShowStep, be.getModel());
+                    } else if (Eventi.ANNO_DI_ATTIVITA == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
+                    } else if (Eventi.UNA_PUBBLICAZIONE == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
+                    } else if (Eventi.WEB == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
+                    }
                 }
             }
         });
@@ -213,7 +211,7 @@ public class FormRiepilogo extends LayoutContainer {
         return grid;
     }
 
-    public void setEventoRiepilogoInStore(List<RiepilogoModel> models, Esito esito) {
+    public void setRiepilogoInStore(List<RiepilogoModel> models, Esito esito) {
         for (RiepilogoModel r : store.getModels()) {
             store.remove(r);
         }
@@ -237,11 +235,13 @@ public class FormRiepilogo extends LayoutContainer {
         store.removeAll();
     }
 
-     public void removeModel(RiepilogoModel model) {
-         store.remove(model);
-         Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
-         setTotale();
-     }
+    public void removeModel(RiepilogoModel model) {
+        store.remove(model);
+        Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
+        setTotale();
+    }
+
+
 }
 
 

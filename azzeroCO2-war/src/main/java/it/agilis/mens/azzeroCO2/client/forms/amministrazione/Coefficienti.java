@@ -30,7 +30,6 @@ import java.util.List;
  * Time: 5:19 PM
  * To change this template use File | Settings | File Templates.
  */
-@SuppressWarnings({"ALL"})
 public class Coefficienti extends LayoutContainer {
 
     private ListStore<CoefficienteModel> store = new ListStore<CoefficienteModel>();
@@ -44,7 +43,7 @@ public class Coefficienti extends LayoutContainer {
 
         ContentPanel centre = createCentre();
         centre.setHeaderVisible(false);
-        centre.setHeight(477);
+        centre.setHeight(478);
         centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);

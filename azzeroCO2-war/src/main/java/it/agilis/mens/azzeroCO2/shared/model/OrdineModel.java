@@ -1,7 +1,9 @@
-package it.agilis.mens.azzeroCO2.shared.model.evento;
+package it.agilis.mens.azzeroCO2.shared.model;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
+import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
+import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 
 import java.util.ArrayList;
@@ -15,9 +17,9 @@ import java.util.List;
  * Time: 12:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DettaglioModel extends BaseModel {
+public class OrdineModel extends BaseModel {
 
-    private Date lastUpdate;
+    private String eventiType;
 
     private EnergiaModel energiaModel;
     private ArrayList<TrasportoPersoneModel> trasportoPersoneModel;
@@ -29,6 +31,8 @@ public class DettaglioModel extends BaseModel {
     private ProgettoDiCompensazioneModel progettoDiCompensazioneModel;
 
     private PagamentoModel pagamentoModel;
+
+    private ConoscoCO2Model conoscoCO2Model;
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
         return progettoDiCompensazioneModel;
@@ -66,7 +70,7 @@ public class DettaglioModel extends BaseModel {
         set("dove", dove);
     }
 
-     public Date getLastUpdate() {
+    public Date getLastUpdate() {
         return (Date) get("lastUpdate");
     }
 
@@ -156,5 +160,21 @@ public class DettaglioModel extends BaseModel {
 
     public void setPagamentoModel(PagamentoModel pagamentoModel) {
         this.pagamentoModel = pagamentoModel;
+    }
+
+    public void setConoscoCO2Model(ConoscoCO2Model conoscoCO2Model) {
+        this.conoscoCO2Model = conoscoCO2Model;
+    }
+
+    public ConoscoCO2Model getConoscoCO2Model() {
+        return conoscoCO2Model;
+    }
+
+    public String getEventiType() {
+        return eventiType;
+    }
+
+    public void setEventiType(String eventiType) {
+        this.eventiType = eventiType;
     }
 }

@@ -22,8 +22,8 @@ import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
@@ -150,7 +150,7 @@ public class AnnoWest extends LayoutContainer {
     }
 
 
-    public void setInStore(DettaglioModel riepilogo, Esito esito) {
+    public void setInStore(OrdineModel riepilogo, Esito esito) {
         List<RiepilogoModel> model = CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo);
         store.removeAll();
         if (model == null || model.size() == 0) {
@@ -164,7 +164,7 @@ public class AnnoWest extends LayoutContainer {
         setTitle(riepilogo);
     }
 
-    public void setTitle(DettaglioModel riepilogo) {
+    public void setTitle(OrdineModel riepilogo) {
         if (riepilogo != null) {
             String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Un Anno di Attività";
             String dove = riepilogo.getDove() != null ? riepilogo.getDove() : "";
@@ -185,7 +185,7 @@ public class AnnoWest extends LayoutContainer {
         this.title.setTitle(".....");
     }
 
-    public void isInRiepilogo(DettaglioModel riepilogo) {
+    public void isInRiepilogo(OrdineModel riepilogo) {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
@@ -195,7 +195,7 @@ public class AnnoWest extends LayoutContainer {
         store.add(m);
     }
 
-    public void isScegliProgettoCompensazione(DettaglioModel riepilogo) {
+    public void isScegliProgettoCompensazione(OrdineModel riepilogo) {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
@@ -207,7 +207,7 @@ public class AnnoWest extends LayoutContainer {
         store.add(m);
     }
 
-    public void isInConferma(DettaglioModel riepilogo) {
+    public void isInConferma(OrdineModel riepilogo) {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();

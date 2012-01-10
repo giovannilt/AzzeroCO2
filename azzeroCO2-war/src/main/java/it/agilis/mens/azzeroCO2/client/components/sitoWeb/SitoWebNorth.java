@@ -12,7 +12,7 @@ import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
 
 /**
  * Created by IntelliJ IDEA.
@@ -44,7 +44,7 @@ public class SitoWebNorth extends LayoutContainer {
         save.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(EventoEvents.Save, "Save"); //TODO mettere l'evento save del sito
+                Dispatcher.forwardEvent(SitoWebEvents.Save, "Save"); //TODO mettere l'evento save del sito
             }
         });
         c.add(save, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
@@ -55,24 +55,14 @@ public class SitoWebNorth extends LayoutContainer {
             @Override
             public void componentSelected(IconButtonEvent ce) {
 
-                Dispatcher.forwardEvent(EventoEvents.ShowConfermDialog);  //TODO verificare questo event
+                Dispatcher.forwardEvent(SitoWebEvents.ShowConfermDialog);  //TODO verificare questo event
 
-                //   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
-                //   Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
             }
         });
         c.add(close, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
         c.setStyleAttribute("background-color", "#F89D00");
         add(c);
     }
-
-
-
-
-
-
-
-
 
 
 }

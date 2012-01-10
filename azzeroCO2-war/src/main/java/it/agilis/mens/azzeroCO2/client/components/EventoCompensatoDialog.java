@@ -20,8 +20,8 @@ import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class EventoCompensatoDialog extends Dialog {
     private double totale = 0;
 
     private final NumberFormat number = NumberFormat.getFormat("0.00");
-    private DettaglioModel dettaglioModel;
+    private OrdineModel ordineModel;
 
     private HTML schedaProgetto = new HTML();
     private String attestatoDiComensazioneText = GWT.getModuleBaseURL() + "downloadCertificato?certificato=";
@@ -67,8 +67,6 @@ public class EventoCompensatoDialog extends Dialog {
 
         cpEst.add(createGrid(), new RowData(1, 1));
 
-        // TODO MIGLIORARE
-      //  cp.setHeight(300);
         cp.add(cpEst, new RowData(0.60, 1));
         cp.add(createResumeProject(), new RowData(0.40, 1));
         this.setHeight(440);
@@ -90,23 +88,23 @@ public class EventoCompensatoDialog extends Dialog {
         status.setHeading("Status");
         status.setFrame(false);
         status.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-        
-        String testo= dateFormat.format(dettaglioModel.getPagamentoModel().getUpdateFromBanca()) + "</br>";
-        testo+= " Hai compensato " + number.format(totale)+ " kgCO2.";
-        
+
+        String testo = dateFormat.format(ordineModel.getPagamentoModel().getUpdateFromBanca()) + "</br>";
+        testo += " Hai compensato " + number.format(totale) + " kgCO2.";
+
         Text testo1 = new Text(testo);
-        
-        status.add(testo1, new RowData(1,1));
+
+        status.add(testo1, new RowData(1, 1));
         _return.add(status, new RowData(1, 0.30));
-        ContentPanel download =  createDownload();
+        ContentPanel download = createDownload();
 
         _return.add(download, new RowData(1, 0.70));
-        
+
         return _return;
     }
 
     private ContentPanel createDownload() {
-        ContentPanel download= new ContentPanel();
+        ContentPanel download = new ContentPanel();
         download.setFrame(false);
         download.setHeaderVisible(true);
         download.setHeading("Download");
@@ -128,7 +126,7 @@ public class EventoCompensatoDialog extends Dialog {
             {
                 LayoutContainer c = new LayoutContainer();
                 HBoxLayout layout = new HBoxLayout();
-            //    layout.setPadding(new Padding(2));
+                //    layout.setPadding(new Padding(2));
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
                 c.setLayout(layout);
 
@@ -165,7 +163,7 @@ public class EventoCompensatoDialog extends Dialog {
         }
         return download;
     }
-    
+
 
     private Grid<RiepilogoModel> createGrid() {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
@@ -189,30 +187,30 @@ public class EventoCompensatoDialog extends Dialog {
     }
 
     public void setTotale(Double totale) {
-        this.totale= totale;
+        this.totale = totale;
 
     }
 
     @Override
     protected void createButtons() {
-      //  super.createButtons();    //To change body of overridden methods use File | Settings | File Templates.
+        //  super.createButtons();    //To change body of overridden methods use File | Settings | File Templates.
     }
 
-    public void setDettaglioModel(DettaglioModel dettaglioModel) {
-        this.dettaglioModel=dettaglioModel;
+    public void setOrdineModel(OrdineModel ordineModel) {
+        this.ordineModel = ordineModel;
 
-        if (dettaglioModel != null && dettaglioModel.getPagamentoModel() != null) {
-            if (dettaglioModel.getPagamentoModel() != null) {
+        if (ordineModel != null && ordineModel.getPagamentoModel() != null) {
+            if (ordineModel.getPagamentoModel() != null) {
 
                 NumberFormat numberFormat = NumberFormat.getFormat("0,00");
 
-                attestatoDiComensazioneText += dettaglioModel.getPagamentoModel().getCertificatoPDF();
+                attestatoDiComensazioneText += ordineModel.getPagamentoModel().getCertificatoPDF();
                 attestatoDiComensazioneText = "<a target='_blank' href='" +
                         attestatoDiComensazioneText + "'><p style='padding:1px;font-family:arial;color:white;'>Attestato di compensazione</p></a>";
 
                 attestatoDiComensazione.setHTML(attestatoDiComensazioneText);
 
-                String schedaProgettoText = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti") + dettaglioModel.getProgettoDiCompensazioneModel().getPdfUrl();
+                String schedaProgettoText = GWT.getHostPageBaseURL().replace("azzeroCO2", "ImmaginiProgetti") + ordineModel.getProgettoDiCompensazioneModel().getPdfUrl();
                 schedaProgettoText = "<a target='_blank' href='" + schedaProgettoText + "'><p style='padding:1px;font-family:arial;color:white;'>Scheda progetto</p></a>";
                 schedaProgetto.setHTML(schedaProgettoText);
 

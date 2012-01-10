@@ -4,6 +4,7 @@ import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
@@ -12,7 +13,7 @@ import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.*;
 
@@ -30,6 +31,8 @@ public abstract class BaseController extends Controller {
     private Map<String, CoefficienteModel> coefficientiMAP = new HashMap<String, CoefficienteModel>();
     private List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList = new ArrayList<ProgettoDiCompensazioneModel>();
     private String info = "";
+
+    protected final NumberFormat number = NumberFormat.getFormat("0.00");
 
     public UserInfoModel getUserInfoModel() {
         return userInfoModel;
@@ -111,10 +114,10 @@ public abstract class BaseController extends Controller {
         return info;
     }
 
-    public void sentMail(DettaglioVTO result) {
+    public void sentMail(OrdineVTO result) {
         EMailVTO data = new EMailVTO();
-        data.setBody(result.getNome()+ " /n " +
-                "" + GWT.getModuleBaseURL()+"downloadCertificato?certificato="+result.getPagamentoModel().getCertificatoPDF()+
+        data.setBody(result.getNome() + " /n " +
+                "" + GWT.getModuleBaseURL() + "downloadCertificato?certificato=" + result.getPagamentoModel().getCertificatoPDF() +
                 "");
 
         data.setFromUser("no-reply@azzeroco2.it");

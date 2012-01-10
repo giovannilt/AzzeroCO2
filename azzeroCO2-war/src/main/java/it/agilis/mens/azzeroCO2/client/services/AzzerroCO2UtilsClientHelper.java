@@ -1,12 +1,13 @@
 package it.agilis.mens.azzeroCO2.client.services;
 
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
 import it.agilis.mens.azzeroCO2.shared.vto.ManifestiPieghevoliFogliVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 import it.agilis.mens.azzeroCO2.shared.vto.PubblicazioniRilegateVTO;
 import it.agilis.mens.azzeroCO2.shared.vto.TipoDiCartaVTO;
 
@@ -24,31 +25,33 @@ import java.util.List;
  */
 public class AzzerroCO2UtilsClientHelper {
 
-    public static DettaglioVTO getDettaglioVTO(DettaglioModel dettaglioModel) {
-        DettaglioVTO dettaglioVTO = new DettaglioVTO();
+    public static OrdineVTO getDettaglioVTO(OrdineModel ordineModel) {
+        OrdineVTO ordineVTO = new OrdineVTO();
 
-        dettaglioVTO.setNottiModel(dettaglioModel.getNottiModel());
-        dettaglioVTO.setEnergiaModel(dettaglioModel.getEnergiaModel());
-        dettaglioVTO.setTrasportoMerciModel(dettaglioModel.getTrasportoMerciModel());
-        dettaglioVTO.setTrasportoPersoneModel(dettaglioModel.getTrasportoPersoneModel());
-        dettaglioVTO.setProgettoDiCompensazioneModel(dettaglioModel.getProgettoDiCompensazioneModel());
+        ordineVTO.setEventiType(ordineModel.getEventiType());
+        ordineVTO.setNome(ordineModel.getNome());
+        ordineVTO.setId(ordineModel.getId());
+        ordineVTO.setOrdineId(ordineModel.getOrdineId());
+        ordineVTO.setProgettoDiCompensazioneModel(ordineModel.getProgettoDiCompensazioneModel());
+        ordineVTO.setSellaRicevutaDiPagamento(ordineModel.getPagamentoModel());
 
-        dettaglioVTO.setSellaRicevutaDiPagamento(dettaglioModel.getPagamentoModel());
+        if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.EVENTO) {
+            ordineVTO.setNottiModel(ordineModel.getNottiModel());
+            ordineVTO.setEnergiaModel(ordineModel.getEnergiaModel());
+            ordineVTO.setTrasportoMerciModel(ordineModel.getTrasportoMerciModel());
+            ordineVTO.setTrasportoPersoneModel(ordineModel.getTrasportoPersoneModel());
+            ordineVTO.setDove(ordineModel.getDove());
+            ordineVTO.setFine(ordineModel.getFine());
+            ordineVTO.setInizio(ordineModel.getInizio());
+            ordineVTO.setNote(ordineModel.getNote());
+            ordineVTO.setManifestiPieghevoliFogliVTO(getManifestiPiegjevoliFogltioVTOList(ordineModel.getManifestiPieghevoliFogliModel()));
+            ordineVTO.setPubblicazioniRilegateVTO(getPubblicazioniRilegateVTOList(ordineModel.getPubblicazioniRilegateModel()));
 
-        dettaglioVTO.setDove(dettaglioModel.getDove());
-        dettaglioVTO.setFine(dettaglioModel.getFine());
-        dettaglioVTO.setId(dettaglioModel.getId());
-        dettaglioVTO.setInizio(dettaglioModel.getInizio());
-        dettaglioVTO.setNome(dettaglioModel.getNome());
-        dettaglioVTO.setNote(dettaglioModel.getNote());
-        dettaglioVTO.setOrdineId(dettaglioModel.getOrdineId());
+        } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
+            ordineVTO.setConoscoCO2(ordineModel.getConoscoCO2Model());
+        }
 
-
-        dettaglioVTO.setManifestiPieghevoliFogliVTO(getManifestiPiegjevoliFogltioVTOList(dettaglioModel.getManifestiPieghevoliFogliModel()));
-        dettaglioVTO.setPubblicazioniRilegateVTO(getPubblicazioniRilegateVTOList(dettaglioModel.getPubblicazioniRilegateModel()));
-
-        return dettaglioVTO;
-
+        return ordineVTO;
     }
 
     private static ArrayList<PubblicazioniRilegateVTO> getPubblicazioniRilegateVTOList(List<PubblicazioniRilegateModel> pubblicazioniRilegateModel) {
@@ -116,30 +119,33 @@ public class AzzerroCO2UtilsClientHelper {
         return _return;
     }
 
-    public static DettaglioModel getDettaglioModel(DettaglioVTO dettaglioVTO) {
-        DettaglioModel dettaglioModel = new DettaglioModel();
+    public static OrdineModel getDettaglioModel(OrdineVTO ordineVTO) {
+        OrdineModel ordineModel = new OrdineModel();
 
-        dettaglioModel.setEnergiaModel(dettaglioVTO.getEnergiaModel());
-        dettaglioModel.setTrasportoMerciModel(dettaglioVTO.getTrasportoMerciModel());
-        dettaglioModel.setTrasportoPersoneModel(dettaglioVTO.getTrasportoPersoneModel());
-        dettaglioModel.setNottiModel(dettaglioVTO.getNottiModel());
+        ordineModel.setEventiType(ordineVTO.getEventiType());
+        ordineModel.setOrdineId(ordineVTO.getOrdineId());
+        ordineModel.setId(ordineVTO.getId());
+        ordineModel.setPagamentoModel(ordineVTO.getPagamentoModel());
+        ordineModel.setProgettoDiCompensazioneModel(ordineVTO.getProgettoDiCompensazioneModel());
+        ordineModel.setNome(ordineVTO.getNome());
 
-        dettaglioModel.setDove(dettaglioVTO.getDove());
-        dettaglioModel.setFine(dettaglioVTO.getFine());
-        dettaglioModel.setId(dettaglioVTO.getId());
-        dettaglioModel.setInizio(dettaglioVTO.getInizio());
-        dettaglioModel.setNome(dettaglioVTO.getNome());
-        dettaglioModel.setNote(dettaglioVTO.getNote());
-        dettaglioModel.setOrdineId(dettaglioVTO.getOrdineId());
+        if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.EVENTO) {
+            ordineModel.setEnergiaModel(ordineVTO.getEnergiaModel());
+            ordineModel.setTrasportoMerciModel(ordineVTO.getTrasportoMerciModel());
+            ordineModel.setTrasportoPersoneModel(ordineVTO.getTrasportoPersoneModel());
+            ordineModel.setNottiModel(ordineVTO.getNottiModel());
+            ordineModel.setDove(ordineVTO.getDove());
+            ordineModel.setFine(ordineVTO.getFine());
+            ordineModel.setInizio(ordineVTO.getInizio());
+            ordineModel.setNote(ordineVTO.getNote());
+            ordineModel.setManifestiPieghevoliFogliModel(getManifestiPiegjevoliFogltioModelList(ordineVTO.getManifestiPieghevoliFogliVTO()));
+            ordineModel.setPubblicazioniRilegateModel(getPubblicazioniRilegateModelList(ordineVTO.getPubblicazioniRilegateVTO()));
 
-        dettaglioModel.setPagamentoModel(dettaglioVTO.getPagamentoModel());
+        } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
+            ordineModel.setConoscoCO2Model(ordineVTO.getConoscoCO2Model());
+        }
 
-        dettaglioModel.setManifestiPieghevoliFogliModel(getManifestiPiegjevoliFogltioModelList(dettaglioVTO.getManifestiPieghevoliFogliVTO()));
-        dettaglioModel.setPubblicazioniRilegateModel(getPubblicazioniRilegateModelList(dettaglioVTO.getPubblicazioniRilegateVTO()));
-
-        dettaglioModel.setProgettoDiCompensazioneModel(dettaglioVTO.getProgettoDiCompensazioneModel());
-
-        return dettaglioModel;
+        return ordineModel;
     }
 
     private static ArrayList<PubblicazioniRilegateModel> getPubblicazioniRilegateModelList(List<PubblicazioniRilegateVTO> pubblicazioniRilegateVTO) {
@@ -205,7 +211,6 @@ public class AzzerroCO2UtilsClientHelper {
         return _return;
     }
 
-
     public static String getMAC_MD5(PagamentoModel model) {
         String s = model.getMERCHANT_ID() + model.getORDER_ID() + model.getIMPORTO() + model.getDIVISA() + model.getABI() + model.getITEMS() + model.key;
         s = s.toUpperCase();
@@ -213,7 +218,6 @@ public class AzzerroCO2UtilsClientHelper {
     }
 
     public static String getMAC_MD5(String toMd5) {
-
         return encodeMD5(toMd5);
     }
 

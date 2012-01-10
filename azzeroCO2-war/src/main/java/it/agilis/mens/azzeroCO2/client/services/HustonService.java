@@ -4,14 +4,14 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
-import it.agilis.mens.azzeroCO2.shared.model.evento.DettaglioModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.DettaglioVTO;
+import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.List;
 import java.util.Map;
@@ -42,13 +42,13 @@ public interface HustonService extends RemoteService {
 
     List<ProgettoDiCompensazioneModel> getListOfProgettoDiCompensazione(boolean all) throws IllegalArgumentException;
 
-    List<DettaglioModel> getListOfOrdini(UserInfoModel userInfoModel);
+    List<OrdineModel> getListOfOrdini(UserInfoModel userInfoModel);
 
     Boolean saveProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensaziones);
 
     GitRepositoryStateModel checkGitRevision();
 
-    DettaglioVTO saveOrdine(DettaglioVTO riepilogo, UserInfoModel userInfoModel);
+    OrdineVTO saveOrdine(OrdineVTO riepilogo, UserInfoModel userInfoModel);
 
     void sentMail(EMailVTO email);
 
@@ -58,7 +58,7 @@ public interface HustonService extends RemoteService {
 
     boolean associaIDProgettoDiCompensazioneImmagine(Long idProgetto, String name);
 
-    DettaglioVTO isPagato(DettaglioVTO riepilogo, UserInfoModel userInfoModel);
+    OrdineVTO isPagato(OrdineVTO riepilogo, UserInfoModel userInfoModel);
 
     boolean associaIDProgettoDiCompensazionePDF(Long idProgetto, String name);
 }

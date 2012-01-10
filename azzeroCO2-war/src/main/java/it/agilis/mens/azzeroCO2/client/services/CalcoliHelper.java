@@ -1,7 +1,10 @@
 package it.agilis.mens.azzeroCO2.client.services;
 
+import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
+import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ import java.util.Map;
 public class CalcoliHelper {
     private static Map<String, CoefficienteModel> coefficienti = null;
 
-    public static List<RiepilogoModel> getListOfRiepilogoModelLazy(DettaglioModel eventoModel) {
+    public static List<RiepilogoModel> getListOfRiepilogoModelLazy(OrdineModel eventoModel) {
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
         RiepilogoModel model = null;
         if (eventoModel != null && eventoModel.getEnergiaModel() != null) {
@@ -47,6 +50,18 @@ public class CalcoliHelper {
                 store.add(model);
             }
         }
+
+        if (eventoModel != null && eventoModel.getConoscoCO2Model() != null) {
+            if (eventoModel.getConoscoCO2Model().getConoscoCO2() != null &&
+                    eventoModel.getConoscoCO2Model().getConoscoCO2() > 0) {
+                model = new RiepilogoModel();
+                model.setDettagli("Conosco KgCO2");
+                model.setOggetto("Conosco KgCO2");
+                model.setIndex(1);
+                store.add(model);
+            }
+        }
+
         if (eventoModel != null && eventoModel.getNottiModel() != null) {
             if (eventoModel.getNottiModel().getNotti() > 0) {
                 model = new RiepilogoModel();
@@ -100,51 +115,87 @@ public class CalcoliHelper {
         return store;
     }
 
-    public static List<RiepilogoModel> geListOfRiepilogoModel(DettaglioModel eventoModel, Map<String, CoefficienteModel> coef) {
+    public static List<RiepilogoModel> geListOfRiepilogoModel(OrdineModel eventoModel, Map<String, CoefficienteModel> coef, Eventi e) {
         coefficienti = coef;
         List<RiepilogoModel> store = new ArrayList<RiepilogoModel>();
 
         //Caloclo ENERGIA
         RiepilogoModel model = null;
         if (eventoModel != null && eventoModel.getEnergiaModel() != null) {
-            model = getEnergia(eventoModel.getEnergiaModel());
+            model = getEnergia(eventoModel.getEnergiaModel(), e);
             if (model != null) {
                 store.add(model);
             }
         }
-        List<RiepilogoModel> trasportoPersone = getTrasportoPersone(eventoModel.getTrasportoPersoneModel());
-        if (trasportoPersone != null) {
-
-            store.addAll(trasportoPersone);
+        ArrayList<TrasportoPersoneModel> trasportoPersoneModel = eventoModel.getTrasportoPersoneModel();
+        if (trasportoPersoneModel != null) {
+            List<RiepilogoModel> trasportoPersone = getTrasportoPersone(trasportoPersoneModel, e);
+            if (trasportoPersone != null) {
+                store.addAll(trasportoPersone);
+            }
         }
         if (eventoModel != null && eventoModel.getNottiModel() != null) {
-            model = getNotti(eventoModel.getNottiModel());
+            model = getNotti(eventoModel.getNottiModel(), e);
             if (model != null) {
                 store.add(model);
             }
         }
 
-        model = getTrasportoMerci(eventoModel.getTrasportoMerciModel());
-        if (model != null) {
-            store.add(model);
+        TrasportoMerciModel trasportoMerciModel = eventoModel.getTrasportoMerciModel();
+        if (trasportoMerciModel != null) {
+            model = getTrasportoMerci(trasportoMerciModel, e);
+            if (model != null) {
+                store.add(model);
+            }
         }
-        List<RiepilogoModel> pubblRil = getPubblRil(eventoModel.getPubblicazioniRilegateModel());
-
-        if (pubblRil != null) {
-            store.addAll(pubblRil);
+        List<PubblicazioniRilegateModel> pubblicazioniRilegateModel = eventoModel.getPubblicazioniRilegateModel();
+        if (pubblicazioniRilegateModel != null) {
+            List<RiepilogoModel> pubblRil = getPubblRil(pubblicazioniRilegateModel, e);
+            if (pubblRil != null) {
+                store.addAll(pubblRil);
+            }
         }
 
-        List<RiepilogoModel> pubblNonRil = getPubblNonRil(eventoModel.getManifestiPieghevoliFogliModel());
-        if (pubblNonRil != null) {
-            store.addAll(pubblNonRil);
+        List<ManifestiPieghevoliFogliModel> manifestiPieghevoliFogliModel = eventoModel.getManifestiPieghevoliFogliModel();
+        if (manifestiPieghevoliFogliModel != null) {
+            List<RiepilogoModel> pubblNonRil = getPubblNonRil(manifestiPieghevoliFogliModel, e);
+            if (pubblNonRil != null) {
+                store.addAll(pubblNonRil);
+            }
         }
 
+        if (eventoModel.getConoscoCO2Model() != null) {
+            model = getConoscoCO2(eventoModel.getConoscoCO2Model(), e);
+            if (model != null) {
+                store.add(model);
+            }
+        }
 
         return store;
     }
 
-    private static RiepilogoModel getEnergia(EnergiaModel energiaModel) {
+    private static RiepilogoModel getConoscoCO2(ConoscoCO2Model conoscoCO2Model, Eventi e) {
+        RiepilogoModel _return = new RiepilogoModel();
+        _return.setEventi(e.name());
+        _return.setOggetto("Conosco CO2");
+        Double co2 = -1.0;
+        if (conoscoCO2Model.getConoscoCO2() != null && conoscoCO2Model.getConoscoCO2() > 0) {
+            String energiaDett = conoscoCO2Model.getConoscoCO2() + " KgCO2";
+            _return.setDettagli(energiaDett);
+            co2 = conoscoCO2Model.getConoscoCO2();
+            _return.setKgCO2(co2);
+        }
+
+        if (co2 > 0) {
+            _return.setIndex(1);
+            return _return;
+        }
+        return null;
+    }
+
+    private static RiepilogoModel getEnergia(EnergiaModel energiaModel, Eventi e) {
         RiepilogoModel energia = new RiepilogoModel();
+        energia.setEventi(e.name());
 
         energia.setOggetto("Energia");
         String energia1 = "";
@@ -178,8 +229,9 @@ public class CalcoliHelper {
         return null;
     }
 
-    private static RiepilogoModel getNotti(NottiModel nottiModel) {
+    private static RiepilogoModel getNotti(NottiModel nottiModel, Eventi e) {
         RiepilogoModel notti = new RiepilogoModel();
+        notti.setEventi(e.name());
         notti.setOggetto("Pernottamenti");
         Double co2 = -1.0;
         if (nottiModel.getNotti() > 0) {
@@ -197,10 +249,11 @@ public class CalcoliHelper {
         return null;
     }
 
-    private static List<RiepilogoModel> getTrasportoPersone(List<TrasportoPersoneModel> trasportoPersoneModels) {
+    private static List<RiepilogoModel> getTrasportoPersone(List<TrasportoPersoneModel> trasportoPersoneModels, Eventi e) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
         for (TrasportoPersoneModel tpm : trasportoPersoneModels) {
             RiepilogoModel _rm = new RiepilogoModel();
+            _rm.setEventi(e.name());
             _rm.setOggetto("Trasporto Persone / " + tpm.getCategoria());
             String tp60Bus = "";
             String tp60Auto = "";
@@ -347,23 +400,23 @@ public class CalcoliHelper {
             co2 += tpm.getAereoKm9000() * coefficienteModelTPAEREE.getValore() * 9000;
 
             if (co2 > 0) {
-                String temp ="";
+                String temp = "";
                 if (tp60 != null && tp60.length() > 0) {
-                    temp = temp +  tp60+ "</br>";
+                    temp = temp + tp60 + "</br>";
                 }
 
 
                 if (tp300 != null && tp300.length() > 0) {
-                    temp = temp +  tp300+ "</br>";
+                    temp = temp + tp300 + "</br>";
                 }
                 if (tp1000 != null && tp1000.length() > 0) {
-                    temp = temp +  tp1000+ "</br>";
+                    temp = temp + tp1000 + "</br>";
                 }
                 if (tp3000 != null && tp3000.length() > 0) {
-                    temp = temp  + tp3000+ "</br>";
+                    temp = temp + tp3000 + "</br>";
                 }
                 if (tp9000 != null && tp9000.length() > 0) {
-                    temp = temp  + tp9000+ "</br>";
+                    temp = temp + tp9000 + "</br>";
                 }
                 //  _rm.setDettagli(tp60 + "</br>" + tp300 + "</br>" + tp1000 + "</br>" + tp3000 + "</br>" + tp9000);
                 _rm.setDettagli(temp);
@@ -374,7 +427,7 @@ public class CalcoliHelper {
         return _return;
     }
 
-    private static RiepilogoModel getTrasportoMerci(TrasportoMerciModel trasportoMerciModel) {
+    private static RiepilogoModel getTrasportoMerci(TrasportoMerciModel trasportoMerciModel, Eventi e) {
         RiepilogoModel traspMerci = new RiepilogoModel();
 
         traspMerci.setOggetto("Trasporto Merci");
@@ -510,23 +563,23 @@ public class CalcoliHelper {
         String europeo = "";
         String extraeuropeo = "";
         if (trasportoMerciModel.getFurgoneKm30() + trasportoMerciModel.getTirKm30() > 0) {
-            provinciale = "Distanza provinciale:</br>"+furgone30+tir30+ "</br>";
+            provinciale = "Distanza provinciale:</br>" + furgone30 + tir30 + "</br>";
         }
 
         if (trasportoMerciModel.getFurgoneKm150() + trasportoMerciModel.getTirKm150() + trasportoMerciModel.getTirKm150() > 0) {
-            regionale = "Distanza regionale:</br>"+furgone150+tir150+treno150+ "</br>";
+            regionale = "Distanza regionale:</br>" + furgone150 + tir150 + treno150 + "</br>";
         }
         if (trasportoMerciModel.getFurgoneKm500() + trasportoMerciModel.getTirKm500() + trasportoMerciModel.getTrenoKm500() + trasportoMerciModel.getNaveKm500() > 0) {
-            nazionale = "Distanza nazionale:</br>"+furgone500+tir500+treno500+nave500 +"</br>";
+            nazionale = "Distanza nazionale:</br>" + furgone500 + tir500 + treno500 + nave500 + "</br>";
         }
         if (trasportoMerciModel.getFurgoneKm1500() + trasportoMerciModel.getTirKm1500() + trasportoMerciModel.getTrenoKm1500() + trasportoMerciModel.getNaveKm1500() + trasportoMerciModel.getAereoKm1500() > 0) {
-            europeo = "Distanza europea:</br>"+furgone1500+tir1500+treno1500+nave1500+aereo1500+ "</br>";
+            europeo = "Distanza europea:</br>" + furgone1500 + tir1500 + treno1500 + nave1500 + aereo1500 + "</br>";
         }
         if (trasportoMerciModel.getFurgoneKm9000() + trasportoMerciModel.getTirKm9000() + trasportoMerciModel.getTrenoKm9000() + trasportoMerciModel.getNaveKm9000() + trasportoMerciModel.getAereoKm9000() > 0) {
-            extraeuropeo = "Distanza extra europea:</br>"+furgone9000+tir9000+treno9000+nave9000+aereo9000+ "</br>" ;
+            extraeuropeo = "Distanza extra europea:</br>" + furgone9000 + tir9000 + treno9000 + nave9000 + aereo9000 + "</br>";
         }
 
-        traspMerci.setDettagli(provinciale   + regionale  + nazionale   +  europeo  + extraeuropeo );
+        traspMerci.setDettagli(provinciale + regionale + nazionale + europeo + extraeuropeo);
 
         if (co2 > 0) {
             traspMerci.setKgCO2(co2);
@@ -535,12 +588,12 @@ public class CalcoliHelper {
         return null;
     }
 
-    private static List<RiepilogoModel> getPubblRil(List<PubblicazioniRilegateModel> pubblRilModel) {
+    private static List<RiepilogoModel> getPubblRil(List<PubblicazioniRilegateModel> pubblRilModel, Eventi e) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
 
         for (PubblicazioniRilegateModel prm : pubblRilModel) {
             RiepilogoModel _rm = new RiepilogoModel();
-
+            _rm.setEventi(e.name());
             double co2 = 0;
             double co2Copertina = 0;
 
@@ -586,18 +639,18 @@ public class CalcoliHelper {
             if (co2 > 0) {
                 _rm.setKgCO2(co2);
                 _rm.setOggetto("Pubblicazioni rilegate / </br>" + prm.getCategoria());
-                _rm.setDettagli(formato  + materiale  + pagine  + tiratura);
+                _rm.setDettagli(formato + materiale + pagine + tiratura);
                 _return.add(_rm);
             }
         }
         return _return;
     }
 
-    private static List<RiepilogoModel> getPubblNonRil(List<ManifestiPieghevoliFogliModel> pubblNonRilModel) {
+    private static List<RiepilogoModel> getPubblNonRil(List<ManifestiPieghevoliFogliModel> pubblNonRilModel, Eventi e) {
         List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
         for (ManifestiPieghevoliFogliModel prm : pubblNonRilModel) {
             RiepilogoModel _rm = new RiepilogoModel();
-
+            _rm.setEventi(e.name());
             double co2 = 0;
 
             _rm.setOggetto("Manifesti, pieghevoli, fogli / / </br>" + prm.getCategoria());
@@ -630,7 +683,7 @@ public class CalcoliHelper {
             }
 
             if (co2 > 0) {
-                _rm.setDettagli(formato  + materiale  + pagine  + tiratura);
+                _rm.setDettagli(formato + materiale + pagine + tiratura);
                 _rm.setKgCO2(co2);
                 _return.add(_rm);
             }
