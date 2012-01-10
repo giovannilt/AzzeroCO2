@@ -18,13 +18,13 @@
 //
 package org.artofsolving.jodconverter.office;
 
-import java.io.File;
-
+import org.artofsolving.jodconverter.process.LinuxProcessManager;
 import org.artofsolving.jodconverter.process.ProcessManager;
 import org.artofsolving.jodconverter.process.PureJavaProcessManager;
-import org.artofsolving.jodconverter.process.LinuxProcessManager;
 import org.artofsolving.jodconverter.process.SigarProcessManager;
 import org.artofsolving.jodconverter.util.PlatformUtils;
+
+import java.io.File;
 
 public class DefaultOfficeManagerConfiguration {
 
