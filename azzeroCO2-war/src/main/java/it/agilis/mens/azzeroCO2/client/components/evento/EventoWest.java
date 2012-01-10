@@ -40,14 +40,14 @@ public class EventoWest extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Evento");
-    private final String oggettoDiDefault = "Non hai ancora inserito </br> nessuna attività";
-    private final String riepilogoString = "Hai terminato il calcolo! </br>" +
-            "Se vuoi modifica i dati inseriti</br>" +
+    private final String oggettoDiDefault = "Non hai ancora inserito <br> nessuna attività";
+    private final String riepilogoString = "Hai terminato il calcolo! <br>" +
+            "Se vuoi modifica i dati inseriti<br>" +
             " cliccando sulla voce relativa.";
-    private final String progettoDiCompensazione = "Scegli un progetto di </br>" +
-            "compensazione.</br>" +
-            "Controlla il preventivo e </br>" +
-            "accedi al sistema di </br>" +
+    private final String progettoDiCompensazione = "Scegli un progetto di <br>" +
+            "compensazione.<br>" +
+            "Controlla il preventivo e <br>" +
+            "accedi al sistema di <br>" +
             "pagamento.";
     private final String Conferma = "Il Percorso e' finito!";
 
