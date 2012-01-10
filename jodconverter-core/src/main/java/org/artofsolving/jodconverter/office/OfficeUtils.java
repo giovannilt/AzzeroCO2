@@ -18,13 +18,12 @@
 //
 package org.artofsolving.jodconverter.office;
 
-import java.io.File;
-import java.util.Map;
-
-import org.artofsolving.jodconverter.util.PlatformUtils;
-
 import com.sun.star.beans.PropertyValue;
 import com.sun.star.uno.UnoRuntime;
+import org.artofsolving.jodconverter.util.PlatformUtils;
+
+import java.io.File;
+import java.util.Map;
 
 public class OfficeUtils {
 
@@ -77,8 +76,8 @@ public class OfficeUtils {
                 programFiles = System.getenv("ProgramFiles");
             }
             return findOfficeHome(
-                programFiles + File.separator + "OpenOffice.org 3",
-                programFiles + File.separator + "LibreOffice 3"
+                programFiles + File.separator + "OpenOffice.org 3.4",
+                programFiles + File.separator + "LibreOffice 3.4"
             );
         } else if (PlatformUtils.isMac()) {
             return findOfficeHome(
