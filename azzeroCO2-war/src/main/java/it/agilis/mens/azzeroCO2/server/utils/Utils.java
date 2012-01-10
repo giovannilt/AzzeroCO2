@@ -21,6 +21,7 @@ import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
+import it.agilis.mens.azzeroCO2.shared.model.sitoWeb.SitoWebModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -177,7 +178,7 @@ public class Utils {
     public static List<OrdineModel> getListOfOrdini(List<Ordine> listOfOrdini) {
         List<OrdineModel> _return = new ArrayList<OrdineModel>();
         for (Ordine o : listOfOrdini) {
-            _return.add(getDettaglioModel(o));
+            _return.add(getOrdineModel(o));
         }
         return _return;
 
@@ -248,7 +249,11 @@ public class Utils {
         o.setProgettoCompensazione(getProgettoDiCompensazione(ordineModel.getProgettoDiCompensazioneModel()));
         o.setRicevutaDiPagamento(getRicevuta(ordineModel.getPagamentoModel()));
 
-        if (ordineModel.getConoscoCO2Model() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
+        if (ordineModel.getSitoWebModel() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.WEB) {
+            Sito s = new Sito();
+            s.setUtenti(ordineModel.getSitoWebModel().getVisitatori());
+            o.setSito(s);
+        } else if (ordineModel.getConoscoCO2Model() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
             o.setConoscoCO2(ordineModel.getConoscoCO2Model().getConoscoCO2());
         } else if (ordineModel.getConoscoCO2Model() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.EVENTO) {
             Evento e = new Evento();
@@ -392,7 +397,7 @@ public class Utils {
         return o;
     }
 
-    public static OrdineModel getDettaglioModel(Ordine o) {
+    public static OrdineModel getOrdineModel(Ordine o) {
         OrdineModel dm = new OrdineModel();
 
         dm.setLastUpdate(o.getLastUpdate());
@@ -401,7 +406,14 @@ public class Utils {
         dm.setOrdineId(o.getId());
         dm.setEventiType(o.getEventiType().name());
 
-        if (o.getEventiType() == Eventi.CONOSCI_CO2) {
+        if (o.getEventiType() == Eventi.WEB) {
+            if (o.getSito() != null) {
+                SitoWebModel sito = new SitoWebModel();
+                sito.setId(o.getSito().getId());
+                sito.setVisitatori(o.getSito().getUtenti());
+                dm.setSitoWebModel(sito);
+            }
+        } else if (o.getEventiType() == Eventi.CONOSCI_CO2) {
             ConoscoCO2Model co2m = new ConoscoCO2Model();
             co2m.setConoscoCO2(o.getConoscoCO2());
             dm.setConoscoCO2Model(co2m);

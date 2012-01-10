@@ -7,6 +7,7 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoMerciModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
+import it.agilis.mens.azzeroCO2.shared.model.sitoWeb.SitoWebModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,7 +39,16 @@ public class OrdineVTO implements Serializable {
     private ProgettoDiCompensazioneModel progettoDiCompensazioneModel;
     private PagamentoModel pagamentoModel;
     private ConoscoCO2Model conoscoCO2Model;
+    private SitoWebModel sitoWebModel;
     private String eventiType;
+
+    public SitoWebModel getSitoWebModel() {
+        return sitoWebModel;
+    }
+
+    public void setSitoWebModel(SitoWebModel sitoWebModel) {
+        this.sitoWebModel = sitoWebModel;
+    }
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
         return progettoDiCompensazioneModel;

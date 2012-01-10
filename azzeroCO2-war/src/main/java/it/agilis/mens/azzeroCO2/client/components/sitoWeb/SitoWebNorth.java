@@ -22,6 +22,8 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
  * To change this template use File | Settings | File Templates.
  */
 public class SitoWebNorth extends LayoutContainer {
+    private ToolButton close = new ToolButton("x-tool-close");
+    private ToolButton save = new ToolButton("x-tool-save");
 
     @Override
     protected void onRender(Element target, int index) {
@@ -40,7 +42,6 @@ public class SitoWebNorth extends LayoutContainer {
         c.add(new Text(), flex);
 
 
-        ToolButton save = new ToolButton("x-tool-save");
         save.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
@@ -49,7 +50,6 @@ public class SitoWebNorth extends LayoutContainer {
         });
         c.add(save, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
 
-        ToolButton close = new ToolButton("x-tool-close");
 
         close.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
@@ -64,5 +64,13 @@ public class SitoWebNorth extends LayoutContainer {
         add(c);
     }
 
+    public void showButtons() {
+        close.setVisible(true);
+        save.setVisible(true);
+    }
 
+    public void hideButtons() {
+        close.setVisible(false);
+        save.setVisible(false);
+    }
 }

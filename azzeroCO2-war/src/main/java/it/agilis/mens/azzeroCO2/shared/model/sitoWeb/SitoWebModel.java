@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.shared.model.evento;
+package it.agilis.mens.azzeroCO2.shared.model.sitoWeb;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 
@@ -9,7 +9,7 @@ import com.extjs.gxt.ui.client.data.BaseModel;
  * Time: 10.22
  * To change this template use File | Settings | File Templates.
  */
-public class NottiModel extends BaseModel {
+public class SitoWebModel extends BaseModel {
 
     public Long getId() {
         return get("id");
@@ -19,11 +19,11 @@ public class NottiModel extends BaseModel {
         set("id", id);
     }
 
-    public void setNotti(Integer notti) {
-        set("notti", notti);
+    public void setVisitatori(Integer visitatori) {
+        set("visitatori", visitatori);
     }
 
-    public Integer getNotti() {
-        return get("notti");
+    public Integer getVisitatori() {
+        return get("visitatori");
     }
 }

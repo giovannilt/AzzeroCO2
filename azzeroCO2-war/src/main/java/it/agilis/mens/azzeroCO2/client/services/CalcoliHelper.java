@@ -6,6 +6,7 @@ import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
+import it.agilis.mens.azzeroCO2.shared.model.sitoWeb.SitoWebModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,16 @@ public class CalcoliHelper {
             }
         }
 
+        if (eventoModel != null && eventoModel.getSitoWebModel() != null) {
+            if (eventoModel.getSitoWebModel().getVisitatori() != null &&
+                    eventoModel.getSitoWebModel().getVisitatori() > 0) {
+                model = new RiepilogoModel();
+                model.setDettagli("Visitatori SitoWeb");
+                model.setOggetto("Visitatori SitoWeb");
+                model.setIndex(1);
+                store.add(model);
+            }
+        }
         if (eventoModel != null && eventoModel.getConoscoCO2Model() != null) {
             if (eventoModel.getConoscoCO2Model().getConoscoCO2() != null &&
                     eventoModel.getConoscoCO2Model().getConoscoCO2() > 0) {
@@ -171,7 +182,33 @@ public class CalcoliHelper {
             }
         }
 
+        if (eventoModel.getSitoWebModel() != null) {
+            model = getSitoWeb(eventoModel.getSitoWebModel(), e);
+            if (model != null) {
+                store.add(model);
+            }
+        }
+
         return store;
+    }
+
+    private static RiepilogoModel getSitoWeb(SitoWebModel sitoWebModel, Eventi e) {
+        RiepilogoModel _return = new RiepilogoModel();
+        _return.setEventi(e.name());
+        _return.setOggetto("Conosco CO2");
+        Double co2 = -1.0;
+        if (sitoWebModel.getVisitatori() != null && sitoWebModel.getVisitatori() > 0) {
+
+            _return.setDettagli("Numero visitatori sito web: " + sitoWebModel.getVisitatori());
+            co2 = sitoWebModel.getVisitatori() * coefficienti.get("SITUTE").getValore();
+            _return.setKgCO2(co2);
+        }
+
+        if (co2 > 0) {
+            _return.setIndex(1);
+            return _return;
+        }
+        return null;
     }
 
     private static RiepilogoModel getConoscoCO2(ConoscoCO2Model conoscoCO2Model, Eventi e) {

@@ -261,7 +261,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
 
             Ordine o = azzeroCO2Register.saveOrUpdateOrdine(ordine, Utils.getUserInfo(user));
 
-            OrdineModel ordineModel1 = Utils.getDettaglioModel(o);
+            OrdineModel ordineModel1 = Utils.getOrdineModel(o);
             OrdineVTO ordineVTO = AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel1);
 
             return ordineVTO;
@@ -341,7 +341,7 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
                 azzeroCO2Register.saveOrUpdateOrdine(o, Utils.getUserInfo(userInfoModel));
             }
 
-            OrdineModel ordineModel1 = Utils.getDettaglioModel(o);
+            OrdineModel ordineModel1 = Utils.getOrdineModel(o);
             return AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel1);
 
         } catch (Exception e) {

@@ -31,8 +31,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class ConoscoCO2West extends LayoutContainer {
-
-
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Conosco la CO2");

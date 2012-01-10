@@ -16,7 +16,7 @@ import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
-import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
+import it.agilis.mens.azzeroCO2.shared.model.sitoWeb.SitoWebModel;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,14 +27,14 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
  */
 public class FormSitoWeb extends LayoutContainer {
 
-    private NottiModel nottiModel = new NottiModel();
+    private SitoWebModel sitoWebModel = new SitoWebModel();
     private FormBinding binding = null;
     private FormPanel formPanel;
 
     public FormSitoWeb() {
         formPanel = createForm();
         binding = new FormBinding(formPanel, true);
-        binding.bind(nottiModel);
+        binding.bind(sitoWebModel);
 
     }
 
@@ -70,7 +70,7 @@ public class FormSitoWeb extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog,"BLA BLA BLA");
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "BLA BLA BLA");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");
@@ -83,7 +83,6 @@ public class FormSitoWeb extends LayoutContainer {
         });
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
-
 
         LayoutContainer c1 = new LayoutContainer();
         HBoxLayout layout1 = new HBoxLayout();
@@ -116,7 +115,7 @@ public class FormSitoWeb extends LayoutContainer {
 
         LabelField suggerimenti = new LabelField("</br>Questo dato è facilmente reperibile dalle statistiche di traffico del sito in analisi.");
         suggerimenti.setStyleAttribute("color", "gray");
-        suggerimenti.setStyleAttribute("form-variant","normal");
+        suggerimenti.setStyleAttribute("form-variant", "normal");
 
         visitatori.add(new LabelField("inserisci il numero di utenti"), flex);
         visitatori.add(visitatoriField);
@@ -126,26 +125,27 @@ public class FormSitoWeb extends LayoutContainer {
 
         c3.add(suggerimenti);
         panel.add(visitatori, new FormData("100%"));
-        panel.add(c3,new FormData("100%"));
+        panel.add(c3, new FormData("100%"));
         return panel;
     }
 
     public void clear() {
         binding.clear();
-        nottiModel = new NottiModel();
-        binding.bind(nottiModel);
+        sitoWebModel = new SitoWebModel();
+        binding.bind(sitoWebModel);
 
     }
 
-    public NottiModel getNottiModel() {
-        return nottiModel;
+    public SitoWebModel getSitoWebModel() {
+        return sitoWebModel;
     }
 
-    public void setNottiModel(NottiModel nottiModel) {
-        this.nottiModel = nottiModel;
-        binding.bind(nottiModel);
+    public void setSitoWebModel(SitoWebModel sitoWebModel) {
+        this.sitoWebModel = sitoWebModel;
+        binding.bind(sitoWebModel);
     }
-        @Override
+
+    @Override
     protected void onLoad() {
         super.onLoad();
         formPanel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
@@ -153,7 +153,5 @@ public class FormSitoWeb extends LayoutContainer {
         formPanel.getBody().setStyleAttribute("border-top", "3px solid orange");
         formPanel.getBody().setStyleAttribute("border-width", "3px 0");
         formPanel.getBody().setStyleAttribute("margin-bottom", "0");
-
-        //To change body of overridden methods use File | Settings | File Templates.
     }
 }

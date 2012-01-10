@@ -1,7 +1,6 @@
 package it.agilis.mens.azzeroCO2.client.components.conoscoCO2;
 
 import com.extjs.gxt.ui.client.Style;
-import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.TabItem;
@@ -48,7 +47,6 @@ public class ConoscoCO2 extends LayoutContainer {
     private static int posizioniLabel = 0;
     private List<List<String>> posizioniText = new ArrayList<List<String>>();
     private UserInfoModel userInfoModel;
-    private AppEvent event;
 
     @Override
     protected void onRender(Element target, int index) {

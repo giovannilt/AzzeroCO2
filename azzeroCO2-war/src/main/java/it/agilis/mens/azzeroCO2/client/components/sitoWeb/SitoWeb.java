@@ -37,15 +37,15 @@ import java.util.List;
  */
 public class SitoWeb extends LayoutContainer {
 
+    private OrdineModel ordineModel = new OrdineModel();
 
     private final TabPanel sitoWebTab = new TabPanel();
     private FormSitoWeb sitoWebForm = new FormSitoWeb();
 
-
     private final FormRiepilogo formRiepilogo = new FormRiepilogo();
     private final FormAcquisto formAcquisto = new FormAcquisto();
     private final FormConferma formConferma = new FormConferma();
-    private static int posizioniLabel = 1;
+    private static int posizioniLabel = 0;
     private List<List<String>> posizioniText = new ArrayList<List<String>>();
     private UserInfoModel userInfoModel;
     private AppEvent event;
@@ -61,7 +61,6 @@ public class SitoWeb extends LayoutContainer {
         sito.add(sitoWebForm, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         sitoWebTab.add(sito);
-
 
         TabItem riepilogo = new TabItem("riepilogo");
         riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
@@ -84,11 +83,10 @@ public class SitoWeb extends LayoutContainer {
         posizioniText.add(Arrays.asList("Sito web", "Scegli progetto di compensazione"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
-        // ACQUISTO
     }
 
 
-    public String previusTab(AppEvent event) {
+    public String previusTab() {
         for (int i = sitoWebTab.getItems().size() - 1; i >= 0; i--) {
             TabItem item = sitoWebTab.getItems().get(i);
 
@@ -109,12 +107,11 @@ public class SitoWeb extends LayoutContainer {
         return "";
     }
 
-    public String nextTab(AppEvent event) {
+    public String nextTab() {
         int i = 0;
         for (TabItem item : sitoWebTab.getItems()) {
             i++;
             if (sitoWebTab.getSelectedItem().getText().equalsIgnoreCase(item.getText())) {
-
                 if (i < sitoWebTab.getItems().size()) {
                     if (sitoWebTab.getItems().get(i).getText().equalsIgnoreCase("Conferma")) {
                         Dispatcher.forwardEvent(SitoWebEvents.Conferma);
@@ -122,6 +119,8 @@ public class SitoWeb extends LayoutContainer {
                     }
                     if (sitoWebTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
                         Dispatcher.forwardEvent(SitoWebEvents.Acquisto);
+                    }
+                    if (sitoWebTab.getItems().get(i).getText().equalsIgnoreCase("Vai al pagamento")) {
                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return sitoWebTab.getItems().get(i).getText();
                         }
@@ -129,17 +128,11 @@ public class SitoWeb extends LayoutContainer {
                     if (sitoWebTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
                         Dispatcher.forwardEvent(SitoWebEvents.Riepilogo);
                     }
-
                     item.setEnabled(false);
-
                     sitoWebTab.getItems().get(i).setEnabled(true);
                     sitoWebTab.setSelection(sitoWebTab.getItems().get(i));
 
                     posizioniLabel++;
-
-                    if (posizioniLabel == 0) {
-                        posizioniLabel++;
-                    }
 
                     Dispatcher.forwardEvent(SitoWebEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(SitoWebEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
@@ -159,40 +152,24 @@ public class SitoWeb extends LayoutContainer {
         formAcquisto.clear();
         formConferma.clear();
 
-
         if (posizioniLabel == 1) {
             return;
-        }
-
-
-        for (TabItem item : sitoWebTab.getItems()) {
-
         }
     }
 
     public OrdineModel riepilogo() {
-        //TODO ... . . . . .
-        OrdineModel eventoModel = null;//sitoWebForm.getOrdineModel();
-        eventoModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
-        return eventoModel;
-    }
-
-    public void restore(OrdineModel eventoModel) {
-        //sitoWebForm.setOrdineModel(eventoModel);
-
-        formAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
-    }
-
-
-    public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
-        OrdineModel riepilogo = riepilogo();
-        Esito esito = Esito.IN_PAGAMENTO;
-        if (riepilogo.getPagamentoModel() != null &&
-                riepilogo.getPagamentoModel().getEsito() != null) {
-            esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());
+        if (ordineModel == null) {
+            ordineModel.setNome("Sito Web");
         }
-        formRiepilogo.setRiepilogoInStore(eventoRiepilogoModels, esito);
-        formAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo);
+        ordineModel.setSitoWebModel(sitoWebForm.getSitoWebModel());
+        ordineModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
+        return ordineModel;
+    }
+
+    public void restore(OrdineModel ordineModel) {
+        formAcquisto.setProgettoDiCompensazione(ordineModel.getProgettoDiCompensazioneModel());
+        this.ordineModel = ordineModel;
+
     }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
@@ -203,38 +180,6 @@ public class SitoWeb extends LayoutContainer {
         this.userInfoModel = userInfoModel;
     }
 
-    public void showRiepilogo() {
-        if (posizioniLabel != 1) {
-
-        }
-        for (TabItem item : sitoWebTab.getItems()) {
-
-        }
-
-        Dispatcher.forwardEvent(SitoWebEvents.Riepilogo);
-    }
-
-    public void showStep(RiepilogoModel tabToShow) {
-        while (posizioniLabel > 0) {
-            String s = previusTab(event);
-            if (s != null && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
-                return;
-            }
-        }
-
-        String s = "";
-        while (posizioniText.size() - 4 >= posizioniLabel) {
-            s = nextTab(event);
-            if (s.equalsIgnoreCase("Conferma")) {
-                return;
-            }
-            if (s != null && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
-                return;
-            }
-        }
-    }
-
-
     public void showConferma(OrdineVTO result) {
         sitoWebTab.getSelectedItem().disable();
         posizioniLabel++;
@@ -244,5 +189,18 @@ public class SitoWeb extends LayoutContainer {
         Dispatcher.forwardEvent(SitoWebEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
     }
 
+    public void setSitoWebRiepilogoInStore(List<RiepilogoModel> riepilogoModels) {
+        OrdineModel riepilogo = riepilogo();
+        Esito esito = Esito.IN_PAGAMENTO;
+        if (riepilogo.getPagamentoModel() != null &&
+                riepilogo.getPagamentoModel().getEsito() != null) {
+            esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());
+        }
+        formRiepilogo.setRiepilogoInStore(riepilogoModels, esito);
+        formAcquisto.setRiepilogo(riepilogoModels, riepilogo);
+    }
 
+    public void showRiepilogo() {
+        //To change body of created methods use File | Settings | File Templates.
+    }
 }

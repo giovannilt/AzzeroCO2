@@ -22,7 +22,7 @@ public class Ordine {
     @OneToOne
     private Coupon coupon;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Sito sito;
 
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)

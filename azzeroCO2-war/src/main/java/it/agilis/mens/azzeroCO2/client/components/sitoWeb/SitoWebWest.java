@@ -3,10 +3,6 @@ package it.agilis.mens.azzeroCO2.client.components.sitoWeb;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.data.ModelData;
-import com.extjs.gxt.ui.client.event.Events;
-import com.extjs.gxt.ui.client.event.Listener;
-import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
-import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
@@ -20,7 +16,8 @@ import com.extjs.gxt.ui.client.widget.layout.VBoxLayoutData;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
+import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
@@ -37,8 +34,18 @@ import java.util.List;
 public class SitoWebWest extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
-    private Text title = new Text("Sito web");
-    private final String oggettoDiDefault = "Compensa le emissioni </br> del tuo sito web'";
+    private Text title = new Text("Conosco la CO2");
+    private final String oggettoDiDefault = "Compensa le tue emissioni";
+    private final String riepilogoString = "Hai terminato il calcolo! </br>" +
+            "Se vuoi modifica i dati inseriti</br>" +
+            " cliccando sulla voce relativa.";
+    private final String progettoDiCompensazione = "Scegli un progetto di </br>" +
+            "compensazione.</br>" +
+            "Controlla il preventivo e </br>" +
+            "accedi al sistema di </br>" +
+            "pagamento.";
+    private final String Conferma = "Il Percorso e' finito!";
+
     private Esito esito;
 
     public SitoWebWest() {
@@ -138,16 +145,16 @@ public class SitoWebWest extends LayoutContainer {
 
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
-        grid.getSelectionModel().addListener(Events.SelectionChange,
+        /*grid.getSelectionModel().addListener(Events.SelectionChange,
                 new Listener<SelectionChangedEvent<RiepilogoModel>>() {
                     public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
                         if (be.getSelection().size() > 0) {
                             if (!Esito.PAGATO.equals(esito)) {
-                                Dispatcher.forwardEvent(SitoWebEvents.ShowStep, be.getSelectedItem());
+                                Dispatcher.forwardEvent(ConoscoCO2Events.ShowStep, be.getSelectedItem());
                             }
                         }
                     }
-                });
+                });*/
 
         grid.setBorders(false);
 
@@ -155,30 +162,61 @@ public class SitoWebWest extends LayoutContainer {
     }
 
 
-    public void setInStore(List<RiepilogoModel> model, Esito esito) {
+    public void setInStore(OrdineModel riepilogo, Esito esito) {
         store.removeAll();
+        List<RiepilogoModel> model = CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo);
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
-            m.setOggetto("Compensa le emissioni </br> del tuo sito web");
+            m.setOggetto("Non hai ancora inserito </br> nessuna attività");
             store.add(m);
         } else {
             this.esito = esito;
             store.add(model);
         }
+        setTitle(riepilogo);
     }
 
-    public void setTitle(String title) {
+    public void setTitle(OrdineModel riepilogo) {
+        String title = riepilogo.getNome() != null ? riepilogo.getNome() : "Compensa la CO2";
+
         if (title == null || "".equalsIgnoreCase(title)) {
-            this.title.setText("Sito Web");
+            this.title.setText("Compensa la CO2");
         } else {
             this.title.setText(title);
         }
     }
 
+
     public void clean() {
         setInStore(null, Esito.IN_PAGAMENTO);
-        setTitle(null);
+        this.title.setTitle(".....");
     }
 
+    public void isInRiepilogo(OrdineModel riepilogo) {
+        setTitle(riepilogo);
+        store.removeAll();
+        RiepilogoModel m = new RiepilogoModel();
+
+        m.setOggetto(riepilogoString);
+        store.add(m);
+    }
+
+    public void isScegliProgettoCompensazione(OrdineModel riepilogo) {
+        setTitle(riepilogo);
+        store.removeAll();
+        RiepilogoModel m = new RiepilogoModel();
+
+        m.setOggetto(progettoDiCompensazione);
+        store.add(m);
+    }
+
+    public void isInConferma(OrdineModel riepilogo) {
+        setTitle(riepilogo);
+        store.removeAll();
+        RiepilogoModel m = new RiepilogoModel();
+
+        m.setOggetto(Conferma);
+        store.add(m);
+    }
 
 }

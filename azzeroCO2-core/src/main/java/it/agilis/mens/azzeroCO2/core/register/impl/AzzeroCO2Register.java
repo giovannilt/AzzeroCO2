@@ -129,15 +129,19 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
 
     @Override
     public UserInfo saveUserInfo(UserInfo userInfo) throws Exception {
-       return userInfoDAO.save(userInfo);
+        return userInfoDAO.save(userInfo);
     }
 
     public UserInfo getUserInfo(String userName) {
         UserInfo userInfo = userInfoDAO.findUserInfo(userName);
-        OrdineCriteria ordineCriteria = new OrdineCriteria();
-        ordineCriteria.setUserInfo(userInfo);
-        userInfo.setOrdini(ordineDAO.getListOfOrdini(ordineCriteria));
-        return userInfo;
+        if (userInfo == null) {
+            return null;
+        } else {
+            OrdineCriteria ordineCriteria = new OrdineCriteria();
+            ordineCriteria.setUserInfo(userInfo);
+            userInfo.setOrdini(ordineDAO.getListOfOrdini(ordineCriteria));
+            return userInfo;
+        }
     }
 
     @Override

@@ -5,6 +5,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensaz
 import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
+import it.agilis.mens.azzeroCO2.shared.model.sitoWeb.SitoWebModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +24,6 @@ public class OrdineModel extends BaseModel {
 
     private EnergiaModel energiaModel;
     private ArrayList<TrasportoPersoneModel> trasportoPersoneModel;
-    private NottiModel nottiModel;
     private TrasportoMerciModel trasportoMerciModel;
 
     private List<PubblicazioniRilegateModel> pubblicazioniRilegateModel;
@@ -33,6 +33,8 @@ public class OrdineModel extends BaseModel {
     private PagamentoModel pagamentoModel;
 
     private ConoscoCO2Model conoscoCO2Model;
+    private SitoWebModel sitoWebModel;
+    private NottiModel nottiModel;
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
         return progettoDiCompensazioneModel;
@@ -114,14 +116,6 @@ public class OrdineModel extends BaseModel {
         this.trasportoPersoneModel = trasportoPersoneModel;
     }
 
-    public NottiModel getNottiModel() {
-        return nottiModel;
-    }
-
-    public void setNottiModel(NottiModel nottiModel) {
-        this.nottiModel = nottiModel;
-    }
-
     public TrasportoMerciModel getTrasportoMerciModel() {
         return trasportoMerciModel;
     }
@@ -176,5 +170,21 @@ public class OrdineModel extends BaseModel {
 
     public void setEventiType(String eventiType) {
         this.eventiType = eventiType;
+    }
+
+    public SitoWebModel getSitoWebModel() {
+        return sitoWebModel;
+    }
+
+    public void setSitoWebModel(SitoWebModel sitoWebModel) {
+        this.sitoWebModel = sitoWebModel;
+    }
+
+    public NottiModel getNottiModel() {
+        return nottiModel;
+    }
+
+    public void setNottiModel(NottiModel nottiModel) {
+        this.nottiModel = nottiModel;
     }
 }
