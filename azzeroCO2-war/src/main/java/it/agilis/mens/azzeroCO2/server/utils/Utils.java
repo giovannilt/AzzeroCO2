@@ -255,7 +255,7 @@ public class Utils {
             o.setSito(s);
         } else if (ordineModel.getConoscoCO2Model() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
             o.setConoscoCO2(ordineModel.getConoscoCO2Model().getConoscoCO2());
-        } else if (ordineModel.getConoscoCO2Model() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.EVENTO) {
+        } else if (Eventi.valueOf(ordineModel.getEventiType().toUpperCase()) == Eventi.EVENTO) {
             Evento e = new Evento();
             e.setId(ordineModel.getId());
             e.setNome(ordineModel.getNome());
