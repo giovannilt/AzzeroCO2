@@ -39,18 +39,24 @@ public class SitoWebSouth extends LayoutContainer {
 
     private LayoutContainer c = new LayoutContainer();
     private HBoxLayout layout = new HBoxLayout();
-    private HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 0, 0, 5));
+
+    private LayoutContainer leftContainer = new LayoutContainer();
+    private HBoxLayout leftLayout = new HBoxLayout();
 
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-        layout.setPadding(new Padding(1));
+        layout.setPadding(new Padding(0));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c.setLayout(layout);
-        c.setLayoutOnChange(true);
-        c.setAutoHeight(false);
-        c.setAutoWidth(false);
+        c.setBorders(false);
+
+        leftLayout.setPadding(new Padding(0));
+        leftLayout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+        leftLayout.setAdjustForFlexRemainder(true);
+        leftContainer.setBorders(false);
+        leftContainer.setLayout(leftLayout);
 
         left.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.left()));
         left.setIconAlign(Style.IconAlign.LEFT);
@@ -58,9 +64,7 @@ public class SitoWebSouth extends LayoutContainer {
         left.setText("");
         left.setToolTip("");
         left.setTitle("");
-        left.setEnabled(false);
         left.setVisible(false);
-
 
         left.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
@@ -68,10 +72,12 @@ public class SitoWebSouth extends LayoutContainer {
                 Dispatcher.forwardEvent(new AppEvent(SitoWebEvents.Previous, ce));
             }
         });
-        c.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
+        leftContainer.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
+        leftContainer.add(leftText, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
 
+        HBoxLayoutData flex =  new HBoxLayoutData(new Margins(-14, 0, 0, 0));
         flex.setFlex(1);
-        c.add(leftText, flex);
+        c.add(leftContainer, flex);
 
         leftText.setSize(200, 15);
         rigthText.setSize(250, 15);
@@ -81,7 +87,7 @@ public class SitoWebSouth extends LayoutContainer {
         leftText.setStyleAttribute("font-size", "14px");
         rigthText.setStyleAttribute("font-size", "14px");
 
-        c.add(rigthText, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
+        c.add(rigthText);
 
         right.setIconAlign(Style.IconAlign.RIGHT);
         //  right.setText("Energia");
@@ -111,22 +117,19 @@ public class SitoWebSouth extends LayoutContainer {
         if (riepilogo.getPagamentoModel() != null
                 && riepilogo.getPagamentoModel().getEsito() != null
                 && riepilogo.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
+            leftContainer.setVisible(false);
             left.setVisible(false);
-            leftText.setVisible(false);
-
         } else {
             if (left_t.length() == 0) {
-                left.setEnabled(false);
+                leftContainer.setVisible(false);
                 left.setVisible(false);
-                leftText.setVisible(false);
             } else {
-                left.setEnabled(true);
+                leftContainer.setVisible(true);
                 left.setVisible(true);
-                leftText.setVisible(true);
             }
             leftText.setText(left_t);
+            leftContainer.layout(true);
         }
-        c.layout(true);
     }
 
     public void setTextRigth(String right_t, OrdineModel riepilogo) {
@@ -137,23 +140,13 @@ public class SitoWebSouth extends LayoutContainer {
             rigthText.setVisible(false);
         } else {
             if (right_t.length() == 0) {
-                right.setEnabled(false);
                 right.setVisible(false);
                 rigthText.setVisible(false);
             } else {
-                right.setEnabled(true);
                 right.setVisible(true);
                 rigthText.setVisible(true);
-                rigthText.setEnabled(true);
             }
-            rigthText.setText(right_t);
         }
-        c.layout(true);
-       c.clearState();
-         c.repaint();
-        c.recalculate();
-        c.layout();
+        rigthText.setText(right_t);
     }
-
-
 }
