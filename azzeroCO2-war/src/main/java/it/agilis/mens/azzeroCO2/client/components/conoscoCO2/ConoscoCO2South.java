@@ -42,10 +42,10 @@ public class ConoscoCO2South extends LayoutContainer {
 
     private LayoutContainer leftContainer = new LayoutContainer();
     private HBoxLayout leftLayout = new HBoxLayout();
+
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
-
 
         layout.setPadding(new Padding(0));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
@@ -64,9 +64,7 @@ public class ConoscoCO2South extends LayoutContainer {
         left.setText("");
         left.setToolTip("");
         left.setTitle("");
-        left.setEnabled(false);
         left.setVisible(false);
-
 
         left.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
