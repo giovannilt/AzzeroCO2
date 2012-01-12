@@ -151,7 +151,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
             layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
             c2.setLayout(layout2);
 
-            LabelField istruzioni = new LabelField("Definisci le caratteristiche.");
+            LabelField istruzioni = new LabelField("Inserisci le caratteristiche.");
             istruzioni.setStyleAttribute("font-weight", "bolder");
             c2.add(istruzioni, flex);
 

@@ -66,7 +66,7 @@ public class ConoscoCO2 extends LayoutContainer {
         riepilogo.setEnabled(false);
         conoscoCO2Tab.add(riepilogo);
 
-        TabItem acquisto = new TabItem("scegli progetto di compensazione");
+        TabItem acquisto = new TabItem("Acquisto");
         acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         conoscoCO2Tab.add(acquisto);
@@ -79,7 +79,7 @@ public class ConoscoCO2 extends LayoutContainer {
         add(conoscoCO2Tab, new RowData(1, 1));
 
         posizioniText.add(Arrays.asList("", "Riepilogo"));                                   // DETTAGLIO
-        posizioniText.add(Arrays.asList("Conosco la CO2", "Scegli progetto di compensazione"));       // RIEPILOGO
+        posizioniText.add(Arrays.asList("Conosco la CO2", "Acquisto"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
     }
@@ -116,7 +116,7 @@ public class ConoscoCO2 extends LayoutContainer {
                         Dispatcher.forwardEvent(ConoscoCO2Events.Conferma);
                         return conoscoCO2Tab.getItems().get(i).getText();
                     }
-                    if (conoscoCO2Tab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
+                    if (conoscoCO2Tab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(ConoscoCO2Events.Acquisto);
                     }
                     if (conoscoCO2Tab.getItems().get(i).getText().equalsIgnoreCase("Vai al pagamento")) {

@@ -67,7 +67,7 @@ public class SitoWeb extends LayoutContainer {
         riepilogo.setEnabled(false);
         sitoWebTab.add(riepilogo);
 
-        TabItem acquisto = new TabItem("scegli progetto di compensazione");
+        TabItem acquisto = new TabItem("Acquisto");
         acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         sitoWebTab.add(acquisto);
@@ -80,7 +80,7 @@ public class SitoWeb extends LayoutContainer {
         add(sitoWebTab, new RowData(1, 1));
 
         posizioniText.add(Arrays.asList("", "Riepilogo"));                                   // DETTAGLIO
-        posizioniText.add(Arrays.asList("Sito web", "Scegli progetto di compensazione"));       // RIEPILOGO
+        posizioniText.add(Arrays.asList("Sito web", "Acquisto"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
     }
@@ -117,7 +117,7 @@ public class SitoWeb extends LayoutContainer {
                         Dispatcher.forwardEvent(SitoWebEvents.Conferma);
                         return sitoWebTab.getItems().get(i).getText();
                     }
-                    if (sitoWebTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
+                    if (sitoWebTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(SitoWebEvents.Acquisto);
                     }
                     if (sitoWebTab.getItems().get(i).getText().equalsIgnoreCase("Vai al pagamento")) {

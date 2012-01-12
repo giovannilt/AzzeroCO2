@@ -62,7 +62,7 @@ public class FormSitoWeb extends LayoutContainer {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
 
-        panel.setHeading("Compensazione sito web");
+        panel.setHeading("Sito web");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
         ToolButton tool1 = new ToolButton("x-tool-help");
@@ -117,7 +117,7 @@ public class FormSitoWeb extends LayoutContainer {
         suggerimenti.setStyleAttribute("color", "gray");
         suggerimenti.setStyleAttribute("form-variant", "normal");
 
-        visitatori.add(new LabelField("inserisci il numero di utenti"), flex);
+        visitatori.add(new LabelField("numero di utenti"), flex);
         visitatori.add(visitatoriField);
 
         c1.add(istruzioni);

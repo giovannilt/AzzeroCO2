@@ -73,7 +73,7 @@ public class EventoDettaglio extends LayoutContainer {
         riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
-        TabItem acquisto = new TabItem("scegli progetto di compensazione");
+        TabItem acquisto = new TabItem("Acquisto");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         eventoTab.add(acquisto);
@@ -92,7 +92,7 @@ public class EventoDettaglio extends LayoutContainer {
         posizioniText.add(Arrays.asList("Pernottamenti", "Pubblicazioni rilegate"));       // Trasporto Merci
         posizioniText.add(Arrays.asList("Trasporto merci", "Manifesti pieghevoli e fogli"));// Pubblicazioni rilegate
         posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Riepilogo"));           // Manifesti pieghevoli e Fogli
-        posizioniText.add(Arrays.asList("Manifesti pieghevoli e fogli", "Scegli progetto di compensazione"));       // RIEPILOGO
+        posizioniText.add(Arrays.asList("Manifesti pieghevoli e fogli", "Acquisto"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
     }
@@ -187,7 +187,7 @@ public class EventoDettaglio extends LayoutContainer {
                         Dispatcher.forwardEvent(EventoEvents.Conferma);
                         return eventoTab.getItems().get(i).getText();
                     }
-                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(EventoEvents.Acquisto);
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Vai al pagamento")) {

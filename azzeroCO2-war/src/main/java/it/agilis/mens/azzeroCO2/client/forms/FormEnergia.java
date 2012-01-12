@@ -90,7 +90,7 @@ public class FormEnergia extends LayoutContainer {
         layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
         c2.setLayout(layout2);
 
-        LabelField widget = new LabelField("Inserisci nei relativi campi la qualità di energia utilizzata per realizzare l'evento.");
+        LabelField widget = new LabelField("Inserisci nei relativi campi la quantità di energia utilizzata per realizzare l'evento.");
         widget.setStyleAttribute("font-weight", "bolder");
 
         c2.add(widget);

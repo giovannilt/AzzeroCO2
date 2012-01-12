@@ -74,7 +74,7 @@ public class AnnoDettaglio extends LayoutContainer {
         riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
-        TabItem acquisto = new TabItem("scegli progetto di compensazione");
+        TabItem acquisto = new TabItem("Acquisto");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         eventoTab.add(acquisto);
@@ -101,7 +101,7 @@ public class AnnoDettaglio extends LayoutContainer {
         posizioniText.add(Arrays.asList("Biglietti da visita e cartelline", "Riepilogo"));           // Manifesti pieghevoli e Fogli
 
 
-        posizioniText.add(Arrays.asList("Sito", "Scegli progetto di compensazione"));// RIEPILOGO
+        posizioniText.add(Arrays.asList("Sito", "Acquisto"));// RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
 
@@ -207,7 +207,7 @@ public class AnnoDettaglio extends LayoutContainer {
                         Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.Conferma);
                         return eventoTab.getItems().get(i).getText();
                     }
-                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.Acquisto);
                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return eventoTab.getItems().get(i).getText();

@@ -64,7 +64,7 @@ public class Pubblicazione extends LayoutContainer {
         riepilogo.setEnabled(false);
         pubblicazioneoTab.add(riepilogo);
 
-        TabItem acquisto = new TabItem("scegli progetto di compensazione");
+        TabItem acquisto = new TabItem("Acquisto");
         acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         pubblicazioneoTab.add(acquisto);
@@ -79,7 +79,7 @@ public class Pubblicazione extends LayoutContainer {
         posizioniText.add(Arrays.asList(".", "Manifesti pieghevoli e fogli"));// Pubblicazioni rilegate
         posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Biglietti da visita e cartelline"));
         posizioniText.add(Arrays.asList("Manifesti pieghevoli e fogli", "Riepilogo"));           // Manifesti pieghevoli e Fogli
-        posizioniText.add(Arrays.asList("Biglietti da visita e cartelline", "Scegli progetto di compensazione"));       // RIEPILOGO
+        posizioniText.add(Arrays.asList("Biglietti da visita e cartelline", "Acquisto"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
     }
@@ -170,7 +170,7 @@ public class Pubblicazione extends LayoutContainer {
                         Dispatcher.forwardEvent(PubblicazioniEvents.Conferma);
                         return pubblicazioneoTab.getItems().get(i).getText();
                     }
-                    if (pubblicazioneoTab.getItems().get(i).getText().equalsIgnoreCase("Scegli progetto di compensazione")) {
+                    if (pubblicazioneoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(PubblicazioniEvents.Acquisto);
                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return pubblicazioneoTab.getItems().get(i).getText();
