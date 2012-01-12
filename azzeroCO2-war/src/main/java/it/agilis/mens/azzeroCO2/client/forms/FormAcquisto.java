@@ -341,7 +341,7 @@ public class FormAcquisto extends LayoutContainer {
                 grid.setStyleAttribute("white-space", "normal");
                 config.style = "border-bottom:1px solid gray !important;";
                 return new HTML("<table><tbody><tr><td>" + model.getNome() + "</td></tr>" +
-                        "<tr><td style='font-size:9px;'>" + descr + "</td></tr></tbody></table>");
+                        "<tr><td style='font-size:11px;white-space:pre-wrap;'>" + descr + "</td></tr></tbody></table>");
             }
         });
         configs.add(column);
