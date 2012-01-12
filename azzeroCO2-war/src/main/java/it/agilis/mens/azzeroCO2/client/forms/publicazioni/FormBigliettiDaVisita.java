@@ -1,4 +1,4 @@
-package it.agilis.mens.azzeroCO2.client.forms;
+package it.agilis.mens.azzeroCO2.client.forms.publicazioni;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
