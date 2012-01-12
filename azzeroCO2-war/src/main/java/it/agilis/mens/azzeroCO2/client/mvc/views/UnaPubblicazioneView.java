@@ -172,7 +172,7 @@ public class UnaPubblicazioneView extends View {
 
     public List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
         List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(pubblicazioneDettaglio.riepilogo(), coefficienti, Eventi.UNA_PUBBLICAZIONE);
-        pubblicazioneDettaglio.setEventoRiepilogoInStore(list);
+        pubblicazioneDettaglio.setPubblicazioneRiepilogoInStore(list);
         return list;
     }
 

@@ -220,7 +220,7 @@ public class CalcoliHelper {
 
             if (bigliettiDaVisita.getTipoDiCartaBiglietti() != null) {
                 if (coefficienti.containsKey(bigliettiDaVisita.getTipoDiCartaBiglietti().getParametro())) {
-                    co2 *= coefficienti.get(bigliettiDaVisita.getTipoDiCartaBiglietti().getParametro()).getValore();
+                    co2 = coefficienti.get(bigliettiDaVisita.getTipoDiCartaBiglietti().getParametro()).getValore();
                 }
                 materiale = bigliettiDaVisita.getTipoDiCartaBiglietti().getNome();
             }
@@ -252,7 +252,7 @@ public class CalcoliHelper {
 
             if (bigliettiDaVisita.getTipoDiCartaCartelline() != null) {
                 if (coefficienti.containsKey(bigliettiDaVisita.getTipoDiCartaCartelline().getParametro())) {
-                    co2 *= coefficienti.get(bigliettiDaVisita.getTipoDiCartaCartelline().getParametro()).getValore();
+                    co2 = coefficienti.get(bigliettiDaVisita.getTipoDiCartaCartelline().getParametro()).getValore();
                 }
                 materiale = bigliettiDaVisita.getTipoDiCartaCartelline().getNome();
             }

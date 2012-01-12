@@ -41,16 +41,14 @@ public class FormBigliettiDaVisita extends LayoutContainer {
     public FormBigliettiDaVisita() {
         panel = createGroupForm();
         binding = new FormBinding(panel, true);
+        binding.bind(bigliettiDaVisitaModel);
     }
 
     @SuppressWarnings("rawtypes")
     @Override
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
-
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-
-
         panel.setHeading("Biglietti da visita e cartelline");
         ToolButton tool1 = new ToolButton("x-tool-help");
         panel.getHeader().addTool(tool1);
@@ -115,13 +113,17 @@ public class FormBigliettiDaVisita extends LayoutContainer {
 
                 NumberField tiraturaBiglietti = new NumberField();
                 tiraturaBiglietti.setWidth(60);
-                tiraturaBiglietti.setName("altezza");
+                tiraturaBiglietti.setName("tiraturaBiglietti");
+                tiraturaBiglietti.setRegex("[0-9]+");
+                tiraturaBiglietti.getMessages().setRegexText("Inserisci un numero intero");
+                tiraturaBiglietti.setPropertyEditorType(Integer.class);
+
 
                 LabelField label = new LabelField("Biglietti da visita ");
                 label.setWidth(100);
                 c.add(label);
                 c.add(tiraturaBiglietti, flex);
-                c.add(new LabelField("tiratura"), flex);
+                c.add(new LabelField("Tiratura"), flex);
 
 
                 panel.add(c, new FormData("100%"));
@@ -141,7 +143,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
                 tipoDiCarta.setDisplayField("parametro");
                 tipoDiCarta.setWidth(200);
                 tipoDiCarta.setDisplayField("nome");
-                tipoDiCarta.setName("tipoDiCarta");
+                tipoDiCarta.setName("tipoDiCartaBiglietti");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
                 tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
@@ -162,7 +164,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
 
                 NumberField grammatura = new NumberField();
                 grammatura.setWidth(60);
-                grammatura.setName("grammatura");
+                grammatura.setName("grammaturaBiglietti");
 
                 LabelField label = new LabelField("");
                 label.setWidth(100);
@@ -184,7 +186,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
 
                 NumberField tiratura = new NumberField();
                 tiratura.setWidth(60);
-                tiratura.setName("tiratura");
+                tiratura.setName("tiraturaCartelline");
                 tiratura.setRegex("[0-9]+");
                 tiratura.getMessages().setRegexText("Inserisci un numero intero");
                 tiratura.setPropertyEditorType(Integer.class);
@@ -210,7 +212,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
                 tipoDiCarta.setDisplayField("parametro");
                 tipoDiCarta.setWidth(200);
                 tipoDiCarta.setDisplayField("nome");
-                tipoDiCarta.setName("tipoDiCarta");
+                tipoDiCarta.setName("tipoDiCartaCartelline");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
                 tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
@@ -231,7 +233,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
 
                 NumberField grammatura = new NumberField();
                 grammatura.setWidth(60);
-                grammatura.setName("grammatura");
+                grammatura.setName("grammaturaCartelline");
 
                 LabelField label = new LabelField("");
                 label.setWidth(100);
@@ -251,6 +253,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
 
     public void setBigliettiDaVisitaModel(BigliettiDaVisitaModel bigliettiDaVisitaModel) {
         this.bigliettiDaVisitaModel = bigliettiDaVisitaModel;
+        binding.bind(bigliettiDaVisitaModel);
     }
 
     public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {

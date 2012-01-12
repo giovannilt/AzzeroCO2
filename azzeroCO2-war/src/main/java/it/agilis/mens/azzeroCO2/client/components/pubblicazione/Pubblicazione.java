@@ -12,6 +12,7 @@ import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormDettaglio;
 import it.agilis.mens.azzeroCO2.client.forms.publicazioni.FormBigliettiDaVisita;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -236,6 +237,7 @@ public class Pubblicazione extends LayoutContainer {
 
     public OrdineModel riepilogo() {
         OrdineModel eventoModel = formDettaglio.getOrdineModel();
+        eventoModel.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
 
         eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
         eventoModel.setManifestiPieghevoliFogliModel(formManifestipieghevoliFogli.getManifestiPieghevoliFogliModel());
@@ -260,7 +262,7 @@ public class Pubblicazione extends LayoutContainer {
         formBigliettiDaVisita.setTipoDiCartaModel(tipoDiCartaModels);
     }
 
-    public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
+    public void setPubblicazioneRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
         OrdineModel riepilogo = riepilogo();
         Esito esito = Esito.IN_PAGAMENTO;
         if (riepilogo.getPagamentoModel() != null &&
