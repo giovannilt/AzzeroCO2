@@ -76,7 +76,6 @@ public class Pubblicazione extends LayoutContainer {
 
         add(pubblicazioneoTab, new RowData(1, 1));
 
-
         posizioniText.add(Arrays.asList(".", "Manifesti pieghevoli e fogli"));// Pubblicazioni rilegate
         posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Biglietti da visita e cartelline"));
         posizioniText.add(Arrays.asList("Manifesti pieghevoli e fogli", "Riepilogo"));           // Manifesti pieghevoli e Fogli
