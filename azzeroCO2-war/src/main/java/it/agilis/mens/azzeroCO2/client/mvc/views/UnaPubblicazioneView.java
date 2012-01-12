@@ -75,9 +75,9 @@ public class UnaPubblicazioneView extends View {
             OrdineModel riepilogo = pubblicazioneDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
-                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti pieghevoli e fogli"),
+                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Biglietti da visita e cartelline"),
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"),
-                    false
+                    event.<String>getData() != null && event.<String>getData().length() == 0
             );
         } else if (event.getType().equals(PubblicazioniEvents.NextText)) {
             OrdineModel riepilogo = pubblicazioneDettaglio.riepilogo();

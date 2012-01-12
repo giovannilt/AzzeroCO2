@@ -67,11 +67,13 @@ public class Pubblicazione extends LayoutContainer {
         pubblicazioneoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("Acquisto");
+        acquisto.setStyleAttribute("background-color", "#3F4757");
         acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         pubblicazioneoTab.add(acquisto);
 
         TabItem conferma = new TabItem("conferma");
+        conferma.setStyleAttribute("background-color", "#3F4757");
         conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
         conferma.setEnabled(false);
         pubblicazioneoTab.add(conferma);
