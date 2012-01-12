@@ -1,7 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -10,9 +9,12 @@ import javax.persistence.OneToOne;
  * Time: 10.46
  * To change this template use File | Settings | File Templates.
  */
+@Entity
 public class BigliettiDaVisita {
-
+    @Id
+    @GeneratedValue
     private Long id;
+
     private Integer tiraturaBiglietti;
     @ManyToOne
     private TipoDiCarta tipoDiCartaBiglietti;
