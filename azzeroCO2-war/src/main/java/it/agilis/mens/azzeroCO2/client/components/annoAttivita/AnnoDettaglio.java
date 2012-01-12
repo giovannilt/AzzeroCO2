@@ -75,7 +75,7 @@ public class AnnoDettaglio extends LayoutContainer {
         riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
-        TabItem acquisto = new TabItem("Acquisto");
+        TabItem acquisto = new TabItem("acquisto");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         eventoTab.add(acquisto);
