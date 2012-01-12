@@ -254,7 +254,13 @@ public class FormBigliettiDaVisita extends LayoutContainer {
     }
 
     public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {
+        for(TipoDiCartaModel t: tipoDiCarta){
+               if(t.getNome().equalsIgnoreCase("Carta da giornale") || t.getNome().equalsIgnoreCase("Carta da rivista")){
+                   tipoDiCarta.remove(t);
+               }
+        }
         tipoDiCartaModelListStore.add(tipoDiCarta);
+        
     }
 
     public void clear() {

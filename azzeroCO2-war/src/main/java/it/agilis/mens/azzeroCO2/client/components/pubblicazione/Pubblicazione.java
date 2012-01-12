@@ -10,6 +10,7 @@ import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormDettaglio;
+import it.agilis.mens.azzeroCO2.client.forms.publicazioni.FormBigliettiDaVisita;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
@@ -256,6 +257,7 @@ public class Pubblicazione extends LayoutContainer {
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
         formPubblicazioniRilegate.setTipoDiCartaModel(tipoDiCartaModels);
         formManifestipieghevoliFogli.setTipoDiCartaModel(tipoDiCartaModels);
+        formBigliettiDaVisita.setTipoDiCartaModel(tipoDiCartaModels);
     }
 
     public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {

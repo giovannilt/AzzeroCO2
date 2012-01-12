@@ -7,6 +7,7 @@ import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.client.forms.annoAttivita.AnnoFormDettaglio;
+import it.agilis.mens.azzeroCO2.client.forms.publicazioni.FormBigliettiDaVisita;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
