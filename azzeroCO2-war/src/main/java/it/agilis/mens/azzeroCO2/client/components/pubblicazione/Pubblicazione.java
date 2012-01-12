@@ -41,9 +41,9 @@ public class Pubblicazione extends LayoutContainer {
     private final FormBigliettiDaVisita formBigliettiDaVisita = new FormBigliettiDaVisita();
 
     private final FormRiepilogo formRiepilogo = new FormRiepilogo();
-    private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
+    private final FormAcquisto formAcquisto = new FormAcquisto();
     private final FormConferma formConferma = new FormConferma();
-    private static int posizioniLabel = 1;
+    private static int posizioniLabel = 0;
     private List<List<String>> posizioniText = new ArrayList<List<String>>();
     private UserInfoModel userInfoModel;
 
@@ -52,12 +52,6 @@ public class Pubblicazione extends LayoutContainer {
         super.onRender(target, index);
 
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-
-        //TabItem dettaglio = new TabItem("Dettaglio");
-        //dettaglio.setLayout(new BorderLayout());
-        //dettaglio.add(formDettaglio, new BorderLayoutData(Style.LayoutRegion.CENTER));
-
-        //pubblicazioneoTab.add(dettaglio);
 
         TabItem calcolo = new TabItem("calcolo");
         createCalcoloTabs();
@@ -71,7 +65,7 @@ public class Pubblicazione extends LayoutContainer {
         pubblicazioneoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("scegli progetto di compensazione");
-        acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
+        acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         pubblicazioneoTab.add(acquisto);
 
@@ -102,7 +96,7 @@ public class Pubblicazione extends LayoutContainer {
         formPubblicazioniRilegate.setTitle("Pubblicazioni Rilegate");
         calcoloCardPanel.add(formPubblicazioniRilegate, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
-        formManifestipieghevoliFogli.setTitle("Manifesti Pieghevoli");
+        formManifestipieghevoliFogli.setTitle("Manifesti Pieghevoli e Fogli");
         calcoloCardPanel.add(formManifestipieghevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         formBigliettiDaVisita.setTitle("Biglietti da visita e cartelline");
@@ -214,7 +208,7 @@ public class Pubblicazione extends LayoutContainer {
         formManifestipieghevoliFogli.clear(true);
 
         formRiepilogo.clear();
-        eventoFormAcquisto.clear();
+        formAcquisto.clear();
         formConferma.clear();
 
 
@@ -245,7 +239,7 @@ public class Pubblicazione extends LayoutContainer {
         eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
         eventoModel.setManifestiPieghevoliFogliModel(formManifestipieghevoliFogli.getManifestiPieghevoliFogliModel());
 
-        eventoModel.setProgettoDiCompensazioneModel(eventoFormAcquisto.getProgettoDiCompensazioneModel());
+        eventoModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
 
         return eventoModel;
     }
@@ -255,7 +249,7 @@ public class Pubblicazione extends LayoutContainer {
         formPubblicazioniRilegate.setPubblicazioniRilegateModel(eventoModel.getPubblicazioniRilegateModel());
         formManifestipieghevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
 
-        eventoFormAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
+        formAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
@@ -271,11 +265,11 @@ public class Pubblicazione extends LayoutContainer {
             esito = Esito.valueOf(riepilogo.getPagamentoModel().getEsito());
         }
         formRiepilogo.setRiepilogoInStore(eventoRiepilogoModels, esito);
-        eventoFormAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo);
+        formAcquisto.setRiepilogo(eventoRiepilogoModels, riepilogo);
     }
 
     public void setProgettiDiCompensazione(List<ProgettoDiCompensazioneModel> progettiDiCompensazioneList) {
-        eventoFormAcquisto.setInStore(progettiDiCompensazioneList);
+        formAcquisto.setInStore(progettiDiCompensazioneList);
     }
 
     public void setUserInfoModel(UserInfoModel userInfoModel) {

@@ -6,10 +6,8 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.ManifestiPieghevoliFogliMode
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.ManifestiPieghevoliFogliVTO;
-import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
-import it.agilis.mens.azzeroCO2.shared.vto.PubblicazioniRilegateVTO;
-import it.agilis.mens.azzeroCO2.shared.vto.TipoDiCartaVTO;
+import it.agilis.mens.azzeroCO2.shared.model.unaPubblicazione.BigliettiDaVisitaModel;
+import it.agilis.mens.azzeroCO2.shared.vto.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -48,11 +46,31 @@ public class AzzerroCO2UtilsClientHelper {
             ordineVTO.setPubblicazioniRilegateVTO(getPubblicazioniRilegateVTOList(ordineModel.getPubblicazioniRilegateModel()));
         } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.WEB) {
             ordineVTO.setSitoWebModel(ordineModel.getSitoWebModel());
+        } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
+            ordineVTO.setManifestiPieghevoliFogliVTO(getManifestiPiegjevoliFogltioVTOList(ordineModel.getManifestiPieghevoliFogliModel()));
+            ordineVTO.setPubblicazioniRilegateVTO(getPubblicazioniRilegateVTOList(ordineModel.getPubblicazioniRilegateModel()));
+            ordineVTO.setBigliettiDaVisitaVTO(getBigliettiDaVisitaModelVTO(ordineModel.getBigliettiDaVisita()));
         } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
             ordineVTO.setConoscoCO2(ordineModel.getConoscoCO2Model());
         }
 
         return ordineVTO;
+    }
+
+    private static BigliettiDaVisitaModelVTO getBigliettiDaVisitaModelVTO(BigliettiDaVisitaModel bigliettiDaVisita) {
+        if (bigliettiDaVisita == null)
+            return null;
+        BigliettiDaVisitaModelVTO _return = new BigliettiDaVisitaModelVTO();
+
+        _return.setId(bigliettiDaVisita.getId());
+        _return.setGrammaturaBiglietti(bigliettiDaVisita.getGrammaturaBiglietti());
+        _return.setGrammaturaCartelline(bigliettiDaVisita.getGrammaturaCartelline());
+        _return.setTipoDiCartaBiglietti(getTipoDiCartaVTO(bigliettiDaVisita.getTipoDiCartaBiglietti()));
+        _return.setTipoDiCartaCartelline(getTipoDiCartaVTO(bigliettiDaVisita.getTipoDiCartaCartelline()));
+        _return.setTiraturaBiglietti(bigliettiDaVisita.getTiraturaBiglietti());
+        _return.setTiraturaCartelline(bigliettiDaVisita.getTiraturaCartelline());
+
+        return _return;
     }
 
     private static ArrayList<PubblicazioniRilegateVTO> getPubblicazioniRilegateVTOList(List<PubblicazioniRilegateModel> pubblicazioniRilegateModel) {
@@ -146,9 +164,27 @@ public class AzzerroCO2UtilsClientHelper {
             ordineModel.setSitoWebModel(ordineVTO.getSitoWebModel());
         } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
             ordineModel.setConoscoCO2Model(ordineVTO.getConoscoCO2Model());
+        } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
+            ordineModel.setManifestiPieghevoliFogliModel(getManifestiPiegjevoliFogltioModelList(ordineVTO.getManifestiPieghevoliFogliVTO()));
+            ordineModel.setPubblicazioniRilegateModel(getPubblicazioniRilegateModelList(ordineVTO.getPubblicazioniRilegateVTO()));
+            ordineModel.setBigliettiDaVisitaModel(getBigliettiDaVisitaModel(ordineVTO.getBigliettiDaVisitaVTO()));
         }
 
         return ordineModel;
+    }
+
+    private static BigliettiDaVisitaModel getBigliettiDaVisitaModel(BigliettiDaVisitaModelVTO bigliettiDaVisitaVTO) {
+        if (bigliettiDaVisitaVTO == null)
+            return null;
+        BigliettiDaVisitaModel _return = new BigliettiDaVisitaModel();
+        _return.setId(bigliettiDaVisitaVTO.getId());
+        _return.setGrammaturaBiglietti(bigliettiDaVisitaVTO.getGrammaturaBiglietti());
+        _return.setGrammaturaCartelline(bigliettiDaVisitaVTO.getGrammaturaCartelline());
+        _return.setTipoDiCartaBiglietti(getTipoDiCartaModel(bigliettiDaVisitaVTO.getTipoDiCartaBiglietti()));
+        _return.setTipoDiCartaCartelline(getTipoDiCartaModel(bigliettiDaVisitaVTO.getTipoDiCartaCartelline()));
+        _return.setTiraturaBiglietti(bigliettiDaVisitaVTO.getTiraturaBiglietti());
+        _return.setTiraturaCartelline(bigliettiDaVisitaVTO.getTiraturaCartelline());
+        return _return;
     }
 
     private static ArrayList<PubblicazioniRilegateModel> getPubblicazioniRilegateModelList(List<PubblicazioniRilegateVTO> pubblicazioniRilegateVTO) {

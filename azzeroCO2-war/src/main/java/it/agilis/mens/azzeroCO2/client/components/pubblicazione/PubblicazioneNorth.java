@@ -12,8 +12,9 @@ import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,8 +24,8 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
  * To change this template use File | Settings | File Templates.
  */
 public class PubblicazioneNorth extends LayoutContainer {
-        @Override
-        protected void onRender(Element target, int index) {
+    @Override
+    protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
         LayoutContainer c = new LayoutContainer();
@@ -57,8 +58,8 @@ public class PubblicazioneNorth extends LayoutContainer {
 
                 Dispatcher.forwardEvent(PubblicazioniEvents.ShowConfermDialog);
 
-                //   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
-                //   Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
+                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                Dispatcher.forwardEvent(PubblicazioniEvents.ClearPanel, Eventi.MAIN);
             }
         });
         c.add(close, new HBoxLayoutData(new Margins(5, 5, 0, 0)));

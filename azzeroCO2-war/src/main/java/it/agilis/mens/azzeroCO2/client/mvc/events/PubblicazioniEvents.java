@@ -25,7 +25,7 @@ public class PubblicazioniEvents {
     public static final EventType Riepilogo = new EventType();
     public static final EventType CaricaCoefficienti = new EventType();
     public static final EventType CaricaProgettiDiCompensazione = new EventType();
-    public static final EventType LoadEvento = new EventType();
+    public static final EventType LoadPubblicazione = new EventType();
     public static final EventType Acquisto = new EventType();
     public static final EventType Conferma = new EventType();
 

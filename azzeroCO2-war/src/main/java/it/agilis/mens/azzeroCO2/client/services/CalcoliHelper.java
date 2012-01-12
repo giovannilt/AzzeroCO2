@@ -7,6 +7,7 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.sitoWeb.SitoWebModel;
+import it.agilis.mens.azzeroCO2.shared.model.unaPubblicazione.BigliettiDaVisitaModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +74,7 @@ public class CalcoliHelper {
             }
         }
 
-        if (eventoModel != null && eventoModel.getNottiModel() != null && eventoModel.getNottiModel().getNotti()!=null) {
+        if (eventoModel != null && eventoModel.getNottiModel() != null && eventoModel.getNottiModel().getNotti() != null) {
             if (eventoModel.getNottiModel().getNotti() > 0) {
                 model = new RiepilogoModel();
                 model.setDettagli("Pernottamenti");
@@ -122,6 +123,13 @@ public class CalcoliHelper {
                 model.setIndex(6);
                 store.add(model);
             }
+        }
+        if (eventoModel != null && eventoModel.getBigliettiDaVisita() != null) {
+            model = new RiepilogoModel();
+            model.setDettagli("Biglietti Da Visita");
+            model.setOggetto("Biglietti Da Visita");
+            model.setIndex(7);
+            store.add(model);
         }
         return store;
     }
@@ -189,7 +197,83 @@ public class CalcoliHelper {
             }
         }
 
+        if (eventoModel != null && eventoModel.getBigliettiDaVisita() != null) {
+            List<RiepilogoModel> models = getBigliettiDaVisita(eventoModel.getBigliettiDaVisita(), e);
+            if (models != null && models.size() > 0) {
+                store.addAll(models);
+            }
+        }
+
         return store;
+    }
+
+    private static List<RiepilogoModel> getBigliettiDaVisita(BigliettiDaVisitaModel bigliettiDaVisita, Eventi e) {
+        List<RiepilogoModel> _return = new ArrayList<RiepilogoModel>();
+        {
+            RiepilogoModel _rm = new RiepilogoModel();
+            _rm.setEventi(e.name());
+            double co2 = 0;
+
+            _rm.setOggetto("Biglietti Da Visita Biglietti");
+
+            String materiale = "";
+
+            if (bigliettiDaVisita.getTipoDiCartaBiglietti() != null) {
+                if (coefficienti.containsKey(bigliettiDaVisita.getTipoDiCartaBiglietti().getParametro())) {
+                    co2 *= coefficienti.get(bigliettiDaVisita.getTipoDiCartaBiglietti().getParametro()).getValore();
+                }
+                materiale = bigliettiDaVisita.getTipoDiCartaBiglietti().getNome();
+            }
+            if (bigliettiDaVisita.getGrammaturaBiglietti() > 0) {
+                materiale += " " + bigliettiDaVisita.getGrammaturaBiglietti() + " gr</br>";
+                co2 *= bigliettiDaVisita.getGrammaturaBiglietti() / 1000;
+            }
+
+            String tiratura = "";
+            if (bigliettiDaVisita.getTiraturaBiglietti() > 0) {
+                tiratura = "Tiratura Biglietti" + bigliettiDaVisita.getTiraturaBiglietti() + "</br>";
+                co2 *= bigliettiDaVisita.getTiraturaBiglietti();
+            }
+
+            if (co2 > 0) {
+                _rm.setDettagli(materiale + tiratura);
+                _rm.setKgCO2(co2);
+                _return.add(_rm);
+            }
+        }
+        {
+            RiepilogoModel _rm = new RiepilogoModel();
+            _rm.setEventi(e.name());
+
+            double co2 = 0;
+            _rm.setOggetto("Biglietti Da Visita Cartelline");
+
+            String materiale = "";
+
+            if (bigliettiDaVisita.getTipoDiCartaCartelline() != null) {
+                if (coefficienti.containsKey(bigliettiDaVisita.getTipoDiCartaCartelline().getParametro())) {
+                    co2 *= coefficienti.get(bigliettiDaVisita.getTipoDiCartaCartelline().getParametro()).getValore();
+                }
+                materiale = bigliettiDaVisita.getTipoDiCartaCartelline().getNome();
+            }
+            if (bigliettiDaVisita.getGrammaturaCartelline() > 0) {
+                materiale += " " + bigliettiDaVisita.getGrammaturaCartelline() + " gr</br>";
+                co2 *= bigliettiDaVisita.getGrammaturaCartelline() / 1000;
+            }
+
+            String tiratura = "";
+            if (bigliettiDaVisita.getTiraturaCartelline() > 0) {
+                tiratura = "Tiratura " + bigliettiDaVisita.getTiraturaCartelline() + "</br>";
+                co2 *= bigliettiDaVisita.getTiraturaCartelline();
+            }
+            if (co2 > 0) {
+                _rm.setDettagli(materiale + tiratura);
+                _rm.setKgCO2(co2);
+                _return.add(_rm);
+            }
+        }
+
+        return _return;
     }
 
     private static RiepilogoModel getSitoWeb(SitoWebModel sitoWebModel, Eventi e) {

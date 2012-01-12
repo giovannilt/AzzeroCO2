@@ -22,7 +22,7 @@ public class OrdineDAO extends DAOSupport implements IOrdineDAO {
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public List<Ordine> getListOfOrdini(OrdineCriteria ordineCriteria) {
-      //  DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Ordine.class, "ordine");
+        //  DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Ordine.class, "ordine");
 
         List<Ordine> list = (List<Ordine>) getList(ordineCriteria.getDetachedCriteria(), true);
         for (Ordine o : list) {
@@ -33,6 +33,7 @@ public class OrdineDAO extends DAOSupport implements IOrdineDAO {
             Hibernate.initialize(o.getCoupon());
             Hibernate.initialize(o.getEvento());
             Hibernate.initialize(o.getSito());
+            Hibernate.initialize(o.getBigliettiDaVisita());
 
         }
         return list;
@@ -62,6 +63,7 @@ public class OrdineDAO extends DAOSupport implements IOrdineDAO {
         Hibernate.initialize(o.getUtente());
         Hibernate.initialize(o.getRicevutaDiPagamento());
         Hibernate.initialize(o.getSito());
+        Hibernate.initialize(o.getBigliettiDaVisita());
         return o;
     }
 }

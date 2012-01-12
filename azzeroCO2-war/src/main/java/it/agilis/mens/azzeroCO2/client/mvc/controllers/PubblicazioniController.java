@@ -39,14 +39,14 @@ public class PubblicazioniController extends BaseController {
     public PubblicazioniController() {
         registerEventTypes(AzzeroCO2Events.Init);
         registerEventTypes(AzzeroCO2Events.Error);
+        registerEventTypes(AzzeroCO2Events.LoggedIn);
+        registerEventTypes(PubblicazioniEvents.Save);
         registerEventTypes(PubblicazioniEvents.Next);
         registerEventTypes(PubblicazioniEvents.Previous);
         registerEventTypes(PubblicazioniEvents.ClearPanel);
-        registerEventTypes(PubblicazioniEvents.Save);
-        registerEventTypes(AzzeroCO2Events.LoggedIn);
         registerEventTypes(PubblicazioniEvents.Riepilogo);
         registerEventTypes(PubblicazioniEvents.Acquisto);
-        registerEventTypes(PubblicazioniEvents.LoadEvento);
+        registerEventTypes(PubblicazioniEvents.LoadPubblicazione);
         registerEventTypes(PubblicazioniEvents.CaricaCoefficienti);
         registerEventTypes(PubblicazioniEvents.CaricaProgettiDiCompensazione);
         registerEventTypes(PubblicazioniEvents.PreviousText);
@@ -80,7 +80,7 @@ public class PubblicazioniController extends BaseController {
             pubblicazioneView.showRiepilogo();
         } else if (event.getType().equals(PubblicazioniEvents.Riepilogo)) {
             setCoefficentitoEventoView();
-        } else if (event.getType().equals(PubblicazioniEvents.LoadEvento)) {
+        } else if (event.getType().equals(PubblicazioniEvents.LoadPubblicazione)) {
             setCoefficienti();
             setProgettiDiCompensazione();
             pubblicazioneView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
@@ -138,6 +138,7 @@ public class PubblicazioniController extends BaseController {
         } else if (event.getType().equals(PubblicazioniEvents.Save)) {
             if (event.getData() instanceof OrdineModel) {
                 OrdineModel model = (OrdineModel) event.getData();
+                model.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
                 save(model);
             } else {
                 save(null);
@@ -155,13 +156,14 @@ public class PubblicazioniController extends BaseController {
             ordineModel.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
             saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel));
         } else if (model != null) {
+            model.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
             saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
         }
     }
 
     private void saveVTO(final OrdineVTO riepilogo) {
         if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
-            Info.display("Warning", "Nome Evento Mancante");
+            Info.display("Warning", "Nome Pubblicazione Mancante");
         } else {
             AsyncCallback<OrdineVTO> dettaglio = new AsyncCallback<OrdineVTO>() {
                 public void onFailure(Throwable caught) {
@@ -173,7 +175,7 @@ public class PubblicazioniController extends BaseController {
                     if (result != null) {
                         OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         pubblicazioneView.setDettaglioModel(model);
-                        Info.display("Info", "Evento " + riepilogo.getNome() + " salvato con successo.");
+                        Info.display("Info", "Pubblicazione " + riepilogo.getNome() + " salvato con successo.");
                     }
                 }
             };

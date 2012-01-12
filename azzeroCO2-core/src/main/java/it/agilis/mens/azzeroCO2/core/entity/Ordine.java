@@ -46,6 +46,9 @@ public class Ordine {
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private SellaRicevutaDiPagamento ricevutaDiPagamento;
 
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private BigliettiDaVisita bigliettiDaVisita;
+
     private Eventi eventiType;
 
     private Date lastUpdate;
@@ -54,6 +57,14 @@ public class Ordine {
 
     public Eventi getEventiType() {
         return eventiType;
+    }
+
+    public BigliettiDaVisita getBigliettiDaVisita() {
+        return bigliettiDaVisita;
+    }
+
+    public void setBigliettiDaVisita(BigliettiDaVisita bigliettiDaVisita) {
+        this.bigliettiDaVisita = bigliettiDaVisita;
     }
 
     public void setEventiType(Eventi eventiType) {

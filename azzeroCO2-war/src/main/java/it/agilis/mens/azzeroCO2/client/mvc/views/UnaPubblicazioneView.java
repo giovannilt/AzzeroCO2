@@ -163,7 +163,7 @@ public class UnaPubblicazioneView extends View {
         pubblicazione.add(center, centerData);
 
         pubblicazione.setTitle(Eventi.UNA_PUBBLICAZIONE.name());
-        Dispatcher.forwardEvent(new AppEvent(CentralEvents.EventoPanelReady, pubblicazione));
+        Dispatcher.forwardEvent(new AppEvent(CentralEvents.UnaPubblicazioneReady, pubblicazione));
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {

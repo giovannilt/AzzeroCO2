@@ -22,6 +22,7 @@ import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.model.sitoWeb.SitoWebModel;
+import it.agilis.mens.azzeroCO2.shared.model.unaPubblicazione.BigliettiDaVisitaModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -249,7 +250,27 @@ public class Utils {
         o.setProgettoCompensazione(getProgettoDiCompensazione(ordineModel.getProgettoDiCompensazioneModel()));
         o.setRicevutaDiPagamento(getRicevuta(ordineModel.getPagamentoModel()));
 
-        if (ordineModel.getSitoWebModel() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.WEB) {
+        if (ordineModel.getSitoWebModel() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
+            if (ordineModel.getPubblicazioniRilegateModel() != null && ordineModel.getPubblicazioniRilegateModel().size() > 0) {
+                List<Pubblicazione> pubblicazioniRilegateList = getListOfPubblicazione(ordineModel.getPubblicazioniRilegateModel());
+                if (o.getPubblicazioni() == null) {
+                    o.setPubblicazioni(pubblicazioniRilegateList);
+                } else {
+                    o.getPubblicazioni().addAll(pubblicazioniRilegateList);
+                }
+            }
+            if (ordineModel.getManifestiPieghevoliFogliModel() != null && ordineModel.getManifestiPieghevoliFogliModel().size() > 0) {
+                List<Pubblicazione> pubblicazioniList = getListOfManifesti(ordineModel.getManifestiPieghevoliFogliModel());
+                if (o.getPubblicazioni() == null) {
+                    o.setPubblicazioni(pubblicazioniList);
+                } else {
+                    o.getPubblicazioni().addAll(pubblicazioniList);
+                }
+            }
+            if (ordineModel.getBigliettiDaVisita() != null) {
+                o.setBigliettiDaVisita(getBigliettiDaVisita(ordineModel.getBigliettiDaVisita()));
+            }
+        } else if (ordineModel.getSitoWebModel() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.WEB) {
             Sito s = new Sito();
             s.setUtenti(ordineModel.getSitoWebModel().getVisitatori());
             o.setSito(s);
@@ -328,38 +349,7 @@ public class Utils {
                 o.setTrasportoPersone(trasportoPersoneList);
             }
             if (ordineModel.getPubblicazioniRilegateModel() != null && ordineModel.getPubblicazioniRilegateModel().size() > 0) {
-                List<Pubblicazione> pubblicazioniRilegateList = new ArrayList<Pubblicazione>();
-                for (PubblicazioniRilegateModel prm : ordineModel.getPubblicazioniRilegateModel()) {
-                    Pubblicazione pr = new Pubblicazione();
-                    pr.setId(prm.getId());
-                    pr.setAltezza(prm.getAltezza());
-                    pr.setLarghezza(prm.getLarghezza());
-
-                    if (prm.getTipoDiCarta() != null) {
-                        TipoDiCarta tp = new TipoDiCarta();
-                        tp.setId(prm.getTipoDiCarta().getId());
-                        tp.setNome(prm.getTipoDiCarta().getNome());
-                        tp.setParametro(prm.getTipoDiCarta().getParametro());
-                        pr.setTipoDiCarta(tp);
-                    }
-
-                    pr.setGrammatura(prm.getGrammatura());
-                    pr.setPagine(new Long(prm.getNumeroDiPagine()));
-                    pr.setTiratura(new Long(prm.getTiratura()));
-
-                    if (prm.getTipoDiCartaCopertina() != null) {
-                        TipoDiCarta tp = new TipoDiCarta();
-                        tp.setId(prm.getTipoDiCartaCopertina().getId());
-                        tp.setNome(prm.getTipoDiCartaCopertina().getNome());
-                        tp.setParametro(prm.getTipoDiCartaCopertina().getParametro());
-                        pr.setTipoDiCartaCopertina(tp);
-                    }
-
-                    pr.setGrammaturaCopertina(prm.getGrammaturaCopertina());
-                    pr.setCategoria(prm.getCategoria());
-                    pr.setRilegato(true);
-                    pubblicazioniRilegateList.add(pr);
-                }
+                List<Pubblicazione> pubblicazioniRilegateList = getListOfPubblicazione(ordineModel.getPubblicazioniRilegateModel());
                 if (o.getPubblicazioni() == null) {
                     o.setPubblicazioni(pubblicazioniRilegateList);
                 } else {
@@ -367,26 +357,7 @@ public class Utils {
                 }
             }
             if (ordineModel.getManifestiPieghevoliFogliModel() != null && ordineModel.getManifestiPieghevoliFogliModel().size() > 0) {
-                List<Pubblicazione> pubblicazioniList = new ArrayList<Pubblicazione>();
-                for (ManifestiPieghevoliFogliModel pnrm : ordineModel.getManifestiPieghevoliFogliModel()) {
-                    Pubblicazione pnr = new Pubblicazione();
-                    pnr.setId(pnrm.getId());
-                    pnr.setAltezza(pnrm.getAltezza());
-                    pnr.setLarghezza(pnrm.getLarghezza());
-                    if (pnrm.getTipoDiCarta() != null) {
-                        TipoDiCarta tp = new TipoDiCarta();
-                        tp.setId(pnrm.getTipoDiCarta().getId());
-                        tp.setNome(pnrm.getTipoDiCarta().getNome());
-                        tp.setParametro(pnrm.getTipoDiCarta().getParametro());
-                        pnr.setTipoDiCarta(tp);
-                    }
-                    pnr.setGrammatura(pnrm.getGrammatura());
-                    pnr.setTiratura(new Long(pnrm.getTiratura()));
-                    pnr.setCategoria(pnrm.getCategoria());
-                    pnr.setRilegato(false);
-                    pubblicazioniList.add(pnr);
-                }
-
+                List<Pubblicazione> pubblicazioniList = getListOfManifesti(ordineModel.getManifestiPieghevoliFogliModel());
                 if (o.getPubblicazioni() == null) {
                     o.setPubblicazioni(pubblicazioniList);
                 } else {
@@ -395,6 +366,100 @@ public class Utils {
             }
         }
         return o;
+    }
+
+    private static BigliettiDaVisita getBigliettiDaVisita(BigliettiDaVisitaModel model) {
+        BigliettiDaVisita bigliettiDaVisita = new BigliettiDaVisita();
+        bigliettiDaVisita.setId(model.getId());
+        if (model.getTipoDiCartaBiglietti() != null
+                && model.getGrammaturaBiglietti() != null
+                && model.getTiraturaBiglietti() != null) {
+            bigliettiDaVisita.setGrammaturaBiglietti(model.getGrammaturaBiglietti());
+            if (model.getTipoDiCartaBiglietti() != null) {
+                TipoDiCarta tp = new TipoDiCarta();
+                tp.setId(model.getTipoDiCartaBiglietti().getId());
+                tp.setNome(model.getTipoDiCartaBiglietti().getNome());
+                tp.setParametro(model.getTipoDiCartaBiglietti().getParametro());
+                bigliettiDaVisita.setTipoDiCartaBiglietti(tp);
+            }
+            bigliettiDaVisita.setTiraturaBiglietti(model.getTiraturaBiglietti());
+        }
+
+        if (model.getTipoDiCartaCartelline() != null
+                && model.getGrammaturaCartelline() != null
+                && model.getTiraturaCartelline() != null) {
+            bigliettiDaVisita.setGrammaturaCartelline(model.getGrammaturaCartelline());
+            if (model.getTipoDiCartaCartelline() != null) {
+                TipoDiCarta tp = new TipoDiCarta();
+                tp.setId(model.getTipoDiCartaCartelline().getId());
+                tp.setNome(model.getTipoDiCartaCartelline().getNome());
+                tp.setParametro(model.getTipoDiCartaCartelline().getParametro());
+                bigliettiDaVisita.setTipoDiCartaCartelline(tp);
+            }
+            bigliettiDaVisita.setTiraturaBiglietti(model.getTiraturaBiglietti());
+        }
+
+        return bigliettiDaVisita;
+    }
+
+    private static List<Pubblicazione> getListOfManifesti(List<ManifestiPieghevoliFogliModel> prmlist) {
+        List<Pubblicazione> pubblicazioniList = new ArrayList<Pubblicazione>();
+        for (ManifestiPieghevoliFogliModel pnrm : prmlist) {
+            Pubblicazione pnr = new Pubblicazione();
+            pnr.setId(pnrm.getId());
+            pnr.setAltezza(pnrm.getAltezza());
+            pnr.setLarghezza(pnrm.getLarghezza());
+            if (pnrm.getTipoDiCarta() != null) {
+                TipoDiCarta tp = new TipoDiCarta();
+                tp.setId(pnrm.getTipoDiCarta().getId());
+                tp.setNome(pnrm.getTipoDiCarta().getNome());
+                tp.setParametro(pnrm.getTipoDiCarta().getParametro());
+                pnr.setTipoDiCarta(tp);
+            }
+            pnr.setGrammatura(pnrm.getGrammatura());
+            pnr.setTiratura(new Long(pnrm.getTiratura()));
+            pnr.setCategoria(pnrm.getCategoria());
+            pnr.setRilegato(false);
+            pubblicazioniList.add(pnr);
+        }
+        return pubblicazioniList;
+
+    }
+
+    private static List<Pubblicazione> getListOfPubblicazione(List<PubblicazioniRilegateModel> prmlist) {
+        List<Pubblicazione> pubblicazioniRilegateList = new ArrayList<Pubblicazione>();
+        for (PubblicazioniRilegateModel prm : prmlist) {
+            Pubblicazione pr = new Pubblicazione();
+            pr.setId(prm.getId());
+            pr.setAltezza(prm.getAltezza());
+            pr.setLarghezza(prm.getLarghezza());
+
+            if (prm.getTipoDiCarta() != null) {
+                TipoDiCarta tp = new TipoDiCarta();
+                tp.setId(prm.getTipoDiCarta().getId());
+                tp.setNome(prm.getTipoDiCarta().getNome());
+                tp.setParametro(prm.getTipoDiCarta().getParametro());
+                pr.setTipoDiCarta(tp);
+            }
+
+            pr.setGrammatura(prm.getGrammatura());
+            pr.setPagine(new Long(prm.getNumeroDiPagine()));
+            pr.setTiratura(new Long(prm.getTiratura()));
+
+            if (prm.getTipoDiCartaCopertina() != null) {
+                TipoDiCarta tp = new TipoDiCarta();
+                tp.setId(prm.getTipoDiCartaCopertina().getId());
+                tp.setNome(prm.getTipoDiCartaCopertina().getNome());
+                tp.setParametro(prm.getTipoDiCartaCopertina().getParametro());
+                pr.setTipoDiCartaCopertina(tp);
+            }
+
+            pr.setGrammaturaCopertina(prm.getGrammaturaCopertina());
+            pr.setCategoria(prm.getCategoria());
+            pr.setRilegato(true);
+            pubblicazioniRilegateList.add(pr);
+        }
+        return pubblicazioniRilegateList;
     }
 
     public static OrdineModel getOrdineModel(Ordine o) {
@@ -406,7 +471,12 @@ public class Utils {
         dm.setOrdineId(o.getId());
         dm.setEventiType(o.getEventiType().name());
 
-        if (o.getEventiType() == Eventi.WEB) {
+        if (o.getEventiType() == Eventi.UNA_PUBBLICAZIONE) {
+            dm = setPubblicazioni(o, dm);
+            if (o.getBigliettiDaVisita() != null) {
+                dm.setBigliettiDaVisitaModel(getBigliettiDaVisitaModel(o.getBigliettiDaVisita()));
+            }
+        } else if (o.getEventiType() == Eventi.WEB) {
             if (o.getSito() != null) {
                 SitoWebModel sito = new SitoWebModel();
                 sito.setId(o.getSito().getId());
@@ -464,7 +534,7 @@ public class Utils {
                 dm.setTrasportoMerciModel(tm);
             }
 
-            if (o.getPubblicazioni() != null) {
+            if (o.getTrasportoPersone() != null) {
                 ArrayList<TrasportoPersoneModel> tpmList = new ArrayList<TrasportoPersoneModel>();
                 for (TrasportoPersone tpm : o.getTrasportoPersone()) {
                     TrasportoPersoneModel tp = new TrasportoPersoneModel();
@@ -497,64 +567,95 @@ public class Utils {
                 dm.setTrasportoPersoneModel(tpmList);
             }
 
-            List<PubblicazioniRilegateModel> prmList = new ArrayList<PubblicazioniRilegateModel>();
-            List<ManifestiPieghevoliFogliModel> mpfmList = new ArrayList<ManifestiPieghevoliFogliModel>();
+            dm = setPubblicazioni(o, dm);
+        }
+        return dm;
+    }
 
-            if (o.getPubblicazioni() != null) {
-                for (Pubblicazione prm : o.getPubblicazioni()) {
-                    if (prm.getRilegato()) {
-                        PubblicazioniRilegateModel pr = new PubblicazioniRilegateModel();
-                        pr.setId(prm.getId());
-                        pr.setAltezza(prm.getAltezza());
-                        pr.setLarghezza(prm.getLarghezza());
+    private static BigliettiDaVisitaModel getBigliettiDaVisitaModel(BigliettiDaVisita bigliettiDaVisita) {
+        BigliettiDaVisitaModel _return = new BigliettiDaVisitaModel();
 
-                        if (prm.getTipoDiCarta() != null) {
-                            TipoDiCartaModel tp = new TipoDiCartaModel();
-                            tp.setId(prm.getTipoDiCarta().getId());
-                            tp.setNome(prm.getTipoDiCarta().getNome());
-                            tp.setParametro(prm.getTipoDiCarta().getParametro());
-                            pr.setTipoDiCarta(tp);
-                        }
+        _return.setId(bigliettiDaVisita.getId());
+        _return.setGrammaturaBiglietti(bigliettiDaVisita.getGrammaturaBiglietti());
+        _return.setGrammaturaCartelline(bigliettiDaVisita.getGrammaturaBiglietti());
+        _return.setTiraturaBiglietti(bigliettiDaVisita.getTiraturaBiglietti());
+        _return.setTiraturaCartelline(bigliettiDaVisita.getTiraturaCartelline());
+        if (bigliettiDaVisita.getTipoDiCartaBiglietti() != null) {
+            TipoDiCartaModel tp = new TipoDiCartaModel();
+            tp.setId(bigliettiDaVisita.getTipoDiCartaBiglietti().getId());
+            tp.setNome(bigliettiDaVisita.getTipoDiCartaBiglietti().getNome());
+            tp.setParametro(bigliettiDaVisita.getTipoDiCartaBiglietti().getParametro());
+            _return.setTipoDiCartaBiglietti(tp);
+        }
+        if (bigliettiDaVisita.getTipoDiCartaCartelline() != null) {
+            TipoDiCartaModel tp = new TipoDiCartaModel();
+            tp.setId(bigliettiDaVisita.getTipoDiCartaCartelline().getId());
+            tp.setNome(bigliettiDaVisita.getTipoDiCartaCartelline().getNome());
+            tp.setParametro(bigliettiDaVisita.getTipoDiCartaCartelline().getParametro());
+            _return.setTipoDiCartaCartelline(tp);
+        }
 
-                        pr.setGrammatura(prm.getGrammatura());
-                        pr.setNumeroDiPagine(prm.getPagine().intValue());
-                        pr.setTiratura(prm.getTiratura().intValue());
+        return _return;
+    }
 
-                        if (prm.getTipoDiCartaCopertina() != null) {
-                            TipoDiCartaModel tp = new TipoDiCartaModel();
-                            tp.setId(prm.getTipoDiCartaCopertina().getId());
-                            tp.setNome(prm.getTipoDiCartaCopertina().getNome());
-                            tp.setParametro(prm.getTipoDiCartaCopertina().getParametro());
-                            pr.setTipoDiCartaCopertina(tp);
-                        }
+    private static OrdineModel setPubblicazioni(Ordine o, OrdineModel dm) {
+        List<PubblicazioniRilegateModel> prmList = new ArrayList<PubblicazioniRilegateModel>();
+        List<ManifestiPieghevoliFogliModel> mpfmList = new ArrayList<ManifestiPieghevoliFogliModel>();
 
-                        pr.setGrammaturaCopertina(prm.getGrammaturaCopertina());
-                        pr.setCategoria(prm.getCategoria());
+        if (o.getPubblicazioni() != null) {
+            for (Pubblicazione prm : o.getPubblicazioni()) {
+                if (prm.getRilegato()) {
+                    PubblicazioniRilegateModel pr = new PubblicazioniRilegateModel();
+                    pr.setId(prm.getId());
+                    pr.setAltezza(prm.getAltezza());
+                    pr.setLarghezza(prm.getLarghezza());
 
-                        prmList.add(pr);
-                    } else {
-                        ManifestiPieghevoliFogliModel mpfm = new ManifestiPieghevoliFogliModel();
-                        mpfm.setId(prm.getId());
-                        mpfm.setAltezza(prm.getAltezza());
-                        mpfm.setLarghezza(prm.getLarghezza());
-
-                        if (prm.getTipoDiCarta() != null) {
-                            TipoDiCartaModel tp = new TipoDiCartaModel();
-                            tp.setId(prm.getTipoDiCarta().getId());
-                            tp.setNome(prm.getTipoDiCarta().getNome());
-                            tp.setParametro(prm.getTipoDiCarta().getParametro());
-                            mpfm.setTipoDiCarta(tp);
-                        }
-                        mpfm.setGrammatura(prm.getGrammatura());
-                        mpfm.setTiratura(prm.getTiratura().intValue());
-                        mpfm.setCategoria(prm.getCategoria());
-
-                        mpfmList.add(mpfm);
+                    if (prm.getTipoDiCarta() != null) {
+                        TipoDiCartaModel tp = new TipoDiCartaModel();
+                        tp.setId(prm.getTipoDiCarta().getId());
+                        tp.setNome(prm.getTipoDiCarta().getNome());
+                        tp.setParametro(prm.getTipoDiCarta().getParametro());
+                        pr.setTipoDiCarta(tp);
                     }
+
+                    pr.setGrammatura(prm.getGrammatura());
+                    pr.setNumeroDiPagine(prm.getPagine().intValue());
+                    pr.setTiratura(prm.getTiratura().intValue());
+
+                    if (prm.getTipoDiCartaCopertina() != null) {
+                        TipoDiCartaModel tp = new TipoDiCartaModel();
+                        tp.setId(prm.getTipoDiCartaCopertina().getId());
+                        tp.setNome(prm.getTipoDiCartaCopertina().getNome());
+                        tp.setParametro(prm.getTipoDiCartaCopertina().getParametro());
+                        pr.setTipoDiCartaCopertina(tp);
+                    }
+
+                    pr.setGrammaturaCopertina(prm.getGrammaturaCopertina());
+                    pr.setCategoria(prm.getCategoria());
+
+                    prmList.add(pr);
+                } else {
+                    ManifestiPieghevoliFogliModel mpfm = new ManifestiPieghevoliFogliModel();
+                    mpfm.setId(prm.getId());
+                    mpfm.setAltezza(prm.getAltezza());
+                    mpfm.setLarghezza(prm.getLarghezza());
+
+                    if (prm.getTipoDiCarta() != null) {
+                        TipoDiCartaModel tp = new TipoDiCartaModel();
+                        tp.setId(prm.getTipoDiCarta().getId());
+                        tp.setNome(prm.getTipoDiCarta().getNome());
+                        tp.setParametro(prm.getTipoDiCarta().getParametro());
+                        mpfm.setTipoDiCarta(tp);
+                    }
+                    mpfm.setGrammatura(prm.getGrammatura());
+                    mpfm.setTiratura(prm.getTiratura().intValue());
+                    mpfm.setCategoria(prm.getCategoria());
+
+                    mpfmList.add(mpfm);
                 }
-                dm.setPubblicazioniRilegateModel(prmList);
-                dm.setManifestiPieghevoliFogliModel(mpfmList);
             }
+            dm.setPubblicazioniRilegateModel(prmList);
+            dm.setManifestiPieghevoliFogliModel(mpfmList);
         }
         return dm;
     }

@@ -6,6 +6,7 @@ import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.sitoWeb.SitoWebModel;
+import it.agilis.mens.azzeroCO2.shared.model.unaPubblicazione.BigliettiDaVisitaModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,6 +36,7 @@ public class OrdineModel extends BaseModel {
     private ConoscoCO2Model conoscoCO2Model;
     private SitoWebModel sitoWebModel;
     private NottiModel nottiModel;
+    private BigliettiDaVisitaModel bigliettiDaVisitaModel;
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
         return progettoDiCompensazioneModel;
@@ -186,5 +188,13 @@ public class OrdineModel extends BaseModel {
 
     public void setNottiModel(NottiModel nottiModel) {
         this.nottiModel = nottiModel;
+    }
+
+    public BigliettiDaVisitaModel getBigliettiDaVisita() {
+        return bigliettiDaVisitaModel;
+    }
+
+    public void setBigliettiDaVisitaModel(BigliettiDaVisitaModel bigliettiDaVisitaModel) {
+        this.bigliettiDaVisitaModel = bigliettiDaVisitaModel;
     }
 }

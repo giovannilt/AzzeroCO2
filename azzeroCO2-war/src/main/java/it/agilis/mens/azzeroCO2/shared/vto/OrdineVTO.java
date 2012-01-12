@@ -41,6 +41,7 @@ public class OrdineVTO implements Serializable {
     private ConoscoCO2Model conoscoCO2Model;
     private SitoWebModel sitoWebModel;
     private String eventiType;
+    private BigliettiDaVisitaModelVTO bigliettiDaVisitaVTO;
 
     public SitoWebModel getSitoWebModel() {
         return sitoWebModel;
@@ -185,5 +186,13 @@ public class OrdineVTO implements Serializable {
     public void setEventiType(String eventiType) {
         this.eventiType = eventiType;
 
+    }
+
+    public void setBigliettiDaVisitaVTO(BigliettiDaVisitaModelVTO bigliettiDaVisitaVTO) {
+        this.bigliettiDaVisitaVTO = bigliettiDaVisitaVTO;
+    }
+
+    public BigliettiDaVisitaModelVTO getBigliettiDaVisitaVTO() {
+        return bigliettiDaVisitaVTO;
     }
 }
