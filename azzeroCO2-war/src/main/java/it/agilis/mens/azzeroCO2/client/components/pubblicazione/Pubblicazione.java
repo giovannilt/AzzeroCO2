@@ -206,6 +206,7 @@ public class Pubblicazione extends LayoutContainer {
         formDettaglio.clear();
         formPubblicazioniRilegate.clear(true);
         formManifestipieghevoliFogli.clear(true);
+        formBigliettiDaVisita.clear();
 
         formRiepilogo.clear();
         formAcquisto.clear();
@@ -238,6 +239,7 @@ public class Pubblicazione extends LayoutContainer {
 
         eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
         eventoModel.setManifestiPieghevoliFogliModel(formManifestipieghevoliFogli.getManifestiPieghevoliFogliModel());
+        eventoModel.setBigliettiDaVisitaModel(formBigliettiDaVisita.getBigliettiDaVisitaModel());
 
         eventoModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
 

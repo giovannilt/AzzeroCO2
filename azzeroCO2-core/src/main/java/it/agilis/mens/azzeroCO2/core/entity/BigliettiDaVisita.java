@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,7 +23,7 @@ public class BigliettiDaVisita {
     private TipoDiCarta tipoDiCartaCartelline;
     private Double grammaturaCartelline;
 
-    @ManyToOne
+    @OneToOne
     private Ordine ordine;
 
     public Long getId() {
