@@ -355,7 +355,7 @@ public class CalcoliHelper {
         notti.setEventi(e.name());
         notti.setOggetto("Pernottamenti");
         Double co2 = -1.0;
-        if (nottiModel.getNotti() > 0) {
+        if (nottiModel.getNotti() != null && nottiModel.getNotti() > 0) {
             String energiaDett = nottiModel.getNotti() + " notti";
             notti.setDettagli(energiaDett);
             CoefficienteModel coefficienteModel = coefficienti.get("PERNOT");

@@ -22,7 +22,7 @@ public class ProgettoCompensazione {
     private Long id;
 
     private String nome;
-    @Column(length = 500)
+    @Column(length = 900)
     private String descrizione;
     private Double prezzo;
     private String img;
