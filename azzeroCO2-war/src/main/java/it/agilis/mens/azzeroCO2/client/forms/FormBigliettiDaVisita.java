@@ -8,9 +8,7 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.ComboBox;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
@@ -36,12 +34,13 @@ public class FormBigliettiDaVisita extends LayoutContainer {
     private BigliettiDaVisitaModel bigliettiDaVisitaModel = new BigliettiDaVisitaModel();
     private ToolBar toolBar = new ToolBar();
     private ListStore<TipoDiCartaModel> tipoDiCartaModelListStore = new ListStore<TipoDiCartaModel>();
-    private final FormPanel panel = createGroupForm();
-    private final FormBinding binding = new FormBinding(panel, true);
+    private final FormPanel panel;
+    private final FormBinding binding;
 
     //private ContentPanel cpEst = new ContentPanel();
     public FormBigliettiDaVisita() {
-        //setDefault();
+        panel = createGroupForm();
+        binding = new FormBinding(panel, true);
     }
 
     @SuppressWarnings("rawtypes")
@@ -49,33 +48,9 @@ public class FormBigliettiDaVisita extends LayoutContainer {
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        BorderLayout layout = new BorderLayout();
-        setLayout(layout);
-        layout.setEnableState(false);
-
-        ContentPanel cp = new ContentPanel();
-        cp.setFrame(true);
-        cp.setHeaderVisible(false);
-        cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-
-        ContentPanel textContent = new ContentPanel();
-        textContent.setHeaderVisible(false);
-        textContent.setLayout(new RowLayout(Style.Orientation.VERTICAL));
-        textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
-        Text testo = new Text(" Si tratta di pubblicazioni non rilegate. <br><br>");
-        testo.setStyleAttribute("font-size", "9pt");
+        setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
 
-        Text note = new Text("Puoi inserire più di un formato. ");
-        note.setStyleAttribute("font-size", "9pt");
-        note.setStyleAttribute("font-style", "italic");
-
-        textContent.add(testo);
-        textContent.add(note);
-
-        cp.add(panel, new RowData(1, 1));
-
-        //panel.setHeading(manifestiPieghevoliFogliModel.getModels().get(0).getCategoria());
         panel.setHeading("Biglietti da visita e cartelline");
         ToolButton tool1 = new ToolButton("x-tool-help");
         panel.getHeader().addTool(tool1);
@@ -94,13 +69,14 @@ public class FormBigliettiDaVisita extends LayoutContainer {
             }
         });
 
+        add(panel, new RowData(1, .97));
     }
 
     @Override
     protected void onLoad() {
         super.onLoad();
         toolBar.setStyleAttribute("border-bottom", "3px solid orange");
-        if (panel != null) {
+        if (panel != null && panel.getBody() != null) {
             panel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
             panel.getBody().setStyleAttribute("border-style", "solid");
             panel.getBody().setStyleAttribute("border-top", "3px solid orange");
@@ -108,7 +84,6 @@ public class FormBigliettiDaVisita extends LayoutContainer {
             panel.getBody().setStyleAttribute("margin-bottom", "0");
         }
     }
-
 
     private FormPanel createGroupForm() {
         FormPanel panel = new FormPanel();
