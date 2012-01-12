@@ -19,7 +19,6 @@ import java.util.Map;
 @RemoteServiceRelativePath("huston")
 public interface HustonService extends RemoteService {
 
-
     void saveCoupon(CouponModel coupon) throws IllegalArgumentException;
 
     Boolean saveCoupons(List<CouponModel> modifiedRecords) throws IllegalArgumentException;
@@ -31,7 +30,6 @@ public interface HustonService extends RemoteService {
     UserInfoModel getUserInfo(String userInfo, String password) throws IllegalArgumentException;
 
     List<TipoDiCartaModel> getTipoDiCarta() throws IllegalArgumentException;
-
 
     // TODO mmm Migliorare la gestione dello USER
     void disconnectUser() throws IllegalArgumentException;

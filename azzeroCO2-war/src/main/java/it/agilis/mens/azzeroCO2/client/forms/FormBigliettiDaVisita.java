@@ -100,13 +100,13 @@ public class FormBigliettiDaVisita extends LayoutContainer {
     protected void onLoad() {
         super.onLoad();
         toolBar.setStyleAttribute("border-bottom", "3px solid orange");
-
-        panel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
-        panel.getBody().setStyleAttribute("border-style", "solid");
-        panel.getBody().setStyleAttribute("border-top", "3px solid orange");
-        panel.getBody().setStyleAttribute("border-width", "3px 0");
-        panel.getBody().setStyleAttribute("margin-bottom", "0");
-
+        if (panel != null) {
+            panel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+            panel.getBody().setStyleAttribute("border-style", "solid");
+            panel.getBody().setStyleAttribute("border-top", "3px solid orange");
+            panel.getBody().setStyleAttribute("border-width", "3px 0");
+            panel.getBody().setStyleAttribute("margin-bottom", "0");
+        }
     }
 
 

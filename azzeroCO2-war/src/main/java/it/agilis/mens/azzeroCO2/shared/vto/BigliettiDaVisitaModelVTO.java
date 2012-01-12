@@ -1,5 +1,7 @@
 package it.agilis.mens.azzeroCO2.shared.vto;
 
+import java.io.Serializable;
+
 /**
  * Created by IntelliJ IDEA.
  * User: giovannilt
@@ -7,7 +9,7 @@ package it.agilis.mens.azzeroCO2.shared.vto;
  * Time: 10.46
  * To change this template use File | Settings | File Templates.
  */
-public class BigliettiDaVisitaModelVTO {
+public class BigliettiDaVisitaModelVTO implements Serializable {
 
     private Long id;
     private Integer tiraturaBiglietti;
