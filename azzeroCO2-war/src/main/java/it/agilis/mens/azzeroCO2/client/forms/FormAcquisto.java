@@ -206,6 +206,7 @@ public class FormAcquisto extends LayoutContainer {
                 c.setLayout(layout);
 
                 titoloProgettoScelto.setWidth(220);
+                titoloProgettoScelto.setStyleAttribute("padding-bottom","30px");
                 c.add(titoloProgettoScelto);
 
                 panel.add(c, new FormData("100%"));
@@ -340,7 +341,7 @@ public class FormAcquisto extends LayoutContainer {
                 String descr = model.getDescrizione() != null || model.getDescrizione().length() > 0 ? model.getDescrizione() : "";
                 grid.setStyleAttribute("white-space", "normal");
                 config.style = "border-bottom:1px solid gray !important;";
-                return new HTML("<table><tbody><tr><td>" + model.getNome() + "</td></tr>" +
+                return new HTML("<table><tbody><tr><td style='white-space:pre-wrap'>" + model.getNome() + "</td></tr>" +
                         "<tr><td style='font-size:11px;white-space:pre-wrap;'>" + descr + "</td></tr></tbody></table>");
             }
         });
