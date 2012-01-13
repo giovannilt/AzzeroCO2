@@ -6,7 +6,10 @@ import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.client.mvc.events.*;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.UnAnnoDiAttivitaView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
@@ -14,6 +17,7 @@ import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
@@ -44,7 +48,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
         registerEventTypes(UnAnnoDiAttivitaEvents.Save);
         registerEventTypes(UnAnnoDiAttivitaEvents.Riepilogo);
         registerEventTypes(UnAnnoDiAttivitaEvents.Acquisto);
-        registerEventTypes(UnAnnoDiAttivitaEvents.LoadEvento);
+        registerEventTypes(UnAnnoDiAttivitaEvents.LoadUnAnnoDiAttivita);
         registerEventTypes(UnAnnoDiAttivitaEvents.CaricaCoefficienti);
         registerEventTypes(UnAnnoDiAttivitaEvents.CaricaProgettiDiCompensazione);
         registerEventTypes(UnAnnoDiAttivitaEvents.PreviousText);
@@ -62,12 +66,12 @@ public class UnAnnoDiAttivitaController extends BaseController {
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(UnAnnoDiAttivitaEvents.InAttesaDiConfermaPagamento)) {
-            final OrdineVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(annoView.getRiepilogo());  //TODO da sistemare?
-
+            final MyAsyncCallback asyncCallback = new MyAsyncCallback();
             final Timer timer = new Timer() {
                 public void run() {
-                    MyAsyncCallback asyncCallback = new MyAsyncCallback();
-                    getHustonService().isPagato(riepilogo, getUserInfoModel(), asyncCallback);
+                    OrdineModel riepilogo = annoView.getRiepilogo();
+                    riepilogo.setEventiType(Eventi.ANNO_DI_ATTIVITA.name());
+                    getHustonService().isPagato(AzzerroCO2UtilsClientHelper.getDettaglioVTO(riepilogo), getUserInfoModel(), asyncCallback);
                     asyncCallback.setTimer(this);
                 }
             };
@@ -77,7 +81,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
             annoView.showRiepilogo();
         } else if (event.getType().equals(UnAnnoDiAttivitaEvents.Riepilogo)) {
             setCoefficentitoEventoView();
-        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.LoadEvento)) {
+        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.LoadUnAnnoDiAttivita)) {
             setCoefficienti();
             setProgettiDiCompensazione();
             annoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
@@ -99,43 +103,44 @@ public class UnAnnoDiAttivitaController extends BaseController {
             setCoefficienti();
             getHustonService().getTipoDiCarta(tipoDiCartaCallBack);
             forwardToView(annoView, event);
-        } else if (event.getType().equals(EventoEvents.Acquisto)) {
-            if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
-                Dispatcher.forwardEvent(LoginEvents.ShowForm);
-            } else {
-                if (getProgettiDiCompensazioneList().size() == 0) {
-                    setProgettiDiCompensazione();
-                }
-                annoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
-            }
-        } else if (event.getType().equals(EventoEvents.Conferma)) {
-            OrdineModel model = annoView.getRiepilogo();
-            model.setEventiType(Eventi.ANNO_DI_ATTIVITA.name());
-            double kgCO2 = getTotaleKgCO2(model);
-
-            // TODO Calcolare il totale togliendo lo sconto COUPON
-            if (model.getProgettoDiCompensazioneModel() != null) {
-                PagamentoModel pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
-                pagamentoModel.setLastUpdate(new Date());
-                pagamentoModel.setKgCO2(kgCO2);
-                model.setPagamentoModel(pagamentoModel);
-                Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
-            } else {
-                Info.display("Info", "Seleziona il Progetto di compensazione");
-            }
-        } else if (event.getType().equals(EventoEvents.CaricaProgettiDiCompensazione)) {
+        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.Acquisto)) {
             if (getProgettiDiCompensazioneList().size() == 0) {
                 setProgettiDiCompensazione();
             }
             annoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
-        } else if (event.getType().equals(EventoEvents.CaricaCoefficienti)) {
+        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.Conferma)) {
+            if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
+                Dispatcher.forwardEvent(LoginEvents.ShowForm);
+            } else {
+                OrdineModel model = annoView.getRiepilogo();
+                model.setEventiType(Eventi.ANNO_DI_ATTIVITA.name());
+                double kgCO2 = getTotaleKgCO2(model);
+
+                // TODO Calcolare il totale togliendo lo sconto COUPON
+                if (model.getProgettoDiCompensazioneModel() != null) {
+                    PagamentoModel pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
+                    pagamentoModel.setLastUpdate(new Date());
+                    pagamentoModel.setKgCO2(kgCO2);
+                    model.setPagamentoModel(pagamentoModel);
+                    Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
+                } else {
+                    Info.display("Info", "Seleziona il Progetto di compensazione");
+                }
+            }
+        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.CaricaProgettiDiCompensazione)) {
+            if (getProgettiDiCompensazioneList().size() == 0) {
+                setProgettiDiCompensazione();
+            }
+            annoView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
+        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.CaricaCoefficienti)) {
             setCoefficienti();
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());
             annoView.setUserInfo(getUserInfoModel());
-        } else if (event.getType().equals(EventoEvents.Save)) {
+        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.Save)) {
             if (event.getData() instanceof OrdineModel) {
                 OrdineModel model = (OrdineModel) event.getData();
+                model.setEventiType(Eventi.ANNO_DI_ATTIVITA.name());
                 save(model);
             } else {
                 save(null);
@@ -149,15 +154,18 @@ public class UnAnnoDiAttivitaController extends BaseController {
         if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
             Dispatcher.forwardEvent(LoginEvents.ShowForm);
         } else if (model == null) {
-            saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(annoView.getRiepilogo()));
+            OrdineModel riepilogo = annoView.getRiepilogo();
+            riepilogo.setEventiType(Eventi.ANNO_DI_ATTIVITA.name());
+            saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(riepilogo));
         } else if (model != null) {
+            model.setEventiType(Eventi.ANNO_DI_ATTIVITA.name());
             saveVTO(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
         }
     }
 
     private void saveVTO(final OrdineVTO riepilogo) {
         if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
-            Info.display("Warning", "Nome Evento Mancante");
+            Info.display("Warning", "Nome Anno di attivà Mancante");
         } else {
             AsyncCallback<OrdineVTO> dettaglio = new AsyncCallback<OrdineVTO>() {
                 public void onFailure(Throwable caught) {
@@ -169,7 +177,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
                     if (result != null) {
                         OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         annoView.setDettaglioModel(model);
-                        Info.display("Info", "Evento " + riepilogo.getNome() + " salvato con successo.");
+                        Info.display("Info", "Anno di Attivià " + riepilogo.getNome() + " salvato con successo.");
                     }
                 }
             };
@@ -192,9 +200,9 @@ public class UnAnnoDiAttivitaController extends BaseController {
     }
 
     private double getTotaleKgCO2(OrdineModel model) {
-        List<RiepilogoModel> eventoRiepilogoModels = annoView.riepilogo(getCoefficientiMAP());
+        List<RiepilogoModel> riepilogo = annoView.riepilogo(getCoefficientiMAP());
         double totale = 0;
-        for (RiepilogoModel r : eventoRiepilogoModels) {
+        for (RiepilogoModel r : riepilogo) {
             totale += r.getKgCO2();
         }
         return totale;
@@ -202,6 +210,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
 
     class MyAsyncCallback implements AsyncCallback<OrdineVTO> {
         private Timer timer;
+        private int numeroDiVolte = 12;
 
         public void onFailure(Throwable caught) {
             Info.display("Error", "Errore impossibile connettersi al server " + caught);
@@ -210,15 +219,25 @@ public class UnAnnoDiAttivitaController extends BaseController {
         @Override
         public void onSuccess(OrdineVTO result) {
             if (result != null) {
-                Info.display("Info", "Pagamento Avvenuto con sucesso");
-                Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
-
-
-                annoView.showConferma(result);
-                sentMail(result);
+                if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
+                    Info.display("Info", "Pagamento Avvenuto con sucesso");
+                    Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
+                    annoView.showConferma(result);
+                    sentMail(result);
+                } else {
+                    if (numeroDiVolte > 0) {
+                        Info.display("Info", "Non Ancora pagato");
+                        getTimer().schedule(10000);
+                        numeroDiVolte--;
+                    } else {
+                        Info.display("Info", "Evento non pagato, atteso pagamento per piu' di 2 minuti, si consiglia di ricaricare ");
+                        Dispatcher.forwardEvent(PagamentoSellaEvents.EnableButton);
+                    }
+                }
+                OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
+                annoView.setDettaglioModel(model);
             } else {
-                Info.display("Info", "NON PAGATO");
-                getTimer().schedule(10000);
+                Info.display("Error", "Errore impossibile connettersi al server ERRORE DI SISTEMA");
             }
         }
 
@@ -230,6 +249,5 @@ public class UnAnnoDiAttivitaController extends BaseController {
             return timer;
         }
     }
-
 
 }

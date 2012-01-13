@@ -57,17 +57,17 @@ public class Ordini extends LayoutContainer {
         final NumberFormat number = NumberFormat.getFormat("0.00");
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
-        ColumnConfig column = new ColumnConfig("ordineId", "Num. Ordine", 100);
+        ColumnConfig column = new ColumnConfig("ordineId", "Num", 50);
         configs.add(column);
 
-        column = new ColumnConfig("nome", "Descrizione", 200);
+        column = new ColumnConfig("nome", "Descrizione", 180);
         configs.add(column);
 
         column = new ColumnConfig("lastUpdate", "Ultima Modifica", 120);
         column.setDateTimeFormat(DateTimeFormat.getFormat("dd.MM.y HH:mm"));
         configs.add(column);
 
-        column = new ColumnConfig("euro", "Euro", 150);
+        column = new ColumnConfig("euro", "Euro", 100);
         column.setAlignment((Style.HorizontalAlignment.RIGHT));
         column.setRenderer(new GridCellRenderer<OrdineModel>() {
             public String render(OrdineModel model, String property, ColumnData config, int rowIndex, int colIndex,
@@ -81,7 +81,7 @@ public class Ordini extends LayoutContainer {
         });
         configs.add(column);
 
-        column = new ColumnConfig("kgCO2", "kgCO2", 150);
+        column = new ColumnConfig("kgCO2", "kgCO2", 100);
         column.setAlignment((Style.HorizontalAlignment.RIGHT));
         column.setRenderer(new GridCellRenderer<OrdineModel>() {
             public String render(OrdineModel model, String property, ColumnData config, int rowIndex, int colIndex,
@@ -113,7 +113,7 @@ public class Ordini extends LayoutContainer {
         column.setRenderer(new GridCellRenderer<OrdineModel>() {
             public String render(OrdineModel model, String property, ColumnData config, int rowIndex, int colIndex,
                                  ListStore<OrdineModel> store, Grid<OrdineModel> grid) {
-                if (model != null ) {
+                if (model != null) {
                     return model.getEventiType();
                 } else {
                     return "NULL";

@@ -175,6 +175,8 @@ public class Pubblicazione extends LayoutContainer {
                     }
                     if (pubblicazioneoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(PubblicazioniEvents.Acquisto);
+                    }
+                    if (pubblicazioneoTab.getItems().get(i).getText().equalsIgnoreCase("Vai al pagamento")) {
                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return pubblicazioneoTab.getItems().get(i).getText();
                         }
@@ -182,9 +184,7 @@ public class Pubblicazione extends LayoutContainer {
                     if (pubblicazioneoTab.getItems().get(i).getText().equalsIgnoreCase("Riepilogo")) {
                         Dispatcher.forwardEvent(PubblicazioniEvents.Riepilogo);
                     }
-
                     item.setEnabled(false);
-
                     pubblicazioneoTab.getItems().get(i).setEnabled(true);
                     pubblicazioneoTab.setSelection(pubblicazioneoTab.getItems().get(i));
 

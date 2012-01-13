@@ -25,7 +25,7 @@ public class EventoNorth extends LayoutContainer {
 
     private ToolButton close = new ToolButton("x-tool-close");
     private ToolButton save = new ToolButton("x-tool-save");
-    
+
     @Override
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
@@ -43,7 +43,6 @@ public class EventoNorth extends LayoutContainer {
         c.add(new Text(), flex);
 
 
-      
         save.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
@@ -52,16 +51,11 @@ public class EventoNorth extends LayoutContainer {
         });
         c.add(save, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
 
-       
 
         close.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-
                 Dispatcher.forwardEvent(EventoEvents.ShowConfermDialog);
-
-                //   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
-                //   Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
             }
         });
         c.add(close, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
