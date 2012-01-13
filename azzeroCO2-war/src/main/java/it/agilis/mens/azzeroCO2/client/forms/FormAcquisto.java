@@ -138,6 +138,7 @@ public class FormAcquisto extends LayoutContainer {
         panel.setSize(300, 500);  //300,-1 sd
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
 
+
         {
             LayoutContainer c = new LayoutContainer();
             HBoxLayout layout = new HBoxLayout();
@@ -146,6 +147,7 @@ public class FormAcquisto extends LayoutContainer {
             c.setLayout(layout);
             LabelField label = new LabelField("Evento: ");
             label.setStyleAttribute("font-size", "16px");
+
             c.add(label);
 
             panel.add(c);

@@ -66,7 +66,7 @@ public class Pubblicazione extends LayoutContainer {
         riepilogo.setEnabled(false);
         pubblicazioneoTab.add(riepilogo);
 
-        TabItem acquisto = new TabItem("Acquisto");
+        TabItem acquisto = new TabItem("acquisto");
         acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         pubblicazioneoTab.add(acquisto);
