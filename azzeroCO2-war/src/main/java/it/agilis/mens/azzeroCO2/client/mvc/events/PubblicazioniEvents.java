@@ -28,6 +28,7 @@ public class PubblicazioniEvents {
     public static final EventType LoadPubblicazione = new EventType();
     public static final EventType Acquisto = new EventType();
     public static final EventType Conferma = new EventType();
+    public static final EventType GoToBegin = new EventType();
 
     public static final EventType InAttesaDiConfermaPagamento = new EventType();
 }

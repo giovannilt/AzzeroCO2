@@ -59,10 +59,12 @@ public class PubblicazioniView extends View {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit(event);
+        } else if (eventType.equals(PubblicazioniEvents.GoToBegin)) {
+            pubblicazioneDettaglio.goToBegin();
         } else if (eventType.equals(PubblicazioniEvents.Next)) {
             onNext(event);
         } else if (eventType.equals(PubblicazioniEvents.ClearStep)) {
-            pubblicazioneDettaglio.clearStep((RiepilogoModel) event.getData());
+//            pubblicazioneDettaglio.clearStep((RiepilogoModel) event.getData());
             OrdineModel riepilogo = pubblicazioneDettaglio.riepilogo();
             setRiassunto(riepilogo, false, false, false);
         } else if (eventType.equals(PubblicazioniEvents.ClearPanel)) {

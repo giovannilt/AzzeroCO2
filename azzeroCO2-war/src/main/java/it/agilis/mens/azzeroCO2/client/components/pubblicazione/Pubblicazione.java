@@ -9,7 +9,6 @@ import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
-import it.agilis.mens.azzeroCO2.client.forms.evento.EventoFormDettaglio;
 import it.agilis.mens.azzeroCO2.client.forms.publicazioni.FormBigliettiDaVisita;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
@@ -36,7 +35,6 @@ import java.util.List;
 public class Pubblicazione extends LayoutContainer {
 
     private final TabPanel pubblicazioneoTab = new TabPanel();
-    private EventoFormDettaglio formDettaglio = new EventoFormDettaglio();
 
     private final FormPubblicazioniRilegate formPubblicazioniRilegate = new FormPubblicazioniRilegate();
     private final FormManifestiPieghevoliFogli formManifestipieghevoliFogli = new FormManifestiPieghevoliFogli();
@@ -48,6 +46,7 @@ public class Pubblicazione extends LayoutContainer {
     private static int posizioniLabel = 0;
     private List<List<String>> posizioniText = new ArrayList<List<String>>();
     private UserInfoModel userInfoModel;
+    private OrdineModel ordineModel = new OrdineModel();
 
     @Override
     protected void onRender(Element target, int index) {
@@ -206,7 +205,6 @@ public class Pubblicazione extends LayoutContainer {
     }
 
     public void clearPanel() {
-        formDettaglio.clear();
         formPubblicazioniRilegate.clear(true);
         formManifestipieghevoliFogli.clear(true);
         formBigliettiDaVisita.clear();
@@ -214,35 +212,27 @@ public class Pubblicazione extends LayoutContainer {
         formRiepilogo.clear();
         formAcquisto.clear();
         formConferma.clear();
-
-
-        if (posizioniLabel == 1) {
-            return;
-        }
-        while (posizioniLabel > 0) {
-            previusTab();
-        }
     }
 
     public OrdineModel riepilogo() {
-        OrdineModel eventoModel = formDettaglio.getOrdineModel();
-        eventoModel.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
 
-        eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
-        eventoModel.setManifestiPieghevoliFogliModel(formManifestipieghevoliFogli.getManifestiPieghevoliFogliModel());
-        eventoModel.setBigliettiDaVisitaModel(formBigliettiDaVisita.getBigliettiDaVisitaModel());
+        ordineModel.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
 
-        eventoModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
+        ordineModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
+        ordineModel.setManifestiPieghevoliFogliModel(formManifestipieghevoliFogli.getManifestiPieghevoliFogliModel());
+        ordineModel.setBigliettiDaVisitaModel(formBigliettiDaVisita.getBigliettiDaVisitaModel());
 
-        return eventoModel;
+        ordineModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
+
+        return ordineModel;
     }
 
-    public void restore(OrdineModel eventoModel) {
-        formDettaglio.setOrdineModel(eventoModel);
-        formPubblicazioniRilegate.setPubblicazioniRilegateModel(eventoModel.getPubblicazioniRilegateModel());
-        formManifestipieghevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
-
-        formAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
+    public void restore(OrdineModel ordineModel) {
+        this.ordineModel = ordineModel;
+        formPubblicazioniRilegate.setPubblicazioniRilegateModel(ordineModel.getPubblicazioniRilegateModel());
+        formManifestipieghevoliFogli.setManifestiPieghevoliFogliModel(ordineModel.getManifestiPieghevoliFogliModel());
+        formAcquisto.setProgettoDiCompensazione(ordineModel.getProgettoDiCompensazioneModel());
+        formBigliettiDaVisita.setBigliettiDaVisitaModel(ordineModel.getBigliettiDaVisita());
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
@@ -313,14 +303,6 @@ public class Pubblicazione extends LayoutContainer {
         }
     }
 
-    public void clearStep(RiepilogoModel data) {
-        if (data.getOggetto().toLowerCase().startsWith("Pubblicazioni rilegate".toLowerCase())) {
-            formPubblicazioniRilegate.clear(true);
-        } else if (data.getOggetto().toLowerCase().startsWith("Manifesti".toLowerCase())) {
-            formManifestipieghevoliFogli.clear(true);
-        }
-    }
-
     public void showConferma(OrdineVTO result) {
         pubblicazioneoTab.getSelectedItem().disable();
         posizioniLabel++;
@@ -330,5 +312,11 @@ public class Pubblicazione extends LayoutContainer {
         Dispatcher.forwardEvent(PubblicazioniEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
     }
 
+    public void goToBegin() {
+        while (posizioniLabel > 1) {
+            previusTab();
+        }
+        previusTab();
+    }
 
 }
