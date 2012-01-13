@@ -21,6 +21,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.unaPubblicazione.BigliettiDaVisitaModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -257,13 +258,17 @@ public class FormBigliettiDaVisita extends LayoutContainer {
     }
 
     public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {
-        for(TipoDiCartaModel t: tipoDiCarta){
-               if(t.getNome().equalsIgnoreCase("Carta da giornale") || t.getNome().equalsIgnoreCase("Carta da rivista")){
-                   tipoDiCarta.remove(t);
-               }
+        List<TipoDiCartaModel> tp = new ArrayList<TipoDiCartaModel>();
+        for (TipoDiCartaModel t : tipoDiCarta) {
+            if (t.getNome().equalsIgnoreCase("Carta da giornale") ||
+                    t.getNome().equalsIgnoreCase("Carta da rivista")) {
+
+            } else {
+                tp.add(t);
+            }
         }
-        tipoDiCartaModelListStore.add(tipoDiCarta);
-        
+        tipoDiCartaModelListStore.add(tp);
+
     }
 
     public void clear() {
