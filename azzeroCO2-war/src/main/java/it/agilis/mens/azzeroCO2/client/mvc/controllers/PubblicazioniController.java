@@ -57,6 +57,7 @@ public class PubblicazioniController extends BaseController {
         registerEventTypes(PubblicazioniEvents.ShowInfoDialog);
         registerEventTypes(PubblicazioniEvents.ShowRiepilogo);
         registerEventTypes(PubblicazioniEvents.ShowStep);
+        registerEventTypes(PubblicazioniEvents.GoToBegin);
         registerEventTypes(PubblicazioniEvents.ClearStep);
         registerEventTypes(PubblicazioniEvents.InAttesaDiConfermaPagamento);
     }

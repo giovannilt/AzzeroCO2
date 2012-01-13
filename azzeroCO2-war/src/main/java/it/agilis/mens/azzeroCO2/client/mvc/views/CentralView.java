@@ -127,8 +127,8 @@ public class CentralView extends View {
                     Dispatcher.forwardEvent(EventoEvents.CaricaCoefficienti);
                     Dispatcher.forwardEvent(EventoEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.EVENTO);
-                     Dispatcher.forwardEvent(EventoEvents.NextText, "Energia");
-                     Dispatcher.forwardEvent(EventoEvents.GoToBegin);
+                    Dispatcher.forwardEvent(EventoEvents.NextText, "Energia");
+                    Dispatcher.forwardEvent(EventoEvents.GoToBegin);
 
                 }
             });
@@ -171,11 +171,11 @@ public class CentralView extends View {
             pubblicazione.setIconAlign(Style.IconAlign.TOP);
             pubblicazione.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 public void componentSelected(ButtonEvent ce) {
-                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.CaricaCoefficienti);
-                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.CaricaProgettiDiCompensazione);
+                    Dispatcher.forwardEvent(PubblicazioniEvents.CaricaCoefficienti);
+                    Dispatcher.forwardEvent(PubblicazioniEvents.CaricaProgettiDiCompensazione);
                     setActiveItem(Eventi.UNA_PUBBLICAZIONE);
-                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, "Manifesti pieghevoli e fogli");
-                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.GoToBegin);
+                    Dispatcher.forwardEvent(PubblicazioniEvents.NextText, "Manifesti pieghevoli e fogli");
+                    Dispatcher.forwardEvent(PubblicazioniEvents.GoToBegin);
                 }
             });
             pubblicazione.setSize(212, 200);//(213, 210);
@@ -248,7 +248,7 @@ public class CentralView extends View {
                     //  login.setWidth(290);
                     //login.getHeader().setTextStyle("x-panel-header-white");
                     login.setHeading("Login");
-                    login.getHeader().setStyleAttribute("padding-left","20px");
+                    login.getHeader().setStyleAttribute("padding-left", "20px");
                     login.getHeader().setStyleName("x-panel-header-white");
 
                     //login.getHeader().setStyleAttribute("font-color","white !important");
@@ -325,11 +325,11 @@ public class CentralView extends View {
                     benvenuto.setStyleAttribute("font-family", "arial");
 
                     benvenuto.setBounds(30, 30, 250, 180);
-                    benvenuto.setStyleAttribute("padding-top","10");
-                    benvenuto.setStyleAttribute("padding-left","12px");
-                    benvenuto.setStyleAttribute("font-size","14px");
-                    benvenuto.setStyleAttribute("border-top","3px solid");
-                    benvenuto.setStyleAttribute("border-color","#22729E");
+                    benvenuto.setStyleAttribute("padding-top", "10");
+                    benvenuto.setStyleAttribute("padding-left", "12px");
+                    benvenuto.setStyleAttribute("font-size", "14px");
+                    benvenuto.setStyleAttribute("border-top", "3px solid");
+                    benvenuto.setStyleAttribute("border-color", "#22729E");
 
 
                     rigo.add(benvenuto, new RowData(1, 1, new Margins(29, 10, 10, 10)));
@@ -340,24 +340,25 @@ public class CentralView extends View {
                 c.add(logInLogOut, new RowData(1, 0.3, new Margins(1, 1, 1, 1)));
             }
             {
-                ContentPanel compensazione = new ContentPanel(){
-                @Override
-                        protected void onLoad() {
-                            super.onLoad();
-                            //getBody().setStyleAttribute("border-bottom", "3px solid orange");
-                            getBody().setStyleAttribute("border-style", "solid");
-                            getBody().setStyleAttribute("border-top", "3px solid #22729E");
-                            getBody().setStyleAttribute("border-width", "3px 0");
-                            //getBody().setStyleAttribute("margin-bottom", "0");
+                ContentPanel compensazione = new ContentPanel() {
+                    @Override
+                    protected void onLoad() {
+                        super.onLoad();
+                        //getBody().setStyleAttribute("border-bottom", "3px solid orange");
+                        getBody().setStyleAttribute("border-style", "solid");
+                        getBody().setStyleAttribute("border-top", "3px solid #22729E");
+                        getBody().setStyleAttribute("border-width", "3px 0");
+                        //getBody().setStyleAttribute("margin-bottom", "0");
 
-                            //To change body of overridden methods use File | Settings | File Templates.
-                        }                                       };
+                        //To change body of overridden methods use File | Settings | File Templates.
+                    }
+                };
 
 
                 compensazione.setHeading("Cos'e' la compensazione?");
-                compensazione.setStyleAttribute("padding-top","40");
-                compensazione.getHeader().setStyleAttribute("padding-top","30px");
-                compensazione.getHeader().setStyleAttribute("padding-left","20px");
+                compensazione.setStyleAttribute("padding-top", "40");
+                compensazione.getHeader().setStyleAttribute("padding-top", "30px");
+                compensazione.getHeader().setStyleAttribute("padding-left", "20px");
                 compensazione.getHeader().setStyleName("x-panel-header-white");
                 VBoxLayout layoutCompensazione = new VBoxLayout();
                 layoutCompensazione.setPadding(new Padding(5));
@@ -366,8 +367,8 @@ public class CentralView extends View {
 
                 Text testo = new Text("Compensare significa ridurre la quantità di CO2 che viene immessa in atmosfera tramite interventi di forestazione  o generando  energia da fonti rinnovabili. Nel primo caso la CO2 viene assorbita dagli alberi, nel secondo non viene prodotta.");
                 testo.setStyleAttribute("font-family", "arial");
-                testo.setStyleAttribute("font-color","white");
-                testo.setStyleAttribute("font-size","14px");
+                testo.setStyleAttribute("font-color", "white");
+                testo.setStyleAttribute("font-size", "14px");
                 testo.setBounds(250, 250, 250, 180);
                 Image azzeroCO2Stemp = new Image(AzzeroCO2Resources.INSTANCE.azzeroCO2Stemp());
                 azzeroCO2Stemp.setAltText("AzzeroCO2");
