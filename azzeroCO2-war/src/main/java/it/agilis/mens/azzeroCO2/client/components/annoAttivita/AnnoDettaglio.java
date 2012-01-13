@@ -45,7 +45,7 @@ public class AnnoDettaglio extends LayoutContainer {
     private final FormBigliettiDaVisita formBigliettiDaVisita = new FormBigliettiDaVisita();
     private final FormSitoWeb formSitoWeb = new FormSitoWeb();
 
-    private final FormRiepilogo formRiepilogo = new FormRiepilogo();
+    public final FormRiepilogo formRiepilogo = new FormRiepilogo();
     private final FormAcquisto eventoFormAcquisto = new FormAcquisto();
     private final FormConferma formConferma = new FormConferma();
     private static int posizioniLabel = 1;
@@ -275,38 +275,43 @@ public class AnnoDettaglio extends LayoutContainer {
     }
 
     public OrdineModel riepilogo() {
-        OrdineModel eventoModel = formDettaglio.getOrdineModel();
-        eventoModel.setEnergiaModel(formEnergia.getEnergiaModel());
-        eventoModel.setTrasportoPersoneModel(formTrasportoPersone.getTrasportoPersoneModel());
-        eventoModel.setNottiModel(formPernottamenti.getNottiModel());
-        eventoModel.setTrasportoMerciModel(formTrasportoMerci.getTrasportoMerciModel());
+        OrdineModel model = formDettaglio.getOrdineModel();
+        model.setEnergiaModel(formEnergia.getEnergiaModel());
+        model.setTrasportoPersoneModel(formTrasportoPersone.getTrasportoPersoneModel());
+        model.setNottiModel(formPernottamenti.getNottiModel());
+        model.setTrasportoMerciModel(formTrasportoMerci.getTrasportoMerciModel());
 
-        eventoModel.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
-        eventoModel.setManifestiPieghevoliFogliModel(formManifestipieghevoliFogli.getManifestiPieghevoliFogliModel());
+        model.setPubblicazioniRilegateModel(formPubblicazioniRilegate.getPubblicazioniRilegateModel());
+        model.setManifestiPieghevoliFogliModel(formManifestipieghevoliFogli.getManifestiPieghevoliFogliModel());
+        model.setBigliettiDaVisitaModel(formBigliettiDaVisita.getBigliettiDaVisitaModel());
+        model.setSitoWebModel(formSitoWeb.getSitoWebModel());
 
-        eventoModel.setProgettoDiCompensazioneModel(eventoFormAcquisto.getProgettoDiCompensazioneModel());
+        model.setProgettoDiCompensazioneModel(eventoFormAcquisto.getProgettoDiCompensazioneModel());
 
-        return eventoModel;
+        return model;
     }
 
-    public void restore(OrdineModel eventoModel) {
-        formDettaglio.setOrdineModel(eventoModel);
-        formEnergia.setEnergiaModel(eventoModel.getEnergiaModel());
-        formTrasportoPersone.setTrasportoPersoneModel(eventoModel.getTrasportoPersoneModel());
-        formPernottamenti.setNottiModel(eventoModel.getNottiModel());
-        formTrasportoMerci.setTrasportoMerciModel(eventoModel.getTrasportoMerciModel() == null ? new TrasportoMerciModel() : eventoModel.getTrasportoMerciModel());
-        formPubblicazioniRilegate.setPubblicazioniRilegateModel(eventoModel.getPubblicazioniRilegateModel());
-        formManifestipieghevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
+    public void restore(OrdineModel model) {
+        formDettaglio.setOrdineModel(model);
+        formEnergia.setEnergiaModel(model.getEnergiaModel());
+        formTrasportoPersone.setTrasportoPersoneModel(model.getTrasportoPersoneModel());
+        formPernottamenti.setNottiModel(model.getNottiModel());
+        formTrasportoMerci.setTrasportoMerciModel(model.getTrasportoMerciModel() == null ? new TrasportoMerciModel() : model.getTrasportoMerciModel());
+        formPubblicazioniRilegate.setPubblicazioniRilegateModel(model.getPubblicazioniRilegateModel());
+        formManifestipieghevoliFogli.setManifestiPieghevoliFogliModel(model.getManifestiPieghevoliFogliModel());
+        formBigliettiDaVisita.setBigliettiDaVisitaModel(model.getBigliettiDaVisita());
+        formSitoWeb.setSitoWebModel(model.getSitoWebModel());
 
-        eventoFormAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
+        eventoFormAcquisto.setProgettoDiCompensazione(model.getProgettoDiCompensazioneModel());
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
         formPubblicazioniRilegate.setTipoDiCartaModel(tipoDiCartaModels);
         formManifestipieghevoliFogli.setTipoDiCartaModel(tipoDiCartaModels);
+        formBigliettiDaVisita.setTipoDiCartaModel(tipoDiCartaModels);
     }
 
-    public void setEventoRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
+    public void setUnaAnnoDiAttivitaRiepilogoInStore(List<RiepilogoModel> eventoRiepilogoModels) {
         OrdineModel riepilogo = riepilogo();
         Esito esito = Esito.IN_PAGAMENTO;
         if (riepilogo.getPagamentoModel() != null &&
@@ -368,6 +373,13 @@ public class AnnoDettaglio extends LayoutContainer {
         }
     }
 
+    public void goToBegin() {
+        while (posizioniLabel > 1) {
+            previusTab();
+        }
+        previusTab();
+    }
+
     public void clearStep(RiepilogoModel data) {
         if (data.getOggetto().equalsIgnoreCase("Energia")) {
             formEnergia.clear();
@@ -379,6 +391,10 @@ public class AnnoDettaglio extends LayoutContainer {
             formTrasportoMerci.clear();
         } else if (data.getOggetto().toLowerCase().startsWith("Pubblicazioni rilegate".toLowerCase())) {
             formPubblicazioniRilegate.clear(true);
+        } else if (data.getOggetto().toLowerCase().startsWith("Sito".toLowerCase())) {
+            formSitoWeb.clear();
+        } else if (data.getOggetto().toLowerCase().startsWith("Biglie".toLowerCase())) {
+            formBigliettiDaVisita.clear();
         } else if (data.getOggetto().toLowerCase().startsWith("Manifesti".toLowerCase())) {
             formManifestipieghevoliFogli.clear(true);
         }
@@ -387,18 +403,13 @@ public class AnnoDettaglio extends LayoutContainer {
     public void showConferma(OrdineVTO result) {
         eventoTab.getSelectedItem().disable();
         posizioniLabel++;
+        formConferma.setDettaglioModel(result);
         eventoTab.getItems().get(eventoTab.getItems().size() - 1).setEnabled(true);
         eventoTab.setSelection(eventoTab.getItems().get(eventoTab.getItems().size() - 1));
         Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
         Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
     }
 
-    public void goToBegin() {
-        while (posizioniLabel > 1) {
-            previusTab();
-        }
-        previusTab();
-    }
 
 }
 

@@ -17,6 +17,7 @@ import it.agilis.mens.azzeroCO2.client.components.annoAttivita.AnnoWest;
 import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoConfermDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
@@ -58,11 +59,15 @@ public class UnAnnoDiAttivitaView extends View {
     protected void handleEvent(AppEvent event) {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
-            onInit(event);
+            onInit();
+        } else if (eventType.equals(EventoEvents.RemoveModel)) {
+            annoDettaglio.formRiepilogo.removeModel((RiepilogoModel) event.getData());
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.GoToBegin)) {
             annoDettaglio.goToBegin();
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.Next)) {
-            onNext(event);
+            onNext();
+        } else if (eventType.equals(EventoEvents.NorthPanelShowButtons)) {
+            north.showButtons();
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.ClearStep)) {
             annoDettaglio.clearStep((RiepilogoModel) event.getData());
             OrdineModel riepilogo = annoDettaglio.riepilogo();
@@ -70,12 +75,10 @@ public class UnAnnoDiAttivitaView extends View {
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.ClearPanel)) {
             annoDettaglio.clearPanel();
             west.clean();
+            south.setTextRigth("Energia", null);
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.Previous)) {
-            onPrevius(event);
-        } /*else if (eventType.equals(EventoEvents.Riepilogo)) {
-            OrdineModel riepilogo = eventoDettaglio.riepilogo();
-            setRiassunto(riepilogo);
-        }*/ else if (event.getType().equals(UnAnnoDiAttivitaEvents.PreviousText)) {
+            onPrevius();
+        } else if (event.getType().equals(UnAnnoDiAttivitaEvents.PreviousText)) {
             OrdineModel riepilogo = annoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
@@ -115,15 +118,15 @@ public class UnAnnoDiAttivitaView extends View {
         }
     }
 
-    private void onPrevius(AppEvent event) {
+    private void onPrevius() {
         annoDettaglio.previusTab();
     }
 
-    private void onNext(AppEvent event) {
+    private void onNext() {
         annoDettaglio.nextTab();
     }
 
-    private void onInit(AppEvent event) {
+    private void onInit() {
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
         unAnnoDiAttivita.setHeaderVisible(false);
@@ -174,7 +177,7 @@ public class UnAnnoDiAttivitaView extends View {
 
     public List<RiepilogoModel> riepilogo(Map<String, CoefficienteModel> coefficienti) {
         List<RiepilogoModel> list = CalcoliHelper.geListOfRiepilogoModel(annoDettaglio.riepilogo(), coefficienti, Eventi.ANNO_DI_ATTIVITA);
-        annoDettaglio.setEventoRiepilogoInStore(list);
+        annoDettaglio.setUnaAnnoDiAttivitaRiepilogoInStore(list);
         return list;
     }
 
@@ -199,6 +202,7 @@ public class UnAnnoDiAttivitaView extends View {
     }
 
     public void showConferma(OrdineVTO result) {
+        north.hideButtons();
         annoDettaglio.showConferma(result);
     }
 

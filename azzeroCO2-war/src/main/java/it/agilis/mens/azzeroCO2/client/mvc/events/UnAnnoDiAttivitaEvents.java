@@ -10,26 +10,26 @@ import com.extjs.gxt.ui.client.event.EventType;
  * To change this template use File | Settings | File Templates.
  */
 public class UnAnnoDiAttivitaEvents {
-        public static final EventType ClearStep = new EventType();
-        public static final EventType ShowStep = new EventType();
-        public static final EventType ShowRiepilogo = new EventType();
-        public static final EventType ShowInfoDialog = new EventType();
-        public static final EventType ShowConfermDialog = new EventType();
-        public static final EventType ClearPanel = new EventType();
-        public static final EventType Save = new EventType();
-        public static final EventType Next = new EventType();
-        public static final EventType NextText = new EventType();
-        public static final EventType Previous = new EventType();
-        public static final EventType PreviousText = new EventType();
-        public static final EventType Riepilogo = new EventType();
-        public static final EventType CaricaCoefficienti = new EventType();
-        public static final EventType CaricaProgettiDiCompensazione = new EventType();
-        public static final EventType LoadEvento = new EventType();
-        public static final EventType Acquisto = new EventType();
-        public static final EventType Conferma = new EventType();
-        public static final EventType GoToBegin = new EventType();
+    public static final EventType ClearStep = new EventType();
+    public static final EventType ShowStep = new EventType();
+    public static final EventType ShowRiepilogo = new EventType();
+    public static final EventType ShowInfoDialog = new EventType();
+    public static final EventType ShowConfermDialog = new EventType();
+    public static final EventType ClearPanel = new EventType();
+    public static final EventType Save = new EventType();
+    public static final EventType Next = new EventType();
+    public static final EventType NextText = new EventType();
+    public static final EventType Previous = new EventType();
+    public static final EventType PreviousText = new EventType();
+    public static final EventType Riepilogo = new EventType();
+    public static final EventType CaricaCoefficienti = new EventType();
+    public static final EventType CaricaProgettiDiCompensazione = new EventType();
+    public static final EventType LoadUnAnnoDiAttivita = new EventType();
+    public static final EventType Acquisto = new EventType();
+    public static final EventType Conferma = new EventType();
+    public static final EventType GoToBegin = new EventType();
 
-        public static final EventType InAttesaDiConfermaPagamento = new EventType();
+    public static final EventType InAttesaDiConfermaPagamento = new EventType();
 
 
 }
