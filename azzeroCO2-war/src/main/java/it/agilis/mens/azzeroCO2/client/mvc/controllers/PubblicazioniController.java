@@ -65,11 +65,11 @@ public class PubblicazioniController extends BaseController {
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(PubblicazioniEvents.InAttesaDiConfermaPagamento)) {
+            final MyAsyncCallback asyncCallback = new MyAsyncCallback();
             final Timer timer = new Timer() {
                 public void run() {
                     OrdineModel ordineModel = pubblicazioneView.getRiepilogo();
                     ordineModel.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
-                    MyAsyncCallback asyncCallback = new MyAsyncCallback();
                     getHustonService().isPagato(AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel), getUserInfoModel(), asyncCallback);
                     asyncCallback.setTimer(this);
                 }
@@ -103,27 +103,27 @@ public class PubblicazioniController extends BaseController {
             getHustonService().getTipoDiCarta(tipoDiCartaCallBack);
             forwardToView(pubblicazioneView, event);
         } else if (event.getType().equals(PubblicazioniEvents.Acquisto)) {
+            if (getProgettiDiCompensazioneList().size() == 0) {
+                setProgettiDiCompensazione();
+            }
+            pubblicazioneView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
+        } else if (event.getType().equals(PubblicazioniEvents.Conferma)) {
             if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
                 Dispatcher.forwardEvent(LoginEvents.ShowForm);
             } else {
-                if (getProgettiDiCompensazioneList().size() == 0) {
-                    setProgettiDiCompensazione();
-                }
-                pubblicazioneView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
-            }
-        } else if (event.getType().equals(PubblicazioniEvents.Conferma)) {
-            OrdineModel model = pubblicazioneView.getRiepilogo();
-            model.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
-            double kgCO2 = getTotaleKgCO2(model);
+                OrdineModel model = pubblicazioneView.getRiepilogo();
+                model.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
+                double kgCO2 = getTotaleKgCO2(model);
 
-            if (model.getProgettoDiCompensazioneModel() != null) {
-                PagamentoModel pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
-                pagamentoModel.setLastUpdate(new Date());
-                pagamentoModel.setKgCO2(kgCO2);
-                model.setPagamentoModel(pagamentoModel);
-                Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
-            } else {
-                Info.display("Info", "Seleziona il Progetto di compensazione");
+                if (model.getProgettoDiCompensazioneModel() != null) {
+                    PagamentoModel pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
+                    pagamentoModel.setLastUpdate(new Date());
+                    pagamentoModel.setKgCO2(kgCO2);
+                    model.setPagamentoModel(pagamentoModel);
+                    Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
+                } else {
+                    Info.display("Info", "Seleziona il Progetto di compensazione");
+                }
             }
         } else if (event.getType().equals(PubblicazioniEvents.CaricaProgettiDiCompensazione)) {
             if (getProgettiDiCompensazioneList().size() == 0) {

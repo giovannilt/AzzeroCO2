@@ -71,11 +71,9 @@ public class EventoController extends BaseController {
                     riepilogo.setEventiType(Eventi.EVENTO.name());
                     getHustonService().isPagato(AzzerroCO2UtilsClientHelper.getDettaglioVTO(riepilogo), getUserInfoModel(), asyncCallback);
                     asyncCallback.setTimer(this);
-
                 }
             };
             timer.schedule(10000);
-
         } else if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
             setCoefficientiEventoView();
             eventoView.showRiepilogo();
