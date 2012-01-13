@@ -125,11 +125,13 @@ public class CalcoliHelper {
             }
         }
         if (eventoModel != null && eventoModel.getBigliettiDaVisita() != null) {
-            model = new RiepilogoModel();
-            model.setDettagli("Biglietti Da Visita");
-            model.setOggetto("Biglietti Da Visita");
-            model.setIndex(7);
-            store.add(model);
+            if (getBigliettiDaVisita(eventoModel.getBigliettiDaVisita(), Eventi.UNA_PUBBLICAZIONE).size() > 0) {
+                model = new RiepilogoModel();
+                model.setDettagli("Biglietti Da Visita");
+                model.setOggetto("Biglietti Da Visita");
+                model.setIndex(7);
+                store.add(model);
+            }
         }
         return store;
     }
