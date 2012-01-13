@@ -10,7 +10,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.views.UnaPubblicazioneView;
+import it.agilis.mens.azzeroCO2.client.mvc.views.PubblicazioniView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
@@ -33,7 +33,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class PubblicazioniController extends BaseController {
-    private final UnaPubblicazioneView pubblicazioneView = new UnaPubblicazioneView(this);
+    private final PubblicazioniView pubblicazioneView = new PubblicazioniView(this);
     private final NumberFormat number = NumberFormat.getFormat("0.00");
 
 

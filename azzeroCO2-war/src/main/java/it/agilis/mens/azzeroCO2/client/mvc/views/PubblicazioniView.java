@@ -10,11 +10,11 @@ import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoConfermDialog;
 import it.agilis.mens.azzeroCO2.client.components.pubblicazione.Pubblicazione;
 import it.agilis.mens.azzeroCO2.client.components.pubblicazione.PubblicazioneNorth;
 import it.agilis.mens.azzeroCO2.client.components.pubblicazione.PubblicazioneSouth;
 import it.agilis.mens.azzeroCO2.client.components.pubblicazione.PubblicazioneWest;
+import it.agilis.mens.azzeroCO2.client.components.pubblicazione.dialogs.PubblicazioneConfermDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
@@ -39,10 +39,10 @@ import java.util.Map;
  * Time: 22:30
  * To change this template use File | Settings | File Templates.
  */
-public class UnaPubblicazioneView extends View {
+public class PubblicazioniView extends View {
 
     private ContentPanel pubblicazione = new ContentPanel();
-    private EventoConfermDialog eventoConfermDialog = new EventoConfermDialog();
+    private PubblicazioneConfermDialog pubblicazioneConfermDialog = new PubblicazioneConfermDialog();
 
     private Pubblicazione pubblicazioneDettaglio = new Pubblicazione();
     private ContentPanel center = new ContentPanel();
@@ -50,8 +50,7 @@ public class UnaPubblicazioneView extends View {
     private PubblicazioneWest west = new PubblicazioneWest();
     private PubblicazioneNorth north = new PubblicazioneNorth();
 
-
-    public UnaPubblicazioneView(Controller controller) {
+    public PubblicazioniView(Controller controller) {
         super(controller);
     }
 
@@ -90,7 +89,7 @@ public class UnaPubblicazioneView extends View {
         } else if (event.getType().equals(PubblicazioniEvents.ShowStep)) {
             pubblicazioneDettaglio.showStep(event.<RiepilogoModel>getData());
         } else if (event.getType().equals(PubblicazioniEvents.ShowConfermDialog)) {
-            eventoConfermDialog.show();
+            pubblicazioneConfermDialog.show();
         }
     }
 

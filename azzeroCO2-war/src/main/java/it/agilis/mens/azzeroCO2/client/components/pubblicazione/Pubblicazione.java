@@ -222,19 +222,6 @@ public class Pubblicazione extends LayoutContainer {
         while (posizioniLabel > 0) {
             previusTab();
         }
-
-
-        for (TabItem item : pubblicazioneoTab.getItems()) {
-            if (item.getText().equalsIgnoreCase("Calcolo")) {
-                ContentPanel calcolo = (ContentPanel) item.getItem(0);
-                FormEnergia formEnergia = (FormEnergia) calcolo.getItem(0);
-                formEnergia.layout(true);
-
-                // TODO BETTER
-                formEnergia.setWidth("691");
-                break;
-            }
-        }
     }
 
     public OrdineModel riepilogo() {
