@@ -113,7 +113,6 @@ public class PubblicazioniView extends View {
 
     }
 
-
     private void onPrevius(AppEvent event) {
         pubblicazioneDettaglio.previusTab();
     }
