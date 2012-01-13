@@ -124,6 +124,7 @@ public class FormAcquisto extends LayoutContainer {
         //east.setHeight(23);
         centre.setStyleAttribute("background-color", "#3F4757");
         east.setStyleAttribute("background-color", "#3F4757");
+        setStyleAttribute("background-color", "#3F4757");
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));

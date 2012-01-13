@@ -1,0 +1,59 @@
+package it.agilis.mens.azzeroCO2.client.components.pubblicazione.dialogs;
+
+import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
+import com.extjs.gxt.ui.client.widget.Dialog;
+import com.extjs.gxt.ui.client.widget.button.Button;
+import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
+
+
+/**
+ * Created by IntelliJ IDEA.
+ * User: giovannilt
+ * Date: 3/12/11
+ * Time: 1:31 PM
+ * To change this template use File | Settings | File Templates.
+ */
+public class PubblicazioneConfermDialog extends Dialog {
+
+    protected Button ok;
+    protected Button cancel;
+
+    public PubblicazioneConfermDialog() {
+
+        setHeading("Annulla Calcolo Pubblicazione");
+        // setButtons(Dialog.YESNO);
+        setBodyStyleName("pad-text");
+        addText("Sei sicuro di voler annullare il calcolo?");
+        //getItem(0).getFocusSupport().setIgnore(true);
+        setModal(true);
+
+    }
+
+    @Override
+    protected void createButtons() {
+
+        ok = new Button("Si");
+        ok.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                hide();
+                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
+                Dispatcher.forwardEvent(PubblicazioniEvents.ClearPanel, Eventi.MAIN);
+            }
+        });
+
+        cancel = new Button("No");
+        cancel.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            public void componentSelected(ButtonEvent ce) {
+                hide();
+            }
+        });
+        addButton(ok);
+        addButton(cancel);
+    }
+
+
+}

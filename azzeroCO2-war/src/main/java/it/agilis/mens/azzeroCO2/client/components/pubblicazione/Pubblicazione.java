@@ -67,11 +67,13 @@ public class Pubblicazione extends LayoutContainer {
         pubblicazioneoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("acquisto");
+        acquisto.setStyleAttribute("background-color", "#3F4757");
         acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         pubblicazioneoTab.add(acquisto);
 
         TabItem conferma = new TabItem("conferma");
+        conferma.setStyleAttribute("background-color", "#3F4757");
         conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
         conferma.setEnabled(false);
         pubblicazioneoTab.add(conferma);
@@ -219,19 +221,6 @@ public class Pubblicazione extends LayoutContainer {
         }
         while (posizioniLabel > 0) {
             previusTab();
-        }
-
-
-        for (TabItem item : pubblicazioneoTab.getItems()) {
-            if (item.getText().equalsIgnoreCase("Calcolo")) {
-                ContentPanel calcolo = (ContentPanel) item.getItem(0);
-                FormEnergia formEnergia = (FormEnergia) calcolo.getItem(0);
-                formEnergia.layout(true);
-
-                // TODO BETTER
-                formEnergia.setWidth("691");
-                break;
-            }
         }
     }
 

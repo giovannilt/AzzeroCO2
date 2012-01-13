@@ -10,13 +10,14 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.views.UnaPubblicazioneView;
+import it.agilis.mens.azzeroCO2.client.mvc.views.PubblicazioniView;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
+import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
@@ -32,7 +33,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class PubblicazioniController extends BaseController {
-    private final UnaPubblicazioneView pubblicazioneView = new UnaPubblicazioneView(this);
+    private final PubblicazioniView pubblicazioneView = new PubblicazioniView(this);
     private final NumberFormat number = NumberFormat.getFormat("0.00");
 
 
@@ -63,14 +64,12 @@ public class PubblicazioniController extends BaseController {
     @Override
     public void handleEvent(AppEvent event) {
         if (event.getType().equals(PubblicazioniEvents.InAttesaDiConfermaPagamento)) {
-            OrdineModel ordineModel = pubblicazioneView.getRiepilogo();
-            ordineModel.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
-            final OrdineVTO riepilogo = AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel);
-
             final Timer timer = new Timer() {
                 public void run() {
+                    OrdineModel ordineModel = pubblicazioneView.getRiepilogo();
+                    ordineModel.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
                     MyAsyncCallback asyncCallback = new MyAsyncCallback();
-                    getHustonService().isPagato(riepilogo, getUserInfoModel(), asyncCallback);
+                    getHustonService().isPagato(AzzerroCO2UtilsClientHelper.getDettaglioVTO(ordineModel), getUserInfoModel(), asyncCallback);
                     asyncCallback.setTimer(this);
                 }
             };
@@ -208,6 +207,7 @@ public class PubblicazioniController extends BaseController {
 
     class MyAsyncCallback implements AsyncCallback<OrdineVTO> {
         private Timer timer;
+        private int numeroDiVolte = 12;
 
         public void onFailure(Throwable caught) {
             Info.display("Error", "Errore impossibile connettersi al server " + caught);
@@ -216,15 +216,27 @@ public class PubblicazioniController extends BaseController {
         @Override
         public void onSuccess(OrdineVTO result) {
             if (result != null) {
-                Info.display("Info", "Pagamento Avvenuto con sucesso");
-                Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
+                if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
+                    Info.display("Info", "Pagamento Avvenuto con sucesso");
+                    Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
 
+                    pubblicazioneView.showConferma(result);
 
-                pubblicazioneView.showConferma(result);
-                sentMail(result);
+                    sentMail(result);
+                } else {
+                    if (numeroDiVolte > 0) {
+                        Info.display("Info", "Non Ancora pagato");
+                        getTimer().schedule(10000);
+                        numeroDiVolte--;
+                    } else {
+                        Info.display("Info", "Evento non pagato, atteso pagamento per piu' di 2 minuti, si consiglia di ricaricare ");
+                        Dispatcher.forwardEvent(PagamentoSellaEvents.EnableButton);
+                    }
+                }
+                OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
+                pubblicazioneView.setDettaglioModel(model);
             } else {
-                Info.display("Info", "NON PAGATO");
-                getTimer().schedule(10000);
+                Info.display("Error", "Errore impossibile connettersi al server ERRORE DI SISTEMA");
             }
         }
 

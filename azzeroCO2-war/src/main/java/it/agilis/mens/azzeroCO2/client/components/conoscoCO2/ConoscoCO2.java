@@ -72,12 +72,12 @@ public class ConoscoCO2 extends LayoutContainer {
         conoscoCO2Tab.add(acquisto);
 
         TabItem conferma = new TabItem("conferma");
+        conferma.setStyleAttribute("background-color", "#3F4757");
         conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
         conferma.setEnabled(false);
         conoscoCO2Tab.add(conferma);
 
         add(conoscoCO2Tab, new RowData(1, 1));
-
         posizioniText.add(Arrays.asList("", "Riepilogo"));                                   // DETTAGLIO
         posizioniText.add(Arrays.asList("Conosco la CO2", "Acquisto"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO

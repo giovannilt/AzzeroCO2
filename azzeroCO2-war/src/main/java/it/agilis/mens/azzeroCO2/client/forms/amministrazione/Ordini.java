@@ -108,6 +108,21 @@ public class Ordini extends LayoutContainer {
             }
         });
         configs.add(column);
+
+        column = new ColumnConfig("Tipo", "Tipo", 150);
+        column.setRenderer(new GridCellRenderer<OrdineModel>() {
+            public String render(OrdineModel model, String property, ColumnData config, int rowIndex, int colIndex,
+                                 ListStore<OrdineModel> store, Grid<OrdineModel> grid) {
+                if (model != null ) {
+                    return model.getEventiType();
+                } else {
+                    return "NULL";
+                }
+            }
+        });
+        configs.add(column);
+
+
         ColumnModel cm = new ColumnModel(configs);
         Grid<OrdineModel> grid = new Grid<OrdineModel>(store, cm);
         grid.setBorders(true);

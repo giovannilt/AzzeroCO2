@@ -73,6 +73,7 @@ public class SitoWeb extends LayoutContainer {
         sitoWebTab.add(acquisto);
 
         TabItem conferma = new TabItem("conferma");
+        conferma.setStyleAttribute("background-color", "#3F4757");
         conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
         conferma.setEnabled(false);
         sitoWebTab.add(conferma);
