@@ -165,7 +165,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
 
     private void saveVTO(final OrdineVTO riepilogo) {
         if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
-            Info.display("Warning", "Nome Anno di attiv‡ Mancante");
+            Info.display("Warning", "Nome Anno di attiv√† mancante");
         } else {
             AsyncCallback<OrdineVTO> dettaglio = new AsyncCallback<OrdineVTO>() {
                 public void onFailure(Throwable caught) {
@@ -177,7 +177,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
                     if (result != null) {
                         OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         annoView.setDettaglioModel(model);
-                        Info.display("Info", "Anno di Attivi‡ " + riepilogo.getNome() + " salvato con successo.");
+                        Info.display("Info", "Anno di attivi√† " + riepilogo.getNome() + " salvato con successo.");
                     }
                 }
             };
