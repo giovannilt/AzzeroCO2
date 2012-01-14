@@ -234,7 +234,7 @@ public class CalcoliHelper {
             String tiratura = "";
             if (bigliettiDaVisita.getTiraturaBiglietti() > 0) {
                 tiratura = "Tiratura Biglietti" + bigliettiDaVisita.getTiraturaBiglietti() + "</br>";
-                co2 *= bigliettiDaVisita.getTiraturaBiglietti();
+                co2 *= bigliettiDaVisita.getTiraturaBiglietti()*0.004675;  //dimensione bigliettino 5,5x8,5 cm
             }
 
             if (co2 > 0) {
@@ -260,7 +260,7 @@ public class CalcoliHelper {
             }
             if (bigliettiDaVisita.getGrammaturaCartelline() > 0) {
                 materiale += " " + bigliettiDaVisita.getGrammaturaCartelline() + " gr</br>";
-                co2 *= bigliettiDaVisita.getGrammaturaCartelline() / 1000;
+                co2 *= bigliettiDaVisita.getGrammaturaCartelline() / 1000*0.126 ; //dimensione cartelline 30cmx42cm
             }
 
             String tiratura = "";
