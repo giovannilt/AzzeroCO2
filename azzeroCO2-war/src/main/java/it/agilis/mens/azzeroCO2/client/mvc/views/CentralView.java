@@ -325,7 +325,7 @@ public class CentralView extends View {
                     benvenuto.setStyleAttribute("font-family", "arial");
 
                     benvenuto.setBounds(30, 30, 250, 180);
-                    benvenuto.setStyleAttribute("padding-top", "10");
+                    benvenuto.setStyleAttribute("padding-top", "10px");
                     benvenuto.setStyleAttribute("padding-left", "12px");
                     benvenuto.setStyleAttribute("font-size", "14px");
                     benvenuto.setStyleAttribute("border-top", "3px solid");
