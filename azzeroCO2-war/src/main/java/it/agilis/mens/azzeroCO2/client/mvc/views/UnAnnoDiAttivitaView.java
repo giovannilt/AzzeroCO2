@@ -82,7 +82,7 @@ public class UnAnnoDiAttivitaView extends View {
             OrdineModel riepilogo = annoDettaglio.riepilogo();
             south.setTextLeft(event.<String>getData(), getRiepilogo());
             setRiassunto(riepilogo,
-                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Manifesti pieghevoli e fogli"),
+                    event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Sito"),
                     event.<String>getData() != null && event.<String>getData().length() > 0 && event.<String>getData().equalsIgnoreCase("Riepilogo"),
                     event.<String>getData() != null && event.<String>getData().length() == 0
             );
