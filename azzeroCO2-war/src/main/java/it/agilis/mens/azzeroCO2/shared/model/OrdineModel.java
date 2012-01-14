@@ -66,6 +66,14 @@ public class OrdineModel extends BaseModel {
         set("nome", nome);
     }
 
+
+    public String getAnno() {
+        return (String) get("anno");
+    }
+
+    public void setAnno(String anno) {
+        set("anno", anno);
+    }
     public String getDove() {
         return (String) get("dove");
     }

@@ -6,7 +6,7 @@ import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.forms.*;
-import it.agilis.mens.azzeroCO2.client.forms.annoAttivita.AnnoFormDettaglio;
+import it.agilis.mens.azzeroCO2.client.forms.annoAttivita.FormAnnoDettaglio;
 import it.agilis.mens.azzeroCO2.client.forms.publicazioni.FormBigliettiDaVisita;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.Profile;
@@ -33,7 +33,7 @@ import java.util.List;
 public class AnnoDettaglio extends LayoutContainer {
 
     private final TabPanel eventoTab = new TabPanel();
-    private AnnoFormDettaglio formDettaglio = new AnnoFormDettaglio();
+    private FormAnnoDettaglio formDettaglio = new FormAnnoDettaglio();
     //private EventoFormDettaglio formDettaglio = new EventoFormDettaglio();
 
     private final FormEnergia formEnergia = new FormEnergia();

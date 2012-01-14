@@ -44,6 +44,22 @@ public class AzzerroCO2UtilsClientHelper {
             ordineVTO.setNote(ordineModel.getNote());
             ordineVTO.setManifestiPieghevoliFogliVTO(getManifestiPiegjevoliFogltioVTOList(ordineModel.getManifestiPieghevoliFogliModel()));
             ordineVTO.setPubblicazioniRilegateVTO(getPubblicazioniRilegateVTOList(ordineModel.getPubblicazioniRilegateModel()));
+        } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.ANNO_DI_ATTIVITA) {
+            ordineVTO.setNottiModel(ordineModel.getNottiModel());
+            ordineVTO.setEnergiaModel(ordineModel.getEnergiaModel());
+            ordineVTO.setTrasportoMerciModel(ordineModel.getTrasportoMerciModel());
+            ordineVTO.setTrasportoPersoneModel(ordineModel.getTrasportoPersoneModel());
+
+            ordineVTO.setDove(ordineModel.getDove());
+            ordineVTO.setAnno(ordineModel.getAnno());
+            ordineVTO.setDove(ordineModel.getDove());
+            ordineVTO.setNote(ordineModel.getNote());
+
+            ordineVTO.setManifestiPieghevoliFogliVTO(getManifestiPiegjevoliFogltioVTOList(ordineModel.getManifestiPieghevoliFogliModel()));
+            ordineVTO.setPubblicazioniRilegateVTO(getPubblicazioniRilegateVTOList(ordineModel.getPubblicazioniRilegateModel()));
+            ordineVTO.setSitoWebModel(ordineModel.getSitoWebModel());
+            ordineVTO.setBigliettiDaVisitaVTO(getBigliettiDaVisitaModelVTO(ordineModel.getBigliettiDaVisita()));
+
         } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.WEB) {
             ordineVTO.setSitoWebModel(ordineModel.getSitoWebModel());
         } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
@@ -159,6 +175,19 @@ public class AzzerroCO2UtilsClientHelper {
             ordineModel.setNote(ordineVTO.getNote());
             ordineModel.setManifestiPieghevoliFogliModel(getManifestiPiegjevoliFogltioModelList(ordineVTO.getManifestiPieghevoliFogliVTO()));
             ordineModel.setPubblicazioniRilegateModel(getPubblicazioniRilegateModelList(ordineVTO.getPubblicazioniRilegateVTO()));
+
+        } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.ANNO_DI_ATTIVITA) {
+            ordineModel.setEnergiaModel(ordineVTO.getEnergiaModel());
+            ordineModel.setTrasportoMerciModel(ordineVTO.getTrasportoMerciModel());
+            ordineModel.setTrasportoPersoneModel(ordineVTO.getTrasportoPersoneModel());
+            ordineModel.setNottiModel(ordineVTO.getNottiModel());
+            ordineModel.setDove(ordineVTO.getDove());
+            ordineModel.setAnno(ordineVTO.getAnno());
+            ordineModel.setNote(ordineVTO.getNote());
+            ordineModel.setManifestiPieghevoliFogliModel(getManifestiPiegjevoliFogltioModelList(ordineVTO.getManifestiPieghevoliFogliVTO()));
+            ordineModel.setPubblicazioniRilegateModel(getPubblicazioniRilegateModelList(ordineVTO.getPubblicazioniRilegateVTO()));
+            ordineModel.setSitoWebModel(ordineVTO.getSitoWebModel());
+            ordineModel.setBigliettiDaVisitaModel(getBigliettiDaVisitaModel(ordineVTO.getBigliettiDaVisitaVTO()));
 
         } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.WEB) {
             ordineModel.setSitoWebModel(ordineVTO.getSitoWebModel());
