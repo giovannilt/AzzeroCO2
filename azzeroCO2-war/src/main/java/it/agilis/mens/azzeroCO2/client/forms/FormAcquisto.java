@@ -110,8 +110,8 @@ public class FormAcquisto extends LayoutContainer {
                 });
         east.setHeading("Acquisto");
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.EAST, 300);
-        east.getHeader().addTool(new ToolButton("x-tool-help"));
-        east.getHeader().addTool(new ToolButton("x-tool-refresh"));
+        //east.getHeader().addTool(new ToolButton("x-tool-help"));
+        //east.getHeader().addTool(new ToolButton("x-tool-refresh"));
         westData.setMargins(new Margins(0));
         //east.setAutoHeight(true)
         east.setHeight(435);
