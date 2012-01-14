@@ -61,6 +61,8 @@ public class UnAnnoDiAttivitaController extends BaseController {
         registerEventTypes(UnAnnoDiAttivitaEvents.ShowStep);
         registerEventTypes(UnAnnoDiAttivitaEvents.ClearStep);
         registerEventTypes(UnAnnoDiAttivitaEvents.InAttesaDiConfermaPagamento);
+        registerEventTypes(UnAnnoDiAttivitaEvents.NorthPanelShowButtons);
+        registerEventTypes(UnAnnoDiAttivitaEvents.RemoveModel);
     }
 
     @Override

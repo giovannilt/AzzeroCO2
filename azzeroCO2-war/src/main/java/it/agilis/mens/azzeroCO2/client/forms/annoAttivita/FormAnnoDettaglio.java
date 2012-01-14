@@ -24,13 +24,13 @@ import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
  * Time: 10:18
  * To change this template use File | Settings | File Templates.
  */
-public class AnnoFormDettaglio extends LayoutContainer {
+public class FormAnnoDettaglio extends LayoutContainer {
 
     private OrdineModel ordineModel = new OrdineModel();
     private FormBinding binding = null;
     private FormPanel formPanel;
 
-    public AnnoFormDettaglio() {
+    public FormAnnoDettaglio() {
         createForm();
         binding = new FormBinding(formPanel, true);
         binding.bind(ordineModel);

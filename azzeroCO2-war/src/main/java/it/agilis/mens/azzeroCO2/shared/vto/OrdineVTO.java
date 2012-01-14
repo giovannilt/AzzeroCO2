@@ -42,6 +42,7 @@ public class OrdineVTO implements Serializable {
     private SitoWebModel sitoWebModel;
     private String eventiType;
     private BigliettiDaVisitaModelVTO bigliettiDaVisitaVTO;
+    private String anno;
 
     public SitoWebModel getSitoWebModel() {
         return sitoWebModel;
@@ -194,5 +195,13 @@ public class OrdineVTO implements Serializable {
 
     public BigliettiDaVisitaModelVTO getBigliettiDaVisitaVTO() {
         return bigliettiDaVisitaVTO;
+    }
+
+    public void setAnno(String anno) {
+        this.anno=anno;
+    }
+
+    public String getAnno() {
+        return anno;
     }
 }

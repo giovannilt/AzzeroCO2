@@ -63,8 +63,9 @@ public class Utils {
 
     public static UserInfo getUserInfo(UserInfoModel registrazioneModel) {
         UserInfo userInfo = new UserInfo();
-        if (registrazioneModel != null)
+        if (registrazioneModel != null) {
             userInfo.setPassword(registrazioneModel.getPassword());
+        }
         userInfo.setUserName(registrazioneModel.getUserName());
         userInfo.setNome(registrazioneModel.getNome());
         userInfo.setCognome(registrazioneModel.getCognome());
@@ -276,14 +277,33 @@ public class Utils {
             o.setSito(s);
         } else if (ordineModel.getConoscoCO2Model() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
             o.setConoscoCO2(ordineModel.getConoscoCO2Model().getConoscoCO2());
-        } else if (Eventi.valueOf(ordineModel.getEventiType().toUpperCase()) == Eventi.EVENTO) {
+
+        } else if (Eventi.valueOf(ordineModel.getEventiType().toUpperCase()) == Eventi.EVENTO
+                || Eventi.valueOf(ordineModel.getEventiType().toUpperCase()) == Eventi.ANNO_DI_ATTIVITA) {
+
             Evento e = new Evento();
             e.setId(ordineModel.getId());
             e.setNome(ordineModel.getNome());
             e.setDove(ordineModel.getDove());
-            e.setInizio(ordineModel.getInizio());
-            e.setFine(ordineModel.getFine());
             e.setNote(ordineModel.getNote());
+
+            if (Eventi.valueOf(ordineModel.getEventiType().toUpperCase()) == Eventi.ANNO_DI_ATTIVITA) {
+                e.setAnno(ordineModel.getAnno());
+
+                if (ordineModel.getSitoWebModel() != null) {
+                    Sito s = new Sito();
+                    s.setUtenti(ordineModel.getSitoWebModel().getVisitatori());
+                    o.setSito(s);
+                }
+                if (ordineModel.getBigliettiDaVisita() != null) {
+                    o.setBigliettiDaVisita(getBigliettiDaVisita(ordineModel.getBigliettiDaVisita()));
+                }
+
+            } else {
+                e.setInizio(ordineModel.getInizio());
+                e.setFine(ordineModel.getFine());
+            }
+
 
             if (ordineModel.getEnergiaModel() != null) {
                 e.setEnergiaElettrica(ordineModel.getEnergiaModel().getEnergiaElettrica());
