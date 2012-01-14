@@ -117,7 +117,7 @@ public class Ordini extends LayoutContainer {
                 if (model.getPagamentoModel() != null && model.getPagamentoModel().getEsito() != null) {
                     return model.getPagamentoModel().getEsito().toString();
                 } else {
-                    return "NO";
+                    return "NON PAGATO";
                 }
             }
         });
