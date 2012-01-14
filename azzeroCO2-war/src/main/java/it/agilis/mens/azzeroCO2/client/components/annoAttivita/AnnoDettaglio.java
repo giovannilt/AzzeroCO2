@@ -210,6 +210,8 @@ public class AnnoDettaglio extends LayoutContainer {
                     }
                     if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Acquisto")) {
                         Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.Acquisto);
+                    }
+                    if (eventoTab.getItems().get(i).getText().equalsIgnoreCase("Vai al pagamento")) {
                         if (userInfoModel.getProfilo() == Profile.Guest.ordinal()) {
                             return eventoTab.getItems().get(i).getText();
                         }

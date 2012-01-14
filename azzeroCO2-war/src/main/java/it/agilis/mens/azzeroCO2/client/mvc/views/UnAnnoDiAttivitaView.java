@@ -17,7 +17,6 @@ import it.agilis.mens.azzeroCO2.client.components.annoAttivita.AnnoWest;
 import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoConfermDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
@@ -60,13 +59,13 @@ public class UnAnnoDiAttivitaView extends View {
         EventType eventType = event.getType();
         if (eventType.equals(AzzeroCO2Events.Init)) {
             onInit();
-        } else if (eventType.equals(EventoEvents.RemoveModel)) {
+        } else if (eventType.equals(UnAnnoDiAttivitaEvents.RemoveModel)) {
             annoDettaglio.formRiepilogo.removeModel((RiepilogoModel) event.getData());
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.GoToBegin)) {
             annoDettaglio.goToBegin();
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.Next)) {
             onNext();
-        } else if (eventType.equals(EventoEvents.NorthPanelShowButtons)) {
+        } else if (eventType.equals(UnAnnoDiAttivitaEvents.NorthPanelShowButtons)) {
             north.showButtons();
         } else if (eventType.equals(UnAnnoDiAttivitaEvents.ClearStep)) {
             annoDettaglio.clearStep((RiepilogoModel) event.getData());
