@@ -12,7 +12,7 @@ import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
 import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 
 /**
  * Created by IntelliJ IDEA.
@@ -44,7 +44,7 @@ public class AnnoNorth extends LayoutContainer {
         save.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(EventoEvents.Save, "Save");
+                Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.Save, "Save");
             }
         });
         c.add(save, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
@@ -53,10 +53,7 @@ public class AnnoNorth extends LayoutContainer {
             @Override
             public void componentSelected(IconButtonEvent ce) {
 
-                Dispatcher.forwardEvent(EventoEvents.ShowConfermDialog);
-
-                //   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
-                //   Dispatcher.forwardEvent(EventoEvents.ClearPanel, Eventi.MAIN);
+                Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.ShowConfermDialog);
             }
         });
         c.add(close, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
