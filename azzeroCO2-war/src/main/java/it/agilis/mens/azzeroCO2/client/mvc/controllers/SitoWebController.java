@@ -161,6 +161,7 @@ public class SitoWebController extends BaseController {
             public void onSuccess(OrdineVTO result) {
                 if (result != null) {
                     OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
+                    model.setNome("Compensazione SitoWeb");
                     sitoWebView.setDettaglioModel(model);
                     Info.display("Info", "Evento" + riepilogo.getNome() + " salvato con successo.");
                 }

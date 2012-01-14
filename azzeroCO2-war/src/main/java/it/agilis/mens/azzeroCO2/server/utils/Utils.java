@@ -496,6 +496,7 @@ public class Utils {
             if (o.getBigliettiDaVisita() != null) {
                 dm.setBigliettiDaVisitaModel(getBigliettiDaVisitaModel(o.getBigliettiDaVisita()));
             }
+            dm.setNome("Compensazione di una Pubblicazione");
         } else if (o.getEventiType() == Eventi.WEB) {
             if (o.getSito() != null) {
                 SitoWebModel sito = new SitoWebModel();
@@ -503,18 +504,24 @@ public class Utils {
                 sito.setVisitatori(o.getSito().getUtenti());
                 dm.setSitoWebModel(sito);
             }
+            dm.setNome("Compensazione di un Sito Web");
         } else if (o.getEventiType() == Eventi.CONOSCI_CO2) {
             ConoscoCO2Model co2m = new ConoscoCO2Model();
             co2m.setConoscoCO2(o.getConoscoCO2());
             dm.setConoscoCO2Model(co2m);
-            dm.setNome(Eventi.CONOSCI_CO2.name());
-        } else if (o.getEventiType() == Eventi.EVENTO) {
+            dm.setNome("Compensazione di CO2 calcolato");
+        } else if (o.getEventiType() == Eventi.EVENTO || o.getEventiType() == Eventi.ANNO_DI_ATTIVITA) {
             if (o.getEvento() != null) {
+                if (o.getEventiType() == Eventi.EVENTO) {
+                    dm.setInizio(o.getEvento().getInizio());
+                    dm.setFine(o.getEvento().getFine());
+                } else {
+                    dm.setAnno(o.getEvento().getAnno());
+                }
                 dm.setId(o.getEvento().getId());
                 dm.setNome(o.getEvento().getNome());
                 dm.setDove(o.getEvento().getDove());
-                dm.setInizio(o.getEvento().getInizio());
-                dm.setFine(o.getEvento().getFine());
+
                 dm.setNote(o.getEvento().getNote());
                 EnergiaModel em = new EnergiaModel();
                 // CHECK id of EMM
