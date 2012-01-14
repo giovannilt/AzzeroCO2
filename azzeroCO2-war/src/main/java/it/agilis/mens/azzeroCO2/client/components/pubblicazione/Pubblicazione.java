@@ -215,6 +215,7 @@ public class Pubblicazione extends LayoutContainer {
     }
 
     public OrdineModel riepilogo() {
+        ordineModel.setNome("Pubblicazioni");
 
         ordineModel.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
 
