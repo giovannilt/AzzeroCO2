@@ -237,7 +237,16 @@ public class FormRiepilogo extends LayoutContainer {
 
     public void removeModel(RiepilogoModel model) {
         store.remove(model);
-        Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
+        if (Eventi.EVENTO == Eventi.valueOf(model.getEventi())) {
+            Dispatcher.forwardEvent(EventoEvents.ClearStep, model);
+        } else if (Eventi.CONOSCI_CO2 == Eventi.valueOf(model.getEventi())) {
+        } else if (Eventi.ANNO_DI_ATTIVITA == Eventi.valueOf(model.getEventi())) {
+            Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.ClearStep, model);
+        } else if (Eventi.UNA_PUBBLICAZIONE == Eventi.valueOf(model.getEventi())) {
+        } else if (Eventi.WEB == Eventi.valueOf(model.getEventi())) {
+        }
+
+
         setTotale();
     }
 

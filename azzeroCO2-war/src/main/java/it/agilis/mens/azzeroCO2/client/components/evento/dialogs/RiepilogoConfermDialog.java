@@ -6,6 +6,8 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 
 
@@ -26,7 +28,7 @@ public class RiepilogoConfermDialog extends Dialog {
     public RiepilogoConfermDialog() {
 
         setHeading("Eliminare il Calcolo?");
-       // setButtons(Dialog.YESNO);
+        // setButtons(Dialog.YESNO);
         setBodyStyleName("pad-text");
         addText("Sei sicuro di voler annullare il calcolo?");
         //getItem(0).getFocusSupport().setIgnore(true);
@@ -40,7 +42,15 @@ public class RiepilogoConfermDialog extends Dialog {
         ok = new Button("Si");
         ok.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-                Dispatcher.forwardEvent(EventoEvents.RemoveModel, model);
+                if (Eventi.EVENTO == Eventi.valueOf(model.getEventi())) {
+                    Dispatcher.forwardEvent(EventoEvents.RemoveModel, model);
+                } else if (Eventi.CONOSCI_CO2 == Eventi.valueOf(model.getEventi())) {
+                } else if (Eventi.ANNO_DI_ATTIVITA == Eventi.valueOf(model.getEventi())) {
+                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.RemoveModel, model);
+                } else if (Eventi.UNA_PUBBLICAZIONE == Eventi.valueOf(model.getEventi())) {
+                } else if (Eventi.WEB == Eventi.valueOf(model.getEventi())) {
+                }
+
                 hide();
             }
         });
