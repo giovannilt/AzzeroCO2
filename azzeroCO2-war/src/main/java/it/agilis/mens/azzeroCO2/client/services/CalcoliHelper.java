@@ -227,14 +227,14 @@ public class CalcoliHelper {
                 materiale = bigliettiDaVisita.getTipoDiCartaBiglietti().getNome();
             }
             if (bigliettiDaVisita.getGrammaturaBiglietti() > 0) {
-                materiale += " " + bigliettiDaVisita.getGrammaturaBiglietti() + " gr</br>";
+                materiale += " " + bigliettiDaVisita.getGrammaturaBiglietti() + " gr<br>";
                 co2 *= bigliettiDaVisita.getGrammaturaBiglietti() / 1000;
             }
 
             String tiratura = "";
             if (bigliettiDaVisita.getTiraturaBiglietti() > 0) {
-                tiratura = "Tiratura Biglietti" + bigliettiDaVisita.getTiraturaBiglietti() + "</br>";
-                co2 *= bigliettiDaVisita.getTiraturaBiglietti();
+                tiratura = "Tiratura Biglietti" + bigliettiDaVisita.getTiraturaBiglietti() + "<br>";
+                co2 *= bigliettiDaVisita.getTiraturaBiglietti()*0.004675;  //dimensione bigliettino 5,5x8,5 cm
             }
 
             if (co2 > 0) {
@@ -259,13 +259,13 @@ public class CalcoliHelper {
                 materiale = bigliettiDaVisita.getTipoDiCartaCartelline().getNome();
             }
             if (bigliettiDaVisita.getGrammaturaCartelline() > 0) {
-                materiale += " " + bigliettiDaVisita.getGrammaturaCartelline() + " gr</br>";
-                co2 *= bigliettiDaVisita.getGrammaturaCartelline() / 1000;
+                materiale += " " + bigliettiDaVisita.getGrammaturaCartelline() + " gr<br>";
+                co2 *= bigliettiDaVisita.getGrammaturaCartelline() / 1000*0.126 ; //dimensione cartelline 30cmx42cm
             }
 
             String tiratura = "";
             if (bigliettiDaVisita.getTiraturaCartelline() > 0) {
-                tiratura = "Tiratura " + bigliettiDaVisita.getTiraturaCartelline() + "</br>";
+                tiratura = "Tiratura " + bigliettiDaVisita.getTiraturaCartelline() + "<br>";
                 co2 *= bigliettiDaVisita.getTiraturaCartelline();
             }
             if (co2 > 0) {
@@ -331,15 +331,15 @@ public class CalcoliHelper {
 
         double co2 = 0;
         if (energiaModel.getEnergiaElettrica() > 0) {
-            energia1 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h </br>";
+            energia1 = "Energia elettrica" + " " + energiaModel.getEnergiaElettrica() + " kw/h <br>";
             co2 = energiaModel.getEnergiaElettrica() * coefficienteModelEnergia.getValore();
         }
         if (energiaModel.getGasMetano() > 0) {
-            energia2 = "Gas" + " " + energiaModel.getGasMetano() + " metri cubi  </br>";
+            energia2 = "Gas" + " " + energiaModel.getGasMetano() + " metri cubi  <br>";
             co2 += energiaModel.getGasMetano() * coefficientiEnergiaGAS.getValore();
         }
         if (energiaModel.getGasolio() > 0) {
-            energia3 = "Gasolio" + " " + energiaModel.getGasolio() + " litri </br>";
+            energia3 = "Gasolio" + " " + energiaModel.getGasolio() + " litri <br>";
             co2 += energiaModel.getGasolio() * coefficienteModelGasolio.getValore();
         }
         energia.setDettagli(energia1 + energia2 + energia3);
@@ -409,83 +409,83 @@ public class CalcoliHelper {
             String tp9000 = "";
 
             if (tpm.getBusKm60() > 0) {
-                tp60Bus = "Bus " + tpm.getBusKm60() + " tratte </br>";
+                tp60Bus = "Bus " + tpm.getBusKm60() + " tratte <br>";
             }
             if (tpm.getAutoKm60() > 0) {
-                tp60Auto = "Auto " + tpm.getAutoKm60() + " tratte </br>";
+                tp60Auto = "Auto " + tpm.getAutoKm60() + " tratte <br>";
             }
             if (tpm.getTrenoKm60() > 0) {
-                tp60Treno = "Treno " + tpm.getTrenoKm60() + " tratte </br>";
+                tp60Treno = "Treno " + tpm.getTrenoKm60() + " tratte <br>";
             }
             if (tpm.getMotoKm60() > 0) {
-                tp60Moto = "Moto " + tpm.getMotoKm60() + " tratte </br>";
+                tp60Moto = "Moto " + tpm.getMotoKm60() + " tratte <br>";
             }
             if (tpm.getBusKm60() + tpm.getAutoKm60() + tpm.getTrenoKm60() + tpm.getMotoKm60() > 0) {
-                tp60 = "Distanza Provinciale:</br>" + tp60Bus + tp60Auto + tp60Treno + tp60Moto;
+                tp60 = "Distanza Provinciale:<br>" + tp60Bus + tp60Auto + tp60Treno + tp60Moto;
             }
 
             if (tpm.getBusKm300() > 0) {
-                tp300Bus = "Bus " + tpm.getBusKm300() + " tratte </br>";
+                tp300Bus = "Bus " + tpm.getBusKm300() + " tratte <br>";
             }
             if (tpm.getAutoKm300() > 0) {
-                tp300Auto = "Auto " + tpm.getAutoKm300() + " tratte </br>";
+                tp300Auto = "Auto " + tpm.getAutoKm300() + " tratte <br>";
             }
             if (tpm.getTrenoKm300() > 0) {
-                tp300Treno = "Treno " + tpm.getTrenoKm300() + " tratte </br>";
+                tp300Treno = "Treno " + tpm.getTrenoKm300() + " tratte <br>";
             }
             if (tpm.getMotoKm300() > 0) {
-                tp300Moto = "Moto " + tpm.getMotoKm300() + " tratte </br>";
+                tp300Moto = "Moto " + tpm.getMotoKm300() + " tratte <br>";
             }
             if (tpm.getBusKm300() + tpm.getAutoKm300() + tpm.getTrenoKm300() + tpm.getMotoKm300() > 0) {
-                tp300 = "Distanza Regionale:</br>" + tp300Bus + tp300Auto + tp300Treno + tp300Moto;
+                tp300 = "Distanza Regionale:<br>" + tp300Bus + tp300Auto + tp300Treno + tp300Moto;
             }
 
             if (tpm.getBusKm1000() > 0) {
-                tp1000Bus = "Bus " + tpm.getBusKm1000() + " tratte </br>";
+                tp1000Bus = "Bus " + tpm.getBusKm1000() + " tratte <br>";
             }
             if (tpm.getAutoKm1000() > 0) {
-                tp1000Auto = "Auto " + tpm.getAutoKm1000() + " tratte </br>";
+                tp1000Auto = "Auto " + tpm.getAutoKm1000() + " tratte <br>";
             }
             if (tpm.getTrenoKm1000() > 0) {
-                tp1000Treno = "Treno " + tpm.getTrenoKm1000() + " tratte </br>";
+                tp1000Treno = "Treno " + tpm.getTrenoKm1000() + " tratte <br>";
             }
             if (tpm.getAereoKm1000() > 0) {
-                tp1000Aereo = "Aereo " + tpm.getAereoKm1000() + " tratte </br>";
+                tp1000Aereo = "Aereo " + tpm.getAereoKm1000() + " tratte <br>";
             }
             if (tpm.getBusKm1000() + tpm.getAutoKm1000() + tpm.getTrenoKm1000() + tpm.getAereoKm1000() > 0) {
-                tp1000 = "Distanza Nazionale:</br>" + tp1000Bus + tp1000Auto + tp1000Treno + tp1000Aereo;
+                tp1000 = "Distanza Nazionale:<br>" + tp1000Bus + tp1000Auto + tp1000Treno + tp1000Aereo;
             }
 
             if (tpm.getBusKm3000() > 0) {
-                tp3000Bus = "Bus " + tpm.getBusKm3000() + " tratte </br>";
+                tp3000Bus = "Bus " + tpm.getBusKm3000() + " tratte <br>";
             }
             if (tpm.getAutoKm3000() > 0) {
-                tp3000Auto = "Auto " + tpm.getAutoKm3000() + " tratte </br>";
+                tp3000Auto = "Auto " + tpm.getAutoKm3000() + " tratte <br>";
             }
             if (tpm.getTrenoKm3000() > 0) {
-                tp3000Treno = "Treno " + tpm.getTrenoKm3000() + " tratte </br>";
+                tp3000Treno = "Treno " + tpm.getTrenoKm3000() + " tratte <br>";
             }
             if (tpm.getAereoKm3000() > 0) {
-                tp3000Aereo = "Aereo " + tpm.getAereoKm3000() + " tratte </br>";
+                tp3000Aereo = "Aereo " + tpm.getAereoKm3000() + " tratte <br>";
             }
             if (tpm.getBusKm3000() + tpm.getAutoKm3000() + tpm.getTrenoKm3000() + tpm.getAereoKm3000() > 0) {
-                tp3000 = "Distanza Europea:</br>" + tp3000Bus + tp3000Auto + tp3000Treno + tp3000Aereo;
+                tp3000 = "Distanza Europea:<br>" + tp3000Bus + tp3000Auto + tp3000Treno + tp3000Aereo;
             }
 
             if (tpm.getBusKm9000() > 0) {
-                tp9000Bus = "Bus " + tpm.getBusKm9000() + " tratte </br>";
+                tp9000Bus = "Bus " + tpm.getBusKm9000() + " tratte <br>";
             }
             if (tpm.getAutoKm9000() > 0) {
-                tp9000Auto = "Auto " + tpm.getAutoKm9000() + " tratte </br>";
+                tp9000Auto = "Auto " + tpm.getAutoKm9000() + " tratte <br>";
             }
             if (tpm.getTrenoKm9000() > 0) {
-                tp9000Treno = "Treno " + tpm.getTrenoKm9000() + " tratte </br>";
+                tp9000Treno = "Treno " + tpm.getTrenoKm9000() + " tratte <br>";
             }
             if (tpm.getAereoKm9000() > 0) {
-                tp9000Aereo = "Aereo " + tpm.getAereoKm9000() + " tratte </br>";
+                tp9000Aereo = "Aereo " + tpm.getAereoKm9000() + " tratte <br>";
             }
             if (tpm.getBusKm9000() + tpm.getAutoKm9000() + tpm.getTrenoKm9000() + tpm.getAereoKm9000() > 0) {
-                tp9000 = "Distanza Extra Europea:</br>" + tp9000Bus + tp9000Auto + tp9000Treno + tp9000Aereo;
+                tp9000 = "Distanza Extra Europea:<br>" + tp9000Bus + tp9000Auto + tp9000Treno + tp9000Aereo;
             }
 
 
@@ -525,23 +525,23 @@ public class CalcoliHelper {
             if (co2 > 0) {
                 String temp = "";
                 if (tp60 != null && tp60.length() > 0) {
-                    temp = temp + tp60 + "</br>";
+                    temp = temp + tp60 + "<br>";
                 }
 
 
                 if (tp300 != null && tp300.length() > 0) {
-                    temp = temp + tp300 + "</br>";
+                    temp = temp + tp300 + "<br>";
                 }
                 if (tp1000 != null && tp1000.length() > 0) {
-                    temp = temp + tp1000 + "</br>";
+                    temp = temp + tp1000 + "<br>";
                 }
                 if (tp3000 != null && tp3000.length() > 0) {
-                    temp = temp + tp3000 + "</br>";
+                    temp = temp + tp3000 + "<br>";
                 }
                 if (tp9000 != null && tp9000.length() > 0) {
-                    temp = temp + tp9000 + "</br>";
+                    temp = temp + tp9000 + "<br>";
                 }
-                //  _rm.setDettagli(tp60 + "</br>" + tp300 + "</br>" + tp1000 + "</br>" + tp3000 + "</br>" + tp9000);
+                //  _rm.setDettagli(tp60 + "<br>" + tp300 + "<br>" + tp1000 + "<br>" + tp3000 + "<br>" + tp9000);
                 _rm.setDettagli(temp);
                 _rm.setKgCO2(co2);
                 _return.add(_rm);
@@ -586,96 +586,96 @@ public class CalcoliHelper {
 
         double co2 = 0;
         if (trasportoMerciModel.getFurgoneKm30() > 0) {
-            furgone30 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm30() + " ton </br>";
+            furgone30 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm30() + " ton <br>";
             co2 = trasportoMerciModel.getFurgoneKm30() * coefficienteModelFurgone.getValore() * 30;
         }
 
         if (trasportoMerciModel.getTirKm30() > 0) {
-            tir30 = "Tir:" + " " + trasportoMerciModel.getTirKm30() + " ton </br>";
+            tir30 = "Tir:" + " " + trasportoMerciModel.getTirKm30() + " ton <br>";
             co2 += trasportoMerciModel.getTirKm30() * coefficienteModelTir.getValore() * 30;
         }
 
 
         if (trasportoMerciModel.getFurgoneKm150() > 0) {
-            furgone150 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm150() + " ton </br>";
+            furgone150 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm150() + " ton <br>";
             co2 += trasportoMerciModel.getFurgoneKm150() * coefficienteModelFurgone.getValore() * 150;
         }
 
         if (trasportoMerciModel.getTirKm150() > 0) {
-            tir150 = "Tir:" + " " + trasportoMerciModel.getTirKm150() + " ton </br>";
+            tir150 = "Tir:" + " " + trasportoMerciModel.getTirKm150() + " ton <br>";
             co2 += trasportoMerciModel.getTirKm150() * coefficienteModelTir.getValore() * 150;
         }
         if (trasportoMerciModel.getTrenoKm150() > 0) {
-            treno150 = "Treno:" + " " + trasportoMerciModel.getTrenoKm150() + " ton </br>";
+            treno150 = "Treno:" + " " + trasportoMerciModel.getTrenoKm150() + " ton <br>";
             co2 += trasportoMerciModel.getTrenoKm150() * coefficienteModelTreno.getValore() * 150;
         }
 
         if (trasportoMerciModel.getFurgoneKm500() > 0) {
-            furgone500 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm500() + " ton </br>";
+            furgone500 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm500() + " ton <br>";
             co2 += trasportoMerciModel.getFurgoneKm500() * coefficienteModelFurgone.getValore() * 500;
         }
 
         if (trasportoMerciModel.getTirKm500() > 0) {
-            tir500 = "Tir:" + " " + trasportoMerciModel.getTirKm500() + " ton </br>";
+            tir500 = "Tir:" + " " + trasportoMerciModel.getTirKm500() + " ton <br>";
             co2 += trasportoMerciModel.getTirKm500() * coefficienteModelTir.getValore() * 500;
         }
         if (trasportoMerciModel.getTrenoKm500() > 0) {
-            treno500 = "Treno:" + " " + trasportoMerciModel.getTrenoKm500() + " ton </br>";
+            treno500 = "Treno:" + " " + trasportoMerciModel.getTrenoKm500() + " ton <br>";
             co2 += trasportoMerciModel.getTrenoKm500() * coefficienteModelTreno.getValore() * 500;
         }
 
         if (trasportoMerciModel.getNaveKm500() > 0) {
-            nave500 = "Nave:" + " " + trasportoMerciModel.getNaveKm500() + " ton </br>";
+            nave500 = "Nave:" + " " + trasportoMerciModel.getNaveKm500() + " ton <br>";
             co2 += trasportoMerciModel.getNaveKm500() * coefficienteModelNave.getValore() * 500;
         }
 
 
         if (trasportoMerciModel.getFurgoneKm1500() > 0) {
-            furgone1500 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm1500() + " ton </br>";
+            furgone1500 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm1500() + " ton <br>";
             co2 += trasportoMerciModel.getFurgoneKm1500() * coefficienteModelFurgone.getValore() * 1500;
         }
 
         if (trasportoMerciModel.getTirKm1500() > 0) {
-            tir1500 = "Tir:" + " " + trasportoMerciModel.getTirKm1500() + " ton </br>";
+            tir1500 = "Tir:" + " " + trasportoMerciModel.getTirKm1500() + " ton <br>";
             co2 += trasportoMerciModel.getTirKm1500() * coefficienteModelTir.getValore() * 1500;
         }
         if (trasportoMerciModel.getTrenoKm1500() > 0) {
-            treno1500 = "Treno:" + " " + trasportoMerciModel.getTrenoKm1500() + " ton </br>";
+            treno1500 = "Treno:" + " " + trasportoMerciModel.getTrenoKm1500() + " ton <br>";
             co2 += trasportoMerciModel.getTrenoKm1500() * coefficienteModelTreno.getValore() * 1500;
         }
 
         if (trasportoMerciModel.getNaveKm1500() > 0) {
-            nave1500 = "Nave:" + " " + trasportoMerciModel.getNaveKm1500() + " ton </br>";
+            nave1500 = "Nave:" + " " + trasportoMerciModel.getNaveKm1500() + " ton <br>";
             co2 += trasportoMerciModel.getNaveKm1500() * coefficienteModelNave.getValore() * 1500;
         }
 
         if (trasportoMerciModel.getAereoKm1500() > 0) {
-            aereo1500 = "Aereo:" + " " + trasportoMerciModel.getAereoKm1500() + " ton </br>";
+            aereo1500 = "Aereo:" + " " + trasportoMerciModel.getAereoKm1500() + " ton <br>";
             co2 += trasportoMerciModel.getAereoKm1500() * coefficienteModelTMAereoEU.getValore() * 1500;
         }
 
 
         if (trasportoMerciModel.getFurgoneKm9000() > 0) {
-            furgone9000 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm9000() + " ton </br>";
+            furgone9000 = "Furgone:" + " " + trasportoMerciModel.getFurgoneKm9000() + " ton <br>";
             co2 += trasportoMerciModel.getFurgoneKm9000() * coefficienteModelFurgone.getValore() * 9000;
         }
 
         if (trasportoMerciModel.getTirKm9000() > 0) {
-            tir9000 = "Tir:" + " " + trasportoMerciModel.getTirKm9000() + " ton </br>";
+            tir9000 = "Tir:" + " " + trasportoMerciModel.getTirKm9000() + " ton <br>";
             co2 += trasportoMerciModel.getTirKm9000() * coefficienteModelTir.getValore() * 9000;
         }
         if (trasportoMerciModel.getTrenoKm9000() > 0) {
-            treno9000 = "Treno:" + " " + trasportoMerciModel.getTrenoKm9000() + " ton </br>";
+            treno9000 = "Treno:" + " " + trasportoMerciModel.getTrenoKm9000() + " ton <br>";
             co2 += trasportoMerciModel.getTrenoKm9000() * coefficienteModelTreno.getValore() * 9000;
         }
 
         if (trasportoMerciModel.getNaveKm9000() > 0) {
-            nave9000 = "Nave:" + " " + trasportoMerciModel.getNaveKm9000() + " ton </br>";
+            nave9000 = "Nave:" + " " + trasportoMerciModel.getNaveKm9000() + " ton <br>";
             co2 += trasportoMerciModel.getNaveKm9000() * coefficienteModelNave.getValore() * 9000;
         }
 
         if (trasportoMerciModel.getAereoKm9000() > 0) {
-            aereo9000 = "Aereo:" + " " + trasportoMerciModel.getAereoKm9000() + " ton </br>";
+            aereo9000 = "Aereo:" + " " + trasportoMerciModel.getAereoKm9000() + " ton <br>";
             co2 += trasportoMerciModel.getAereoKm9000() * coefficienteModelTMAereoEE.getValore() * 9000;
         }
 
@@ -686,20 +686,20 @@ public class CalcoliHelper {
         String europeo = "";
         String extraeuropeo = "";
         if (trasportoMerciModel.getFurgoneKm30() + trasportoMerciModel.getTirKm30() > 0) {
-            provinciale = "Distanza provinciale:</br>" + furgone30 + tir30 + "</br>";
+            provinciale = "Distanza provinciale:<br>" + furgone30 + tir30 + "<br>";
         }
 
         if (trasportoMerciModel.getFurgoneKm150() + trasportoMerciModel.getTirKm150() + trasportoMerciModel.getTirKm150() > 0) {
-            regionale = "Distanza regionale:</br>" + furgone150 + tir150 + treno150 + "</br>";
+            regionale = "Distanza regionale:<br>" + furgone150 + tir150 + treno150 + "<br>";
         }
         if (trasportoMerciModel.getFurgoneKm500() + trasportoMerciModel.getTirKm500() + trasportoMerciModel.getTrenoKm500() + trasportoMerciModel.getNaveKm500() > 0) {
-            nazionale = "Distanza nazionale:</br>" + furgone500 + tir500 + treno500 + nave500 + "</br>";
+            nazionale = "Distanza nazionale:<br>" + furgone500 + tir500 + treno500 + nave500 + "<br>";
         }
         if (trasportoMerciModel.getFurgoneKm1500() + trasportoMerciModel.getTirKm1500() + trasportoMerciModel.getTrenoKm1500() + trasportoMerciModel.getNaveKm1500() + trasportoMerciModel.getAereoKm1500() > 0) {
-            europeo = "Distanza europea:</br>" + furgone1500 + tir1500 + treno1500 + nave1500 + aereo1500 + "</br>";
+            europeo = "Distanza europea:<br>" + furgone1500 + tir1500 + treno1500 + nave1500 + aereo1500 + "<br>";
         }
         if (trasportoMerciModel.getFurgoneKm9000() + trasportoMerciModel.getTirKm9000() + trasportoMerciModel.getTrenoKm9000() + trasportoMerciModel.getNaveKm9000() + trasportoMerciModel.getAereoKm9000() > 0) {
-            extraeuropeo = "Distanza extra europea:</br>" + furgone9000 + tir9000 + treno9000 + nave9000 + aereo9000 + "</br>";
+            extraeuropeo = "Distanza extra europea:<br>" + furgone9000 + tir9000 + treno9000 + nave9000 + aereo9000 + "<br>";
         }
 
         traspMerci.setDettagli(provinciale + regionale + nazionale + europeo + extraeuropeo);
@@ -722,13 +722,13 @@ public class CalcoliHelper {
 
             String formato = "";
             if (prm.getLarghezza() > 0 && prm.getAltezza() > 0) {
-                formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "</br>";
+                formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "<br>";
                 co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100;
                 co2Copertina = (prm.getAltezza() / 100 * prm.getLarghezza() / 100) * 2;
             }
             String pagine = "";
             if (prm.getNumeroDiPagine() > 0) {
-                pagine = "Numero di pagine: " + prm.getNumeroDiPagine() + "</br>";
+                pagine = "Numero di pagine: " + prm.getNumeroDiPagine() + "<br>";
                 co2 = co2 * prm.getNumeroDiPagine();
 
             }
@@ -741,12 +741,12 @@ public class CalcoliHelper {
                 materiale = prm.getTipoDiCarta().getNome();
             }
             if (prm.getGrammatura() > 0) {
-                materiale += " " + prm.getGrammatura() + " gr</br>";
+                materiale += " " + prm.getGrammatura() + " gr<br>";
                 co2 = co2 * (prm.getGrammatura() / 1000);
             }
             String tiratura = "";
             if (prm.getTiratura() > 0) {
-                tiratura = "Tiratura " + prm.getTiratura() + "</br>";
+                tiratura = "Tiratura " + prm.getTiratura() + "<br>";
                 co2 = co2 * prm.getTiratura();
                 co2Copertina = co2Copertina * prm.getTiratura();
             }
@@ -761,7 +761,7 @@ public class CalcoliHelper {
             co2 = co2 + co2Copertina;
             if (co2 > 0) {
                 _rm.setKgCO2(co2);
-                _rm.setOggetto("Pubblicazioni rilegate / </br>" + prm.getCategoria());
+                _rm.setOggetto("Pubblicazioni rilegate / <br>" + prm.getCategoria());
                 _rm.setDettagli(formato + materiale + pagine + tiratura);
                 _return.add(_rm);
             }
@@ -776,10 +776,10 @@ public class CalcoliHelper {
             _rm.setEventi(e.name());
             double co2 = 0;
 
-            _rm.setOggetto("Manifesti, pieghevoli, fogli / / </br>" + prm.getCategoria());
+            _rm.setOggetto("Manifesti, pieghevoli, fogli / / <br>" + prm.getCategoria());
             String formato = "";
             if (prm.getLarghezza() > 0 && prm.getAltezza() > 0) {
-                formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "</br>";
+                formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "<br>";
                 co2 = prm.getAltezza() / 100 * prm.getLarghezza() / 100;
             }
             String materiale = "";
@@ -791,17 +791,17 @@ public class CalcoliHelper {
                 materiale = prm.getTipoDiCarta().getNome();
             }
             if (prm.getGrammatura() > 0) {
-                materiale += " " + prm.getGrammatura() + " gr</br>";
+                materiale += " " + prm.getGrammatura() + " gr<br>";
                 co2 *= prm.getGrammatura() / 1000;
             }
             String pagine = "";
             if (prm.getNumeroDiPagine() > 0) {
-                pagine = "Numero di pagine: " + prm.getNumeroDiPagine() + "</br>";
+                pagine = "Numero di pagine: " + prm.getNumeroDiPagine() + "<br>";
                 co2 *= prm.getNumeroDiPagine();
             }
             String tiratura = "";
             if (prm.getTiratura() > 0) {
-                tiratura = "Tiratura " + prm.getTiratura() + "</br>";
+                tiratura = "Tiratura " + prm.getTiratura() + "<br>";
                 co2 *= prm.getTiratura();
             }
 
