@@ -32,7 +32,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class FormBigliettiDaVisita extends LayoutContainer {
-    private BigliettiDaVisitaModel bigliettiDaVisitaModel = new BigliettiDaVisitaModel();
+    private BigliettiDaVisitaModel bigliettiDaVisitaModel = null;
     private ToolBar toolBar = new ToolBar();
     private ListStore<TipoDiCartaModel> tipoDiCartaModelListStore = new ListStore<TipoDiCartaModel>();
     private final FormPanel panel;
@@ -41,6 +41,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
     //private ContentPanel cpEst = new ContentPanel();
     public FormBigliettiDaVisita() {
         panel = createGroupForm();
+        bigliettiDaVisitaModel = new BigliettiDaVisitaModel();
         binding = new FormBinding(panel, true);
         binding.bind(bigliettiDaVisitaModel);
     }
@@ -249,12 +250,14 @@ public class FormBigliettiDaVisita extends LayoutContainer {
     }
 
     public BigliettiDaVisitaModel getBigliettiDaVisitaModel() {
-        return bigliettiDaVisitaModel;
+        return this.bigliettiDaVisitaModel;
     }
 
     public void setBigliettiDaVisitaModel(BigliettiDaVisitaModel bigliettiDaVisitaModel) {
-        this.bigliettiDaVisitaModel = bigliettiDaVisitaModel;
-        binding.bind(bigliettiDaVisitaModel);
+        if (bigliettiDaVisitaModel != null) {
+            this.bigliettiDaVisitaModel = bigliettiDaVisitaModel;
+            binding.bind(bigliettiDaVisitaModel);
+        }
     }
 
     public void setTipoDiCartaModel(List<TipoDiCartaModel> tipoDiCarta) {

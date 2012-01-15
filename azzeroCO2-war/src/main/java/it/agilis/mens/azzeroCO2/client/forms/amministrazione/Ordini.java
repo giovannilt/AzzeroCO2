@@ -19,6 +19,7 @@ import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
@@ -152,12 +153,20 @@ public class Ordini extends LayoutContainer {
                                 Dispatcher.forwardEvent(AmministrazioneEvents.ShowEventoCompensatoDialog, be.getSelectedItem());
 
                             } else {
-                                Dispatcher.forwardEvent(EventoEvents.LoadEvento, be.getSelectedItem());
-
-                                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
-                                Dispatcher.forwardEvent(EventoEvents.ShowRiepilogo);
-
-                                Info.display("Info", "Uploading Evento... " + be.getSelectedItem().getNome());
+                                if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.EVENTO) {
+                                    Dispatcher.forwardEvent(EventoEvents.LoadEvento, be.getSelectedItem());
+                                    Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
+                                    Dispatcher.forwardEvent(EventoEvents.ShowRiepilogo);
+                                    Info.display("Info", "Uploading Evento... " + be.getSelectedItem().getNome());
+                                } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.ANNO_DI_ATTIVITA) {
+                                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.LoadUnAnnoDiAttivita, be.getSelectedItem());
+                                    Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.ANNO_DI_ATTIVITA);
+                                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.ShowRiepilogo);
+                                    Info.display("Info", "Uploading Anno di Attivita'... " + be.getSelectedItem().getNome());
+                                } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
+                                } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.CONOSCI_CO2) {
+                                } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.WEB) {
+                                }
                             }
                         }
                     }

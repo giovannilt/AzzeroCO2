@@ -172,7 +172,7 @@
                     <hostedWebapp>${webappDirectory}</hostedWebapp>
                     <i18nMessagesBundle>it.agilis.mens.azzeroCO2.client.Messages</i18nMessagesBundle>
                     <style>DETAILED</style>
-                    <logLevel>ALL</logLevel>
+                    <logLevel>INFO</logLevel>
                 </configuration>
             </plugin>
             <!-- Copy static web files before executing gwt:run -->

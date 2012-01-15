@@ -141,8 +141,10 @@ public class FormSitoWeb extends LayoutContainer {
     }
 
     public void setSitoWebModel(SitoWebModel sitoWebModel) {
-        this.sitoWebModel = sitoWebModel;
-        binding.bind(sitoWebModel);
+        if (sitoWebModel != null) {
+            this.sitoWebModel = sitoWebModel;
+            binding.bind(sitoWebModel);
+        }
     }
 
     @Override
