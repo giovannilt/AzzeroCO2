@@ -166,7 +166,7 @@ public class ConoscoCO2West extends LayoutContainer {
         List<RiepilogoModel> model = CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo);
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
-            m.setOggetto("Non hai ancora inserito </br> nessuna attività");
+            m.setOggetto("Non hai ancora inserito <br> nessuna attività");
             store.add(m);
         } else {
             this.esito = esito;

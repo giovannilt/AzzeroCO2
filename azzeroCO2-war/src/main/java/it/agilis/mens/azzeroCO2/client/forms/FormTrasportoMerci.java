@@ -89,7 +89,7 @@ public class FormTrasportoMerci extends LayoutContainer {
         layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c2.setLayout(layout2);
 
-        LabelField istruzione=new LabelField("Inserisci il numero di tonnellate di merce per chilometraggio a mezzo di trasporto. </br>");
+        LabelField istruzione=new LabelField("Inserisci il numero di tonnellate di merce per chilometraggio a mezzo di trasporto. <br>");
         //LabelField note =new LabelField("Il trasporto viene calcolato su medie di chilometraggio");
         istruzione.setStyleAttribute("font-weight","bold");
         //note.setStyleAttribute("font-style","italic");

@@ -36,8 +36,8 @@ public class SitoWebWest extends LayoutContainer {
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
     private Text title = new Text("Conosco la CO2");
     private final String oggettoDiDefault = "Compensa le tue emissioni";
-    private final String riepilogoString = "Hai terminato il calcolo! </br>" +
-            "Se vuoi modifica i dati inseriti</br>" +
+    private final String riepilogoString = "Hai terminato il calcolo! <br>" +
+            "Se vuoi modifica i dati inseriti<br>" +
             " cliccando sulla voce relativa.";
     private final String progettoDiCompensazione = "Scegli un progetto di <br>" +
             "compensazione.<br>" +
@@ -167,7 +167,7 @@ public class SitoWebWest extends LayoutContainer {
         List<RiepilogoModel> model = CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo);
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
-            m.setOggetto("Non hai ancora inserito </br> nessuna attivita");
+            m.setOggetto("Non hai ancora inserito <br> nessuna attivita");
             store.add(m);
         } else {
             this.esito = esito;
