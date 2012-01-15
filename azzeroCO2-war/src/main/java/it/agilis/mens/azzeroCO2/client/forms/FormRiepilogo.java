@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
@@ -191,7 +192,6 @@ public class FormRiepilogo extends LayoutContainer {
         Grid<RiepilogoModel> grid = new Grid<RiepilogoModel>(store, cm);
         grid.setBorders(true);
         grid.setHeight(350);
-        // grid.setStyleAttribute("border-style","2px solid white !important");
 
         grid.addListener(Events.CellClick, new Listener<GridEvent>() {
             public void handleEvent(GridEvent be) {
@@ -199,8 +199,8 @@ public class FormRiepilogo extends LayoutContainer {
                     if (Eventi.EVENTO == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
                         Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getModel());
                     } else if (Eventi.CONOSCI_CO2 == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
-                        // Dispatcher.forwardEvent(ConoscoCO2Events.ShowStep, be.getModel());
                     } else if (Eventi.ANNO_DI_ATTIVITA == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
+                        Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.ShowStep, be.getModel());
                     } else if (Eventi.UNA_PUBBLICAZIONE == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
                     } else if (Eventi.WEB == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
                     }

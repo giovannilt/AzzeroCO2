@@ -360,7 +360,7 @@ public class AnnoDettaglio extends LayoutContainer {
     public void showStep(RiepilogoModel tabToShow) {
         while (posizioniLabel > 0) {
             String s = previusTab();
-            if (s != null && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
+            if (s != null && !"".equalsIgnoreCase(s) && s.toLowerCase().startsWith(tabToShow.getOggetto().toLowerCase())) {
                 return;
             }
         }

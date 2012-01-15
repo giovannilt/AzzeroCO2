@@ -216,7 +216,7 @@ public class CalcoliHelper {
             _rm.setEventi(e.name());
             double co2 = 0;
 
-            _rm.setOggetto("Biglietti Da Visita Biglietti");
+            _rm.setOggetto("Biglietti Da Visita e ");
 
             String materiale = "";
 
@@ -234,11 +234,11 @@ public class CalcoliHelper {
             String tiratura = "";
             if (bigliettiDaVisita.getTiraturaBiglietti() > 0) {
                 tiratura = "Tiratura Biglietti" + bigliettiDaVisita.getTiraturaBiglietti() + "<br>";
-                co2 *= bigliettiDaVisita.getTiraturaBiglietti()*0.004675;  //dimensione bigliettino 5,5x8,5 cm
+                co2 *= bigliettiDaVisita.getTiraturaBiglietti() * 0.004675;  //dimensione bigliettino 5,5x8,5 cm
             }
 
             if (co2 > 0) {
-                _rm.setDettagli(materiale + tiratura);
+                _rm.setDettagli("Cartelline " + materiale + tiratura);
                 _rm.setKgCO2(co2);
                 _return.add(_rm);
             }
@@ -248,7 +248,7 @@ public class CalcoliHelper {
             _rm.setEventi(e.name());
 
             double co2 = 0;
-            _rm.setOggetto("Biglietti Da Visita Cartelline");
+            _rm.setOggetto("Biglietti Da Visita e ");
 
             String materiale = "";
 
@@ -260,7 +260,7 @@ public class CalcoliHelper {
             }
             if (bigliettiDaVisita.getGrammaturaCartelline() > 0) {
                 materiale += " " + bigliettiDaVisita.getGrammaturaCartelline() + " gr<br>";
-                co2 *= bigliettiDaVisita.getGrammaturaCartelline() / 1000*0.126 ; //dimensione cartelline 30cmx42cm
+                co2 *= bigliettiDaVisita.getGrammaturaCartelline() / 1000 * 0.126; //dimensione cartelline 30cmx42cm
             }
 
             String tiratura = "";
@@ -269,7 +269,7 @@ public class CalcoliHelper {
                 co2 *= bigliettiDaVisita.getTiraturaCartelline();
             }
             if (co2 > 0) {
-                _rm.setDettagli(materiale + tiratura);
+                _rm.setDettagli("Biglietti " + materiale + tiratura);
                 _rm.setKgCO2(co2);
                 _return.add(_rm);
             }
