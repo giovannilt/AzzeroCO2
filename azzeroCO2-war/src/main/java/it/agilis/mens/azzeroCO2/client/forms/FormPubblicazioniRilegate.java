@@ -38,8 +38,9 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
     private final FormBinding formBindings = new FormBinding(panel, true);
     private final Grid<PubblicazioniRilegateModel> grid = createGrid();
     private ContentPanel cpEst = new ContentPanel();
+
     public FormPubblicazioniRilegate() {
-        this.pubblicazioniRilegateModel.setMonitorChanges(true);
+        //this.pubblicazioniRilegateModel.setMonitorChanges(true);
         setDefault();
     }
 
@@ -58,7 +59,6 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-
         ContentPanel textContent = new ContentPanel();
         textContent.setHeaderVisible(false);
         textContent.setLayout(new RowLayout(Style.Orientation.VERTICAL));
@@ -70,11 +70,8 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
         note.setStyleAttribute("font-size", "9pt");
         note.setStyleAttribute("font-style", "italic");
 
-
-        // testo.setStyleAttribute("background-color","#2F3645");
         textContent.add(testo);
         textContent.add(note);
-
 
         cpEst.setFrame(false);
         cpEst.setHeading("Pubblicazioni Rilegate");
@@ -94,7 +91,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog,"Si fa riferimento alle emissioni relative al ciclo di produzione di un grammo di carta.");
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Si fa riferimento alle emissioni relative al ciclo di produzione di un grammo di carta.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");
@@ -132,7 +129,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
         cpEst.getBody().setStyleAttribute("border-top", "3px solid orange");
         cpEst.getBody().setStyleAttribute("border-width", "3px 0");
         cpEst.getBody().setStyleAttribute("margin-bottom", "0");
-        panel.getBody().setStyleAttribute("border-bottom","3px solid orange");
+        panel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
         panel.getBody().setStyleAttribute("border-style", "solid");
         panel.getBody().setStyleAttribute("border-top", "3px solid orange");
         panel.getBody().setStyleAttribute("border-width", "3px 0");
@@ -213,7 +210,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
 
                 ComboBox<TipoDiCartaModel> tipoDiCarta = new ComboBox<TipoDiCartaModel>();
                 tipoDiCarta.setEmptyText("Seleziona tipo di carta");
-              //  tipoDiCarta.setToolTip("TipoDiCarta");
+                //  tipoDiCarta.setToolTip("TipoDiCarta");
                 tipoDiCarta.setWidth(200);
                 tipoDiCarta.setDisplayField("nome");
                 tipoDiCarta.setTriggerAction(ComboBox.TriggerAction.ALL);
@@ -469,12 +466,10 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
         PubblicazioniRilegateModel libro = new PubblicazioniRilegateModel();
         libro.setCategoria("libro");
 
-
         pubblicazioniRilegateModel.add(catalogo);
         pubblicazioniRilegateModel.add(bilancio);
         pubblicazioniRilegateModel.add(report);
         pubblicazioniRilegateModel.add(libro);
-
 
         formBindings.bind(catalogo);
     }

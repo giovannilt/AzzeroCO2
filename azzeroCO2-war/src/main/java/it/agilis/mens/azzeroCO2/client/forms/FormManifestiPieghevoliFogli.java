@@ -39,6 +39,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
     private final FormBinding formBindings = new FormBinding(panel, true);
     private final Grid<ManifestiPieghevoliFogliModel> grid = createGrid();
     private ContentPanel cpEst = new ContentPanel();
+
     public FormManifestiPieghevoliFogli() {
         setDefault();
     }
@@ -81,7 +82,6 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
 
         cp.add(cpEst, new RowData(.35, .98));
         cp.add(panel, new RowData(.65, 1));
-
         panel.setHeading(manifestiPieghevoliFogliModel.getModels().get(0).getCategoria());
 
         ToolButton tool1 = new ToolButton("x-tool-help");
@@ -89,7 +89,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog,"Si fa riferimento alle emissioni relative al ciclo di produzione di un grammo di carta.");
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Si fa riferimento alle emissioni relative al ciclo di produzione di un grammo di carta.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");
@@ -118,6 +118,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
         add(cp, centerData);
         grid.getSelectionModel().select(0, true);
     }
+
     @Override
     protected void onLoad() {
         super.onLoad();
@@ -126,7 +127,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
         cpEst.getBody().setStyleAttribute("border-top", "3px solid orange");
         cpEst.getBody().setStyleAttribute("border-width", "3px 0");
         cpEst.getBody().setStyleAttribute("margin-bottom", "0");
-        panel.getBody().setStyleAttribute("border-bottom","3px solid orange");
+        panel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
         panel.getBody().setStyleAttribute("border-style", "solid");
         panel.getBody().setStyleAttribute("border-top", "3px solid orange");
         panel.getBody().setStyleAttribute("border-width", "3px 0");
@@ -174,13 +175,6 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
                 c.add(label);
                 c.add(altezza, flex);
                 c.add(new LabelField("altezza (cm)"), flex);
-
-                //NumberField larghezza = new NumberField();
-                //larghezza.setWidth(60);
-                //larghezza.setName("larghezza");
-
-                //c.add(larghezza, flex);
-                //c.add(new LabelField("larghezza (cm)"), flex);
 
                 panel.add(c, new FormData("100%"));
             }
@@ -281,7 +275,6 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
 
     private Grid<ManifestiPieghevoliFogliModel> createGrid() {
 
-
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
 
         ColumnConfig column = new ColumnConfig();
@@ -290,7 +283,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
 
         TextField<String> text = new TextField<String>();
         text.setAllowBlank(false);
-         column.setWidth(160);
+        column.setWidth(160);
         column.setEditor(new CellEditor(text));
         configs.add(column);
 
@@ -346,7 +339,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
         final ColumnModel cm = new ColumnModel(configs);
         final Grid<ManifestiPieghevoliFogliModel> grid = new Grid<ManifestiPieghevoliFogliModel>(manifestiPieghevoliFogliModel, cm);
 
-      //  grid.setAutoExpandColumn("categoria");
+        //  grid.setAutoExpandColumn("categoria");
         grid.setColumnResize(true);
         grid.setBorders(true);
         grid.addPlugin(re);
@@ -399,14 +392,11 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
         ManifestiPieghevoliFogliModel manifesti = new ManifestiPieghevoliFogliModel();
         manifesti.setCategoria("Manifesti");
 
-
         ManifestiPieghevoliFogliModel pieghevoli = new ManifestiPieghevoliFogliModel();
         pieghevoli.setCategoria("Pieghevoli");
 
         ManifestiPieghevoliFogliModel fogli = new ManifestiPieghevoliFogliModel();
         fogli.setCategoria("Fogli");
-
-
 
         manifestiPieghevoliFogliModel.add(manifesti);
         manifestiPieghevoliFogliModel.add(pieghevoli);

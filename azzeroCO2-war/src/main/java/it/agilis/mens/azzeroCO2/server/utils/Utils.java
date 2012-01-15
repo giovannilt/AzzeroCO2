@@ -251,7 +251,7 @@ public class Utils {
         o.setProgettoCompensazione(getProgettoDiCompensazione(ordineModel.getProgettoDiCompensazioneModel()));
         o.setRicevutaDiPagamento(getRicevuta(ordineModel.getPagamentoModel()));
 
-        if (ordineModel.getSitoWebModel() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
+        if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
             if (ordineModel.getPubblicazioniRilegateModel() != null && ordineModel.getPubblicazioniRilegateModel().size() > 0) {
                 List<Pubblicazione> pubblicazioniRilegateList = getListOfPubblicazione(ordineModel.getPubblicazioniRilegateModel());
                 if (o.getPubblicazioni() == null) {

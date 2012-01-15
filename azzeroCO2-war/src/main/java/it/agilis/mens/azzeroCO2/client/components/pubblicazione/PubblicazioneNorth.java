@@ -53,11 +53,7 @@ public class PubblicazioneNorth extends LayoutContainer {
         close.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-
                 Dispatcher.forwardEvent(PubblicazioniEvents.ShowConfermDialog);
-
-                //   Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.MAIN);
-                //  Dispatcher.forwardEvent(PubblicazioniEvents.ClearPanel, Eventi.MAIN);
             }
         });
         c.add(close, new HBoxLayoutData(new Margins(5, 5, 0, 0)));
