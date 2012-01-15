@@ -249,6 +249,8 @@ public class AnnoDettaglio extends LayoutContainer {
         formTrasportoMerci.clear();
         formPubblicazioniRilegate.clear(true);
         formManifestipieghevoliFogli.clear(true);
+        formBigliettiDaVisita.clear();
+        formSitoWeb.clear();
 
         formRiepilogo.clear();
         eventoFormAcquisto.clear();

@@ -14,7 +14,7 @@ import it.agilis.mens.azzeroCO2.client.components.annoAttivita.AnnoDettaglio;
 import it.agilis.mens.azzeroCO2.client.components.annoAttivita.AnnoNorth;
 import it.agilis.mens.azzeroCO2.client.components.annoAttivita.AnnoSouth;
 import it.agilis.mens.azzeroCO2.client.components.annoAttivita.AnnoWest;
-import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.EventoConfermDialog;
+import it.agilis.mens.azzeroCO2.client.components.annoAttivita.dialogs.AnnoConfermDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
@@ -41,7 +41,7 @@ import java.util.Map;
  */
 public class UnAnnoDiAttivitaView extends View {
     private ContentPanel unAnnoDiAttivita = new ContentPanel();
-    private EventoConfermDialog eventoConfermDialog = new EventoConfermDialog();
+    private AnnoConfermDialog annoConfermDialog = new AnnoConfermDialog();
 
     private AnnoDettaglio annoDettaglio = new AnnoDettaglio();
     private ContentPanel center = new ContentPanel();
@@ -96,7 +96,7 @@ public class UnAnnoDiAttivitaView extends View {
         } else if (event.getType().equals(UnAnnoDiAttivitaEvents.ShowStep)) {
             annoDettaglio.showStep(event.<RiepilogoModel>getData());
         } else if (event.getType().equals(UnAnnoDiAttivitaEvents.ShowConfermDialog)) {
-            eventoConfermDialog.show();
+            annoConfermDialog.show();
         }
     }
 

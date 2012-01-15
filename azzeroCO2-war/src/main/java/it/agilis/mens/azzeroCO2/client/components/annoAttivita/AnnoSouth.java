@@ -129,7 +129,7 @@ public class AnnoSouth extends LayoutContainer {
     }
 
     public void setTextRigth(String right_t, OrdineModel riepilogo) {
-        if (riepilogo.getPagamentoModel() != null
+        if (riepilogo != null && riepilogo.getPagamentoModel() != null
                 && riepilogo.getPagamentoModel().getEsito() != null
                 && riepilogo.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
             right.setVisible(false);

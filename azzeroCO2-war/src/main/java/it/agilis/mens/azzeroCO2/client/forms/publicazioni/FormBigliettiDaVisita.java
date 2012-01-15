@@ -268,7 +268,6 @@ public class FormBigliettiDaVisita extends LayoutContainer {
             }
         }
         tipoDiCartaModelListStore.add(tp);
-
     }
 
     public void clear() {
