@@ -113,7 +113,7 @@ public class FormSitoWeb extends LayoutContainer {
         layout3.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
         c3.setLayout(layout3);
 
-        LabelField suggerimenti = new LabelField("</br>Questo dato è facilmente reperibile dalle statistiche di traffico del sito in analisi.");
+        LabelField suggerimenti = new LabelField("<br>Questo dato è facilmente reperibile dalle statistiche di traffico del sito in analisi.");
         suggerimenti.setStyleAttribute("color", "gray");
         suggerimenti.setStyleAttribute("form-variant", "normal");
 

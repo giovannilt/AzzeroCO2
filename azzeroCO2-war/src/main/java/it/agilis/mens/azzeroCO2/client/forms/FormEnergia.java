@@ -71,7 +71,7 @@ public class FormEnergia extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Energia elettrica:  Il dato tiene conto di tutti i combustibili usati nelle centrali elettriche italiane.</br></br>Gas/gasolio: il dato tiene conto dell’uso del combustibile nei generatori domestici più utilizzati, sia unifamiliari che centralizzati.");
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Energia elettrica:  Il dato tiene conto di tutti i combustibili usati nelle centrali elettriche italiane.<br><br>Gas/gasolio: il dato tiene conto dell’uso del combustibile nei generatori domestici più utilizzati, sia unifamiliari che centralizzati.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");
@@ -124,7 +124,7 @@ public class FormEnergia extends LayoutContainer {
         layout3.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
         c3.setLayout(layout3);
 
-        LabelField note = new LabelField("Non riempire in caso di energia da fonti rinnovabili.</br></br></br>");
+        LabelField note = new LabelField("Non riempire in caso di energia da fonti rinnovabili.<br><br><br>");
         note.setStyleAttribute("font-style", "italic");
         c3.add(note);
 

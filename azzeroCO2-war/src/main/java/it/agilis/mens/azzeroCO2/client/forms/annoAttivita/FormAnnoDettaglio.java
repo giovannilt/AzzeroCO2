@@ -94,7 +94,8 @@ public class FormAnnoDettaglio extends LayoutContainer {
 
         TextField<String> nomeEvento = new TextField<String>();
         nomeEvento.setFieldLabel("Nome dell'attività");
-        nomeEvento.setLabelStyle("width:150");
+        nomeEvento.setLabelStyle("width:150px");
+
         nomeEvento.setStyleAttribute("padding-bottom", "35px");
         nomeEvento.setName("nome");
 
@@ -102,7 +103,7 @@ public class FormAnnoDettaglio extends LayoutContainer {
 
         TextField<String> anno = new TextField<String>();
         anno.setFieldLabel("Anno");
-        anno.setLabelStyle("width:150");
+        anno.setLabelStyle("width:150px");
 
         anno.setStyleAttribute("padding-bottom", "35px");
         anno.setName("anno");
@@ -110,7 +111,7 @@ public class FormAnnoDettaglio extends LayoutContainer {
 
         TextField<String> dove = new TextField<String>();
         dove.setFieldLabel("Dove");
-        dove.setLabelStyle("width:150");
+        dove.setLabelStyle("width:150px");
 
         dove.setStyleAttribute("padding-bottom", "35px");
         dove.setName("dove");
@@ -118,7 +119,7 @@ public class FormAnnoDettaglio extends LayoutContainer {
 
         TextArea note = new TextArea();
         note.setPreventScrollbars(true);
-        note.setLabelStyle("width:150");
+        note.setLabelStyle("width:150px");
 
         note.setStyleAttribute("padding-bottom", "35px");
         note.setFieldLabel("Note");

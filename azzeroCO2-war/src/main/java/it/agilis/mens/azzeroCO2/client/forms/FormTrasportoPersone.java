@@ -74,7 +74,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         textContent.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
 
-        Text testo = new Text(" Scegli 'Tutte le persone' per calcolare le emissioni di tutte le persone che si sono spostate per l'evento.</br></br>Se invece vuoi dettagliare i trasporti per categoria di persone usa le altre categorie disponibili o creane di nuove.");
+        Text testo = new Text(" Scegli 'Tutte le persone' per calcolare le emissioni di tutte le persone che si sono spostate per l'evento.<br><br>Se invece vuoi dettagliare i trasporti per categoria di persone usa le altre categorie disponibili o creane di nuove.");
         //testo.setStyleAttribute("padding-top","10px");
         testo.setStyleAttribute("font-size", "9pt");
         textContent.add(testo);
@@ -142,7 +142,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Treno: si fa riferimento alle emissioni, ripartite per passeggero, dell’intero ciclo di vita del mezzo, delle rotaie e di tutti i componenti del sistema ferroviario. Le emissioni prodotte variano per tipo di treno e in base all’energia utilizzata per la sua costruzione e per la trazione.</br></br>Aereo: si fa riferimento alle emissioni, ripartite per passeggero, dell’intero ciclo di vita del mezzo e di tutti i componenti del sistema di trasporto aereo. Le emissioni prodotte variano per tipo di aereo e in base all’energia utilizzata per la sua costruzione e trazione.</br></br><<Auto, moto, autobus: si fa riferimento alle emissioni, ripartite per passeggero, di tutto il ciclo di vita del mezzo, delle strade e di tutte le componenti del trasporto su strada.");
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Treno: si fa riferimento alle emissioni, ripartite per passeggero, dell’intero ciclo di vita del mezzo, delle rotaie e di tutti i componenti del sistema ferroviario. Le emissioni prodotte variano per tipo di treno e in base all’energia utilizzata per la sua costruzione e per la trazione.<br><br>Aereo: si fa riferimento alle emissioni, ripartite per passeggero, dell’intero ciclo di vita del mezzo e di tutti i componenti del sistema di trasporto aereo. Le emissioni prodotte variano per tipo di aereo e in base all’energia utilizzata per la sua costruzione e trazione.<br><br><<Auto, moto, autobus: si fa riferimento alle emissioni, ripartite per passeggero, di tutto il ciclo di vita del mezzo, delle strade e di tutte le componenti del trasporto su strada.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");

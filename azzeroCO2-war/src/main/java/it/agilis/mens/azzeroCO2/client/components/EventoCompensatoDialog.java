@@ -89,7 +89,7 @@ public class EventoCompensatoDialog extends Dialog {
         status.setFrame(false);
         status.setLayout(new RowLayout(Style.Orientation.VERTICAL));
 
-        String testo = dateFormat.format(ordineModel.getPagamentoModel().getUpdateFromBanca()) + "</br>";
+        String testo = dateFormat.format(ordineModel.getPagamentoModel().getUpdateFromBanca()) + "<br>";
         testo += " Hai compensato " + number.format(totale) + " kgCO2.";
 
         Text testo1 = new Text(testo);
