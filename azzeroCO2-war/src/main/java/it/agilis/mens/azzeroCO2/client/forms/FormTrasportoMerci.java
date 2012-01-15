@@ -53,12 +53,12 @@ public class FormTrasportoMerci extends LayoutContainer {
 
 
         panel.setHeading("Trasporto merci");
-       ToolButton tool1 = new ToolButton("x-tool-help");
+        ToolButton tool1 = new ToolButton("x-tool-help");
         panel.getHeader().addTool(tool1);
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override
             public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog,"Si fa riferimento alle emissioni prodotte dal mezzo in uno specifico chilometraggio.");
+                Dispatcher.forwardEvent(AzzeroCO2Events.ShowInfoDialog, "Si fa riferimento alle emissioni prodotte dal mezzo in uno specifico chilometraggio.");
             }
         });
         ToolButton tool = new ToolButton("x-tool-refresh");
@@ -89,9 +89,9 @@ public class FormTrasportoMerci extends LayoutContainer {
         layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c2.setLayout(layout2);
 
-        LabelField istruzione=new LabelField("Inserisci il numero di tonnellate di merce per chilometraggio a mezzo di trasporto. <br>");
+        LabelField istruzione = new LabelField("Inserisci il numero di tonnellate di merce per chilometraggio a mezzo di trasporto. <br>");
         //LabelField note =new LabelField("Il trasporto viene calcolato su medie di chilometraggio");
-        istruzione.setStyleAttribute("font-weight","bold");
+        istruzione.setStyleAttribute("font-weight", "bold");
         //note.setStyleAttribute("font-style","italic");
 
         c2.add(istruzione, flex);
@@ -104,9 +104,6 @@ public class FormTrasportoMerci extends LayoutContainer {
         c3.setLayout(layout3);
         //c3.add(note,flex);
         panel.add(c3);
-
-
-
 
 
         LayoutContainer km30 = new LayoutContainer();
@@ -370,7 +367,7 @@ public class FormTrasportoMerci extends LayoutContainer {
 
     public void clear() {
         binding.clear();
-        trasportoMerciModel= new TrasportoMerciModel();
+        trasportoMerciModel = new TrasportoMerciModel();
         binding.bind(trasportoMerciModel);
 
     }
@@ -380,11 +377,13 @@ public class FormTrasportoMerci extends LayoutContainer {
     }
 
     public void setTrasportoMerciModel(TrasportoMerciModel trasportoMerciModel) {
-        this.trasportoMerciModel = trasportoMerciModel;
-        binding.bind(trasportoMerciModel);
+        if (trasportoMerciModel != null) {
+            this.trasportoMerciModel = trasportoMerciModel;
+            binding.bind(trasportoMerciModel);
+        }
     }
 
-        @Override
+    @Override
     protected void onLoad() {
         super.onLoad();
         panel.getBody().setStyleAttribute("border-bottom", "3px solid orange");

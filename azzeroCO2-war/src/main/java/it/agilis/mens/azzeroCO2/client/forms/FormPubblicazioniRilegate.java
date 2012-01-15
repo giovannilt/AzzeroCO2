@@ -448,7 +448,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
         if (pubblicazioniRilegateModel.size() == 0) {
             setDefault();
         }
-        if (grid != null) {
+        if (grid != null && pubblicazioniRilegateModel != null && pubblicazioniRilegateModel.size() < 0) {
             grid.getSelectionModel().select(pubblicazioniRilegateModel.get(0), true);
         }
     }

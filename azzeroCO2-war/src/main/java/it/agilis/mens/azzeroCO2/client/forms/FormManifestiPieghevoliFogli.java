@@ -382,7 +382,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
         if (manifestiPieghevoliFogliModel.size() == 0) {
             setDefault();
         }
-        if (grid != null) {
+        if (grid != null && manifestiPieghevoliFogliModel != null && manifestiPieghevoliFogliModel.size() < 0) {
             grid.getSelectionModel().select(manifestiPieghevoliFogliModel.get(0), true);
         }
 

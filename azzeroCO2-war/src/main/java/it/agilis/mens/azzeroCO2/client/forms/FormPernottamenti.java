@@ -131,10 +131,13 @@ public class FormPernottamenti extends LayoutContainer {
     }
 
     public void setNottiModel(NottiModel nottiModel) {
-        this.nottiModel = nottiModel;
-        binding.bind(nottiModel);
+        if (nottiModel != null) {
+            this.nottiModel = nottiModel;
+            binding.bind(nottiModel);
+        }
     }
-        @Override
+
+    @Override
     protected void onLoad() {
         super.onLoad();
         formPanel.getBody().setStyleAttribute("border-bottom", "3px solid orange");

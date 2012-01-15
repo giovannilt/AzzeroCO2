@@ -114,7 +114,7 @@ public class FormEnergia extends LayoutContainer {
         c.add(energiaElettrica);
         LabelField kwh = new LabelField("kWh");
         kwh.setStyleAttribute("font-size", "11px");
-        kwh.setStyleAttribute("padding-left","3px");
+        kwh.setStyleAttribute("padding-left", "3px");
         c.add(kwh, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
         panel.add(c, new FormData("100%"));
 
@@ -147,7 +147,7 @@ public class FormEnergia extends LayoutContainer {
         cGas.add(gasMetano);
         LabelField widget1 = new LabelField("m<sup>3</sup>");
         widget1.setStyleAttribute("font-size", "11px");
-        widget1.setStyleAttribute("padding-left","3px");
+        widget1.setStyleAttribute("padding-left", "3px");
         cGas.add(widget1, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
 
         panel.add(cGas, new FormData("100%"));
@@ -169,7 +169,7 @@ public class FormEnergia extends LayoutContainer {
         cGasoline.add(gasolio);
         LabelField litri = new LabelField("litri");
         litri.setStyleAttribute("font-size", "11px");
-        litri.setStyleAttribute("padding-left","3px");
+        litri.setStyleAttribute("padding-left", "3px");
         cGasoline.add(litri, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
 
         panel.add(cGasoline, new FormData("100%"));
@@ -188,8 +188,10 @@ public class FormEnergia extends LayoutContainer {
     }
 
     public void setEnergiaModel(EnergiaModel energiaModel) {
-        this.energiaModel = energiaModel;
-        binding.bind(energiaModel);
+        if (energiaModel != null) {
+            this.energiaModel = energiaModel;
+            binding.bind(energiaModel);
+        }
     }
 
     @Override

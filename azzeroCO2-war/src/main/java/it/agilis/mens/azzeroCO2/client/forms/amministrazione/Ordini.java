@@ -65,9 +65,13 @@ public class Ordini extends LayoutContainer {
         column.setRenderer(new GridCellRenderer<OrdineModel>() {
             public String render(OrdineModel model, String property, ColumnData config, int rowIndex, int colIndex,
                                  ListStore<OrdineModel> store, Grid<OrdineModel> grid) {
-                if (model.getPagamentoModel() != null) {
+                if (model != null) {
                     if (Eventi.valueOf(model.getEventiType()) == Eventi.ANNO_DI_ATTIVITA) {
-                        return model.getNome() + " " + model.getAnno();
+                        if (model.getAnno() != null) {
+                            return model.getNome() + " " + model.getAnno();
+                        } else {
+                            return model.getNome();
+                        }
                     } else {
                         return model.getNome();
                     }
