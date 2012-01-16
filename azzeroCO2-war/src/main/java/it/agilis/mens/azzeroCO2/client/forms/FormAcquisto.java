@@ -261,7 +261,7 @@ public class FormAcquisto extends LayoutContainer {
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
 
                 com.extjs.gxt.ui.client.widget.button.Button ricalcola;
-                ricalcola = new com.extjs.gxt.ui.client.widget.button.Button("Calcola sconto");
+                ricalcola = new com.extjs.gxt.ui.client.widget.button.Button("Calcola");
                 //TODO fare funzionare sto pulsantone di calcolo del coupon
 
                 ricalcola.setStyleAttribute("padding-top", "10px");
