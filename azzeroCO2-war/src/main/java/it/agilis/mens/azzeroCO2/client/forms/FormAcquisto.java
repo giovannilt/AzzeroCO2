@@ -145,7 +145,7 @@ public class FormAcquisto extends LayoutContainer {
             layout.setPadding(new Padding(1));
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
             c.setLayout(layout);
-            LabelField label = new LabelField("Evento: ");
+            LabelField label = new LabelField("Calcolo: ");
             label.setStyleAttribute("font-size", "16px");
 
             c.add(label);
@@ -160,6 +160,7 @@ public class FormAcquisto extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
                 titoloEvento.setWidth(220);
+                titoloEvento.setStyleAttribute("font-weight", "bold");
                 c.add(titoloEvento);
                 panel.add(c);
             }
