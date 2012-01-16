@@ -33,7 +33,7 @@ import java.util.List;
  * Time: 6:58 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoCompensatoDialog extends Dialog {
+public class OrdineCompensatoDialog extends Dialog {
 
     private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
 
@@ -89,9 +89,13 @@ public class EventoCompensatoDialog extends Dialog {
         status.setFrame(false);
         status.setLayout(new RowLayout(Style.Orientation.VERTICAL));
 
-        String testo = dateFormat.format(ordineModel.getPagamentoModel().getUpdateFromBanca()) + "<br>";
-        testo += " Hai compensato " + number.format(totale) + " kgCO2.";
-
+        String testo;
+        if (ordineModel.getPagamentoModel() != null && ordineModel.getPagamentoModel().getUpdateFromBanca() != null) {
+            testo = dateFormat.format(ordineModel.getPagamentoModel().getUpdateFromBanca()) + "<br>";
+            testo += " Hai compensato " + number.format(totale) + " kgCO2.";
+        } else {
+            testo = "Compensato via DB";
+        }
         Text testo1 = new Text(testo);
 
         status.add(testo1, new RowData(1, 1));
