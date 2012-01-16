@@ -81,6 +81,7 @@ public class PagamentoSella extends Dialog {
                     Dispatcher.forwardEvent(ConoscoCO2Events.InAttesaDiConfermaPagamento);
                 }
                 submit.disable();
+
             }
         });
         addButton(submit);

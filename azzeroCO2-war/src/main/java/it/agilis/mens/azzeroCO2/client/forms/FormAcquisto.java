@@ -183,7 +183,7 @@ public class FormAcquisto extends LayoutContainer {
                 //   label.setWidth(220);
                 c.setHeight(50);
                 c.add(label, new FillData(2, 20, 2, 0));
-                c.add(kcO2Evento, new FillData(2, 0, 2, 100));
+                c.add(kcO2Evento, new FillData(2, 0, 2, 95));
 
                 panel.add(c, new FormData("100%"));
             }
@@ -222,7 +222,7 @@ public class FormAcquisto extends LayoutContainer {
                 LabelField label = new LabelField("€ x Kg/CO2 ");
 
                 c.add(label, new FillData(2, 20, 2, 0));
-                c.add(euroPerKCo2Progetto, new FillData(2, 0, 2, 100));
+                c.add(euroPerKCo2Progetto, new FillData(2, 0, 2, 95));
 
                 panel.add(c, new FormData("100%"));
             }
@@ -239,7 +239,7 @@ public class FormAcquisto extends LayoutContainer {
                 totale.setStyleAttribute("color", "#FF9933");
                 totale.setStyleAttribute("font-size", "16px");
 
-                c.add(totale, new FillData(2, 0, 2, 95));
+                c.add(totale, new FillData(2, 0, 2, 90));
 
                 panel.add(c, new FormData("100%"));
             }

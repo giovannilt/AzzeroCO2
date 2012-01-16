@@ -189,6 +189,10 @@ public class SitoWebController extends BaseController {
                     sitoWebView.showConferma(result);
 
                     sentMail(result);
+                }
+                if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.ANNULLATO.toString())) {
+                    Info.display("Info", "La Banca ha rifiutato la transazione, il pagamento si ritiene annullato.");
+                    Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
                 } else {
                     if (numeroDiVolte > 0) {
                         Info.display("Info", "Non Ancora pagato");

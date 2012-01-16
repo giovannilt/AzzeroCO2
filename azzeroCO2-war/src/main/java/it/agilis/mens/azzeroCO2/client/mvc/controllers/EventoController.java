@@ -218,19 +218,23 @@ public class EventoController extends BaseController {
         public void onSuccess(OrdineVTO result) {
             if (result != null) {
                 if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
-                    Info.display("Info", "Pagamento Avvenuto con sucesso");
+                    Info.display("Info", "Pagamento Avvenuto con sucesso.");
                     Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
 
                     eventoView.showConferma(result);
 
                     sentMail(result);
+                }
+                if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.ANNULLATO.toString())) {
+                    Info.display("Info", "La Banca ha rifiutato la transazione, il pagamento si ritiene annullato.");
+                    Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
                 } else {
                     if (numeroDiVolte > 0) {
                         Info.display("Info", "Non Ancora pagato");
                         getTimer().schedule(10000);
                         numeroDiVolte--;
                     } else {
-                        Info.display("Info", "Evento non pagato, atteso pagamento per piu' di 2 minuti, si consiglia di ricaricare ");
+                        Info.display("Info", "Evento non pagato, atteso pagamento per piu' di 2 minuti, si consiglia di ricaricare.");
                         Dispatcher.forwardEvent(PagamentoSellaEvents.EnableButton);
                     }
                 }
