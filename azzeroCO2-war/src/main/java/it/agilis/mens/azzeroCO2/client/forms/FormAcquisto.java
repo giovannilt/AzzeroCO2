@@ -13,7 +13,6 @@ import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
-import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
@@ -146,7 +145,7 @@ public class FormAcquisto extends LayoutContainer {
             layout.setPadding(new Padding(1));
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
             c.setLayout(layout);
-            LabelField label = new LabelField("Evento: ");
+            LabelField label = new LabelField("Calcolo: ");
             label.setStyleAttribute("font-size", "16px");
 
             c.add(label);
@@ -161,6 +160,7 @@ public class FormAcquisto extends LayoutContainer {
                 layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
                 c.setLayout(layout);
                 titoloEvento.setWidth(220);
+                titoloEvento.setStyleAttribute("font-weight", "bold");
                 c.add(titoloEvento);
                 panel.add(c);
             }
@@ -183,7 +183,7 @@ public class FormAcquisto extends LayoutContainer {
                 //   label.setWidth(220);
                 c.setHeight(50);
                 c.add(label, new FillData(2, 20, 2, 0));
-                c.add(kcO2Evento, new FillData(2, 0, 2, 50));
+                c.add(kcO2Evento, new FillData(2, 0, 2, 100));
 
                 panel.add(c, new FormData("100%"));
             }
@@ -209,7 +209,7 @@ public class FormAcquisto extends LayoutContainer {
                 c.setLayout(layout);
 
                 titoloProgettoScelto.setWidth(220);
-                titoloProgettoScelto.setStyleAttribute("padding-bottom","30px");
+                titoloProgettoScelto.setStyleAttribute("padding-bottom", "30px");
                 c.add(titoloProgettoScelto);
 
                 panel.add(c, new FormData("100%"));
@@ -222,7 +222,7 @@ public class FormAcquisto extends LayoutContainer {
                 LabelField label = new LabelField("€ x Kg/CO2 ");
 
                 c.add(label, new FillData(2, 20, 2, 0));
-                c.add(euroPerKCo2Progetto, new FillData(2, 0, 2, 50));
+                c.add(euroPerKCo2Progetto, new FillData(2, 0, 2, 100));
 
                 panel.add(c, new FormData("100%"));
             }
@@ -239,15 +239,15 @@ public class FormAcquisto extends LayoutContainer {
                 totale.setStyleAttribute("color", "#FF9933");
                 totale.setStyleAttribute("font-size", "16px");
 
-                c.add(totale, new FillData(2, 0, 2, 50));
+                c.add(totale, new FillData(2, 0, 2, 95));
 
                 panel.add(c, new FormData("100%"));
             }
             { // Coupon
                 LayoutContainer c = new LayoutContainer();
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
-                c.setHeight(30);
-                LabelField label = new LabelField("Hai Un Coupon? ");
+                c.setHeight(35);
+                LabelField label = new LabelField("Se hai un coupon inseriscilo ");
 
                 c.add(label, new FillData(2, 20, 2, 0));
                 TextField<String> coupon = new TextField<String>();

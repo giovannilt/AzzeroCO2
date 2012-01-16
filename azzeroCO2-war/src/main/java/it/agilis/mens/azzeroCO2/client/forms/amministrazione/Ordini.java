@@ -154,7 +154,7 @@ public class Ordini extends LayoutContainer {
                         if (be.getSelection().size() > 0) {
                             if (be.getSelectedItem().getPagamentoModel() != null &&
                                     be.getSelectedItem().getPagamentoModel().getEsito().equals(Esito.PAGATO.toString())) {
-                                Dispatcher.forwardEvent(AmministrazioneEvents.ShowEventoCompensatoDialog, be.getSelectedItem());
+                                Dispatcher.forwardEvent(AmministrazioneEvents.ShowOrdineCompensatoDialog, be.getSelectedItem());
 
                             } else {
                                 if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.EVENTO) {

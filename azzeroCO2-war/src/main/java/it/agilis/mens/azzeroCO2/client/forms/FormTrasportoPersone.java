@@ -606,7 +606,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             if (trasportoPersoneModel.size() == 0) {
                 setDefault();
             }
-            if (grid != null) {
+            if (grid != null && trasportoPersoneModel != null && trasportoPersoneModel.size() > 0) {
                 grid.getSelectionModel().select(trasportoPersoneModel.get(0), true);
             }
 

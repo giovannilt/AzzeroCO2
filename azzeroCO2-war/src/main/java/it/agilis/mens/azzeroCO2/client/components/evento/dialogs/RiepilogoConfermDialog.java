@@ -27,10 +27,10 @@ public class RiepilogoConfermDialog extends Dialog {
 
     public RiepilogoConfermDialog() {
 
-        setHeading("Eliminare il Calcolo?");
+        setHeading("Eliminara");
         // setButtons(Dialog.YESNO);
         setBodyStyleName("pad-text");
-        addText("Sei sicuro di voler annullare il calcolo?");
+        addText("Sei sicuro di voler eliminare questo elemento?");
         //getItem(0).getFocusSupport().setIgnore(true);
         setModal(true);
 

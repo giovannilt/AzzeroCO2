@@ -95,14 +95,14 @@ public class RegisterDialog extends Dialog {
         };
 
         userName = new TextField<String>();
-        userName.setFieldLabel("Username*");
+        userName.setFieldLabel("Utente*");
         userName.setName("userName");
         userName.setMinLength(6);
         userName.getMessages().setMinLengthText("la username deve essere di almeno 6 caratteri");
 
         userName.addKeyListener(keyListener);
         userName.setLabelStyle("white-space:nowrap");
-        userName.setStyleAttribute("padding-left","80px");
+        userName.setStyleAttribute("padding-left", "80px");
         //userName.setLabelStyle("width:150");
         formPanel.add(userName);
 
@@ -114,7 +114,7 @@ public class RegisterDialog extends Dialog {
         password.setName("password");
         password.addKeyListener(keyListener);
         password.setLabelStyle("white-space:nowrap");
-        password.setStyleAttribute("padding-left","80px");
+        password.setStyleAttribute("padding-left", "80px");
         //password.setLabelStyle("width:150");
         formPanel.add(password);
 
@@ -127,7 +127,7 @@ public class RegisterDialog extends Dialog {
         repassword.setName("repassword");
         repassword.addKeyListener(keyListener);
         repassword.setLabelStyle("white-space:nowrap");
-        repassword.setStyleAttribute("padding-left","80px");
+        repassword.setStyleAttribute("padding-left", "80px");
         formPanel.add(repassword);
 
 
@@ -139,7 +139,7 @@ public class RegisterDialog extends Dialog {
         nome.setName("nome");
         nome.addKeyListener(keyListener);
         nome.setLabelStyle("white-space:nowrap");
-        nome.setStyleAttribute("padding-left","80px");
+        nome.setStyleAttribute("padding-left", "80px");
         //nome.setLabelStyle("width:150");
         formPanel.add(nome);
 
@@ -151,7 +151,7 @@ public class RegisterDialog extends Dialog {
         cognome.setName("cognome");
         cognome.addKeyListener(keyListener);
         cognome.setLabelStyle("white-space:nowrap");
-        cognome.setStyleAttribute("padding-left","80px");
+        cognome.setStyleAttribute("padding-left", "80px");
         //cognome.setLabelStyle("width:150");
         formPanel.add(cognome);
 
@@ -163,7 +163,7 @@ public class RegisterDialog extends Dialog {
         ragioneSoc.setName("ragioneSociale");
         ragioneSoc.addKeyListener(keyListener);
         ragioneSoc.setLabelStyle("white-space:nowrap");
-        ragioneSoc.setStyleAttribute("padding-left","80px");
+        ragioneSoc.setStyleAttribute("padding-left", "80px");
         //ragioneSoc.setLabelStyle("width:150");
 
         formPanel.add(ragioneSoc);
@@ -176,7 +176,7 @@ public class RegisterDialog extends Dialog {
         indirizzo.setName("indirizzo");
         indirizzo.addKeyListener(keyListener);
         indirizzo.setLabelStyle("white-space:nowrap");
-        indirizzo.setStyleAttribute("padding-left","80px");
+        indirizzo.setStyleAttribute("padding-left", "80px");
         //indirizzo.setLabelStyle("width:150");
         formPanel.add(indirizzo);
 
@@ -189,7 +189,7 @@ public class RegisterDialog extends Dialog {
         citta.setName("citta");
         citta.addKeyListener(keyListener);
         citta.setLabelStyle("white-space:nowrap");
-        citta.setStyleAttribute("padding-left","80px");
+        citta.setStyleAttribute("padding-left", "80px");
         //citta.setLabelStyle("width:150");
 
         formPanel.add(citta);
@@ -203,7 +203,7 @@ public class RegisterDialog extends Dialog {
         provincia.setName("provincia");
         provincia.addKeyListener(keyListener);
         provincia.setLabelStyle("white-space:nowrap");
-        provincia.setStyleAttribute("padding-left","80px");
+        provincia.setStyleAttribute("padding-left", "80px");
         //provincia.setLabelStyle("width:150");
         formPanel.add(provincia);
 
@@ -217,7 +217,7 @@ public class RegisterDialog extends Dialog {
         cap.setName("cap");
         cap.addKeyListener(keyListener);
         cap.setLabelStyle("white-space:nowrap");
-        cap.setStyleAttribute("padding-left","80px");
+        cap.setStyleAttribute("padding-left", "80px");
         //cap.setLabelStyle("width:150");
         formPanel.add(cap);
 
@@ -229,7 +229,7 @@ public class RegisterDialog extends Dialog {
         partitaIvaCF.setFieldLabel("P.Iva/CF*");
         partitaIvaCF.addKeyListener(keyListener);
         partitaIvaCF.setLabelStyle("white-space:nowrap");
-        partitaIvaCF.setStyleAttribute("padding-left","80px");
+        partitaIvaCF.setStyleAttribute("padding-left", "80px");
         //partitaIvaCF.setLabelStyle("width:150");
         formPanel.add(partitaIvaCF);
 
@@ -242,7 +242,7 @@ public class RegisterDialog extends Dialog {
         telefono.setRegex("[0-9]+");
         telefono.getMessages().setRegexText("Solo valori numerici");
         telefono.setLabelStyle("white-space:nowrap");
-        telefono.setStyleAttribute("padding-left","80px");
+        telefono.setStyleAttribute("padding-left", "80px");
         //telefono.setLabelStyle("width:150");
         formPanel.add(telefono);
 
@@ -255,7 +255,7 @@ public class RegisterDialog extends Dialog {
         fax.setRegex("^[0-9]+");
         fax.getMessages().setRegexText("Solo valori numerici");
         fax.setLabelStyle("white-space:nowrap");
-        fax.setStyleAttribute("padding-left","80px");
+        fax.setStyleAttribute("padding-left", "80px");
         //fax.setLabelStyle("width:150");
         formPanel.add(fax);
 
@@ -268,7 +268,7 @@ public class RegisterDialog extends Dialog {
         cellulare.setRegex("^[0-9]+");
         cellulare.getMessages().setRegexText("Solo valori numerici");
         cellulare.setLabelStyle("white-space:nowrap");
-        cellulare.setStyleAttribute("padding-left","80px");
+        cellulare.setStyleAttribute("padding-left", "80px");
         //cellulare.setLabelStyle("width:150");
         formPanel.add(cellulare);
 
@@ -280,7 +280,7 @@ public class RegisterDialog extends Dialog {
         email.setRegex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
         email.getMessages().setRegexText("Email errata");
         email.setLabelStyle("white-space:nowrap");
-        email.setStyleAttribute("padding-left","80px");
+        email.setStyleAttribute("padding-left", "80px");
         //email.setLabelStyle("width:150");
         formPanel.add(email);
 
@@ -293,20 +293,20 @@ public class RegisterDialog extends Dialog {
         reemail.setRegex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
         reemail.getMessages().setRegexText("Ripeti emil");
         reemail.setLabelStyle("white-space:nowrap");
-        reemail.setStyleAttribute("padding-left","80px");
+        reemail.setStyleAttribute("padding-left", "80px");
         //reemail.setLabelStyle("width:150");
         formPanel.add(reemail);
 
-        CheckBox privacy =new CheckBox();
+        CheckBox privacy = new CheckBox();
         privacy.setValue(true);
-        Text autorizzo= new Text("<table><tbody><tr><td style='font-size:9px;'>Autorizzo il trattamento dei dati personali ai sensi del D. lgs. 196/03</td></tr></tbody></table>");
+        Text autorizzo = new Text("<table><tbody><tr><td style='font-size:9px;'>Autorizzo il trattamento dei dati personali ai sensi del D. lgs. 196/03</td></tr></tbody></table>");
 
         HBoxLayout layout = new HBoxLayout();
         layout.setPadding(new Padding(1));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         layout.setPack(BoxLayout.BoxLayoutPack.END);
 
-        LayoutContainer cp= new LayoutContainer();
+        LayoutContainer cp = new LayoutContainer();
         cp.setLayout(layout);
 
         HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 0, 0, 0));
@@ -395,7 +395,8 @@ public class RegisterDialog extends Dialog {
                         && password.getValue().equals(repassword.getValue())
         );
     }
-    public void hideStatus(){
+
+    public void hideStatus() {
         status.hide();
         getButtonBar().enable();
     }

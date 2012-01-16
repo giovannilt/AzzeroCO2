@@ -4,7 +4,7 @@ import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.client.components.EventoCompensatoDialog;
+import it.agilis.mens.azzeroCO2.client.components.OrdineCompensatoDialog;
 import it.agilis.mens.azzeroCO2.client.components.uploadFiles.model.Model;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
@@ -31,7 +31,7 @@ import java.util.Map;
  */
 public class AmministrazioneController extends BaseController {
     private AmministrazioneView amministrazioneView = new AmministrazioneView(this);
-    private EventoCompensatoDialog eventoCompensatoDialog = new EventoCompensatoDialog();
+    private OrdineCompensatoDialog ordineCompensatoDialog = new OrdineCompensatoDialog();
 
 
     public AmministrazioneController() {
@@ -42,18 +42,18 @@ public class AmministrazioneController extends BaseController {
         registerEventTypes(AmministrazioneEvents.SaveCoupons);
         registerEventTypes(AmministrazioneEvents.SaveCoefficienti);
         registerEventTypes(AmministrazioneEvents.SaveProgrammiDiCompensazione);
-        registerEventTypes(AmministrazioneEvents.ShowEventoCompensatoDialog);
+        registerEventTypes(AmministrazioneEvents.ShowOrdineCompensatoDialog);
     }
 
     @Override
     public void handleEvent(AppEvent event) {
-        if (event.getType().equals(AmministrazioneEvents.ShowEventoCompensatoDialog)) {
+        if (event.getType().equals(AmministrazioneEvents.ShowOrdineCompensatoDialog)) {
             OrdineModel ordineModel = event.getData();
 
-            eventoCompensatoDialog.setInStore(CalcoliHelper.geListOfRiepilogoModel(ordineModel, amministrazioneView.getCoefficienti(), Eventi.AMMINISTRAZIONE));
-            eventoCompensatoDialog.setTotale(ordineModel.getPagamentoModel().getKgCO2());
-            eventoCompensatoDialog.setOrdineModel(ordineModel);
-            eventoCompensatoDialog.show();
+            ordineCompensatoDialog.setInStore(CalcoliHelper.geListOfRiepilogoModel(ordineModel, amministrazioneView.getCoefficienti(), Eventi.AMMINISTRAZIONE));
+            ordineCompensatoDialog.setTotale(ordineModel.getPagamentoModel().getKgCO2());
+            ordineCompensatoDialog.setOrdineModel(ordineModel);
+            ordineCompensatoDialog.show();
 
         } else if (event.getType().equals(AmministrazioneEvents.SaveCoefficienti)) {
             List<CoefficienteModel> coefficienteModels = event.getData();
