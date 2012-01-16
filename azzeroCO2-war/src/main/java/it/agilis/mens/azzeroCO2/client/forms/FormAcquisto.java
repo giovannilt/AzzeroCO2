@@ -13,7 +13,6 @@ import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
-import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
@@ -209,7 +208,7 @@ public class FormAcquisto extends LayoutContainer {
                 c.setLayout(layout);
 
                 titoloProgettoScelto.setWidth(220);
-                titoloProgettoScelto.setStyleAttribute("padding-bottom","30px");
+                titoloProgettoScelto.setStyleAttribute("padding-bottom", "30px");
                 c.add(titoloProgettoScelto);
 
                 panel.add(c, new FormData("100%"));
@@ -247,7 +246,7 @@ public class FormAcquisto extends LayoutContainer {
                 LayoutContainer c = new LayoutContainer();
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
                 c.setHeight(30);
-                LabelField label = new LabelField("Hai Un Coupon? ");
+                LabelField label = new LabelField("Se hai un coupon inseriscilo ");
 
                 c.add(label, new FillData(2, 20, 2, 0));
                 TextField<String> coupon = new TextField<String>();
