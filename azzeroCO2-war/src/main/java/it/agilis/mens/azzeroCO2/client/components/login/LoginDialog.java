@@ -47,7 +47,7 @@ public class LoginDialog extends Dialog {
         setModal(true);
         setBodyBorder(true);
         setBodyStyle("padding: 8px;background: none");
-        setWidth(300);
+        setWidth(350);
         setResizable(false);
 
         KeyListener keyListener = new KeyListener() {
@@ -59,7 +59,7 @@ public class LoginDialog extends Dialog {
 
         userName = new TextField<String>();
         userName.setMinLength(4);
-        userName.setFieldLabel("Username");
+        userName.setFieldLabel("Utente");
         userName.setName("userName");
         userName.addKeyListener(keyListener);
         add(userName);
@@ -87,7 +87,7 @@ public class LoginDialog extends Dialog {
 
         getButtonBar().add(new FillToolItem());
 
-        registrati = new Button("Registrati");
+        registrati = new Button("Non hai un account? Registrati");
         registrati.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 LoginDialog.this.hide();
