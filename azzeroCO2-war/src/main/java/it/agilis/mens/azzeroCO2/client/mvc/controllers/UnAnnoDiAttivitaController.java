@@ -231,6 +231,10 @@ public class UnAnnoDiAttivitaController extends BaseController {
                         Info.display("Info", "Non Ancora pagato");
                         getTimer().schedule(10000);
                         numeroDiVolte--;
+                    }
+                    if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.ANNULLATO.toString())) {
+                        Info.display("Info", "La Banca ha rifiutato la transazione, il pagamento si ritiene annullato.");
+                        Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
                     } else {
                         Info.display("Info", "Evento non pagato, atteso pagamento per piu' di 2 minuti, si consiglia di ricaricare ");
                         Dispatcher.forwardEvent(PagamentoSellaEvents.EnableButton);
