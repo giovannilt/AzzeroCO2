@@ -206,8 +206,6 @@ public class OrdineCompensatoDialog extends Dialog {
         if (ordineModel != null && ordineModel.getPagamentoModel() != null) {
             if (ordineModel.getPagamentoModel() != null) {
 
-                NumberFormat numberFormat = NumberFormat.getFormat("0,00");
-
                 attestatoDiComensazioneText += ordineModel.getPagamentoModel().getCertificatoPDF();
                 attestatoDiComensazioneText = "<a target='_blank' href='" +
                         attestatoDiComensazioneText + "'><p style='padding:1px;font-family:arial;color:white;'>Attestato di compensazione</p></a>";

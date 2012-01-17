@@ -15,7 +15,7 @@ public class EventoEvents {
     public static final EventType ShowStep = new EventType();
     public static final EventType ShowRiepilogo = new EventType();
     public static final EventType NorthPanelShowButtons = new EventType();
-   // public static final EventType ShowInfoDialog = new EventType();
+    // public static final EventType ShowInfoDialog = new EventType();
     public static final EventType ShowConfermDialog = new EventType();
     public static final EventType ClearPanel = new EventType();
     public static final EventType Save = new EventType();
@@ -31,6 +31,7 @@ public class EventoEvents {
     public static final EventType RemoveModel = new EventType();
     public static final EventType Conferma = new EventType();
     public static final EventType GoToBegin = new EventType();
+    public static final EventType UserCoupon = new EventType();
 
     public static final EventType InAttesaDiConfermaPagamento = new EventType();
 

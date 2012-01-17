@@ -28,6 +28,7 @@ public class SitoWebEvents {
     public static final EventType Conferma = new EventType();
     public static final EventType NorthPanelShowButtons = new EventType();
     public static final EventType RemoveModel = new EventType();
+    public static final EventType UserCoupon = new EventType();
 
     public static final EventType InAttesaDiConfermaPagamento = new EventType();
 

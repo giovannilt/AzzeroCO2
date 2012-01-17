@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.client.forms;
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.*;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
@@ -25,6 +26,8 @@ import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
+import it.agilis.mens.azzeroCO2.client.mvc.events.*;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
@@ -65,8 +68,7 @@ public class FormAcquisto extends LayoutContainer {
     private FormPanel form = createForm();
 
     private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
-
-    private final TextField<String> coupon = new TextField<String>();
+    private OrdineModel riepilogo;
 
     public FormAcquisto() {
         grid = createGrid();
@@ -137,7 +139,7 @@ public class FormAcquisto extends LayoutContainer {
         panel.setHeaderVisible(false);
         panel.setSize(300, 500);  //300,-1 sd
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
-
+        final TextField<String> coupon = new TextField<String>();
 
         {
             LayoutContainer c = new LayoutContainer();
@@ -264,8 +266,18 @@ public class FormAcquisto extends LayoutContainer {
                 ricalcola.addSelectionListener(new SelectionListener<ButtonEvent>() {
                     @Override
                     public void componentSelected(ButtonEvent ce) {
-                        //todo.....
-                        coupon.getValue();
+                        if (Eventi.EVENTO == Eventi.valueOf(riepilogo.getEventiType())) {
+                            Dispatcher.forwardEvent(EventoEvents.UserCoupon, coupon.getValue());
+                        } else if (Eventi.CONOSCI_CO2 == Eventi.valueOf(riepilogo.getEventiType())) {
+                            Dispatcher.forwardEvent(ConoscoCO2Events.UserCoupon, coupon.getValue());
+                        } else if (Eventi.ANNO_DI_ATTIVITA == Eventi.valueOf(riepilogo.getEventiType())) {
+                            Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.UserCoupon, coupon.getValue());
+                        } else if (Eventi.UNA_PUBBLICAZIONE == Eventi.valueOf(riepilogo.getEventiType())) {
+                            Dispatcher.forwardEvent(PubblicazioniEvents.UserCoupon, coupon.getValue());
+                        } else if (Eventi.WEB == Eventi.valueOf(riepilogo.getEventiType())) {
+                            Dispatcher.forwardEvent(SitoWebEvents.UserCoupon, coupon.getValue());
+                        }
+
                     }
                 });
                 ricalcola.setStyleAttribute("padding-top", "10px");
@@ -379,6 +391,8 @@ public class FormAcquisto extends LayoutContainer {
     }
 
     public void setRiepilogo(List<RiepilogoModel> eventoRiepilogoModels, OrdineModel riepilogo) {
+        if (riepilogo != null)
+            this.riepilogo = riepilogo;
         double totale = 0;
         for (RiepilogoModel r : eventoRiepilogoModels) {
             totale += r.getKgCO2();
