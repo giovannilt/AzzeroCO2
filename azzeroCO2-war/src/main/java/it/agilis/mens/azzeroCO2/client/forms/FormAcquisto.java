@@ -2,10 +2,7 @@ package it.agilis.mens.azzeroCO2.client.forms;
 
 import com.extjs.gxt.ui.client.Style;
 import com.extjs.gxt.ui.client.binding.FormBinding;
-import com.extjs.gxt.ui.client.event.Events;
-import com.extjs.gxt.ui.client.event.GridEvent;
-import com.extjs.gxt.ui.client.event.Listener;
-import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
+import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
@@ -13,6 +10,7 @@ import com.extjs.gxt.ui.client.widget.BoxComponent;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.VerticalPanel;
+import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
@@ -67,6 +65,8 @@ public class FormAcquisto extends LayoutContainer {
     private FormPanel form = createForm();
 
     private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
+
+    private final TextField<String> coupon = new TextField<String>();
 
     public FormAcquisto() {
         grid = createGrid();
@@ -183,7 +183,7 @@ public class FormAcquisto extends LayoutContainer {
                 //   label.setWidth(220);
                 c.setHeight(50);
                 c.add(label, new FillData(2, 20, 2, 0));
-                c.add(kcO2Evento, new FillData(2, 0, 2, 95));
+                c.add(kcO2Evento, new FillData(2, 0, 2, 90));
 
                 panel.add(c, new FormData("100%"));
             }
@@ -222,7 +222,7 @@ public class FormAcquisto extends LayoutContainer {
                 LabelField label = new LabelField("€ x Kg/CO2 ");
 
                 c.add(label, new FillData(2, 20, 2, 0));
-                c.add(euroPerKCo2Progetto, new FillData(2, 0, 2, 95));
+                c.add(euroPerKCo2Progetto, new FillData(2, 0, 2, 90));
 
                 panel.add(c, new FormData("100%"));
             }
@@ -239,7 +239,7 @@ public class FormAcquisto extends LayoutContainer {
                 totale.setStyleAttribute("color", "#FF9933");
                 totale.setStyleAttribute("font-size", "16px");
 
-                c.add(totale, new FillData(2, 0, 2, 90));
+                c.add(totale, new FillData(2, 0, 2, 85));
 
                 panel.add(c, new FormData("100%"));
             }
@@ -250,7 +250,7 @@ public class FormAcquisto extends LayoutContainer {
                 LabelField label = new LabelField("Se hai un coupon inseriscilo ");
 
                 c.add(label, new FillData(2, 20, 2, 0));
-                TextField<String> coupon = new TextField<String>();
+
                 c.add(coupon, new FillData(0, 0, 0, 0));
                 panel.add(c, new FormData("100%"));
             }
@@ -260,14 +260,18 @@ public class FormAcquisto extends LayoutContainer {
                 LayoutContainer c = new LayoutContainer();
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
 
-                com.extjs.gxt.ui.client.widget.button.Button ricalcola;
-                ricalcola = new com.extjs.gxt.ui.client.widget.button.Button("Calcola");
-                //TODO fare funzionare sto pulsantone di calcolo del coupon
-
+                Button ricalcola = new Button("Calcola");
+                ricalcola.addSelectionListener(new SelectionListener<ButtonEvent>() {
+                    @Override
+                    public void componentSelected(ButtonEvent ce) {
+                        //todo.....
+                        coupon.getValue();
+                    }
+                });
                 ricalcola.setStyleAttribute("padding-top", "10px");
                 c.add(ricalcola);
 
-                panel.add(c,new FillData(0,0,0,135)); //, new FormData("100%"));
+                panel.add(c, new FillData(0, 0, 0, 135)); //, new FormData("100%"));
             }
         }
         return panel;
