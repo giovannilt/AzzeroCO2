@@ -27,7 +27,7 @@ public class RiepilogoConfermDialog extends Dialog {
 
     public RiepilogoConfermDialog() {
 
-        setHeading("Eliminara");
+        setHeading("Elimina");
         // setButtons(Dialog.YESNO);
         setBodyStyleName("pad-text");
         addText("Sei sicuro di voler eliminare questo elemento?");
