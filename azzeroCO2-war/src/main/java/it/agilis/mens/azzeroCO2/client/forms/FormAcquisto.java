@@ -249,6 +249,7 @@ public class FormAcquisto extends LayoutContainer {
 
                 panel.add(c, new FormData("100%"));
             }
+
             { // Coupon
                 LayoutContainer c = new LayoutContainer();
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
