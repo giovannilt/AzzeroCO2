@@ -70,6 +70,8 @@ public class FormAcquisto extends LayoutContainer {
 
     private DateTimeFormat dateFormat = DateTimeFormat.getFormat("dd.MM.y");
     private OrdineModel riepilogo;
+    private List<RiepilogoModel> eventoRiepilogoModels;
+    private CouponModel coupon;
 
     public FormAcquisto() {
         grid = createGrid();
@@ -250,7 +252,6 @@ public class FormAcquisto extends LayoutContainer {
 
                 panel.add(c, new FormData("100%"));
             }
-
             { // Coupon
                 LayoutContainer c = new LayoutContainer();
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
@@ -400,10 +401,17 @@ public class FormAcquisto extends LayoutContainer {
         if (riepilogo != null)
             this.riepilogo = riepilogo;
         double totale = 0;
-        for (RiepilogoModel r : eventoRiepilogoModels) {
-            totale += r.getKgCO2();
+        if (eventoRiepilogoModels != null) {
+            this.eventoRiepilogoModels = eventoRiepilogoModels;
+            for (RiepilogoModel r : eventoRiepilogoModels) {
+                totale += r.getKgCO2();
+            }
+            if (coupon != null && coupon.getValore() > 0) {
+                totale = totale - coupon.getValore();
+            }
+            this.totaleKC02 = totale;
+
         }
-        this.totaleKC02 = totale;
 
         kcO2Evento.setText(number.format(totale));
         totaleKC02Label.setText(number.format(totale) + " kg/CO2?");
@@ -464,10 +472,16 @@ public class FormAcquisto extends LayoutContainer {
         east.getBody().setStyleAttribute("margin-bottom", "0");
     }
 
-    public void setCoupon(CouponModel coupon) {
-        if (coupon != null && riepilogo != null) {
+    public void setCouponModel(CouponModel coupon) {
 
+        if (coupon != null && riepilogo != null && eventoRiepilogoModels != null) {
+            this.coupon = coupon;
+            setRiepilogo(eventoRiepilogoModels, riepilogo);
         }
+    }
+
+    public CouponModel getCouponModel() {
+        return coupon;
     }
 }
 

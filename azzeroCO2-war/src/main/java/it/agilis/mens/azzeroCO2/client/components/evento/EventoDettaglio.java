@@ -264,7 +264,7 @@ public class EventoDettaglio extends LayoutContainer {
         eventoModel.setManifestiPieghevoliFogliModel(formManifestipieghevoliFogli.getManifestiPieghevoliFogliModel());
 
         eventoModel.setProgettoDiCompensazioneModel(eventoFormAcquisto.getProgettoDiCompensazioneModel());
-
+        eventoModel.setCouponModel(eventoFormAcquisto.getCouponModel());
         return eventoModel;
     }
 
@@ -278,6 +278,7 @@ public class EventoDettaglio extends LayoutContainer {
         formManifestipieghevoliFogli.setManifestiPieghevoliFogliModel(eventoModel.getManifestiPieghevoliFogliModel());
 
         eventoFormAcquisto.setProgettoDiCompensazione(eventoModel.getProgettoDiCompensazioneModel());
+        eventoFormAcquisto.setCouponModel(eventoModel.getCouponModel());
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
@@ -380,7 +381,7 @@ public class EventoDettaglio extends LayoutContainer {
         Dispatcher.forwardEvent(EventoEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
     }
 
-    public void setCoupon(CouponModel coupon) {
-        eventoFormAcquisto.setCoupon(coupon);
+    public void setCouponModel(CouponModel coupon) {
+        eventoFormAcquisto.setCouponModel(coupon);
     }
 }

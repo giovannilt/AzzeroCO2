@@ -208,6 +208,6 @@ public class EventoView extends View {
     }
 
     public void setCoupon(CouponModel result) {
-        eventoDettaglio.setCoupon(result);
+        eventoDettaglio.setCouponModel(result);
     }
 }

@@ -124,8 +124,8 @@ public class CalcoliHelper {
                 store.add(model);
             }
         }
-        if (eventoModel != null && eventoModel.getBigliettiDaVisita() != null) {
-            if (getBigliettiDaVisita(eventoModel.getBigliettiDaVisita(), Eventi.UNA_PUBBLICAZIONE).size() > 0) {
+        if (eventoModel != null && eventoModel.getBigliettiDaVisitaModel() != null) {
+            if (getBigliettiDaVisita(eventoModel.getBigliettiDaVisitaModel(), Eventi.UNA_PUBBLICAZIONE).size() > 0) {
                 model = new RiepilogoModel();
                 model.setDettagli("Biglietti Da Visita");
                 model.setOggetto("Biglietti Da Visita");
@@ -199,8 +199,8 @@ public class CalcoliHelper {
             }
         }
 
-        if (eventoModel != null && eventoModel.getBigliettiDaVisita() != null) {
-            List<RiepilogoModel> models = getBigliettiDaVisita(eventoModel.getBigliettiDaVisita(), e);
+        if (eventoModel != null && eventoModel.getBigliettiDaVisitaModel() != null) {
+            List<RiepilogoModel> models = getBigliettiDaVisita(eventoModel.getBigliettiDaVisitaModel(), e);
             if (models != null && models.size() > 0) {
                 store.addAll(models);
             }

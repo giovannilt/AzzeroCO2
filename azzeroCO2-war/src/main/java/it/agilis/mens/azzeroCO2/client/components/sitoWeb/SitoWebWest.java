@@ -34,7 +34,7 @@ import java.util.List;
 public class SitoWebWest extends LayoutContainer {
     private Grid<RiepilogoModel> grid;
     private ListStore<RiepilogoModel> store = new ListStore<RiepilogoModel>();
-    private Text title = new Text("Conosco la CO2");
+    private Text title = new Text("Sito Web CO2");
     private final String oggettoDiDefault = "Compensa le tue emissioni";
     private final String riepilogoString = "Hai terminato il calcolo! <br>" +
             "Se vuoi modifica i dati inseriti<br>" +
@@ -45,8 +45,6 @@ public class SitoWebWest extends LayoutContainer {
             "accedi al sistema di <br>" +
             "pagamento.";
     private final String Conferma = "Il Percorso e' finito!";
-
-    private Esito esito;
 
     public SitoWebWest() {
         RiepilogoModel model = new RiepilogoModel();
@@ -92,8 +90,6 @@ public class SitoWebWest extends LayoutContainer {
     private Grid<RiepilogoModel> createGrid() {
         List<ColumnConfig> configs = new ArrayList<ColumnConfig>();
         ColumnConfig column = new ColumnConfig("img", "img", 24);
-        //column.setWidth(30);
-
 
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setRenderer(new GridCellRenderer() {
@@ -128,7 +124,6 @@ public class SitoWebWest extends LayoutContainer {
         });
         configs.add(column);
 
-
         ColumnModel cm = new ColumnModel(configs);
 
         grid = new Grid<RiepilogoModel>(store, cm);
@@ -140,22 +135,7 @@ public class SitoWebWest extends LayoutContainer {
         grid.setStyleAttribute("backgroundColor", "#E9E9E9");
         grid.disableTextSelection(true);
         grid.setTrackMouseOver(false);
-        //   grid.setLoadMask(true);
-        //grid.setBorders(false);
-
-
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
-        /*grid.getSelectionModel().addListener(Events.SelectionChange,
-                new Listener<SelectionChangedEvent<RiepilogoModel>>() {
-                    public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
-                        if (be.getSelection().size() > 0) {
-                            if (!Esito.PAGATO.equals(esito)) {
-                                Dispatcher.forwardEvent(ConoscoCO2Events.ShowStep, be.getSelectedItem());
-                            }
-                        }
-                    }
-                });*/
-
         grid.setBorders(false);
 
         return grid;
@@ -170,7 +150,6 @@ public class SitoWebWest extends LayoutContainer {
             m.setOggetto("Non hai ancora inserito <br> nessuna attivita");
             store.add(m);
         } else {
-            this.esito = esito;
             store.add(model);
         }
         setTitle(riepilogo);
