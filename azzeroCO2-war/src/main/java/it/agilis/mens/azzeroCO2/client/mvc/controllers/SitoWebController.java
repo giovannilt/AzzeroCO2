@@ -62,6 +62,7 @@ public class SitoWebController extends BaseController {
         registerEventTypes(SitoWebEvents.InAttesaDiConfermaPagamento);
         registerEventTypes(SitoWebEvents.NorthPanelShowButtons);
         registerEventTypes(SitoWebEvents.RemoveModel);
+        registerEventTypes(SitoWebEvents.UseCoupon);
 
     }
 

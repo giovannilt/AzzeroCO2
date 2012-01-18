@@ -63,6 +63,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
         registerEventTypes(UnAnnoDiAttivitaEvents.InAttesaDiConfermaPagamento);
         registerEventTypes(UnAnnoDiAttivitaEvents.NorthPanelShowButtons);
         registerEventTypes(UnAnnoDiAttivitaEvents.RemoveModel);
+        registerEventTypes(UnAnnoDiAttivitaEvents.UseCoupon);
     }
 
     @Override

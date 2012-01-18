@@ -30,6 +30,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 
 import java.util.ArrayList;
@@ -185,7 +186,7 @@ public class FormAcquisto extends LayoutContainer {
                 //   label.setWidth(220);
                 c.setHeight(50);
                 c.add(label, new FillData(2, 20, 2, 0));
-                kcO2Evento.setStyleAttribute("text-align","right");
+                kcO2Evento.setStyleAttribute("text-align", "right");
 
                 c.add(kcO2Evento, new FillData(2, 0, 2, 90));
 
@@ -226,7 +227,7 @@ public class FormAcquisto extends LayoutContainer {
                 LabelField label = new LabelField("€ x Kg/CO2 ");
 
                 c.add(label, new FillData(2, 20, 2, 0));
-                euroPerKCo2Progetto.setStyleAttribute("text-align","right");
+                euroPerKCo2Progetto.setStyleAttribute("text-align", "right");
 
                 c.add(euroPerKCo2Progetto, new FillData(2, 0, 2, 90));
 
@@ -244,7 +245,7 @@ public class FormAcquisto extends LayoutContainer {
 
                 totale.setStyleAttribute("color", "#FF9933");
                 totale.setStyleAttribute("font-size", "16px");
-                totale.setStyleAttribute("text-align","right");
+                totale.setStyleAttribute("text-align", "right");
                 c.add(totale, new FillData(2, 0, 2, 85));
 
                 panel.add(c, new FormData("100%"));
@@ -271,15 +272,15 @@ public class FormAcquisto extends LayoutContainer {
                     @Override
                     public void componentSelected(ButtonEvent ce) {
                         if (Eventi.EVENTO == Eventi.valueOf(riepilogo.getEventiType())) {
-                            Dispatcher.forwardEvent(EventoEvents.UserCoupon, coupon.getValue());
+                            Dispatcher.forwardEvent(EventoEvents.UseCoupon, coupon.getValue());
                         } else if (Eventi.CONOSCI_CO2 == Eventi.valueOf(riepilogo.getEventiType())) {
-                            Dispatcher.forwardEvent(ConoscoCO2Events.UserCoupon, coupon.getValue());
+                            Dispatcher.forwardEvent(ConoscoCO2Events.UseCoupon, coupon.getValue());
                         } else if (Eventi.ANNO_DI_ATTIVITA == Eventi.valueOf(riepilogo.getEventiType())) {
-                            Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.UserCoupon, coupon.getValue());
+                            Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.UseCoupon, coupon.getValue());
                         } else if (Eventi.UNA_PUBBLICAZIONE == Eventi.valueOf(riepilogo.getEventiType())) {
-                            Dispatcher.forwardEvent(PubblicazioniEvents.UserCoupon, coupon.getValue());
+                            Dispatcher.forwardEvent(PubblicazioniEvents.UseCoupon, coupon.getValue());
                         } else if (Eventi.WEB == Eventi.valueOf(riepilogo.getEventiType())) {
-                            Dispatcher.forwardEvent(SitoWebEvents.UserCoupon, coupon.getValue());
+                            Dispatcher.forwardEvent(SitoWebEvents.UseCoupon, coupon.getValue());
                         }
 
                     }
@@ -460,6 +461,12 @@ public class FormAcquisto extends LayoutContainer {
         east.getBody().setStyleAttribute("border-top", "3px solid orange");
         east.getBody().setStyleAttribute("border-width", "3px 0");
         east.getBody().setStyleAttribute("margin-bottom", "0");
+    }
+
+    public void setCoupon(CouponModel coupon) {
+        if (coupon != null && riepilogo != null) {
+
+        }
     }
 }
 

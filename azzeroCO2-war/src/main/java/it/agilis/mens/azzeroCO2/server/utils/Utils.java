@@ -31,19 +31,23 @@ import java.util.Map;
 
 public class Utils {
 
+    public static CouponModel getCouponModel(Coupon c) {
+        CouponModel cm = new CouponModel();
+        cm.setId(c.getId());
+        cm.setAttivo(c.getStato());
+        cm.setCodice(c.getCodice());
+        cm.setDataFine(c.getFineValidita());
+        cm.setDataInizio(c.getInizioValidita());
+        cm.setDescrizione(c.getDescrizione());
+        cm.setTipo(c.getTipo());
+        cm.setValore(c.getValore());
+        return cm;
+    }
+
     public static List<CouponModel> getListOfCoupon(List<Coupon> listOfCoupon) {
         List<CouponModel> coupons = new ArrayList<CouponModel>();
         for (Coupon c : listOfCoupon) {
-            CouponModel cm = new CouponModel();
-            cm.setId(c.getId());
-            cm.setAttivo(c.getStato());
-            cm.setCodice(c.getCodice());
-            cm.setDataFine(c.getFineValidita());
-            cm.setDataInizio(c.getInizioValidita());
-            cm.setDescrizione(c.getDescrizione());
-            cm.setTipo(c.getTipo());
-            cm.setValore(c.getValore());
-            coupons.add(cm);
+            coupons.add(getCouponModel(c));
         }
         return coupons;  //To change body of created methods use File | Settings | File Templates.
     }
@@ -757,4 +761,6 @@ public class Utils {
         return ricevuta;
 
     }
+
+
 }

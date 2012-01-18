@@ -60,6 +60,7 @@ public class PubblicazioniController extends BaseController {
         registerEventTypes(PubblicazioniEvents.GoToBegin);
         registerEventTypes(PubblicazioniEvents.ClearStep);
         registerEventTypes(PubblicazioniEvents.InAttesaDiConfermaPagamento);
+        registerEventTypes(PubblicazioniEvents.UseCoupon);
     }
 
     @Override

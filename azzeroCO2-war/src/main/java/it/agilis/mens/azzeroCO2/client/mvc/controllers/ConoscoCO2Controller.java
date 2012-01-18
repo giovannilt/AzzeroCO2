@@ -62,6 +62,7 @@ public class ConoscoCO2Controller extends BaseController {
         registerEventTypes(ConoscoCO2Events.InAttesaDiConfermaPagamento);
         registerEventTypes(ConoscoCO2Events.NorthPanelShowButtons);
         registerEventTypes(ConoscoCO2Events.RemoveModel);
+        registerEventTypes(ConoscoCO2Events.UseCoupon);
 
     }
 

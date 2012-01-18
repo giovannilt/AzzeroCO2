@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.dao.impl;
 
+import it.agilis.mens.azzeroCO2.core.criteria.CouponCriteria;
 import it.agilis.mens.azzeroCO2.core.dao.DAOSupport;
 import it.agilis.mens.azzeroCO2.core.dao.ICouponDAO;
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
@@ -18,7 +19,13 @@ public class CouponDAO extends DAOSupport implements ICouponDAO {
     @Override
     public List<Coupon> getListOfCoupon() {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Coupon.class, "coupon");
-        return  (List<Coupon>) getList(detachedCriteria, true);
+        return (List<Coupon>) getList(detachedCriteria, true);
+    }
+
+    @Override
+    public List<Coupon> getListOfCoupon(CouponCriteria criteria) {
+
+        return (List<Coupon>) getList(criteria.getDetachedCriteria(), true);
     }
 
     @Override

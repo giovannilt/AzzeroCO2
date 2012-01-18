@@ -15,6 +15,7 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
@@ -59,6 +60,7 @@ public class EventoController extends BaseController {
         registerEventTypes(EventoEvents.InAttesaDiConfermaPagamento);
         registerEventTypes(EventoEvents.NorthPanelShowButtons);
         registerEventTypes(EventoEvents.RemoveModel);
+        registerEventTypes(EventoEvents.UseCoupon);
     }
 
     @Override
@@ -77,6 +79,26 @@ public class EventoController extends BaseController {
         } else if (event.getType().equals(EventoEvents.ShowRiepilogo)) {
             setCoefficientiEventoView();
             eventoView.showRiepilogo();
+        } else if (event.getType().equals(EventoEvents.UseCoupon)) {
+            String couponCode = event.getData();
+            if (couponCode != null && !"".equalsIgnoreCase(couponCode)) {
+                AsyncCallback<CouponModel> asyncCallback = new AsyncCallback<CouponModel>() {
+                    public void onFailure(Throwable caught) {
+                        Info.display("Error", "Errore impossibile connettersi al server");
+                    }
+
+                    @Override
+                    public void onSuccess(CouponModel result) {
+                        if (result != null) {
+                            eventoView.setCoupon(result);
+                        } else {
+                            Info.display("Warn", "Coupon non Utilizzabile");
+                        }
+                    }
+                };
+                getHustonService().getCouponByCode(couponCode, asyncCallback);
+            }
+
         } else if (event.getType().equals(EventoEvents.Riepilogo)) {
             setCoefficientiEventoView();
         } else if (event.getType().equals(EventoEvents.LoadEvento)) {

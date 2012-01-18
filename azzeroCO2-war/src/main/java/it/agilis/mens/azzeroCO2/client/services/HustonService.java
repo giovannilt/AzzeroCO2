@@ -59,5 +59,7 @@ public interface HustonService extends RemoteService {
     OrdineVTO isPagato(OrdineVTO riepilogo, UserInfoModel userInfoModel);
 
     boolean associaIDProgettoDiCompensazionePDF(Long idProgetto, String name);
+
+    CouponModel getCouponByCode(String couponCode);
 }
 

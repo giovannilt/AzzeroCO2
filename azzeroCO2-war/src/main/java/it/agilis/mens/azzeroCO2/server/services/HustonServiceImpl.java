@@ -3,6 +3,7 @@ package it.agilis.mens.azzeroCO2.server.services;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.client.services.HustonService;
+import it.agilis.mens.azzeroCO2.core.criteria.CouponCriteria;
 import it.agilis.mens.azzeroCO2.core.criteria.ProgettoCompensazioneCriteria;
 import it.agilis.mens.azzeroCO2.core.entity.Coupon;
 import it.agilis.mens.azzeroCO2.core.entity.Esito;
@@ -323,6 +324,18 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
             return false;
         }
         return true;
+    }
+
+    @Override
+    public CouponModel getCouponByCode(String couponCode) {
+        CouponCriteria criteria = new CouponCriteria();
+        criteria.setCodice(couponCode);
+
+        List<Coupon> coupons = azzeroCO2Register.getCouponDAO().getListOfCoupon(criteria);
+        if (coupons != null && coupons.size() > 0) {
+            return Utils.getCouponModel(coupons.get(0));
+        }
+        return null;
     }
 
     @Override
