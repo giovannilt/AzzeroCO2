@@ -281,7 +281,7 @@ public class CalcoliHelper {
     private static RiepilogoModel getSitoWeb(SitoWebModel sitoWebModel, Eventi e) {
         RiepilogoModel _return = new RiepilogoModel();
         _return.setEventi(e.name());
-        _return.setOggetto("Conosco CO2");
+        _return.setOggetto("Compensazione sito web");
         Double co2 = -1.0;
         if (sitoWebModel.getVisitatori() != null && sitoWebModel.getVisitatori() > 0) {
 
