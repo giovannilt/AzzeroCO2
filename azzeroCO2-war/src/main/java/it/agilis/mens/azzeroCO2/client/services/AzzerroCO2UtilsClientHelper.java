@@ -58,14 +58,14 @@ public class AzzerroCO2UtilsClientHelper {
             ordineVTO.setManifestiPieghevoliFogliVTO(getManifestiPiegjevoliFogltioVTOList(ordineModel.getManifestiPieghevoliFogliModel()));
             ordineVTO.setPubblicazioniRilegateVTO(getPubblicazioniRilegateVTOList(ordineModel.getPubblicazioniRilegateModel()));
             ordineVTO.setSitoWebModel(ordineModel.getSitoWebModel());
-            ordineVTO.setBigliettiDaVisitaVTO(getBigliettiDaVisitaModelVTO(ordineModel.getBigliettiDaVisita()));
+            ordineVTO.setBigliettiDaVisitaVTO(getBigliettiDaVisitaModelVTO(ordineModel.getBigliettiDaVisitaModel()));
 
         } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.WEB) {
             ordineVTO.setSitoWebModel(ordineModel.getSitoWebModel());
         } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
             ordineVTO.setManifestiPieghevoliFogliVTO(getManifestiPiegjevoliFogltioVTOList(ordineModel.getManifestiPieghevoliFogliModel()));
             ordineVTO.setPubblicazioniRilegateVTO(getPubblicazioniRilegateVTOList(ordineModel.getPubblicazioniRilegateModel()));
-            ordineVTO.setBigliettiDaVisitaVTO(getBigliettiDaVisitaModelVTO(ordineModel.getBigliettiDaVisita()));
+            ordineVTO.setBigliettiDaVisitaVTO(getBigliettiDaVisitaModelVTO(ordineModel.getBigliettiDaVisitaModel()));
         } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
             ordineVTO.setConoscoCO2(ordineModel.getConoscoCO2Model());
         }

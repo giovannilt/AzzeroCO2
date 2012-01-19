@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.shared.model;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 import it.agilis.mens.azzeroCO2.shared.model.evento.*;
@@ -37,6 +38,7 @@ public class OrdineModel extends BaseModel {
     private SitoWebModel sitoWebModel;
     private NottiModel nottiModel;
     private BigliettiDaVisitaModel bigliettiDaVisitaModel;
+    private CouponModel couponModel;
 
     public ProgettoDiCompensazioneModel getProgettoDiCompensazioneModel() {
         return progettoDiCompensazioneModel;
@@ -74,6 +76,7 @@ public class OrdineModel extends BaseModel {
     public void setAnno(String anno) {
         set("anno", anno);
     }
+
     public String getDove() {
         return (String) get("dove");
     }
@@ -198,11 +201,20 @@ public class OrdineModel extends BaseModel {
         this.nottiModel = nottiModel;
     }
 
-    public BigliettiDaVisitaModel getBigliettiDaVisita() {
+    public BigliettiDaVisitaModel getBigliettiDaVisitaModel() {
         return bigliettiDaVisitaModel;
     }
 
     public void setBigliettiDaVisitaModel(BigliettiDaVisitaModel bigliettiDaVisitaModel) {
         this.bigliettiDaVisitaModel = bigliettiDaVisitaModel;
+    }
+
+    public void setCouponModel(CouponModel couponModel) {
+        this.couponModel = couponModel;
+    }
+
+    public CouponModel getCouponModel() {
+        return couponModel;
+
     }
 }

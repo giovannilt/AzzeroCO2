@@ -303,7 +303,7 @@ public class AnnoDettaglio extends LayoutContainer {
         formTrasportoMerci.setTrasportoMerciModel(model.getTrasportoMerciModel() == null ? new TrasportoMerciModel() : model.getTrasportoMerciModel());
         formPubblicazioniRilegate.setPubblicazioniRilegateModel(model.getPubblicazioniRilegateModel());
         formManifestipieghevoliFogli.setManifestiPieghevoliFogliModel(model.getManifestiPieghevoliFogliModel());
-        formBigliettiDaVisita.setBigliettiDaVisitaModel(model.getBigliettiDaVisita());
+        formBigliettiDaVisita.setBigliettiDaVisitaModel(model.getBigliettiDaVisitaModel());
         formSitoWeb.setSitoWebModel(model.getSitoWebModel());
 
         eventoFormAcquisto.setProgettoDiCompensazione(model.getProgettoDiCompensazioneModel());

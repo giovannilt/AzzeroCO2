@@ -272,8 +272,8 @@ public class Utils {
                     o.getPubblicazioni().addAll(pubblicazioniList);
                 }
             }
-            if (ordineModel.getBigliettiDaVisita() != null) {
-                o.setBigliettiDaVisita(getBigliettiDaVisita(ordineModel.getBigliettiDaVisita()));
+            if (ordineModel.getBigliettiDaVisitaModel() != null) {
+                o.setBigliettiDaVisita(getBigliettiDaVisita(ordineModel.getBigliettiDaVisitaModel()));
             }
         } else if (ordineModel.getSitoWebModel() != null && Eventi.valueOf(ordineModel.getEventiType()) == Eventi.WEB) {
             Sito s = new Sito();
@@ -299,8 +299,8 @@ public class Utils {
                     s.setUtenti(ordineModel.getSitoWebModel().getVisitatori());
                     o.setSito(s);
                 }
-                if (ordineModel.getBigliettiDaVisita() != null) {
-                    o.setBigliettiDaVisita(getBigliettiDaVisita(ordineModel.getBigliettiDaVisita()));
+                if (ordineModel.getBigliettiDaVisitaModel() != null) {
+                    o.setBigliettiDaVisita(getBigliettiDaVisita(ordineModel.getBigliettiDaVisitaModel()));
                 }
 
             } else {

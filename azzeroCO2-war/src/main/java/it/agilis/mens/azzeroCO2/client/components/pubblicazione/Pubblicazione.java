@@ -233,7 +233,7 @@ public class Pubblicazione extends LayoutContainer {
         formPubblicazioniRilegate.setPubblicazioniRilegateModel(ordineModel.getPubblicazioniRilegateModel());
         formManifestipieghevoliFogli.setManifestiPieghevoliFogliModel(ordineModel.getManifestiPieghevoliFogliModel());
         formAcquisto.setProgettoDiCompensazione(ordineModel.getProgettoDiCompensazioneModel());
-        formBigliettiDaVisita.setBigliettiDaVisitaModel(ordineModel.getBigliettiDaVisita());
+        formBigliettiDaVisita.setBigliettiDaVisitaModel(ordineModel.getBigliettiDaVisitaModel());
     }
 
     public void setTipoDiCarta(List<TipoDiCartaModel> tipoDiCartaModels) {
