@@ -7,10 +7,7 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.BoxComponent;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.VerticalPanel;
+import com.extjs.gxt.ui.client.widget.*;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
@@ -28,6 +25,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
+import it.agilis.mens.azzeroCO2.shared.model.CouponType;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
@@ -99,7 +97,9 @@ public class FormAcquisto extends LayoutContainer {
                         if (be.getSelection().size() > 0) {
                             titoloProgettoScelto.setText(be.getSelection().get(0).getNome());
                             euroPerKCo2Progetto.setText(number.format(be.getSelection().get(0).getPrezzo()));
+
                             totale.setText(number.format((totaleKC02 * be.getSelection().get(0).getPrezzo())));
+
                             totaleKC02Label.setText(number.format(totaleKC02) + " kg/CO2?");
                             binding.bind(be.getSelection().get(0));
                             selectedModel = be.getSelection().get(0);
@@ -287,7 +287,7 @@ public class FormAcquisto extends LayoutContainer {
 
                     }
                 });
-                ricalcola.setStyleAttribute("padding-top", "10px");
+                ricalcola.setStyleAttribute("padding-top", "4px");
                 c.add(ricalcola);
 
                 panel.add(c, new FillData(0, 0, 0, 135)); //, new FormData("100%"));
@@ -406,8 +406,27 @@ public class FormAcquisto extends LayoutContainer {
             for (RiepilogoModel r : eventoRiepilogoModels) {
                 totale += r.getKgCO2();
             }
-            if (coupon != null && coupon.getValore() > 0) {
-                totale = totale - coupon.getValore();
+            if (coupon != null && !"".equalsIgnoreCase(coupon.getTipo())) {
+                try {
+                    // CALCOLARE IN BASE AL TIPO DI COUPON
+                    if (riepilogo.getProgettoDiCompensazioneModel() != null) {
+                        Double d = riepilogo.getProgettoDiCompensazioneModel().getPrezzo();
+
+                        if (coupon.getTipo().equalsIgnoreCase(CouponType.EURO.toString())) {
+                            Double val = (d * totale) - coupon.getValore();
+                            if (val < 0) {
+                                val = 0.0;
+                            }
+                            this.totale.setText(number.format(val));
+                        } else if (coupon.getTipo().equalsIgnoreCase(CouponType.PERCENTO.toString())) {
+                            this.totale.setText(number.format(coupon.getValore() * d * totale / 100));
+                        } else if (coupon.getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString())) {
+                            this.totale.setText("0,0");
+                        }
+                    }
+                } catch (Exception e) {
+                    Info.display("ERROR", e.getMessage());
+                }
             }
             this.totaleKC02 = totale;
 
