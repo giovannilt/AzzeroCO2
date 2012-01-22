@@ -44,7 +44,7 @@ public class SitoWebWest extends LayoutContainer {
             "Controlla il preventivo e <br>" +
             "accedi al sistema di <br>" +
             "pagamento.";
-    private final String Conferma = "Il Percorso e' finito!";
+    private final String Conferma = "Il Percorso è finito!";
 
     public SitoWebWest() {
         RiepilogoModel model = new RiepilogoModel();
@@ -147,7 +147,7 @@ public class SitoWebWest extends LayoutContainer {
         List<RiepilogoModel> model = CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo);
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
-            m.setOggetto("Non hai ancora inserito <br> nessuna attivita");
+            m.setOggetto("Compensa le emissioni <br>relative al tuo sito web");
             store.add(m);
         } else {
             store.add(model);

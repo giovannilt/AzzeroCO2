@@ -167,6 +167,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             LabelField note = new LabelField("Es: due pendolari in treno che partecipano a un evento di 4 giorni = 16 tratte.");
 
             istruzioni.setStyleAttribute("font-weight", "bolder");
+            istruzioni.setHeight(30);
             note.setStyleAttribute("font-style", "italic");
 
 
