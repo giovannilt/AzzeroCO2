@@ -65,7 +65,7 @@ public class PagamentoSella extends Dialog {
             public void componentSelected(ButtonEvent ce) {
                 form.submit();
                 if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.EVENTO) {
-                    Dispatcher.forwardEvent(EventoEvents.Save, null);
+                    Dispatcher.forwardEvent(EventoEvents.Save, ordineModel);
                     Dispatcher.forwardEvent(EventoEvents.InAttesaDiConfermaPagamento);
                 } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.ANNO_DI_ATTIVITA) {
                     Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.Save, ordineModel);

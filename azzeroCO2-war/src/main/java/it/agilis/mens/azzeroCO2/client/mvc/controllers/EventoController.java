@@ -141,19 +141,21 @@ public class EventoController extends BaseController {
                 PagamentoModel pagamentoModel = null;
                 if (model.getProgettoDiCompensazioneModel() != null) {
 
-                    if (model.getCouponModel() != null && !"".equalsIgnoreCase(model.getCouponModel().getTipo())) {
+                    CouponModel couponModel = model.getCouponModel();
+                    couponModel.setAttivo(false);
+                    if (couponModel != null && !"".equalsIgnoreCase(couponModel.getTipo())) {
                         try {
                             Double totale = model.getProgettoDiCompensazioneModel().getPrezzo();
 
-                            if (model.getCouponModel().getTipo().equalsIgnoreCase(CouponType.EURO.toString())) {
-                                Double val = (kgCO2 * totale) - model.getCouponModel().getValore();
+                            if (couponModel.getTipo().equalsIgnoreCase(CouponType.EURO.toString())) {
+                                Double val = (kgCO2 * totale) - couponModel.getValore();
                                 if (val < 0) {
                                     val = 0.0;
                                 }
                                 pagamentoModel = new PagamentoModel(number.format(val));
-                            } else if (model.getCouponModel().getTipo().equalsIgnoreCase(CouponType.PERCENTO.toString())) {
-                                pagamentoModel = new PagamentoModel(number.format((kgCO2 * totale) * model.getCouponModel().getValore() / 100));
-                            } else if (model.getCouponModel().getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString())) {
+                            } else if (couponModel.getTipo().equalsIgnoreCase(CouponType.PERCENTO.toString())) {
+                                pagamentoModel = new PagamentoModel(number.format((kgCO2 * totale) * couponModel.getValore() / 100));
+                            } else if (couponModel.getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString())) {
                                 pagamentoModel = new PagamentoModel(number.format(0.0));
                             }
 
@@ -168,6 +170,7 @@ public class EventoController extends BaseController {
                     pagamentoModel.setLastUpdate(new Date());
                     pagamentoModel.setKgCO2(kgCO2);
                     model.setPagamentoModel(pagamentoModel);
+                    model.setCouponModel(couponModel);
                     Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
                 } else {
                     Info.display("Info", "Seleziona il Progetto di compensazione");

@@ -255,6 +255,10 @@ public class Utils {
         o.setProgettoCompensazione(getProgettoDiCompensazione(ordineModel.getProgettoDiCompensazioneModel()));
         o.setRicevutaDiPagamento(getRicevuta(ordineModel.getPagamentoModel()));
 
+        if (ordineModel.getCouponModel() != null) {
+            o.setCoupon(getCoupon(ordineModel.getCouponModel()));
+        }
+
         if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
             if (ordineModel.getPubblicazioniRilegateModel() != null && ordineModel.getPubblicazioniRilegateModel().size() > 0) {
                 List<Pubblicazione> pubblicazioniRilegateList = getListOfPubblicazione(ordineModel.getPubblicazioniRilegateModel());
@@ -494,6 +498,9 @@ public class Utils {
         dm.setPagamentoModel(getPagamentoModel(o.getRicevutaDiPagamento()));
         dm.setOrdineId(o.getId());
         dm.setEventiType(o.getEventiType().name());
+        if (o.getCoupon() != null) {
+            dm.setCouponModel(getCouponModel(o.getCoupon()));
+        }
 
         if (o.getEventiType() == Eventi.UNA_PUBBLICAZIONE) {
             dm = setPubblicazioni(o, dm);

@@ -70,6 +70,10 @@ public class AzzerroCO2UtilsClientHelper {
             ordineVTO.setConoscoCO2(ordineModel.getConoscoCO2Model());
         }
 
+        if (ordineModel.getCouponModel() != null) {
+            ordineVTO.setCouponModel(ordineModel.getCouponModel());
+        }
+
         return ordineVTO;
     }
 
@@ -197,6 +201,10 @@ public class AzzerroCO2UtilsClientHelper {
             ordineModel.setManifestiPieghevoliFogliModel(getManifestiPiegjevoliFogltioModelList(ordineVTO.getManifestiPieghevoliFogliVTO()));
             ordineModel.setPubblicazioniRilegateModel(getPubblicazioniRilegateModelList(ordineVTO.getPubblicazioniRilegateVTO()));
             ordineModel.setBigliettiDaVisitaModel(getBigliettiDaVisitaModel(ordineVTO.getBigliettiDaVisitaVTO()));
+        }
+
+        if (ordineModel.getCouponModel() != null) {
+            ordineModel.setCouponModel(ordineVTO.getCouponModel());
         }
 
         return ordineModel;

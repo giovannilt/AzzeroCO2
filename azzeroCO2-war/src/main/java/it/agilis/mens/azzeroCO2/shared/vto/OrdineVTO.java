@@ -1,5 +1,6 @@
 package it.agilis.mens.azzeroCO2.shared.vto;
 
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.conoscoCO2.ConoscoCO2Model;
 import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
@@ -43,6 +44,7 @@ public class OrdineVTO implements Serializable {
     private String eventiType;
     private BigliettiDaVisitaModelVTO bigliettiDaVisitaVTO;
     private String anno;
+    private CouponModel couponModel;
 
     public SitoWebModel getSitoWebModel() {
         return sitoWebModel;
@@ -198,10 +200,18 @@ public class OrdineVTO implements Serializable {
     }
 
     public void setAnno(String anno) {
-        this.anno=anno;
+        this.anno = anno;
     }
 
     public String getAnno() {
         return anno;
+    }
+
+    public void setCouponModel(CouponModel couponModel) {
+        this.couponModel = couponModel;
+    }
+
+    public CouponModel getCouponModel() {
+        return couponModel;
     }
 }

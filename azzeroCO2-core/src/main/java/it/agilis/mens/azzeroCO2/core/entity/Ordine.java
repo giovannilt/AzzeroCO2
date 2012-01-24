@@ -19,7 +19,7 @@ public class Ordine {
     @GeneratedValue
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private Coupon coupon;
 
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
