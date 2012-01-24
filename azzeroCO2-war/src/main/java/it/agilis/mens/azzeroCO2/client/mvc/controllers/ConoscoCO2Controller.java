@@ -13,6 +13,7 @@ import it.agilis.mens.azzeroCO2.client.mvc.views.ConoscoCO2View;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
+import it.agilis.mens.azzeroCO2.shared.model.CouponType;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
@@ -105,12 +106,38 @@ public class ConoscoCO2Controller extends BaseController {
                 double kgCO2 = getTotaleKgCO2(model);
 
                 // TODO Calcolare il totale togliendo lo sconto COUPON
+                PagamentoModel pagamentoModel = null;
                 if (model.getProgettoDiCompensazioneModel() != null) {
-                    PagamentoModel pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
+
+                    if (model.getCouponModel() != null && !"".equalsIgnoreCase(model.getCouponModel().getTipo())) {
+                        try {
+                            Double totale = model.getProgettoDiCompensazioneModel().getPrezzo();
+
+                            if (model.getCouponModel().getTipo().equalsIgnoreCase(CouponType.EURO.toString())) {
+                                Double val = (kgCO2 * totale) - model.getCouponModel().getValore();
+                                if (val < 0) {
+                                    val = 0.0;
+                                }
+                                pagamentoModel = new PagamentoModel(number.format(val));
+                            } else if (model.getCouponModel().getTipo().equalsIgnoreCase(CouponType.PERCENTO.toString())) {
+                                pagamentoModel = new PagamentoModel(number.format((kgCO2 * totale) * model.getCouponModel().getValore() / 100));
+                            } else if (model.getCouponModel().getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString())) {
+                                pagamentoModel = new PagamentoModel(number.format(0.0));
+                            }
+
+                        } catch (Exception e) {
+                            Info.display("ERROR", e.getMessage());
+                        }
+                    } else {
+                        pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
+                    }
+
+
                     pagamentoModel.setLastUpdate(new Date());
                     pagamentoModel.setKgCO2(kgCO2);
                     model.setPagamentoModel(pagamentoModel);
                     Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
+
                 } else {
                     Info.display("Info", "Seleziona il Progetto di compensazione");
                 }
