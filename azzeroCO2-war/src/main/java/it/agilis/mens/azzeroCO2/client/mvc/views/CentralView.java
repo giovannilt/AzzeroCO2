@@ -43,7 +43,6 @@ public class CentralView extends View {
             getBody().setStyleAttribute("padding-left", "20px");
             getBody().setStyleAttribute("margin", "0");
             setStyleAttribute("border-top", "0px");
-            //getBody().setStyleAttribute("padding-right","10px");
         }
     };
     private CardLayout layout = new CardLayout();
@@ -96,7 +95,6 @@ public class CentralView extends View {
     private ContentPanel getStartContent() {
         final ContentPanel _return = new ContentPanel();
         _return.setHeaderVisible(false);
-
         _return.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         _return.setStyleAttribute("padding", "1px");
 
@@ -112,7 +110,7 @@ public class CentralView extends View {
         center.setHeading("Compensa le emissioni delle tue attività");
 
         center.setScrollMode(Style.Scroll.AUTOX);
-        _return.add(center, new RowData(.70, 1));
+        _return.add(center, new RowData(.65, 1));
 
         {  // Primo Rigo "EVENTI"
             LayoutContainer c = new LayoutContainer();
@@ -222,7 +220,7 @@ public class CentralView extends View {
         ContentPanel east = new ContentPanel();
         east.setHeaderVisible(false);
 
-        _return.add(east, new RowData(.30, 1));
+        _return.add(east, new RowData(.35, 1));
 
         {
             ContentPanel c = new ContentPanel();
@@ -405,7 +403,9 @@ public class CentralView extends View {
         centralPanel.setButtonAlign(Style.HorizontalAlignment.CENTER);
         centralPanel.setLayout(layout);
         layout.setActiveItem(centralPanel.getItem(Eventi.MAIN.ordinal()));
-        centralPanel.add(getStartContent());
+        ContentPanel startContent = getStartContent();
+        centralPanel.add(startContent);
+
 
         Dispatcher.forwardEvent(new AppEvent(AzzeroCO2Events.CentralPanelReady,
                 centralPanel));

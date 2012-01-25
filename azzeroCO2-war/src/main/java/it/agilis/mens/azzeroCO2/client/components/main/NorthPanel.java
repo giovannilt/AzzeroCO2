@@ -43,7 +43,6 @@ public class NorthPanel extends LayoutContainer {
             setStyleAttribute("border-top", "0px");
         }
     };
-    ;
     private HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
     private Button home = new Button("Home");
 
