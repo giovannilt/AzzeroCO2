@@ -19,7 +19,6 @@ import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensaz
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
-import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -310,7 +309,7 @@ public class Pubblicazione extends LayoutContainer {
         }
     }
 
-    public void showConferma(OrdineVTO result) {
+    public void showConferma() {
         pubblicazioneoTab.getSelectedItem().disable();
         posizioniLabel++;
         pubblicazioneoTab.getItems().get(pubblicazioneoTab.getItems().size() - 1).setEnabled(true);

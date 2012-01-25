@@ -197,7 +197,7 @@ public class PubblicazioniView extends View {
     }
 
     public void showConferma(OrdineVTO result) {
-        pubblicazioneDettaglio.showConferma(result);
+        pubblicazioneDettaglio.showConferma();
     }
 
 }
