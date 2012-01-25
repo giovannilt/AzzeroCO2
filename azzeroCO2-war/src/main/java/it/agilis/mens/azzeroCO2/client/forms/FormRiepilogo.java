@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.PubblicazioniEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -202,6 +203,7 @@ public class FormRiepilogo extends LayoutContainer {
                     } else if (Eventi.ANNO_DI_ATTIVITA == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
                         Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.ShowStep, be.getModel());
                     } else if (Eventi.UNA_PUBBLICAZIONE == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
+                        Dispatcher.forwardEvent(PubblicazioniEvents.ShowStep, be.getModel());
                     } else if (Eventi.WEB == Eventi.valueOf(((RiepilogoModel) be.getModel()).getEventi())) {
                     }
                 }

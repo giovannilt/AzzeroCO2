@@ -776,7 +776,7 @@ public class CalcoliHelper {
             _rm.setEventi(e.name());
             double co2 = 0;
 
-            _rm.setOggetto("Manifesti, pieghevoli, fogli / / <br>" + prm.getCategoria());
+            _rm.setOggetto("Manifesti pieghevoli e fogli / <br>" + prm.getCategoria());
             String formato = "";
             if (prm.getLarghezza() > 0 && prm.getAltezza() > 0) {
                 formato = "Dimensioni " + prm.getLarghezza() + "x" + prm.getAltezza() + "<br>";

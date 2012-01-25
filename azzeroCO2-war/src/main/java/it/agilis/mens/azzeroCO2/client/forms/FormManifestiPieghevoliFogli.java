@@ -73,7 +73,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
         textContent.add(note);
 
         cpEst.setFrame(false);
-        cpEst.setHeading("Manifesti, pieghevoli, fogli");
+        cpEst.setHeading("Manifesti pieghevoli e fogli");
         cpEst.setLayout(new RowLayout(Style.Orientation.VERTICAL));
         cpEst.add(textContent, new RowData(1, .15, new Margins(0, 0, 0, 0)));
         cpEst.add(grid, new RowData(1, .85, new Margins(0, 0, 0, 0)));
