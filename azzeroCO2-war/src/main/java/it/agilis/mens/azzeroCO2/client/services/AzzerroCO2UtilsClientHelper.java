@@ -203,7 +203,7 @@ public class AzzerroCO2UtilsClientHelper {
             ordineModel.setBigliettiDaVisitaModel(getBigliettiDaVisitaModel(ordineVTO.getBigliettiDaVisitaVTO()));
         }
 
-        if (ordineModel.getCouponModel() != null) {
+        if (ordineVTO.getCouponModel() != null) {
             ordineModel.setCouponModel(ordineVTO.getCouponModel());
         }
 
