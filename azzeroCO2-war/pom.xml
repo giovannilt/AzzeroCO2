@@ -171,8 +171,8 @@
                     <runTarget>azzeroCO2.html</runTarget>
                     <hostedWebapp>${webappDirectory}</hostedWebapp>
                     <i18nMessagesBundle>it.agilis.mens.azzeroCO2.client.Messages</i18nMessagesBundle>
-                    <style>DETAILED</style>
-                    <logLevel>INFO</logLevel>
+                    <!--<style>DETAILED</style>-->
+                    <logLevel>ERROR</logLevel>
                 </configuration>
             </plugin>
             <!-- Copy static web files before executing gwt:run -->
