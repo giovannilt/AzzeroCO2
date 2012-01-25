@@ -111,13 +111,13 @@ public class CalcoliHelper {
 
         if (eventoModel != null && eventoModel.getManifestiPieghevoliFogliModel() != null && eventoModel.getManifestiPieghevoliFogliModel().size() > 0) {
             model = new RiepilogoModel();
-            String manifesti = "Manifesti pieghevoli <br>";
+            String manifesti = "Manifesti pieghevoli e fogli<br>";
             for (ManifestiPieghevoliFogliModel mf : eventoModel.getManifestiPieghevoliFogliModel()) {
                 if (!mf.isVoid()) {
                     manifesti += "  / " + mf.getCategoria() + "<br>";
                 }
             }
-            if (!manifesti.equalsIgnoreCase("Manifesti pieghevoli <br>")) {
+            if (!manifesti.equalsIgnoreCase("Manifesti pieghevoli e fogli<br>")) {
                 model.setDettagli("Manifesti pieghevoli");
                 model.setOggetto(manifesti);
                 model.setIndex(6);

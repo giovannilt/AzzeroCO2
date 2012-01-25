@@ -78,9 +78,9 @@ public class Pubblicazione extends LayoutContainer {
 
         add(pubblicazioneoTab, new RowData(1, 1));
 
-        posizioniText.add(Arrays.asList(".", "Manifesti pieghevoli"));// Pubblicazioni rilegate
+        posizioniText.add(Arrays.asList(".", "Manifesti pieghevoli e fogli"));// Pubblicazioni rilegate
         posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Biglietti da visita e cartelline"));
-        posizioniText.add(Arrays.asList("Manifesti pieghevoli", "Riepilogo"));           // Manifesti pieghevoli e Fogli
+        posizioniText.add(Arrays.asList("Manifesti pieghevoli e fogli", "Riepilogo"));           // Manifesti pieghevoli e Fogli
         posizioniText.add(Arrays.asList("Biglietti da visita e cartelline", "Acquisto"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
@@ -303,7 +303,9 @@ public class Pubblicazione extends LayoutContainer {
             if (s.equalsIgnoreCase("Vai al pagamento")) {
                 return;
             }
-            if (s != null && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
+            if (s != null &&
+                    !"".equalsIgnoreCase(s) &&
+                    tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
                 return;
             }
         }
