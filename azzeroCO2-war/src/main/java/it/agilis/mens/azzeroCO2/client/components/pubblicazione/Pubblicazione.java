@@ -79,7 +79,7 @@ public class Pubblicazione extends LayoutContainer {
 
         add(pubblicazioneoTab, new RowData(1, 1));
 
-        posizioniText.add(Arrays.asList(".", "Manifesti pieghevoli e fogli"));// Pubblicazioni rilegate
+        posizioniText.add(Arrays.asList(".", "Manifesti pieghevoli"));// Pubblicazioni rilegate
         posizioniText.add(Arrays.asList("Pubblicazioni rilegate", "Biglietti da visita e cartelline"));
         posizioniText.add(Arrays.asList("Manifesti pieghevoli e fogli", "Riepilogo"));           // Manifesti pieghevoli e Fogli
         posizioniText.add(Arrays.asList("Biglietti da visita e cartelline", "Acquisto"));       // RIEPILOGO
@@ -285,6 +285,12 @@ public class Pubblicazione extends LayoutContainer {
     }
 
     public void showStep(RiepilogoModel tabToShow) {
+        if (posizioniLabel == 0) {
+            if (tabToShow.getOggetto().toLowerCase().startsWith("pubblicazioni rilegate")) {
+                return;
+            }
+        }
+
         while (posizioniLabel > 0) {
             String s = previusTab();
             if (s != null && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
