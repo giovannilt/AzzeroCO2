@@ -66,13 +66,13 @@ public class Pubblicazione extends LayoutContainer {
         pubblicazioneoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("acquisto");
-        acquisto.setStyleAttribute("background-color", "#3F4757");
+        acquisto.setStyleAttribute("background-color", "#555557");
         acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         pubblicazioneoTab.add(acquisto);
 
         TabItem conferma = new TabItem("conferma");
-        conferma.setStyleAttribute("background-color", "#3F4757");
+        conferma.setStyleAttribute("background-color", "#555557");
         conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
         conferma.setEnabled(false);
         pubblicazioneoTab.add(conferma);
@@ -90,7 +90,7 @@ public class Pubblicazione extends LayoutContainer {
 
     public ContentPanel createCalcoloTabs() {
         ContentPanel calcoloCardPanel = new ContentPanel();
-        calcoloCardPanel.setHeight(443);
+        calcoloCardPanel.setHeight(543); //DIM
         final CardLayout layout = new CardLayout();
         calcoloCardPanel.setLayout(layout);
         calcoloCardPanel.setHeaderVisible(false);

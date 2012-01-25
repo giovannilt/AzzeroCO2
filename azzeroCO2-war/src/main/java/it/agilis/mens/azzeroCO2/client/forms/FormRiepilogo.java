@@ -87,7 +87,7 @@ public class FormRiepilogo extends LayoutContainer {
         cpEst.add(c, new RowData(1, 0.05));
 
         // TODO MIGLIORARE
-        cp.setHeight(440);
+        cp.setHeight(540);//  DIM
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
@@ -96,9 +96,9 @@ public class FormRiepilogo extends LayoutContainer {
 
     protected void onAfterLayout() {
         super.onAfterLayout();
-        cp.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        cp.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         cp.getBody().setStyleAttribute("border-style", "solid");
-        //cp.getBody().setStyleAttribute("border-top", "3px solid orange");
+        //cp.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         cp.getBody().setStyleAttribute("border-width", "3px 0");
         cp.getBody().setStyleAttribute("margin-bottom", "0");
     }

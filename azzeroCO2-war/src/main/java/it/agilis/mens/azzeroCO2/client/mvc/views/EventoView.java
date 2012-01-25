@@ -162,13 +162,14 @@ public class EventoView extends View {
 
             BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 36);
             southData.setMargins(new Margins(0, 0, 0, 0));
-            center.setStyleAttribute("background-color", "#313646");
+            //center.setStyleAttribute("background-color", "yellow");
             center.add(south, southData);
         }
         center.setHeaderVisible(false);
         evento.add(center, centerData);
 
         evento.setTitle(Eventi.EVENTO.name());
+
         Dispatcher.forwardEvent(new AppEvent(CentralEvents.EventoPanelReady, evento));
     }
 

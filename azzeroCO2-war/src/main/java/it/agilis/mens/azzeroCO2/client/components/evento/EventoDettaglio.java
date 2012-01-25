@@ -101,7 +101,7 @@ public class EventoDettaglio extends LayoutContainer {
 
     public ContentPanel createCalcoloTabs() {
         ContentPanel calcoloCardPanel = new ContentPanel();
-        calcoloCardPanel.setHeight(443);
+        calcoloCardPanel.setHeight(542);   //443        DIM
         final CardLayout layout = new CardLayout();
         calcoloCardPanel.setLayout(layout);
         calcoloCardPanel.setHeaderVisible(false);

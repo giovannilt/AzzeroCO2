@@ -34,7 +34,17 @@ import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
  * To change this template use File | Settings | File Templates.
  */
 public class CentralView extends View {
-    private final ContentPanel centralPanel = new ContentPanel();
+      private final ContentPanel centralPanel = new ContentPanel() {
+        @Override
+        protected void onLoad() {
+            super.onLoad();
+            getBody().setStyleAttribute("border-left", "19px #C1DCE7 solid ");
+            getBody().setStyleAttribute("border-right", "20px #C1DCE7 solid");
+            getBody().setStyleAttribute("padding-left","20px");
+            getBody().setStyleAttribute("margin","0");
+            //getBody().setStyleAttribute("padding-right","10px");
+        }
+    };
     private CardLayout layout = new CardLayout();
     private LayoutContainer logInLogOut = new LayoutContainer();
     private Text benvenuto;
@@ -93,9 +103,9 @@ public class CentralView extends View {
             @Override
             protected void onLoad() {
                 super.onLoad();
-                //getBody().setStyleAttribute("border-bottom", "3px solid orange");
+                //getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
                 getBody().setStyleAttribute("border-style", "solid");
-                getBody().setStyleAttribute("border-top", "3px solid orange");
+                getBody().setStyleAttribute("border-top", "3px solid #f8b333");
                 getBody().setStyleAttribute("border-width", "3px 0");
                 //getBody().setStyleAttribute("margin-bottom", "0");
 
@@ -107,6 +117,7 @@ public class CentralView extends View {
         center.setScrollMode(Style.Scroll.AUTOX);
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(3, 0, 0, 0));
+
         _return.add(center, centerData);
 
         {  // Primo Rigo "EVENTI"
@@ -116,7 +127,7 @@ public class CentralView extends View {
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.STRETCH);
             // layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
-            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(1, 1, 1, 1));
+            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 0, 0, 0));
             Button unEvento = new Button("Un Evento");
 
             unEvento.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.evento()));
@@ -164,7 +175,7 @@ public class CentralView extends View {
             layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             layout.setPack(BoxLayout.BoxLayoutPack.START);
             c.setLayout(layout);
-            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(1, 1, 1, 1));
+            HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 0, 0, 0));
 
             Button pubblicazione = new Button("Una pubblicazione");
             pubblicazione.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unaPubblicazione()));
@@ -216,7 +227,8 @@ public class CentralView extends View {
 
         ContentPanel east = new ContentPanel();
         east.setHeaderVisible(false);
-        BorderLayoutData eastData = new BorderLayoutData(Style.LayoutRegion.EAST, 300);
+        BorderLayoutData eastData = new BorderLayoutData(Style.LayoutRegion.EAST, 266);
+
         eastData.setSplit(false);
         eastData.setMargins(new Margins(0));
 
@@ -234,7 +246,7 @@ public class CentralView extends View {
                         @Override
                         protected void onLoad() {
                             super.onLoad();
-                            //getBody().setStyleAttribute("border-bottom", "3px solid orange");
+                            //getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
                             getBody().setStyleAttribute("border-style", "solid");
                             getBody().setStyleAttribute("border-top", "3px solid #22729E");
                             getBody().setStyleAttribute("border-width", "3px 0");
@@ -344,7 +356,7 @@ public class CentralView extends View {
                     @Override
                     protected void onLoad() {
                         super.onLoad();
-                        //getBody().setStyleAttribute("border-bottom", "3px solid orange");
+                        //getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
                         getBody().setStyleAttribute("border-style", "solid");
                         getBody().setStyleAttribute("border-top", "3px solid #22729E");
                         getBody().setStyleAttribute("border-width", "3px 0");

@@ -5,6 +5,7 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.layout.BoxLayout;
@@ -35,7 +36,15 @@ public class NorthPanel extends LayoutContainer {
     private Button login = new Button();
     private Boolean islogedIn = false;
     private Button info = new Button();
-    private LayoutContainer c = new LayoutContainer();
+    private LayoutContainer c = new LayoutContainer() {
+        @Override
+        protected void onLoad() {
+            setStyleAttribute("border-left", "23px #C1DCE7 solid ");
+            setStyleAttribute("border-right", "18px #C1DCE7 solid");
+            setStyleAttribute("margin","0");
+        }
+    };
+    ;
     private HBoxLayoutData layoutData = new HBoxLayoutData(new Margins(0, 5, 0, 0));
     private Button home = new Button("Home");
 
@@ -44,8 +53,9 @@ public class NorthPanel extends LayoutContainer {
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
+
         HBoxLayout layout = new HBoxLayout();
-        layout.setPadding(new Padding(1));
+        //layout.setPadding(new Padding(1));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         layout.setPack(BoxLayout.BoxLayoutPack.END);
         c.setLayout(layout);
@@ -107,7 +117,9 @@ public class NorthPanel extends LayoutContainer {
         add(c, new FlowData(1));
 
         Image azzeroCO2Log = new Image(AzzeroCO2Resources.INSTANCE.header());
+
         add(azzeroCO2Log, layoutData);
+
 
     }
 
@@ -146,7 +158,7 @@ public class NorthPanel extends LayoutContainer {
             if (userInfoModel != null &&
                     userInfoModel.getNome().length() > 0 &&
                     !userInfoModel.getNome().equalsIgnoreCase("Guest")) {
-                nome.setHTML("<p style='margin-top:4px;font-size:13px;font-family:arial;color:orange;'>Benvenuto " + userInfoModel.getNome() + "</p>");
+                nome.setHTML("<p style='margin-top:4px;font-size:13px;font-family:arial;color:#f8b333;'>Benvenuto " + userInfoModel.getNome() + "</p>");
             }
             c.layout(true);
         }

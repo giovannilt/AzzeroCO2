@@ -68,13 +68,16 @@ public class AzzeroCO2View extends View {
         northData.setHideCollapseTool(false);
         northData.setSplit(false);
         northData.setMargins(new Margins(0, 0, 0, 0));
+
         Component northPanel = event.getData();
         main.add(northPanel, northData);
     }
 
     private void onCentralPanelReady(AppEvent event) {
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
+        //centerData.setMargins(new Margins(0));
+        centerData.setMargins(new Margins(69,0,0,0));   //DIM
+
         Component centerPanel = event.getData();
         main.add(centerPanel, centerData);
     }
@@ -86,7 +89,8 @@ public class AzzeroCO2View extends View {
 
     private void onInit(AppEvent event) {
 
-        main.setSize(975, 650);
+        main.setSize(1040, 820);    //975 prima di 1040  650
+
         main.setHeaderVisible(false);
 
         final BorderLayout layout = new BorderLayout();
@@ -97,6 +101,7 @@ public class AzzeroCO2View extends View {
 
         VBoxLayout layoutCentre = new VBoxLayout();
         layoutCentre.setPadding(new Padding(5));
+
         layoutCentre.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
         viewport.setLayout(layoutCentre);
 
