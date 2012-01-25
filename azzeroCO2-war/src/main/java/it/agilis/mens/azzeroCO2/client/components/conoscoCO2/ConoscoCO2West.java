@@ -110,7 +110,7 @@ public class ConoscoCO2West extends LayoutContainer {
 
         configs.add(column);
 
-        column = new ColumnConfig("oggetto", "oggetto", 220);
+        column = new ColumnConfig("oggetto", "oggetto", 218);
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setRenderer(new GridCellRenderer() {
             @Override
@@ -133,18 +133,19 @@ public class ConoscoCO2West extends LayoutContainer {
         grid = new Grid<RiepilogoModel>(store, cm);
         grid.setAutoHeight(true);
         grid.setHeight(400);
-        grid.setWidth(244);
+        grid.setWidth(245);
         //     grid.setStripeRows(true);
         grid.setHideHeaders(true);
         grid.setStyleAttribute("backgroundColor", "#E9E9E9");
         grid.disableTextSelection(true);
         grid.setTrackMouseOver(false);
+        grid.setColumnResize(false);
         //   grid.setLoadMask(true);
         //grid.setBorders(false);
 
 
-        grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
-        /*grid.getSelectionModel().addListener(Events.SelectionChange,
+        /* grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
+        *//*grid.getSelectionModel().addListener(Events.SelectionChange,
                 new Listener<SelectionChangedEvent<RiepilogoModel>>() {
                     public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
                         if (be.getSelection().size() > 0) {

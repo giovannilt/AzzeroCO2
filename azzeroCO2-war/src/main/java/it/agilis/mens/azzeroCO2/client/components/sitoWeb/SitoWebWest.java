@@ -107,7 +107,7 @@ public class SitoWebWest extends LayoutContainer {
 
         configs.add(column);
 
-        column = new ColumnConfig("oggetto", "oggetto", 220);
+        column = new ColumnConfig("oggetto", "oggetto", 218);
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setRenderer(new GridCellRenderer() {
             @Override
@@ -135,7 +135,6 @@ public class SitoWebWest extends LayoutContainer {
         grid.setStyleAttribute("backgroundColor", "#E9E9E9");
         grid.disableTextSelection(true);
         grid.setTrackMouseOver(false);
-        grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.setBorders(false);
 
         return grid;
