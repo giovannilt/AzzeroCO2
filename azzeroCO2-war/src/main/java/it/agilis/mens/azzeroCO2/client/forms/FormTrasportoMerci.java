@@ -386,9 +386,9 @@ public class FormTrasportoMerci extends LayoutContainer {
     @Override
     protected void onLoad() {
         super.onLoad();
-        panel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        panel.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         panel.getBody().setStyleAttribute("border-style", "solid");
-        panel.getBody().setStyleAttribute("border-top", "3px solid orange");
+        panel.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         panel.getBody().setStyleAttribute("border-width", "3px 0");
         panel.getBody().setStyleAttribute("margin-bottom", "0");
 

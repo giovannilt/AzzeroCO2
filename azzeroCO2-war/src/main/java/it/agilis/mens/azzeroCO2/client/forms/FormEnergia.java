@@ -101,6 +101,7 @@ public class FormEnergia extends LayoutContainer {
         HBoxLayout layout = new HBoxLayout();
         layout.setPadding(new Padding(10));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+
         c.setLayout(layout);
 
         NumberField energiaElettrica = new NumberField();
@@ -197,9 +198,9 @@ public class FormEnergia extends LayoutContainer {
     @Override
     protected void onAfterLayout() {
         super.onAfterLayout();
-        formPanel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        formPanel.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         formPanel.getBody().setStyleAttribute("border-style", "solid");
-        formPanel.getBody().setStyleAttribute("border-top", "3px solid orange");
+        formPanel.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         formPanel.getBody().setStyleAttribute("border-width", "3px 0");
         formPanel.getBody().setStyleAttribute("margin-bottom", "0");
     }

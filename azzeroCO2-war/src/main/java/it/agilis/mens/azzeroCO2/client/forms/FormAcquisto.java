@@ -87,7 +87,7 @@ public class FormAcquisto extends LayoutContainer {
         setStyleAttribute("padding", "0px");
 
         VerticalPanel vp = new VerticalPanel();
-        vp.setHeight(408);
+        //vp.setHeight(541); //DIM   forse non serve
         vp.add(form);
         east.add(vp);
 
@@ -118,17 +118,17 @@ public class FormAcquisto extends LayoutContainer {
         //east.getHeader().addTool(new ToolButton("x-tool-refresh"));
         westData.setMargins(new Margins(0));
         //east.setAutoHeight(true)
-        east.setHeight(435);
+        east.setHeight(536);//DIM
         add(east, westData);
 
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         centre.add(grid, new RowData(1, 1));
         centre.setHeading("Progetti di compensazione");
-        centre.setHeight(435);
+        centre.setHeight(536); //DIM
         //east.setHeight(23);
-        centre.setStyleAttribute("background-color", "#3F4757");
-        east.setStyleAttribute("background-color", "#3F4757");
-        setStyleAttribute("background-color", "#3F4757");
+        centre.setStyleAttribute("background-color", "#555557");
+        east.setStyleAttribute("background-color", "#555557");
+        setStyleAttribute("background-color", "#555557");
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -478,15 +478,15 @@ public class FormAcquisto extends LayoutContainer {
     @Override
     protected void onAfterLayout() {
         super.onAfterLayout();
-        centre.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        centre.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         centre.getBody().setStyleAttribute("border-style", "solid");
-        centre.getBody().setStyleAttribute("border-top", "3px solid orange");
+        centre.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         centre.getBody().setStyleAttribute("border-width", "3px 0");
         centre.getBody().setStyleAttribute("margin", "0");
 
-        east.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        east.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         east.getBody().setStyleAttribute("border-style", "solid");
-        east.getBody().setStyleAttribute("border-top", "3px solid orange");
+        east.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         east.getBody().setStyleAttribute("border-width", "3px 0");
         east.getBody().setStyleAttribute("margin-bottom", "0");
     }

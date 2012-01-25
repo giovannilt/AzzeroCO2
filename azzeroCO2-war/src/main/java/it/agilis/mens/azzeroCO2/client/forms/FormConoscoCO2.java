@@ -45,6 +45,8 @@ public class FormConoscoCO2 extends LayoutContainer {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
+
+
         ContentPanel cp = new ContentPanel();
         cp.setFrame(true);
         cp.setHeaderVisible(false);
@@ -133,9 +135,9 @@ public class FormConoscoCO2 extends LayoutContainer {
     @Override
     protected void onLoad() {
         super.onLoad();
-        formPanel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        formPanel.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         formPanel.getBody().setStyleAttribute("border-style", "solid");
-        formPanel.getBody().setStyleAttribute("border-top", "3px solid orange");
+        formPanel.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         formPanel.getBody().setStyleAttribute("border-width", "3px 0");
         formPanel.getBody().setStyleAttribute("margin-bottom", "0");
     }

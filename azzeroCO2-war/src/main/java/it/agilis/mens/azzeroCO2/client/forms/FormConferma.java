@@ -30,19 +30,19 @@ public class FormConferma extends LayoutContainer {
         protected void onLoad() {
             super.onLoad();
             east.getBody().setStyleAttribute("border-style", "solid");
-            east.getBody().setStyleAttribute("border-top", "3px solid orange");
+            east.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
             east.getBody().setStyleAttribute("margin-bottom", "0");
             east.getBody().setStyleAttribute("padding-top", "1px");
-            east.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+            east.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         }
     };
     private ContentPanel centre = new ContentPanel() {
         @Override
         protected void onLoad() {
             super.onLoad();
-            centre.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+            centre.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
             centre.getBody().setStyleAttribute("border-style", "solid");
-            centre.getBody().setStyleAttribute("border-top", "3px solid orange");
+            centre.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
             centre.getBody().setStyleAttribute("margin-bottom", "0");
             centre.getHeader().setStyleAttribute("border-right-width", "15px");
         }
@@ -74,7 +74,7 @@ public class FormConferma extends LayoutContainer {
         //  westData.setMargins(new Margins(0));
         east.setHeight(439);
         east.setWidth(250);
-        //east.setStyleAttribute("border-bottom-color","orange");
+        //east.setStyleAttribute("border-bottom-color","#f8b333");
         //east.setStyleAttribute("padding-bottom","3px");
         //east.setStyleAttribute("border-bottom-width","3px");
         //east.setAutoHeight(true);

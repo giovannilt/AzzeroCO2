@@ -77,11 +77,11 @@ public class PubblicazioneWest extends LayoutContainer {
 
         ContentPanel panel = new ContentPanel();
         panel.setHeaderVisible(false);
-        panel.setBodyStyle("backgroundColor: silver;");
+        panel.setBodyStyle("backgroundColor: #d9dadb;");
         panel.setBorders(false);
         panel.add(createGrid(), new VBoxLayoutData(new Margins(0, 5, 2, 0)));
 
-        title.setStyleAttribute("backgroundColor", "silver");
+        title.setStyleAttribute("backgroundColor", "#d9dadb");
         title.setStyleAttribute("color", "black");
         title.setStyleAttribute("font-family", "arial");
         title.setStyleAttribute("text-align", "center");
@@ -102,7 +102,7 @@ public class PubblicazioneWest extends LayoutContainer {
         column.setRenderer(new GridCellRenderer() {
             @Override
             public Object render(ModelData model, String property, ColumnData config, int rowIndex, int colIndex, ListStore listStore, Grid grid) {
-                config.style += "background-color: silver;";
+                config.style += "background-color: #d9dadb;";
                 List<RiepilogoModel> r = listStore.getModels();
                 if (r.size() == 1 &&
                         (r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)
@@ -124,11 +124,11 @@ public class PubblicazioneWest extends LayoutContainer {
             @Override
             public Object render(ModelData model, String property, ColumnData config, int rowIndex, int colIndex, ListStore listStore, Grid grid) {
                 Text text = new Text((String) model.get(property));
-                text.setStyleAttribute("backgroundColor", "silver");
+                text.setStyleAttribute("backgroundColor", "#d9dadb");
                 text.setStyleAttribute("color", "black");
                 text.setStyleAttribute("font-family", "arial");
 
-                config.style += "background-color: silver;";
+                config.style += "background-color: #d9dadb;";
 
                 return text;
             }

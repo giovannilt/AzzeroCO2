@@ -34,7 +34,17 @@ import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
  * To change this template use File | Settings | File Templates.
  */
 public class CentralView extends View {
-    private final ContentPanel centralPanel = new ContentPanel();
+      private final ContentPanel centralPanel = new ContentPanel() {
+        @Override
+        protected void onLoad() {
+            super.onLoad();
+            getBody().setStyleAttribute("border-left", "19px #C1DCE7 solid ");
+            getBody().setStyleAttribute("border-right", "20px #C1DCE7 solid");
+            getBody().setStyleAttribute("padding-left","20px");
+            getBody().setStyleAttribute("margin","0");
+            //getBody().setStyleAttribute("padding-right","10px");
+        }
+    };
     private CardLayout layout = new CardLayout();
     private LayoutContainer logInLogOut = new LayoutContainer();
     private Text benvenuto;
@@ -85,9 +95,8 @@ public class CentralView extends View {
     private ContentPanel getStartContent() {
         final ContentPanel _return = new ContentPanel();
         _return.setHeaderVisible(false);
-
-
-        _return.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+        final BorderLayout layoutBorder = new BorderLayout();
+        _return.setLayout(layoutBorder);
         _return.setStyleAttribute("padding", "1px");
 
         ContentPanel center = new ContentPanel() {
@@ -106,9 +115,9 @@ public class CentralView extends View {
         center.setHeading("Compensa le emissioni delle tue attività");
 
         center.setScrollMode(Style.Scroll.AUTOX);
-        /* BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-    centerData.setMargins(new Margins(3, 0, 0, 0));*/
-        _return.add(center, new RowData(.70, 1));
+        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        centerData.setMargins(new Margins(3, 0, 0, 0));
+        _return.add(center, centerData);
 
         {  // Primo Rigo "EVENTI"
             LayoutContainer c = new LayoutContainer();
@@ -217,8 +226,11 @@ public class CentralView extends View {
 
         ContentPanel east = new ContentPanel();
         east.setHeaderVisible(false);
+        BorderLayoutData eastData = new BorderLayoutData(Style.LayoutRegion.EAST, 300);
+        eastData.setSplit(false);
+        eastData.setMargins(new Margins(0));
 
-        _return.add(east, new RowData(.30, 1));
+        _return.add(east, eastData);
 
         {
             ContentPanel c = new ContentPanel();

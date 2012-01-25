@@ -124,14 +124,14 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
     @Override
     protected void onLoad() {
         super.onLoad();
-        toolBar.setStyleAttribute("border-bottom", "3px solid orange");
+        toolBar.setStyleAttribute("border-bottom", "3px solid #f8b333");
         cpEst.getBody().setStyleAttribute("border-style", "solid");
-        cpEst.getBody().setStyleAttribute("border-top", "3px solid orange");
+        cpEst.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         cpEst.getBody().setStyleAttribute("border-width", "3px 0");
         cpEst.getBody().setStyleAttribute("margin-bottom", "0");
-        panel.getBody().setStyleAttribute("border-bottom", "3px solid orange");
+        panel.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         panel.getBody().setStyleAttribute("border-style", "solid");
-        panel.getBody().setStyleAttribute("border-top", "3px solid orange");
+        panel.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         panel.getBody().setStyleAttribute("border-width", "3px 0");
         panel.getBody().setStyleAttribute("margin-bottom", "0");
 
