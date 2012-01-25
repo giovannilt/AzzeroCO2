@@ -4,8 +4,6 @@ import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
-import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.layout.BoxLayout;
@@ -41,7 +39,8 @@ public class NorthPanel extends LayoutContainer {
         protected void onLoad() {
             setStyleAttribute("border-left", "23px #C1DCE7 solid ");
             setStyleAttribute("border-right", "18px #C1DCE7 solid");
-            setStyleAttribute("margin","0");
+            setStyleAttribute("margin", "0");
+            setStyleAttribute("border-top", "0px");
         }
     };
     ;
@@ -52,7 +51,7 @@ public class NorthPanel extends LayoutContainer {
 
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
-
+        setStyleAttribute("border-top", "0px");
 
         HBoxLayout layout = new HBoxLayout();
         //layout.setPadding(new Padding(1));

@@ -42,6 +42,7 @@ public class CentralView extends View {
             getBody().setStyleAttribute("border-right", "20px #C1DCE7 solid");
             getBody().setStyleAttribute("padding-left", "20px");
             getBody().setStyleAttribute("margin", "0");
+            setStyleAttribute("border-top", "0px");
             //getBody().setStyleAttribute("padding-right","10px");
         }
     };
@@ -103,13 +104,9 @@ public class CentralView extends View {
             @Override
             protected void onLoad() {
                 super.onLoad();
-                //getBody().setStyleAttribute("border-bottom", "3px solid orange");
                 getBody().setStyleAttribute("border-style", "solid");
                 getBody().setStyleAttribute("border-top", "3px solid orange");
                 getBody().setStyleAttribute("border-width", "3px 0");
-                //getBody().setStyleAttribute("margin-bottom", "0");
-
-                //To change body of overridden methods use File | Settings | File Templates.
             }
         };
         center.setHeading("Compensa le emissioni delle tue attività");

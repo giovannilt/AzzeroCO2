@@ -28,7 +28,13 @@ import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
  * To change this template use File | Settings | File Templates.
  */
 public class AzzeroCO2View extends View {
-    private final ContentPanel main = new ContentPanel();
+    private final ContentPanel main = new ContentPanel() {
+        @Override
+        protected void onLoad() {
+            super.onLoad();
+            getBody().setStyleAttribute("border-top", "0px");
+        }
+    };
     private final Viewport viewport = new Viewport();
     private InfoDialog infoDialog = new InfoDialog();
     private RiepilogoConfermDialog riepilogoConfermaDialog = new RiepilogoConfermDialog();
@@ -62,7 +68,7 @@ public class AzzeroCO2View extends View {
     }
 
     private void onNorthPanelReady(AppEvent event) {
-        BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 90);
+        BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 150);
         northData.setCollapsible(false);
         northData.setFloatable(false);
         northData.setHideCollapseTool(false);
@@ -76,7 +82,7 @@ public class AzzeroCO2View extends View {
     private void onCentralPanelReady(AppEvent event) {
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         //centerData.setMargins(new Margins(0));
-        centerData.setMargins(new Margins(69,0,0,0));   //DIM
+        centerData.setMargins(new Margins(0, 0, 0, 0));   //DIM
 
         Component centerPanel = event.getData();
         main.add(centerPanel, centerData);
