@@ -60,6 +60,6 @@ public interface HustonService extends RemoteService {
 
     boolean associaIDProgettoDiCompensazionePDF(Long idProgetto, String name);
 
-    CouponModel getCouponByCode(String couponCode);
+    CouponModel getValidCouponByCode(String couponCode);
 }
 

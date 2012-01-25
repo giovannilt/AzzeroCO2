@@ -327,9 +327,10 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public CouponModel getCouponByCode(String couponCode) {
+    public CouponModel getValidCouponByCode(String couponCode) {
         CouponCriteria criteria = new CouponCriteria();
         criteria.setCodice(couponCode);
+        criteria.setValid(true);
 
         List<Coupon> coupons = azzeroCO2Register.getCouponDAO().getListOfCoupon(criteria);
         if (coupons != null && coupons.size() > 0) {

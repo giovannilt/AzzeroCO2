@@ -15,12 +15,16 @@ import java.io.Serializable;
  */
 public class CouponCriteria implements Serializable, SelectionCriteria {
     private String codice;
+    private Boolean valid;
 
     @Override
     public DetachedCriteria getDetachedCriteria() {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Coupon.class, "Coupon");
         if (codice != null && !"".equalsIgnoreCase(codice)) {
             checkFieldEq(detachedCriteria, "codice", codice);
+        }
+        if (valid == true) {
+            detachedCriteria.add(Restrictions.eq("stato", valid));
         }
         return detachedCriteria;
     }
@@ -42,5 +46,9 @@ public class CouponCriteria implements Serializable, SelectionCriteria {
         if (fieldValue != null) {
             detachedCriteria.add(Restrictions.eq(name, fieldValue));
         }
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 }

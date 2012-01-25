@@ -97,7 +97,7 @@ public class EventoController extends BaseController {
                         }
                     }
                 };
-                getHustonService().getCouponByCode(couponCode, asyncCallback);
+                getHustonService().getValidCouponByCode(couponCode, asyncCallback);
             }
 
         } else if (event.getType().equals(EventoEvents.Riepilogo)) {
