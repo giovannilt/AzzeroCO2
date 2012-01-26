@@ -86,6 +86,7 @@ public class AzzeroCO2View extends View {
         centerData.setSplit(false);
 
         Component centerPanel = event.getData();
+        centerPanel.setWidth("900");
         centerPanel.setId("CENTERPANEL_GIOVANNI");
         main.add(centerPanel, centerData);
     }

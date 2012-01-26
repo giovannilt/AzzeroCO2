@@ -399,7 +399,7 @@ public class CentralView extends View {
             protected void onLoad() {
                 super.onLoad();
                 setStyleAttribute("border-left", "19px #C1DCE7 solid ");
-                setStyleAttribute("border-right", "20px #C1DCE7 solid");
+                setStyleAttribute("border-right", "23px #C1DCE7 solid");
                 setStyleAttribute("border-top", "0px");
             }
         };
@@ -410,8 +410,7 @@ public class CentralView extends View {
         l.add(centralPanel, new RowData(.95, 1));
 
 
-        Dispatcher.forwardEvent(new AppEvent(AzzeroCO2Events.CentralPanelReady,
-                l));
+        Dispatcher.forwardEvent(new AppEvent(AzzeroCO2Events.CentralPanelReady,l));
     }
 
 
