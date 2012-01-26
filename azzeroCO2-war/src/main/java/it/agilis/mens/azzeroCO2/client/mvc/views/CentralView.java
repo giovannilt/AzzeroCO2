@@ -260,7 +260,7 @@ public class CentralView extends View {
 
                     LabelField label = new LabelField("Utente: ");
                     label.setStyleAttribute("font-family", "arial");
-                    label.setWidth(100);
+                    label.setWidth(80);
 
                     final TextField<String> userName = new TextField<String>();
                     userName.setWidth(45);
@@ -278,7 +278,7 @@ public class CentralView extends View {
 
                     label = new LabelField("Password: ");
                     label.setStyleAttribute("font-family", "arial");
-                    label.setWidth(100);
+                    label.setWidth(80);
 
                     final TextField<String> password = new TextField<String>();
                     password.setWidth(45);
