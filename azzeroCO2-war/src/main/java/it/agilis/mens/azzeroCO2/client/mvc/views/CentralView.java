@@ -34,15 +34,7 @@ import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
  * To change this template use File | Settings | File Templates.
  */
 public class CentralView extends View {
-    private final ContentPanel centralPanel = new ContentPanel() {
-        @Override
-        protected void onLoad() {
-            super.onLoad();
-            getBody().setStyleAttribute("border-left", "19px #C1DCE7 solid ");
-            //  getBody().setStyleAttribute("border-right", "20px #C1DCE7 solid");
-            setStyleAttribute("border-top", "0px");
-        }
-    };
+    private final LayoutContainer centralPanel = new LayoutContainer();
     private CardLayout layout = new CardLayout();
     private LayoutContainer logInLogOut = new LayoutContainer();
     private Text benvenuto;
@@ -71,8 +63,6 @@ public class CentralView extends View {
             onContentReady(event);
         } else if (eventType.equals(CentralEvents.AmministrazioneReady)) {
             onContentReady(event);
-
-
         } else if (eventType.equals(CentralEvents.ShowPanel)) {
             setActiveItem(event.<Eventi>getData());
         }
@@ -108,7 +98,7 @@ public class CentralView extends View {
         center.setHeading("Compensa le emissioni delle tue attività");
 
         center.setScrollMode(Style.Scroll.AUTOX);
-        _return.add(center, new RowData(.65, 1));
+        _return.add(center, new RowData(.70, 1));
 
         {  // Primo Rigo "EVENTI"
             LayoutContainer c = new LayoutContainer();
@@ -397,16 +387,31 @@ public class CentralView extends View {
 
 
     private void onInit(AppEvent event) {
-        centralPanel.setHeaderVisible(false);
-        centralPanel.setButtonAlign(Style.HorizontalAlignment.CENTER);
+        //  centralPanel.setHeaderVisible(false);
+        // centralPanel.setButtonAlign(Style.HorizontalAlignment.CENTER);
         centralPanel.setLayout(layout);
         layout.setActiveItem(centralPanel.getItem(Eventi.MAIN.ordinal()));
         ContentPanel startContent = getStartContent();
         centralPanel.add(startContent);
 
+        LayoutContainer l = new LayoutContainer() {
+            @Override
+            protected void onLoad() {
+                super.onLoad();
+                setStyleAttribute("border-left", "19px #C1DCE7 solid ");
+                setStyleAttribute("border-right", "20px #C1DCE7 solid");
+                setStyleAttribute("border-top", "0px");
+            }
+        };
+
+        l.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+
+
+        l.add(centralPanel, new RowData(.95, 1));
+
 
         Dispatcher.forwardEvent(new AppEvent(AzzeroCO2Events.CentralPanelReady,
-                centralPanel));
+                l));
     }
 
 

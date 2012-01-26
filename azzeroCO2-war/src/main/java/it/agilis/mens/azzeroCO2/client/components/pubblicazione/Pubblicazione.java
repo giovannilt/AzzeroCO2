@@ -89,7 +89,7 @@ public class Pubblicazione extends LayoutContainer {
 
     public ContentPanel createCalcoloTabs() {
         ContentPanel calcoloCardPanel = new ContentPanel();
-        calcoloCardPanel.setHeight(543); //DIM
+        calcoloCardPanel.setHeight(523); //DIM
         final CardLayout layout = new CardLayout();
         calcoloCardPanel.setLayout(layout);
         calcoloCardPanel.setHeaderVisible(false);

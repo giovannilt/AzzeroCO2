@@ -5,7 +5,6 @@ import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
-import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -73,7 +72,6 @@ public class AzzeroCO2View extends View {
         northData.setFloatable(false);
         northData.setHideCollapseTool(false);
         northData.setSplit(false);
-        northData.setMargins(new Margins(0, 0, 0, 0));
 
         Component northPanel = event.getData();
         main.add(northPanel, northData);
@@ -82,13 +80,13 @@ public class AzzeroCO2View extends View {
     private void onCentralPanelReady(AppEvent event) {
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         //centerData.setMargins(new Margins(0));
-        centerData.setMargins(new Margins(0, 0, 0, 0));
         centerData.setCollapsible(false);
         centerData.setFloatable(false);
         centerData.setHideCollapseTool(false);
         centerData.setSplit(false);
 
         Component centerPanel = event.getData();
+        centerPanel.setId("CENTERPANEL_GIOVANNI");
         main.add(centerPanel, centerData);
     }
 
@@ -106,7 +104,6 @@ public class AzzeroCO2View extends View {
         final BorderLayout layout = new BorderLayout();
         layout.setEnableState(false);
         main.setLayout(layout);
-        // main.setStyleAttribute("padding", "10px");
         main.setAnimCollapse(true);
 
         VBoxLayout layoutCentre = new VBoxLayout();
