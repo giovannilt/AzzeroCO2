@@ -88,7 +88,7 @@ public class FormRiepilogo extends LayoutContainer {
         cpEst.add(c, new RowData(1, 0.05));
 
         // TODO MIGLIORARE
-        cp.setHeight(540);//  DIM
+        cp.setHeight(575);//  DIM
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);

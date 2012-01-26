@@ -85,9 +85,7 @@ public class AnnoDettaglio extends LayoutContainer {
         conferma.setEnabled(false);
         eventoTab.add(conferma);
 
-        // TODO PORCO DEMONIO ALLE COSE DINAMICHE...
-
-        eventoTab.setSize(740, 570);   // DIM
+        eventoTab.setSize(720, 605);   // DIM
 
         add(eventoTab, new RowData(1, 1));
 
@@ -101,7 +99,6 @@ public class AnnoDettaglio extends LayoutContainer {
         posizioniText.add(Arrays.asList("Manifesti pieghevoli e fogli", "Sito"));
         posizioniText.add(Arrays.asList("Biglietti da visita e cartelline", "Riepilogo"));           // Manifesti pieghevoli e Fogli
 
-
         posizioniText.add(Arrays.asList("Sito", "Acquisto"));// RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
@@ -114,7 +111,7 @@ public class AnnoDettaglio extends LayoutContainer {
 
     public ContentPanel createCalcoloTabs() {
         ContentPanel calcoloCardPanel = new ContentPanel();
-        calcoloCardPanel.setHeight(522); //443  DIM
+        calcoloCardPanel.setHeight(577); //443  DIM
         final CardLayout layout = new CardLayout();
         calcoloCardPanel.setLayout(layout);
         calcoloCardPanel.setHeaderVisible(false);
