@@ -8,10 +8,9 @@ import com.extjs.gxt.ui.client.mvc.View;
 import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Viewport;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
-import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
-import com.extjs.gxt.ui.client.widget.layout.VBoxLayout;
+import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.ui.RootPanel;
 import it.agilis.mens.azzeroCO2.client.components.InfoDialog;
 import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.RiepilogoConfermDialog;
@@ -86,9 +85,14 @@ public class AzzeroCO2View extends View {
         centerData.setSplit(false);
 
         Component centerPanel = event.getData();
-        centerPanel.setWidth("900");
-        centerPanel.setId("CENTERPANEL_GIOVANNI");
-        main.add(centerPanel, centerData);
+
+        LayoutContainer c = new LayoutContainer();
+
+        c.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+
+        c.add(centerPanel, new RowData(.96, 1));
+
+        main.add(c, centerData);
     }
 
     private void onNewsPanelReady(AppEvent event) {
@@ -108,7 +112,7 @@ public class AzzeroCO2View extends View {
         main.setAnimCollapse(true);
 
         VBoxLayout layoutCentre = new VBoxLayout();
-        layoutCentre.setPadding(new Padding(23,5,5,5));
+        layoutCentre.setPadding(new Padding(23, 5, 5, 5));
 
         layoutCentre.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
         viewport.setLayout(layoutCentre);

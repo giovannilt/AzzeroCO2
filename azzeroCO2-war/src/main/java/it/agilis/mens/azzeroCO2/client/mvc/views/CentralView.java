@@ -200,7 +200,7 @@ public class CentralView extends View {
                     setActiveItem(Eventi.CONOSCI_CO2);
                 }
             });
-            co2.setSize(212, 200);//(213, 210);
+            co2.setSize(212, 200);
             c.add(co2, layoutData);
             center.add(c, new FlowData(1));
         }
@@ -387,8 +387,6 @@ public class CentralView extends View {
 
 
     private void onInit(AppEvent event) {
-        //  centralPanel.setHeaderVisible(false);
-        // centralPanel.setButtonAlign(Style.HorizontalAlignment.CENTER);
         centralPanel.setLayout(layout);
         layout.setActiveItem(centralPanel.getItem(Eventi.MAIN.ordinal()));
         ContentPanel startContent = getStartContent();
@@ -398,15 +396,15 @@ public class CentralView extends View {
             @Override
             protected void onLoad() {
                 super.onLoad();
-                setStyleAttribute("border-left", "19px #C1DCE7 solid ");
-                setStyleAttribute("border-right", "23px #C1DCE7 solid");
+                setStyleAttribute("border-left", "23px #C1DCE7 solid ");
+                setStyleAttribute("border-right", "22px #C1DCE7 solid");
                 setStyleAttribute("border-top", "0px");
             }
         };
 
         l.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-        l.add(centralPanel, new RowData(.95, 1));
-        Dispatcher.forwardEvent(new AppEvent(AzzeroCO2Events.CentralPanelReady,l));
+        l.add(centralPanel, new RowData(1, 1));
+        Dispatcher.forwardEvent(new AppEvent(AzzeroCO2Events.CentralPanelReady, l));
     }
 
 
