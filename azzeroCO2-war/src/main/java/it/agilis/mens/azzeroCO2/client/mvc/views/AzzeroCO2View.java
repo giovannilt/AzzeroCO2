@@ -82,10 +82,13 @@ public class AzzeroCO2View extends View {
     private void onCentralPanelReady(AppEvent event) {
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         //centerData.setMargins(new Margins(0));
-        centerData.setMargins(new Margins(0, 30, 0, 0));   //DIM
+        centerData.setMargins(new Margins(0, 0, 0, 0));
+        centerData.setCollapsible(false);
+        centerData.setFloatable(false);
+        centerData.setHideCollapseTool(false);
+        centerData.setSplit(false);
 
         Component centerPanel = event.getData();
-
         main.add(centerPanel, centerData);
     }
 

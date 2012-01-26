@@ -39,9 +39,7 @@ public class CentralView extends View {
         protected void onLoad() {
             super.onLoad();
             getBody().setStyleAttribute("border-left", "19px #C1DCE7 solid ");
-            getBody().setStyleAttribute("border-right", "20px #C1DCE7 solid");
-            getBody().setStyleAttribute("padding-left", "20px");
-            getBody().setStyleAttribute("margin", "0");
+            //  getBody().setStyleAttribute("border-right", "20px #C1DCE7 solid");
             setStyleAttribute("border-top", "0px");
         }
     };
@@ -96,7 +94,7 @@ public class CentralView extends View {
         final ContentPanel _return = new ContentPanel();
         _return.setHeaderVisible(false);
         _return.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-        _return.setStyleAttribute("padding", "1px");
+        _return.setStyleAttribute("padding", "2px");
 
         ContentPanel center = new ContentPanel() {
             @Override
@@ -220,7 +218,7 @@ public class CentralView extends View {
         ContentPanel east = new ContentPanel();
         east.setHeaderVisible(false);
 
-        _return.add(east, new RowData(.35, 1));
+        _return.add(east, new RowData(.30, 1));
 
         {
             ContentPanel c = new ContentPanel();
