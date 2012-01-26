@@ -405,11 +405,7 @@ public class CentralView extends View {
         };
 
         l.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-
-
         l.add(centralPanel, new RowData(.95, 1));
-
-
         Dispatcher.forwardEvent(new AppEvent(AzzeroCO2Events.CentralPanelReady,l));
     }
 
