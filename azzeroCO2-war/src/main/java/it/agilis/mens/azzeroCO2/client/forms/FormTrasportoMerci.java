@@ -71,7 +71,7 @@ public class FormTrasportoMerci extends LayoutContainer {
         });
 
 
-        cp.add(panel, new RowData(1, 1));
+        cp.add(panel, new RowData(1, 0.96));  //DIM
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);

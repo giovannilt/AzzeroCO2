@@ -80,8 +80,8 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-        cp.add(cpEst, new RowData(.35, .98));
-        cp.add(panel, new RowData(.65, 1));
+        cp.add(cpEst, new RowData(.35, .95));
+        cp.add(panel, new RowData(.65, 0.96));
         panel.setHeading(manifestiPieghevoliFogliModel.getModels().get(0).getCategoria());
 
         ToolButton tool1 = new ToolButton("x-tool-help");
