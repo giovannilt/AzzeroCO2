@@ -108,7 +108,7 @@ public class AzzeroCO2View extends View {
         main.setAnimCollapse(true);
 
         VBoxLayout layoutCentre = new VBoxLayout();
-        layoutCentre.setPadding(new Padding(5));
+        layoutCentre.setPadding(new Padding(23,5,5,5));
 
         layoutCentre.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
         viewport.setLayout(layoutCentre);
