@@ -66,7 +66,7 @@ public class AzzeroCO2View extends View {
     }
 
     private void onNorthPanelReady(AppEvent event) {
-        BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 150);
+        BorderLayoutData northData = new BorderLayoutData(Style.LayoutRegion.NORTH, 170);
         northData.setCollapsible(false);
         northData.setFloatable(false);
         northData.setHideCollapseTool(false);
@@ -83,6 +83,7 @@ public class AzzeroCO2View extends View {
         centerData.setFloatable(false);
         centerData.setHideCollapseTool(false);
         centerData.setSplit(false);
+       // centerData.setMargins(new Margins(10, 0, 0, 0));
 
         Component centerPanel = event.getData();
 

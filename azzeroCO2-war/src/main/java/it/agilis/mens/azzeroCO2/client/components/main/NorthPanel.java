@@ -6,10 +6,7 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.layout.BoxLayout;
-import com.extjs.gxt.ui.client.widget.layout.FlowData;
-import com.extjs.gxt.ui.client.widget.layout.HBoxLayout;
-import com.extjs.gxt.ui.client.widget.layout.HBoxLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
@@ -112,7 +109,9 @@ public class NorthPanel extends LayoutContainer {
         c.add(registrati, layoutData);
 
 
-        add(c, new FlowData(1));
+        c.setHeight(43);
+        
+        add(c);
 
         Image azzeroCO2Log = new Image(AzzeroCO2Resources.INSTANCE.header());
 
