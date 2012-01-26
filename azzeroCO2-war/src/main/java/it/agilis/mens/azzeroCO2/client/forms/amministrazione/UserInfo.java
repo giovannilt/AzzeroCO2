@@ -65,12 +65,11 @@ public class UserInfo extends LayoutContainer {
         //    centre.setHeading("CouponModel");
         centre.setHeaderVisible(false);
         centre.setScrollMode(Style.Scroll.AUTO);
-        centre.setHeight(479);
+        centre.setHeight(700);
         centre.setFrame(true);
 
-
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(0));
+        centerData.setMargins(new Margins(1));
         add(centre, centerData);
 
     }
@@ -98,7 +97,7 @@ public class UserInfo extends LayoutContainer {
 
         userName.addKeyListener(keyListener);
         userName.setLabelStyle("white-space:nowrap");
-        userName.setStyleAttribute("padding-left","80px");
+        userName.setStyleAttribute("padding-left", "80px");
         //userName.setLabelStyle("width:150");
         formPanel.add(userName);
 
@@ -110,7 +109,7 @@ public class UserInfo extends LayoutContainer {
         password.setName("password");
         password.addKeyListener(keyListener);
         password.setLabelStyle("white-space:nowrap");
-        password.setStyleAttribute("padding-left","80px");
+        password.setStyleAttribute("padding-left", "80px");
         //password.setLabelStyle("width:150");
         formPanel.add(password);
 
@@ -122,7 +121,7 @@ public class UserInfo extends LayoutContainer {
         repassword.setName("repassword");
         repassword.addKeyListener(keyListener);
         repassword.setLabelStyle("white-space:nowrap");
-        repassword.setStyleAttribute("padding-left","80px");
+        repassword.setStyleAttribute("padding-left", "80px");
         //repassword.setLabelStyle("width:150");
         formPanel.add(repassword);
 
@@ -134,7 +133,7 @@ public class UserInfo extends LayoutContainer {
         nome.setName("nome");
         nome.addKeyListener(keyListener);
         nome.setLabelStyle("white-space:nowrap");
-        nome.setStyleAttribute("padding-left","80px");
+        nome.setStyleAttribute("padding-left", "80px");
         //nome.setLabelStyle("width:150");
         formPanel.add(nome);
 
@@ -146,7 +145,7 @@ public class UserInfo extends LayoutContainer {
         cognome.setName("cognome");
         cognome.addKeyListener(keyListener);
         cognome.setLabelStyle("white-space:nowrap");
-        cognome.setStyleAttribute("padding-left","80px");
+        cognome.setStyleAttribute("padding-left", "80px");
         //cognome.setLabelStyle("width:150");
         formPanel.add(cognome);
 
@@ -158,7 +157,7 @@ public class UserInfo extends LayoutContainer {
         ragioneSociale.setName("ragioneSociale");
         ragioneSociale.addKeyListener(keyListener);
         ragioneSociale.setLabelStyle("white-space:nowrap");
-        ragioneSociale.setStyleAttribute("padding-left","80px");
+        ragioneSociale.setStyleAttribute("padding-left", "80px");
         //ragioneSociale.setLabelStyle("width:150");
         formPanel.add(ragioneSociale);
 
@@ -170,7 +169,7 @@ public class UserInfo extends LayoutContainer {
         indirizzo.setName("indirizzo");
         indirizzo.addKeyListener(keyListener);
         indirizzo.setLabelStyle("white-space:nowrap");
-        indirizzo.setStyleAttribute("padding-left","80px");
+        indirizzo.setStyleAttribute("padding-left", "80px");
         //indirizzo.setLabelStyle("width:150");
         formPanel.add(indirizzo);
 
@@ -182,7 +181,7 @@ public class UserInfo extends LayoutContainer {
         citta.setName("citta");
         citta.addKeyListener(keyListener);
         citta.setLabelStyle("white-space:nowrap");
-        citta.setStyleAttribute("padding-left","80px");
+        citta.setStyleAttribute("padding-left", "80px");
         //citta.setLabelStyle("width:150");
         formPanel.add(citta);
 
@@ -195,7 +194,7 @@ public class UserInfo extends LayoutContainer {
         provincia.setName("provincia");
         provincia.addKeyListener(keyListener);
         provincia.setLabelStyle("white-space:nowrap");
-        provincia.setStyleAttribute("padding-left","80px");
+        provincia.setStyleAttribute("padding-left", "80px");
         //provincia.setLabelStyle("width:150");
         formPanel.add(provincia);
 
@@ -209,7 +208,7 @@ public class UserInfo extends LayoutContainer {
         cap.setName("cap");
         cap.addKeyListener(keyListener);
         cap.setLabelStyle("white-space:nowrap");
-        cap.setStyleAttribute("padding-left","80px");
+        cap.setStyleAttribute("padding-left", "80px");
         //cap.setLabelStyle("width:150");
         formPanel.add(cap);
 
@@ -221,7 +220,7 @@ public class UserInfo extends LayoutContainer {
         partitaIvaCF.setFieldLabel("P.Iva/CF");
         partitaIvaCF.addKeyListener(keyListener);
         partitaIvaCF.setLabelStyle("white-space:nowrap");
-        partitaIvaCF.setStyleAttribute("padding-left","80px");
+        partitaIvaCF.setStyleAttribute("padding-left", "80px");
         //partitaIvaCF.setLabelStyle("width:150");
         formPanel.add(partitaIvaCF);
 
@@ -234,7 +233,7 @@ public class UserInfo extends LayoutContainer {
         telefono.setRegex("[0-9]+");
         telefono.getMessages().setRegexText("Solo valori numerici");
         telefono.setLabelStyle("white-space:nowrap");
-        telefono.setStyleAttribute("padding-left","80px");
+        telefono.setStyleAttribute("padding-left", "80px");
         //telefono.setLabelStyle("width:150");
         formPanel.add(telefono);
 
@@ -247,7 +246,7 @@ public class UserInfo extends LayoutContainer {
         fax.setRegex("^[0-9]+");
         fax.getMessages().setRegexText("Solo valori numerici");
         fax.setLabelStyle("white-space:nowrap");
-        fax.setStyleAttribute("padding-left","80px");
+        fax.setStyleAttribute("padding-left", "80px");
         //fax.setLabelStyle("width:150");
         formPanel.add(fax);
 
@@ -260,7 +259,7 @@ public class UserInfo extends LayoutContainer {
         cellulare.setRegex("^[0-9]+");
         cellulare.getMessages().setRegexText("Solo valori numerici");
         cellulare.setLabelStyle("white-space:nowrap");
-        cellulare.setStyleAttribute("padding-left","80px");
+        cellulare.setStyleAttribute("padding-left", "80px");
         //cellulare.setLabelStyle("width:150");
         formPanel.add(cellulare);
 
@@ -272,7 +271,7 @@ public class UserInfo extends LayoutContainer {
         email.setRegex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
         email.getMessages().setRegexText("Email errata");
         email.setLabelStyle("white-space:nowrap");
-        email.setStyleAttribute("padding-left","80px");
+        email.setStyleAttribute("padding-left", "80px");
         //email.setLabelStyle("width:150");
         formPanel.add(email);
 
@@ -284,7 +283,7 @@ public class UserInfo extends LayoutContainer {
         reemail.setRegex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
         reemail.getMessages().setRegexText("Ripeti emil");
         reemail.setLabelStyle("white-space:nowrap");
-        reemail.setStyleAttribute("padding-left","80px");
+        reemail.setStyleAttribute("padding-left", "80px");
         //reemail.setLabelStyle("width:150");
         formPanel.add(reemail);
 
@@ -327,7 +326,7 @@ public class UserInfo extends LayoutContainer {
     }
 
     public void setUserInStore(UserInfoModel userInfoModel) {
-       binding.bind(userInfoModel);
+        binding.bind(userInfoModel);
     }
 
     public void clear() {

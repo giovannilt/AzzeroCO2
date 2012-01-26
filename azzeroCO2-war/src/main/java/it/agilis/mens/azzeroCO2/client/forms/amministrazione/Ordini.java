@@ -46,7 +46,7 @@ public class Ordini extends LayoutContainer {
         ContentPanel centre = createCentre();
         centre.setHeaderVisible(false);
         centre.setFrame(true);
-        centre.setHeight(478);
+        centre.setHeight(700);
         centre.setFrame(true);
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         centerData.setMargins(new Margins(0));
@@ -145,7 +145,7 @@ public class Ordini extends LayoutContainer {
         ColumnModel cm = new ColumnModel(configs);
         Grid<OrdineModel> grid = new Grid<OrdineModel>(store, cm);
         grid.setBorders(true);
-        grid.setHeight(430);
+        grid.setHeight(650);
 
         grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
         grid.getSelectionModel().addListener(Events.SelectionChange,

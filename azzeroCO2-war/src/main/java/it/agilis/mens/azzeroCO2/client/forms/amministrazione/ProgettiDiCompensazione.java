@@ -17,10 +17,10 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.components.amministrazione.FileUploadGrid;
 import it.agilis.mens.azzeroCO2.client.components.uploadFiles.MultiUploadPresenter;
 import it.agilis.mens.azzeroCO2.client.components.uploadFiles.MultiUploadView;
 import it.agilis.mens.azzeroCO2.client.components.uploadFiles.model.FileUploadModel;
-import it.agilis.mens.azzeroCO2.client.components.amministrazione.FileUploadGrid;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 
@@ -60,7 +60,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         ContentPanel centre = createCentre();
         centre.setHeaderVisible(false);
         //   centre.setHeading("Programmi Di Compensazione");
-        centre.setHeight(478);
+        centre.setHeight(700);
         centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
@@ -98,7 +98,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
                         ListStore<FileUploadModel> fileUploadModelListStore = new ListStore<FileUploadModel>();
                         MultiUploadView view = new MultiUploadView(new FileUploadGrid(fileUploadModelListStore));
                         view.getFormPanel().setAction(UPLOAD_URL);
-                      //  view.getFormPanel();
+                        //  view.getFormPanel();
                         MultiUploadPresenter presenter = new MultiUploadPresenter(view, model.getId(), "IMG");
                         presenter.go();
                     }
@@ -140,7 +140,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
                         ListStore<FileUploadModel> fileUploadModelListStore = new ListStore<FileUploadModel>();
                         MultiUploadView view = new MultiUploadView(new FileUploadGrid(fileUploadModelListStore));
                         view.getFormPanel().setAction(UPLOAD_URL);
-                      //  view.getFormPanel();
+                        //  view.getFormPanel();
                         MultiUploadPresenter presenter = new MultiUploadPresenter(view, model.getId(), "PDF");
                         presenter.go();
                     }
@@ -196,7 +196,7 @@ public class ProgettiDiCompensazione extends LayoutContainer {
         grid.setBorders(true);
         //    grid.setAutoHeight(true);
         grid.addPlugin(re);
-        grid.setHeight(430);
+        grid.setHeight(650);
 
         centre.add(grid);
 

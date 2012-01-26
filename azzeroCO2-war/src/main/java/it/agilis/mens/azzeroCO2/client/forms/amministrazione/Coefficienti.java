@@ -43,7 +43,7 @@ public class Coefficienti extends LayoutContainer {
 
         ContentPanel centre = createCentre();
         centre.setHeaderVisible(false);
-        centre.setHeight(478);
+        centre.setHeight(700);
         centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
@@ -88,7 +88,7 @@ public class Coefficienti extends LayoutContainer {
         grid.setBorders(true);
         grid.addPlugin(re);
         //   grid.setAutoHeight(true);
-        grid.setHeight(430);
+        grid.setHeight(650);
 
 
         Button saveButton = new Button("Salva");
