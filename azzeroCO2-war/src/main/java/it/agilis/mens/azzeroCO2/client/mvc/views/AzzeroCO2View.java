@@ -5,7 +5,6 @@ import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
-import com.extjs.gxt.ui.client.util.Padding;
 import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -107,11 +106,8 @@ public class AzzeroCO2View extends View {
         main.setLayout(layout);
         main.setAnimCollapse(true);
 
-        VBoxLayout layoutCentre = new VBoxLayout();
-        layoutCentre.setPadding(new Padding(23, 5, 5, 5));
-        layoutCentre.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
-
-        viewport.setLayout(layoutCentre);
+        //viewport.setLayout(layoutCentre);
+        viewport.setLayout(new CenterLayout());
         viewport.setScrollMode(Style.Scroll.AUTO);
         viewport.add(main);
     }
