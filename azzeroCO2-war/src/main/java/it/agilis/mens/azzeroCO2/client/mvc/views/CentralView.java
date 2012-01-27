@@ -98,7 +98,7 @@ public class CentralView extends View {
         center.setHeading("Compensa le emissioni delle tue attività");
 
         center.setScrollMode(Style.Scroll.AUTOX);
-        _return.add(center, new RowData(.70, 1));
+        _return.add(center, new RowData(.66, 1));
 
         {  // Primo Rigo "EVENTI"
             LayoutContainer c = new LayoutContainer();
@@ -202,6 +202,7 @@ public class CentralView extends View {
             });
             co2.setSize(212, 200);
             c.add(co2, layoutData);
+            center.setStyleAttribute("padding-top","3px");
             center.add(c, new FlowData(1));
         }
 
@@ -365,6 +366,7 @@ public class CentralView extends View {
                 compensazione.add(azzeroCO2Stemp, new VBoxLayoutData(new Margins(0, 0, 0, 0)));
                 c.add(compensazione, new RowData(1, 0.7, new Margins(1, 1, 1, 1)));
             }
+            //east.setStyleAttribute("padding-top","0px");
             east.add(c, new FlowData(0));
         }
         _return.setTitle(Eventi.MAIN.name());
