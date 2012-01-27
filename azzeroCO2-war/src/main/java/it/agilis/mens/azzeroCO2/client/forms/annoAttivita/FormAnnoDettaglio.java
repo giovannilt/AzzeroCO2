@@ -81,7 +81,7 @@ public class FormAnnoDettaglio extends LayoutContainer {
         });
 
         LayoutContainer left = new LayoutContainer();
-        left.setStyleAttribute("paddingRight", "10px");
+        left.setStyleAttribute("padding-right", "10px");
         left.setStyleAttribute("paddingTop", "20px");
 
         FormLayout layout = new FormLayout();

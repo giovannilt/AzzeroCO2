@@ -80,7 +80,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         });
 
         LayoutContainer left = new LayoutContainer();
-        left.setStyleAttribute("paddingRight", "10px");
+        left.setStyleAttribute("padding-right", "10px");
         FormLayout layout = new FormLayout();
         layout.setLabelAlign(FormPanel.LabelAlign.LEFT);
         left.setLayout(layout);
@@ -123,7 +123,7 @@ public class EventoFormDettaglio extends LayoutContainer {
 
 
         LayoutContainer right = new LayoutContainer();
-        right.setStyleAttribute("paddingLeft", "10px");
+        right.setStyleAttribute("padding-left", "10px");
         layout = new FormLayout();
         layout.setLabelAlign(FormPanel.LabelAlign.LEFT);
         right.setLayout(layout);
