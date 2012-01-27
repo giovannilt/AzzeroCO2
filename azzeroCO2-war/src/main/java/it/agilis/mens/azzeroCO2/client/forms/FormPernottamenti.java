@@ -50,7 +50,7 @@ public class FormPernottamenti extends LayoutContainer {
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        cp.add(formPanel, new RowData(1, 0.96));      //DIM
+        cp.add(formPanel, new RowData(.99, 0.96));      //DIM
 
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);

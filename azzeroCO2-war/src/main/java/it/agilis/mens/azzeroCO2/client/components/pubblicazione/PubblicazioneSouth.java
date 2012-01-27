@@ -44,7 +44,7 @@ public class PubblicazioneSouth extends LayoutContainer {
         super.onRender(target, index);
 
 
-        layout.setPadding(new Padding(1));
+        layout.setPadding(new Padding(2,17,1,10)); //DIM
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c.setLayout(layout);
         c.setLayoutOnChange(true);

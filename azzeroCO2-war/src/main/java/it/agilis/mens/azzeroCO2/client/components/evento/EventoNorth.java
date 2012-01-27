@@ -40,8 +40,9 @@ public class EventoNorth extends LayoutContainer {
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         flex.setFlex(1);
-        c.add(new Text(), flex);
 
+        c.add(new Text(), flex);
+        c.setStyleAttribute("padding-left","30px    ");
 
         save.addSelectionListener(new SelectionListener<IconButtonEvent>() {
             @Override

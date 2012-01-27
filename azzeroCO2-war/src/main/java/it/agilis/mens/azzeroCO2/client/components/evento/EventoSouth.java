@@ -43,7 +43,7 @@ public class EventoSouth extends LayoutContainer {
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-        layout.setPadding(new Padding(1));
+        layout.setPadding(new Padding(2,17,1,10)); //DIM
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c.setLayout(layout);
         c.setLayoutOnChange(true);
@@ -58,7 +58,6 @@ public class EventoSouth extends LayoutContainer {
         left.setTitle("");
         left.setEnabled(false);
         left.setVisible(false);
-
 
         left.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override

@@ -69,7 +69,7 @@ public class FormBigliettiDaVisita extends LayoutContainer {
             }
         });
 
-        add(panel, new RowData(1, .97));
+        add(panel, new RowData(0.982, .95));
     }
 
     @Override

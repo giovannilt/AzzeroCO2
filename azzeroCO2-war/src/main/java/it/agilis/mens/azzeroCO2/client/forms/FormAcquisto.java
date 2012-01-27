@@ -140,7 +140,9 @@ public class FormAcquisto extends LayoutContainer {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
         panel.setHeaderVisible(false);
-        panel.setSize(300, 500);  //300,-1 sd
+        panel.setSize(290, 516);  //300,-1 sd
+        panel.setStyleAttribute("border-bottom","solid");
+        panel.setStyleAttribute("border-bottom-color","orange");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         final TextField<String> coupon = new TextField<String>();
 

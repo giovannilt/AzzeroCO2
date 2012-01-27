@@ -47,7 +47,7 @@ public class ConoscoCO2South extends LayoutContainer {
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-        layout.setPadding(new Padding(0));
+        layout.setPadding(new Padding(2,17,1,10)); //DIM
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c.setLayout(layout);
         c.setBorders(false);

@@ -85,7 +85,7 @@ public class AnnoDettaglio extends LayoutContainer {
         conferma.setEnabled(false);
         eventoTab.add(conferma);
 
-        eventoTab.setSize(720, 605);   // DIM
+        eventoTab.setSize(725, 605);   // DIM
 
         add(eventoTab, new RowData(1, 1));
 
@@ -111,7 +111,7 @@ public class AnnoDettaglio extends LayoutContainer {
 
     public ContentPanel createCalcoloTabs() {
         ContentPanel calcoloCardPanel = new ContentPanel();
-        calcoloCardPanel.setHeight(577); //443  DIM
+        calcoloCardPanel.setHeight(576); //443  DIM
         final CardLayout layout = new CardLayout();
         calcoloCardPanel.setLayout(layout);
         calcoloCardPanel.setHeaderVisible(false);

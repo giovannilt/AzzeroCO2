@@ -40,6 +40,7 @@ public class ConoscoCO2North extends LayoutContainer {
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         flex.setFlex(1);
         c.add(new Text(), flex);
+        c.setStyleAttribute("padding-left","30px");
 
 
         // ToolButton save = new ToolButton("x-tool-save");

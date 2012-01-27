@@ -49,7 +49,7 @@ public class FormEnergia extends LayoutContainer {
         cp.setFrame(true);
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-        cp.add(formPanel, new RowData(1, 0.96));
+        cp.add(formPanel, new RowData(.99, 0.96));
 
 
         //  cp.setStyleAttribute("padding0 10px;

@@ -47,7 +47,7 @@ public class FormAnnoDettaglio extends LayoutContainer {
         cp.setFrame(true);
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-        cp.add(formPanel, new RowData(1, 1));
+        cp.add(formPanel, new RowData(.99, 0.968));  //DIM
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
