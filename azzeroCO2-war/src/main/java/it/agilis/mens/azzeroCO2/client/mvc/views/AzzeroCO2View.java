@@ -83,7 +83,7 @@ public class AzzeroCO2View extends View {
         centerData.setFloatable(false);
         centerData.setHideCollapseTool(false);
         centerData.setSplit(false);
-       // centerData.setMargins(new Margins(10, 0, 0, 0));
+        // centerData.setMargins(new Margins(10, 0, 0, 0));
 
         Component centerPanel = event.getData();
 
@@ -92,7 +92,6 @@ public class AzzeroCO2View extends View {
         c.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
         c.add(centerPanel, new RowData(.96, 1));
-
         main.add(c, centerData);
     }
 
@@ -102,29 +101,24 @@ public class AzzeroCO2View extends View {
     }
 
     private void onInit(AppEvent event) {
-
-        main.setSize(1020, 820);    //975 prima di 1040  650
-
-        main.setHeaderVisible(false);
-
         final BorderLayout layout = new BorderLayout();
-        layout.setEnableState(false);
+        main.setSize(1020, 820);
+        main.setHeaderVisible(false);
         main.setLayout(layout);
         main.setAnimCollapse(true);
 
         VBoxLayout layoutCentre = new VBoxLayout();
         layoutCentre.setPadding(new Padding(23, 5, 5, 5));
-
         layoutCentre.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
-        viewport.setLayout(layoutCentre);
 
+        viewport.setLayout(layoutCentre);
         viewport.setScrollMode(Style.Scroll.AUTO);
         viewport.add(main);
-
     }
 
     private void onUIReady(AppEvent event) {
-        RootPanel.get().add(viewport);
+        RootPanel root = RootPanel.get();
+        root.add(viewport);
     }
 
     private void onError(AppEvent event) {
