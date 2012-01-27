@@ -67,6 +67,7 @@ public class ConoscoCO2 extends LayoutContainer {
         conoscoCO2Tab.add(riepilogo);
 
         TabItem acquisto = new TabItem("acquisto");
+        acquisto.setStyleAttribute("background-color", "#555557");
         acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         conoscoCO2Tab.add(acquisto);

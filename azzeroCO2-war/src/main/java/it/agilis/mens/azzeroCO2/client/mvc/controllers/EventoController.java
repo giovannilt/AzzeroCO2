@@ -142,8 +142,8 @@ public class EventoController extends BaseController {
                 if (model.getProgettoDiCompensazioneModel() != null) {
 
                     CouponModel couponModel = model.getCouponModel();
-                    couponModel.setAttivo(false);
                     if (couponModel != null && !"".equalsIgnoreCase(couponModel.getTipo())) {
+                        couponModel.setAttivo(false);
                         try {
                             Double totale = model.getProgettoDiCompensazioneModel().getPrezzo();
 

@@ -68,6 +68,7 @@ public class SitoWeb extends LayoutContainer {
         sitoWebTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("acquisto");
+        acquisto.setStyleAttribute("background-color", "#555557");
         acquisto.add(formAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         sitoWebTab.add(acquisto);
@@ -81,9 +82,9 @@ public class SitoWeb extends LayoutContainer {
         add(sitoWebTab, new RowData(1, 1));
 
         posizioniText.add(Arrays.asList("", "Riepilogo"));                                   // DETTAGLIO
-        posizioniText.add(Arrays.asList("Sito web", "Acquisto"));       // RIEPILOGO
-        posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
-        posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA
+        posizioniText.add(Arrays.asList("Sito web", "Acquisto"));                           // RIEPILOGO
+        posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                 // ACQUISTO
+        posizioniText.add(Arrays.asList("", "torna alla home"));                          // CONFERMA
     }
 
 
@@ -146,8 +147,6 @@ public class SitoWeb extends LayoutContainer {
 
     public void clearPanel() {
         sitoWebForm.clear();
-        //sitoWebForm.setHeight(530);
-        sitoWebForm.setWidth(691);
 
         formRiepilogo.clear();
         formAcquisto.clear();

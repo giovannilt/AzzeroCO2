@@ -72,7 +72,7 @@ public class FormConferma extends LayoutContainer {
         east.setHeading("Download");
         BorderLayoutData westData = new BorderLayoutData(Style.LayoutRegion.EAST, 250);
         //  westData.setMargins(new Margins(0));
-        east.setHeight(439);
+        east.setHeight(559);
         east.setWidth(250);
         //east.setStyleAttribute("border-bottom-color","#f8b333");
         //east.setStyleAttribute("padding-bottom","3px");
@@ -82,7 +82,7 @@ public class FormConferma extends LayoutContainer {
 
         createCentre();
         centre.setHeading("Conferma");
-        centre.setHeight(434);
+        centre.setHeight(557);
         //  centre.setWidth(400);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);

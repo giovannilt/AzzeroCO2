@@ -50,7 +50,7 @@ public class FormSitoWeb extends LayoutContainer {
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        cp.add(formPanel, new RowData(.991, 0.96));
+        cp.add(formPanel, new RowData(.991, 1));
 
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);

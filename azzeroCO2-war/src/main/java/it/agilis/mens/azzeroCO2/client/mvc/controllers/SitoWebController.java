@@ -44,28 +44,22 @@ public class SitoWebController extends BaseController {
         registerEventTypes(SitoWebEvents.Previous);
         registerEventTypes(SitoWebEvents.PreviousText);
         registerEventTypes(AzzeroCO2Events.LoggedIn);
-
-
         registerEventTypes(SitoWebEvents.ClearPanel);
         registerEventTypes(SitoWebEvents.Save);
-
         registerEventTypes(SitoWebEvents.Riepilogo);
         registerEventTypes(SitoWebEvents.Acquisto);
-
         registerEventTypes(SitoWebEvents.CaricaCoefficienti);
         registerEventTypes(SitoWebEvents.CaricaProgettiDiCompensazione);
         registerEventTypes(SitoWebEvents.PreviousText);
         registerEventTypes(SitoWebEvents.NextText);
         registerEventTypes(SitoWebEvents.Conferma);
         registerEventTypes(SitoWebEvents.ShowConfermDialog);
-
         registerEventTypes(SitoWebEvents.GoToBegin);
         registerEventTypes(SitoWebEvents.ClearStep);
         registerEventTypes(SitoWebEvents.InAttesaDiConfermaPagamento);
         registerEventTypes(SitoWebEvents.NorthPanelShowButtons);
         registerEventTypes(SitoWebEvents.RemoveModel);
         registerEventTypes(SitoWebEvents.UseCoupon);
-
     }
 
     @Override
@@ -111,8 +105,8 @@ public class SitoWebController extends BaseController {
                 if (model.getProgettoDiCompensazioneModel() != null) {
 
                     CouponModel couponModel = model.getCouponModel();
-                    couponModel.setAttivo(false);
                     if (couponModel != null && !"".equalsIgnoreCase(couponModel.getTipo())) {
+                        couponModel.setAttivo(false);
                         try {
                             Double totale = model.getProgettoDiCompensazioneModel().getPrezzo();
 
