@@ -52,7 +52,7 @@ public class FormConoscoCO2 extends LayoutContainer {
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
 
-        cp.add(formPanel, new RowData(1, 1));
+        cp.add(formPanel, new RowData(.99, .995));  //DIM
 
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);

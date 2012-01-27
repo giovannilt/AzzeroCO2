@@ -146,7 +146,7 @@ public class SitoWeb extends LayoutContainer {
 
     public void clearPanel() {
         sitoWebForm.clear();
-        sitoWebForm.setHeight(500);
+        //sitoWebForm.setHeight(530);
         sitoWebForm.setWidth(691);
 
         formRiepilogo.clear();
