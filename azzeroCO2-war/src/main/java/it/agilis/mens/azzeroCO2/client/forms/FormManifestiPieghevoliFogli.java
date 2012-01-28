@@ -64,6 +64,7 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
         Text testo = new Text(" Si tratta di pubblicazioni non rilegate. <br><br>");
         testo.setStyleAttribute("font-size", "9pt");
+        testo.setStyleAttribute("padding-top","20px");
 
         Text note = new Text("Puoi inserire più di un formato. ");
         note.setStyleAttribute("font-size", "9pt");
@@ -171,11 +172,11 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
                 altezza.setName("altezza");
 
                 LabelField label = new LabelField("Formato Aperto ");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(altezza, flex);
                 c.add(new LabelField("altezza (cm)"), flex);
-
+                c.setStyleAttribute("padding-top","10px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -187,13 +188,13 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
 
 
                 LabelField label = new LabelField(" ");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
 
                 NumberField larghezza = new NumberField();
                 larghezza.setWidth(60);
                 larghezza.setName("larghezza");
-
+                c.setStyleAttribute("padding-top","10px");
                 c.add(larghezza, flex);
                 c.add(new LabelField("larghezza (cm)"), flex);
 
@@ -219,10 +220,10 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
                 tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
                 LabelField label = new LabelField("Materiale ");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(tipoDiCarta, flex);
-
+                c.setStyleAttribute("padding-top","10px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -237,11 +238,11 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
                 grammatura.setName("grammatura");
 
                 LabelField label = new LabelField("");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(grammatura, flex);
                 c.add(new LabelField("grammatura"), flex);
-
+                c.setStyleAttribute("padding-top","10px");
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -262,11 +263,11 @@ public class FormManifestiPieghevoliFogli extends LayoutContainer {
                 tiratura.setPropertyEditorType(Integer.class);
 
                 LabelField label = new LabelField("Tiratura ");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(tiratura, flex);
                 c.add(new LabelField("copie"), flex);
-
+                c.setStyleAttribute("padding-top","10px");
                 panel.add(c, new FormData("100%"));
             }
         }

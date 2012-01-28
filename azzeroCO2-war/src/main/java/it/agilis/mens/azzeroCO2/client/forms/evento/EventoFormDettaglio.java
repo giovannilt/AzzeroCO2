@@ -88,6 +88,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         TextField<String> nomeEvento = new TextField<String>();
         nomeEvento.setFieldLabel("Nome (*)");
         nomeEvento.setName("nome");
+        nomeEvento.setStyleAttribute("padding-bottom","20px");
 
         left.add(nomeEvento);
 
@@ -108,6 +109,7 @@ public class EventoFormDettaglio extends LayoutContainer {
 
         dataInizio.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
         dataInizio.setName("inizio");
+        dataInizio.setStyleAttribute("padding-bottom","20px");
         left.add(dataInizio);
         //   dataInizio.set
 
@@ -131,6 +133,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         TextField<String> dove = new TextField<String>();
         dove.setFieldLabel("Dove");
         dove.setName("dove");
+        dove.setStyleAttribute("padding-bottom","20px");
         right.add(dove);
 
 
@@ -145,10 +148,15 @@ public class EventoFormDettaglio extends LayoutContainer {
             }
         });
         dataFine.setName("fine");
+
         right.add(dataFine);
+
+        left.setStyleAttribute("padding-top","20px");
+        right.setStyleAttribute("padding-top","20px");
 
         panel.add(left, new ColumnData(.5));
         panel.add(right, new ColumnData(.5));
+
 
         return panel;
     }

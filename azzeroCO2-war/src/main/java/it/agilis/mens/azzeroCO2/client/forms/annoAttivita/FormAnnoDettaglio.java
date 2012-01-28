@@ -82,7 +82,7 @@ public class FormAnnoDettaglio extends LayoutContainer {
 
         LayoutContainer left = new LayoutContainer();
         left.setStyleAttribute("padding-right", "10px");
-        left.setStyleAttribute("paddingTop", "20px");
+        left.setStyleAttribute("padding-Top", "20px");
 
         FormLayout layout = new FormLayout();
         layout.setLabelAlign(FormPanel.LabelAlign.LEFT);
@@ -90,13 +90,16 @@ public class FormAnnoDettaglio extends LayoutContainer {
 
         LabelField widget = new LabelField("Inserisci i dettagli dell'attività");
         widget.setStyleAttribute("font-weight", "bolder");
+        widget.setStyleAttribute("padding-top","20px");
+        widget.setStyleAttribute("padding-bottom","20px");
+        widget.setStyleAttribute("padding-left","15px");
         formPanel.add(widget);
 
         TextField<String> nomeEvento = new TextField<String>();
         nomeEvento.setFieldLabel("Nome dell'attività");
         nomeEvento.setLabelStyle("width:150px");
 
-        nomeEvento.setStyleAttribute("padding-bottom", "35px");
+        nomeEvento.setStyleAttribute("padding-bottom", "20px");
         nomeEvento.setName("nome");
 
         left.add(nomeEvento);
@@ -105,7 +108,7 @@ public class FormAnnoDettaglio extends LayoutContainer {
         anno.setFieldLabel("Anno");
         anno.setLabelStyle("width:150px");
 
-        anno.setStyleAttribute("padding-bottom", "35px");
+        anno.setStyleAttribute("padding-bottom", "20px");
         anno.setName("anno");
         left.add(anno);
 
@@ -113,7 +116,7 @@ public class FormAnnoDettaglio extends LayoutContainer {
         dove.setFieldLabel("Dove");
         dove.setLabelStyle("width:150px");
 
-        dove.setStyleAttribute("padding-bottom", "35px");
+        dove.setStyleAttribute("padding-bottom", "20px");
         dove.setName("dove");
         left.add(dove);
 
@@ -121,12 +124,13 @@ public class FormAnnoDettaglio extends LayoutContainer {
         note.setPreventScrollbars(true);
         note.setLabelStyle("width:150px");
 
-        note.setStyleAttribute("padding-bottom", "35px");
+        note.setStyleAttribute("padding-bottom", "20px");
         note.setFieldLabel("Note");
         note.setName("note");
         left.add(note);
 
         left.setWidth(600);
+        left.setStyleAttribute("padding-left","15px");
         formPanel.add(left);
 
     }

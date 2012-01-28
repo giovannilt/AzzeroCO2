@@ -308,15 +308,15 @@ ul.x-tab-strip-bottom {
 }
 
 .x-form-invalid, textarea.x-form-invalid {
-    background-color: #313646; /*#15171A;*/*/
+    background-color: #313646;  /*#15171A;*/
     background-image: url(../images/grid/invalid_line.gif);
     border-color: #c30;
 }
-
+/*
 .ext-safari .x-form-invalid {
     background-color: #fee;
     border-color: #ff7870;
-}
+}           */
 
 .x-form-inner-invalid, textarea.x-form-inner-invalid {
     background-color: #fff;
@@ -355,9 +355,11 @@ ul.x-tab-strip-bottom {
     /*font: normal 14px tahoma, arial, helvetica, sans-serif;    Serena 07/11/2011*/
     font: normal 14px arial;}
 
+
+/*
 .ext-safari .x-small-editor .x-form-field {
-    /*font: normal 15px tahoma, arial, helvetica, sans-serif;    Serena 07/11/2011*/
-    font: normal 15px arial;}
+    /*font: normal 15px tahoma, arial, helvetica, sans-serif;    Serena 07/11/2011
+    font: normal 15px arial;}  */
 
 .x-form-invalid-icon {
     background-image: url(../images/form/exclamation.gif);
@@ -833,7 +835,7 @@ td.x-grid3-hd-over .x-grid3-hd-inner, td.sort-desc .x-grid3-hd-inner, td.sort-as
 }
 
 .x-grid3-locked td.x-grid3-row-marker div, .x-grid3-locked .x-grid3-row-selected td.x-grid3-row-marker div {
-    color: fff !important;
+    color: #fff !important;
 }
 
 .x-grid3-dirty-cell {
@@ -1296,7 +1298,7 @@ td.x-date-mp-month a, td.x-date-mp-year a {
 }
 
 td.x-date-mp-month a:hover, td.x-date-mp-year a:hover {
-    color: fff;
+    color: #fff;
     background-color: #7e5530;
 }
 

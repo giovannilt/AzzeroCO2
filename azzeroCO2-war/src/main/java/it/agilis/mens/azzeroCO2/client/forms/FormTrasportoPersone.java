@@ -75,7 +75,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
 
         Text testo = new Text(" Scegli 'Tutte le persone' per calcolare le emissioni di tutte le persone che si sono spostate per l'evento.<br><br>Se invece vuoi dettagliare i trasporti per categoria di persone usa le altre categorie disponibili o creane di nuove.");
-        //testo.setStyleAttribute("padding-top","10px");
+        testo.setStyleAttribute("padding-top","20px");
         testo.setStyleAttribute("font-size", "9pt");
         textContent.add(testo);
 
@@ -196,6 +196,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             km60.setLayout(layoutRigaKm60);
 
             km60.add(new LabelField("Distanza percorsa: provinciale"), flex);
+            km60.setStyleAttribute("padding-top","10px");
             formPanel.add(km60);
 
             LayoutContainer km60input = new LayoutContainer();
@@ -259,6 +260,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             layoutRigaKm300.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km300.setLayout(layoutRigaKm300);
             km300.add(new LabelField("Distanza percorsa: regionale"), flex);
+            km300.setStyleAttribute("padding-top","20px");
             formPanel.add(km300);
 
             LayoutContainer km300input = new LayoutContainer();
@@ -323,6 +325,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             layoutRigaKm1000.setPadding(new Padding(2));
             layoutRigaKm1000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km1000.setLayout(layoutRigaKm1000);
+            km1000.setStyleAttribute("padding-top","20px");
             km1000.add(new LabelField("Distanza percorsa: nazionale"), flex);
 
             formPanel.add(km1000);
@@ -382,6 +385,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             km3000.setLayout(layoutRigaKm3000);
 
             km3000.add(new LabelField("Distanza percorsa: europea"), flex);
+            km3000.setStyleAttribute("padding-top","20px");
             formPanel.add(km3000);
 
             LayoutContainer km3000input = new LayoutContainer();
@@ -441,6 +445,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             km9000.setLayout(layoutRigaKm9000);
 
             km9000.add(new LabelField("Distanza percorsa: extra europea"), flex);
+            km9000.setStyleAttribute("padding-top","20px");
             formPanel.add(km9000);
 
             LayoutContainer km9000input = new LayoutContainer();

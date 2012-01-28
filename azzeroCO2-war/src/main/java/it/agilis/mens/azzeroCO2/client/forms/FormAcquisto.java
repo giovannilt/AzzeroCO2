@@ -142,7 +142,7 @@ public class FormAcquisto extends LayoutContainer {
         panel.setHeaderVisible(false);
         panel.setSize(290, 516);  //300,-1 sd
         panel.setStyleAttribute("border-bottom","solid");
-        panel.setStyleAttribute("border-bottom-color","orange");
+        panel.setStyleAttribute("border-bottom-color","#f8b333");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         final TextField<String> coupon = new TextField<String>();
 
@@ -156,7 +156,7 @@ public class FormAcquisto extends LayoutContainer {
             label.setStyleAttribute("font-size", "16px");
 
             c.add(label);
-
+            c.setStyleAttribute("padding-top","20px");
             panel.add(c);
         }
         {
@@ -169,6 +169,7 @@ public class FormAcquisto extends LayoutContainer {
                 titoloEvento.setWidth(220);
                 titoloEvento.setStyleAttribute("font-weight", "bold");
                 c.add(titoloEvento);
+
                 panel.add(c);
             }
             {
@@ -179,6 +180,7 @@ public class FormAcquisto extends LayoutContainer {
                 c.setLayout(layout);
                 luogoEvento.setWidth(220);
                 c.add(luogoEvento);
+                c.setStyleAttribute("padding-top","10px");
 
                 panel.add(c);
             }
@@ -192,8 +194,8 @@ public class FormAcquisto extends LayoutContainer {
                 c.add(label, new FillData(2, 20, 2, 0));
                 kcO2Evento.setStyleAttribute("text-align", "right");
 
-                c.add(kcO2Evento, new FillData(2, 0, 2, 90));
-
+                c.add(kcO2Evento, new FillData(2, 0, 2, 40));
+                c.setStyleAttribute("padding-top","20px");
                 panel.add(c, new FormData("100%"));
             }
             {    // PROGETTO SCELTO
@@ -206,8 +208,9 @@ public class FormAcquisto extends LayoutContainer {
                 LabelField label = new LabelField("Progetto:");
                 label.setStyleAttribute("font-size", "16px");
                 label.setWidth(220);
-                c.add(label);
 
+                c.add(label);
+                c.setStyleAttribute("padding-top","20px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -220,7 +223,6 @@ public class FormAcquisto extends LayoutContainer {
                 titoloProgettoScelto.setWidth(220);
                 titoloProgettoScelto.setStyleAttribute("padding-bottom", "30px");
                 c.add(titoloProgettoScelto);
-
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -233,8 +235,8 @@ public class FormAcquisto extends LayoutContainer {
                 c.add(label, new FillData(2, 20, 2, 0));
                 euroPerKCo2Progetto.setStyleAttribute("text-align", "right");
 
-                c.add(euroPerKCo2Progetto, new FillData(2, 0, 2, 90));
-
+                c.add(euroPerKCo2Progetto, new FillData(2, 0, 2, 40));
+                c.setStyleAttribute("padding-top","20px");
                 panel.add(c, new FormData("100%"));
             }
             { // TOTALE
@@ -250,19 +252,20 @@ public class FormAcquisto extends LayoutContainer {
                 totale.setStyleAttribute("color", "#FF9933");
                 totale.setStyleAttribute("font-size", "16px");
                 totale.setStyleAttribute("text-align", "right");
-                c.add(totale, new FillData(2, 0, 2, 85));
-
+                c.add(totale, new FillData(2, 0, 2, 20));
+                c.setStyleAttribute("padding-top","20px");
                 panel.add(c, new FormData("100%"));
             }
             { // Coupon
                 LayoutContainer c = new LayoutContainer();
                 c.setLayout(new FillLayout(Style.Orientation.HORIZONTAL));
-                c.setHeight(35);
+                c.setHeight(60);
                 LabelField label = new LabelField("Se hai un coupon inseriscilo ");
 
                 c.add(label, new FillData(2, 20, 2, 0));
 
                 c.add(coupon, new FillData(0, 0, 0, 0));
+                c.setStyleAttribute("padding-top","20px");
                 panel.add(c, new FormData("100%"));
             }
 
@@ -289,7 +292,7 @@ public class FormAcquisto extends LayoutContainer {
 
                     }
                 });
-                ricalcola.setStyleAttribute("padding-top", "4px");
+                ricalcola.setStyleAttribute("padding-top", "5px");
                 c.add(ricalcola);
 
                 panel.add(c, new FillData(0, 0, 0, 135)); //, new FormData("100%"));

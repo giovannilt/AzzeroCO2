@@ -1090,9 +1090,9 @@ ul.x-tab-strip li.x-tab-edge {
     height: 18px;
 }
 
-.ext-safari.ext-mac textarea.x-form-field {
+/*.ext-safari.ext-mac textarea.x-form-field {
     margin-bottom: -2px;
-}
+}   */
 
 .ext-gecko .x-form-text, .ext-ie8 .x-form-text {
     padding-top: 2px;
@@ -1144,6 +1144,7 @@ textarea {
     top: 0;
 }
 
+/*
 .ext-safari .x-form-field-wrap .x-form-trigger {
     height: 21px;
 }
@@ -1154,7 +1155,7 @@ textarea {
 
 .ext-strict .ext-safari .x-small-editor .x-form-field-wrap .x-form-trigger {
     height: 19px;
-}
+} */
 
 .ext-strict .ext-ie8 .x-small-editor .x-form-field-wrap .x-form-trigger {
     height: 20px !important;
@@ -1167,10 +1168,10 @@ textarea {
 .x-form-field-wrap .x-form-date-trigger, .x-form-field-wrap .x-form-clear-trigger, .x-form-field-wrap .x-form-search-trigger {
     cursor: pointer;
 }
-
+ /*
 .ext-safari .x-form-field-wrap .x-form-trigger, .ext-gecko .x-form-field-wrap .x-form-trigger {
     right: 0;
-}
+}     */
 
 .x-form-field-wrap .x-form-twin-triggers .x-form-trigger {
     position: static;
@@ -1230,9 +1231,10 @@ textarea {
     border: 1px solid;
 }
 
+/*
 .ext-safari .x-form-invalid {
     border: 1px solid;
-}
+}     */
 
 .x-form-inner-invalid, textarea.x-form-inner-invalid {
     background: repeat-x bottom;
@@ -1600,14 +1602,15 @@ fieldset.x-panel-collapsed .x-fieldset-bwrap {
     margin-bottom: 2px;
 }
 
+/*
 .ext-safari .x-form-text {
-    height: 22px; /* safari always same size */
-    padding: 0 3px; /* remove extra top/bottom padding */
+    height: 22px; /* safari always same size
+    padding: 0 3px; /* remove extra top/bottom padding
 }
 
 .ext-safari .x-small-editor .x-form-text {
     height: 20px;
-}
+} */
 
 .x-form-group-label, .x-form-cb-label {
     font: normal 12px tahoma, arial, helvetica, sans-serif;
@@ -1666,13 +1669,14 @@ fieldset.x-panel-collapsed .x-fieldset-bwrap {
     position: absolute;
 }
 
+/*
 .ext-strict .ext-safari .x-form-field-wrap .x-form-spinner-up {
     height: 10px;
 }
 
 .ext-strict .ext-safari .x-form-field-wrap .x-form-spinner-down {
     height: 12px;
-}
+}   */
 
 .x-spinner-field .x-form-twin-triggers .x-form-spinner-up {
     top: 0px;
@@ -6832,10 +6836,11 @@ ul.x-tab-strip-bottom {
     border-color: #c30;
 }
 
+/*
 .ext-safari .x-form-invalid {
     background-color: #fee;
     border-color: #ff7870;
-}
+}  */
 
 .x-form-inner-invalid, textarea.x-form-inner-invalid {
     background-color: #fff;
@@ -6864,9 +6869,10 @@ ul.x-tab-strip-bottom {
     font: normal 11px arial, tahoma, helvetica, sans-serif;
 }
 
+/*
 .ext-safari .x-small-editor .x-form-field {
     font: normal 12px arial, tahoma, helvetica, sans-serif;
-}
+}  */
 
 .x-form-invalid-icon {
     background-image: url(../images/default/form/exclamation.gif);

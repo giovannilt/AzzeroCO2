@@ -91,7 +91,7 @@ public class CentralView extends View {
             protected void onLoad() {
                 super.onLoad();
                 getBody().setStyleAttribute("border-style", "solid");
-                getBody().setStyleAttribute("border-top", "3px solid orange");
+                getBody().setStyleAttribute("border-top", "3px solid #f8b333");
                 getBody().setStyleAttribute("border-width", "3px 0");
             }
         };

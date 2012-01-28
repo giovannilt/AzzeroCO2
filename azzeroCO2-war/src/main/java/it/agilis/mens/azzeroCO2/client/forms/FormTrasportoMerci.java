@@ -111,6 +111,7 @@ public class FormTrasportoMerci extends LayoutContainer {
         layoutRigaKm30.setPadding(new Padding(2));
         km30.setLayout(layoutRigaKm30);
         km30.add(new LabelField("Distanza percorsa: provinciale"), flex);
+        km30.setStyleAttribute("padding-top","20px");
         panel.add(km30);
         LayoutContainer km30input = new LayoutContainer();
         HBoxLayout layoutKm30input = new HBoxLayout();
@@ -147,6 +148,7 @@ public class FormTrasportoMerci extends LayoutContainer {
         km150.setLayout(layoutRigaKm150);
 
         km150.add(new LabelField("Distanza percorsa: regionale"), flex);
+        km150.setStyleAttribute("padding-top","20px");
         panel.add(km150);
 
         LayoutContainer km150input = new LayoutContainer();
@@ -191,6 +193,7 @@ public class FormTrasportoMerci extends LayoutContainer {
         layoutRigaKm500.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         km500.setLayout(layoutRigaKm500);
         km500.add(new LabelField("Distanza percorsa: nazionale"), flex);
+        km500.setStyleAttribute("padding-top","20px");
         panel.add(km500);
 
         LayoutContainer km500input = new LayoutContainer();
@@ -244,6 +247,7 @@ public class FormTrasportoMerci extends LayoutContainer {
         km1500.setLayout(layoutRigaKm1500);
 
         km1500.add(new LabelField("Distanza percorsa: europea"), flex);
+        km1500.setStyleAttribute("padding-top","20px");
         panel.add(km1500);
         LayoutContainer km1500input = new LayoutContainer();
         HBoxLayout layoutKm1500input = new HBoxLayout();
@@ -306,6 +310,7 @@ public class FormTrasportoMerci extends LayoutContainer {
         km9000.setLayout(layoutRigaKm9000);
 
         km9000.add(new LabelField("Distanza percorsa: Extraeuropea"), flex);
+        km9000.setStyleAttribute("padding-top","20px");
         panel.add(km9000);
         LayoutContainer km9000input = new LayoutContainer();
         HBoxLayout layoutKm9000input = new HBoxLayout();

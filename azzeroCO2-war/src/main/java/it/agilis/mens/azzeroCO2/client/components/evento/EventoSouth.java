@@ -59,6 +59,7 @@ public class EventoSouth extends LayoutContainer {
         left.setEnabled(false);
         left.setVisible(false);
 
+
         left.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
@@ -69,6 +70,7 @@ public class EventoSouth extends LayoutContainer {
 
         flex.setFlex(1);
         c.add(leftText, flex);
+
 
         leftText.setSize(200, 15);
         rigthText.setSize(250, 15);

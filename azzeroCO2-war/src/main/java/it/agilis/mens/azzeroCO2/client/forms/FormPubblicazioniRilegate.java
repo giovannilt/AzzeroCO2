@@ -65,6 +65,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
         Text testo = new Text(" Si tratta di gruppi di pagine riunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br><br>");
         testo.setStyleAttribute("font-size", "9pt");
+        testo.setStyleAttribute("padding-top","20px");
 
         Text note = new Text(" Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie. ");
         note.setStyleAttribute("font-size", "9pt");
@@ -173,11 +174,11 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 altezza.setName("altezza");
 
                 LabelField label = new LabelField("Dimensioni ");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(altezza, flex);
                 c.add(new LabelField("altezza (cm)"), flex);
-
+                c.setStyleAttribute("padding-top","20px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -192,11 +193,11 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 larghezza.setName("larghezza");
 
                 LabelField label = new LabelField("");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(larghezza, flex);
                 c.add(new LabelField("larghezza (cm)"), flex);
-
+                c.setStyleAttribute("padding-top","10px");
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -218,10 +219,10 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
                 LabelField label = new LabelField("Materiale ");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(tipoDiCarta, flex);
-
+                c.setStyleAttribute("padding-top","10px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -236,11 +237,11 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 grammatura.setName("grammatura");
 
                 LabelField label = new LabelField("");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(grammatura, flex);
                 c.add(new LabelField("grammatura"), flex);
-
+                c.setStyleAttribute("padding-top","10px");
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -261,11 +262,11 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 numeroDiPagine.setPropertyEditorType(Integer.class);
 
                 LabelField label = new LabelField("Quantità ");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(numeroDiPagine, flex);
                 c.add(new LabelField("numero di pagine"), flex);
-
+                c.setStyleAttribute("padding-top","10px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -283,11 +284,11 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 tiratura.setPropertyEditorType(Integer.class);
 
                 LabelField label = new LabelField("");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(tiratura, flex);
                 c.add(new LabelField("tiratura"), flex);
-
+                c.setStyleAttribute("padding-top","10px");
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -310,10 +311,10 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 tipoDiCarta.setStore(tipoDiCartaModelListStore);
 
                 LabelField label = new LabelField("Materiale Copertina");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(tipoDiCarta, flex);
-
+                c.setStyleAttribute("padding-top","10px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -328,11 +329,11 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 grammatura.setName("grammaturaCopertina");
 
                 LabelField label = new LabelField("");
-                label.setWidth(100);
+                label.setWidth(120);
                 c.add(label);
                 c.add(grammatura, flex);
                 c.add(new LabelField("grammatura copertina"), flex);
-
+                c.setStyleAttribute("padding-top","10px");
                 panel.add(c, new FormData("100%"));
             }
         }
