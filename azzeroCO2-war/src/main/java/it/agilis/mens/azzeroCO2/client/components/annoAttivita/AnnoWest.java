@@ -57,14 +57,14 @@ public class AnnoWest extends LayoutContainer {
         super.onRender(target, index);
 
         VBoxLayout layout = new VBoxLayout();
-        layout.setPadding(new Padding(5));
+        layout.setPadding(new Padding(5,0,0,0));
         layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
         setLayout(layout);
 
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 0, 0, 0));
         flex.setFlex(1);
 
-        add(title, new VBoxLayoutData(new Margins(15, 5, 5, 0)));
+        add(title, new VBoxLayoutData(new Margins(15, 5, 0, 5)));
 
         ContentPanel panel = new ContentPanel();
         panel.setHeaderVisible(false);
@@ -78,12 +78,16 @@ public class AnnoWest extends LayoutContainer {
         title.setStyleAttribute("text-align", "center");
         title.setStyleAttribute("vertical-align ", "middle");
         title.setWidth(250);
-        title.setHeight(60);
+        title.setHeight(70);
         title.setStyleAttribute("font-size", "14px");
 
-        panel.setStyleAttribute("backgroundColor", "#E9E9E9");
+        //panel.setStyleAttribute("backgroundColor", "#E9E9E9");
+        panel.setStyleAttribute("background-Color", "#d9dadb");
+        panel.setHeight(300);
+        panel.setStyleAttribute("border-top","none");
+        panel.setStyleAttribute("border-top-color","#d9dadb !important");
+        panel.setShadow(true);
         add(panel, flex);
-
     }
 
     private Grid<RiepilogoModel> createGrid() {
