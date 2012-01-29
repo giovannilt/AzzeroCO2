@@ -70,16 +70,19 @@ public class EventoDettaglio extends LayoutContainer {
         eventoTab.add(calcolo);
 
         TabItem riepilogo = new TabItem("riepilogo");
+        riepilogo.setStyleAttribute("background-color", "#555557");
         riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
         riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("acquisto");
+        acquisto.setStyleAttribute("background-color", "#555557");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         eventoTab.add(acquisto);
 
         TabItem conferma = new TabItem("conferma");
+        conferma.setStyleAttribute("background-color", "#555557");
         conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
         conferma.setEnabled(false);
         eventoTab.add(conferma);

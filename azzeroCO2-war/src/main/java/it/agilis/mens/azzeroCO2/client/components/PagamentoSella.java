@@ -12,6 +12,8 @@ import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
+import com.google.gwt.user.client.Window;
+import it.agilis.mens.azzeroCO2.client.PopupBlockerController;
 import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
@@ -63,24 +65,31 @@ public class PagamentoSella extends Dialog {
         submit = new Button("Continua");
         submit.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-                form.submit();
-                if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.EVENTO) {
-                    Dispatcher.forwardEvent(EventoEvents.Save, ordineModel);
-                    Dispatcher.forwardEvent(EventoEvents.InAttesaDiConfermaPagamento);
-                } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.ANNO_DI_ATTIVITA) {
-                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.Save, ordineModel);
-                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.InAttesaDiConfermaPagamento);
-                } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.WEB) {
-                    Dispatcher.forwardEvent(SitoWebEvents.Save, ordineModel);
-                    Dispatcher.forwardEvent(SitoWebEvents.InAttesaDiConfermaPagamento);
-                } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
-                    Dispatcher.forwardEvent(PubblicazioniEvents.Save, ordineModel);
-                    Dispatcher.forwardEvent(PubblicazioniEvents.InAttesaDiConfermaPagamento);
-                } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
-                    Dispatcher.forwardEvent(ConoscoCO2Events.Save, ordineModel);
-                    Dispatcher.forwardEvent(ConoscoCO2Events.InAttesaDiConfermaPagamento);
+
+                PopupBlockerController.detect();
+
+                if (PopupBlockerController.isPopupBlocked()) {
+                    Window.alert("Per procedere con il pagamento sbloccare il blocco popUp");
+                } else {
+                    form.submit();
+                    if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.EVENTO) {
+                        Dispatcher.forwardEvent(EventoEvents.Save, ordineModel);
+                        Dispatcher.forwardEvent(EventoEvents.InAttesaDiConfermaPagamento);
+                    } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.ANNO_DI_ATTIVITA) {
+                        Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.Save, ordineModel);
+                        Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.InAttesaDiConfermaPagamento);
+                    } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.WEB) {
+                        Dispatcher.forwardEvent(SitoWebEvents.Save, ordineModel);
+                        Dispatcher.forwardEvent(SitoWebEvents.InAttesaDiConfermaPagamento);
+                    } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
+                        Dispatcher.forwardEvent(PubblicazioniEvents.Save, ordineModel);
+                        Dispatcher.forwardEvent(PubblicazioniEvents.InAttesaDiConfermaPagamento);
+                    } else if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.CONOSCI_CO2) {
+                        Dispatcher.forwardEvent(ConoscoCO2Events.Save, ordineModel);
+                        Dispatcher.forwardEvent(ConoscoCO2Events.InAttesaDiConfermaPagamento);
+                    }
+                    submit.disable();
                 }
-                submit.disable();
 
             }
         });

@@ -141,8 +141,8 @@ public class FormAcquisto extends LayoutContainer {
         panel.setFrame(true);
         panel.setHeaderVisible(false);
         panel.setSize(290, 516);  //300,-1 sd
-        panel.setStyleAttribute("border-bottom","solid");
-        panel.setStyleAttribute("border-bottom-color","#f8b333");
+        panel.setStyleAttribute("border-bottom", "solid");
+        panel.setStyleAttribute("border-bottom-color", "#f8b333");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         final TextField<String> coupon = new TextField<String>();
 
@@ -156,7 +156,7 @@ public class FormAcquisto extends LayoutContainer {
             label.setStyleAttribute("font-size", "16px");
 
             c.add(label);
-            c.setStyleAttribute("padding-top","20px");
+            c.setStyleAttribute("padding-top", "20px");
             panel.add(c);
         }
         {
@@ -180,7 +180,7 @@ public class FormAcquisto extends LayoutContainer {
                 c.setLayout(layout);
                 luogoEvento.setWidth(220);
                 c.add(luogoEvento);
-                c.setStyleAttribute("padding-top","10px");
+                c.setStyleAttribute("padding-top", "10px");
 
                 panel.add(c);
             }
@@ -195,7 +195,7 @@ public class FormAcquisto extends LayoutContainer {
                 kcO2Evento.setStyleAttribute("text-align", "right");
 
                 c.add(kcO2Evento, new FillData(2, 0, 2, 40));
-                c.setStyleAttribute("padding-top","20px");
+                c.setStyleAttribute("padding-top", "20px");
                 panel.add(c, new FormData("100%"));
             }
             {    // PROGETTO SCELTO
@@ -210,7 +210,7 @@ public class FormAcquisto extends LayoutContainer {
                 label.setWidth(220);
 
                 c.add(label);
-                c.setStyleAttribute("padding-top","20px");
+                c.setStyleAttribute("padding-top", "20px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -236,7 +236,7 @@ public class FormAcquisto extends LayoutContainer {
                 euroPerKCo2Progetto.setStyleAttribute("text-align", "right");
 
                 c.add(euroPerKCo2Progetto, new FillData(2, 0, 2, 40));
-                c.setStyleAttribute("padding-top","20px");
+                c.setStyleAttribute("padding-top", "20px");
                 panel.add(c, new FormData("100%"));
             }
             { // TOTALE
@@ -253,7 +253,7 @@ public class FormAcquisto extends LayoutContainer {
                 totale.setStyleAttribute("font-size", "16px");
                 totale.setStyleAttribute("text-align", "right");
                 c.add(totale, new FillData(2, 0, 2, 20));
-                c.setStyleAttribute("padding-top","20px");
+                c.setStyleAttribute("padding-top", "20px");
                 panel.add(c, new FormData("100%"));
             }
             { // Coupon
@@ -265,7 +265,7 @@ public class FormAcquisto extends LayoutContainer {
                 c.add(label, new FillData(2, 20, 2, 0));
 
                 c.add(coupon, new FillData(0, 0, 0, 0));
-                c.setStyleAttribute("padding-top","20px");
+                c.setStyleAttribute("padding-top", "20px");
                 panel.add(c, new FormData("100%"));
             }
 
@@ -414,8 +414,8 @@ public class FormAcquisto extends LayoutContainer {
             if (coupon != null && !"".equalsIgnoreCase(coupon.getTipo())) {
                 try {
                     // CALCOLARE IN BASE AL TIPO DI COUPON
-                    if (riepilogo.getProgettoDiCompensazioneModel() != null) {
-                        Double d = riepilogo.getProgettoDiCompensazioneModel().getPrezzo();
+                    if (getProgettoDiCompensazioneModel() != null) {
+                        Double d = getProgettoDiCompensazioneModel().getPrezzo();
 
                         if (coupon.getTipo().equalsIgnoreCase(CouponType.EURO.toString())) {
                             Double val = (d * totale) - coupon.getValore();

@@ -206,6 +206,8 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
         try {
             UserInfoModel userInfoModel = Utils.getUserInfoModel(azzeroCO2Register.getUserInfo(userName));
             if (userInfoModel != null &&
+                    userInfoModel.getPassword() != null &&
+                    password != null &&
                     userInfoModel.getPassword().contentEquals(password)) {
                 return userInfoModel;
             }

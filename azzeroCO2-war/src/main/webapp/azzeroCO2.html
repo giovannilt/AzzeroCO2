@@ -20,7 +20,7 @@
         _gaq.push(['_setAccount', 'UA-153692-4']);
         _gaq.push(['_trackPageview']);
 
-        (function() {
+        (function () {
             var ga = document.createElement('script');
             ga.type = 'text/javascript';
             ga.async = true;
@@ -30,6 +30,20 @@
         })();
 
     </script>
+
+    <!--<script type="text/javascript" language="Javascript">
+        function test() {
+            var myTest = window.open("about:blank","","directories=no,height=100,width=100,menubar=no,resizable=no,scrollbars=no,status=no,titlebar=no,top=0,location=no");
+            if (!myTest) {
+                alert("A popup blocker was detected.");
+            } else {
+                myTest.close();
+                alert("No popup blocker was detected.");
+                return false;
+            }
+            return true;
+        }
+    </script>-->
 
 
     <!--                                           -->
@@ -50,7 +64,7 @@
 
     <link rel="stylesheet" type="text/css" href="gxt/themes/access/css/xtheme-access.css"/>
 
- <!--   <script type="text/javascript" language='javascript' src='gxt/flash/swfobject.js'></script>-->
+    <!--   <script type="text/javascript" language='javascript' src='gxt/flash/swfobject.js'></script>-->
 </head>
 
 <!--                                           -->
@@ -72,15 +86,15 @@
 <script type="text/javascript">
 
     var BrowserDetect = {
-        init: function () {
+        init:function () {
             this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
             this.version = this.searchVersion(navigator.userAgent)
                     || this.searchVersion(navigator.appVersion)
                     || "an unknown version";
             this.OS = this.searchString(this.dataOS) || "an unknown OS";
         },
-        searchString: function (data) {
-            for (var i=0;i<data.length;i++)	{
+        searchString:function (data) {
+            for (var i = 0; i < data.length; i++) {
                 var dataString = data[i].string;
                 var dataProp = data[i].prop;
                 this.versionSearchString = data[i].versionSearch || data[i].identity;
@@ -92,105 +106,105 @@
                     return data[i].identity;
             }
         },
-        searchVersion: function (dataString) {
+        searchVersion:function (dataString) {
             var index = dataString.indexOf(this.versionSearchString);
             if (index == -1) return;
-            return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+            return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
         },
-        dataBrowser: [
+        dataBrowser:[
             {
-                string: navigator.userAgent,
-                subString: "Chrome",
-                identity: "Chrome"
+                string:navigator.userAgent,
+                subString:"Chrome",
+                identity:"Chrome"
             },
-            { 	string: navigator.userAgent,
-                subString: "OmniWeb",
-                versionSearch: "OmniWeb/",
-                identity: "OmniWeb"
-            },
-            {
-                string: navigator.vendor,
-                subString: "Apple",
-                identity: "Safari",
-                versionSearch: "Version"
+            {     string:navigator.userAgent,
+                subString:"OmniWeb",
+                versionSearch:"OmniWeb/",
+                identity:"OmniWeb"
             },
             {
-                prop: window.opera,
-                identity: "Opera",
-                versionSearch: "Version"
+                string:navigator.vendor,
+                subString:"Apple",
+                identity:"Safari",
+                versionSearch:"Version"
             },
             {
-                string: navigator.vendor,
-                subString: "iCab",
-                identity: "iCab"
+                prop:window.opera,
+                identity:"Opera",
+                versionSearch:"Version"
             },
             {
-                string: navigator.vendor,
-                subString: "KDE",
-                identity: "Konqueror"
+                string:navigator.vendor,
+                subString:"iCab",
+                identity:"iCab"
             },
             {
-                string: navigator.userAgent,
-                subString: "Firefox",
-                identity: "Firefox"
+                string:navigator.vendor,
+                subString:"KDE",
+                identity:"Konqueror"
             },
             {
-                string: navigator.vendor,
-                subString: "Camino",
-                identity: "Camino"
-            },
-            {		// for newer Netscapes (6+)
-                string: navigator.userAgent,
-                subString: "Netscape",
-                identity: "Netscape"
+                string:navigator.userAgent,
+                subString:"Firefox",
+                identity:"Firefox"
             },
             {
-                string: navigator.userAgent,
-                subString: "MSIE",
-                identity: "Explorer",
-                versionSearch: "MSIE"
+                string:navigator.vendor,
+                subString:"Camino",
+                identity:"Camino"
+            },
+            {        // for newer Netscapes (6+)
+                string:navigator.userAgent,
+                subString:"Netscape",
+                identity:"Netscape"
             },
             {
-                string: navigator.userAgent,
-                subString: "Gecko",
-                identity: "Mozilla",
-                versionSearch: "rv"
+                string:navigator.userAgent,
+                subString:"MSIE",
+                identity:"Explorer",
+                versionSearch:"MSIE"
             },
-            { 		// for older Netscapes (4-)
-                string: navigator.userAgent,
-                subString: "Mozilla",
-                identity: "Netscape",
-                versionSearch: "Mozilla"
+            {
+                string:navigator.userAgent,
+                subString:"Gecko",
+                identity:"Mozilla",
+                versionSearch:"rv"
+            },
+            {         // for older Netscapes (4-)
+                string:navigator.userAgent,
+                subString:"Mozilla",
+                identity:"Netscape",
+                versionSearch:"Mozilla"
             }
         ],
-        dataOS : [
+        dataOS:[
             {
-                string: navigator.platform,
-                subString: "Win",
-                identity: "Windows"
+                string:navigator.platform,
+                subString:"Win",
+                identity:"Windows"
             },
             {
-                string: navigator.platform,
-                subString: "Mac",
-                identity: "Mac"
+                string:navigator.platform,
+                subString:"Mac",
+                identity:"Mac"
             },
             {
-                string: navigator.userAgent,
-                subString: "iPhone",
-                identity: "iPhone/iPod"
+                string:navigator.userAgent,
+                subString:"iPhone",
+                identity:"iPhone/iPod"
             },
             {
-                string: navigator.platform,
-                subString: "Linux",
-                identity: "Linux"
+                string:navigator.platform,
+                subString:"Linux",
+                identity:"Linux"
             }
         ]
 
     };
     BrowserDetect.init();
 
-    if(BrowserDetect.browser == 'Explorer' && parseInt( BrowserDetect.version)< 9)  {
-        alert(BrowserDetect.browser + ' '+ BrowserDetect.version + ' questo browser non e\' supportato, si consiglia l\'uso di Chrome, Firefox o InternetExplorer 9');
+    if (BrowserDetect.browser == 'Explorer' && parseInt(BrowserDetect.version) < 9) {
+        alert(BrowserDetect.browser + ' ' + BrowserDetect.version + ' questo browser non e\' supportato, si consiglia l\'uso di Chrome, Firefox o InternetExplorer 9');
     }
 
 
