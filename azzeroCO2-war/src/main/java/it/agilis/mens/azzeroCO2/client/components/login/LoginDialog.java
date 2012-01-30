@@ -46,8 +46,9 @@ public class LoginDialog extends Dialog {
         setHeading("Login");
         setModal(true);
         setBodyBorder(true);
-        setBodyStyle("padding: 8px;background: none");
-        setWidth(350);
+        setBodyStyle("padding: 20px 80px 20px 80px;background: none");
+        setWidth(500);
+        setHeight(100);
         setResizable(false);
 
         KeyListener keyListener = new KeyListener() {
