@@ -215,7 +215,7 @@ public class AnnoWest extends LayoutContainer {
         setTitle(riepilogo);
         store.removeAll();
         RiepilogoModel m = new RiepilogoModel();
-        m.setOggetto("Il Percorso e' finito!");
+        m.setOggetto("Il Percorso è finito!");
         store.add(m);
     }
 

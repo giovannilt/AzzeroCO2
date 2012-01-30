@@ -43,7 +43,7 @@ public class ConoscoCO2West extends LayoutContainer {
             "Controlla il preventivo e <br>" +
             "accedi al sistema di <br>" +
             "pagamento.";
-    private final String Conferma = "Il Percorso e' finito!";
+    private final String Conferma = "Il Percorso è finito!";
 
     private Esito esito;
 
