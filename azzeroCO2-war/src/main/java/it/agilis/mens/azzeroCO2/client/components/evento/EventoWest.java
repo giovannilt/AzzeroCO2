@@ -73,7 +73,7 @@ public class EventoWest extends LayoutContainer {
         HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 0, 0, 0));
         flex.setFlex(1);
 
-        add(title, new VBoxLayoutData(new Margins(15, 5, 0, 5)));
+        add(title, new VBoxLayoutData(new Margins(5, 5, 0, 5)));
 
         ContentPanel panel = new ContentPanel();
         panel.setHeaderVisible(false);
