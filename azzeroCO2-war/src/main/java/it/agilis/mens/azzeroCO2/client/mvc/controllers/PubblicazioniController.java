@@ -117,7 +117,7 @@ public class PubblicazioniController extends BaseController {
                 OrdineModel model = pubblicazioneView.getRiepilogo();
                 model.setEventiType(Eventi.UNA_PUBBLICAZIONE.name());
                 double kgCO2 = getTotaleKgCO2(model);
-                Double importo= new Double(0.0);
+                Double importo = new Double(0.0);
                 PagamentoModel pagamentoModel = null;
                 if (model.getProgettoDiCompensazioneModel() != null) {
 
@@ -133,9 +133,9 @@ public class PubblicazioniController extends BaseController {
                                     val = 0.0;
                                 }
                                 pagamentoModel = new PagamentoModel(number.format(val));
-                                importo=val;
+                                importo = val;
                             } else if (couponModel.getTipo().equalsIgnoreCase(CouponType.PERCENTO.toString())) {
-                                importo =(kgCO2 * totale) * couponModel.getValore() / 100;
+                                importo = (kgCO2 * totale) * couponModel.getValore() / 100;
                                 pagamentoModel = new PagamentoModel(number.format(importo));
                             } else if (couponModel.getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString())) {
                                 pagamentoModel = new PagamentoModel(number.format(0.0));
@@ -145,7 +145,8 @@ public class PubblicazioniController extends BaseController {
                             Info.display("ERROR", e.getMessage());
                         }
                     } else {
-                        pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
+                        importo = kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo();
+                        pagamentoModel = new PagamentoModel(number.format(importo));
                     }
 
                     pagamentoModel.setLastUpdate(new Date());
@@ -153,14 +154,14 @@ public class PubblicazioniController extends BaseController {
                     model.setPagamentoModel(pagamentoModel);
                     model.setCouponModel(couponModel);
 
-                    if( couponModel!= null &&
-                            !couponModel.getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString())){
-                        if(importo>10.0) {
+                    if (couponModel == null || (couponModel != null &&
+                            !couponModel.getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString()))) {
+                        if (importo > 10.0) {
                             Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
-                        }else{
+                        } else {
                             Info.display("Info", "Non e' possibile comperare ordini inferiori ai 10 euro");
                         }
-                    } else{
+                    } else {
                         save(model);
                         pubblicazioneView.showConferma(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
                     }
