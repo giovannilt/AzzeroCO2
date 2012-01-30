@@ -165,6 +165,7 @@ public class SitoWeb extends LayoutContainer {
 
         ordineModel.setSitoWebModel(sitoWebForm.getSitoWebModel());
         ordineModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
+        ordineModel.setCouponModel(formAcquisto.getCouponModel());
         return ordineModel;
     }
 

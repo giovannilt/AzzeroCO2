@@ -224,7 +224,7 @@ public class Pubblicazione extends LayoutContainer {
         ordineModel.setBigliettiDaVisitaModel(formBigliettiDaVisita.getBigliettiDaVisitaModel());
 
         ordineModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
-
+        ordineModel.setCouponModel(formAcquisto.getCouponModel());
         return ordineModel;
     }
 

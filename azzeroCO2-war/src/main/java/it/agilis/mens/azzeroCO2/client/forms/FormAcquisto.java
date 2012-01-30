@@ -496,7 +496,6 @@ public class FormAcquisto extends LayoutContainer {
     }
 
     public void setCouponModel(CouponModel coupon) {
-
         if (coupon != null && riepilogo != null && eventoRiepilogoModels != null) {
             this.coupon = coupon;
             setRiepilogo(eventoRiepilogoModels, riepilogo);

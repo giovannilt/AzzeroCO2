@@ -164,6 +164,7 @@ public class ConoscoCO2 extends LayoutContainer {
         ordineModel.setEventiType(Eventi.CONOSCI_CO2.name());
         ordineModel.setConoscoCO2Model(conoscoCO2Form.getConoscoCO2Model());
         ordineModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
+        ordineModel.setCouponModel(formAcquisto.getCouponModel());
         return ordineModel;
     }
 
