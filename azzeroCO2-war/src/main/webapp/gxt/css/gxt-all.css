@@ -1168,9 +1168,10 @@ textarea {
 .x-form-field-wrap .x-form-date-trigger, .x-form-field-wrap .x-form-clear-trigger, .x-form-field-wrap .x-form-search-trigger {
     cursor: pointer;
 }
- /*
+
+/*
 .ext-safari .x-form-field-wrap .x-form-trigger, .ext-gecko .x-form-field-wrap .x-form-trigger {
-    right: 0;
+right: 0;
 }     */
 
 .x-form-field-wrap .x-form-twin-triggers .x-form-trigger {
@@ -4466,7 +4467,7 @@ a.x-menu-item {
 }
 
 .x-panel-body-noheader, .x-panel-mc .x-panel-body {
-    border-top: 1px solid;
+    border-top: 0px solid;
 }
 
 .x-panel-header {
@@ -7164,8 +7165,8 @@ ul.x-tab-strip-bottom {
 }
 
 .x-grid3-header {
-   /* background-color: #f9f9f9;
-    background-image: url(../images/default/grid/grid3-hrow.gif);   */
+    /* background-color: #f9f9f9;
+background-image: url(../images/default/grid/grid3-hrow.gif);   */
 }
 
 .x-grid3-header-pop {
@@ -7942,7 +7943,7 @@ a.x-menu-item {
 }
 
 .x-window-mr {
-   /* background-image: url(../images/default/window/left-right.png);    */
+    /* background-image: url(../images/default/window/left-right.png);    */
 }
 
 .x-window-maximized .x-window-tc {
