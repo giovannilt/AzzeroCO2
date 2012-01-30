@@ -15,9 +15,11 @@ import it.agilis.mens.azzeroCO2.client.forms.FormConferma;
 import it.agilis.mens.azzeroCO2.client.forms.FormConoscoCO2;
 import it.agilis.mens.azzeroCO2.client.forms.FormRiepilogo;
 import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -158,9 +160,8 @@ public class ConoscoCO2 extends LayoutContainer {
     }
 
     public OrdineModel riepilogo() {
-        if (ordineModel == null) {
-            ordineModel.setNome("ConoscoCO2");
-        }
+        ordineModel.setNome("ConoscoCO2");
+        ordineModel.setEventiType(Eventi.CONOSCI_CO2.name());
         ordineModel.setConoscoCO2Model(conoscoCO2Form.getConoscoCO2Model());
         ordineModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
         return ordineModel;
@@ -209,5 +210,9 @@ public class ConoscoCO2 extends LayoutContainer {
             previusTab();
         }
         previusTab();
+    }
+
+    public void setCouponModel(CouponModel coupon) {
+        formAcquisto.setCouponModel(coupon);
     }
 }

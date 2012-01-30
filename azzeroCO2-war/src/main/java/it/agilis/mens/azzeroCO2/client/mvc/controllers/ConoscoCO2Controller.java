@@ -5,10 +5,7 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
-import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
-import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
-import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.*;
 import it.agilis.mens.azzeroCO2.client.mvc.views.ConoscoCO2View;
 import it.agilis.mens.azzeroCO2.client.services.AzzerroCO2UtilsClientHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
@@ -98,6 +95,28 @@ public class ConoscoCO2Controller extends BaseController {
                 setProgettiDiCompensazione();
             }
             conoscoCO2View.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
+            conoscoCO2View.riepilogo(getCoefficientiMAP());
+
+        } else if (event.getType().equals(PubblicazioniEvents.UseCoupon)) {
+            String couponCode = event.getData();
+            if (couponCode != null && !"".equalsIgnoreCase(couponCode)) {
+                AsyncCallback<CouponModel> asyncCallback = new AsyncCallback<CouponModel>() {
+                    public void onFailure(Throwable caught) {
+                        Info.display("Error", "Errore impossibile connettersi al server");
+                    }
+
+                    @Override
+                    public void onSuccess(CouponModel result) {
+                        if (result != null) {
+                            conoscoCO2View.setCoupon(result);
+                        } else {
+                            Info.display("Warn", "Coupon non Utilizzabile");
+                        }
+                    }
+                };
+                getHustonService().getValidCouponByCode(couponCode, asyncCallback);
+            }
+
         } else if (event.getType().equals(ConoscoCO2Events.Conferma)) {
             if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
                 Dispatcher.forwardEvent(LoginEvents.ShowForm);

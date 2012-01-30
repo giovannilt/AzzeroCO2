@@ -87,11 +87,32 @@ public class SitoWebController extends BaseController {
             if (getProgettiDiCompensazioneList().size() == 0) {
                 setProgettiDiCompensazione();
             }
+        } else if (event.getType().equals(SitoWebEvents.UseCoupon)) {
+            String couponCode = event.getData();
+            if (couponCode != null && !"".equalsIgnoreCase(couponCode)) {
+                AsyncCallback<CouponModel> asyncCallback = new AsyncCallback<CouponModel>() {
+                    public void onFailure(Throwable caught) {
+                        Info.display("Error", "Errore impossibile connettersi al server");
+                    }
+
+                    @Override
+                    public void onSuccess(CouponModel result) {
+                        if (result != null) {
+                            sitoWebView.setCoupon(result);
+                        } else {
+                            Info.display("Warn", "Coupon non Utilizzabile");
+                        }
+                    }
+                };
+                getHustonService().getValidCouponByCode(couponCode, asyncCallback);
+            }
+
         } else if (event.getType().equals(SitoWebEvents.Acquisto)) {
             if (getProgettiDiCompensazioneList().size() == 0) {
                 setProgettiDiCompensazione();
             }
             sitoWebView.setProgettiDiCompensazione(getProgettiDiCompensazioneList());
+            sitoWebView.riepilogo(getCoefficientiMAP());
         } else if (event.getType().equals(SitoWebEvents.Conferma)) {
             if (getUserInfoModel().getProfilo() == Profile.Guest.ordinal()) {
                 Dispatcher.forwardEvent(LoginEvents.ShowForm);

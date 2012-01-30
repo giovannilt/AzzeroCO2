@@ -16,9 +16,11 @@ import it.agilis.mens.azzeroCO2.client.forms.FormConferma;
 import it.agilis.mens.azzeroCO2.client.forms.FormRiepilogo;
 import it.agilis.mens.azzeroCO2.client.forms.FormSitoWeb;
 import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
+import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -158,9 +160,9 @@ public class SitoWeb extends LayoutContainer {
     }
 
     public OrdineModel riepilogo() {
-        if (ordineModel == null) {
-            ordineModel.setNome("Sito Web");
-        }
+        ordineModel.setNome("Sito Web");
+        ordineModel.setEventiType(Eventi.WEB.name());
+
         ordineModel.setSitoWebModel(sitoWebForm.getSitoWebModel());
         ordineModel.setProgettoDiCompensazioneModel(formAcquisto.getProgettoDiCompensazioneModel());
         return ordineModel;
@@ -211,5 +213,9 @@ public class SitoWeb extends LayoutContainer {
 
     public void showRiepilogo() {
         //To change body of created methods use File | Settings | File Templates.
+    }
+
+    public void setCouponModel(CouponModel coupon) {
+        formAcquisto.setCouponModel(coupon);
     }
 }

@@ -434,7 +434,6 @@ public class FormAcquisto extends LayoutContainer {
                 }
             }
             this.totaleKC02 = totale;
-
         }
 
         kcO2Evento.setText(number.format(totale));

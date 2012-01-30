@@ -105,6 +105,26 @@ public class PubblicazioniController extends BaseController {
             setCoefficienti();
             getHustonService().getTipoDiCarta(tipoDiCartaCallBack);
             forwardToView(pubblicazioneView, event);
+        } else if (event.getType().equals(PubblicazioniEvents.UseCoupon)) {
+            String couponCode = event.getData();
+            if (couponCode != null && !"".equalsIgnoreCase(couponCode)) {
+                AsyncCallback<CouponModel> asyncCallback = new AsyncCallback<CouponModel>() {
+                    public void onFailure(Throwable caught) {
+                        Info.display("Error", "Errore impossibile connettersi al server");
+                    }
+
+                    @Override
+                    public void onSuccess(CouponModel result) {
+                        if (result != null) {
+                            pubblicazioneView.setCoupon(result);
+                        } else {
+                            Info.display("Warn", "Coupon non Utilizzabile");
+                        }
+                    }
+                };
+                getHustonService().getValidCouponByCode(couponCode, asyncCallback);
+            }
+
         } else if (event.getType().equals(PubblicazioniEvents.Acquisto)) {
             if (getProgettiDiCompensazioneList().size() == 0) {
                 setProgettiDiCompensazione();

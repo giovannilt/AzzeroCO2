@@ -14,12 +14,15 @@ import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2North;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2South;
 import it.agilis.mens.azzeroCO2.client.components.conoscoCO2.ConoscoCO2West;
-import it.agilis.mens.azzeroCO2.client.mvc.events.*;
+import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
+import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.ConoscoCO2Events;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -180,4 +183,7 @@ public class ConoscoCO2View extends View {
         conoscoCO2.showConferma(result);
     }
 
+    public void setCoupon(CouponModel result) {
+        conoscoCO2.setCouponModel(result);
+    }
 }

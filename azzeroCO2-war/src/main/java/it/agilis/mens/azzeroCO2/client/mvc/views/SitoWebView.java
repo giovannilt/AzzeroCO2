@@ -22,6 +22,7 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
+import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -176,5 +177,9 @@ public class SitoWebView extends View {
     public void showConferma(OrdineVTO result) {
         nord.hideButtons();
         sitoWeb.showConferma(result);
+    }
+
+    public void setCoupon(CouponModel result) {
+        sitoWeb.setCouponModel(result);
     }
 }
