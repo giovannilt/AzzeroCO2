@@ -49,6 +49,7 @@ public class PopupBlockerController {
         } else {
             $wnd.popUpsBlocked = false;
         }
+        if ($wnd.testPopup) $wnd.testPopup.close();
     }-*/;
 
 
