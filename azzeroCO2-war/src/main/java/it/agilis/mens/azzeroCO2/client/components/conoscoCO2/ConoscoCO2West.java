@@ -54,6 +54,7 @@ public class ConoscoCO2West extends LayoutContainer {
     }
 
     @Override
+
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
@@ -114,7 +115,7 @@ public class ConoscoCO2West extends LayoutContainer {
 
         configs.add(column);
 
-        column = new ColumnConfig("oggetto", "oggetto", 218);
+        column = new ColumnConfig("oggetto", "oggetto", 221);
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setRenderer(new GridCellRenderer() {
             @Override
