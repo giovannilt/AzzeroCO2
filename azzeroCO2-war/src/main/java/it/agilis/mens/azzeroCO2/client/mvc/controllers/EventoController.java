@@ -136,42 +136,50 @@ public class EventoController extends BaseController {
                 OrdineModel model = eventoView.getRiepilogo();
                 model.setEventiType(Eventi.EVENTO.name());
                 double kgCO2 = getTotaleKgCO2(model);
-
-                // TODO Calcolare il totale togliendo lo sconto COUPON
+                Double importo= new Double(0.0);
+                
                 PagamentoModel pagamentoModel = null;
                 if (model.getProgettoDiCompensazioneModel() != null) {
-
                     CouponModel couponModel = model.getCouponModel();
                     if (couponModel != null && !"".equalsIgnoreCase(couponModel.getTipo())) {
                         couponModel.setAttivo(false);
                         try {
                             Double totale = model.getProgettoDiCompensazioneModel().getPrezzo();
-
                             if (couponModel.getTipo().equalsIgnoreCase(CouponType.EURO.toString())) {
                                 Double val = (kgCO2 * totale) - couponModel.getValore();
                                 if (val < 0) {
                                     val = 0.0;
                                 }
                                 pagamentoModel = new PagamentoModel(number.format(val));
+                                importo=val;
                             } else if (couponModel.getTipo().equalsIgnoreCase(CouponType.PERCENTO.toString())) {
-                                pagamentoModel = new PagamentoModel(number.format((kgCO2 * totale) * couponModel.getValore() / 100));
+                                importo =(kgCO2 * totale) * couponModel.getValore() / 100;
+                                pagamentoModel = new PagamentoModel(number.format(importo));
                             } else if (couponModel.getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString())) {
                                 pagamentoModel = new PagamentoModel(number.format(0.0));
                             }
-
                         } catch (Exception e) {
                             Info.display("ERROR", e.getMessage());
                         }
                     } else {
                         pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
                     }
-
-
                     pagamentoModel.setLastUpdate(new Date());
                     pagamentoModel.setKgCO2(kgCO2);
                     model.setPagamentoModel(pagamentoModel);
                     model.setCouponModel(couponModel);
-                    Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
+
+                    if( couponModel!= null &&
+                          !couponModel.getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString())){
+                        if(importo>10.0) {
+                            Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
+                        }else{
+                            Info.display("Info", "Non e' possibile comperare ordini inferiori ai 10 euro");
+                        }
+                    } else{
+                        save(model);
+                        eventoView.showConferma(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
+                    }
                 } else {
                     Info.display("Info", "Seleziona il Progetto di compensazione");
                 }

@@ -105,6 +105,7 @@ public class ConoscoCO2Controller extends BaseController {
                 OrdineModel model = conoscoCO2View.getRiepilogo();
                 model.setEventiType(Eventi.CONOSCI_CO2.name());
                 double kgCO2 = getTotaleKgCO2(model);
+                Double importo= new Double(0.0);
 
                 // TODO Calcolare il totale togliendo lo sconto COUPON
                 PagamentoModel pagamentoModel = null;
@@ -122,8 +123,10 @@ public class ConoscoCO2Controller extends BaseController {
                                     val = 0.0;
                                 }
                                 pagamentoModel = new PagamentoModel(number.format(val));
+                                importo= val;
                             } else if (couponModel.getTipo().equalsIgnoreCase(CouponType.PERCENTO.toString())) {
-                                pagamentoModel = new PagamentoModel(number.format((kgCO2 * totale) * couponModel.getValore() / 100));
+                                importo=(kgCO2 * totale) * couponModel.getValore() / 100;
+                                pagamentoModel = new PagamentoModel(number.format(importo));
                             } else if (couponModel.getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString())) {
                                 pagamentoModel = new PagamentoModel(number.format(0.0));
                             }
@@ -135,12 +138,23 @@ public class ConoscoCO2Controller extends BaseController {
                         pagamentoModel = new PagamentoModel(number.format(kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo()));
                     }
 
-
                     pagamentoModel.setLastUpdate(new Date());
                     pagamentoModel.setKgCO2(kgCO2);
                     model.setPagamentoModel(pagamentoModel);
                     model.setCouponModel(couponModel);
-                    Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
+
+                    if( couponModel!= null &&
+                            !couponModel.getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString())){
+                        if(importo>10.0) {
+                            Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
+                        }else{
+                            Info.display("Info", "Non e' possibile comperare ordini inferiori ai 10 euro");
+                        }
+                    } else{
+                        save(model);
+                        conoscoCO2View.showConferma(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
+                    }
+
                 } else {
                     Info.display("Info", "Seleziona il Progetto di compensazione");
                 }
