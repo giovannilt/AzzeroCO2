@@ -79,7 +79,7 @@ public class ConoscoCO2West extends LayoutContainer {
         title.setStyleAttribute("font-family", "arial");
         title.setStyleAttribute("text-align", "center");
         title.setStyleAttribute("vertical-align ", "middle");
-        title.setWidth(250);
+        title.setWidth(215);
         title.setHeight(70);
         title.setStyleAttribute("font-size", "14px");
 
@@ -115,7 +115,7 @@ public class ConoscoCO2West extends LayoutContainer {
 
         configs.add(column);
 
-        column = new ColumnConfig("oggetto", "oggetto", 221);
+        column = new ColumnConfig("oggetto", "oggetto", 186);
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setRenderer(new GridCellRenderer() {
             @Override
@@ -138,7 +138,7 @@ public class ConoscoCO2West extends LayoutContainer {
         grid = new Grid<RiepilogoModel>(store, cm);
         grid.setAutoHeight(true);
         grid.setHeight(400);
-        grid.setWidth(245);
+        grid.setWidth(210);
         //     grid.setStripeRows(true);
         grid.setHideHeaders(true);
         grid.setStyleAttribute("backgroundColor", "#E9E9E9");

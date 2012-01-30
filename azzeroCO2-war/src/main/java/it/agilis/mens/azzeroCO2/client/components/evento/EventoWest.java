@@ -86,7 +86,7 @@ public class EventoWest extends LayoutContainer {
         title.setStyleAttribute("font-family", "arial");
         title.setStyleAttribute("text-align", "center");
         title.setStyleAttribute("vertical-align ", "middle");
-        title.setWidth(250);
+        title.setWidth(215);
         title.setHeight(70);
         title.setStyleAttribute("font-size", "14px");
 
@@ -123,7 +123,7 @@ public class EventoWest extends LayoutContainer {
 
         configs.add(column);
 
-        column = new ColumnConfig("oggetto", "oggetto", 220);
+        column = new ColumnConfig("oggetto", "oggetto", 186);
         column.setAlignment(Style.HorizontalAlignment.LEFT);
         column.setRenderer(new GridCellRenderer() {
             @Override
@@ -144,7 +144,7 @@ public class EventoWest extends LayoutContainer {
         grid = new Grid<RiepilogoModel>(store, cm);
         grid.setAutoHeight(true);
         grid.setHeight(400);
-        grid.setWidth(244);
+        grid.setWidth(210);
         grid.setHideHeaders(true);
         grid.setStyleAttribute("backgroundColor", "#E9E9E9");
         grid.disableTextSelection(true);
