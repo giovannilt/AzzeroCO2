@@ -70,7 +70,7 @@ public class UserInfo extends LayoutContainer {
         centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(1,0,1,0));
+        centerData.setMargins(new Margins(0));
         add(centre, centerData);
 
     }
