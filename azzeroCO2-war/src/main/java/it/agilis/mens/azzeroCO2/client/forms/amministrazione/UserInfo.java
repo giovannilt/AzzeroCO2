@@ -66,10 +66,11 @@ public class UserInfo extends LayoutContainer {
         centre.setHeaderVisible(false);
         centre.setScrollMode(Style.Scroll.AUTO);
         centre.setHeight(700);
+
         centre.setFrame(true);
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        centerData.setMargins(new Margins(1));
+        centerData.setMargins(new Margins(1,0,1,0));
         add(centre, centerData);
 
     }
