@@ -132,7 +132,7 @@ public class AnnoWest extends LayoutContainer {
         grid.setHeight(400);
         grid.setWidth(210);
         grid.setHideHeaders(true);
-        grid.setStyleAttribute("backgroundColor", "#E9E9E9");
+        grid.setStyleAttribute("background-color", "#E9E9E9");
         grid.disableTextSelection(true);
         grid.setTrackMouseOver(false);
 

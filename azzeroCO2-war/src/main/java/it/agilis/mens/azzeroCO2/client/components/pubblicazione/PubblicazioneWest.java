@@ -81,7 +81,7 @@ public class PubblicazioneWest extends LayoutContainer {
         panel.setBorders(false);
         panel.add(createGrid(), new VBoxLayoutData(new Margins(0, 5, 2, 0)));
 
-        title.setStyleAttribute("backgroundColor", "#d9dadb");
+        title.setStyleAttribute("background-Color", "#d9dadb");
         title.setStyleAttribute("color", "black");
         title.setStyleAttribute("font-family", "arial");
         title.setStyleAttribute("text-align", "center");
@@ -146,7 +146,7 @@ public class PubblicazioneWest extends LayoutContainer {
         grid.setHeight(400);
         grid.setWidth(210);
         grid.setHideHeaders(true);
-        grid.setStyleAttribute("backgroundColor", "#E9E9E9");
+        grid.setStyleAttribute("background-Color", "#E9E9E9");
         grid.disableTextSelection(true);
         grid.setTrackMouseOver(false);
 
