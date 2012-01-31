@@ -8,9 +8,12 @@ import com.extjs.gxt.ui.client.mvc.View;
 import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.Viewport;
-import com.extjs.gxt.ui.client.widget.layout.*;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
+import com.extjs.gxt.ui.client.widget.layout.RowData;
+import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import it.agilis.mens.azzeroCO2.client.components.InfoDialog;
 import it.agilis.mens.azzeroCO2.client.components.evento.dialogs.RiepilogoConfermDialog;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
@@ -32,7 +35,7 @@ public class AzzeroCO2View extends View {
             getBody().setStyleAttribute("border-top", "0px");
         }
     };
-    private final Viewport viewport = new Viewport();
+    // private final Viewport viewport = new Viewport();
     private InfoDialog infoDialog = new InfoDialog();
     private RiepilogoConfermDialog riepilogoConfermaDialog = new RiepilogoConfermDialog();
 
@@ -105,16 +108,29 @@ public class AzzeroCO2View extends View {
         main.setHeaderVisible(false);
         main.setLayout(layout);
         main.setAnimCollapse(true);
-
-        //viewport.setLayout(layoutCentre);
-        viewport.setLayout(new CenterLayout());
-        viewport.setScrollMode(Style.Scroll.AUTO);
-        viewport.add(main);
     }
 
     private void onUIReady(AppEvent event) {
         RootPanel root = RootPanel.get();
-        root.add(viewport);
+
+        ScrollPanel sc = new ScrollPanel();
+        sc.setVerticalScrollPosition(0);
+
+        /*VBoxLayout layoutCentre = new VBoxLayout();
+        layoutCentre.setPadding(new Padding(23, 5, 5, 5));
+        layoutCentre.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
+        root.setLayoutData(layoutCentre);*/
+        sc.add(main);
+
+        //   sc.add(viewport);
+        root.add(sc);
+        root.getElement().setAttribute("Style","overflow: auto; position: absolute;\n" +
+                "top: 2%;\n" +
+                "left: 50%; \n" +
+                "width:1024px;\n" +
+                "height: 768px;\n" +
+                "margin-left:-512px;\n"+
+                "margin-top:-10px;");
     }
 
     private void onError(AppEvent event) {

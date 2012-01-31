@@ -46,7 +46,6 @@ public class FormSitoWeb extends LayoutContainer {
 
     }
 
-
     private FormPanel createForm() {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
