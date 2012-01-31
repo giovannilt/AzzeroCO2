@@ -68,11 +68,11 @@ public class AnnoWest extends LayoutContainer {
 
         ContentPanel panel = new ContentPanel();
         panel.setHeaderVisible(false);
-        panel.setBodyStyle("backgroundColor: #d9dadb;");
+        panel.setBodyStyle("background-Color: #d9dadb;");
         panel.setBorders(false);
         panel.add(createGrid(), new VBoxLayoutData(new Margins(0, 5, 2, 0)));
 
-        title.setStyleAttribute("backgroundColor", "#d9dadb");
+        title.setStyleAttribute("background-Color", "#d9dadb");
         title.setStyleAttribute("color", "black");
         title.setStyleAttribute("font-family", "arial");
         title.setStyleAttribute("text-align", "center");
@@ -115,7 +115,7 @@ public class AnnoWest extends LayoutContainer {
             @Override
             public Object render(ModelData model, String property, ColumnData config, int rowIndex, int colIndex, ListStore listStore, Grid grid) {
                 Text text = new Text((String) model.get(property));
-                text.setStyleAttribute("backgroundColor", "#d9dadb");
+                text.setStyleAttribute("background-Color", "#d9dadb");
                 text.setStyleAttribute("color", "black");
                 text.setStyleAttribute("font-family", "arial");
 

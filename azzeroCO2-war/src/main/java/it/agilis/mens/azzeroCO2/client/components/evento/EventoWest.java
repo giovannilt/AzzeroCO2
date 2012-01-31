@@ -77,7 +77,7 @@ public class EventoWest extends LayoutContainer {
 
         ContentPanel panel = new ContentPanel();
         panel.setHeaderVisible(false);
-        panel.setBodyStyle("backgroundColor: #d9dadb;");
+        panel.setBodyStyle("background-Color: #d9dadb;");
         panel.setBorders(false);
         panel.add(createGrid(), new VBoxLayoutData(new Margins(0, 5, 2, 0)));
 

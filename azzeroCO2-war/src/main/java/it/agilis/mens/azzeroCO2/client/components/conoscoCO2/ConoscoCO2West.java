@@ -70,7 +70,7 @@ public class ConoscoCO2West extends LayoutContainer {
 
         ContentPanel panel = new ContentPanel();
         panel.setHeaderVisible(false);
-        panel.setBodyStyle("backgroundColor: #d9dadb;");
+        panel.setBodyStyle("background-Color: #d9dadb;");
         panel.setBorders(false);
         panel.add(createGrid(), new VBoxLayoutData(new Margins(0, 5, 2, 0)));
 
@@ -141,7 +141,7 @@ public class ConoscoCO2West extends LayoutContainer {
         grid.setWidth(210);
         //     grid.setStripeRows(true);
         grid.setHideHeaders(true);
-        grid.setStyleAttribute("backgroundColor", "#E9E9E9");
+        grid.setStyleAttribute("background-Color", "#E9E9E9");
 
         grid.disableTextSelection(true);
         grid.setTrackMouseOver(false);
