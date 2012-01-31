@@ -957,7 +957,7 @@ ul.x-tab-strip li.x-tab-edge {
 
 .x-tab-scroller-left-disabled {
     background-position: -18px 0;
-    opacity: .5;
+   /* opacity: .5;*/
     -moz-opacity: .5;
     filter: alpha(opacity = 50);
     cursor: default;
@@ -1603,15 +1603,15 @@ fieldset.x-panel-collapsed .x-fieldset-bwrap {
     margin-bottom: 2px;
 }
 
-/*
+
 .ext-safari .x-form-text {
-    height: 22px; /* safari always same size
-    padding: 0 3px; /* remove extra top/bottom padding
+    height: 22px; /* safari always same size*/
+    padding: 0 3px;  /*remove extra top/bottom padding*/
 }
 
 .ext-safari .x-small-editor .x-form-text {
     height: 20px;
-} */
+}
 
 .x-form-group-label, .x-form-cb-label {
     font: normal 12px tahoma, arial, helvetica, sans-serif;
@@ -3148,7 +3148,7 @@ a.x-grid3-hd-btn:hover {
 .x-grid3-group-checker div {
     width: 14px;
     height: 18px;
-    background-position: -1 -2px;
+    background-position: -2px;
     background-repeat: no-repeat;
     background-color: transparent;
 }
@@ -6759,7 +6759,7 @@ ul.x-tab-strip-bottom {
 
 .x-tab-scroller-left-disabled {
     background-position: -18px 0;
-    opacity: .5;
+    /*opacity: .5;*/
     -moz-opacity: .5;
     filter: alpha(opacity = 50);
     cursor: default;
@@ -6916,7 +6916,7 @@ ul.x-tab-strip-bottom {
 
 .x-btn-tl, .x-btn-tr, .x-btn-tc, .x-btn-ml, .x-btn-mr, .x-btn-mc, .x-btn-bl, .x-btn-br, .x-btn-bc {
     /*background-image: url(../images/default/button/btn.gif); */
-    background-color: #555557;
+   /* background-color: #555557;*/
 }
 
 .x-btn-click .x-btn-text, .x-btn-menu-active .x-btn-text, .x-btn-pressed .x-btn-text {
