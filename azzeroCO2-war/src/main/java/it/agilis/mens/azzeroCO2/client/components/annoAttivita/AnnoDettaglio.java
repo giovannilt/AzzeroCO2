@@ -71,16 +71,19 @@ public class AnnoDettaglio extends LayoutContainer {
         eventoTab.add(calcolo);
 
         TabItem riepilogo = new TabItem("riepilogo");
+        riepilogo.setStyleAttribute("background-color", "#555557");
         riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
         riepilogo.setEnabled(false);
         eventoTab.add(riepilogo);
 
         TabItem acquisto = new TabItem("acquisto");
+        acquisto.setStyleAttribute("background-color", "#555557");
         acquisto.add(eventoFormAcquisto, new BorderLayoutData(Style.LayoutRegion.CENTER));
         acquisto.setEnabled(false);
         eventoTab.add(acquisto);
 
         TabItem conferma = new TabItem("conferma");
+        conferma.setStyleAttribute("background-color", "#555557");
         conferma.add(formConferma, new BorderLayoutData(Style.LayoutRegion.CENTER));
         conferma.setEnabled(false);
         eventoTab.add(conferma);
@@ -128,13 +131,11 @@ public class AnnoDettaglio extends LayoutContainer {
         calcoloCardPanel.add(formPubblicazioniRilegate, new BorderLayoutData(Style.LayoutRegion.CENTER));
         formManifestipieghevoliFogli.setTitle("Manifesti Pieghevoli");
         calcoloCardPanel.add(formManifestipieghevoliFogli, new BorderLayoutData(Style.LayoutRegion.CENTER));
-
         formBigliettiDaVisita.setTitle("Biglietti da visita e cartelline");
         calcoloCardPanel.add(formBigliettiDaVisita, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         formSitoWeb.setTitle("Sito Web");
         calcoloCardPanel.add(formSitoWeb, new BorderLayoutData(Style.LayoutRegion.CENTER));
-
 
         return calcoloCardPanel;
     }

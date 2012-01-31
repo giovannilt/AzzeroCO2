@@ -64,6 +64,7 @@ public class ConoscoCO2 extends LayoutContainer {
 
 
         TabItem riepilogo = new TabItem("riepilogo");
+        riepilogo.setStyleAttribute("background-color", "#555557");
         riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
         riepilogo.setEnabled(false);
         conoscoCO2Tab.add(riepilogo);
@@ -187,8 +188,8 @@ public class ConoscoCO2 extends LayoutContainer {
         posizioniLabel++;
         conoscoCO2Tab.getItems().get(conoscoCO2Tab.getItems().size() - 1).setEnabled(true);
         conoscoCO2Tab.setSelection(conoscoCO2Tab.getItems().get(conoscoCO2Tab.getItems().size() - 1));
-        Dispatcher.forwardEvent(ConoscoCO2Events.NextText, posizioniText.get(posizioniLabel).get(1));
-        Dispatcher.forwardEvent(ConoscoCO2Events.PreviousText, posizioniText.get(posizioniLabel).get(0));
+        Dispatcher.forwardEvent(ConoscoCO2Events.NextText, posizioniText.get(posizioniLabel - 1).get(1));
+        Dispatcher.forwardEvent(ConoscoCO2Events.PreviousText, posizioniText.get(posizioniLabel - 1).get(0));
     }
 
     public void setConoscoCO2RiepilogoInStore(List<RiepilogoModel> riepilogoModels) {

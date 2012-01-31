@@ -100,7 +100,7 @@ public class EmailSender implements IEmailSender {
         }
         msg.setRecipients(Message.RecipientType.TO, addressTo);
         msg.setSubject(subject);
-        msg.setContent(message, "text/plain");
+        msg.setContent(message, "text/html");
         Transport.send(msg);
     }
 

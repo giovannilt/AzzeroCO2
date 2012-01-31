@@ -61,6 +61,7 @@ public class Pubblicazione extends LayoutContainer {
         pubblicazioneoTab.add(calcolo);
 
         TabItem riepilogo = new TabItem("riepilogo");
+        riepilogo.setStyleAttribute("background-color", "#555557");
         riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
         riepilogo.setEnabled(false);
         pubblicazioneoTab.add(riepilogo);

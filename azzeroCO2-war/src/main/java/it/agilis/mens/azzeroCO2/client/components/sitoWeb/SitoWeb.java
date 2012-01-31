@@ -65,6 +65,7 @@ public class SitoWeb extends LayoutContainer {
         sitoWebTab.add(sito);
 
         TabItem riepilogo = new TabItem("riepilogo");
+        riepilogo.setStyleAttribute("background-color", "#555557");
         riepilogo.add(formRiepilogo, new BorderLayoutData(Style.LayoutRegion.CENTER));
         riepilogo.setEnabled(false);
         sitoWebTab.add(riepilogo);

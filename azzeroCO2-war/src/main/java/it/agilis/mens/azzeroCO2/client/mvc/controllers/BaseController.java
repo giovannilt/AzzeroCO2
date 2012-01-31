@@ -119,44 +119,44 @@ public abstract class BaseController extends Controller {
         /*data.setBody(result.getNome() + " /n " +
                 "" + GWT.getModuleBaseURL() + "downloadCertificato?certificato=" + result.getPagamentoModel().getCertificatoPDF() +
                 "");   */
-         data.setBody("Ciao "+ userInfoModel.getNome()+",\n" +
-                 "\n" +
-                 "l'operazione di compensazione che hai richiesto è andata a buon fine.\n" +
-                 "Di seguito il riepilogo dei dati: \n" +
-                 "\n" +
-                 "Nome: "+userInfoModel.getNome()+"\n" +
-                 "Cognome: "+userInfoModel.getCognome() +"\n" +
-                 "Società: "+userInfoModel.getRagioneSociale() +"\n" +
-                 "Mail: "+ userInfoModel.getEmail()+"\n" +
-                 "Indirizzo: "+ userInfoModel.getIndirizzo()+"\n" +
-                 "CAP: "+userInfoModel.getCap() +"\n" +
-                 "Città: "+userInfoModel.getCitta() +"\n" +
-                 "Codice Fiscale: "+userInfoModel.getPivaCF() +"\n" +
-                 "Partita IVA: "+userInfoModel.getPivaCF() +"\n" +
-                 "\n" +
-                 "Progetto: "+result.getProgettoDiCompensazioneModel().getNome() +"\n" +
-                 "\n" +
-                 "Totale kgCO2*: "+result.getPagamentoModel().getKgCO2() +"\n" +
-                 "Crediti di emissione: "+ result.getPagamentoModel().getKgCO2()/1000+"\n" +
-                 "Euro: "+result.getPagamentoModel().getIMPORTO() +"\n" +
-                 "\n" +
-                 "Scarica tuo certificato di compensazione: \n"+
-                 GWT.getModuleBaseURL() + "downloadCertificato?certificato=" + result.getPagamentoModel().getCertificatoPDF() + "\n"+
-                 "\n"+
-                 "Scarica la scheda informativa del progetto di compensazione che hai scelto: \n"+
-                 GWT.getModuleBaseURL() + "ImmaginiProgetti/"+result.getProgettoDiCompensazioneModel().getPdfUrl()+
-                 "\n\n"+
-                 "*La CO2 che viene presa in cosiderazione è CO2 equivalente (CO2eq), ovvero l'indice che rappresenta l'impatto in atmosfera di tutti i gas serra: quindi non solo il biossido di carbonio, ma anche il metano, i perfluorocarburi e l'ossido di diazoto.\n" +
-                 "\n" +
-                 "\n" +
-                 "Grazie e arrivederci!\n" +
-                 "-- \n" +
-                 "\n" +
-                 "AzzeroCO2 è una società di consulenza energetico-ambientale che offre ai suoi clienti la possibilità di ridurre le emissioni ottimizzando i costi di gestione e le risorse a disposizione. Per saperne di più visita il nostro sito: www.azzeroco2.it");
+        data.setBody("Ciao " + userInfoModel.getNome() + ",\n" +
+                "\n" +
+                "l'operazione di compensazione che hai richiesto è andata a buon fine.\n" +
+                "Di seguito il riepilogo dei dati: \n" +
+                "\n" +
+                "Nome: " + userInfoModel.getNome() + "\n" +
+                "Cognome: " + userInfoModel.getCognome() + "\n" +
+                "Società: " + userInfoModel.getRagioneSociale() + "\n" +
+                "Mail: " + userInfoModel.getEmail() + "\n" +
+                "Indirizzo: " + userInfoModel.getIndirizzo() + "\n" +
+                "CAP: " + userInfoModel.getCap() + "\n" +
+                "Città: " + userInfoModel.getCitta() + "\n" +
+                "Codice Fiscale: " + userInfoModel.getPivaCF() + "\n" +
+                "Partita IVA: " + userInfoModel.getPivaCF() + "\n" +
+                "\n" +
+                "Progetto: " + result.getProgettoDiCompensazioneModel().getNome() + "\n" +
+                "\n" +
+                "Totale kgCO2*: " + result.getPagamentoModel().getKgCO2() + "\n" +
+                "Crediti di emissione: " + result.getPagamentoModel().getKgCO2() / 1000 + "\n" +
+                "Euro: " + result.getPagamentoModel().getIMPORTO() + "\n" +
+                "\n" +
+                "Scarica tuo certificato di compensazione: \n" +
+                GWT.getModuleBaseURL() + "downloadCertificato?certificato=" + result.getPagamentoModel().getCertificatoPDF() + "\n" +
+                "\n" +
+                "Scarica la scheda informativa del progetto di compensazione che hai scelto: \n" +
+                GWT.getModuleBaseURL() + "ImmaginiProgetti/" + result.getProgettoDiCompensazioneModel().getPdfUrl() +
+                "\n\n" +
+                "*La CO2 che viene presa in cosiderazione è CO2 equivalente (CO2eq), ovvero l'indice che rappresenta l'impatto in atmosfera di tutti i gas serra: quindi non solo il biossido di carbonio, ma anche il metano, i perfluorocarburi e l'ossido di diazoto.\n" +
+                "\n" +
+                "\n" +
+                "Grazie e arrivederci!\n" +
+                "-- \n" +
+                "\n" +
+                "AzzeroCO2 è una società di consulenza energetico-ambientale che offre ai suoi clienti la possibilità di ridurre le emissioni ottimizzando i costi di gestione e le risorse a disposizione. Per saperne di più visita il nostro sito: www.azzeroco2.it");
 
         data.setFromUser("no-reply@azzeroco2.it");
         data.setSubject("Conferma ordine compensazione: " + userInfoModel.getRagioneSociale());
-        data.setToUser(Arrays.asList(userInfoModel.getEmail() ,"serena@mensagilis.it", "giovanni@mensagilis.com"));
+        data.setToUser(Arrays.asList(userInfoModel.getEmail(), "serena@mensagilis.it", "giovanni@mensagilis.it"));
 
         /**
          *  • marketing@azzeroco2.it

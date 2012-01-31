@@ -134,7 +134,7 @@ public class SitoWebView extends View {
             center2Data.setMargins(new Margins(0, 0, 0, 0));
             center.add(sitoWeb, center2Data);
 
-            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 33);
+            BorderLayoutData southData = new BorderLayoutData(Style.LayoutRegion.SOUTH, 30);
             southData.setMargins(new Margins(0, 0, 0, 0));
             center.add(south, southData);
         }

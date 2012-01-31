@@ -731,6 +731,7 @@ public class Utils {
 
     public static Email getEmail(EMailVTO e) {
         Email _return = new Email();
+
         _return.setBody(e.getBody());
         _return.setFromUser(e.getFromUser());
         _return.setSubject(e.getSubject());

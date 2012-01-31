@@ -7,7 +7,6 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
@@ -42,19 +41,9 @@ public class FormSitoWeb extends LayoutContainer {
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        BorderLayout layout = new BorderLayout();
-        setLayout(layout);
+        setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+        add(formPanel, new RowData(0.991, 0.965));
 
-        ContentPanel cp = new ContentPanel();
-        cp.setFrame(true);
-        cp.setHeaderVisible(false);
-        cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-
-        cp.add(formPanel, new RowData(.991, 1));
-
-
-        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        add(cp, centerData);
     }
 
 
