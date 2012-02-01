@@ -11,10 +11,7 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.RowData;
 import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
-import it.agilis.mens.azzeroCO2.client.forms.FormAcquisto;
-import it.agilis.mens.azzeroCO2.client.forms.FormConferma;
-import it.agilis.mens.azzeroCO2.client.forms.FormRiepilogo;
-import it.agilis.mens.azzeroCO2.client.forms.FormSitoWeb;
+import it.agilis.mens.azzeroCO2.client.forms.*;
 import it.agilis.mens.azzeroCO2.client.mvc.events.SitoWebEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
@@ -42,7 +39,7 @@ public class SitoWeb extends LayoutContainer {
     private OrdineModel ordineModel = new OrdineModel();
 
     private final TabPanel sitoWebTab = new TabPanel();
-    private FormSitoWeb sitoWebForm = new FormSitoWeb();
+    private FormSitoWebSolo sitoWebForm = new FormSitoWebSolo();
 
     private final FormRiepilogo formRiepilogo = new FormRiepilogo();
     private final FormAcquisto formAcquisto = new FormAcquisto();
