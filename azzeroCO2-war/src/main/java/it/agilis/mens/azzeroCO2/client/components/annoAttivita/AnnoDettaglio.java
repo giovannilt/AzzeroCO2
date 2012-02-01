@@ -92,7 +92,7 @@ public class AnnoDettaglio extends LayoutContainer {
 
         add(eventoTab, new RowData(1, 1));
 
-        posizioniText.add(Arrays.asList("", "Energia"));                                   // DETTAGLIO
+        posizioniText.add(Arrays.asList(".", "Energia"));                                   // DETTAGLIO
         posizioniText.add(Arrays.asList("Dettaglio", "Trasporto persone"));                 // ENERGIA
         posizioniText.add(Arrays.asList("Energia", "Pernottamenti"));                      // TRASPORTO PERSONE
         posizioniText.add(Arrays.asList("Trasporto persone", "Trasporto Merci"));          // Pernottamenti

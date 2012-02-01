@@ -82,7 +82,7 @@ public class ConoscoCO2 extends LayoutContainer {
         conoscoCO2Tab.add(conferma);
 
         add(conoscoCO2Tab, new RowData(1, 1));
-        posizioniText.add(Arrays.asList("", "Riepilogo"));                                   // DETTAGLIO
+        posizioniText.add(Arrays.asList(".", "Riepilogo"));                                   // DETTAGLIO
         posizioniText.add(Arrays.asList("Conosco la CO2", "Acquisto"));       // RIEPILOGO
         posizioniText.add(Arrays.asList("Riepilogo", "Vai al pagamento"));                         // ACQUISTO
         posizioniText.add(Arrays.asList("", "torna alla home"));                                  // CONFERMA

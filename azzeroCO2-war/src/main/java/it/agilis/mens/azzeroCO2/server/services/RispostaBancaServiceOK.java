@@ -55,7 +55,8 @@ public class RispostaBancaServiceOK extends HttpServlet {
             + "<table>";
 
     private static final String PAGE_BOTTOM = ""
-            + "</table>"
+            + "</table>" +
+            "< a href=\"javascript:window.opener='x';window.close();\">Close< /a>"
             + "</body>"
             + "</html>";
 
