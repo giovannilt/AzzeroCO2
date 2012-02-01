@@ -5,12 +5,12 @@ import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.*;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.MyInfo;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 
@@ -88,7 +88,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         TextField<String> nomeEvento = new TextField<String>();
         nomeEvento.setFieldLabel("Nome (*)");
         nomeEvento.setName("nome");
-        nomeEvento.setStyleAttribute("padding-bottom","20px");
+        nomeEvento.setStyleAttribute("padding-bottom", "20px");
 
         left.add(nomeEvento);
 
@@ -100,7 +100,7 @@ public class EventoFormDettaglio extends LayoutContainer {
             public void handleEvent(FieldEvent p_event) {
                 if (dataFine.getValue() != null && p_event.getValue() != null &&
                         dataFine.getValue().before((Date) p_event.getValue())) {
-                    Info.display("Info", "La data di fine non puà precedere la data di inizio dell'evento..");
+                    MyInfo.show("La data di fine non puà precedere la data di inizio dell'evento..");
                 }
 
                 // Window.alert("change: " + p_event.value);
@@ -109,7 +109,7 @@ public class EventoFormDettaglio extends LayoutContainer {
 
         dataInizio.setPropertyEditor(new DateTimePropertyEditor("dd.MM.yyyy"));
         dataInizio.setName("inizio");
-        dataInizio.setStyleAttribute("padding-bottom","20px");
+        dataInizio.setStyleAttribute("padding-bottom", "20px");
         left.add(dataInizio);
         //   dataInizio.set
 
@@ -133,7 +133,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         TextField<String> dove = new TextField<String>();
         dove.setFieldLabel("Dove");
         dove.setName("dove");
-        dove.setStyleAttribute("padding-bottom","20px");
+        dove.setStyleAttribute("padding-bottom", "20px");
         right.add(dove);
 
 
@@ -143,7 +143,7 @@ public class EventoFormDettaglio extends LayoutContainer {
             public void handleEvent(FieldEvent p_event) {
                 if (dataInizio.getValue() != null && p_event.getValue() != null &&
                         dataInizio.getValue().after((Date) p_event.getValue())) {
-                    Info.display("Info", "La data di fine non puà precedere la data di inizio dell'evento.");
+                    MyInfo.show("La data di fine non puà precedere la data di inizio dell'evento.");
                 }
             }
         });
@@ -151,8 +151,8 @@ public class EventoFormDettaglio extends LayoutContainer {
 
         right.add(dataFine);
 
-        left.setStyleAttribute("padding-top","20px");
-        right.setStyleAttribute("padding-top","20px");
+        left.setStyleAttribute("padding-top", "20px");
+        right.setStyleAttribute("padding-top", "20px");
 
         panel.add(left, new ColumnData(.5));
         panel.add(right, new ColumnData(.5));

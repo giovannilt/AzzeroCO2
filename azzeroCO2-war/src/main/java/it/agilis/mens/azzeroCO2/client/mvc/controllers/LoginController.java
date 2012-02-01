@@ -5,6 +5,7 @@ import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import it.agilis.mens.azzeroCO2.client.MyInfo;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.views.LoginView;
@@ -42,9 +43,9 @@ public class LoginController extends BaseController {
                 @Override
                 public void onSuccess(UserInfoModel result) {
                     if (result != null) {
-                        Info.display("Info", "Benvenuto " + result.getNome());
+                        MyInfo.show("Benvenuto " + result.getNome());
 
-                        if(loginView !=null){
+                        if (loginView != null) {
                             loginView.hide();
                         }
 
@@ -53,7 +54,7 @@ public class LoginController extends BaseController {
                         event.setData(result);
                         Dispatcher.forwardEvent(event);
                     } else {
-                        Info.display("Error", "Username o Password errati.");
+                        MyInfo.show("Error", "Username o Password errati.", 7000);
                     }
                 }
             };
@@ -61,13 +62,12 @@ public class LoginController extends BaseController {
         } else if (type == LoginEvents.LogOut) {
             AsyncCallback aCallback = new AsyncCallback() {
                 public void onFailure(Throwable caught) {
-                    Info.display("Error", "Errore impossibile connettersi al server");
+                    MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
                 }
 
                 @Override
                 public void onSuccess(Object result) {
-
-                    Info.display("LOGOUT", "LOGOUT");
+// MyInfo.show("LOGOUT", "LOGOUT");
                 }
             };
             getHustonService().disconnectUser(aCallback);

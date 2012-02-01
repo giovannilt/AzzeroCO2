@@ -8,7 +8,6 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.grid.*;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
@@ -16,6 +15,7 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.MyInfo;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
@@ -161,12 +161,12 @@ public class Ordini extends LayoutContainer {
                                     Dispatcher.forwardEvent(EventoEvents.LoadEvento, be.getSelectedItem());
                                     Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
                                     Dispatcher.forwardEvent(EventoEvents.ShowRiepilogo);
-                                    Info.display("Info", "Uploading Evento... " + be.getSelectedItem().getNome());
+                                    MyInfo.show("Uploading Evento... " + be.getSelectedItem().getNome());
                                 } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.ANNO_DI_ATTIVITA) {
                                     Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.LoadUnAnnoDiAttivita, be.getSelectedItem());
                                     Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.ANNO_DI_ATTIVITA);
                                     Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.ShowRiepilogo);
-                                    Info.display("Info", "Uploading Anno di Attivita'... " + be.getSelectedItem().getNome());
+                                    MyInfo.show("Uploading Anno di Attivita'... " + be.getSelectedItem().getNome());
                                 } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
                                 } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.CONOSCI_CO2) {
                                 } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.WEB) {

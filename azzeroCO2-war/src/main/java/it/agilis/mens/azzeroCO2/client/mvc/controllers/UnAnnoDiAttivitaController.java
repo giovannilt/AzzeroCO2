@@ -2,10 +2,10 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import it.agilis.mens.azzeroCO2.client.MyInfo;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.PagamentoSellaEvents;
@@ -95,7 +95,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
         } else if (event.getType().equals(AzzeroCO2Events.Init)) {
             AsyncCallback<List<TipoDiCartaModel>> tipoDiCartaCallBack = new AsyncCallback<List<TipoDiCartaModel>>() {
                 public void onFailure(Throwable caught) {
-                    Info.display("Error", "Errore impossibile connettersi al server");
+                    MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
                 }
 
                 @Override
@@ -147,7 +147,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
                             }
 
                         } catch (Exception e) {
-                            Info.display("ERROR", e.getMessage());
+                            MyInfo.show("ERROR", e.getMessage(), 7000);
                         }
                     } else {
                         importo = kgCO2 * model.getProgettoDiCompensazioneModel().getPrezzo();
@@ -162,7 +162,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
                         if (importo > 10.0) {
                             Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
                         } else {
-                            Info.display("Info", "Non e' possibile comperare ordini inferiori ai 10 euro");
+                            MyInfo.show("Non e' possibile comperare ordini inferiori ai 10 euro");
                         }
                     } else {
                         save(model);
@@ -170,7 +170,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
                     }
 
                 } else {
-                    Info.display("Info", "Seleziona il Progetto di compensazione");
+                    MyInfo.show("Seleziona il Progetto di compensazione");
                 }
             }
         } else if (event.getType().equals(UnAnnoDiAttivitaEvents.CaricaProgettiDiCompensazione)) {
@@ -211,11 +211,11 @@ public class UnAnnoDiAttivitaController extends BaseController {
 
     private void saveVTO(final OrdineVTO riepilogo) {
         if (riepilogo.getNome() == null || riepilogo.getNome().length() == 0) {
-            Info.display("Warning", "Nome Anno di attivà mancante");
+            MyInfo.show("Warning", "Nome Anno di attivà mancante", 7000);
         } else {
             AsyncCallback<OrdineVTO> dettaglio = new AsyncCallback<OrdineVTO>() {
                 public void onFailure(Throwable caught) {
-                    Info.display("Error", "Errore impossibile connettersi al server " + caught);
+                    MyInfo.show("Error", "Errore impossibile connettersi al server " + caught, 7000);
                 }
 
                 @Override
@@ -223,7 +223,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
                     if (result != null) {
                         OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         annoView.setDettaglioModel(model);
-                        Info.display("Info", "Anno di attivià " + riepilogo.getNome() + " salvato con successo.");
+                        MyInfo.show("Anno di attivià " + riepilogo.getNome() + " salvato con successo.");
                     }
                 }
             };
@@ -235,11 +235,11 @@ public class UnAnnoDiAttivitaController extends BaseController {
         if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
             setCoefficienti();
             if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
-                Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 001");
+                MyInfo.show("Error", "Errore impossibile recuperare i coefficenti dal server 001", 7000);
             }
         }
         if (getCoefficientiMAP() == null || getCoefficientiMAP().values().size() == 0) {
-            Info.display("Error", "Errore impossibile recuperare i coefficenti dal server 002");
+            MyInfo.show("Error", "Errore impossibile recuperare i coefficenti dal server 002", 7000);
         } else {
             annoView.riepilogo(getCoefficientiMAP());
         }
@@ -259,35 +259,35 @@ public class UnAnnoDiAttivitaController extends BaseController {
         private int numeroDiVolte = 12;
 
         public void onFailure(Throwable caught) {
-            Info.display("Error", "Errore impossibile connettersi al server " + caught);
+            MyInfo.show("Error", "Errore impossibile connettersi al server " + caught, 7000);
         }
 
         @Override
         public void onSuccess(OrdineVTO result) {
             if (result != null) {
                 if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGATO.toString())) {
-                    Info.display("Info", "Pagamento Avvenuto con sucesso");
+                    MyInfo.show("Pagamento Avvenuto con sucesso");
                     Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
                     annoView.showConferma(result);
                     sentMail(result);
                 } else {
                     if (numeroDiVolte > 0) {
-                        Info.display("Info", "Non Ancora pagato");
+                        MyInfo.show("Non Ancora pagato");
                         getTimer().schedule(10000);
                         numeroDiVolte--;
                     }
                     if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.ANNULLATO.toString())) {
-                        Info.display("Info", "La Banca ha rifiutato la transazione, il pagamento si ritiene annullato.");
+                        MyInfo.show("La Banca ha rifiutato la transazione, il pagamento si ritiene annullato.");
                         Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
                     } else {
-                        Info.display("Info", "Evento non pagato, atteso pagamento per piu' di 2 minuti, si consiglia di ricaricare ");
+                        MyInfo.show("Evento non pagato, atteso pagamento per piu' di 2 minuti, si consiglia di ricaricare ");
                         Dispatcher.forwardEvent(PagamentoSellaEvents.EnableButton);
                     }
                 }
                 OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                 annoView.setDettaglioModel(model);
             } else {
-                Info.display("Error", "Errore impossibile connettersi al server ERRORE DI SISTEMA");
+                MyInfo.show("Error", "Errore impossibile connettersi al server ERRORE DI SISTEMA", 7000);
             }
         }
 

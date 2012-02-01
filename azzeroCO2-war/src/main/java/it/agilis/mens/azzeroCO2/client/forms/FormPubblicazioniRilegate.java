@@ -7,7 +7,10 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.*;
+import com.extjs.gxt.ui.client.widget.BoxComponent;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.*;
@@ -16,6 +19,7 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
+import it.agilis.mens.azzeroCO2.client.MyInfo;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.PubblicazioniRilegateModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
@@ -65,7 +69,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
         Text testo = new Text(" Si tratta di gruppi di pagine riunite <br> in un volume. Seleziona un tipo di <br>pubblicazione.<br><br>");
         testo.setStyleAttribute("font-size", "9pt");
-        testo.setStyleAttribute("padding-top","20px");
+        testo.setStyleAttribute("padding-top", "20px");
 
         Text note = new Text(" Puoi inserire piu' di una pubblicazione ed aggiungere altre categorie. ");
         note.setStyleAttribute("font-size", "9pt");
@@ -178,7 +182,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 c.add(label);
                 c.add(altezza, flex);
                 c.add(new LabelField("altezza (cm)"), flex);
-                c.setStyleAttribute("padding-top","20px");
+                c.setStyleAttribute("padding-top", "20px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -197,7 +201,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 c.add(label);
                 c.add(larghezza, flex);
                 c.add(new LabelField("larghezza (cm)"), flex);
-                c.setStyleAttribute("padding-top","10px");
+                c.setStyleAttribute("padding-top", "10px");
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -222,7 +226,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(120);
                 c.add(label);
                 c.add(tipoDiCarta, flex);
-                c.setStyleAttribute("padding-top","10px");
+                c.setStyleAttribute("padding-top", "10px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -241,7 +245,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 c.add(label);
                 c.add(grammatura, flex);
                 c.add(new LabelField("grammatura"), flex);
-                c.setStyleAttribute("padding-top","10px");
+                c.setStyleAttribute("padding-top", "10px");
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -266,7 +270,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 c.add(label);
                 c.add(numeroDiPagine, flex);
                 c.add(new LabelField("numero di pagine"), flex);
-                c.setStyleAttribute("padding-top","10px");
+                c.setStyleAttribute("padding-top", "10px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -288,7 +292,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 c.add(label);
                 c.add(tiratura, flex);
                 c.add(new LabelField("tiratura"), flex);
-                c.setStyleAttribute("padding-top","10px");
+                c.setStyleAttribute("padding-top", "10px");
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -314,7 +318,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 label.setWidth(120);
                 c.add(label);
                 c.add(tipoDiCarta, flex);
-                c.setStyleAttribute("padding-top","10px");
+                c.setStyleAttribute("padding-top", "10px");
                 panel.add(c, new FormData("100%"));
             }
             {
@@ -333,7 +337,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                 c.add(label);
                 c.add(grammatura, flex);
                 c.add(new LabelField("grammatura copertina"), flex);
-                c.setStyleAttribute("padding-top","10px");
+                c.setStyleAttribute("padding-top", "10px");
                 panel.add(c, new FormData("100%"));
             }
         }
@@ -380,9 +384,9 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
                         if (pubblicazioniRilegateModel.getModels().size() == 1) {
-                            Info.display("Info", "<ul><li>Impossibile Eliminare tutte le categorie </li></ul>");
+                            MyInfo.show("<ul><li>Impossibile Eliminare tutte le categorie </li></ul>");
                         } else {
-                            Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
+                            MyInfo.show("<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
                             formBindings.unbind();
                             panel.setHeading("Aggiungi una Categoria o Personalizza quelle esistenti");
                             pubblicazioniRilegateModel.remove(model);

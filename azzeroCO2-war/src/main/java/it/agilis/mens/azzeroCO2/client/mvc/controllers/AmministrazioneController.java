@@ -2,8 +2,8 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
 import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import it.agilis.mens.azzeroCO2.client.MyInfo;
 import it.agilis.mens.azzeroCO2.client.components.OrdineCompensatoDialog;
 import it.agilis.mens.azzeroCO2.client.components.uploadFiles.model.Model;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
@@ -60,12 +60,12 @@ public class AmministrazioneController extends BaseController {
             HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
             AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
                 public void onFailure(Throwable caught) {
-                    Info.display("Error", "Errore impossibile connettersi al server");
+                    MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
                 }
 
                 @Override
                 public void onSuccess(Boolean result) {
-                    Info.display("Info", "Coefficienti Salvati");
+                    MyInfo.show("Coefficienti Salvati");
                 }
             };
             hustonService.saveCoefficienti(coefficienteModels, aCallback);
@@ -76,12 +76,12 @@ public class AmministrazioneController extends BaseController {
                 HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
                 AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
                     public void onFailure(Throwable caught) {
-                        Info.display("Error", "Errore impossibile connettersi al server");
+                        MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
                     }
 
                     @Override
                     public void onSuccess(Boolean result) {
-                        Info.display("Info", "ProgettiDiCompensazione Salvati");
+                        MyInfo.show("ProgettiDiCompensazione Salvati");
                         getProgettiDiCompensazione();
                     }
                 };
@@ -95,12 +95,12 @@ public class AmministrazioneController extends BaseController {
                 HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
                 AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
                     public void onFailure(Throwable caught) {
-                        Info.display("Error", "Errore impossibile connettersi al server");
+                        MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
                     }
 
                     @Override
                     public void onSuccess(Boolean result) {
-                        Info.display("Info", "ProgettiDiCompensazione Salvati");
+                        MyInfo.show("ProgettiDiCompensazione Salvati");
                     }
                 };
                 hustonService.saveProgettiDiCompensazione(progettoDiCompensazioneModels, aCallback);
@@ -110,12 +110,12 @@ public class AmministrazioneController extends BaseController {
             HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
             AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
                 public void onFailure(Throwable caught) {
-                    Info.display("Error", "Errore impossibile connettersi al server");
+                    MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
                 }
 
                 @Override
                 public void onSuccess(Boolean result) {
-                    Info.display("Info", "Coupons Salvati");
+                    MyInfo.show("Coupons Salvati");
                 }
             };
             hustonService.saveCoupons(coupons, aCallback);
@@ -142,7 +142,7 @@ public class AmministrazioneController extends BaseController {
         HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
         AsyncCallback<List<OrdineModel>> aCallback = new AsyncCallback<List<OrdineModel>>() {
             public void onFailure(Throwable caught) {
-                Info.display("Error", "Errore impossibile connettersi al server");
+                MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
             }
 
             @Override
@@ -157,7 +157,7 @@ public class AmministrazioneController extends BaseController {
         HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
         AsyncCallback<Map<String, CoefficienteModel>> aCallback = new AsyncCallback<Map<String, CoefficienteModel>>() {
             public void onFailure(Throwable caught) {
-                Info.display("Error", "Errore impossibile connettersi al server");
+                MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
             }
 
             @Override
@@ -172,7 +172,7 @@ public class AmministrazioneController extends BaseController {
         HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
         AsyncCallback<List<CouponModel>> aCallback = new AsyncCallback<List<CouponModel>>() {
             public void onFailure(Throwable caught) {
-                Info.display("Error", "Errore impossibile connettersi al server");
+                MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
             }
 
             @Override
@@ -187,7 +187,7 @@ public class AmministrazioneController extends BaseController {
         HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
         AsyncCallback<List<ProgettoDiCompensazioneModel>> aCallback = new AsyncCallback<List<ProgettoDiCompensazioneModel>>() {
             public void onFailure(Throwable caught) {
-                Info.display("Error", "Errore impossibile connettersi al server");
+                MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
             }
 
             @Override
