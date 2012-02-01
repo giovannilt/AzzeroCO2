@@ -64,7 +64,8 @@ public class RispostaBancaServiceKO extends HttpServlet {
             + "<table>";
 
     private static final String PAGE_BOTTOM = ""
-            + "</table>"
+            + "</table>" +
+            "< a href=\"javascript:window.opener='x';window.close();\">Close< /a>"
             + "</body>"
             + "</html>";
 
@@ -90,7 +91,7 @@ public class RispostaBancaServiceKO extends HttpServlet {
         String IMPORTO = request.getParameter("IMPORTO");          //
         String DIVISA = request.getParameter("DIVISA");           //(nel nostro caso "EUR")
         String MAC = request.getParameter("MAC");                //(codice di controllo da usare tra poco)
-       // String PROG_ID = request.getParameter("PROG_ID");       //(il codice dell'oggetto, nel nostro esempio mi pare "pagamentoCalcolatore"
+        // String PROG_ID = request.getParameter("PROG_ID");       //(il codice dell'oggetto, nel nostro esempio mi pare "pagamentoCalcolatore"
 
         SellaRicevutaDiPagamentoCriteria criteria = new SellaRicevutaDiPagamentoCriteria();
         criteria.setOrderId(ORDER_ID);
@@ -109,9 +110,9 @@ public class RispostaBancaServiceKO extends HttpServlet {
 
                 if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toUpperCase())) {
                */
-                String theMd5= AzzerroCO2UtilsClientHelper.getMAC_MD5((TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key).toUpperCase() );
+                String theMd5 = AzzerroCO2UtilsClientHelper.getMAC_MD5((TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key).toUpperCase());
 
-                if(theMd5.equalsIgnoreCase(MAC)){
+                if (theMd5.equalsIgnoreCase(MAC)) {
                     ricevuta.setEsito(Esito.PAGAMENTO_NON_AVVENUTO);
                     azzeroCO2Register.saveRicevuta(ricevuta);
                 } else {
