@@ -366,7 +366,7 @@ public class CentralView extends View {
                 compensazione.add(azzeroCO2Stemp, new VBoxLayoutData(new Margins(0, 0, 0, 0)));
                 c.add(compensazione, new RowData(1, 0.7, new Margins(1, 1, 1, 1)));
             }
-            east.setStyleAttribute("padding-top","1px");
+            east.setStyleAttribute("padding-top","3px");
             east.add(c, new FlowData(0));
         }
         _return.setTitle(Eventi.MAIN.name());

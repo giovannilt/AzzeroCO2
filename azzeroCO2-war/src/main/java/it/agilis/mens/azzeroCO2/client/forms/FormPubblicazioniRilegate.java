@@ -82,7 +82,7 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-        cp.add(cpEst, new RowData(.35, .95));
+        cp.add(cpEst, new RowData(.35, .946));
         cp.add(panel, new RowData(.642, 0.96));
         panel.setHeading(pubblicazioniRilegateModel.getModels().get(0).getCategoria());
 
