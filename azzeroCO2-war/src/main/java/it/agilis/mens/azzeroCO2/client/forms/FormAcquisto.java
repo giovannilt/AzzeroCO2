@@ -122,7 +122,7 @@ public class FormAcquisto extends LayoutContainer {
         //east.getHeader().addTool(new ToolButton("x-tool-refresh"));
         westData.setMargins(new Margins(0));
         //east.setAutoHeight(true)
-        east.setHeight(560);//DIM
+        east.setHeight(551);//DIM
         add(east, westData);
 
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
@@ -144,9 +144,8 @@ public class FormAcquisto extends LayoutContainer {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
         panel.setHeaderVisible(false);
-        panel.setSize(290, 512);  //300,-1 sd
-        panel.setStyleAttribute("border-bottom", "solid");
-        panel.setStyleAttribute("border-bottom-color", "#f8b333");
+        panel.setSize(290, 518);  //300,-1 sd
+        panel.setStyleAttribute("border-bottom", "3px solid #f8b333");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
         final TextField<String> coupon = new TextField<String>();
 
@@ -492,11 +491,11 @@ public class FormAcquisto extends LayoutContainer {
         centre.getBody().setStyleAttribute("border-width", "3px 0");
         centre.getBody().setStyleAttribute("margin", "0");
 
-        east.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
-        east.getBody().setStyleAttribute("border-style", "solid");
+        //east.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
+        //east.getBody().setStyleAttribute("border-style", "solid");
         east.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
-        east.getBody().setStyleAttribute("border-width", "3px 0");
-        east.getBody().setStyleAttribute("margin-bottom", "0");
+        //east.getBody().setStyleAttribute("border-width", "3px 0");
+        //east.getBody().setStyleAttribute("margin-bottom", "0");
     }
 
     public void setCouponModel(CouponModel coupon) {
