@@ -170,7 +170,7 @@ public class AnnoWest extends LayoutContainer {
 
     public void setTitle(OrdineModel riepilogo) {
         if (riepilogo != null) {
-            String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Un Anno di Attività";
+            String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Un anno di attività";
             String dove = riepilogo.getDove() != null ? riepilogo.getDove() : "";
 
             if (riepilogo.getInizio() != null

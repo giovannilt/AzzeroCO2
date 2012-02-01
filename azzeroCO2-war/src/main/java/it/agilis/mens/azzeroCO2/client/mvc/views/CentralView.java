@@ -126,7 +126,7 @@ public class CentralView extends View {
             unEvento.setSize(351, 332); //(319, 300);
             //   layoutData.setFlex(1);
             c.add(unEvento, layoutData);
-            Button unAnno = new Button("Un Anno Di attivita'");
+            Button unAnno = new Button("Un anno di attività");
             unAnno.setIcon(AbstractImagePrototype.create(AzzeroCO2Resources.INSTANCE.unAnnoDiAttivita()));
             unAnno.setIconAlign(Style.IconAlign.TOP);
 
