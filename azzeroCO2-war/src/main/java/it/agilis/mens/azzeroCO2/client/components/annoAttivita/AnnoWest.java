@@ -20,7 +20,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
-import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
+import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
@@ -57,7 +57,7 @@ public class AnnoWest extends LayoutContainer {
         super.onRender(target, index);
 
         VBoxLayout layout = new VBoxLayout();
-        layout.setPadding(new Padding(5,0,0,0));
+        layout.setPadding(new Padding(5, 0, 0, 0));
         layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.CENTER);
         setLayout(layout);
 
@@ -84,8 +84,8 @@ public class AnnoWest extends LayoutContainer {
         //panel.setStyleAttribute("backgroundColor", "#E9E9E9");
         panel.setStyleAttribute("background-Color", "#d9dadb");
         panel.setHeight(300);
-        panel.setStyleAttribute("border-top","none");
-        panel.setStyleAttribute("border-top-color","#d9dadb !important");
+        panel.setStyleAttribute("border-top", "none");
+        panel.setStyleAttribute("border-top-color", "#d9dadb !important");
         panel.setShadow(true);
         add(panel, flex);
     }
@@ -142,7 +142,7 @@ public class AnnoWest extends LayoutContainer {
                     public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
                         if (be.getSelection().size() > 0) {
                             if (!Esito.PAGATO.equals(esito)) {
-                                Dispatcher.forwardEvent(EventoEvents.ShowStep, be.getSelectedItem());
+                                Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.ShowStep, be.getSelectedItem());
                             }
                         }
                     }
