@@ -40,15 +40,15 @@ public class AmministrazioneNorth extends LayoutContainer {
         flex.setFlex(1);
         c.add(new Text(), flex);
 
-      /*  ToolButton save = new ToolButton("x-tool-save");
-        save.addSelectionListener(new SelectionListener<IconButtonEvent>() {
-            @Override
-            public void componentSelected(IconButtonEvent ce) {
-                Dispatcher.forwardEvent(EventoEvents.Save, "Save");
-                Info.display("Info", "Amministrazione salvata");
-            }
-        });
-        c.add(save, new HBoxLayoutData(new Margins(0, 5, 0, 0)));*/
+        /*  ToolButton save = new ToolButton("x-tool-save");
+  save.addSelectionListener(new SelectionListener<IconButtonEvent>() {
+      @Override
+      public void componentSelected(IconButtonEvent ce) {
+          Dispatcher.forwardEvent(EventoEvents.Save, "Save");
+          Info.display("Amministrazione salvata");
+      }
+  });
+  c.add(save, new HBoxLayoutData(new Margins(0, 5, 0, 0)));*/
 
         ToolButton close = new ToolButton("x-tool-close");
 

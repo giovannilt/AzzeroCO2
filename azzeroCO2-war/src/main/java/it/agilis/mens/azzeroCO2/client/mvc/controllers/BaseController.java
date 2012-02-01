@@ -2,10 +2,10 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
 import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.mvc.Controller;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import it.agilis.mens.azzeroCO2.client.MyInfo;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
 import it.agilis.mens.azzeroCO2.shared.EMailVTO;
@@ -53,7 +53,7 @@ public abstract class BaseController extends Controller {
     public void setCoefficienti() {
         AsyncCallback<Map<String, CoefficienteModel>> aCallback = new AsyncCallback<Map<String, CoefficienteModel>>() {
             public void onFailure(Throwable caught) {
-                Info.display("Error", "Errore impossibile connettersi al server");
+                MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
             }
 
             @Override
@@ -68,7 +68,7 @@ public abstract class BaseController extends Controller {
     public void setProgettiDiCompensazione() {
         AsyncCallback<List<ProgettoDiCompensazioneModel>> aCallback = new AsyncCallback<List<ProgettoDiCompensazioneModel>>() {
             public void onFailure(Throwable caught) {
-                Info.display("Error", "Errore impossibile connettersi al server");
+                MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
             }
 
             @Override
@@ -83,7 +83,7 @@ public abstract class BaseController extends Controller {
     public void setInfo() {
         AsyncCallback<GitRepositoryStateModel> aCallback = new AsyncCallback<GitRepositoryStateModel>() {
             public void onFailure(Throwable caught) {
-                Info.display("Error", "Errore impossibile connettersi al server");
+                MyInfo.show("Error", "Errore impossibile connettersi al server", 7000);
             }
 
             @Override
@@ -165,12 +165,12 @@ public abstract class BaseController extends Controller {
 
         AsyncCallback<Void> aCallback = new AsyncCallback<Void>() {
             public void onFailure(Throwable caught) {
-                Info.display("Error", "Errore impossibile connettersi al server.");
+                MyInfo.show("Error", "Errore impossibile connettersi al server.", 7000);
             }
 
             @Override
             public void onSuccess(Void aVoid) {
-                Info.display("Info", "Email Inviata Con successo.");
+                MyInfo.show("Email Inviata Con successo.");
             }
         };
         hustonService.sentMail(data, aCallback);

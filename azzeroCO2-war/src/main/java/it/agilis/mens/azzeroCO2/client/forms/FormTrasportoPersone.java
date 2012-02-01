@@ -9,7 +9,10 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.util.Margins;
 import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.*;
+import com.extjs.gxt.ui.client.widget.BoxComponent;
+import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
@@ -23,6 +26,7 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Image;
 import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
+import it.agilis.mens.azzeroCO2.client.MyInfo;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TrasportoPersoneModel;
 
@@ -75,7 +79,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         textContent.add(textContent, new RowData(1, 1, new Margins(2, 2, 2, 2)));
 
         Text testo = new Text(" Scegli 'Tutte le persone' per calcolare le emissioni di tutte le persone che si sono spostate per l'evento.<br><br>Se invece vuoi dettagliare i trasporti per categoria di persone usa le altre categorie disponibili o creane di nuove.");
-        testo.setStyleAttribute("padding-top","20px");
+        testo.setStyleAttribute("padding-top", "20px");
         testo.setStyleAttribute("font-size", "9pt");
         textContent.add(testo);
 
@@ -196,7 +200,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             km60.setLayout(layoutRigaKm60);
 
             km60.add(new LabelField("Distanza percorsa: provinciale"), flex);
-            km60.setStyleAttribute("padding-top","10px");
+            km60.setStyleAttribute("padding-top", "10px");
             formPanel.add(km60);
 
             LayoutContainer km60input = new LayoutContainer();
@@ -260,7 +264,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             layoutRigaKm300.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km300.setLayout(layoutRigaKm300);
             km300.add(new LabelField("Distanza percorsa: regionale"), flex);
-            km300.setStyleAttribute("padding-top","20px");
+            km300.setStyleAttribute("padding-top", "20px");
             formPanel.add(km300);
 
             LayoutContainer km300input = new LayoutContainer();
@@ -325,7 +329,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             layoutRigaKm1000.setPadding(new Padding(2));
             layoutRigaKm1000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km1000.setLayout(layoutRigaKm1000);
-            km1000.setStyleAttribute("padding-top","20px");
+            km1000.setStyleAttribute("padding-top", "20px");
             km1000.add(new LabelField("Distanza percorsa: nazionale"), flex);
 
             formPanel.add(km1000);
@@ -385,7 +389,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             km3000.setLayout(layoutRigaKm3000);
 
             km3000.add(new LabelField("Distanza percorsa: europea"), flex);
-            km3000.setStyleAttribute("padding-top","20px");
+            km3000.setStyleAttribute("padding-top", "20px");
             formPanel.add(km3000);
 
             LayoutContainer km3000input = new LayoutContainer();
@@ -445,7 +449,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             km9000.setLayout(layoutRigaKm9000);
 
             km9000.add(new LabelField("Distanza percorsa: extra europea"), flex);
-            km9000.setStyleAttribute("padding-top","20px");
+            km9000.setStyleAttribute("padding-top", "20px");
             formPanel.add(km9000);
 
             LayoutContainer km9000input = new LayoutContainer();
@@ -510,9 +514,9 @@ public class FormTrasportoPersone extends LayoutContainer {
                     @Override
                     public void componentSelected(IconButtonEvent ce) {
                         if (trasportoPersoneModel.getModels().size() == 1) {
-                            Info.display("Info", "<ul><li>Impossibile Eliminare tutte le categorie </li></ul>");
+                            MyInfo.show("<ul><li>Impossibile Eliminare tutte le categorie </li></ul>");
                         } else {
-                            Info.display("Info", "<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
+                            MyInfo.show("<ul><li>Eliminata: " + model.getCategoria() + "</li></ul>");
                             formBindings.unbind();
                             panel.setHeading("Aggiungi una Categoria o Personalizza quelle esistenti");
                             trasportoPersoneModel.remove(model);

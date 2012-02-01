@@ -49,13 +49,13 @@ public class PopupBlockerController {
         } else {
             $wnd.popUpsBlocked = false;
         }
-        if ($wnd.testPopup) $wnd.testPopup.close();
+        //    if ($wnd.testPopup) $wnd.testPopup.close();
     }-*/;
 
 
     private static native void checkTestPopup() /*-{
         if ($wnd.testPopup) {
-            if ($wnd.testPopup.test()) {
+            if ($wnd.testPopup.test) {
                 $wnd.popUpsBlocked = false;
             } else {
                 $wnd.popUpsBlocked = true;

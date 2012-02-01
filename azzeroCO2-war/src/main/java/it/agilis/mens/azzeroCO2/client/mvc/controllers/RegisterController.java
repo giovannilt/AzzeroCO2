@@ -2,8 +2,8 @@ package it.agilis.mens.azzeroCO2.client.mvc.controllers;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
-import com.extjs.gxt.ui.client.widget.Info;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import it.agilis.mens.azzeroCO2.client.MyInfo;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.events.LoginEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.RegisterEvents;
@@ -38,16 +38,16 @@ public class RegisterController extends BaseController {
         } else if (event.getType().equals(RegisterEvents.SaveUserInfo)) {
             AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
                 public void onFailure(Throwable caught) {
-                    Info.display("Error", "Errore nella creazione dell'utente");
+                    MyInfo.show("Error", "Errore nella creazione dell'utente", 7000);
                 }
 
                 @Override
                 public void onSuccess(Boolean result) {
                     if (result) {
-                        Info.display("Info", "Username salvato.");
+                        MyInfo.show("Username salvato.");
 
                     } else {
-                        Info.display("Error", "Errore nel salvataggio.");
+                        MyInfo.show("Error", "Errore nel salvataggio.", 7000);
                     }
                 }
             };
@@ -57,22 +57,22 @@ public class RegisterController extends BaseController {
         } else if (event.getType().equals(RegisterEvents.DoRegistration)) {
             AsyncCallback<UserInfoModel> aCallback = new AsyncCallback<UserInfoModel>() {
                 public void onFailure(Throwable caught) {
-                    Info.display("Error", "Errore nella creazione dell'utente");
+                    MyInfo.show("Error", "Errore nella creazione dell'utente", 7000);
                 }
 
                 @Override
                 public void onSuccess(UserInfoModel result) {
-                    if (result!=null) {
+                    if (result != null) {
                         Dispatcher.forwardEvent(RegisterEvents.HideForm);
                         Dispatcher.forwardEvent(LoginEvents.ShowLogOut);
-                        Info.display("Info", "Utente Creato con sucesso");
+                        MyInfo.show("Utente Creato con sucesso");
                         view.hideStatus();
 
                         AppEvent event = new AppEvent(AzzeroCO2Events.LoggedIn);
                         event.setData(result);
                         Dispatcher.forwardEvent(event);
                     } else {
-                        Info.display("Error", "Username gia' registrato.");
+                        MyInfo.show("Error", "Username gia' registrato.", 7000);
                         view.hideStatus();
                     }
                 }
