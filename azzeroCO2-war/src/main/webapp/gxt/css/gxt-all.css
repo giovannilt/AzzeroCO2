@@ -1742,7 +1742,7 @@ fieldset.x-panel-collapsed .x-fieldset-bwrap {
 
 .x-btn button {
     border: 0 none;
-    background: transparent;
+    background-color: #555557;
     padding-left: 3px;
     padding-right: 3px;
     cursor: pointer;
@@ -1799,6 +1799,7 @@ fieldset.x-panel-collapsed .x-fieldset-bwrap {
 .x-btn-icon .x-btn-text {
     background-position: center;
     background-repeat: no-repeat;
+    background-color: #555557;
 }
 
 .x-btn-icon .x-btn-small .x-btn-text {
