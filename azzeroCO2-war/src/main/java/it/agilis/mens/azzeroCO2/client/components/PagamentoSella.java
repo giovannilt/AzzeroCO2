@@ -66,7 +66,7 @@ public class PagamentoSella extends Dialog {
         submit.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
                 if (PopupBlockerController.isPopupBlocked()) {
-                    Window.alert("Per procedere con il pagamento sbloccare il blocco popUp");
+                    Window.alert("Per procedere con il pagamento sbloccare il blocco pop-up");
                 } else {
                     form.submit();
                     if (Eventi.valueOf(ordineModel.getEventiType()) == Eventi.EVENTO) {
