@@ -216,7 +216,7 @@ public class CalcoliHelper {
             _rm.setEventi(e.name());
             double co2 = 0;
 
-            _rm.setOggetto("Biglietti Da Visita e ");
+            _rm.setOggetto("Biglietti da visita e cartelline");
 
             String materiale = "";
 
@@ -248,7 +248,7 @@ public class CalcoliHelper {
             _rm.setEventi(e.name());
 
             double co2 = 0;
-            _rm.setOggetto("Biglietti Da Visita e ");
+            _rm.setOggetto("Biglietti da visita e cartelline");
 
             String materiale = "";
 

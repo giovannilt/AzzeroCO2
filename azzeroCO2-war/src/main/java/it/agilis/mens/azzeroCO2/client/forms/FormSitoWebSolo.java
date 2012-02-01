@@ -42,7 +42,7 @@ public class FormSitoWebSolo extends LayoutContainer {
         super.onRender(parent, index);
 
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-        add(formPanel, new RowData(0.991, 0.98));
+        add(formPanel, new RowData(0.981, 0.977));
 
     }
 

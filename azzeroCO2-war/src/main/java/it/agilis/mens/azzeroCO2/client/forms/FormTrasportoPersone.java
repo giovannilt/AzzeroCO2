@@ -95,7 +95,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
         cp.add(cpEst, new RowData(.35, .947));     //DIM
-        cp.add(panel, new RowData(.642, 0.96));     //DIM
+        cp.add(panel, new RowData(.64, 0.96));     //DIM
 
         cp.add(cpCentre, new RowData(.65, 1));
 
