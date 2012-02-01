@@ -42,7 +42,7 @@ public class FormSitoWeb extends LayoutContainer {
         super.onRender(parent, index);
 
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-        add(formPanel, new RowData(0.991, 0.965));
+        add(formPanel, new RowData(0.991, 0.95));
 
     }
 
