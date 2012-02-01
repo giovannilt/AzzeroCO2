@@ -65,7 +65,6 @@ public class PagamentoSella extends Dialog {
         submit = new Button("Continua");
         submit.addSelectionListener(new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent ce) {
-                PopupBlockerController.detect();
                 if (PopupBlockerController.isPopupBlocked()) {
                     Window.alert("Per procedere con il pagamento sbloccare il blocco popUp");
                 } else {
@@ -88,7 +87,7 @@ public class PagamentoSella extends Dialog {
                     }
                     submit.disable();
                 }
-
+                PopupBlockerController.detect();
             }
         });
         addButton(submit);
