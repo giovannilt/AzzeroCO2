@@ -124,7 +124,7 @@ public class FormAcquisto extends LayoutContainer {
         centre.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
         centre.add(grid, new RowData(1, 1));
         centre.setHeading("Progetti di compensazione");
-        centre.setHeight(544); //DIM
+        centre.setHeight(541); //DIM
         //east.setHeight(23);
         centre.setStyleAttribute("background-color", "#555557");
         east.setStyleAttribute("background-color", "#555557");
@@ -140,7 +140,7 @@ public class FormAcquisto extends LayoutContainer {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
         panel.setHeaderVisible(false);
-        panel.setSize(290, 516);  //300,-1 sd
+        panel.setSize(290, 512);  //300,-1 sd
         panel.setStyleAttribute("border-bottom", "solid");
         panel.setStyleAttribute("border-bottom-color", "#f8b333");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);

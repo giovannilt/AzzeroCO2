@@ -46,7 +46,7 @@ public class EventoFormDettaglio extends LayoutContainer {
         cp.setFrame(true);
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-        cp.add(formPanel, new RowData(0.99, 1));
+        cp.add(formPanel, new RowData(0.99, .991));
 
         BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
         add(cp, centerData);
