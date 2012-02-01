@@ -47,7 +47,7 @@ public class ConoscoCO2South extends LayoutContainer {
     protected void onRender(Element target, int index) {
         super.onRender(target, index);
 
-        layout.setPadding(new Padding(2,17,1,10)); //DIM
+        layout.setPadding(new Padding(2, 17, 1, 10)); //DIM
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c.setLayout(layout);
         c.setBorders(false);
@@ -75,7 +75,7 @@ public class ConoscoCO2South extends LayoutContainer {
         leftContainer.add(left, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
         leftContainer.add(leftText, new HBoxLayoutData(new Margins(0, 0, 0, 0)));
 
-        HBoxLayoutData flex =  new HBoxLayoutData(new Margins(-14, 0, 0, 0));
+        HBoxLayoutData flex = new HBoxLayoutData(new Margins(-14, 0, 0, 0));
         flex.setFlex(1);
         c.add(leftContainer, flex);
 
@@ -119,7 +119,7 @@ public class ConoscoCO2South extends LayoutContainer {
             leftContainer.setVisible(false);
             left.setVisible(false);
         } else {
-            if (left_t.length() == 0) {
+            if (left_t.length() == 0 || left_t.equalsIgnoreCase(".")) {
                 leftContainer.setVisible(false);
                 left.setVisible(false);
             } else {
