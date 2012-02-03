@@ -172,15 +172,11 @@ public class AnnoWest extends LayoutContainer {
         if (riepilogo != null) {
             String nome = riepilogo.getNome() != null ? riepilogo.getNome() : "Un anno di attività";
             String dove = riepilogo.getDove() != null ? riepilogo.getDove() : "";
+            String anno=riepilogo.getAnno() != null ? riepilogo.getAnno() :"";
 
-            if (riepilogo.getInizio() != null
-                    && riepilogo.getFine() != null) {
-                String dal = "<br>dal " + dateFormat.format(riepilogo.getInizio());
-                String a = " al " + dateFormat.format(riepilogo.getFine());
-                this.title.setText(nome + "<br>" + dove + dal + a);
-            } else {
-                this.title.setText(nome + "<br>" + dove);
-            }
+
+            this.title.setText(nome +"<br>"+ "anno: "+anno+ "<br>" + dove);
+
         }
     }
 
