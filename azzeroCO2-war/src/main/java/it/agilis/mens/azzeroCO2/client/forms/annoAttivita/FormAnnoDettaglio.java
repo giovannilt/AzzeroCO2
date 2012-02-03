@@ -91,7 +91,7 @@ public class FormAnnoDettaglio extends LayoutContainer {
         LabelField widget = new LabelField("Inserisci i dettagli dell'attività");
         widget.setStyleAttribute("font-weight", "bolder");
         widget.setStyleAttribute("padding-top","20px");
-        widget.setStyleAttribute("padding-bottom","20px");
+        //widget.setStyleAttribute("padding-bottom","20px");
         widget.setStyleAttribute("padding-left","15px");
         formPanel.add(widget);
 
@@ -99,8 +99,8 @@ public class FormAnnoDettaglio extends LayoutContainer {
         nomeEvento.setFieldLabel("Nome dell'attività");
         nomeEvento.setLabelStyle("width:150px");
 
-        nomeEvento.setStyleAttribute("padding-bottom", "20px");
         nomeEvento.setName("nome");
+        nomeEvento.setStyleAttribute("padding-bottom", "20px");
 
         left.add(nomeEvento);
 
@@ -108,16 +108,17 @@ public class FormAnnoDettaglio extends LayoutContainer {
         anno.setFieldLabel("Anno");
         anno.setLabelStyle("width:150px");
 
-        anno.setStyleAttribute("padding-bottom", "20px");
         anno.setName("anno");
+        anno.setStyleAttribute("padding-bottom", "20px");
         left.add(anno);
 
         TextField<String> dove = new TextField<String>();
         dove.setFieldLabel("Dove");
         dove.setLabelStyle("width:150px");
 
-        dove.setStyleAttribute("padding-bottom", "20px");
         dove.setName("dove");
+        dove.setStyleAttribute("padding-bottom", "20px");
+
         left.add(dove);
 
         TextArea note = new TextArea();
