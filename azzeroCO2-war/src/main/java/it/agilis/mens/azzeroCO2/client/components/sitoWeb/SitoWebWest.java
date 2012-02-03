@@ -76,7 +76,7 @@ public class SitoWebWest extends LayoutContainer {
         title.setStyleAttribute("color", "black");
         title.setStyleAttribute("font-family", "arial");
         title.setStyleAttribute("text-align", "center");
-        title.setStyleAttribute("vertical-align ", "middle");
+        title.setStyleAttribute("vertical-align", "middle");
         title.setWidth(215);
         title.setHeight(70);
         title.setStyleAttribute("font-size", "14px");
@@ -85,7 +85,7 @@ public class SitoWebWest extends LayoutContainer {
         panel.setStyleAttribute("background-Color", "#d9dadb");
         panel.setHeight(300);
         panel.setStyleAttribute("border-top","none");
-        panel.setStyleAttribute("border-top-color","#d9dadb !important");
+     //   panel.setStyleAttribute("border-top-color","#d9dadb !important");
         panel.setShadow(true);
         add(panel, flex);
 
