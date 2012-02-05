@@ -16,6 +16,8 @@ import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.layout.*;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.Image;
+import it.agilis.mens.azzeroCO2.client.AzzeroCO2Resources;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.EnergiaModel;
 
@@ -30,11 +32,11 @@ public class FormEnergia extends LayoutContainer {
 
     private EnergiaModel energiaModel = new EnergiaModel();
     private FormBinding binding = null;
-    private FormPanel formPanel;
+    private FormPanel panel;
 
     public FormEnergia() {
-        formPanel = createForm();
-        binding = new FormBinding(formPanel, true);
+        panel=createForm();
+        binding = new FormBinding(panel, true);
         binding.bind(energiaModel);
     }
 
@@ -49,23 +51,9 @@ public class FormEnergia extends LayoutContainer {
         cp.setFrame(true);
         cp.setHeaderVisible(false);
         cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-        cp.add(formPanel, new RowData(.99, 0.96));
 
-
-        //  cp.setStyleAttribute("padding0 10px;
-
-        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        add(cp, centerData);
-    }
-
-
-    private FormPanel createForm() {
-        FormPanel panel = new FormPanel();
-        panel.setFrame(true);
 
         panel.setHeading("Energia");
-        panel.setLabelAlign(LabelAlign.LEFT);
-
         ToolButton tool1 = new ToolButton("x-tool-help");
         panel.getHeader().addTool(tool1);
         tool1.addSelectionListener(new SelectionListener<IconButtonEvent>() {
@@ -83,53 +71,78 @@ public class FormEnergia extends LayoutContainer {
             }
         });
 
-        //     HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
+
+        cp.add(panel, new RowData(.99, 0.96));  //DIM
+
+        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
+        add(cp, centerData);
+    }
+
+    private FormPanel createForm() {
+        FormPanel panel = new FormPanel();
+        panel.setFrame(true);
+        panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
+
+        HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
         LayoutContainer c2 = new LayoutContainer();
         HBoxLayout layout2 = new HBoxLayout();
-        layout2.setPadding(new Padding(10));
-        layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+        layout2.setPadding(new Padding(2));
+        layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c2.setLayout(layout2);
 
-        LabelField widget = new LabelField("Inserisci nei relativi campi la quantità di energia utilizzata per realizzare l'evento.");
-        widget.setStyleAttribute("font-weight", "bolder");
+        LabelField istruzione = new LabelField("Inserisci nei relativi campi la quantità di energia utilizzata per realizzare l'evento.");
+        //LabelField note =new LabelField("Il trasporto viene calcolato su medie di chilometraggio");
+        istruzione.setStyleAttribute("font-weight", "bold");
+        //note.setStyleAttribute("font-style","italic");
 
-        c2.add(widget);
-
+        c2.add(istruzione, flex);
         panel.add(c2);
+
+
+
 
         LayoutContainer c = new LayoutContainer();
         HBoxLayout layout = new HBoxLayout();
         layout.setPadding(new Padding(10));
         layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
-
         c.setLayout(layout);
+        LabelField labelee = new LabelField("Energia elettrica ");
+        labelee.setWidth(100);
+        c.add(labelee, flex);
+        c.setStyleAttribute("padding-top","20px");
 
         NumberField energiaElettrica = new NumberField();
         energiaElettrica.setWidth(60);
         energiaElettrica.setName("energiaElettrica");
-        //energiaElettrica.setPropertyEditorType(Integer.class);
 
-        LabelField label = new LabelField("Energia Elettrica ");
-        label.setWidth(100);
-        c.add(label);
         c.add(energiaElettrica);
         LabelField kwh = new LabelField("kWh");
         kwh.setStyleAttribute("font-size", "11px");
         kwh.setStyleAttribute("padding-left", "3px");
         c.add(kwh, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
-        panel.add(c, new FormData("100%"));
+
+        panel.add(c);
+
+
 
         LayoutContainer c3 = new LayoutContainer();
         HBoxLayout layout3 = new HBoxLayout();
         layout3.setPadding(new Padding(10));
-        layout3.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
+        layout3.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
         c3.setLayout(layout3);
 
         LabelField note = new LabelField("Non riempire in caso di energia da fonti rinnovabili.<br><br><br>");
         note.setStyleAttribute("font-style", "italic");
-        c3.add(note);
-
+        c3.add(note, flex);
+        c3.setStyleAttribute("padding-top","15px");
         panel.add(c3);
+
+
+
+
+
+
+
 
         LayoutContainer cGas = new LayoutContainer();
         HBoxLayout layoutGas = new HBoxLayout();
@@ -142,38 +155,46 @@ public class FormEnergia extends LayoutContainer {
         gasMetano.setWidth(60);
         //  gasMetano.setPropertyEditorType(Integer.class);
 
-        label = new LabelField("Gas metano ");
+        LabelField label = new LabelField("Gas metano ");
         label.setWidth(100);
-        cGas.add(label);
+        cGas.add(label,flex);
         cGas.add(gasMetano);
         LabelField widget1 = new LabelField("m<sup>3</sup>");
         widget1.setStyleAttribute("font-size", "11px");
         widget1.setStyleAttribute("padding-left", "3px");
         cGas.add(widget1, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
 
-        panel.add(cGas, new FormData("100%"));
+        panel.add(cGas);
+
+
+
+
+
+
+
+
 
         LayoutContainer cGasoline = new LayoutContainer();
         HBoxLayout layoutGasoline = new HBoxLayout();
         layoutGasoline.setPadding(new Padding(10));
         layoutGasoline.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
         cGasoline.setLayout(layoutGasoline);
+        LabelField labelG = new LabelField("Gasolio ");
+        labelG.setWidth(100);
+        cGasoline.add(labelG, flex);
+        cGasoline.setStyleAttribute("padding-top","20px");
 
         NumberField gasolio = new NumberField();
-        gasolio.setName("gasolio");
         gasolio.setWidth(60);
-        //  gasolio.setPropertyEditorType(Integer.class);
+        gasolio.setName("gasolio");
 
-        label = new LabelField("Gasolio ");
-        label.setWidth(100);
-        cGasoline.add(label);
         cGasoline.add(gasolio);
-        LabelField litri = new LabelField("litri");
-        litri.setStyleAttribute("font-size", "11px");
-        litri.setStyleAttribute("padding-left", "3px");
-        cGasoline.add(litri, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
+        LabelField lt = new LabelField("litri");
+        lt.setStyleAttribute("font-size", "11px");
+        lt.setStyleAttribute("padding-left", "3px");
+        cGasoline.add(lt, new HBoxLayoutData(new Margins(0, 5, 0, 0)));
 
-        panel.add(cGasoline, new FormData("100%"));
+        panel.add(cGasoline);
 
         return panel;
     }
@@ -196,13 +217,14 @@ public class FormEnergia extends LayoutContainer {
     }
 
     @Override
-    protected void onAfterLayout() {
-        super.onAfterLayout();
-        formPanel.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
-        formPanel.getBody().setStyleAttribute("border-style", "solid");
-        formPanel.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
-        formPanel.getBody().setStyleAttribute("border-width", "3px 0");
-        formPanel.getBody().setStyleAttribute("margin-bottom", "0");
+    protected void onLoad() {
+        super.onLoad();
+        panel.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
+        panel.getBody().setStyleAttribute("border-style", "solid");
+        panel.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
+        panel.getBody().setStyleAttribute("border-width", "3px 0");
+        panel.getBody().setStyleAttribute("margin-bottom", "0");
+
+        //To change body of overridden methods use File | Settings | File Templates.
     }
 }
-
