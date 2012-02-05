@@ -217,8 +217,8 @@ public class FormEnergia extends LayoutContainer {
     }
 
     @Override
-    protected void onLoad() {
-        super.onLoad();
+    protected void onAfterLayout() {
+        super.onAfterLayout();
         panel.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         panel.getBody().setStyleAttribute("border-style", "solid");
         panel.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
