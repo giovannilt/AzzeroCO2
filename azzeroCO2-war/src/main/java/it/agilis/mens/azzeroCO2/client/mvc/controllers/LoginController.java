@@ -54,7 +54,7 @@ public class LoginController extends BaseController {
                         event.setData(result);
                         Dispatcher.forwardEvent(event);
                     } else {
-                        MyInfo.show("Error", "Username o Password errati.", 7000);
+                        MyInfo.show("Errore", "Username o Password errati.", 7000);
                     }
                 }
             };
