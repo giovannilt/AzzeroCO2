@@ -134,7 +134,7 @@ public class AnnoDettaglio extends LayoutContainer {
         formBigliettiDaVisita.setTitle("Biglietti da visita e cartelline");
         calcoloCardPanel.add(formBigliettiDaVisita, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
-        formSitoWeb.setTitle("Sito Web");
+        formSitoWeb.setTitle("Sito");
         calcoloCardPanel.add(formSitoWeb, new BorderLayoutData(Style.LayoutRegion.CENTER));
 
         return calcoloCardPanel;
@@ -171,7 +171,7 @@ public class AnnoDettaglio extends LayoutContainer {
                     //  OrdineModel riepilogo = riepilogo();
                     Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.NextText, posizioniText.get(posizioniLabel).get(1));
                     Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.PreviousText, posizioniText.get(posizioniLabel).get(0));
-                    return eventoTab.getSelectedItem().getTitle();
+                    return eventoTab.getSelectedItem().getText();
                 }
             }
         }
@@ -358,8 +358,8 @@ public class AnnoDettaglio extends LayoutContainer {
     public void showStep(RiepilogoModel tabToShow) {
         while (posizioniLabel > 0) {
             String s = previusTab();
-            if (s != null || !"".equalsIgnoreCase(s) || tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
-                return;
+            if (s != null  && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
+                    return;
             }
         }
 
