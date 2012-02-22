@@ -43,7 +43,7 @@ public class LoginController extends BaseController {
                 @Override
                 public void onSuccess(UserInfoModel result) {
                     if (result != null) {
-                        MyInfo.show("Benvenuto " + result.getNome());
+                        //MyInfo.show("Benvenuto " + result.getNome());
 
                         if (loginView != null) {
                             loginView.hide();
@@ -54,7 +54,7 @@ public class LoginController extends BaseController {
                         event.setData(result);
                         Dispatcher.forwardEvent(event);
                     } else {
-                        MyInfo.show("Error", "Username o Password errati.", 7000);
+                        MyInfo.show("Errore", "Username o Password errati.", 7000);
                     }
                 }
             };
