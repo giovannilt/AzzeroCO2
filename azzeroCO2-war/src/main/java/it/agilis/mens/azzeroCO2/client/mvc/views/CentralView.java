@@ -337,7 +337,7 @@ public class CentralView extends View {
                         getBody().setStyleAttribute("border-style", "solid");
                         getBody().setStyleAttribute("border-top", "3px solid #22729E");
                         getBody().setStyleAttribute("border-width", "3px 0");
-                        //getBody().setStyleAttribute("margin-bottom", "0");
+                        //getBody().setStyleAttribute("margin-bottom", "0px");
 
                         //To change body of overridden methods use File | Settings | File Templates.
                     }
@@ -345,7 +345,7 @@ public class CentralView extends View {
 
 
                 compensazione.setHeading("Cos'e' la compensazione?");
-                compensazione.setStyleAttribute("padding-top", "40");
+                compensazione.setStyleAttribute("padding-top", "40px");
                 compensazione.getHeader().setStyleAttribute("padding-top", "30px");
                 compensazione.getHeader().setStyleAttribute("padding-left", "20px");
                 compensazione.getHeader().setStyleName("x-panel-header-white");

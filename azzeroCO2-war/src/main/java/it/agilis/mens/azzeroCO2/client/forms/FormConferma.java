@@ -31,7 +31,7 @@ public class FormConferma extends LayoutContainer {
             super.onLoad();
             east.getBody().setStyleAttribute("border-style", "solid");
             east.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
-            east.getBody().setStyleAttribute("margin-bottom", "0");
+            east.getBody().setStyleAttribute("margin-bottom", "0px");
             east.getBody().setStyleAttribute("padding-top", "1px");
             east.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         }
@@ -43,7 +43,7 @@ public class FormConferma extends LayoutContainer {
             centre.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
             centre.getBody().setStyleAttribute("border-style", "solid");
             centre.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
-            centre.getBody().setStyleAttribute("margin-bottom", "0");
+            centre.getBody().setStyleAttribute("margin-bottom", "0px");
             centre.getHeader().setStyleAttribute("border-right-width", "15px");
         }
     };

@@ -101,7 +101,7 @@ public class FormRiepilogo extends LayoutContainer {
         cp.getBody().setStyleAttribute("border-style", "solid");
         //cp.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         cp.getBody().setStyleAttribute("border-width", "3px 0");
-        cp.getBody().setStyleAttribute("margin-bottom", "0");
+        cp.getBody().setStyleAttribute("margin-bottom", "0px");
     }
 
 

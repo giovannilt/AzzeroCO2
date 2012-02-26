@@ -489,7 +489,7 @@ public class FormAcquisto extends LayoutContainer {
         centre.getBody().setStyleAttribute("border-style", "solid");
         centre.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         centre.getBody().setStyleAttribute("border-width", "3px 0");
-        centre.getBody().setStyleAttribute("margin", "0");
+        centre.getBody().setStyleAttribute("margin", "0px");
 
         //east.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         //east.getBody().setStyleAttribute("border-style", "solid");

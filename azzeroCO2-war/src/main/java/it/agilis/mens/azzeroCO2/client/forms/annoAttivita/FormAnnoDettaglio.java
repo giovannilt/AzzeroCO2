@@ -166,7 +166,7 @@ public class FormAnnoDettaglio extends LayoutContainer {
         formPanel.getBody().setStyleAttribute("border-style", "solid");
         formPanel.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         formPanel.getBody().setStyleAttribute("border-width", "3px 0");
-        formPanel.getBody().setStyleAttribute("margin-bottom", "0");
+        formPanel.getBody().setStyleAttribute("margin-bottom", "0px");
 
         //To change body of overridden methods use File | Settings | File Templates.
     }

@@ -83,7 +83,6 @@ public class FormTrasportoPersone extends LayoutContainer {
         testo.setStyleAttribute("font-size", "9pt");
         textContent.add(testo);
 
-
         cpEst.setFrame(false);
         cpEst.setHeading("Trasporto persone");
 
@@ -95,7 +94,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
         cp.add(cpEst, new RowData(.35, .947));     //DIM
-        cp.add(panel, new RowData(.64, 0.96));     //DIM
+        cp.add(panel, new RowData(.64, 0.95));     //DIM
 
         cp.add(cpCentre, new RowData(.65, 1));
 
@@ -125,12 +124,12 @@ public class FormTrasportoPersone extends LayoutContainer {
         cpEst.getBody().setStyleAttribute("border-style", "solid");
         cpEst.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         cpEst.getBody().setStyleAttribute("border-width", "3px 0");
-        cpEst.getBody().setStyleAttribute("margin-bottom", "2");
+        cpEst.getBody().setStyleAttribute("margin-bottom", "2px");
         panel.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
         panel.getBody().setStyleAttribute("border-style", "solid");
         panel.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         panel.getBody().setStyleAttribute("border-width", "3px 0");
-        panel.getBody().setStyleAttribute("margin-bottom", "0");
+        panel.getBody().setStyleAttribute("margin-bottom", "0px");
 
 
         //To change body of overridden methods use File | Settings | File Templates.

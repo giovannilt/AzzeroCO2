@@ -41,7 +41,8 @@ public class PopupBlockerController {
 
     private static native void startPopupBlockerDetection() /*-{
         $wnd.popUpsBlocked = false;
-        $wnd.testPopup = $wnd.open('popuptest.html', 'popuptest', 'width=1px,height=1px,left=0,top=0,scrollbars=no');
+       // $wnd.testPopup = $wnd.open('popuptest.html', 'popuptest', 'width=1px,height=1px,left=0,top=0,scrollbars=no');
+        $wnd.testPopup = $wnd.open('http://62.149.166.148/azzeroCO2/popuptest.html', 'popuptest', 'width=1px,height=1px,left=0,top=0,scrollbars=no');
         if (!$wnd.testPopup || $wnd.testPopup.closed ||
                 typeof $wnd.testPopup.closed == 'undefined') {
             $wnd.popUpsBlocked = true
