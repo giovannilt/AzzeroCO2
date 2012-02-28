@@ -85,11 +85,11 @@ public class FormEnergia extends LayoutContainer {
 
         NumberField energiaElettrica = new NumberField();
         energiaElettrica.setFieldLabel("Energia Elettrica ");
-        energiaElettrica.setLabelStyle(energiaElettrica.getLabelStyle()+";font-size:11px");
+        energiaElettrica.setLabelStyle(energiaElettrica.getLabelStyle() + ";font-size:11px");
         energiaElettrica.setLabelSeparator("");
         energiaElettrica.setWidth(60);
         energiaElettrica.setName("energiaElettrica");
-         panel.add(energiaElettrica, new FormData("30%"));
+        panel.add(energiaElettrica, new FormData("30%"));
 
         LabelField note = new LabelField("Non riempire in caso di energia da fonti rinnovabili.<br><br><br>");
         note.setStyleAttribute("font-style", "italic");
@@ -97,7 +97,7 @@ public class FormEnergia extends LayoutContainer {
 
         NumberField gasMetano = new NumberField();
         gasMetano.setFieldLabel("Gas metano m<sup>3</sup>");
-        gasMetano.setLabelStyle(energiaElettrica.getLabelStyle()+";font-size:11px");
+        gasMetano.setLabelStyle(energiaElettrica.getLabelStyle() + ";font-size:11px");
         gasMetano.setLabelSeparator("");
         gasMetano.setName("gasMetano");
         gasMetano.setWidth(60);
@@ -105,7 +105,7 @@ public class FormEnergia extends LayoutContainer {
 
         NumberField gasolio = new NumberField();
         gasolio.setFieldLabel("Gasolio litri");
-        gasolio.setLabelStyle(energiaElettrica.getLabelStyle()+";font-size:11px");
+        gasolio.setLabelStyle(energiaElettrica.getLabelStyle() + ";font-size:11px");
         gasolio.setLabelSeparator("");
         gasolio.setName("gasolio");
         gasolio.setWidth(60);

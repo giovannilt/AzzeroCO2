@@ -5,15 +5,15 @@ import com.extjs.gxt.ui.client.binding.FormBinding;
 import com.extjs.gxt.ui.client.event.IconButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
-import com.extjs.gxt.ui.client.util.Margins;
-import com.extjs.gxt.ui.client.util.Padding;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.button.ToolButton;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.LabelField;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
-import com.extjs.gxt.ui.client.widget.layout.*;
+import com.extjs.gxt.ui.client.widget.layout.FormData;
+import com.extjs.gxt.ui.client.widget.layout.FormLayout;
+import com.extjs.gxt.ui.client.widget.layout.RowData;
+import com.extjs.gxt.ui.client.widget.layout.RowLayout;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.shared.model.evento.NottiModel;
@@ -42,25 +42,19 @@ public class FormPernottamenti extends LayoutContainer {
     protected void onRender(Element parent, int index) {
         super.onRender(parent, index);
 
-        BorderLayout layout = new BorderLayout();
-        setLayout(layout);
-
-        ContentPanel cp = new ContentPanel();
-        cp.setFrame(true);
-        cp.setHeaderVisible(false);
-        cp.setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-
-        cp.add(formPanel, new RowData(.99, 0.96));      //DIM
-
-
-        BorderLayoutData centerData = new BorderLayoutData(Style.LayoutRegion.CENTER);
-        add(cp, centerData);
+        setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
+        add(formPanel, new RowData(.99, 0.96));      //DIM
     }
 
 
     private FormPanel createForm() {
         FormPanel panel = new FormPanel();
         panel.setFrame(true);
+
+        FormLayout layout = new FormLayout();
+        layout.setLabelWidth(50);
+        layout.setDefaultWidth(500);
+        panel.setLayout(layout);
 
         panel.setHeading("Pernottamenti");
         panel.setLabelAlign(FormPanel.LabelAlign.LEFT);
@@ -81,41 +75,22 @@ public class FormPernottamenti extends LayoutContainer {
                 clear();
             }
         });
-
-        HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
-
-
-        LayoutContainer c1 = new LayoutContainer();
-        HBoxLayout layout1 = new HBoxLayout();
-        layout1.setPadding(new Padding(5));
-        layout1.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
-        c1.setLayout(layout1);
-
         LabelField istruzioni = new LabelField("Inserisci il numero di notti in hotel che l'evento ha reso necessarie<br> ");
         istruzioni.setStyleAttribute("font-weight", "bolder");
 
 
-        LayoutContainer notti = new LayoutContainer();
-        HBoxLayout layoutNotti = new HBoxLayout();
-        layoutNotti.setPadding(new Padding(10));
-        layoutNotti.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.BOTTOM);
-        notti.setLayout(layoutNotti);
-
         NumberField numeroNotti = new NumberField();
+        numeroNotti.setFieldLabel("Notti");
+        numeroNotti.setLabelStyle(numeroNotti.getLabelStyle() + ";font-size:11px");
         numeroNotti.setRegex("[0-9]+");
         numeroNotti.getMessages().setRegexText("Inserisci un numero intero");
         numeroNotti.setName("notti");
         numeroNotti.setWidth(60);
         numeroNotti.setPropertyEditorType(Integer.class);
 
-        notti.add(new LabelField("notti"), flex);
-        notti.add(numeroNotti, flex);
 
-        c1.add(istruzioni, flex);
-        panel.add(c1);
-
-
-        panel.add(notti, new FormData("100%"));
+        panel.add(istruzioni, new FormData("100%"));
+        panel.add(numeroNotti, new FormData("20%"));
         return panel;
     }
 

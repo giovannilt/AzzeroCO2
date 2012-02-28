@@ -15,7 +15,9 @@ import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 public class AzzeroCO2 implements EntryPoint {
 
     public void onModuleLoad() {
+
         PopupBlockerController.detect();
+
         Registry.register(AzzeroCO2Constants.HUSTON_SERVICE, GWT.<Object>create(HustonService.class));
 
         Dispatcher dispatcher = Dispatcher.get();
@@ -42,6 +44,7 @@ public class AzzeroCO2 implements EntryPoint {
         user.setProfilo(Profile.Guest.ordinal());
 
         dispatcher.dispatch(AzzeroCO2Events.LoggedIn, user);
+
 
     }
 }

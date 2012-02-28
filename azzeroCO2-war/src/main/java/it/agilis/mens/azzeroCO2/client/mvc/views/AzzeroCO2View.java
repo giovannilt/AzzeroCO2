@@ -95,6 +95,7 @@ public class AzzeroCO2View extends View {
 
         c.add(centerPanel, new RowData(.96, 1));
         main.add(c, centerData);
+
     }
 
     private void onNewsPanelReady(AppEvent event) {
@@ -114,7 +115,6 @@ public class AzzeroCO2View extends View {
         RootPanel root = RootPanel.get();
 
         ScrollPanel sc = new ScrollPanel();
-        sc.setVerticalScrollPosition(0);
 
         /*VBoxLayout layoutCentre = new VBoxLayout();
         layoutCentre.setPadding(new Padding(23, 5, 5, 5));
@@ -123,14 +123,17 @@ public class AzzeroCO2View extends View {
         sc.add(main);
 
         //   sc.add(viewport);
-        root.add(sc);
-        root.getElement().setAttribute("Style","overflow: auto; position: absolute;\n" +
+
+        sc.getElement().setAttribute("Style", "overflow: auto; position: absolute;\n" +
                 "top: 2%;\n" +
                 "left: 50%; \n" +
-                "width:1024px;\n" +
-                "height: 768px;\n" +
-                "margin-left:-512px;\n"+
+                "width:1100px;\n" +
+                "height: 820px;\n" +
+                "margin-left:-512px;\n" +
                 "margin-top:-10px;");
+
+        root.add(sc);
+
     }
 
     private void onError(AppEvent event) {

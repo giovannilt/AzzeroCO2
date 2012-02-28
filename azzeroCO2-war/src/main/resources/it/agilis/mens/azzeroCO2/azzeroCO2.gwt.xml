@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='azzeroCO2'>
-    <!-- Inherit the core Web Toolkit stuff.                        -->
+    <!-- Inherit the core Web Toolkit stuff.                            -->
     <inherits name='com.google.gwt.user.User'/>
 
-    <!-- Inherit the default GWT style sheet.  You can change       -->
-    <!-- the theme of your GWT application by uncommenting          -->
-    <!-- any one of the following lines.                            -->
+    <!-- Inherit the default GWT style sheet.  You can change           -->
+    <!-- the theme of your GWT application by uncommenting              -->
+    <!-- any one of the following lines.                                -->
     <!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
-    <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
-    <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+    <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/>     -->
+    <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>         -->
 
     <!-- Other module inherits                                      -->
 
@@ -21,15 +21,12 @@
 
     <inherits name='com.extjs.gxt.ui.GXT'/>
     <inherits name="com.extjs.gxt.charts.Chart"/>
-  <!--  <inherits name="com.google.gwt.requestfactory.RequestFactory"/>     -->
+    <!--  <inherits name="com.google.gwt.requestfactory.RequestFactory"/>     -->
 
-    <inherits name="com.google.gwt.resources.Resources" />
+    <inherits name="com.google.gwt.resources.Resources"/>
 
     <extend-configuration-property name="document.compatMode" value="BackCompat"/>
 
     <extend-property name="locale" values="it"/>
-
-
-
 
 </module>
