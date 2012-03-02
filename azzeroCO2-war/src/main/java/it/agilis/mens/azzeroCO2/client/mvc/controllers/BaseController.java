@@ -140,12 +140,6 @@ public abstract class BaseController extends Controller {
                 "Crediti di emissione: " + result.getPagamentoModel().getKgCO2() / 1000 + "\n" +
                 "Euro: " + result.getPagamentoModel().getIMPORTO() + "\n" +
                 "\n" +
-                "Scarica tuo certificato di compensazione: \n" +
-                GWT.getModuleBaseURL() + "downloadCertificato?certificato=" + result.getPagamentoModel().getCertificatoPDF() + "\n" +
-                "\n" +
-                "Scarica la scheda informativa del progetto di compensazione che hai scelto: \n" +
-                GWT.getModuleBaseURL() + "ImmaginiProgetti/" + result.getProgettoDiCompensazioneModel().getPdfUrl() +
-                "\n\n" +
                 "*La CO2 che viene presa in cosiderazione è CO2 equivalente (CO2eq), ovvero l'indice che rappresenta l'impatto in atmosfera di tutti i gas serra: quindi non solo il biossido di carbonio, ma anche il metano, i perfluorocarburi e l'ossido di diazoto.\n" +
                 "\n" +
                 "\n" +
@@ -156,7 +150,7 @@ public abstract class BaseController extends Controller {
 
         data.setFromUser("no-reply@azzeroco2.it");
         data.setSubject("Conferma ordine compensazione: " + userInfoModel.getRagioneSociale());
-        data.setToUser(Arrays.asList(userInfoModel.getEmail(), "serena@mensagilis.it", "giovanni@mensagilis.it"));
+        data.setToUser(Arrays.asList("serena@mensagilis.it", "giovanni@mensagilis.it"));
 
         /**
          *  • marketing@azzeroco2.it
