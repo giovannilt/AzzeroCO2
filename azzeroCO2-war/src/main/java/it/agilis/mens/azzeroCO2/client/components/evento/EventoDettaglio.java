@@ -233,8 +233,6 @@ public class EventoDettaglio extends LayoutContainer {
 
         formRiepilogo.clear();
         eventoFormAcquisto.clear();
-        formConferma.clear();
-
 
         if (posizioniLabel == 1) {
             return;
@@ -377,7 +375,6 @@ public class EventoDettaglio extends LayoutContainer {
     public void showConferma(OrdineVTO result) {
         eventoTab.getSelectedItem().disable();
         posizioniLabel++;
-        formConferma.setDettaglioModel(result);
         eventoTab.getItems().get(eventoTab.getItems().size() - 1).setEnabled(true);
         eventoTab.setSelection(eventoTab.getItems().get(eventoTab.getItems().size() - 1));
         Dispatcher.forwardEvent(EventoEvents.NextText, posizioniText.get(posizioniLabel).get(1));

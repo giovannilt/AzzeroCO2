@@ -19,5 +19,4 @@ public interface IProgettoCompesnazioneDAO {
 
     void associaIDProgettoDiCompensazioneImmagine(Long idProgetto, String nomeImmagine) throws Exception;
 
-    void associaIDProgettoDiCompensazionePDF(Long idProgetto, String nomePDF) throws Exception;
 }

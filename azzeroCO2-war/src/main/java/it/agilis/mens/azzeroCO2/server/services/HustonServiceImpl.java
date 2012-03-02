@@ -318,17 +318,6 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
     }
 
     @Override
-    public boolean associaIDProgettoDiCompensazionePDF(Long idProgetto, String nomePDF) {
-        try {
-            azzeroCO2Register.associaIDProgettoDiCompensazionePDF(idProgetto, nomePDF);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public CouponModel getValidCouponByCode(String couponCode) {
         CouponCriteria criteria = new CouponCriteria();
         criteria.setCodice(couponCode);
@@ -353,7 +342,6 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
             }
 
             if (o.getRicevutaDiPagamento().getESITO().equals(Esito.PAGATO)) {
-                o.getRicevutaDiPagamento().setCertificatoPDF(creaCertificatoInPDF(o));
                 azzeroCO2Register.saveOrUpdateOrdine(o, Utils.getUserInfo(userInfoModel));
             }
 
@@ -364,9 +352,5 @@ public class HustonServiceImpl extends RemoteServiceServlet implements
             e.printStackTrace();
             return null;
         }
-    }
-
-    private String creaCertificatoInPDF(Ordine o) {
-        return azzeroCO2Register.creaCertificatoPDF(o);
     }
 }

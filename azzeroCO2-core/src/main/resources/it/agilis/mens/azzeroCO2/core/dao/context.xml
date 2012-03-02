@@ -31,13 +31,6 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="openOfficeService" class="it.agilis.mens.azzeroCO2.core.register.impl.OpenOfficeService"  init-method="init"
-          scope="singleton">
-         <property name="certificatoTemplateODT" value="${azzeroCO2.certificatoTemplateODT}" />
-         <property name="certificatiFolder" value="${azzeroCO2.certificatiFolder}"/>
-         <property name="serena" value="${azzeroCO2.serena}"/>
-    </bean>
-
 
     <bean id="azzeroCO2Register" class="it.agilis.mens.azzeroCO2.core.register.impl.AzzeroCO2Register">
         <property name="userInfoDAO">
@@ -62,7 +55,6 @@
         <property name="pagamentoDAO">
             <ref local="sellaRicevutaDiPagamentoDAO"/>
         </property>
-        <property name="openOfficeService" ref="openOfficeService"/>
 
     </bean>
 

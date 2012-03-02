@@ -87,8 +87,6 @@ public class AmministrazioneController extends BaseController {
                 };
                 if (m.getIMGorPDF().equalsIgnoreCase("IMG")) {
                     hustonService.associaIDProgettoDiCompensazioneImmagine(m.getIdProgetto(), m.getName(), aCallback);
-                } else {
-                    hustonService.associaIDProgettoDiCompensazionePDF(m.getIdProgetto(), m.getName(), aCallback);
                 }
             } else {
                 List<ProgettoDiCompensazioneModel> progettoDiCompensazioneModels = event.getData();
@@ -120,13 +118,10 @@ public class AmministrazioneController extends BaseController {
             };
             hustonService.saveCoupons(coupons, aCallback);
         } else if (event.getType().equals(AmministrazioneEvents.ShowAmministrazione)) {
-            //   if (getUserInfoModel() != null && getUserInfoModel().getProfilo() != null && getUserInfoModel().getProfilo().equalsIgnoreCase("Administrator")) {
             getCoefficienti();
             getCoupons();
             getProgettiDiCompensazione();
-            //     }
             getOrdini();
-            // amministrazioneView.setUserInfo(getUserInfoModel());
 
         } else if (event.getType().equals(AzzeroCO2Events.LoggedIn)) {
             setUserInfoModel((UserInfoModel) event.getData());

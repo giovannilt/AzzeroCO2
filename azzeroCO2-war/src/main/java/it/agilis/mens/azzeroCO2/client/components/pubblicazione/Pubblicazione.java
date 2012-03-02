@@ -212,7 +212,6 @@ public class Pubblicazione extends LayoutContainer {
 
         formRiepilogo.clear();
         formAcquisto.clear();
-        formConferma.clear();
     }
 
     public OrdineModel riepilogo() {

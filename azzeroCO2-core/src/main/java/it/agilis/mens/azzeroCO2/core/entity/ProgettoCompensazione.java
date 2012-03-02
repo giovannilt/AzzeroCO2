@@ -27,7 +27,6 @@ public class ProgettoCompensazione {
     private Double prezzo;
     private String img;
     private Boolean attivo;
-    private String pdf;
 
     public Long getId() {
         return id;
@@ -77,12 +76,4 @@ public class ProgettoCompensazione {
         this.attivo = attivo;
     }
 
-
-    public String getPdf() {
-        return pdf;
-    }
-
-    public void setPdf(String pdf) {
-        this.pdf = pdf;
-    }
 }

@@ -153,7 +153,6 @@ public class ConoscoCO2 extends LayoutContainer {
 
         formRiepilogo.clear();
         formAcquisto.clear();
-        formConferma.clear();
 
         if (posizioniLabel == 1) {
             return;

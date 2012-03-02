@@ -35,7 +35,7 @@ public class AzzeroCO2View extends View {
             getBody().setStyleAttribute("border-top", "0px");
         }
     };
-    // private final Viewport viewport = new Viewport();
+
     private InfoDialog infoDialog = new InfoDialog();
     private RiepilogoConfermDialog riepilogoConfermaDialog = new RiepilogoConfermDialog();
 

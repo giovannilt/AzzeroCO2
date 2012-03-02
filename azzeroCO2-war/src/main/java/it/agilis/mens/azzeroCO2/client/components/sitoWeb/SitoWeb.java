@@ -150,7 +150,6 @@ public class SitoWeb extends LayoutContainer {
 
         formRiepilogo.clear();
         formAcquisto.clear();
-        formConferma.clear();
 
         if (posizioniLabel == 1) {
             return;

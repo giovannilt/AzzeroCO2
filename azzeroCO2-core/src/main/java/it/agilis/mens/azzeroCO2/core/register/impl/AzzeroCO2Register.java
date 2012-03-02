@@ -35,16 +35,6 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
     private IProgettoCompesnazioneDAO progettoCompensazioneDAO;
     @Autowired
     private ISellaRicevutaDiPagamentoDAO pagamentoDAO;
-    @Autowired
-    private OpenOfficeService openOfficeService;
-
-    public OpenOfficeService getOpenOfficeService() {
-        return openOfficeService;
-    }
-
-    public void setOpenOfficeService(OpenOfficeService openOfficeService) {
-        this.openOfficeService = openOfficeService;
-    }
 
     public ISellaRicevutaDiPagamentoDAO getPagamentoDAO() {
         return pagamentoDAO;
@@ -193,11 +183,4 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         progettoCompensazioneDAO.associaIDProgettoDiCompensazioneImmagine(idProgetto, nomeImmagine);
     }
 
-    public String creaCertificatoPDF(Ordine ordine) {
-        return openOfficeService.creaPDF(ordine);
-    }
-
-    public void associaIDProgettoDiCompensazionePDF(Long idProgetto, String nomePDF) throws Exception {
-        progettoCompensazioneDAO.associaIDProgettoDiCompensazionePDF(idProgetto, nomePDF);
-    }
 }
