@@ -47,22 +47,4 @@
           <property name="imageSource" value="${azzeroCO2.imageSource}"/>
         <property name="certificatiFolder" value="${azzeroCO2.certificatiFolder}"/>
     </bean>
-  <!-- <bean
-    name="authenticationFilter"
-    class="org.jasig.cas.client.authentication.AuthenticationFilter"
-    p:casServerLoginUrl="https://ubuntu:8443/cas/login"
-    p:renew="false"
-    p:gateway="false"
-    p:service="http://agilis.it/" />
-
-    <bean
-    name="ticketValidationFilter"
-    class="org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter"
-    p:service="http://agilis.it/">
-        <property name="ticketValidator">
-            <bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
-                <constructor-arg index="0" value="https://localhost:8443/cas" />
-            </bean>
-        </property>
-    </bean>-->
 </beans>
