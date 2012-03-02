@@ -15,4 +15,5 @@ public interface ISellaRicevutaDiPagamentoDAO {
     SellaRicevutaDiPagamento getPagamento(SellaRicevutaDiPagamentoCriteria criteria);
 
     void salvaRicevuta(SellaRicevutaDiPagamento ricevuta) throws Exception;
+
 }

@@ -1,6 +1,7 @@
 package it.agilis.mens.azzeroCO2.core.criteria;
 
 import it.agilis.mens.azzeroCO2.core.entity.Ordine;
+import it.agilis.mens.azzeroCO2.core.entity.SellaRicevutaDiPagamento;
 import it.agilis.mens.azzeroCO2.core.entity.UserInfo;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
@@ -16,12 +17,16 @@ import java.io.Serializable;
  */
 public class OrdineCriteria implements Serializable, SelectionCriteria {
     private UserInfo userInfo;
+    private SellaRicevutaDiPagamento ricevuta;
 
     @Override
     public DetachedCriteria getDetachedCriteria() {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Ordine.class, "Ordine");
         if (userInfo != null) {
             checkFieldEq(detachedCriteria, "utente", userInfo);
+        }
+        if(ricevuta!=null){
+            detachedCriteria.add(Restrictions.eq("ricevutaDiPagamento", ricevuta));
         }
         return detachedCriteria;
     }
@@ -44,5 +49,9 @@ public class OrdineCriteria implements Serializable, SelectionCriteria {
         if (fieldValue != null) {
             detachedCriteria.add(Restrictions.eq(name, fieldValue));
         }
+    }
+
+    public void setRicevuta(SellaRicevutaDiPagamento ricevuta) {
+        this.ricevuta=ricevuta;
     }
 }

@@ -31,5 +31,4 @@ public class SellaRicevutaDiPagamentoDAO extends DAOSupport implements ISellaRic
         saveObject(ricevuta);
     }
 
-
 }

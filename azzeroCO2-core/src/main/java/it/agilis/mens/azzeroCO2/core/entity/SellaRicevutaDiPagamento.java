@@ -1,8 +1,6 @@
 package it.agilis.mens.azzeroCO2.core.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -35,15 +33,7 @@ public class SellaRicevutaDiPagamento {
     private Date lastUpdate;
     private Date updateFromBanca;
 
-    private String certificatoPDF;
 
-    public String getCertificatoPDF() {
-        return certificatoPDF;
-    }
-
-    public void setCertificatoPDF(String certificatoPDF) {
-        this.certificatoPDF = certificatoPDF;
-    }
 
     public double getKgCO2() {
         return kgCO2;
@@ -164,6 +154,4 @@ public class SellaRicevutaDiPagamento {
     public Esito getESITO() {
         return ESITO;
     }
-
-
 }

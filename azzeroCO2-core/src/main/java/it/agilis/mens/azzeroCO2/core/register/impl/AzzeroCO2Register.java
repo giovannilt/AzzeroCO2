@@ -6,6 +6,7 @@ import it.agilis.mens.azzeroCO2.core.criteria.SellaRicevutaDiPagamentoCriteria;
 import it.agilis.mens.azzeroCO2.core.dao.*;
 import it.agilis.mens.azzeroCO2.core.entity.*;
 import it.agilis.mens.azzeroCO2.core.register.IAzzeroCO2Register;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -183,4 +184,13 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         progettoCompensazioneDAO.associaIDProgettoDiCompensazioneImmagine(idProgetto, nomeImmagine);
     }
 
+    public Ordine getOrdine(OrdineCriteria ordineCriteria) throws NotFoundException {
+
+        List<Ordine> listOfOrdini = ordineDAO.getListOfOrdini(ordineCriteria);
+        if (listOfOrdini.size() > 0) {
+            return listOfOrdini.get(0);
+        } else {
+            throw new NotFoundException("Ordine non esistente:"+ordineCriteria.toString());
+        }
+    }
 }
