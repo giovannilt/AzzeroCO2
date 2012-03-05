@@ -51,7 +51,6 @@ public class RispostaBancaServiceOK extends HttpServlet {
     private static final String PAGE_TOP = ""
             + "<html>"
             + "<head>"
-            + "<head>"
             + "<title>AzzeroCO2</title>"
             + "</head>"
             + "<body>";// onLoad='document.calcdata.submit()'>"
@@ -112,7 +111,7 @@ public class RispostaBancaServiceOK extends HttpServlet {
                     Ordine ordine= azzeroCO2Register.getOrdine(ordineCriteria);
 
 
-                    SimpleDateFormat format = new SimpleDateFormat("dd_MM_yyyy");
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
                     out.println( PAGE_TOP+
                             "<form name='calcdata' id='calcdata' method='post' action='http://www.azzeroco2.it/onlinereg/agents/calc_receiver.php'>\n" +
@@ -120,14 +119,14 @@ public class RispostaBancaServiceOK extends HttpServlet {
                                     "<input type='hidden' name='cognome'    id='cognome'    value='"+ordine.getUtente().getCognome()+"' />\n" +
                                     "<input type='hidden' name='societa'    id='societa'    value='"+ordine.getUtente().getRagSociale()+"' />\n" +
                                     "<input type='hidden' name='email'      id='email'      value='"+ordine.getUtente().getEmail()+"' />\n" +
-                                    "<input type='hidden' name='indirizzo'  id='indirizzo'  value='"+ordine.getUtente().getIndirizzo()+"' />\n" +
-                                    "<input type='hidden' name='luogo'      id='luogo'      value='"+ordine.getUtente().getCitta()+"' />\n" +
+                                    "<input type='hidden' name='indirizzo'  id='indirizzo'  value='"+ordine.getUtente().getIndirizzo()+"|"+ordine.getUtente().getCap()+"' />\n" +
+                                    "<input type='hidden' name='luogo'      id='luogo'      value='"+ordine.getUtente().getCitta()+"|"+ordine.getUtente().getProvincia()+"' />\n" +
                                     "<input type='hidden' name='cfisc'      id='cfisc'      value='"+ordine.getUtente().getpIvaCF()+"' />\n" +
                                     "<input type='hidden' name='piva'       id='piva'       value='"+ordine.getUtente().getpIvaCF()+"' />\n" +
                                     "<input type='hidden' name='data'       id='data'       value='"+format.format(ricevuta.getUpdateFromBanca())+"' />\n" +
-                                    "<input type='hidden' name='tonnellate' id='tonnellate' value='"+ricevuta.getKgCO2()+"' />\n" +
-                                    "<input type='hidden' name='crediti'    id='crediti'    value='"+ricevuta.getKgCO2()+"' />\n" +
-                                    "<input type='hidden' name='euro'       id='euro'       value='"+ricevuta.getIMPORTO()+"' />\n" +
+                                    "<input type='hidden' name='tonnellate' id='tonnellate' value='"+ricevuta.getKgCO2()/1000+"' />\n" +      //TODO non deve mettere i punti che separano le migliaia
+                                    "<input type='hidden' name='crediti'    id='crediti'    value='"+ricevuta.getKgCO2()+"' />\n" +           //TODO ma che cos'erano i crediti?
+                                    "<input type='hidden' name='euro'       id='euro'       value='"+ricevuta.getIMPORTO()+"' />\n" +          //TODO importo deve avere il formato 234533.22 quindi niente separatore delle migliaia e . per i decimali al posto della virgola
                                     "<input type='hidden' name='idprogetto' id='idprogetto' value='"+ordine.getProgettoCompensazione().getId()+"' />\n" +
                                     "</form>"    +
                             PAGE_BOTTOM
