@@ -116,7 +116,7 @@ public class RispostaBancaServiceOK extends HttpServlet {
                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                         NumberFormat formatter = new DecimalFormat("#0.00");
                         String tonnellate = "" + formatter.format(ricevuta.getKgCO2() / 1000);
-                        String importoAllaCazzo = ricevuta.getIMPORTO().replace(",", ".");
+                        String importoinEuro = ricevuta.getIMPORTO().replace(",", ".");
 
                         out.println(PAGE_TOP +
                                 "<form name='calcdata' id='calcdata' method='post' action='http://www.azzeroco2.it/onlinereg/agents/calc_receiver.php'>\n" +
@@ -131,7 +131,7 @@ public class RispostaBancaServiceOK extends HttpServlet {
                                 "<input type='hidden' name='data'       id='data'       value='" + format.format(ricevuta.getUpdateFromBanca()) + "' />\n" +
                                 "<input type='hidden' name='tonnellate' id='tonnellate' value='" + tonnellate + "' />\n" +      //TODO non deve mettere i punti che separano le migliaia
                                 "<input type='hidden' name='crediti'    id='crediti'    value='" + tonnellate + "' />\n" +                             //TODO ma che cos'erano i crediti?
-                                "<input type='hidden' name='euro'       id='euro'       value='" + importoAllaCazzo + "' />\n" +          //TODO importo deve avere il formato 234533.22 quindi niente separatore delle migliaia e . per i decimali al posto della virgola
+                                "<input type='hidden' name='euro'       id='euro'       value='" + importoinEuro + "' />\n" +          //TODO importo deve avere il formato 234533.22 quindi niente separatore delle migliaia e . per i decimali al posto della virgola
                                 "<input type='hidden' name='idprogetto' id='idprogetto' value='" + ordine.getProgettoCompensazione().getId() + "' />\n" +
                                 "</form>" +
                                 PAGE_BOTTOM
