@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -53,13 +55,13 @@ public class RispostaBancaServiceOK extends HttpServlet {
             + "<head>"
             + "<title>AzzeroCO2</title>"
             + "</head>"
-            + "<body>";// onLoad='document.calcdata.submit()'>"
- /*           + "<h3>AzzeroCO2</h3>"  ;*/
+            + "<body onLoad='document.calcdata.submit()'>";
+    /*           + "<h3>AzzeroCO2</h3>"  ;*/
 
     private static final String PAGE_BOTTOM =
-        /*    "< a href='javascript:window.opener='x';window.close();'>Close< /a> + "*/
-             "</body>"
-            + "</html>";
+            /*    "< a href='javascript:window.opener='x';window.close();'>Close< /a> + "*/
+            "</body>"
+                    + "</html>";
 
 
     public AzzeroCO2Register getAzzeroCO2Register() {
@@ -102,40 +104,41 @@ public class RispostaBancaServiceOK extends HttpServlet {
                     algorithm.reset();
 
                     String theMd5 = AzzerroCO2UtilsClientHelper.getMAC_MD5((TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key).toUpperCase());
-                    //  if (theMd5.equalsIgnoreCase(MAC)) {
-                    ricevuta.setEsito(Esito.PAGATO);
-                    azzeroCO2Register.saveRicevuta(ricevuta);
+                    if (theMd5.equalsIgnoreCase(MAC)) {
+                        ricevuta.setEsito(Esito.PAGATO);
+                        azzeroCO2Register.saveRicevuta(ricevuta);
 
-                    OrdineCriteria ordineCriteria= new OrdineCriteria();
-                    ordineCriteria.setRicevuta(ricevuta);
-                    Ordine ordine= azzeroCO2Register.getOrdine(ordineCriteria);
-
-
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-                    out.println( PAGE_TOP+
-                            "<form name='calcdata' id='calcdata' method='post' action='http://www.azzeroco2.it/onlinereg/agents/calc_receiver.php'>\n" +
-                                    "<input type='hidden' name='nome'       id='nome'       value='"+ordine.getUtente().getNome()+"' />\n" +
-                                    "<input type='hidden' name='cognome'    id='cognome'    value='"+ordine.getUtente().getCognome()+"' />\n" +
-                                    "<input type='hidden' name='societa'    id='societa'    value='"+ordine.getUtente().getRagSociale()+"' />\n" +
-                                    "<input type='hidden' name='email'      id='email'      value='"+ordine.getUtente().getEmail()+"' />\n" +
-                                    "<input type='hidden' name='indirizzo'  id='indirizzo'  value='"+ordine.getUtente().getIndirizzo()+"|"+ordine.getUtente().getCap()+"' />\n" +
-                                    "<input type='hidden' name='luogo'      id='luogo'      value='"+ordine.getUtente().getCitta()+"|"+ordine.getUtente().getProvincia()+"' />\n" +
-                                    "<input type='hidden' name='cfisc'      id='cfisc'      value='"+ordine.getUtente().getpIvaCF()+"' />\n" +
-                                    "<input type='hidden' name='piva'       id='piva'       value='"+ordine.getUtente().getpIvaCF()+"' />\n" +
-                                    "<input type='hidden' name='data'       id='data'       value='"+format.format(ricevuta.getUpdateFromBanca())+"' />\n" +
-                                    "<input type='hidden' name='tonnellate' id='tonnellate' value='"+ricevuta.getKgCO2()/1000+"' />\n" +      //TODO non deve mettere i punti che separano le migliaia
-                                    "<input type='hidden' name='crediti'    id='crediti'    value='"+ricevuta.getKgCO2()+"' />\n" +           //TODO ma che cos'erano i crediti?
-                                    "<input type='hidden' name='euro'       id='euro'       value='"+ricevuta.getIMPORTO()+"' />\n" +          //TODO importo deve avere il formato 234533.22 quindi niente separatore delle migliaia e . per i decimali al posto della virgola
-                                    "<input type='hidden' name='idprogetto' id='idprogetto' value='"+ordine.getProgettoCompensazione().getId()+"' />\n" +
-                                    "</form>"    +
-                            PAGE_BOTTOM
-                    );
+                        OrdineCriteria ordineCriteria = new OrdineCriteria();
+                        ordineCriteria.setRicevuta(ricevuta);
+                        Ordine ordine = azzeroCO2Register.getOrdine(ordineCriteria);
 
 
-                    //  } else {
-                    //      out.println(PAGE_TOP + "<table><tr><td>MD5 non corrispondente.+3</td></tr></table>" + PAGE_BOTTOM);
-                    //  }
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                        NumberFormat formatter = new DecimalFormat("#0.00");
+                        String tonnellate = "" + formatter.format(ricevuta.getKgCO2() / 1000);
+                        String importoAllaCazzo = ricevuta.getIMPORTO().replace(",", ".");
+
+                        out.println(PAGE_TOP +
+                                "<form name='calcdata' id='calcdata' method='post' action='http://www.azzeroco2.it/onlinereg/agents/calc_receiver.php'>\n" +
+                                "<input type='hidden' name='nome'       id='nome'       value='" + ordine.getUtente().getNome() + "' />\n" +
+                                "<input type='hidden' name='cognome'    id='cognome'    value='" + ordine.getUtente().getCognome() + "' />\n" +
+                                "<input type='hidden' name='societa'    id='societa'    value='" + ordine.getUtente().getRagSociale() + "' />\n" +
+                                "<input type='hidden' name='email'      id='email'      value='" + ordine.getUtente().getEmail() + "' />\n" +
+                                "<input type='hidden' name='indirizzo'  id='indirizzo'  value='" + ordine.getUtente().getIndirizzo() + "|" + ordine.getUtente().getCap() + "' />\n" +
+                                "<input type='hidden' name='luogo'      id='luogo'      value='" + ordine.getUtente().getCitta() + "|" + ordine.getUtente().getProvincia() + "' />\n" +
+                                "<input type='hidden' name='cfisc'      id='cfisc'      value='" + ordine.getUtente().getpIvaCF() + "' />\n" +
+                                "<input type='hidden' name='piva'       id='piva'       value='" + ordine.getUtente().getpIvaCF() + "' />\n" +
+                                "<input type='hidden' name='data'       id='data'       value='" + format.format(ricevuta.getUpdateFromBanca()) + "' />\n" +
+                                "<input type='hidden' name='tonnellate' id='tonnellate' value='" + tonnellate + "' />\n" +      //TODO non deve mettere i punti che separano le migliaia
+                                "<input type='hidden' name='crediti'    id='crediti'    value='" + tonnellate + "' />\n" +                             //TODO ma che cos'erano i crediti?
+                                "<input type='hidden' name='euro'       id='euro'       value='" + importoAllaCazzo + "' />\n" +          //TODO importo deve avere il formato 234533.22 quindi niente separatore delle migliaia e . per i decimali al posto della virgola
+                                "<input type='hidden' name='idprogetto' id='idprogetto' value='" + ordine.getProgettoCompensazione().getId() + "' />\n" +
+                                "</form>" +
+                                PAGE_BOTTOM
+                        );
+                    } else {
+                        out.println(PAGE_TOP + "<table><tr><td>MD5 non corrispondente.+3</td></tr></table>" + PAGE_BOTTOM);
+                    }
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                     out.println(PAGE_TOP + "<table><tr><td>Errore nella ricezione dei dati.+0</td></tr></table>" + PAGE_BOTTOM);
