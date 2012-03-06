@@ -158,12 +158,9 @@ public class FormTrasportoPersone extends LayoutContainer {
             }
         });
 
-        HBoxLayoutData flex = new HBoxLayoutData(new Margins(0, 5, 0, 0));
-        {
+         {
             LayoutContainer cl = new LayoutContainer();
-            HBoxLayout layout = new HBoxLayout();
-            layout.setPadding(new Padding(5));
-            layout.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+             RowLayout layout = new RowLayout(Orientation.VERTICAL);
             cl.setLayout(layout);
 
             LabelField istruzioni = new LabelField("Inserisci il numero di tratte per distanza percorsa e mezzo di trasporto.<br> ");
@@ -173,11 +170,8 @@ public class FormTrasportoPersone extends LayoutContainer {
             istruzioni.setHeight(30);
             note.setStyleAttribute("font-style", "italic");
 
-
-            cl.add(istruzioni, flex);
-
+            cl.add(istruzioni, new RowData(-1, 1, new Margins(4)));
             formPanel.add(cl);
-
 
             LayoutContainer c2 = new LayoutContainer();
             HBoxLayout layout2 = new HBoxLayout();
@@ -185,20 +179,17 @@ public class FormTrasportoPersone extends LayoutContainer {
             layout2.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             c2.setLayout(layout2);
 
-            c2.add(note, flex);
-
-
+            c2.add(note, new RowData(-1, 1, new Margins(4)));
             formPanel.add(c2);
 
         }
-
         {
             LayoutContainer km60 = new LayoutContainer();
             HBoxLayout layoutRigaKm60 = new HBoxLayout();
             layoutRigaKm60.setPadding(new Padding(2));
             km60.setLayout(layoutRigaKm60);
 
-            km60.add(new LabelField("Distanza percorsa: provinciale"), flex);
+            km60.add(new LabelField("Distanza percorsa: provinciale"));
             km60.setStyleAttribute("padding-top", "10px");
             formPanel.add(km60);
 
@@ -244,13 +235,13 @@ public class FormTrasportoPersone extends LayoutContainer {
             motoKm60.setPropertyEditorType(Integer.class);
 
             km60input.add(bus);
-            km60input.add(busKm60, flex);
+            km60input.add(busKm60);
             km60input.add(automobile);
-            km60input.add(autoKm60, flex);
+            km60input.add(autoKm60);
             km60input.add(treno);
-            km60input.add(trenoKm60, flex);
+            km60input.add(trenoKm60);
             km60input.add(moto);
-            km60input.add(motoKm60, flex);
+            km60input.add(motoKm60);
 
 
             layoutRigaKm60.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
@@ -262,7 +253,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             layoutRigaKm300.setPadding(new Padding(2));
             layoutRigaKm300.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km300.setLayout(layoutRigaKm300);
-            km300.add(new LabelField("Distanza percorsa: regionale"), flex);
+            km300.add(new LabelField("Distanza percorsa: regionale"));
             km300.setStyleAttribute("padding-top", "20px");
             formPanel.add(km300);
 
@@ -311,13 +302,13 @@ public class FormTrasportoPersone extends LayoutContainer {
 
 
             km300input.add(bus300);
-            km300input.add(busKm300, flex);
+            km300input.add(busKm300);
             km300input.add(automobile300);
-            km300input.add(autoKm300, flex);
+            km300input.add(autoKm300);
             km300input.add(treno300);
-            km300input.add(trenoKm300, flex);
+            km300input.add(trenoKm300);
             km300input.add(moto300);
-            km300input.add(motoKm300, flex);
+            km300input.add(motoKm300);
 
 
             formPanel.add(km300input, new FormData("100%"));
@@ -329,7 +320,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             layoutRigaKm1000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km1000.setLayout(layoutRigaKm1000);
             km1000.setStyleAttribute("padding-top", "20px");
-            km1000.add(new LabelField("Distanza percorsa: nazionale"), flex);
+            km1000.add(new LabelField("Distanza percorsa: nazionale"));
 
             formPanel.add(km1000);
             LayoutContainer km1000input = new LayoutContainer();
@@ -371,13 +362,13 @@ public class FormTrasportoPersone extends LayoutContainer {
             aereoKm1000.setPropertyEditorType(Integer.class);
 
             km1000input.add(bus1000);
-            km1000input.add(busKm1000, flex);
+            km1000input.add(busKm1000);
             km1000input.add(automobile1000);
-            km1000input.add(autoKm1000, flex);
+            km1000input.add(autoKm1000);
             km1000input.add(treno1000);
-            km1000input.add(trenoKm1000, flex);
+            km1000input.add(trenoKm1000);
             km1000input.add(aereo1000);
-            km1000input.add(aereoKm1000, flex);
+            km1000input.add(aereoKm1000);
             formPanel.add(km1000input, new FormData("100%"));
         }
         {
@@ -387,7 +378,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             layoutRigaKm3000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km3000.setLayout(layoutRigaKm3000);
 
-            km3000.add(new LabelField("Distanza percorsa: europea"), flex);
+            km3000.add(new LabelField("Distanza percorsa: europea"));
             km3000.setStyleAttribute("padding-top", "20px");
             formPanel.add(km3000);
 
@@ -430,13 +421,13 @@ public class FormTrasportoPersone extends LayoutContainer {
             aereoKm3000.setPropertyEditorType(Integer.class);
 
             km3000input.add(bus3000);
-            km3000input.add(busKm3000, flex);
+            km3000input.add(busKm3000);
             km3000input.add(automobile3000);
-            km3000input.add(autoKm3000, flex);
+            km3000input.add(autoKm3000);
             km3000input.add(treno3000);
-            km3000input.add(trenoKm3000, flex);
+            km3000input.add(trenoKm3000);
             km3000input.add(aereo3000);
-            km3000input.add(aereoKm3000, flex);
+            km3000input.add(aereoKm3000);
             formPanel.add(km3000input);
         }
 
@@ -447,7 +438,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             layoutRigaKm9000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             km9000.setLayout(layoutRigaKm9000);
 
-            km9000.add(new LabelField("Distanza percorsa: extra europea"), flex);
+            km9000.add(new LabelField("Distanza percorsa: extra europea"));
             km9000.setStyleAttribute("padding-top", "20px");
             formPanel.add(km9000);
 
@@ -466,7 +457,7 @@ public class FormTrasportoPersone extends LayoutContainer {
             aereoKm9000.setPropertyEditorType(Integer.class);
 
             km9000input.add(aereo9000);
-            km9000input.add(aereoKm9000, flex);
+            km9000input.add(aereoKm9000);
             formPanel.add(km9000input);
         }
 

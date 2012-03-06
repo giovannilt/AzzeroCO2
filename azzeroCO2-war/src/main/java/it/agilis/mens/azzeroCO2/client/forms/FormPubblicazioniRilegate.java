@@ -44,7 +44,6 @@ public class FormPubblicazioniRilegate extends LayoutContainer {
     private ContentPanel cpEst = new ContentPanel();
 
     public FormPubblicazioniRilegate() {
-        //this.pubblicazioniRilegateModel.setMonitorChanges(true);
         setDefault();
     }
 
