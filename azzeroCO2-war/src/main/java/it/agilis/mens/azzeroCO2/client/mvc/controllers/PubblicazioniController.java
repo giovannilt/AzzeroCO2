@@ -176,7 +176,7 @@ public class PubblicazioniController extends BaseController {
 
                     if (couponModel == null || (couponModel != null &&
                             !couponModel.getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString()))) {
-                        if (importo > 10.0) {
+                        if (importo > 0.01) { //rimettere 10 euro
                             Dispatcher.forwardEvent(PagamentoSellaEvents.ShowForm, model);
                         } else {
                             MyInfo.show("Non e' possibile comperare ordini inferiori ai 10 euro");
