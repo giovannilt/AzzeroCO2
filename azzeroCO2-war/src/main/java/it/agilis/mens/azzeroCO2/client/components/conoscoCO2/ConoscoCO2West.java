@@ -147,22 +147,6 @@ public class ConoscoCO2West extends LayoutContainer {
         grid.setTrackMouseOver(false);
         grid.setColumnResize(false);
 
-        //   grid.setLoadMask(true);
-        //grid.setBorders(false);
-
-
-        /* grid.getSelectionModel().setSelectionMode(Style.SelectionMode.SINGLE);
-        *//*grid.getSelectionModel().addListener(Events.SelectionChange,
-                new Listener<SelectionChangedEvent<RiepilogoModel>>() {
-                    public void handleEvent(SelectionChangedEvent<RiepilogoModel> be) {
-                        if (be.getSelection().size() > 0) {
-                            if (!Esito.PAGATO.equals(esito)) {
-                                Dispatcher.forwardEvent(ConoscoCO2Events.ShowStep, be.getSelectedItem());
-                            }
-                        }
-                    }
-                });*/
-
         grid.setBorders(false);
 
         return grid;
@@ -174,7 +158,7 @@ public class ConoscoCO2West extends LayoutContainer {
         List<RiepilogoModel> model = CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo);
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
-            m.setOggetto("Non hai ancora inserito <br> nessuna attività");
+            m.setOggetto(oggettoDiDefault);
             store.add(m);
         } else {
             this.esito = esito;

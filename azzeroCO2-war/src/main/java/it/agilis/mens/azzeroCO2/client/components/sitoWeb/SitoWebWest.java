@@ -45,6 +45,7 @@ public class SitoWebWest extends LayoutContainer {
             "accedi al sistema di <br>" +
             "pagamento.";
     private final String Conferma = "Il Percorso è finito!";
+    private final  String oggettoIniziale = "Compensa le emissioni <br>relative al tuo sito web";
 
     public SitoWebWest() {
         RiepilogoModel model = new RiepilogoModel();
@@ -102,7 +103,8 @@ public class SitoWebWest extends LayoutContainer {
             public Object render(ModelData model, String property, ColumnData config, int rowIndex, int colIndex, ListStore listStore, Grid grid) {
                 config.style += "background-color: #d9dadb;";
                 List<RiepilogoModel> r = listStore.getModels();
-                if (r.size() == 1 && r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)) {
+                if (r.size() == 1 && r.get(0).getOggetto().equalsIgnoreCase(oggettoDiDefault)||
+                        r.get(0).getOggetto().equalsIgnoreCase(oggettoIniziale)) {
                     return null;
                 }
 
@@ -151,7 +153,8 @@ public class SitoWebWest extends LayoutContainer {
         List<RiepilogoModel> model = CalcoliHelper.getListOfRiepilogoModelLazy(riepilogo);
         if (model == null || model.size() == 0) {
             RiepilogoModel m = new RiepilogoModel();
-            m.setOggetto("Compensa le emissioni <br>relative al tuo sito web");
+
+            m.setOggetto(oggettoIniziale);
             store.add(m);
         } else {
             store.add(model);
