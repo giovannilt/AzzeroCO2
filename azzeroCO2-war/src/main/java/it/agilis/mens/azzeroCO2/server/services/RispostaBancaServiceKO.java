@@ -43,17 +43,6 @@ public class RispostaBancaServiceKO extends HttpServlet {
                 .getAutowireCapableBeanFactory();
         beanFactory.autowireBean(this);
     }
-
-//http://62.149.166.148/azzeroCO2/azzeroCO2/rispostaBancaOK?
-    // TRANSACTION_ID=84D9357D362F49CF86FFCADFDE9757AE&
-    // MERCHANT_ID=396870600001&
-    // ORDER_ID=AZZEROCO2.1323719666948&
-    // COD_AUT=T04396&
-    // IMPORTO=0,19&
-    // DIVISA=EUR&
-    // MAC=7363B5815A7F7282496781ED0E4821AB
-
-
     private static final String PAGE_TOP = ""
             + "<html>"
             + "<head>"
@@ -105,11 +94,6 @@ public class RispostaBancaServiceKO extends HttpServlet {
                 MessageDigest algorithm = MessageDigest.getInstance("MD5");
                 algorithm.reset();
 
-                /*String controllo = TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key;
-                algorithm.update(controllo.toUpperCase().getBytes());
-
-                if (new String(algorithm.digest(), "UTF-8").toLowerCase().equalsIgnoreCase(MAC.toUpperCase())) {
-               */
                 String theMd5 = AzzerroCO2UtilsClientHelper.getMAC_MD5((TRANSACTION_ID + MERCHANT_ID + ORDER_ID + COD_AUT + IMPORTO + DIVISA + PagamentoModel.key).toUpperCase());
 
                 if (theMd5.equalsIgnoreCase(MAC)) {
