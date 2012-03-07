@@ -228,8 +228,8 @@ public class UnAnnoDiAttivitaController extends BaseController {
                     if (result != null) {
                         OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         annoView.setDettaglioModel(model);
-                        openConfermaToAzzeroCO2_IT(model);
                         MyInfo.show("Anno di attivià " + riepilogo.getNome() + " salvato con successo.");
+                        openConfermaToAzzeroCO2_IT(model);
                     }
                 }
             };

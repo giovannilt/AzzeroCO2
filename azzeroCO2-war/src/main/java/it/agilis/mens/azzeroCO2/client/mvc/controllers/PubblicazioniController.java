@@ -242,8 +242,8 @@ public class PubblicazioniController extends BaseController {
                     if (result != null) {
                         OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         pubblicazioneView.setDettaglioModel(model);
-                        openConfermaToAzzeroCO2_IT(model);
                         MyInfo.show("Pubblicazione " + riepilogo.getNome() + " salvato con successo.");
+                        openConfermaToAzzeroCO2_IT(model);
                     }
                 }
             };

@@ -223,8 +223,8 @@ public class SitoWebController extends BaseController {
                     OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                     model.setNome("Compensazione SitoWeb");
                     sitoWebView.setDettaglioModel(model);
-                    openConfermaToAzzeroCO2_IT(model);
                     MyInfo.show("Evento" + riepilogo.getNome() + " salvato con successo.");
+                    openConfermaToAzzeroCO2_IT(model);
                 }
             }
         };

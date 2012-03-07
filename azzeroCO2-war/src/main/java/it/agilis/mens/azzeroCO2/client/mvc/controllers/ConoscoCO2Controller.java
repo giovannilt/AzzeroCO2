@@ -233,8 +233,8 @@ public class ConoscoCO2Controller extends BaseController {
                 if (result != null) {
                     OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                     conoscoCO2View.setDettaglioModel(model);
-                    openConfermaToAzzeroCO2_IT(model);
                     MyInfo.show("Evento " + riepilogo.getNome() + " salvato con successo.");
+                    openConfermaToAzzeroCO2_IT(model);
                 }
             }
         };
