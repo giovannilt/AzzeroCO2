@@ -190,7 +190,11 @@ public class AzzeroCO2Register implements IAzzeroCO2Register {
         if (listOfOrdini.size() > 0) {
             return listOfOrdini.get(0);
         } else {
-            throw new NotFoundException("Ordine non esistente:"+ordineCriteria.toString());
+            throw new NotFoundException("Ordine non esistente:" + ordineCriteria.toString());
         }
+    }
+
+    public Ordine getOrdineById(Long idOrdine) throws NotFoundException {
+        return ordineDAO.getOrdineEager(idOrdine);
     }
 }

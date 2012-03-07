@@ -29,12 +29,17 @@ public enum Esito {
             return "ANNULLATO";
         }
     },
+    OMAGGIO {
+        @Override
+        public String toString() {
+            return "OMAGGIO";
+        }
+    },
     PAGAMENTO_NON_AVVENUTO {
         @Override
         public String toString() {
             return "PAGAMENTO_NON_AVVENUTO";
         }
-
     };
 
 }

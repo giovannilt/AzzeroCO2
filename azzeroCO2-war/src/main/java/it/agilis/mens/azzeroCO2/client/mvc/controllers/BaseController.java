@@ -10,6 +10,7 @@ import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
 import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
+import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -170,5 +171,16 @@ public abstract class BaseController extends Controller {
         hustonService.sentMail(data, aCallback);
     }
 
+    public static void openConfermaToAzzeroCO2_IT(OrdineModel ordine) {
 
+        String url = GWT.getModuleBaseURL() + "azzeroCo2ITPutInfoServiceOK?idOrdine=" + ordine.getOrdineId();
+
+        com.google.gwt.user.client.Window.open(url, "AzzeroCO2",
+                "menubar=no," +
+                        "location=false," +
+                        "resizable=yes," +
+                        "scrollbars=yes," +
+                        "status=no," +
+                        "dependent=true");
+    }
 }

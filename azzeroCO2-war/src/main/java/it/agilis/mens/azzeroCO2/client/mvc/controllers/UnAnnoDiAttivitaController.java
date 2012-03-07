@@ -157,6 +157,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
                     pagamentoModel.setKgCO2(kgCO2);
                     model.setPagamentoModel(pagamentoModel);
                     model.setCouponModel(couponModel);
+
                     if (couponModel == null || (couponModel != null &&
                             !couponModel.getTipo().equalsIgnoreCase(CouponType.OMAGGIO.toString()))) {
                         if (importo > 0.01) { //rimettere 10 euro
@@ -165,7 +166,11 @@ public class UnAnnoDiAttivitaController extends BaseController {
                             MyInfo.show("Non e' possibile comperare ordini inferiori ai 10 euro");
                         }
                     } else {
+                        PagamentoModel p = model.getPagamentoModel();
+                        p.setEsito(Esito.OMAGGIO.name());
+                        model.setPagamentoModel(p);
                         save(model);
+
                         annoView.showConferma(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
                     }
 
@@ -223,6 +228,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
                     if (result != null) {
                         OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         annoView.setDettaglioModel(model);
+                        openConfermaToAzzeroCO2_IT(model);
                         MyInfo.show("Anno di attivià " + riepilogo.getNome() + " salvato con successo.");
                     }
                 }
@@ -256,7 +262,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
 
     class MyAsyncCallback implements AsyncCallback<OrdineVTO> {
         private Timer timer;
-        private int numeroDiVolte = 12;
+        private int numeroDiVolte = 60;
 
         public void onFailure(Throwable caught) {
             MyInfo.show("Error", "Errore impossibile connettersi al server " + caught, 7000);

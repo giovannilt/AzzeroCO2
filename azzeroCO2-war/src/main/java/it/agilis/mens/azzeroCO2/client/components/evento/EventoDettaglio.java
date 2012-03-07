@@ -312,7 +312,7 @@ public class EventoDettaglio extends LayoutContainer {
                 previusTab();
             }
         }
-        for (TabItem item : eventoTab.getItems()) {
+        /*  for (TabItem item : eventoTab.getItems()) {
             if (item.getText().equalsIgnoreCase("Calcolo")) {
                 ContentPanel calcolo = (ContentPanel) item.getItem(0);
                 FormEnergia formEnergia = (FormEnergia) calcolo.getItem(0);
@@ -322,7 +322,7 @@ public class EventoDettaglio extends LayoutContainer {
                 formEnergia.setWidth("691");
                 break;
             }
-        }
+        }*/
         while (posizioniLabel != 7) {
             nextTab();
         }
@@ -332,7 +332,7 @@ public class EventoDettaglio extends LayoutContainer {
     public void showStep(RiepilogoModel tabToShow) {
         while (posizioniLabel > 0) {
             String s = previusTab();
-            if (s != null  && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
+            if (s != null && !"".equalsIgnoreCase(s) && tabToShow.getOggetto().toLowerCase().startsWith(s.toLowerCase())) {
                 return;
             }
         }

@@ -164,6 +164,9 @@ public class SitoWebController extends BaseController {
                             MyInfo.show("Non e' possibile comperare ordini inferiori ai 10 euro");
                         }
                     } else {
+                        PagamentoModel p = model.getPagamentoModel();
+                        p.setEsito(Esito.OMAGGIO.name());
+                        model.setPagamentoModel(p);
                         save(model);
                         sitoWebView.showConferma(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
                     }
@@ -220,6 +223,7 @@ public class SitoWebController extends BaseController {
                     OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                     model.setNome("Compensazione SitoWeb");
                     sitoWebView.setDettaglioModel(model);
+                    openConfermaToAzzeroCO2_IT(model);
                     MyInfo.show("Evento" + riepilogo.getNome() + " salvato con successo.");
                 }
             }
@@ -230,7 +234,7 @@ public class SitoWebController extends BaseController {
 
     class MyAsyncCallback implements AsyncCallback<OrdineVTO> {
         private Timer timer;
-        private int numeroDiVolte = 12;
+        private int numeroDiVolte = 60;
 
         public void onFailure(Throwable caught) {
             MyInfo.show("Error", "Errore impossibile connettersi al server " + caught, 7000);

@@ -36,6 +36,18 @@
     </servlet-mapping>
 
     <servlet>
+        <display-name>AzzeroCo2ITPutInfoServiceOK</display-name>
+        <servlet-name>azzeroCo2ITPutInfoServiceOK</servlet-name>
+        <servlet-class>it.agilis.mens.azzeroCO2.server.services.AzzeroCo2ITPutInfoServiceOK</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>azzeroCo2ITPutInfoServiceOK</servlet-name>
+        <url-pattern>/azzeroCO2/azzeroCo2ITPutInfoServiceOK</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <display-name>RispostaBancaKO</display-name>
         <servlet-name>rispostaBancaServletKO</servlet-name>
         <servlet-class>it.agilis.mens.azzeroCO2.server.services.RispostaBancaServiceKO</servlet-class>

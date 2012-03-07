@@ -4,6 +4,7 @@ import it.agilis.mens.azzeroCO2.core.criteria.OrdineCriteria;
 import it.agilis.mens.azzeroCO2.core.dao.DAOSupport;
 import it.agilis.mens.azzeroCO2.core.dao.IOrdineDAO;
 import it.agilis.mens.azzeroCO2.core.entity.Ordine;
+import javassist.NotFoundException;
 import org.hibernate.Hibernate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,18 +51,21 @@ public class OrdineDAO extends DAOSupport implements IOrdineDAO {
     }
 
     @Override
-    public Ordine getOrdineEager(Long ordineId) {
+    public Ordine getOrdineEager(Long ordineId) throws NotFoundException {
         Ordine o = (Ordine) getObjectById(Ordine.class, ordineId);
-        Hibernate.initialize(o.getEvento());
-        Hibernate.initialize(o.getProgettoCompensazione());
-        Hibernate.initialize(o.getTrasportoPersone());
-        Hibernate.initialize(o.getTrasportoMerci());
-        Hibernate.initialize(o.getPubblicazioni());
-        Hibernate.initialize(o.getCoupon());
-        Hibernate.initialize(o.getUtente());
-        Hibernate.initialize(o.getRicevutaDiPagamento());
-        Hibernate.initialize(o.getSito());
-        Hibernate.initialize(o.getBigliettiDaVisita());
-        return o;
+        if (o != null) {
+            Hibernate.initialize(o.getEvento());
+            Hibernate.initialize(o.getProgettoCompensazione());
+            Hibernate.initialize(o.getTrasportoPersone());
+            Hibernate.initialize(o.getTrasportoMerci());
+            Hibernate.initialize(o.getPubblicazioni());
+            Hibernate.initialize(o.getCoupon());
+            Hibernate.initialize(o.getUtente());
+            Hibernate.initialize(o.getRicevutaDiPagamento());
+            Hibernate.initialize(o.getSito());
+            Hibernate.initialize(o.getBigliettiDaVisita());
+            return o;
+        }
+        throw new NotFoundException("Ordine " + ordineId);
     }
 }

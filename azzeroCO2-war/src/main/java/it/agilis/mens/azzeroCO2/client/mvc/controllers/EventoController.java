@@ -178,8 +178,12 @@ public class EventoController extends BaseController {
                             MyInfo.show("Non e' possibile comperare ordini inferiori ai 10 euro");
                         }
                     } else {
+                        PagamentoModel p = model.getPagamentoModel();
+                        p.setEsito(Esito.OMAGGIO.name());
+                        model.setPagamentoModel(p);
                         save(model);
                         eventoView.showConferma(AzzerroCO2UtilsClientHelper.getDettaglioVTO(model));
+
                     }
                 } else {
                     MyInfo.show("Seleziona il Progetto di compensazione");
@@ -236,6 +240,7 @@ public class EventoController extends BaseController {
                         OrdineModel model = AzzerroCO2UtilsClientHelper.getDettaglioModel(result);
                         eventoView.setDettaglioModel(model);
                         MyInfo.show("Evento " + riepilogo.getNome() + " salvato con successo.");
+                        openConfermaToAzzeroCO2_IT(model);
                     }
                 }
             };
@@ -268,7 +273,7 @@ public class EventoController extends BaseController {
 
     class MyAsyncCallback implements AsyncCallback<OrdineVTO> {
         private Timer timer;
-        private int numeroDiVolte = 12;
+        private int numeroDiVolte = 60;
 
         public void onFailure(Throwable caught) {
             MyInfo.show("Error", "Errore impossibile connettersi al server " + caught, 7000);
