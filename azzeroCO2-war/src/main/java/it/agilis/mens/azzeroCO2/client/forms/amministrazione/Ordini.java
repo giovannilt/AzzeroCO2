@@ -16,13 +16,11 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Element;
 import it.agilis.mens.azzeroCO2.client.MyInfo;
-import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.CentralEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.EventoEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.UnAnnoDiAttivitaEvents;
 import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
-import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -152,25 +150,19 @@ public class Ordini extends LayoutContainer {
                 new Listener<SelectionChangedEvent<OrdineModel>>() {
                     public void handleEvent(SelectionChangedEvent<OrdineModel> be) {
                         if (be.getSelection().size() > 0) {
-                            if (be.getSelectedItem().getPagamentoModel() != null &&
-                                    be.getSelectedItem().getPagamentoModel().getEsito().equals(Esito.PAGATO.toString())) {
-                                Dispatcher.forwardEvent(AmministrazioneEvents.ShowOrdineCompensatoDialog, be.getSelectedItem());
-
-                            } else {
-                                if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.EVENTO) {
-                                    Dispatcher.forwardEvent(EventoEvents.LoadEvento, be.getSelectedItem());
-                                    Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
-                                    Dispatcher.forwardEvent(EventoEvents.ShowRiepilogo);
-                                    MyInfo.show("Uploading Evento... " + be.getSelectedItem().getNome());
-                                } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.ANNO_DI_ATTIVITA) {
-                                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.LoadUnAnnoDiAttivita, be.getSelectedItem());
-                                    Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.ANNO_DI_ATTIVITA);
-                                    Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.ShowRiepilogo);
-                                    MyInfo.show("Uploading Anno di Attivita'... " + be.getSelectedItem().getNome());
-                                } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
-                                } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.CONOSCI_CO2) {
-                                } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.WEB) {
-                                }
+                            if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.EVENTO) {
+                                Dispatcher.forwardEvent(EventoEvents.LoadEvento, be.getSelectedItem());
+                                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.EVENTO);
+                                Dispatcher.forwardEvent(EventoEvents.ShowRiepilogo);
+                                MyInfo.show("Uploading Evento... " + be.getSelectedItem().getNome());
+                            } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.ANNO_DI_ATTIVITA) {
+                                Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.LoadUnAnnoDiAttivita, be.getSelectedItem());
+                                Dispatcher.forwardEvent(CentralEvents.ShowPanel, Eventi.ANNO_DI_ATTIVITA);
+                                Dispatcher.forwardEvent(UnAnnoDiAttivitaEvents.ShowRiepilogo);
+                                MyInfo.show("Uploading Anno di Attivita'... " + be.getSelectedItem().getNome());
+                            } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.UNA_PUBBLICAZIONE) {
+                            } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.CONOSCI_CO2) {
+                            } else if (Eventi.valueOf(be.getSelectedItem().getEventiType()) == Eventi.WEB) {
                             }
                         }
                     }

@@ -4,15 +4,12 @@ import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.MyInfo;
-import it.agilis.mens.azzeroCO2.client.components.OrdineCompensatoDialog;
 import it.agilis.mens.azzeroCO2.client.components.uploadFiles.model.Model;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AmministrazioneEvents;
 import it.agilis.mens.azzeroCO2.client.mvc.events.AzzeroCO2Events;
 import it.agilis.mens.azzeroCO2.client.mvc.views.AmministrazioneView;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
-import it.agilis.mens.azzeroCO2.client.services.CalcoliHelper;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
-import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
@@ -31,7 +28,6 @@ import java.util.Map;
  */
 public class AmministrazioneController extends BaseController {
     private AmministrazioneView amministrazioneView = new AmministrazioneView(this);
-    private OrdineCompensatoDialog ordineCompensatoDialog = new OrdineCompensatoDialog();
 
 
     public AmministrazioneController() {
@@ -42,20 +38,11 @@ public class AmministrazioneController extends BaseController {
         registerEventTypes(AmministrazioneEvents.SaveCoupons);
         registerEventTypes(AmministrazioneEvents.SaveCoefficienti);
         registerEventTypes(AmministrazioneEvents.SaveProgrammiDiCompensazione);
-        registerEventTypes(AmministrazioneEvents.ShowOrdineCompensatoDialog);
     }
 
     @Override
     public void handleEvent(AppEvent event) {
-        if (event.getType().equals(AmministrazioneEvents.ShowOrdineCompensatoDialog)) {
-            OrdineModel ordineModel = event.getData();
-
-            ordineCompensatoDialog.setInStore(CalcoliHelper.geListOfRiepilogoModel(ordineModel, amministrazioneView.getCoefficienti(), Eventi.AMMINISTRAZIONE));
-            ordineCompensatoDialog.setTotale(ordineModel.getPagamentoModel().getKgCO2());
-            ordineCompensatoDialog.setOrdineModel(ordineModel);
-            ordineCompensatoDialog.show();
-
-        } else if (event.getType().equals(AmministrazioneEvents.SaveCoefficienti)) {
+        if (event.getType().equals(AmministrazioneEvents.SaveCoefficienti)) {
             List<CoefficienteModel> coefficienteModels = event.getData();
             HustonServiceAsync hustonService = Registry.get(AzzeroCO2Constants.HUSTON_SERVICE);
             AsyncCallback<Boolean> aCallback = new AsyncCallback<Boolean>() {
