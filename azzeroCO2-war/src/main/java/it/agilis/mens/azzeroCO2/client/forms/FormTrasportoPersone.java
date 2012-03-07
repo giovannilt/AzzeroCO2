@@ -93,8 +93,8 @@ public class FormTrasportoPersone extends LayoutContainer {
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-        cp.add(cpEst, new RowData(.35, .95));     //DIM
-        cp.add(panel, new RowData(.65, 0.95));     //DIM
+        cp.add(cpEst, new RowData(.35, 0.95));     //DIM
+        cp.add(panel, new RowData(.65, 0.97));     //DIM
 
         cp.add(cpCentre, new RowData(.65, 1));
 
@@ -160,7 +160,7 @@ public class FormTrasportoPersone extends LayoutContainer {
 
          {
             LayoutContainer cl = new LayoutContainer();
-             RowLayout layout = new RowLayout(Orientation.VERTICAL);
+            RowLayout layout = new RowLayout(Orientation.VERTICAL);
             cl.setLayout(layout);
 
             LabelField istruzioni = new LabelField("Inserisci il numero di tratte per distanza percorsa e mezzo di trasporto.<br> ");
@@ -185,8 +185,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         }
         {
             LayoutContainer km60 = new LayoutContainer();
-            HBoxLayout layoutRigaKm60 = new HBoxLayout();
-            layoutRigaKm60.setPadding(new Padding(2));
+            RowLayout layoutRigaKm60 = new RowLayout(Orientation.VERTICAL);
             km60.setLayout(layoutRigaKm60);
 
             km60.add(new LabelField("Distanza percorsa: provinciale"));
@@ -243,15 +242,12 @@ public class FormTrasportoPersone extends LayoutContainer {
             km60input.add(moto);
             km60input.add(motoKm60);
 
-
-            layoutRigaKm60.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
             formPanel.add(km60input);
         }
         {
             LayoutContainer km300 = new LayoutContainer();
-            HBoxLayout layoutRigaKm300 = new HBoxLayout();
-            layoutRigaKm300.setPadding(new Padding(2));
-            layoutRigaKm300.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+            RowLayout layoutRigaKm300 = new RowLayout(Orientation.VERTICAL);
+
             km300.setLayout(layoutRigaKm300);
             km300.add(new LabelField("Distanza percorsa: regionale"));
             km300.setStyleAttribute("padding-top", "20px");
@@ -315,9 +311,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         }
         {
             LayoutContainer km1000 = new LayoutContainer();
-            HBoxLayout layoutRigaKm1000 = new HBoxLayout();
-            layoutRigaKm1000.setPadding(new Padding(2));
-            layoutRigaKm1000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+            RowLayout layoutRigaKm1000 = new RowLayout(Orientation.VERTICAL);
             km1000.setLayout(layoutRigaKm1000);
             km1000.setStyleAttribute("padding-top", "20px");
             km1000.add(new LabelField("Distanza percorsa: nazionale"));
@@ -373,9 +367,7 @@ public class FormTrasportoPersone extends LayoutContainer {
         }
         {
             LayoutContainer km3000 = new LayoutContainer();
-            HBoxLayout layoutRigaKm3000 = new HBoxLayout();
-            layoutRigaKm3000.setPadding(new Padding(2));
-            layoutRigaKm3000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+            RowLayout layoutRigaKm3000 = new RowLayout(Orientation.VERTICAL);
             km3000.setLayout(layoutRigaKm3000);
 
             km3000.add(new LabelField("Distanza percorsa: europea"));
@@ -433,9 +425,7 @@ public class FormTrasportoPersone extends LayoutContainer {
 
         {
             LayoutContainer km9000 = new LayoutContainer();
-            HBoxLayout layoutRigaKm9000 = new HBoxLayout();
-            layoutRigaKm9000.setPadding(new Padding(2));
-            layoutRigaKm9000.setHBoxLayoutAlign(HBoxLayout.HBoxLayoutAlign.MIDDLE);
+            RowLayout layoutRigaKm9000 = new RowLayout(Orientation.VERTICAL);
             km9000.setLayout(layoutRigaKm9000);
 
             km9000.add(new LabelField("Distanza percorsa: extra europea"));
