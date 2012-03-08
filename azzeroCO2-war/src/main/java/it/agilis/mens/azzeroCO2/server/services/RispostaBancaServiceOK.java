@@ -129,9 +129,9 @@ public class RispostaBancaServiceOK extends HttpServlet {
                                 "<input type='hidden' name='cfisc'      id='cfisc'      value='" + ordine.getUtente().getpIvaCF() + "' />\n" +
                                 "<input type='hidden' name='piva'       id='piva'       value='" + ordine.getUtente().getpIvaCF() + "' />\n" +
                                 "<input type='hidden' name='data'       id='data'       value='" + format.format(ricevuta.getUpdateFromBanca()) + "' />\n" +
-                                "<input type='hidden' name='tonnellate' id='tonnellate' value='" + tonnellate + "' />\n" +      //TODO non deve mettere i punti che separano le migliaia
-                                "<input type='hidden' name='crediti'    id='crediti'    value='" + tonnellate + "' />\n" +                             //TODO ma che cos'erano i crediti?
-                                "<input type='hidden' name='euro'       id='euro'       value='" + importoinEuro + "' />\n" +          //TODO importo deve avere il formato 234533.22 quindi niente separatore delle migliaia e . per i decimali al posto della virgola
+                                "<input type='hidden' name='tonnellate' id='tonnellate' value='" + tonnellate + "' />\n" +
+                                "<input type='hidden' name='crediti'    id='crediti'    value='" + tonnellate + "' />\n" +
+                                "<input type='hidden' name='euro'       id='euro'       value='" + importoinEuro + "' />\n" +
                                 "<input type='hidden' name='idprogetto' id='idprogetto' value='" + ordine.getProgettoCompensazione().getId() + "' />\n" +
                                 "</form>" +
                                 PAGE_BOTTOM

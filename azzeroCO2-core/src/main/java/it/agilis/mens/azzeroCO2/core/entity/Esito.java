@@ -29,7 +29,8 @@ public enum Esito {
             return "In omaggio";
         }
 
-    }, PAGAMENTO_NON_AVVENUTO {
+    },
+    PAGAMENTO_NON_AVVENUTO {
         @Override
         public String toString() {
             return "Pagamento non avvenuto";

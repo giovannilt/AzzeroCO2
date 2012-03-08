@@ -253,7 +253,7 @@ public class SitoWebController extends BaseController {
 
                     sentMail(result);
                 }
-                if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.ANNULLATO.toString())) {
+                if (result.getPagamentoModel().getEsito().equalsIgnoreCase(Esito.PAGAMENTO_NON_AVVENUTO.toString())) {
                     MyInfo.show("La Banca ha rifiutato la transazione, il pagamento si ritiene annullato.");
                     Dispatcher.forwardEvent(PagamentoSellaEvents.CloseForm);
                 } else {
@@ -262,7 +262,7 @@ public class SitoWebController extends BaseController {
                         getTimer().schedule(10000);
                         numeroDiVolte--;
                     } else {
-                        MyInfo.show("Evento non pagato, atteso pagamento per piu' di 2 minuti, si consiglia di ricaricare ");
+                        MyInfo.show("Evento non pagato, atteso pagamento per piu' di 10 minuti, si consiglia di ricaricare ");
                         Dispatcher.forwardEvent(PagamentoSellaEvents.EnableButton);
                     }
                 }

@@ -12,34 +12,30 @@ public enum Esito {
     PAGATO {
         @Override
         public String toString() {
-            return "PAGATO";
+            return "Pagato";
         }
 
     },
     IN_PAGAMENTO {
         @Override
         public String toString() {
-            return "IN_PAGAMENTO";
+            return "In pagamento";
         }
 
-    },
-    ANNULLATO {
-        @Override
-        public String toString() {
-            return "ANNULLATO";
-        }
     },
     OMAGGIO {
         @Override
         public String toString() {
-            return "OMAGGIO";
+            return "In omaggio";
         }
+
     },
     PAGAMENTO_NON_AVVENUTO {
         @Override
         public String toString() {
-            return "PAGAMENTO_NON_AVVENUTO";
+            return "Pagamento non avvenuto";
         }
+
     };
 
 }
