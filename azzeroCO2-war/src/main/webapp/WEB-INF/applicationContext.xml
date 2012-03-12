@@ -45,6 +45,5 @@
 
     <bean id="propertiesManager" class="it.agilis.mens.azzeroCO2.server.PropertiesManager" scope="singleton">
           <property name="imageSource" value="${azzeroCO2.imageSource}"/>
-        <property name="certificatiFolder" value="${azzeroCO2.certificatiFolder}"/>
     </bean>
 </beans>
