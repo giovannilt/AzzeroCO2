@@ -43,7 +43,7 @@ public class FormPernottamenti extends LayoutContainer {
         super.onRender(parent, index);
 
         setLayout(new RowLayout(Style.Orientation.HORIZONTAL));
-        add(formPanel, new RowData(.99, 0.96));      //DIM
+        add(formPanel, new RowData(.98, .95));      //DIM
     }
 
 

@@ -93,8 +93,8 @@ public class FormTrasportoPersone extends LayoutContainer {
         cpEst.setBottomComponent(toolBar);
         cpEst.setButtonAlign(Style.HorizontalAlignment.CENTER);
 
-        cp.add(cpEst, new RowData(.35, 0.95));     //DIM
-        cp.add(panel, new RowData(.65, 0.97));     //DIM
+        cp.add(cpEst, new RowData(.35, 0.945));     //DIM
+        cp.add(panel, new RowData(.64, 0.96));     //DIM
 
         cp.add(cpCentre, new RowData(.65, 1));
 

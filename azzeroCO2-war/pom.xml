@@ -148,8 +148,6 @@
             <!-- END OF GIT COMMIT ID PLUGIN CONFIGURATION -->
 
             <!-- other plugins -->
-
-
             <!-- GWT Maven Plugin -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
