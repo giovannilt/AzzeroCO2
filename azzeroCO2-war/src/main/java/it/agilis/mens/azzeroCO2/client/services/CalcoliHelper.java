@@ -127,8 +127,8 @@ public class CalcoliHelper {
         if (eventoModel != null && eventoModel.getBigliettiDaVisitaModel() != null) {
             if (getBigliettiDaVisita(eventoModel.getBigliettiDaVisitaModel(), Eventi.UNA_PUBBLICAZIONE).size() > 0) {
                 model = new RiepilogoModel();
-                model.setDettagli("Biglietti Da Visita");
-                model.setOggetto("Biglietti Da Visita");
+                model.setDettagli("Biglietti da visita e cartelline");
+                model.setOggetto("Biglietti da visita e cartelline");
                 model.setIndex(7);
                 store.add(model);
             }
