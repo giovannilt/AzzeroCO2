@@ -39,7 +39,7 @@ import java.util.Map;
  * Time: 11:40 PM
  * To change this template use File | Settings | File Templates.
  */
-public class UnAnnoDiAttivitaView extends View {
+public class UnAnnoDiAttivitaView extends View implements BaseView {
     private ContentPanel unAnnoDiAttivita = new ContentPanel();
     private AnnoConfermDialog annoConfermDialog = new AnnoConfermDialog();
 

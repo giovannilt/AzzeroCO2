@@ -16,7 +16,6 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.CouponType;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
-import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
@@ -119,7 +118,7 @@ public class UnAnnoDiAttivitaController extends BaseController {
             } else {
                 OrdineModel model = annoView.getRiepilogo();
                 model.setEventiType(Eventi.ANNO_DI_ATTIVITA.name());
-                double kgCO2 = getTotaleKgCO2(model);
+                double kgCO2 = getTotaleKgCO2(model, annoView);
                 Double importo = new Double(0.0);
 
                 // TODO Calcolare il totale togliendo lo sconto COUPON
@@ -253,14 +252,14 @@ public class UnAnnoDiAttivitaController extends BaseController {
         }
     }
 
-    private double getTotaleKgCO2(OrdineModel model) {
+  /*  private double getTotaleKgCO2(OrdineModel model) {
         List<RiepilogoModel> riepilogo = annoView.riepilogo(getCoefficientiMAP());
         double totale = 0;
         for (RiepilogoModel r : riepilogo) {
             totale += r.getKgCO2();
         }
         return totale;
-    }
+    }*/
 
     class MyAsyncCallback implements AsyncCallback<OrdineVTO> {
         private Timer timer;

@@ -40,7 +40,7 @@ import java.util.Map;
  * Time: 10:09 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EventoView extends View {
+public class EventoView extends View  implements BaseView{
     private ContentPanel evento = new ContentPanel();
     private EventoConfermDialog eventoConfermDialog = new EventoConfermDialog();
 

@@ -15,7 +15,6 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.CouponType;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
-import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.evento.TipoDiCartaModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
@@ -135,7 +134,7 @@ public class EventoController extends BaseController {
             } else {
                 OrdineModel model = eventoView.getRiepilogo();
                 model.setEventiType(Eventi.EVENTO.name());
-                double kgCO2 = getTotaleKgCO2(model);
+                double kgCO2 = getTotaleKgCO2(model, eventoView);
                 Double importo = new Double(0.0);
 
                 PagamentoModel pagamentoModel = null;
@@ -264,14 +263,14 @@ public class EventoController extends BaseController {
         }
     }
 
-    private double getTotaleKgCO2(OrdineModel model) {
+   /* private double getTotaleKgCO2(OrdineModel model) {
         List<RiepilogoModel> eventoRiepilogoModels = eventoView.riepilogo(getCoefficientiMAP());
         double totale = 0;
         for (RiepilogoModel r : eventoRiepilogoModels) {
             totale += r.getKgCO2();
         }
         return totale;
-    }
+    }*/
 
     class MyAsyncCallback implements AsyncCallback<OrdineVTO> {
         private Timer timer;

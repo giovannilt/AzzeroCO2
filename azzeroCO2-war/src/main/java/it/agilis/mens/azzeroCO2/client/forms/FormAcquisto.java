@@ -408,12 +408,31 @@ public class FormAcquisto extends LayoutContainer {
     public void setRiepilogo(List<RiepilogoModel> eventoRiepilogoModels, OrdineModel riepilogo) {
         if (riepilogo != null)
             this.riepilogo = riepilogo;
-        double totale = 0;
+        double totale= 0;
         if (eventoRiepilogoModels != null) {
             this.eventoRiepilogoModels = eventoRiepilogoModels;
             for (RiepilogoModel r : eventoRiepilogoModels) {
-                totale += r.getKgCO2();
+                totale+= r.getKgCO2();
             }
+            
+            /*
+
+                da (0) ton a (0,999) ton = (1) ton
+                da (x,000) ton a (x,499) ton = (x) ton
+                da (x,500) ton a (x,999) ton = (x+1) ton
+
+            */
+
+            double ton= totale / 1000;
+            
+            if(ton>=0 && ton<0.999){
+              ton= 1;  
+            } else {
+              ton= Math.round(ton);
+            }
+            
+            totale = ton * 1000;
+           
             if (coupon != null && !"".equalsIgnoreCase(coupon.getTipo())) {
                 try {
                     // CALCOLARE IN BASE AL TIPO DI COUPON
@@ -490,12 +509,7 @@ public class FormAcquisto extends LayoutContainer {
         centre.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
         centre.getBody().setStyleAttribute("border-width", "3px 0");
         centre.getBody().setStyleAttribute("margin", "0px");
-
-        //east.getBody().setStyleAttribute("border-bottom", "3px solid #f8b333");
-        //east.getBody().setStyleAttribute("border-style", "solid");
         east.getBody().setStyleAttribute("border-top", "3px solid #f8b333");
-        //east.getBody().setStyleAttribute("border-width", "3px 0");
-        //east.getBody().setStyleAttribute("margin-bottom", "0");
     }
 
     public void setCouponModel(CouponModel coupon) {

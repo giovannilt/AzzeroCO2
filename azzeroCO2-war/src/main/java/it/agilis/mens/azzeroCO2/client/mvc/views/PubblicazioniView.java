@@ -40,7 +40,7 @@ import java.util.Map;
  * Time: 22:30
  * To change this template use File | Settings | File Templates.
  */
-public class PubblicazioniView extends View {
+public class PubblicazioniView extends View  implements BaseView{
 
     private ContentPanel pubblicazione = new ContentPanel();
     private PubblicazioneConfermDialog pubblicazioneConfermDialog = new PubblicazioneConfermDialog();

@@ -15,7 +15,6 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.CouponType;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
-import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
@@ -23,7 +22,6 @@ import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -119,7 +117,7 @@ public class SitoWebController extends BaseController {
             } else {
                 OrdineModel model = sitoWebView.getRiepilogo();
                 model.setEventiType(Eventi.WEB.name());
-                double kgCO2 = getTotaleKgCO2(model);
+                double kgCO2 = getTotaleKgCO2(model, sitoWebView);
                 Double importo = new Double(0.0);
 
                 PagamentoModel pagamentoModel = null;
@@ -296,12 +294,12 @@ public class SitoWebController extends BaseController {
         }
     }
 
-    private double getTotaleKgCO2(OrdineModel model) {
+    /*private double getTotaleKgCO2(OrdineModel model) {
         List<RiepilogoModel> eventoRiepilogoModels = sitoWebView.riepilogo(getCoefficientiMAP());
         double totale = 0;
         for (RiepilogoModel r : eventoRiepilogoModels) {
             totale += r.getKgCO2();
         }
         return totale;
-    }
+    }*/
 }

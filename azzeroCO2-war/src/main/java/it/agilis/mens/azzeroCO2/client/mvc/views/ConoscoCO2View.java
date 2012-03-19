@@ -39,7 +39,7 @@ import java.util.Map;
  * Time: 11:40 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ConoscoCO2View extends View {
+public class ConoscoCO2View extends View implements BaseView{
     private ContentPanel conoscoCO2panel = new ContentPanel();
 
     private ConoscoCO2 conoscoCO2 = new ConoscoCO2();

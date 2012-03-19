@@ -6,11 +6,13 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import it.agilis.mens.azzeroCO2.client.MyInfo;
+import it.agilis.mens.azzeroCO2.client.mvc.views.BaseView;
 import it.agilis.mens.azzeroCO2.client.services.AzzeroCO2Constants;
 import it.agilis.mens.azzeroCO2.client.services.HustonServiceAsync;
 import it.agilis.mens.azzeroCO2.shared.EMailVTO;
 import it.agilis.mens.azzeroCO2.shared.git.GitRepositoryStateModel;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
+import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CoefficienteModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.ProgettoDiCompensazioneModel;
 import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
@@ -182,5 +184,25 @@ public abstract class BaseController extends Controller {
                         "scrollbars=yes," +
                         "status=no," +
                         "dependent=true");
+    }
+
+    public double getTotaleKgCO2(OrdineModel model, BaseView view) {
+        List<RiepilogoModel> eventoRiepilogoModels = view.riepilogo(getCoefficientiMAP());
+        double totale = 0;
+        for (RiepilogoModel r : eventoRiepilogoModels) {
+            totale += r.getKgCO2();
+        }
+
+        double ton= totale / 1000;
+
+        if(ton>=0 && ton<0.999){
+            ton= 1;
+        } else {
+            ton= Math.round(ton);
+        }
+
+        totale = ton * 1000;
+
+        return totale;
     }
 }

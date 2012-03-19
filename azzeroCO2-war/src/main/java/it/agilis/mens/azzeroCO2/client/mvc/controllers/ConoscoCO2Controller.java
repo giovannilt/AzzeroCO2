@@ -15,7 +15,6 @@ import it.agilis.mens.azzeroCO2.shared.Eventi;
 import it.agilis.mens.azzeroCO2.shared.Profile;
 import it.agilis.mens.azzeroCO2.shared.model.CouponType;
 import it.agilis.mens.azzeroCO2.shared.model.OrdineModel;
-import it.agilis.mens.azzeroCO2.shared.model.RiepilogoModel;
 import it.agilis.mens.azzeroCO2.shared.model.amministrazione.CouponModel;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.Esito;
 import it.agilis.mens.azzeroCO2.shared.model.pagamento.PagamentoModel;
@@ -23,7 +22,6 @@ import it.agilis.mens.azzeroCO2.shared.model.registrazione.UserInfoModel;
 import it.agilis.mens.azzeroCO2.shared.vto.OrdineVTO;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -126,7 +124,7 @@ public class ConoscoCO2Controller extends BaseController {
             } else {
                 OrdineModel model = conoscoCO2View.getRiepilogo();
                 model.setEventiType(Eventi.CONOSCI_CO2.name());
-                double kgCO2 = getTotaleKgCO2(model);
+                double kgCO2 = getTotaleKgCO2(model, conoscoCO2View);
                 Double importo = new Double(0.0);
 
                 // TODO Calcolare il totale togliendo lo sconto COUPON
@@ -304,15 +302,6 @@ public class ConoscoCO2Controller extends BaseController {
         } else {
             conoscoCO2View.riepilogo(getCoefficientiMAP());
         }
-    }
-
-    private double getTotaleKgCO2(OrdineModel model) {
-        List<RiepilogoModel> eventoRiepilogoModels = conoscoCO2View.riepilogo(getCoefficientiMAP());
-        double totale = 0;
-        for (RiepilogoModel r : eventoRiepilogoModels) {
-            totale += r.getKgCO2();
-        }
-        return totale;
     }
 
 
