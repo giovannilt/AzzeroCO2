@@ -743,7 +743,13 @@ public class Utils {
         SellaRicevutaDiPagamento ricevuta = new SellaRicevutaDiPagamento();
 
         ricevuta.setId(pagamentoModel.getId());
-        ricevuta.setEsito(Esito.valueOf(pagamentoModel.getEsito()));
+        
+        if(pagamentoModel.getEsito().equalsIgnoreCase("In pagamento")){
+            ricevuta.setEsito(Esito.IN_PAGAMENTO);
+        }else{
+            ricevuta.setEsito(Esito.valueOf(pagamentoModel.getEsito()));
+
+        }
 
         ricevuta.setMERCHANT_ID(pagamentoModel.getMERCHANT_ID());
         ricevuta.setDIVISA(pagamentoModel.getDIVISA());

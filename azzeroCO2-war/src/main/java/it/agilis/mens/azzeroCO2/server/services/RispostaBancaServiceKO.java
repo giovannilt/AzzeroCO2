@@ -54,7 +54,7 @@ public class RispostaBancaServiceKO extends HttpServlet {
 
     private static final String PAGE_BOTTOM = ""
             + "</table>" +
-            "< a href=\"javascript:window.opener='x';window.close();\">Close< /a>"
+            "<a href=\"javascript:window.opener='x';window.close();\">Close< /a>"
             + "</body>"
             + "</html>";
 
@@ -110,7 +110,7 @@ public class RispostaBancaServiceKO extends HttpServlet {
                 out.println(PAGE_TOP + "<tr><td>Errore nella ricezione dei dati. -1</td></tr>" + PAGE_BOTTOM);
             }
         } else {
-            out.println(PAGE_TOP + "<tr><td>Errore nella ricezione dei dati. -2</td></tr>" + PAGE_BOTTOM);
+            out.println(PAGE_TOP + "<tr><td>Fine</td></tr>" + PAGE_BOTTOM);
         }
     }
 }
